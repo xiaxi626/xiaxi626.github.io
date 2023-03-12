@@ -1,0 +1,816 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>在本地（Windows）从零开始训练VITS踩坑记录（二） -
+        飞爱碧玉的个人博客</title>
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico" />
+<link
+    href="https://fastly.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+<link
+    rel="stylesheet"
+    href="https://fastly.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"
+/>
+<link
+    rel="stylesheet"
+    href="https://xiaxi626.github.io/media/css/tailwind.css"
+/>
+<link rel="stylesheet" href="https://xiaxi626.github.io/styles/main.css" />
+<link
+    rel="alternate"
+    type="application/atom+xml"
+    title="在本地（Windows）从零开始训练VITS踩坑记录（二） -
+        飞爱碧玉的个人博客 - Atom Feed"
+    href="https://xiaxi626.github.io/atom.xml"
+/>
+
+
+
+        <meta name="description" content="前期准备
+准备过程
+
+Visit our demo for audio samples.
+We also provide the pretrained models.
+** Update note: Thanks to Rishikesh ..." />
+        <meta
+            property="og:title"
+            content="在本地（Windows）从零开始训练VITS踩坑记录（二） - 飞爱碧玉的个人博客"
+        />
+        <meta property="og:description" content="前期准备
+准备过程
+
+Visit our demo for audio samples.
+We also provide the pretrained models.
+** Update note: Thanks to Rishikesh ..." />
+        <meta property="og:type" content="articles" />
+        <meta property="og:url" content="https://xiaxi626.github.io/post/zai-ben-di-windowscong-ling-kai-shi-xun-lian-vits-cai-keng-ji-lu-er/" />
+        <meta
+            property="og:image"
+            content="https://xiaxi626.github.io/post-images/zai-ben-di-windowscong-ling-kai-shi-xun-lian-vits-cai-keng-ji-lu-er.png"
+        />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:width" content="1200" />
+        <meta
+            name="twitter:title"
+            content="在本地（Windows）从零开始训练VITS踩坑记录（二） - 飞爱碧玉的个人博客"
+        />
+        <meta name="twitter:description" content="前期准备
+准备过程
+
+Visit our demo for audio samples.
+We also provide the pretrained models.
+** Update note: Thanks to Rishikesh ..." />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href="https://xiaxi626.github.io/post/zai-ben-di-windowscong-ling-kai-shi-xun-lian-vits-cai-keng-ji-lu-er/" />
+
+        <link
+            rel="stylesheet"
+            href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"
+        />
+
+        
+        <link
+            rel="stylesheet"
+            href="https://xiaxi626.github.io/media/css/prism-synthwave84.css"
+        />
+         
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css"
+        />
+        
+    </head>
+
+    <body>
+        <div class="antialiased flex flex-col min-h-screen" id="app">
+            <a
+                href="https://xiaxi626.github.io"
+                class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft"
+            >
+                飞爱碧玉的个人博客
+            </a>
+            <div class="max-w-4xl w-full mx-auto">
+                <div
+                    class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8"
+                >
+                    <h1
+                        class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700"
+                    >
+                        在本地（Windows）从零开始训练VITS踩坑记录（二）
+                    </h1>
+                    
+                    <img
+                        src="https://xiaxi626.github.io/post-images/zai-ben-di-windowscong-ling-kai-shi-xun-lian-vits-cai-keng-ji-lu-er.png"
+                        alt="在本地（Windows）从零开始训练VITS踩坑记录（二）"
+                        class="block w-full mb-8"
+                    />
+                    
+                    <div class="mb-8 flex flex-wrap">
+                        <div class="text-gray-400 text-sm mr-4">
+                            2023-03-08 · 24 min read
+                        </div>
+                        
+                        <a
+                            href="https://xiaxi626.github.io/tag/4zHendvk6/"
+                            class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2"
+                        >
+                            <i class="ri-hashtag"></i>
+                            Technology
+                        </a>
+                        
+                    </div>
+                    <div class="markdown mb-8" v-pre><h1 id="前期准备">前期准备</h1>
+<h2 id="准备过程">准备过程</h2>
+<blockquote>
+<p>Visit our <a href="https://jaywalnut310.github.io/vits-demo/index.html">demo</a> for audio samples.<br>
+We also provide the <a href="https://drive.google.com/drive/folders/1ksarh-cJf3F5eKJjLVWY0X1j1qsQqiS2?usp=sharing">pretrained models</a>.<br>
+** Update note: Thanks to <a href="https://github.com/jaywalnut310/vits/issues/1">Rishikesh (ऋषिकेश)</a>, our interactive TTS demo is now available on <a href="https://colab.research.google.com/drive/1CO61pZizDj7en71NQG_aqqKdGaA_SaBf?usp=sharing">Colab Notebook</a>.</p>
+</blockquote>
+<p>预训练模型在Google Drive上，需要科学上网</p>
+<ol>
+<li>下载数据集<br>
+i. 下载并解压缩 LJ Speech 数据集，然后重命名或创建指向数据集文件夹的链接： <code>ln -s /path/to/LJSpeech-1.1/wavs DUMMY1</code><br>
+ii. 对于 mult-speaker 设置，下载并提取VCTK数据集，并将wav文件降采样至22050 Hz。然后重命名或创建指向数据集文件夹的链接： <code>ln -s /path/to/VCTK-Corpus/downsampled_wavs DUMMY2</code><br>
+在Linux系统中存在两种链接文件方式
+<ul>
+<li>软链接（类似windows下的快捷方式）</li>
+</ul>
+<pre><code class="language-bash">ln -s 原文件名 链接文件名
+</code></pre>
+<ul>
+<li>硬链接（类似复制文件）</li>
+</ul>
+<pre><code class="language-bash">ln 原文件名 链接文件名
+</code></pre>
+如果文件被删除，则软链接文件失去指向，变为不可用<br>
+如果文件被删除，由于硬链接文件直接指向内容，因此不受影响<br>
+详解：<a href="https://zhuanlan.zhihu.com/p/370883288">深度剖析 Linux 的 3 种“拷贝”命令</a></li>
+</ol>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ ln -s &quot;E:\vits\LJSpeech-1.1\wavs&quot; DUMMY1
+/*请用上面的命令,生成的 DUMMY1 文件夹里是 wavs 文件夹中的文件，没有 wavs 文件夹*/
+Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ ln -s &quot;E:\vits\LJSpeech-1.1\wavs&quot; DUMMY1
+/*如果删掉 DUMMY1 文件夹中 wavs 文件，输入上面的命令 DUMMY1 文件夹中会出现 wavs 文件夹*/
+Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ ln -s E:\vits\LJSpeech-1.1\wavs DUMMY1
+/*如果删掉 DUMMY1 文件夹中 wavs 文件，输入上面的命令会出现*/
+ln: failed to create symbolic link 'DUMMY1/vitsLJSpeech-1.1wavs': No such file or directory
+/*创建一个 DUMMY1 空白文件夹，使用下面的命令*/
+Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ ln -s E:\vits\LJSpeech-1.1\wavs DUMMY1
+ln: failed to create symbolic link 'DUMMY1/vitsLJSpeech-1.1wavs': No such file or directory
+/*不创建 DUMMY1 空白文件夹，使用下面的命令*/
+Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ ln -s E:\vits\LJSpeech-1.1\wavs DUMMY1
+ln: failed to create symbolic link 'DUMMY1': No such file or directory
+</code></pre>
+<ol start="4">
+<li>如果您使用自己的数据集，请构建单调对齐搜索并运行预处理。</li>
+</ol>
+<pre><code class="language-bash"># Cython-version Monotonoic Alignment Search
+cd monotonic_align
+python setup.py build_ext --inplace
+
+# Preprocessing (g2p) for your own datasets. Preprocessed phonemes for LJ Speech and VCTK have been already provided.
+# python preprocess.py --text_index 1 --filelists filelists/ljs_audio_text_train_filelist.txt filelists/ljs_audio_text_val_filelist.txt filelists/ljs_audio_text_test_filelist.txt 
+# python preprocess.py --text_index 2 --filelists filelists/vctk_audio_sid_text_train_filelist.txt filelists/vctk_audio_sid_text_val_filelist.txt filelists/vctk_audio_sid_text_test_filelist.txt
+</code></pre>
+<p>翻回头我们看看数据集</p>
+<h3 id="ljspeech数据集">LJspeech数据集</h3>
+<p><strong>描述</strong>：<br>
+这是一个公共领域的语音数据集，由13,100个简短的音频剪辑组成，这些音频剪辑是单个说话者阅读7本非小说类书籍中的段落。为每个剪辑提供转录。短片的长度从1秒到10秒不等，总长度约为24小时。</p>
+<p>这些文本出版于1884年至1964年，属于公有领域。该音频于2016-17年由LibriVox项目录制，也属于公有领域。</p>
+<p>Homepage: <a href="https://keithito.com/LJ-Speech-Dataset/">The LJ Speech Dataset</a></p>
+<p><strong>介绍</strong>：<br>
+<a href="https://tensorflow.google.cn/datasets/catalog/ljspeech?hl=en">ljspeech</a></p>
+<p>在网上翻了翻——<br>
+LJspeech数据集 1.0版<br>
+链接：<a href="https://pan.baidu.com/s/1OGDXtmNtKn-5258HfabTGA">https://pan.baidu.com/s/1OGDXtmNtKn-5258HfabTGA</a><br>
+提取码：jkre<br>
+LJspeech数据集 1.1版<br>
+数据集：<a href="http://data.keithito.com/data/speech/LJSpeech-1.1.tar.bz2">http://data.keithito.com/data/speech/LJSpeech-1.1.tar.bz2</a> （用迅雷下载很快）<br>
+百度网盘地址：链接：<a href="https://pan.baidu.com/s/197LRZLNBb5gyREpYsMpkCg">https://pan.baidu.com/s/197LRZLNBb5gyREpYsMpkCg</a> 提取码：7o1a</p>
+<p>现在我没下载官方提供的预训练模型，</p>
+<h3 id="vctk数据集">VCTK数据集</h3>
+<p><strong>描述</strong>：<br>
+CSTR VCTK语料库包括110名英语使用者使用不同口音发出的语音数据。每个演讲者朗读大约400个句子，这些句子选自一份报纸、rainbow文章和一段用于语音重音档案的启发段落。<br>
+文本是根据贪婪算法选择的，贪婪算法可以增加上下文和语音覆盖率。<br>
+所有语音数据均使用相同的录音设置进行录音：一个全向麦克风（DPA 4035）和一个小振膜电容麦克风，带宽非常宽（Sennheiser MKH 800），采样频率为96kHz，24位，位于爱丁堡大学的半消声室中。<br>
+所有记录均转换为16位，降采样至48 kHz<br>
+该语料库最初用于基于HMM的文本到语音合成系统，尤其是基于说话人自适应HMM的语音合成，该合成使用多个说话人的平均语音模型和说话人自适应技术。该语料库也适用于基于DNN的多说话人文语合成系统和波形建模。<strong>这里的思想和PCA提取人脸特征加上平均人脸来合成指定人脸的思想类似</strong></p>
+<p>Homepage: <a href="https://doi.org/10.7488/ds/2645">CSTR VCTK Corpus: English Multi-speaker Corpus for CSTR Voice Cloning Toolkit (version 0.92)</a></p>
+<p><strong>介绍</strong>：<br>
+<a href="https://blog.csdn.net/weixin_45647721/article/details/125546132">关于VCTK数据集</a><br>
+<a href="https://datasets.activeloop.ai/docs/ml/datasets/vctk-dataset/">-MNIST dataset</a><br>
+<a href="https://tensorflow.google.cn/datasets/catalog/vctk">vctk</a></p>
+<h2 id="训练示例">训练示例</h2>
+<pre><code class="language-bash"># LJ Speech
+python train.py -c configs/ljs_base.json -m ljs_base
+
+# VCTK
+python train_ms.py -c configs/vctk_base.json -m vctk_base
+</code></pre>
+<h1 id="训练测试">训练测试</h1>
+<h2 id="用-ljspeech-和-vctk-数据集测试">用 LJspeech 和 VCTK 数据集测试</h2>
+<p>已下载 LJspeech 数据集并创建指向数据集文件夹的链接，没有下载预训练模型，直接运行</p>
+<pre><code class="language-bash"># LJ Speech
+python train.py -c configs/ljs_base.json -m ljs_base
+</code></pre>
+<p>cmd运行结果——</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ python train.py -c configs/ljs_base.json -m ljs_base
+DEBUG:numba.core.byteflow:bytecode dump:
+&gt;          0    NOP(arg=None, lineno=1054)
+           2    LOAD_FAST(arg=0, lineno=1054)
+           4    LOAD_CONST(arg=1, lineno=1054)
+           6    BINARY_SUBSCR(arg=None, lineno=1054)
+           8    LOAD_FAST(arg=0, lineno=1054)
+          10    LOAD_CONST(arg=2, lineno=1054)
+          12    BINARY_SUBSCR(arg=None, lineno=1054)
+          14    COMPARE_OP(arg=4, lineno=1054)
+          16    LOAD_FAST(arg=0, lineno=1054)
+          18    LOAD_CONST(arg=1, lineno=1054)
+          20    BINARY_SUBSCR(arg=None, lineno=1054)
+          22    LOAD_FAST(arg=0, lineno=1054)
+          24    LOAD_CONST(arg=3, lineno=1054)
+          26    BINARY_SUBSCR(arg=None, lineno=1054)
+          28    COMPARE_OP(arg=5, lineno=1054)
+          30    BINARY_AND(arg=None, lineno=1054)
+          32    RETURN_VALUE(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:pending: deque([State(pc_initial=0 nstack_initial=0)])
+DEBUG:numba.core.byteflow:stack: []
+DEBUG:numba.core.byteflow:dispatch pc=0, inst=NOP(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:stack []
+DEBUG:numba.core.byteflow:dispatch pc=2, inst=LOAD_FAST(arg=0, lineno=1054)
+DEBUG:numba.core.byteflow:stack []
+DEBUG:numba.core.byteflow:dispatch pc=4, inst=LOAD_CONST(arg=1, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$x2.0']
+DEBUG:numba.core.byteflow:dispatch pc=6, inst=BINARY_SUBSCR(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$x2.0', '$const4.1']
+DEBUG:numba.core.byteflow:dispatch pc=8, inst=LOAD_FAST(arg=0, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2']
+DEBUG:numba.core.byteflow:dispatch pc=10, inst=LOAD_CONST(arg=2, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2', '$x8.3']
+DEBUG:numba.core.byteflow:dispatch pc=12, inst=BINARY_SUBSCR(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2', '$x8.3', '$const10.4']
+DEBUG:numba.core.byteflow:dispatch pc=14, inst=COMPARE_OP(arg=4, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2', '$12binary_subscr.5']
+DEBUG:numba.core.byteflow:dispatch pc=16, inst=LOAD_FAST(arg=0, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6']
+DEBUG:numba.core.byteflow:dispatch pc=18, inst=LOAD_CONST(arg=1, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$x16.7']
+DEBUG:numba.core.byteflow:dispatch pc=20, inst=BINARY_SUBSCR(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$x16.7', '$const18.8']
+DEBUG:numba.core.byteflow:dispatch pc=22, inst=LOAD_FAST(arg=0, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9']
+DEBUG:numba.core.byteflow:dispatch pc=24, inst=LOAD_CONST(arg=3, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9', '$x22.10']
+DEBUG:numba.core.byteflow:dispatch pc=26, inst=BINARY_SUBSCR(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9', '$x22.10', '$const24.11']
+DEBUG:numba.core.byteflow:dispatch pc=28, inst=COMPARE_OP(arg=5, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9', '$26binary_subscr.12']
+DEBUG:numba.core.byteflow:dispatch pc=30, inst=BINARY_AND(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$28compare_op.13']
+DEBUG:numba.core.byteflow:dispatch pc=32, inst=RETURN_VALUE(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$30binary_and.14']
+DEBUG:numba.core.byteflow:end state. edges=[]
+DEBUG:numba.core.byteflow:-------------------------Prune PHIs-------------------------
+DEBUG:numba.core.byteflow:Used_phis: defaultdict(&lt;class 'set'&gt;, {State(pc_initial=0 nstack_initial=0): set()})
+DEBUG:numba.core.byteflow:defmap: {}
+DEBUG:numba.core.byteflow:phismap: defaultdict(&lt;class 'set'&gt;, {})
+DEBUG:numba.core.byteflow:changing phismap: defaultdict(&lt;class 'set'&gt;, {})
+DEBUG:numba.core.byteflow:keep phismap: {}
+DEBUG:numba.core.byteflow:new_out: defaultdict(&lt;class 'dict'&gt;, {})
+DEBUG:numba.core.byteflow:----------------------DONE Prune PHIs-----------------------
+DEBUG:numba.core.byteflow:block_infos State(pc_initial=0 nstack_initial=0):
+AdaptBlockInfo(insts=((0, {}), (2, {'res': '$x2.0'}), (4, {'res': '$const4.1'}), (6, {'index': '$const4.1', 'target': '$x2.0', 'res': '$6binary_subscr.2'}), (8, {'res': '$x8.3'}), (10, {'res': '$const10.4'}), (12, {'index': '$const10.4', 'target': '$x8.3', 'res': '$12binary_subscr.5'}), (14, {'lhs': '$6binary_subscr.2', 'rhs': '$12binary_subscr.5', 'res': '$14compare_op.6'}), (16, {'res': '$x16.7'}), (18, {'res': '$const18.8'}), (20, {'index': '$const18.8', 'target': '$x16.7', 'res': '$20binary_subscr.9'}), (22, {'res': '$x22.10'}), (24, {'res': '$const24.11'}), (26, {'index': '$const24.11', 'target': '$x22.10', 'res': '$26binary_subscr.12'}), (28, {'lhs': '$20binary_subscr.9', 'rhs': '$26binary_subscr.12', 'res': '$28compare_op.13'}), (30, {'lhs': '$14compare_op.6', 'rhs': '$28compare_op.13', 'res': '$30binary_and.14'}), (32, {'retval': '$30binary_and.14', 'castval': '$32return_value.15'})), outgoing_phis={}, blockstack=(), active_try_block=None, outgoing_edgepushed={})
+DEBUG:numba.core.interpreter:label 0:
+    x = arg(0, name=x)                       ['x']
+    $const4.1 = const(int, 0)                ['$const4.1']
+    $6binary_subscr.2 = getitem(value=x, index=$const4.1, fn=&lt;built-in function getitem&gt;) ['$6binary_subscr.2', '$const4.1', 'x']
+    $const10.4 = const(int, -1)              ['$const10.4']
+    $12binary_subscr.5 = getitem(value=x, index=$const10.4, fn=&lt;built-in function getitem&gt;) ['$12binary_subscr.5', '$const10.4', 'x']
+    $14compare_op.6 = $6binary_subscr.2 &gt; $12binary_subscr.5 ['$12binary_subscr.5', '$14compare_op.6', '$6binary_subscr.2']
+    $const18.8 = const(int, 0)               ['$const18.8']
+    $20binary_subscr.9 = getitem(value=x, index=$const18.8, fn=&lt;built-in function getitem&gt;) ['$20binary_subscr.9', '$const18.8', 'x']
+    $const24.11 = const(int, 1)              ['$const24.11']
+    $26binary_subscr.12 = getitem(value=x, index=$const24.11, fn=&lt;built-in function getitem&gt;) ['$26binary_subscr.12', '$const24.11', 'x']
+    $28compare_op.13 = $20binary_subscr.9 &gt;= $26binary_subscr.12 ['$20binary_subscr.9', '$26binary_subscr.12', '$28compare_op.13']
+    $30binary_and.14 = $14compare_op.6 &amp; $28compare_op.13 ['$14compare_op.6', '$28compare_op.13', '$30binary_and.14']
+    $32return_value.15 = cast(value=$30binary_and.14) ['$30binary_and.14', '$32return_value.15']
+    return $32return_value.15                ['$32return_value.15']
+
+DEBUG:numba.core.byteflow:bytecode dump:
+&gt;          0    NOP(arg=None, lineno=1060)
+           2    LOAD_FAST(arg=0, lineno=1060)
+           4    LOAD_CONST(arg=1, lineno=1060)
+           6    BINARY_SUBSCR(arg=None, lineno=1060)
+           8    LOAD_FAST(arg=0, lineno=1060)
+          10    LOAD_CONST(arg=2, lineno=1060)
+          12    BINARY_SUBSCR(arg=None, lineno=1060)
+          14    COMPARE_OP(arg=0, lineno=1060)
+          16    LOAD_FAST(arg=0, lineno=1060)
+          18    LOAD_CONST(arg=1, lineno=1060)
+          20    BINARY_SUBSCR(arg=None, lineno=1060)
+          22    LOAD_FAST(arg=0, lineno=1060)
+          24    LOAD_CONST(arg=3, lineno=1060)
+          26    BINARY_SUBSCR(arg=None, lineno=1060)
+          28    COMPARE_OP(arg=1, lineno=1060)
+          30    BINARY_AND(arg=None, lineno=1060)
+          32    RETURN_VALUE(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:pending: deque([State(pc_initial=0 nstack_initial=0)])
+DEBUG:numba.core.byteflow:stack: []
+DEBUG:numba.core.byteflow:dispatch pc=0, inst=NOP(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:stack []
+DEBUG:numba.core.byteflow:dispatch pc=2, inst=LOAD_FAST(arg=0, lineno=1060)
+DEBUG:numba.core.byteflow:stack []
+DEBUG:numba.core.byteflow:dispatch pc=4, inst=LOAD_CONST(arg=1, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$x2.0']
+DEBUG:numba.core.byteflow:dispatch pc=6, inst=BINARY_SUBSCR(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$x2.0', '$const4.1']
+DEBUG:numba.core.byteflow:dispatch pc=8, inst=LOAD_FAST(arg=0, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2']
+DEBUG:numba.core.byteflow:dispatch pc=10, inst=LOAD_CONST(arg=2, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2', '$x8.3']
+DEBUG:numba.core.byteflow:dispatch pc=12, inst=BINARY_SUBSCR(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2', '$x8.3', '$const10.4']
+DEBUG:numba.core.byteflow:dispatch pc=14, inst=COMPARE_OP(arg=0, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2', '$12binary_subscr.5']
+DEBUG:numba.core.byteflow:dispatch pc=16, inst=LOAD_FAST(arg=0, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6']
+DEBUG:numba.core.byteflow:dispatch pc=18, inst=LOAD_CONST(arg=1, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$x16.7']
+DEBUG:numba.core.byteflow:dispatch pc=20, inst=BINARY_SUBSCR(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$x16.7', '$const18.8']
+DEBUG:numba.core.byteflow:dispatch pc=22, inst=LOAD_FAST(arg=0, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9']
+DEBUG:numba.core.byteflow:dispatch pc=24, inst=LOAD_CONST(arg=3, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9', '$x22.10']
+DEBUG:numba.core.byteflow:dispatch pc=26, inst=BINARY_SUBSCR(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9', '$x22.10', '$const24.11']
+DEBUG:numba.core.byteflow:dispatch pc=28, inst=COMPARE_OP(arg=1, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9', '$26binary_subscr.12']
+DEBUG:numba.core.byteflow:dispatch pc=30, inst=BINARY_AND(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$28compare_op.13']
+DEBUG:numba.core.byteflow:dispatch pc=32, inst=RETURN_VALUE(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$30binary_and.14']
+DEBUG:numba.core.byteflow:end state. edges=[]
+DEBUG:numba.core.byteflow:-------------------------Prune PHIs-------------------------
+DEBUG:numba.core.byteflow:Used_phis: defaultdict(&lt;class 'set'&gt;, {State(pc_initial=0 nstack_initial=0): set()})
+DEBUG:numba.core.byteflow:defmap: {}
+DEBUG:numba.core.byteflow:phismap: defaultdict(&lt;class 'set'&gt;, {})
+DEBUG:numba.core.byteflow:changing phismap: defaultdict(&lt;class 'set'&gt;, {})
+DEBUG:numba.core.byteflow:keep phismap: {}
+DEBUG:numba.core.byteflow:new_out: defaultdict(&lt;class 'dict'&gt;, {})
+DEBUG:numba.core.byteflow:----------------------DONE Prune PHIs-----------------------
+DEBUG:numba.core.byteflow:block_infos State(pc_initial=0 nstack_initial=0):
+AdaptBlockInfo(insts=((0, {}), (2, {'res': '$x2.0'}), (4, {'res': '$const4.1'}), (6, {'index': '$const4.1', 'target': '$x2.0', 'res': '$6binary_subscr.2'}), (8, {'res': '$x8.3'}), (10, {'res': '$const10.4'}), (12, {'index': '$const10.4', 'target': '$x8.3', 'res': '$12binary_subscr.5'}), (14, {'lhs': '$6binary_subscr.2', 'rhs': '$12binary_subscr.5', 'res': '$14compare_op.6'}), (16, {'res': '$x16.7'}), (18, {'res': '$const18.8'}), (20, {'index': '$const18.8', 'target': '$x16.7', 'res': '$20binary_subscr.9'}), (22, {'res': '$x22.10'}), (24, {'res': '$const24.11'}), (26, {'index': '$const24.11', 'target': '$x22.10', 'res': '$26binary_subscr.12'}), (28, {'lhs': '$20binary_subscr.9', 'rhs': '$26binary_subscr.12', 'res': '$28compare_op.13'}), (30, {'lhs': '$14compare_op.6', 'rhs': '$28compare_op.13', 'res': '$30binary_and.14'}), (32, {'retval': '$30binary_and.14', 'castval': '$32return_value.15'})), outgoing_phis={}, blockstack=(), active_try_block=None, outgoing_edgepushed={})
+DEBUG:numba.core.interpreter:label 0:
+    x = arg(0, name=x)                       ['x']
+    $const4.1 = const(int, 0)                ['$const4.1']
+    $6binary_subscr.2 = getitem(value=x, index=$const4.1, fn=&lt;built-in function getitem&gt;) ['$6binary_subscr.2', '$const4.1', 'x']
+    $const10.4 = const(int, -1)              ['$const10.4']
+    $12binary_subscr.5 = getitem(value=x, index=$const10.4, fn=&lt;built-in function getitem&gt;) ['$12binary_subscr.5', '$const10.4', 'x']
+    $14compare_op.6 = $6binary_subscr.2 &lt; $12binary_subscr.5 ['$12binary_subscr.5', '$14compare_op.6', '$6binary_subscr.2']
+    $const18.8 = const(int, 0)               ['$const18.8']
+    $20binary_subscr.9 = getitem(value=x, index=$const18.8, fn=&lt;built-in function getitem&gt;) ['$20binary_subscr.9', '$const18.8', 'x']
+    $const24.11 = const(int, 1)              ['$const24.11']
+    $26binary_subscr.12 = getitem(value=x, index=$const24.11, fn=&lt;built-in function getitem&gt;) ['$26binary_subscr.12', '$const24.11', 'x']
+    $28compare_op.13 = $20binary_subscr.9 &lt;= $26binary_subscr.12 ['$20binary_subscr.9', '$26binary_subscr.12', '$28compare_op.13']
+    $30binary_and.14 = $14compare_op.6 &amp; $28compare_op.13 ['$14compare_op.6', '$28compare_op.13', '$30binary_and.14']
+    $32return_value.15 = cast(value=$30binary_and.14) ['$30binary_and.14', '$32return_value.15']
+    return $32return_value.15                ['$32return_value.15']
+
+Traceback (most recent call last):
+  File &quot;train.py&quot;, line 23, in &lt;module&gt;
+    from models import (
+  File &quot;E:\vits\models.py&quot;, line 10, in &lt;module&gt;
+    import monotonic_align
+  File &quot;E:\vits\monotonic_align\__init__.py&quot;, line 3, in &lt;module&gt;
+    from .monotonic_align.core import maximum_path_c
+ModuleNotFoundError: No module named 'monotonic_align.monotonic_align'
+</code></pre>
+<p>创建了<code>E:\vits\monotonic_align\__pycache__</code>和<code>E:\vits\__pycache__</code>。<br>
+ModuleNotFoundError：没有名为“monotonic_align.monotonic_align”的模块<br>
+构建单调对齐搜索并运行预处理</p>
+<pre><code class="language-bash"># Cython-version Monotonoic Alignment Search
+cd monotonic_align
+python setup.py build_ext --inplace
+</code></pre>
+<p>cmd运行结果——</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ cd monotonic_align
+
+Administrator@AUTOBVT-Q90417J MINGW64 /e/vits/monotonic_align (main)
+$ python setup.py build_ext --inplace
+Compiling core.pyx because it changed.
+[1/1] Cythonizing core.pyx
+running build_ext
+building 'monotonic_align.core' extension
+C:\Program Files\Python38\lib\site-packages\Cython\Compiler\Main.py:369: FutureWarning: Cython directive 'language_level' not set, using 2 for now (Py2). This will change in a later release! File: E:\vits\monotonic_align\core.pyx
+  tree = Parsing.p_module(s, pxd, full_module_name)
+error: Unable to find vcvarsall.bat
+</code></pre>
+<p>报告了两个错误<br>
+1、<code>C:\Program Files\Python38\lib\site-packages\Cython\Compiler\Main.py:369: FutureWarning: Cython directive 'language_level' not set, using 2 for now (Py2). This will change in a later release!</code></p>
+<p>如果你期望编译的版本不是python2，那就指定自己要用哪个版本编译，或者在每个要编译的版本 .py 文件顶上添加一行指定cython版本，即<code># cython: language_level=3</code>，但如果有成千上成个 .py 或 .pyx 文件，就不好处理了，在 setup.py 中添加：</p>
+<pre><code class="language-bash">cythonize(module_item,compiler_directives={'language_level': '3'})
+</code></pre>
+<blockquote>
+<p>此处摘自<a href="https://www.cnblogs.com/nanfei/p/16888555.html">Cython directive 'language_level' not set, using 2 for now (Py2)</a><br>
+<a href="https://blog.csdn.net/weixin_43272781/article/details/112757469">Cython——[FutureWarning: Cython directive ‘language_level’ not set, using 2 for now (Py2)]解决方案</a><br>
+2、在运行带Cython模块的py文件时，有可能输出如下报错信息：</p>
+</blockquote>
+<pre><code class="language-bash">error: Unable to find vcvarsall.bat
+</code></pre>
+<p>原因是没有找到vcvarsall.bat指定的vc++编译器进行编译。大多数解决方案都要求安装Visual Studio。<br>
+当前主流Python版本与VC和VS的版本对应关系及各版本VS下载地址：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">CPython</th>
+<th style="text-align:center">Visual C++</th>
+<th style="text-align:center">Visual Studio</th>
+<th style="text-align:center">Visual Studio下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2.6, 2.7, 3.0, 3.1, 3.2</td>
+<td style="text-align:center">9.0</td>
+<td style="text-align:center">Visual Studio 2008</td>
+<td style="text-align:center"><a href="http://www.microsoft.com/en-us/download/details.aspx?id=29">x86下载</a> <a href="http://www.microsoft.com/en-us/download/details.aspx?id=15336">x64下载</a></td>
+</tr>
+<tr>
+<td style="text-align:center">3.3, 3.4</td>
+<td style="text-align:center">10.0</td>
+<td style="text-align:center">Visual Studio 2010</td>
+<td style="text-align:center"><a href="https://www.microsoft.com/en-us/download/details.aspx?id=5555">x86下载</a> <a href="http://www.microsoft.com/en-us/download/details.aspx?id=14632">x64下载</a></td>
+</tr>
+<tr>
+<td style="text-align:center">3.5</td>
+<td style="text-align:center">14.0</td>
+<td style="text-align:center">Visual Studio 2015</td>
+<td style="text-align:center"><a href="http://www.microsoft.com/en-us/download/details.aspx?id=53840">下载</a></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>上表摘自<a href="https://blog.csdn.net/wengduke/article/details/85331706">Cython出现错误：Unable to find vcvarsall.bat</a><br>
+<a href="https://blog.csdn.net/Draymond_666/article/details/85091235">无需安装VS，一行命令解决&quot;Unable to find vcvarsall.bat&quot;</a>提供了另一种解决方法</p>
+</blockquote>
+<p>运行环境</p>
+<ul>
+<li>Windows 10 (64-bit)</li>
+<li>Python 3.7</li>
+</ul>
+<p>1、安装anaconda。Anaconda强大的包管理和环境管理可以帮助我们节省大量时间与精力，让我们能更专注于代码，而不是把精力花在各种莫名其妙的环境或依赖问题上。<br>
+2、在anaconda的命令行中输入命令：<code>conda install libpython</code></p>
+<p>我用pip安装它：<code>pip install libpython</code><br>
+cmd运行结果——</p>
+<pre><code class="language-bash">$ pip install libpython
+Collecting libpython
+  Downloading libpython-0.2.tar.gz (15 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: requests in c:\program files\python38\lib\site-packages (from libpython) (2.28.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\program files\python38\lib\site-packages (from requests-&gt;libpython) (3.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in c:\program files\python38\lib\site-packages (from requests-&gt;libpython) (1.26.14)
+Requirement already satisfied: certifi&gt;=2017.4.17 in c:\program files\python38\lib\site-packages (from requests-&gt;libpython) (2022.12.7)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\program files\python38\lib\site-packages (from requests-&gt;libpython) (3.0.1)
+Building wheels for collected packages: libpython
+  Building wheel for libpython (setup.py): started
+  Building wheel for libpython (setup.py): finished with status 'done'
+  Created wheel for libpython: filename=libpython-0.2-py3-none-any.whl size=14410 sha256=c8c0bf0dbd5502f14e73d0da51314ce2507c4e118dc866d6722720c3f5c8c743
+  Stored in directory: c:\users\administrator\appdata\local\pip\cache\wheels\f8\0e\ae\9a8610c41be91787c7899e435d6bcb161fa8df32ea3d371ecf
+Successfully built libpython
+Installing collected packages: libpython
+Successfully installed libpython-0.2
+</code></pre>
+<p>回到「构建单调对齐搜索并运行预处理」，看看会发生什么</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ cd monotonic_align
+
+Administrator@AUTOBVT-Q90417J MINGW64 /e/vits/monotonic_align (main)
+$ python setup.py build_ext --inplace
+running build_ext
+building 'monotonic_align.core' extension
+error: Unable to find vcvarsall.bat
+</code></pre>
+<p>即便卸载 libpython 也不再出现</p>
+<pre><code class="language-bash">C:\Program Files\Python38\lib\site-packages\Cython\Compiler\Main.py:369: FutureWarning: Cython directive 'language_level' not set, using 2 for now (Py2). This will change in a later release! File: E:\vits\monotonic_align\core.pyx
+  tree = Parsing.p_module(s, pxd, full_module_name)
+</code></pre>
+<p>删掉本地仓库重来方重现报错<br>
+看来在Windows 7 上安装 libpython 可能解决不了问题……</p>
+<pre><code class="language-bash"># Preprocessing (g2p) for your own datasets. Preprocessed phonemes for LJ Speech and VCTK have been already provided.
+# python preprocess.py --text_index 1 --filelists filelists/ljs_audio_text_train_filelist.txt filelists/ljs_audio_text_val_filelist.txt filelists/ljs_audio_text_test_filelist.txt 
+# python preprocess.py --text_index 2 --filelists filelists/vctk_audio_sid_text_train_filelist.txt filelists/vctk_audio_sid_text_val_filelist.txt filelists/vctk_audio_sid_text_test_filelist.txt
+</code></pre>
+<p>cmd运行结果——</p>
+<pre><code class="language-bash">$ python preprocess.py --text_index 1 --filelists filelists/ljs_audio_text_train_filelist.txt filelists/ljs_audio_text_val_filelist.txt filelists/ljs_audio_text_test_filelist.txt
+START: filelists/ljs_audio_text_train_filelist.txt
+Traceback (most recent call last):
+  File &quot;preprocess.py&quot;, line 20, in &lt;module&gt;
+    cleaned_text = text._clean_text(original_text, args.text_cleaners)
+  File &quot;E:\vits\text\__init__.py&quot;, line 53, in _clean_text
+    text = cleaner(text)
+  File &quot;E:\vits\text\cleaners.py&quot;, line 98, in english_cleaners2
+    phonemes = phonemize(text, language='en-us', backend='espeak', strip=True, preserve_punctuation=True, with_stress=True)
+  File &quot;C:\Program Files\Python38\lib\site-packages\phonemizer\phonemize.py&quot;, line 206, in phonemize
+    phonemizer = BACKENDS[backend](
+  File &quot;C:\Program Files\Python38\lib\site-packages\phonemizer\backend\espeak\espeak.py&quot;, line 45, in __init__
+    super().__init__(
+  File &quot;C:\Program Files\Python38\lib\site-packages\phonemizer\backend\espeak\base.py&quot;, line 39, in __init__
+    super().__init__(
+  File &quot;C:\Program Files\Python38\lib\site-packages\phonemizer\backend\base.py&quot;, line 77, in __init__
+    raise RuntimeError(  # pragma: nocover
+RuntimeError: espeak not installed on your system
+</code></pre>
+<p>创建了<code>E:\vits\text\__pycache__</code>和<code>E:\vits\__pycache__</code>。<br>
+<strong>解决方法</strong>：<br>
+<a href="https://www.bilibili.com/read/cv19743844">RuntimeError: espeak not installed on your system【已解决】</a><br>
+<a href="https://github.com/bootphon/phonemizer/issues/44"> RuntimeError: espeak not installed on your system #44 </a></p>
+<h1 id="未完待续">未完待续</h1>
+<p><a href="https://kgithub.com/jaywalnut310/vits">jaywalnut310/vits</a>坑就踩到这里，安装的依赖库严重影响Whisper正常使用。以后用Linux再试。<br>
+与<a href="https://kgithub.com/jaywalnut310/vits">jaywalnut310/vits</a>相关的「端到端语音合成模型VITS，日语数据训练」<a href="https://gitee.com/ikaros-521/vits-japanese">Ikaros/vits-japanese</a></p>
+<p><strong>下一篇开始学习</strong><br>
+<a href="https://www.bilibili.com/video/BV1i24y1i7JY/">下江小春也能看懂的语音模型训练教程</a><br>
+<a href="https://www.bilibili.com/video/BV1yj411N7rt">【VITS/语音合成】使用『预训练模型』快速拟合你的语音模型</a></p>
+</div>
+                    <!-- Share to Twitter, Weibo, Telegram -->
+                    <div class="flex items-center">
+                        <div class="mr-4 flex items-center">
+                            <i class="ri-share-forward-line text-gray-500"></i>
+                        </div>
+                        <div
+                            class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex"
+                            @click="shareToTwitter"
+                        >
+                            <i class="ri-twitter-line"></i>
+                        </div>
+                        <div
+                            class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex"
+                            @click="shareToWeibo"
+                        >
+                            <i class="ri-weibo-line"></i>
+                        </div>
+                        <div
+                            class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex"
+                            @click="shareToTelegram"
+                        >
+                            <i class="ri-telegram-line"></i>
+                        </div>
+                    </div>
+                </div>
+
+                 
+                <div id="vlaine-comment"></div>
+                 <footer class="py-12 text-center px-4 md:px-0" v-pre>
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+
+            </div>
+
+            <!-- TOC Container -->
+            <div
+                class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight"
+                @click="showToc = true"
+            >
+                <i class="ri-file-list-line"></i>
+            </div>
+
+            <div
+                class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast"
+                :class="{ '-mr-64': !showToc }"
+            >
+                <div class="flex mb-4 justify-end">
+                    <div
+                        class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast"
+                        @click="showToc = false"
+                    >
+                        <i class="ri-close-line text-lg"></i>
+                    </div>
+                </div>
+                <div class="post-toc-container"><ul class="markdownIt-TOC">
+<li><a href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87">前期准备</a>
+<ul>
+<li><a href="#%E5%87%86%E5%A4%87%E8%BF%87%E7%A8%8B">准备过程</a>
+<ul>
+<li><a href="#ljspeech%E6%95%B0%E6%8D%AE%E9%9B%86">LJspeech数据集</a></li>
+<li><a href="#vctk%E6%95%B0%E6%8D%AE%E9%9B%86">VCTK数据集</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AE%AD%E7%BB%83%E7%A4%BA%E4%BE%8B">训练示例</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AE%AD%E7%BB%83%E6%B5%8B%E8%AF%95">训练测试</a>
+<ul>
+<li><a href="#%E7%94%A8-ljspeech-%E5%92%8C-vctk-%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B5%8B%E8%AF%95">用 LJspeech 和 VCTK 数据集测试</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD">未完待续</a></li>
+</ul>
+</div>
+            </div>
+
+            <!-- Back to top -->
+            <div
+                class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200"
+                @click="backToUp"
+                v-show="scrolled"
+            >
+                <i class="ri-arrow-up-line"></i>
+            </div>
+        </div>
+
+        <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe.
+        It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button
+                    class="pswp__button pswp__button--close"
+                    title="Close (Esc)"
+                ></button>
+                <button
+                    class="pswp__button pswp__button--fs"
+                    title="Toggle fullscreen"
+                ></button>
+                <button
+                    class="pswp__button pswp__button--zoom"
+                    title="Zoom in/out"
+                ></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"
+            >
+                <div class="pswp__share-tooltip"></div>
+            </div>
+            <button
+                class="pswp__button pswp__button--arrow--left"
+                title="Previous (arrow left)"
+            ></button>
+            <button
+                class="pswp__button pswp__button--arrow--right"
+                title="Next (arrow right)"
+            ></button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <script src="https://fastly.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://xiaxi626.github.io/media/scripts/main.js"></script>
+
+        <!-- Code Highlight -->
+        
+        <script src="https://xiaxi626.github.io/media/prism.js"></script>
+        <script>
+            Prism.highlightAll()
+        </script>
+        
+
+        <script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+        <script>
+            //拿到预览框架，也就是上面的html代码
+            var pswpElement = document.querySelectorAll('.pswp')[0]
+            //定义图片数组变量
+            var imgitems
+            /**
+             * 用于显示预览界面
+             * @param index 图片数组下标
+             */
+            function viewImg(index) {
+                //其它选项这里不做过多阐述，详情见官网
+                var pswpoptions = {
+                    index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+                    bgOpacity: 0.7, // 背景透明度，0-1
+                    maxSpreadZoom: 3, // 缩放级别，不要太大
+                }
+                //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+                var gallery = new PhotoSwipe(
+                    pswpElement,
+                    PhotoSwipeUI_Default,
+                    imgitems,
+                    pswpoptions
+                )
+                gallery.init()
+            }
+            /**
+             * 用于添加图片点击事件
+             * @param img 图片元素
+             * @param index 所属下标（在imgitems中的位置）
+             */
+            function addImgClick(img, index) {
+                img.onclick = function () {
+                    viewImg(index)
+                }
+            }
+            /**
+             * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+             * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+             * 异步加载图片可在图片元素创建完成后调用此方法
+             */
+            function initImg() {
+                //重置图片数组
+                imgitems = []
+                //查找class:markdown 下的所有img元素并遍历
+                var imgs = document.querySelectorAll('.markdown img')
+                for (var i = 0; i < imgs.length; i++) {
+                    var img = imgs[i]
+                    //本站相册初始为loading图片，真实图片放在data-src
+                    var ds = img.getAttribute('data-src')
+                    //创建image对象，用于获取图片宽高
+                    var imgtemp = new Image()
+                    //判断是否存在data-src
+                    if (ds != null && ds.length > 0) {
+                        imgtemp.src = ds
+                    } else {
+                        imgtemp.src = img.src
+                    }
+                    //判断是否存在缓存
+                    if (imgtemp.complete) {
+                        var imgobj = {
+                            src: imgtemp.src,
+                            w: imgtemp.width,
+                            h: imgtemp.height,
+                        }
+                        imgitems[i] = imgobj
+                        addImgClick(img, i)
+                    } else {
+                        console.log('进来了2')
+                        imgtemp.index = i
+                        imgtemp.img = img
+                        imgtemp.onload = function () {
+                            var imgobj = {
+                                src: this.src,
+                                w: this.width,
+                                h: this.height,
+                            }
+                            //不要使用push，因为onload前后顺序会不同
+                            imgitems[this.index] = imgobj
+                            //添加点击事件
+                            addImgClick(this.img, this.index)
+                        }
+                    }
+                }
+            }
+            //初始化
+            initImg()
+        </script>
+         <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+    new Valine({
+        el: '#vlaine-comment',
+        appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
+        appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
+        pageSize: '10',
+        notify: 'false',
+        avatar: 'mp',
+        verify: 'true',
+        placeholder: '来都来了，不妨评论一下',
+        visitor: 'true',
+        highlight: 'false',
+        recordIP: 'true',
+    })
+</script>
+  
+    </body>
+</html>

@@ -1,0 +1,392 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Windows系统睡眠故障解决 -
+        飞爱碧玉的个人博客</title>
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico" />
+<link
+    href="https://fastly.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+<link
+    rel="stylesheet"
+    href="https://fastly.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"
+/>
+<link
+    rel="stylesheet"
+    href="https://xiaxi626.github.io/media/css/tailwind.css"
+/>
+<link rel="stylesheet" href="https://xiaxi626.github.io/styles/main.css" />
+<link
+    rel="alternate"
+    type="application/atom+xml"
+    title="Windows系统睡眠故障解决 -
+        飞爱碧玉的个人博客 - Atom Feed"
+    href="https://xiaxi626.github.io/atom.xml"
+/>
+
+
+
+        <meta name="description" content="针对win7系统
+这篇文章是解决win7无法进入睡眠状态的问题，请看好是睡眠而不是休眠。
+本文摘自 链接
+做了一点修改和补充。
+首先要说明的是无论睡眠、休眠、关机这都和你的电源管理有关，因此如果无法睡眠第一个先要查看电源管理，开始→运行→输..." />
+        <meta
+            property="og:title"
+            content="Windows系统睡眠故障解决 - 飞爱碧玉的个人博客"
+        />
+        <meta property="og:description" content="针对win7系统
+这篇文章是解决win7无法进入睡眠状态的问题，请看好是睡眠而不是休眠。
+本文摘自 链接
+做了一点修改和补充。
+首先要说明的是无论睡眠、休眠、关机这都和你的电源管理有关，因此如果无法睡眠第一个先要查看电源管理，开始→运行→输..." />
+        <meta property="og:type" content="articles" />
+        <meta property="og:url" content="https://xiaxi626.github.io/post/windows-xi-tong-shui-mian-gu-zhang-jie-jue/" />
+        <meta
+            property="og:image"
+            content="https://xiaxi626.github.io/images/avatar.png"
+        />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:width" content="1200" />
+        <meta
+            name="twitter:title"
+            content="Windows系统睡眠故障解决 - 飞爱碧玉的个人博客"
+        />
+        <meta name="twitter:description" content="针对win7系统
+这篇文章是解决win7无法进入睡眠状态的问题，请看好是睡眠而不是休眠。
+本文摘自 链接
+做了一点修改和补充。
+首先要说明的是无论睡眠、休眠、关机这都和你的电源管理有关，因此如果无法睡眠第一个先要查看电源管理，开始→运行→输..." />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href="https://xiaxi626.github.io/post/windows-xi-tong-shui-mian-gu-zhang-jie-jue/" />
+
+        <link
+            rel="stylesheet"
+            href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"
+        />
+
+        
+        <link
+            rel="stylesheet"
+            href="https://xiaxi626.github.io/media/css/prism-synthwave84.css"
+        />
+         
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css"
+        />
+        
+    </head>
+
+    <body>
+        <div class="antialiased flex flex-col min-h-screen" id="app">
+            <a
+                href="https://xiaxi626.github.io"
+                class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft"
+            >
+                飞爱碧玉的个人博客
+            </a>
+            <div class="max-w-4xl w-full mx-auto">
+                <div
+                    class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8"
+                >
+                    <h1
+                        class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700"
+                    >
+                        Windows系统睡眠故障解决
+                    </h1>
+                    
+                    <div class="mb-8 flex flex-wrap">
+                        <div class="text-gray-400 text-sm mr-4">
+                            2021-11-09 · 4 min read
+                        </div>
+                        
+                        <a
+                            href="https://xiaxi626.github.io/tag/4zHendvk6/"
+                            class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2"
+                        >
+                            <i class="ri-hashtag"></i>
+                            Technology
+                        </a>
+                        
+                    </div>
+                    <div class="markdown mb-8" v-pre><p>针对win7系统</p>
+<p>这篇文章是解决win7无法进入睡眠状态的问题，请看好是睡眠而不是休眠。</p>
+<p>本文摘自 链接</p>
+<p><u><font color=red>做了一点修改和补充。</font></u></p>
+<p>首先要说明的是无论睡眠、休眠、关机这都和你的电源管理有关，因此如果无法睡眠第一个先要查看电源管理，开始→运行→输入CMD回车→<code>powercfg –a</code>回车，来查看硬件或者软件是否支持，一般情况下会有S1 S2 S3 三个睡眠状态，而且会提示你此系统固件支持哪几个睡眠，例如：</p>
+<p>此系统上有以下睡眠状态: 待机 ( S3 ) 休眠 混合睡眠<br>
+此系统上没有以下睡眠状态:<br>
+待机 (S1)<br>
+系统固件不支持此待机状态。<br>
+待机 (S2)<br>
+系统固件不支持此待机状态。</p>
+<p>如果输入命令后出现三个睡眠状态系统固件均不支持，那很可能是因为你的主板没有开启睡眠功能，这样你就要重新启动电脑，进入你的BIOS进行设置启用？开机后主板自检时，台式机尤其是组装的多是摁下DEL键，很多品牌机有自己的BIOS，会显示摁哪个键进入SET UP，有的是F10 有的是ESC等等，这个你要自己看了，要眼急手快，因为时间非常短。笔记本也是如此会有不同的按键来进入BIOS，进入之后找到POWER（电源）项，在里边查找S1 S2 S3项，并开启，多是开启S3就可以，然后保存，重启。<br>
+<img src="https://xiaxi626.github.io/post-images/1676461003071.jpg" alt="" loading="lazy"><br>
+如果你是惠普电脑，而进入BIOS后又找不到电源项，不用担心，系统一般还是能进的，用别的办法解决问题。</p>
+<p>如果输入命令后显示VGA.EXE 或者DISPLAY.EXE抑或XXXXX.EXE就说明你的硬件影响到了电源而导致无法睡眠，这种情况下多是驱动问题，VGA 、display的就是显卡驱动，所需要做的就是更新相对的驱动，这种情况还有一个表现就是睡眠选项为灰色。</p>
+<p>如果显示下列XXXXXX阻止进入睡眠状态，那就可能是软件问题，你安装的某个软件导致无法睡眠，这样的话你就俩者取其一吧，或者是要睡眠而卸掉软件，或者要软件而不管睡眠。</p>
+<p>接下来就是比较诡异的了，输入命令后显示此系统固件支持睡眠S1 S3，不支持S2（这是正常的，大家的基本都是这样），而没有显示其他，电源正常。好吧看看其他。</p>
+<p>首先在你的设备管理器里找到网络适配器，下拉，会出现你的网卡，台式机多只有一个，笔记本还多一个无线网卡，要做的是双击你的网卡，找到电源管理选项将允许此设备唤醒计算机，前边的对号勾掉，确定，这往往还可以解决笔记本点击关机后而重启的问题。以防万一，再找到鼠标和其他指针设备，同样也是电源管理，勾掉允许此设备唤醒计算机，至于这么做的原因我认为很可能是因为驱动问题。</p>
+<p>如果上述方法还不能解决的话，将解决的办法集中到了控制面板硬件和声音电源选项里，在你当前的电源计划上，选择更改计划设置，弹出的对话框后，再选择更改高级电源设置，弹出的对话框中找到睡眠，然后点击下拉，再点击允许混合睡眠，默认的设置是开启，你只需要更改成关闭，然后应用 确定，再试试你的系统能否睡眠了。</p>
+<p>电源计划中还有一个“节能”，也进行相同的设置，方法同上。</p>
+<p>如果输入上面的命令后显示此系统固件支持睡眠S3，不支持S1、S2。我们打开设备管理器，双击网卡和鼠标，如果电源管理选项“允许计算机关闭此设备以节约电源”默认勾选而“允许此设备唤醒计算机”是灰的，那我们什么都不要动。如果反过来，取消勾选“允许此设备唤醒计算机”。右击桌面右下角电源打开电源选项，这时候允许混合睡眠选项一般是关闭的，我们打开它。<br>
+<img src="https://xiaxi626.github.io/post-images/1676461118693.jpg" alt="" loading="lazy"><br>
+<img src="https://xiaxi626.github.io/post-images/1676461131209.jpg" alt="" loading="lazy"></p>
+</div>
+                    <!-- Share to Twitter, Weibo, Telegram -->
+                    <div class="flex items-center">
+                        <div class="mr-4 flex items-center">
+                            <i class="ri-share-forward-line text-gray-500"></i>
+                        </div>
+                        <div
+                            class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex"
+                            @click="shareToTwitter"
+                        >
+                            <i class="ri-twitter-line"></i>
+                        </div>
+                        <div
+                            class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex"
+                            @click="shareToWeibo"
+                        >
+                            <i class="ri-weibo-line"></i>
+                        </div>
+                        <div
+                            class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex"
+                            @click="shareToTelegram"
+                        >
+                            <i class="ri-telegram-line"></i>
+                        </div>
+                    </div>
+                </div>
+
+                 
+                <div id="vlaine-comment"></div>
+                 <footer class="py-12 text-center px-4 md:px-0" v-pre>
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+
+            </div>
+
+            <!-- TOC Container -->
+            <div
+                class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight"
+                @click="showToc = true"
+            >
+                <i class="ri-file-list-line"></i>
+            </div>
+
+            <div
+                class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast"
+                :class="{ '-mr-64': !showToc }"
+            >
+                <div class="flex mb-4 justify-end">
+                    <div
+                        class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast"
+                        @click="showToc = false"
+                    >
+                        <i class="ri-close-line text-lg"></i>
+                    </div>
+                </div>
+                <div class="post-toc-container"></div>
+            </div>
+
+            <!-- Back to top -->
+            <div
+                class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200"
+                @click="backToUp"
+                v-show="scrolled"
+            >
+                <i class="ri-arrow-up-line"></i>
+            </div>
+        </div>
+
+        <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe.
+        It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button
+                    class="pswp__button pswp__button--close"
+                    title="Close (Esc)"
+                ></button>
+                <button
+                    class="pswp__button pswp__button--fs"
+                    title="Toggle fullscreen"
+                ></button>
+                <button
+                    class="pswp__button pswp__button--zoom"
+                    title="Zoom in/out"
+                ></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"
+            >
+                <div class="pswp__share-tooltip"></div>
+            </div>
+            <button
+                class="pswp__button pswp__button--arrow--left"
+                title="Previous (arrow left)"
+            ></button>
+            <button
+                class="pswp__button pswp__button--arrow--right"
+                title="Next (arrow right)"
+            ></button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <script src="https://fastly.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://xiaxi626.github.io/media/scripts/main.js"></script>
+
+        <!-- Code Highlight -->
+        
+        <script src="https://xiaxi626.github.io/media/prism.js"></script>
+        <script>
+            Prism.highlightAll()
+        </script>
+        
+
+        <script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+        <script>
+            //拿到预览框架，也就是上面的html代码
+            var pswpElement = document.querySelectorAll('.pswp')[0]
+            //定义图片数组变量
+            var imgitems
+            /**
+             * 用于显示预览界面
+             * @param index 图片数组下标
+             */
+            function viewImg(index) {
+                //其它选项这里不做过多阐述，详情见官网
+                var pswpoptions = {
+                    index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+                    bgOpacity: 0.7, // 背景透明度，0-1
+                    maxSpreadZoom: 3, // 缩放级别，不要太大
+                }
+                //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+                var gallery = new PhotoSwipe(
+                    pswpElement,
+                    PhotoSwipeUI_Default,
+                    imgitems,
+                    pswpoptions
+                )
+                gallery.init()
+            }
+            /**
+             * 用于添加图片点击事件
+             * @param img 图片元素
+             * @param index 所属下标（在imgitems中的位置）
+             */
+            function addImgClick(img, index) {
+                img.onclick = function () {
+                    viewImg(index)
+                }
+            }
+            /**
+             * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+             * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+             * 异步加载图片可在图片元素创建完成后调用此方法
+             */
+            function initImg() {
+                //重置图片数组
+                imgitems = []
+                //查找class:markdown 下的所有img元素并遍历
+                var imgs = document.querySelectorAll('.markdown img')
+                for (var i = 0; i < imgs.length; i++) {
+                    var img = imgs[i]
+                    //本站相册初始为loading图片，真实图片放在data-src
+                    var ds = img.getAttribute('data-src')
+                    //创建image对象，用于获取图片宽高
+                    var imgtemp = new Image()
+                    //判断是否存在data-src
+                    if (ds != null && ds.length > 0) {
+                        imgtemp.src = ds
+                    } else {
+                        imgtemp.src = img.src
+                    }
+                    //判断是否存在缓存
+                    if (imgtemp.complete) {
+                        var imgobj = {
+                            src: imgtemp.src,
+                            w: imgtemp.width,
+                            h: imgtemp.height,
+                        }
+                        imgitems[i] = imgobj
+                        addImgClick(img, i)
+                    } else {
+                        console.log('进来了2')
+                        imgtemp.index = i
+                        imgtemp.img = img
+                        imgtemp.onload = function () {
+                            var imgobj = {
+                                src: this.src,
+                                w: this.width,
+                                h: this.height,
+                            }
+                            //不要使用push，因为onload前后顺序会不同
+                            imgitems[this.index] = imgobj
+                            //添加点击事件
+                            addImgClick(this.img, this.index)
+                        }
+                    }
+                }
+            }
+            //初始化
+            initImg()
+        </script>
+         <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+    new Valine({
+        el: '#vlaine-comment',
+        appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
+        appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
+        pageSize: '10',
+        notify: 'false',
+        avatar: 'mp',
+        verify: 'true',
+        placeholder: '来都来了，不妨评论一下',
+        visitor: 'true',
+        highlight: 'false',
+        recordIP: 'true',
+    })
+</script>
+  
+    </body>
+</html>

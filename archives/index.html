@@ -1,0 +1,628 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>飞爱碧玉的个人博客</title>
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico" />
+<link
+    href="https://fastly.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+<link
+    rel="stylesheet"
+    href="https://fastly.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"
+/>
+<link
+    rel="stylesheet"
+    href="https://xiaxi626.github.io/media/css/tailwind.css"
+/>
+<link rel="stylesheet" href="https://xiaxi626.github.io/styles/main.css" />
+<link
+    rel="alternate"
+    type="application/atom+xml"
+    title="飞爱碧玉的个人博客 - Atom Feed"
+    href="https://xiaxi626.github.io/atom.xml"
+/>
+
+
+
+        <meta name="description" content="温故而知新" />
+    </head>
+    <body>
+        <div class="antialiased flex flex-col min-h-screen" id="app">
+            <div
+    class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300"
+    :class="{ 'scroll': scrolled }"
+>
+    <div class="flex justify-end px-4">
+        <div
+            class="w-8 h-8 flex justify-center items-center rounded-full md:hidden"
+            @click="showMenu = !showMenu"
+        >
+            <i class="ri-close-line" v-show="showMenu"></i>
+            <i class="ri-menu-3-line" v-show="!showMenu"></i>
+        </div>
+    </div>
+    <nav
+        class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block"
+        :class="`${ showMenu ? 'block' : 'hidden' }`"
+    >
+        
+        <a
+            href="/"
+            target=""
+            class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200"
+        >
+            首页
+        </a>
+        
+        <a
+            href="/archives"
+            target=""
+            class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200"
+        >
+            归档
+        </a>
+        
+        <a
+            href="/tags"
+            target=""
+            class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200"
+        >
+            标签
+        </a>
+        
+        <a
+            href="/post/about"
+            target=""
+            class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200"
+        >
+            关于
+        </a>
+        
+        <a
+            href="https://xiaxi626.github.io/atom.xml"
+            target="_blank"
+            class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200"
+        >
+            RSS
+        </a>
+    </nav>
+</div>
+
+
+            <div class="max-w-4xl w-full mx-auto pt-32">
+                <div
+                    class="py-8 shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0"
+                >
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/zai-ben-di-windowscong-ling-kai-shi-xun-lian-vits-cai-keng-ji-lu-er/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                在本地（Windows）从零开始训练VITS踩坑记录（二）
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/ge-ren-vits-cai-keng-ji-lu/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                在本地（Windows）从零开始训练VITS踩坑记录（一）
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/openai-whisper-an-zhuang-yu-yu-yin-shi-bie-xiao-guo-chang-shi/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                OpenAI Whisper 安装与语音识别效果尝试
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/wang-zhan-ping-bu-tong-ru-he-jie-jue/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                网站ping不通，如何解决？
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/dong-hua-sheng-ya-ge-ren-xi-hao-biao-kuo-zhan-ban/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                动画生涯个人喜好表扩展版
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/yi-dong-ying-pan-cha-ru-hou-wo-de-dian-nao-bu-xian-shi-gai-zen-me-ban/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                移动硬盘插入后我的电脑不显示，该怎么办？
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/jie-jue-neng-zheng-chang-shang-wang-dan-ren-wu-lan-wang-luo-lian-jie-tu-biao-que-xian-shi-wu-fa-lian-jie/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                解决“能正常上网，但任务栏网络连接图标却显示未连接”
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/pandoc-ru-men-an-zhuang-yu-shi-yong/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                Pandoc入门：安装与使用
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/latex-xin-shou-jiao-cheng-cong-ru-men-dao-ru-tu/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                LaTeX新手教程：安装和配置
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/gridea-ruo-gan-wen-ti-de-jie-jue-fang-fa/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                Gridea若干问题的解决方法
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/git-shi-yong-wen-ti-jie-jue/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                Git使用问题解决
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/zheng-he-gosick-zi-yuan-ji-chuan-song-men/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                【整合】GOSICK资源及传送门
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/xin-jian-liao-yi-ge-epub-dian-zi-shu-zhi-zuo-xue-xi-xiang-mu-huan-ying-star/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                新建了一个epub电子书制作学习项目，欢迎Star
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/ru-he-zhao-dong-man-zi-yuan-dong-hua-pian-zi-mu-zu-ya-zhi-zu/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                【如何找动漫资源】动画篇：字幕组＋压制组
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/ru-he-zhao-dong-man-zi-yuan-dong-hua-pian-zi-yuan-sou-suo-zai-xian-guan-kan-zi-yuan-xia-zai-xin-fan-zi-xun-dong-man-lun-tan/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                【如何找动漫资源】动画篇：资源搜索＋在线观看＋资源下载＋新番资讯＋动漫论坛
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/ri-yu-ping-jia-ming-pian-jia-ming-yi-lan-biao/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                日语平假名、片假名一览表
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/jin-tian-jiu-shi-qing-ren-jie-liao-ni-tui-jian-ge-wei-kan-kan-ke-nan/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                今天就是情人节了呢，推荐各位看看柯南
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/dong-man-chang-jian-ming-ci-jie-shi/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                动漫常见名词解释
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/html-he-wang-ye-she-ji-de-bang-zhu-he-zhi-chi/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                HTML和网页设计的帮助和支持
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/wang-luo-shi-guang-dao-liu-ji-wei-hu-lian-wang-ji-yi-cun-dang/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                网络时光倒流机-为互联网记忆存档
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/zhe-yi-tie-qing-da-jia-wu-bi-chong-shi-zun-shou-m-zhan-de-xiang-guan-gui-ding/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                这一贴请大家务必重视，遵守M站的相关规定
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/ntr-wen-hua-shen-du-jie-xi-yu-si-kao/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                NTR文化深度解析与思考
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/github-fang-wen-su-du-hen-man-de-yuan-yin-yi-ji-jie-jue-fang-fa/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                Github访问速度很慢的原因，以及解决方法
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/fen-qing-guo-nei-ban-firefox-he-guo-ji-ban-firefox/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                分清国内版FireFox和国际版FireFox
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/markdown-yu-fa-si-wei-dao-tu/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                Markdown语法
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/markdown-ruan-jian-tui-jian/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                Markdown 软件推荐
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/zhuan-zai-hao-yong-de-pixiv-di-san-fang-wang-zhan-ke-hu-duan-zheng-li-ping-ce-quan-ping-tai/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                【转载】好用的Pixiv第三方网站、客户端整理评测（全平台）
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/qing-xiao-shuo-100-ben-qing-xiao-shuo-tui-jian/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                【轻小说】100本轻小说推荐
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/yuan-ban-ruan-jian-xia-zai-zhan/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                原版软件下载站
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/windows-xi-tong-shui-mian-gu-zhang-jie-jue/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                Windows系统睡眠故障解决
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/jie-jue-steam-chuang-yi-gong-fang-wu-fa-deng-lu-de-fang-fa/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                解决Steam创意工坊无法登陆的方法
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/ffmpeg-yin-pin-chu-li/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                FFmpeg音频处理
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/ffmpeg-tu-pian-chu-li/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                FFmpeg图片处理
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/ffmpeg-ru-men-ji-jian-dan-jiao-cheng/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                FFmpeg入门级简单教程
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/jian-pu-zhi-zuo-fu-zhu-ruan-jian-jie-shao/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                简谱制作辅助软件介绍 
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/pdf-le-pu-zhuan-midi-fang-an/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                PDF乐谱转MIDI方案 
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/lun-wen-can-kao-wen-xian-shu-xie-yao-qiu/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                论文参考文献书写要求
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/mmd-zi-yuan-qu-na-zhao-zi-yuan-wang-zhan-fen-xiang/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                MMD资源去哪找？资源网站分享
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/lesslessclannadgreatergreater-zhai-chao/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                《clannad》摘抄
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/altium-xue-xi-ri-zhi/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                Altium学习日志
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/beng-pi-guo-ji-di-yi-jie-duan-na-xie-shi/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                崩坏国纪第一阶段那些事
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/hello-gridea/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                Hello Gridea
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 pb-5 flex relative overflow-hidden">
+                        
+                        <div class="flex-1">
+                            <a
+                                href="https://xiaxi626.github.io/post/wan-shui-qian-shan-zong-shi-qing/"
+                                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+                            >
+                                万水千山总是情
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                
+ <footer class="py-12 text-center px-4 md:px-0" v-pre>
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+
+            </div>
+        </div>
+        <script src="https://fastly.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://xiaxi626.github.io/media/scripts/main.js"></script>
+    </body>
+</html>

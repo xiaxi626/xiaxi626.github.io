@@ -1,0 +1,639 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>FFmpeg图片处理 -
+        飞爱碧玉的个人博客</title>
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico" />
+<link
+    href="https://fastly.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+<link
+    rel="stylesheet"
+    href="https://fastly.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"
+/>
+<link
+    rel="stylesheet"
+    href="https://xiaxi626.github.io/media/css/tailwind.css"
+/>
+<link rel="stylesheet" href="https://xiaxi626.github.io/styles/main.css" />
+<link
+    rel="alternate"
+    type="application/atom+xml"
+    title="FFmpeg图片处理 -
+        飞爱碧玉的个人博客 - Atom Feed"
+    href="https://xiaxi626.github.io/atom.xml"
+/>
+
+
+
+        <meta name="description" content="说明：下面测试命令中image_source 是要处理的输入文件，out_source是处理完成之后的输出文件
+1.图片压缩
+ffmpeg可以很完美的压缩图片生成新图片，并可以设置压缩等级
+ffmpeg -i image_source -q..." />
+        <meta
+            property="og:title"
+            content="FFmpeg图片处理 - 飞爱碧玉的个人博客"
+        />
+        <meta property="og:description" content="说明：下面测试命令中image_source 是要处理的输入文件，out_source是处理完成之后的输出文件
+1.图片压缩
+ffmpeg可以很完美的压缩图片生成新图片，并可以设置压缩等级
+ffmpeg -i image_source -q..." />
+        <meta property="og:type" content="articles" />
+        <meta property="og:url" content="https://xiaxi626.github.io/post/ffmpeg-tu-pian-chu-li/" />
+        <meta
+            property="og:image"
+            content="https://xiaxi626.github.io/post-images/ffmpeg-tu-pian-chu-li.jpg"
+        />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:width" content="1200" />
+        <meta
+            name="twitter:title"
+            content="FFmpeg图片处理 - 飞爱碧玉的个人博客"
+        />
+        <meta name="twitter:description" content="说明：下面测试命令中image_source 是要处理的输入文件，out_source是处理完成之后的输出文件
+1.图片压缩
+ffmpeg可以很完美的压缩图片生成新图片，并可以设置压缩等级
+ffmpeg -i image_source -q..." />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href="https://xiaxi626.github.io/post/ffmpeg-tu-pian-chu-li/" />
+
+        <link
+            rel="stylesheet"
+            href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"
+        />
+
+        
+        <link
+            rel="stylesheet"
+            href="https://xiaxi626.github.io/media/css/prism-synthwave84.css"
+        />
+         
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css"
+        />
+        
+    </head>
+
+    <body>
+        <div class="antialiased flex flex-col min-h-screen" id="app">
+            <a
+                href="https://xiaxi626.github.io"
+                class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft"
+            >
+                飞爱碧玉的个人博客
+            </a>
+            <div class="max-w-4xl w-full mx-auto">
+                <div
+                    class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8"
+                >
+                    <h1
+                        class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700"
+                    >
+                        FFmpeg图片处理
+                    </h1>
+                    
+                    <img
+                        src="https://xiaxi626.github.io/post-images/ffmpeg-tu-pian-chu-li.jpg"
+                        alt="FFmpeg图片处理"
+                        class="block w-full mb-8"
+                    />
+                    
+                    <div class="mb-8 flex flex-wrap">
+                        <div class="text-gray-400 text-sm mr-4">
+                            2021-11-02 · 10 min read
+                        </div>
+                        
+                        <a
+                            href="https://xiaxi626.github.io/tag/4zHendvk6/"
+                            class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2"
+                        >
+                            <i class="ri-hashtag"></i>
+                            Technology
+                        </a>
+                        
+                    </div>
+                    <div class="markdown mb-8" v-pre><p><strong>说明</strong>：下面测试命令中<strong>image_source 是要处理的输入文件</strong>，<strong>out_source是处理完成之后的输出文件</strong></p>
+<h2 id="1图片压缩">1.图片压缩</h2>
+<p>ffmpeg可以很完美的压缩图片生成新图片，并可以设置压缩等级</p>
+<pre><code class="language-bash">ffmpeg -i image_source -q compress_level out_source
+#compress_level：压缩等级为正整数，数值越大压缩等级越高
+</code></pre>
+<h2 id="2等比放大">2.等比放大</h2>
+<p>参数hqx。</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf hqx=4 out_source
+</code></pre>
+<p>效果是尺寸等比放大4倍</p>
+<h2 id="3约束比例压缩">3.约束比例压缩</h2>
+<p>ffmpeg可以将图片压缩成指定的尺寸</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf scale=width:height out_source
+#width为压缩后的图片宽度
+#height为压缩后的图片高度
+#当width或height其中有一个数值为-1时将保持原来图片尺寸比例压缩
+</code></pre>
+<h2 id="4图片裁剪">4.图片裁剪</h2>
+<p>ffmpeg可以指定图片裁剪位置和裁剪的图片尺寸</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf crop=width:height:from_x:from_y out_source
+#width是要裁剪出的图片的宽度
+#height是要裁剪出的图片的高度
+#from_x是裁剪的起始X轴的位置
+#from_y是裁剪的起始Y轴的位置
+#如果不指定from_x和from_y表示从原始图片中心位置开始裁剪
+</code></pre>
+<h2 id="5添加水印图片">5.添加水印图片</h2>
+<p>ffmpeg可以为图片添加水印，可以设置水印图片的大小、位置和透明度</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf movie=logo_source,scale=logo_width:logo_height,lut=a=val*opacity_num[watermask];[in][watermask] overlay=from_x:from_y[out] -y  out_source
+#logo_source为水印图片地址
+#logo_width为水印图片的宽度
+#logo_height为水印图片的高度
+#opacity_num为水印图片的透明度
+#from_x为水印的起始X轴的位置
+#from_y为水印的起始Y轴的位置
+</code></pre>
+<h2 id="6添加文字水印">6.添加文字水印</h2>
+<p>ffmpeg可以为图片添加文字水印，可以设置字体、颜色、尺寸、文字内容、文字位置</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf drawtext=fontfile=font_ttf_path:fontcolor=font_color:fontsize=font_size:text=message_info:x=from_x:y=from_y  out_source
+#font_ttf_path为字体路径，此项必须设置否则会出现字体无法找到的错误;
+#字体路径要设置绝对路径并且要注意路径正反斜线转义(例如C\\:/Windows/Fonts/simhei.ttf)
+#font_color为字体的颜色
+#font_size为字体的大小
+#message_info为水印文字内容
+#from_x为水印的起始X轴的位置
+#from_y为水印的起始Y轴的位置
+#如果水印内容是中文需要设置中文字体否则会文字显示乱码
+</code></pre>
+<h2 id="7去logo">7.去logo</h2>
+<p>参数delogo，在指定的区域作模糊处理，达到消除logo的效果。</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf delogo=x=0:y=0:w=50:h=50:band=5:show=1 out_source
+</code></pre>
+<p>band为模糊的强度，show为1时显示模糊的区域框，省略show或值为0时不显示区域框。</p>
+<h2 id="8图片旋转指定的角度">8.图片旋转指定的角度</h2>
+<p>ffmpeg可以将图片按照指定的角度旋转生成新图片</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf rotate=route_num*PI/180 -y  out_source
+#route_num是要旋转的角度
+#当route_num大于0的时候顺时针旋转,当route_num小于0的时候逆时针旋转
+</code></pre>
+<h2 id="9图片旋转特殊简便命令">9.图片旋转特殊简便命令</h2>
+<p>上面的命令理论上可以完成所有的图片旋转操作，但ffmpeg仍然存在特殊简便旋转命令</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf transpose=route_number -y out_source
+#route_number=0顺时针旋转90度再左右镜像
+#route_number=1顺时针旋转90度
+#route_number=2逆时针旋转90度
+#route_number=3逆时针旋转90度再左右镜像
+</code></pre>
+<h2 id="10图片左右镜像">10.图片左右镜像</h2>
+<pre><code class="language-bash">ffmpeg -i image_source -vf hflip out_source
+</code></pre>
+<h2 id="11将图片上下镜像">11.将图片上下镜像</h2>
+<pre><code class="language-bash">ffmpeg -i image_source -vf vflip out_source
+</code></pre>
+<h2 id="12加边框">12.加边框</h2>
+<p>参数drawbox。</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf drawbox out_source
+</code></pre>
+<p>在边界画一个实心的黑框</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf drawbox=x=10:y=10:w=200:h=100:color=red@0.5 out_source
+</code></pre>
+<p>0.5为边框的透明度（0到1）</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf drawbox=x=10:y=10:w=300:h=230:color=pink@0.5:t=10 out_source
+</code></pre>
+<p>t为边框厚度</p>
+<h2 id="13画网格">13.画网格</h2>
+<p>参数drawgrid。</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf drawgrid=w=iw/3:h=ih/3:t=2:c=white@0.5 out_source
+</code></pre>
+<p>画一个3*3的白色的厚度为2，透明度为0.5的网络</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf drawgrid=w=400:h=100:t=2:c=red@0.5 out_source
+</code></pre>
+<p>画每个单元为400*100的网格</p>
+<h2 id="14加底板">14.加底板</h2>
+<p>参数pad。</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf pad=500:500:40:40:violet out_source
+ffmpeg -i image_source -vf pad=width=500:height=500:x=40:y=40:color=violet out_source
+</code></pre>
+<p>以上两个命令是一样的效果，增加一个500*500的底面板，(x,y)是原图摆放的位置</p>
+<h2 id="15画边缘">15.画边缘</h2>
+<p>参数edgedetect。</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf edgedetect=low=0.1:high=0.4 out_source
+ffmpeg -i image_source -vf edgedetect=low=0.5:high=0.8 out_source
+</code></pre>
+<p>low小于等于high，且值的范围为[0,1]，是检测算法使用的阈值。</p>
+<h2 id="16加噪音">16.加噪音</h2>
+<p>参数noise。</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf noise=alls=100:allf=t+u out_source
+</code></pre>
+<p>alls表示所有像素成分的强度，范围为[0,100]，默认为0；allf表示所有像素成分的噪音类型，t为临时噪音，u为统一噪音。</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf noise=alls=100:allf=a out_source
+</code></pre>
+<p>a表示平滑的平均噪音</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf noise=alls=100:allf=p out_source
+</code></pre>
+<p>p表示随机噪音</p>
+<h2 id="17模糊处理">17.模糊处理</h2>
+<h3 id="高斯模糊">高斯模糊</h3>
+<pre><code class="language-bash">ffmpeg -i image_source -filter_complex gblur=sigma=10 out_source
+</code></pre>
+<p>glur是高斯blur的缩写<br>
+简单来说就是通过周围的像素点计算得到中间像素点的值，ffmpeg中gblur滤镜只考虑了上下左右四个点，然后有一个强度系数sigma。<br>
+gblur=sigma=10为模糊程度</p>
+<h3 id="方框模糊">方框模糊</h3>
+<pre><code class="language-bash">ffmpeg -i image_source -vf boxblur=2 out_source
+</code></pre>
+<p>值越大越模糊</p>
+<h2 id="18光晕">18.光晕</h2>
+<p>参数vignette。</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf vignette=PI/4 out_source
+</code></pre>
+<h2 id="19变色">19.变色</h2>
+<h3 id="colorbalance">colorbalance</h3>
+<p>调整rgb某个维度的权重实现变色。</p>
+<p>选项有三组，分别为rs/gs/bs、rm/gm/bm、rh/gh/bh。每一个选项都指定了目标颜色（rgb中的一个），s表现偏暗，m表现偏中间，h表现偏亮（且平滑）。</p>
+<p>选项的值范围为[-1, 1]，正数表示偏向目标颜色，负数表示远离目标颜色。</p>
+<p>比如这三个命令：</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf colorbalance=rs=1 out_source
+ffmpeg -i image_source -vf colorbalance=rm=1 out_source
+ffmpeg -i image_source -vf colorbalance=rh=1 out_source
+ffmpeg -i image_source -vf colorbalance=rh=-0.6 out_source
+</code></pre>
+<h3 id="colorchannelmixer">colorchannelmixer</h3>
+<p>对rgba四个通道进行重新计算，并分别给定权重比例。</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf colorchannelmixer=.3:.4:.3:0:.3:.4:.3:0:.3:.4:.3 out_source
+ffmpeg -i image_source -vf colorchannelmixer=.393:.769:.189:0:.349:.686:.168:0:.272:.534:.131 out_source
+</code></pre>
+<p>每个通道的权重从0到1，先给red的计算权重，即red=redrr + bluerb + greenrg +<br>
+alphara，然后分别是green跟blue的计算权重。</p>
+<h3 id="hue">hue</h3>
+<p>改变色调，相当在调色板上调色。</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf hue=h=30:s=1 out_source
+</code></pre>
+<p>s为饱和度，范围为[-10,10]，默认为1。h为角度，不同角度有不同的颜色布局（类比调色板），范围为[0,360]，超过360则相当于从0开始，默认为0，在360时，就是原图。</p>
+<h3 id="lutlutyuvlutrgb">lut/lutyuv/lutrgb</h3>
+<pre><code class="language-bash">ffmpeg -i image_source -vf lutyuv=&quot;y=maxval+minval-val:u=maxval+minval-val:v=maxval+minval-val&quot; out_source
+ffmpeg -i image_source -vf lutyuv=&quot;y=negval:u=negval:v=negval&quot; out_source
+</code></pre>
+<p>lutyuv用于yuv颜色空间。这两个命令的效果是一样的，都是反转，得到底片的效果</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf lutyuv=y=negval out_source
+</code></pre>
+<p>把亮度（y）反转</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf lutyuv=&quot;u=128:v=128&quot; out_source
+</code></pre>
+<p>把色度移除（uv），得到黑白图</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf lutyuv=&quot;y=2*val&quot; out_source
+</code></pre>
+<p>提升亮度</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf lutyuv='u=1.2val:v=1.1val' out_source
+</code></pre>
+<p>调整uv的值</p>
+<h3 id="negate">negate</h3>
+<p>反转，得到底片的效果，参数值为0或1，为1时表示把alpha通道也反转，默认为0。</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf negate=0 out_source
+</code></pre>
+<h3 id="swapuv">swapuv</h3>
+<p>uv互换。</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf swapuv out_source
+</code></pre>
+<h2 id="20eq效果">20.eq效果</h2>
+<p>参数为eq，可以调整亮度、饱和度、对比度等。</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf eq=brightness=0.2 out_source
+</code></pre>
+<p>brightness为亮度，值范围为[-1,1]</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf eq=contrast=1.5 out_source
+</code></pre>
+<p>contrast是对比度，值范围为[-2, 2]</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf eq=saturation=0.1 out_source
+</code></pre>
+<p>saturation是饱和度，值范围为[0,3]，默认是1</p>
+<pre><code class="language-bash">ffmpeg -i image_source -vf eq=gamma_r=0.2 out_source
+</code></pre>
+<p>调整gamma系数，范围为[0.1,10]，默认是1</p>
+<h2 id="21多张图片合成视频">21.多张图片合成视频</h2>
+<pre><code class="language-bash">ffmpeg -r 25 -i %d.png -vcodec libx264 out_source
+</code></pre>
+<p>-r指定帧率，%d表示将按数字顺序读取PNG文件，-vcodec指定视频编码器，-b:v调整视频码率，-crf调整视频质量，-vf scale 调整视频分辨率</p>
+<h2 id="22视频图片提取">22.视频图片提取</h2>
+<pre><code class="language-bash">ffmpeg -i image_source ./test/0_%05d.jpg
+ffmpeg -i image_source -ss 0:0:29 -t 0:0:8 -r 16 -f image2 ./test/0_%05d.jpg
+</code></pre>
+<h3 id="获取视频关键帧并保存成jpg图像">获取视频关键帧并保存成jpg图像</h3>
+<h4 id="1秒取1帧-rrate">1秒取1帧 r:rate</h4>
+<pre><code class="language-bash">ffmpeg -i image_source -f image2 -r 1  dstPath/image-%03d.jpg
+</code></pre>
+<h4 id="提取i帧">提取I帧</h4>
+<pre><code class="language-bash">ffmpeg -i image_source -an -vf select='eq(pict_type\,I)' -vsync 2 -s 720*480 -f image2  dstPath/image-%03d.jpg
+</code></pre>
+<h1 id="参考文章">参考文章</h1>
+<p><a href="https://www.jianshu.com/p/b53943fc3819">FFmpeg----图片处理</a><br>
+<a href="https://blog.csdn.net/weixin_46770425/article/details/125530839">ffmpeg对图片模糊处理</a><br>
+<a href="https://blog.csdn.net/fantasy_ARM9/article/details/125805480">ffmpeg中的gblur实现</a><br>
+<a href="https://www.cnblogs.com/MikeZhang/p/ffmpegToImages-20211013.html">使用ffmpeg进行视频图片提取</a><br>
+<a href="https://www.cnblogs.com/HelloCodeWrold/p/12967910.html">FFMPEG获取视频关键帧并保存成jpg图像</a><br>
+<a href="https://www.cnblogs.com/freeself/p/14277028.html">多媒体开发（6）：用滤镜实现各种图片效果</a></p>
+</div>
+                    <!-- Share to Twitter, Weibo, Telegram -->
+                    <div class="flex items-center">
+                        <div class="mr-4 flex items-center">
+                            <i class="ri-share-forward-line text-gray-500"></i>
+                        </div>
+                        <div
+                            class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex"
+                            @click="shareToTwitter"
+                        >
+                            <i class="ri-twitter-line"></i>
+                        </div>
+                        <div
+                            class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex"
+                            @click="shareToWeibo"
+                        >
+                            <i class="ri-weibo-line"></i>
+                        </div>
+                        <div
+                            class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex"
+                            @click="shareToTelegram"
+                        >
+                            <i class="ri-telegram-line"></i>
+                        </div>
+                    </div>
+                </div>
+
+                 
+                <div id="vlaine-comment"></div>
+                 <footer class="py-12 text-center px-4 md:px-0" v-pre>
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+
+            </div>
+
+            <!-- TOC Container -->
+            <div
+                class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight"
+                @click="showToc = true"
+            >
+                <i class="ri-file-list-line"></i>
+            </div>
+
+            <div
+                class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast"
+                :class="{ '-mr-64': !showToc }"
+            >
+                <div class="flex mb-4 justify-end">
+                    <div
+                        class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast"
+                        @click="showToc = false"
+                    >
+                        <i class="ri-close-line text-lg"></i>
+                    </div>
+                </div>
+                <div class="post-toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9">1.图片压缩</a></li>
+<li><a href="#2%E7%AD%89%E6%AF%94%E6%94%BE%E5%A4%A7">2.等比放大</a></li>
+<li><a href="#3%E7%BA%A6%E6%9D%9F%E6%AF%94%E4%BE%8B%E5%8E%8B%E7%BC%A9">3.约束比例压缩</a></li>
+<li><a href="#4%E5%9B%BE%E7%89%87%E8%A3%81%E5%89%AA">4.图片裁剪</a></li>
+<li><a href="#5%E6%B7%BB%E5%8A%A0%E6%B0%B4%E5%8D%B0%E5%9B%BE%E7%89%87">5.添加水印图片</a></li>
+<li><a href="#6%E6%B7%BB%E5%8A%A0%E6%96%87%E5%AD%97%E6%B0%B4%E5%8D%B0">6.添加文字水印</a></li>
+<li><a href="#7%E5%8E%BBlogo">7.去logo</a></li>
+<li><a href="#8%E5%9B%BE%E7%89%87%E6%97%8B%E8%BD%AC%E6%8C%87%E5%AE%9A%E7%9A%84%E8%A7%92%E5%BA%A6">8.图片旋转指定的角度</a></li>
+<li><a href="#9%E5%9B%BE%E7%89%87%E6%97%8B%E8%BD%AC%E7%89%B9%E6%AE%8A%E7%AE%80%E4%BE%BF%E5%91%BD%E4%BB%A4">9.图片旋转特殊简便命令</a></li>
+<li><a href="#10%E5%9B%BE%E7%89%87%E5%B7%A6%E5%8F%B3%E9%95%9C%E5%83%8F">10.图片左右镜像</a></li>
+<li><a href="#11%E5%B0%86%E5%9B%BE%E7%89%87%E4%B8%8A%E4%B8%8B%E9%95%9C%E5%83%8F">11.将图片上下镜像</a></li>
+<li><a href="#12%E5%8A%A0%E8%BE%B9%E6%A1%86">12.加边框</a></li>
+<li><a href="#13%E7%94%BB%E7%BD%91%E6%A0%BC">13.画网格</a></li>
+<li><a href="#14%E5%8A%A0%E5%BA%95%E6%9D%BF">14.加底板</a></li>
+<li><a href="#15%E7%94%BB%E8%BE%B9%E7%BC%98">15.画边缘</a></li>
+<li><a href="#16%E5%8A%A0%E5%99%AA%E9%9F%B3">16.加噪音</a></li>
+<li><a href="#17%E6%A8%A1%E7%B3%8A%E5%A4%84%E7%90%86">17.模糊处理</a>
+<ul>
+<li><a href="#%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A">高斯模糊</a></li>
+<li><a href="#%E6%96%B9%E6%A1%86%E6%A8%A1%E7%B3%8A">方框模糊</a></li>
+</ul>
+</li>
+<li><a href="#18%E5%85%89%E6%99%95">18.光晕</a></li>
+<li><a href="#19%E5%8F%98%E8%89%B2">19.变色</a>
+<ul>
+<li><a href="#colorbalance">colorbalance</a></li>
+<li><a href="#colorchannelmixer">colorchannelmixer</a></li>
+<li><a href="#hue">hue</a></li>
+<li><a href="#lutlutyuvlutrgb">lut/lutyuv/lutrgb</a></li>
+<li><a href="#negate">negate</a></li>
+<li><a href="#swapuv">swapuv</a></li>
+</ul>
+</li>
+<li><a href="#20eq%E6%95%88%E6%9E%9C">20.eq效果</a></li>
+<li><a href="#21%E5%A4%9A%E5%BC%A0%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90%E8%A7%86%E9%A2%91">21.多张图片合成视频</a></li>
+<li><a href="#22%E8%A7%86%E9%A2%91%E5%9B%BE%E7%89%87%E6%8F%90%E5%8F%96">22.视频图片提取</a>
+<ul>
+<li><a href="#%E8%8E%B7%E5%8F%96%E8%A7%86%E9%A2%91%E5%85%B3%E9%94%AE%E5%B8%A7%E5%B9%B6%E4%BF%9D%E5%AD%98%E6%88%90jpg%E5%9B%BE%E5%83%8F">获取视频关键帧并保存成jpg图像</a>
+<ul>
+<li><a href="#1%E7%A7%92%E5%8F%961%E5%B8%A7-rrate">1秒取1帧 r:rate</a></li>
+<li><a href="#%E6%8F%90%E5%8F%96i%E5%B8%A7">提取I帧</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0">参考文章</a></li>
+</ul>
+</div>
+            </div>
+
+            <!-- Back to top -->
+            <div
+                class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200"
+                @click="backToUp"
+                v-show="scrolled"
+            >
+                <i class="ri-arrow-up-line"></i>
+            </div>
+        </div>
+
+        <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe.
+        It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button
+                    class="pswp__button pswp__button--close"
+                    title="Close (Esc)"
+                ></button>
+                <button
+                    class="pswp__button pswp__button--fs"
+                    title="Toggle fullscreen"
+                ></button>
+                <button
+                    class="pswp__button pswp__button--zoom"
+                    title="Zoom in/out"
+                ></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"
+            >
+                <div class="pswp__share-tooltip"></div>
+            </div>
+            <button
+                class="pswp__button pswp__button--arrow--left"
+                title="Previous (arrow left)"
+            ></button>
+            <button
+                class="pswp__button pswp__button--arrow--right"
+                title="Next (arrow right)"
+            ></button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <script src="https://fastly.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://xiaxi626.github.io/media/scripts/main.js"></script>
+
+        <!-- Code Highlight -->
+        
+        <script src="https://xiaxi626.github.io/media/prism.js"></script>
+        <script>
+            Prism.highlightAll()
+        </script>
+        
+
+        <script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+        <script>
+            //拿到预览框架，也就是上面的html代码
+            var pswpElement = document.querySelectorAll('.pswp')[0]
+            //定义图片数组变量
+            var imgitems
+            /**
+             * 用于显示预览界面
+             * @param index 图片数组下标
+             */
+            function viewImg(index) {
+                //其它选项这里不做过多阐述，详情见官网
+                var pswpoptions = {
+                    index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+                    bgOpacity: 0.7, // 背景透明度，0-1
+                    maxSpreadZoom: 3, // 缩放级别，不要太大
+                }
+                //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+                var gallery = new PhotoSwipe(
+                    pswpElement,
+                    PhotoSwipeUI_Default,
+                    imgitems,
+                    pswpoptions
+                )
+                gallery.init()
+            }
+            /**
+             * 用于添加图片点击事件
+             * @param img 图片元素
+             * @param index 所属下标（在imgitems中的位置）
+             */
+            function addImgClick(img, index) {
+                img.onclick = function () {
+                    viewImg(index)
+                }
+            }
+            /**
+             * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+             * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+             * 异步加载图片可在图片元素创建完成后调用此方法
+             */
+            function initImg() {
+                //重置图片数组
+                imgitems = []
+                //查找class:markdown 下的所有img元素并遍历
+                var imgs = document.querySelectorAll('.markdown img')
+                for (var i = 0; i < imgs.length; i++) {
+                    var img = imgs[i]
+                    //本站相册初始为loading图片，真实图片放在data-src
+                    var ds = img.getAttribute('data-src')
+                    //创建image对象，用于获取图片宽高
+                    var imgtemp = new Image()
+                    //判断是否存在data-src
+                    if (ds != null && ds.length > 0) {
+                        imgtemp.src = ds
+                    } else {
+                        imgtemp.src = img.src
+                    }
+                    //判断是否存在缓存
+                    if (imgtemp.complete) {
+                        var imgobj = {
+                            src: imgtemp.src,
+                            w: imgtemp.width,
+                            h: imgtemp.height,
+                        }
+                        imgitems[i] = imgobj
+                        addImgClick(img, i)
+                    } else {
+                        console.log('进来了2')
+                        imgtemp.index = i
+                        imgtemp.img = img
+                        imgtemp.onload = function () {
+                            var imgobj = {
+                                src: this.src,
+                                w: this.width,
+                                h: this.height,
+                            }
+                            //不要使用push，因为onload前后顺序会不同
+                            imgitems[this.index] = imgobj
+                            //添加点击事件
+                            addImgClick(this.img, this.index)
+                        }
+                    }
+                }
+            }
+            //初始化
+            initImg()
+        </script>
+         <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+    new Valine({
+        el: '#vlaine-comment',
+        appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
+        appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
+        pageSize: '10',
+        notify: 'false',
+        avatar: 'mp',
+        verify: 'true',
+        placeholder: '来都来了，不妨评论一下',
+        visitor: 'true',
+        highlight: 'false',
+        recordIP: 'true',
+    })
+</script>
+  
+    </body>
+</html>

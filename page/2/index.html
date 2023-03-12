@@ -1,0 +1,474 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>飞爱碧玉的个人博客</title>
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico" />
+<link
+    href="https://fastly.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+<link
+    rel="stylesheet"
+    href="https://fastly.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"
+/>
+<link
+    rel="stylesheet"
+    href="https://xiaxi626.github.io/media/css/tailwind.css"
+/>
+<link rel="stylesheet" href="https://xiaxi626.github.io/styles/main.css" />
+<link
+    rel="alternate"
+    type="application/atom+xml"
+    title="飞爱碧玉的个人博客 - Atom Feed"
+    href="https://xiaxi626.github.io/atom.xml"
+/>
+
+
+
+        <meta name="description" content="温故而知新" />
+    </head>
+    <body>
+        <div class="antialiased flex flex-col min-h-screen" id="app">
+            <div
+    class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300"
+    :class="{ 'scroll': scrolled }"
+>
+    <div class="flex justify-end px-4">
+        <div
+            class="w-8 h-8 flex justify-center items-center rounded-full md:hidden"
+            @click="showMenu = !showMenu"
+        >
+            <i class="ri-close-line" v-show="showMenu"></i>
+            <i class="ri-menu-3-line" v-show="!showMenu"></i>
+        </div>
+    </div>
+    <nav
+        class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block"
+        :class="`${ showMenu ? 'block' : 'hidden' }`"
+    >
+        
+        <a
+            href="/"
+            target=""
+            class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200"
+        >
+            首页
+        </a>
+        
+        <a
+            href="/archives"
+            target=""
+            class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200"
+        >
+            归档
+        </a>
+        
+        <a
+            href="/tags"
+            target=""
+            class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200"
+        >
+            标签
+        </a>
+        
+        <a
+            href="/post/about"
+            target=""
+            class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200"
+        >
+            关于
+        </a>
+        
+        <a
+            href="https://xiaxi626.github.io/atom.xml"
+            target="_blank"
+            class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200"
+        >
+            RSS
+        </a>
+    </nav>
+</div>
+
+
+            <div
+                class="max-w-4xl w-full mx-auto pt-32"
+            >
+                
+
+                <div
+                    class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0"
+                >
+                    
+<div
+    class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn"
+>
+    
+    <div class="flex-1 order-2 md:order-1">
+        <h2 class="text-2xl font-semibold mb-4">
+            <a
+                href="https://xiaxi626.github.io/post/git-shi-yong-wen-ti-jie-jue/"
+                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+            >
+                Git使用问题解决
+            </a>
+        </h2>
+        <div class="mb-4 text-xs text-gray-500">2023-01-27</div>
+        <div class="mb-4 text-gray-500 dark:text-gray-300">
+            比较好的入门教程：配置 Git 连接 GitHub
+使用中发现Could not read from remote repository
+解决方法：Git解决fatal: Could not read from remote reposit...
+        </div>
+        <a href="https://xiaxi626.github.io/post/git-shi-yong-wen-ti-jie-jue/" class="btn">
+            Read more
+        </a>
+    </div>
+    
+    <img
+        class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32"
+        loading="lazy"
+        src="https://xiaxi626.github.io/post-images/git-shi-yong-wen-ti-jie-jue.jpg"
+        alt="Git使用问题解决"
+    />
+    
+</div>
+
+<div
+    class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn"
+>
+    
+    <div class="flex-1 order-2 md:order-1">
+        <h2 class="text-2xl font-semibold mb-4">
+            <a
+                href="https://xiaxi626.github.io/post/zheng-he-gosick-zi-yuan-ji-chuan-song-men/"
+                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+            >
+                【整合】GOSICK资源及传送门
+            </a>
+        </h2>
+        <div class="mb-4 text-xs text-gray-500">2022-11-22</div>
+        <div class="mb-4 text-gray-500 dark:text-gray-300">
+            动画资源下载请搜索简单动漫、ACG.RIP、末日动漫资源库、动漫花园等网站获取。
+谁有广播剧（全的）
+【一些广播剧资源整理】侦探社篇的舞台剧，TV原班声优喔
+【整合】GOSICK小说正传及外传传送门
+
+
+GOSICK系列科普及正传、red、...
+        </div>
+        <a href="https://xiaxi626.github.io/post/zheng-he-gosick-zi-yuan-ji-chuan-song-men/" class="btn">
+            Read more
+        </a>
+    </div>
+    
+    <img
+        class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32"
+        loading="lazy"
+        src="https://xiaxi626.github.io/post-images/zheng-he-gosick-zi-yuan-ji-chuan-song-men.webp"
+        alt="【整合】GOSICK资源及传送门"
+    />
+    
+</div>
+
+<div
+    class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn"
+>
+    
+    <div class="flex-1 order-2 md:order-1">
+        <h2 class="text-2xl font-semibold mb-4">
+            <a
+                href="https://xiaxi626.github.io/post/xin-jian-liao-yi-ge-epub-dian-zi-shu-zhi-zuo-xue-xi-xiang-mu-huan-ying-star/"
+                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+            >
+                新建了一个epub电子书制作学习项目，欢迎Star
+            </a>
+        </h2>
+        <div class="mb-4 text-xs text-gray-500">2022-11-14</div>
+        <div class="mb-4 text-gray-500 dark:text-gray-300">
+            epub电子书制作学习项目：xiaxi626/epub-study: Tutorials and templates (github.com)
+
+...
+        </div>
+        <a href="https://xiaxi626.github.io/post/xin-jian-liao-yi-ge-epub-dian-zi-shu-zhi-zuo-xue-xi-xiang-mu-huan-ying-star/" class="btn">
+            Read more
+        </a>
+    </div>
+    
+    <img
+        class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32"
+        loading="lazy"
+        src="https://xiaxi626.github.io/post-images/xin-jian-liao-yi-ge-epub-dian-zi-shu-zhi-zuo-xue-xi-xiang-mu-huan-ying-star.jpg"
+        alt="新建了一个epub电子书制作学习项目，欢迎Star"
+    />
+    
+</div>
+
+<div
+    class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn"
+>
+    
+    <div class="flex-1 order-2 md:order-1">
+        <h2 class="text-2xl font-semibold mb-4">
+            <a
+                href="https://xiaxi626.github.io/post/ru-he-zhao-dong-man-zi-yuan-dong-hua-pian-zi-mu-zu-ya-zhi-zu/"
+                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+            >
+                【如何找动漫资源】动画篇：字幕组＋压制组
+            </a>
+        </h2>
+        <div class="mb-4 text-xs text-gray-500">2022-09-16</div>
+        <div class="mb-4 text-gray-500 dark:text-gray-300">
+            以下内容整合自互联网，介绍了部分字幕组。
+第六部分：字幕组&amp;压制组
+字幕组
+澄空学园字幕组（CK、SumiSora）
+澄空学园字幕组正式将作品展大家面前是在2005年，通过翻译SHUFFLE！D.C.S.S.等热门大作将自己的品牌推...
+        </div>
+        <a href="https://xiaxi626.github.io/post/ru-he-zhao-dong-man-zi-yuan-dong-hua-pian-zi-mu-zu-ya-zhi-zu/" class="btn">
+            Read more
+        </a>
+    </div>
+    
+    <img
+        class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32"
+        loading="lazy"
+        src="https://xiaxi626.github.io/post-images/ru-he-zhao-dong-man-zi-yuan-dong-hua-pian-zi-mu-zu-ya-zhi-zu.jpg"
+        alt="【如何找动漫资源】动画篇：字幕组＋压制组"
+    />
+    
+</div>
+
+<div
+    class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn"
+>
+    
+    <div class="flex-1 order-2 md:order-1">
+        <h2 class="text-2xl font-semibold mb-4">
+            <a
+                href="https://xiaxi626.github.io/post/ru-he-zhao-dong-man-zi-yuan-dong-hua-pian-zi-yuan-sou-suo-zai-xian-guan-kan-zi-yuan-xia-zai-xin-fan-zi-xun-dong-man-lun-tan/"
+                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+            >
+                【如何找动漫资源】动画篇：资源搜索＋在线观看＋资源下载＋新番资讯＋动漫论坛
+            </a>
+        </h2>
+        <div class="mb-4 text-xs text-gray-500">2022-09-07</div>
+        <div class="mb-4 text-gray-500 dark:text-gray-300">
+            从今天开始开一个新坑，教大家如何找动漫资源。本期我给大家讲讲如何找动画资源。（本文中提到的大部分网站是可以正常访问的）
+第一部分：资源搜索
+如果想知道一张动漫图片的出处，我们可以选择在浏览器上以图搜图。
+你可以选择用搜索引擎的图片搜索功能，...
+        </div>
+        <a href="https://xiaxi626.github.io/post/ru-he-zhao-dong-man-zi-yuan-dong-hua-pian-zi-yuan-sou-suo-zai-xian-guan-kan-zi-yuan-xia-zai-xin-fan-zi-xun-dong-man-lun-tan/" class="btn">
+            Read more
+        </a>
+    </div>
+    
+    <img
+        class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32"
+        loading="lazy"
+        src="https://xiaxi626.github.io/post-images/ru-he-zhao-dong-man-zi-yuan-dong-hua-pian-zi-yuan-sou-suo-zai-xian-guan-kan-zi-yuan-xia-zai-xin-fan-zi-xun-dong-man-lun-tan.png"
+        alt="【如何找动漫资源】动画篇：资源搜索＋在线观看＋资源下载＋新番资讯＋动漫论坛"
+    />
+    
+</div>
+
+<div
+    class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn"
+>
+    
+    <div class="flex-1 order-2 md:order-1">
+        <h2 class="text-2xl font-semibold mb-4">
+            <a
+                href="https://xiaxi626.github.io/post/ri-yu-ping-jia-ming-pian-jia-ming-yi-lan-biao/"
+                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+            >
+                日语平假名、片假名一览表
+            </a>
+        </h2>
+        <div class="mb-4 text-xs text-gray-500">2022-04-18</div>
+        <div class="mb-4 text-gray-500 dark:text-gray-300">
+            日语的字母称为假名(かな)，有平假名(ひらがな)和片假名(カタカナ)两种。平假名和片假名是一一对应的。平假名和片假名是是1种读音的2种写法,“假”即“借”,“名”即“字”。指借用汉字的音和形，而不用它的意义，所以称为“假名” 。
+
+平假名 ...
+        </div>
+        <a href="https://xiaxi626.github.io/post/ri-yu-ping-jia-ming-pian-jia-ming-yi-lan-biao/" class="btn">
+            Read more
+        </a>
+    </div>
+    
+</div>
+
+<div
+    class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn"
+>
+    
+    <div class="flex-1 order-2 md:order-1">
+        <h2 class="text-2xl font-semibold mb-4">
+            <a
+                href="https://xiaxi626.github.io/post/jin-tian-jiu-shi-qing-ren-jie-liao-ni-tui-jian-ge-wei-kan-kan-ke-nan/"
+                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+            >
+                今天就是情人节了呢，推荐各位看看柯南
+            </a>
+        </h2>
+        <div class="mb-4 text-xs text-gray-500">2022-02-14</div>
+        <div class="mb-4 text-gray-500 dark:text-gray-300">
+            《名侦探柯南》第6集:情人节杀人事件
+《名侦探柯南》第19集:6月新娘杀人事件
+《名侦探柯南》第98集:小五郎约会杀人事件
+《名侦探柯南》第106-107集:初恋情人回忆事件
+《名侦探柯南》第151-152集:结婚前夜的密室事件
+《名侦探柯...
+        </div>
+        <a href="https://xiaxi626.github.io/post/jin-tian-jiu-shi-qing-ren-jie-liao-ni-tui-jian-ge-wei-kan-kan-ke-nan/" class="btn">
+            Read more
+        </a>
+    </div>
+    
+    <img
+        class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32"
+        loading="lazy"
+        src="https://xiaxi626.github.io/post-images/jin-tian-jiu-shi-qing-ren-jie-liao-ni-tui-jian-ge-wei-kan-kan-ke-nan.jpeg"
+        alt="今天就是情人节了呢，推荐各位看看柯南"
+    />
+    
+</div>
+
+<div
+    class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn"
+>
+    
+    <div class="flex-1 order-2 md:order-1">
+        <h2 class="text-2xl font-semibold mb-4">
+            <a
+                href="https://xiaxi626.github.io/post/dong-man-chang-jian-ming-ci-jie-shi/"
+                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+            >
+                动漫常见名词解释
+            </a>
+        </h2>
+        <div class="mb-4 text-xs text-gray-500">2022-02-14</div>
+        <div class="mb-4 text-gray-500 dark:text-gray-300">
+            TV版：以电视为播放平台的动画
+WEB版：以网络为播放平台的动画
+OAD版：原创动画光碟（Original Animation Disc）或原创动画DVD（Original Animation DVD），本质上与OVA（Original V...
+        </div>
+        <a href="https://xiaxi626.github.io/post/dong-man-chang-jian-ming-ci-jie-shi/" class="btn">
+            Read more
+        </a>
+    </div>
+    
+    <img
+        class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32"
+        loading="lazy"
+        src="https://xiaxi626.github.io/post-images/dong-man-chang-jian-ming-ci-jie-shi.jpg"
+        alt="动漫常见名词解释"
+    />
+    
+</div>
+
+<div
+    class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn"
+>
+    
+    <div class="flex-1 order-2 md:order-1">
+        <h2 class="text-2xl font-semibold mb-4">
+            <a
+                href="https://xiaxi626.github.io/post/html-he-wang-ye-she-ji-de-bang-zhu-he-zhi-chi/"
+                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+            >
+                HTML和网页设计的帮助和支持
+            </a>
+        </h2>
+        <div class="mb-4 text-xs text-gray-500">2021-12-20</div>
+        <div class="mb-4 text-gray-500 dark:text-gray-300">
+            HTML和网页设计基础知识
+
+HTML是什么?
+HTML编辑器。
+如何在HTML和网页设计方面起步。
+如何在没有编码经验的情况下创建一个网站。
+如何查看网页的HTML源代码。
+十大基本HTML问答。
+
+顶级HTML和网页设计问题和答案
+
+如...
+        </div>
+        <a href="https://xiaxi626.github.io/post/html-he-wang-ye-she-ji-de-bang-zhu-he-zhi-chi/" class="btn">
+            Read more
+        </a>
+    </div>
+    
+    <img
+        class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32"
+        loading="lazy"
+        src="https://xiaxi626.github.io/post-images/html-he-wang-ye-she-ji-de-bang-zhu-he-zhi-chi.jpg"
+        alt="HTML和网页设计的帮助和支持"
+    />
+    
+</div>
+
+<div
+    class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn"
+>
+    
+    <div class="flex-1 order-2 md:order-1">
+        <h2 class="text-2xl font-semibold mb-4">
+            <a
+                href="https://xiaxi626.github.io/post/wang-luo-shi-guang-dao-liu-ji-wei-hu-lian-wang-ji-yi-cun-dang/"
+                class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100"
+            >
+                网络时光倒流机-为互联网记忆存档
+            </a>
+        </h2>
+        <div class="mb-4 text-xs text-gray-500">2021-12-18</div>
+        <div class="mb-4 text-gray-500 dark:text-gray-300">
+            你是否还记得很多年前自己浏览过的网站的样子？都说互联网是有记忆的，那么是否有一个网站能帮助大家回忆往昔？
+今天要跟大家分享的几个网站，他们做着这样的一件事：将互联网上出现过的网页，永远保存下来，让你任何时候都可以浏览。
+被叫作&quot;互...
+        </div>
+        <a href="https://xiaxi626.github.io/post/wang-luo-shi-guang-dao-liu-ji-wei-hu-lian-wang-ji-yi-cun-dang/" class="btn">
+            Read more
+        </a>
+    </div>
+    
+    <img
+        class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32"
+        loading="lazy"
+        src="https://xiaxi626.github.io/post-images/wang-luo-shi-guang-dao-liu-ji-wei-hu-lian-wang-ji-yi-cun-dang.jpg"
+        alt="网络时光倒流机-为互联网记忆存档"
+    />
+    
+</div>
+
+
+                </div>
+
+                
+<div class="my-4 flex justify-between px-4 md:px-0">
+    
+    <a href="https://xiaxi626.github.io/" class="btn btn-white">
+        <i class="ri-arrow-left-line mr-4"></i>
+        上一页
+    </a>
+     
+    <a href="https://xiaxi626.github.io/page/3/" class="btn btn-white">
+        下一页
+        <i class="ri-arrow-right-line ml-4"></i>
+    </a>
+    
+</div>
+
+ <footer class="py-12 text-center px-4 md:px-0" v-pre>
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+
+            </div>
+        </div>
+        <script src="https://fastly.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://xiaxi626.github.io/media/scripts/main.js"></script>
+    </body>
+    
+</html>
