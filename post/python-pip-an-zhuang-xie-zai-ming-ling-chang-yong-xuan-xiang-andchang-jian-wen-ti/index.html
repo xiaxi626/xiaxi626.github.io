@@ -1,0 +1,597 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>python Pip安装卸载，命令，常用选项&amp;常见问题 -
+        飞爱碧玉的个人博客</title>
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico" />
+<link
+    href="https://fastly.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+<link
+    rel="stylesheet"
+    href="https://fastly.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"
+/>
+<link
+    rel="stylesheet"
+    href="https://xiaxi626.github.io/media/css/tailwind.css"
+/>
+<link rel="stylesheet" href="https://xiaxi626.github.io/styles/main.css" />
+<link
+    rel="alternate"
+    type="application/atom+xml"
+    title="python Pip安装卸载，命令，常用选项&amp;常见问题 -
+        飞爱碧玉的个人博客 - Atom Feed"
+    href="https://xiaxi626.github.io/atom.xml"
+/>
+
+
+
+        <meta name="description" content="PIP是通用的Python包管理工具，可以方便安装、列出，卸载python的模块/库/包等。
+注意：在Python3.4（一说是3.6）及更新的版本中，PIP已经捆绑安装了，不需要再单独安装（应该需要更新）。
+安装卸载
+常见使用, 例如:
+..." />
+        <meta
+            property="og:title"
+            content="python Pip安装卸载，命令，常用选项&amp;常见问题 - 飞爱碧玉的个人博客"
+        />
+        <meta property="og:description" content="PIP是通用的Python包管理工具，可以方便安装、列出，卸载python的模块/库/包等。
+注意：在Python3.4（一说是3.6）及更新的版本中，PIP已经捆绑安装了，不需要再单独安装（应该需要更新）。
+安装卸载
+常见使用, 例如:
+..." />
+        <meta property="og:type" content="articles" />
+        <meta property="og:url" content="https://xiaxi626.github.io/post/python-pip-an-zhuang-xie-zai-ming-ling-chang-yong-xuan-xiang-andchang-jian-wen-ti/" />
+        <meta
+            property="og:image"
+            content="https://xiaxi626.github.io/post-images/python-pip-an-zhuang-xie-zai-ming-ling-chang-yong-xuan-xiang-andchang-jian-wen-ti.png"
+        />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:width" content="1200" />
+        <meta
+            name="twitter:title"
+            content="python Pip安装卸载，命令，常用选项&amp;常见问题 - 飞爱碧玉的个人博客"
+        />
+        <meta name="twitter:description" content="PIP是通用的Python包管理工具，可以方便安装、列出，卸载python的模块/库/包等。
+注意：在Python3.4（一说是3.6）及更新的版本中，PIP已经捆绑安装了，不需要再单独安装（应该需要更新）。
+安装卸载
+常见使用, 例如:
+..." />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href="https://xiaxi626.github.io/post/python-pip-an-zhuang-xie-zai-ming-ling-chang-yong-xuan-xiang-andchang-jian-wen-ti/" />
+
+        <link
+            rel="stylesheet"
+            href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"
+        />
+
+        
+        <link
+            rel="stylesheet"
+            href="https://xiaxi626.github.io/media/css/prism-synthwave84.css"
+        />
+         
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css"
+        />
+        
+    </head>
+
+    <body>
+        <div class="antialiased flex flex-col min-h-screen" id="app">
+            <a
+                href="https://xiaxi626.github.io"
+                class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft"
+            >
+                飞爱碧玉的个人博客
+            </a>
+            <div class="max-w-4xl w-full mx-auto">
+                <div
+                    class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8"
+                >
+                    <h1
+                        class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700"
+                    >
+                        python Pip安装卸载，命令，常用选项&amp;常见问题
+                    </h1>
+                    
+                    <img
+                        src="https://xiaxi626.github.io/post-images/python-pip-an-zhuang-xie-zai-ming-ling-chang-yong-xuan-xiang-andchang-jian-wen-ti.png"
+                        alt="python Pip安装卸载，命令，常用选项&amp;常见问题"
+                        class="block w-full mb-8"
+                    />
+                    
+                    <div class="mb-8 flex flex-wrap">
+                        <div class="text-gray-400 text-sm mr-4">
+                            2023-03-12 · 8 min read
+                        </div>
+                        
+                        <a
+                            href="https://xiaxi626.github.io/tag/4zHendvk6/"
+                            class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2"
+                        >
+                            <i class="ri-hashtag"></i>
+                            Technology
+                        </a>
+                        
+                    </div>
+                    <div class="markdown mb-8" v-pre><p>PIP是通用的Python包管理工具，可以方便安装、列出，卸载python的模块/库/包等。</p>
+<p>注意：在Python3.4（一说是3.6）及更新的版本中，PIP已经捆绑安装了，不需要再单独安装（应该需要更新）。</p>
+<h2 id="安装卸载">安装卸载</h2>
+<p>常见使用, 例如:<br>
+cmd下:<br>
+安装<code>pycurl</code>包</p>
+<pre><code class="language-bash">pip install pycurl
+</code></pre>
+<p>列出已经安装的<code>python</code>包</p>
+<pre><code class="language-bash">pip list
+</code></pre>
+<p>输出<code>pycurl</code>包的信息</p>
+<pre><code class="language-bash">pip show pycurl
+</code></pre>
+<p>卸载<code>pycurl</code>包</p>
+<pre><code class="language-bash">pip uninstall pycurl
+</code></pre>
+<p>导出包名到</p>
+<pre><code class="language-bash">pip freeze &gt; package20210627.txt
+</code></pre>
+<p>pip国内位置</p>
+<pre><code class="language-bash">-i https://mirrors.aliyun.com/pypi/simple/
+</code></pre>
+<p>批量安装和卸载</p>
+<pre><code class="language-bash">pip install -r package.txt
+pip uninstall -r package.txt
+pip install -r “F:\Program Project\python\packages\packages.txt”
+</code></pre>
+<p>添加环境变量</p>
+<pre><code class="language-bash">path=%path%;C:\Python27
+</code></pre>
+<p>安装<code>pip</code></p>
+<pre><code class="language-bash">python -m pip install pip
+上代码提示：No module named pip
+py2 -m ensurepip
+</code></pre>
+<p>升级<code>pip</code></p>
+<pre><code class="language-bash">python37 -m pip install --upgrade pip
+</code></pre>
+<p>查看可更新包：</p>
+<pre><code class="language-bash">pip list --outdated --format=columns
+</code></pre>
+<p>安装批量更新命令</p>
+<pre><code class="language-bash">pip install pip-review
+</code></pre>
+<p>依次更新所有包</p>
+<pre><code class="language-bash">pip -review --local --interactive
+</code></pre>
+<pre><code class="language-bash">pip list --outdated #列出所有过期的库
+pip install --upgrade 库名
+</code></pre>
+<p><code>python pip</code> 删除所有包</p>
+<pre><code class="language-bash">导出所有包
+pip freeze &gt; requirements.txt
+删除所有包
+pip uninstall -r requirements.txt
+or
+pip uninstall -r requirements.txt -y
+</code></pre>
+<h2 id="命令">命令</h2>
+<pre><code class="language-bash">Commands:
+  install                     Install packages.
+  download                    Download packages.
+  uninstall                   Uninstall packages.
+  freeze                      Output installed packages in requirements format.
+  inspect                     Inspect the python environment.
+  list                        List installed packages.
+  show                        Show information about installed packages.
+  check                       Verify installed packages have compatible dependencies.
+  config                      Manage local and global configuration.
+  search                      Search PyPI for packages.
+  cache                       Inspect and manage pip's wheel cache.
+  index                       Inspect information available from package indexes.
+  wheel                       Build wheels from your requirements.
+  hash                        Compute hashes of package archives.
+  completion                  A helper command used for command completion.
+  debug                       Show information useful for debugging.
+  help                        Show help for commands.
+</code></pre>
+<h2 id="常用选项">常用选项</h2>
+<pre><code class="language-bash">General Options:
+  -h, --help                  Show help.
+  --debug                     Let unhandled exceptions propagate outside the
+                              main subroutine, instead of logging them to
+                              stderr.
+  --isolated                  Run pip in an isolated mode, ignoring
+                              environment variables and user configuration.
+  --require-virtualenv        Allow pip to only run in a virtual environment;
+                              exit with an error otherwise.
+  --python &lt;python&gt;           Run pip with the specified Python interpreter.
+  -v, --verbose               Give more output. Option is additive, and can be
+                              used up to 3 times.
+  -V, --version               Show version and exit.
+  -q, --quiet                 Give less output. Option is additive, and can be
+                              used up to 3 times (corresponding to WARNING,
+                              ERROR, and CRITICAL logging levels).
+  --log &lt;path&gt;                Path to a verbose appending log.
+  --no-input                  Disable prompting for input.
+  --proxy &lt;proxy&gt;             Specify a proxy in the form
+                              scheme://[user:passwd@]proxy.server:port.
+  --retries &lt;retries&gt;         Maximum number of retries each connection should
+                              attempt (default 5 times).
+  --timeout &lt;sec&gt;             Set the socket timeout (default 15 seconds).
+  --exists-action &lt;action&gt;    Default action when a path already exists:
+                              (s)witch, (i)gnore, (w)ipe, (b)ackup, (a)bort.
+  --trusted-host &lt;hostname&gt;   Mark this host or host:port pair as trusted,
+                              even though it does not have valid or any HTTPS.
+  --cert &lt;path&gt;               Path to PEM-encoded CA certificate bundle. If
+                              provided, overrides the default. See 'SSL
+                              Certificate Verification' in pip documentation
+                              for more information.
+  --client-cert &lt;path&gt;        Path to SSL client certificate, a single file
+                              containing the private key and the certificate
+                              in PEM format.
+  --cache-dir &lt;dir&gt;           Store the cache data in &lt;dir&gt;.
+  --no-cache-dir              Disable the cache.
+  --disable-pip-version-check
+                              Don't periodically check PyPI to determine
+                              whether a new version of pip is available for
+                              download. Implied with --no-index.
+  --no-color                  Suppress colored output.
+  --no-python-version-warning
+                              Silence deprecation warnings for upcoming
+                              unsupported Pythons.
+  --use-feature &lt;feature&gt;     Enable new functionality, that may be backward
+                              incompatible.
+  --use-deprecated &lt;feature&gt;  Enable deprecated functionality, that will be
+                              removed in the future.
+</code></pre>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="问题一">问题一</h3>
+<blockquote>
+<p>ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</p>
+</blockquote>
+<p>pip 的依赖项解析器当前未考虑安装的所有包。此行为是以下依赖项冲突的根源。</p>
+<pre><code class="language-bash">Installing collected packages: mpmath, sympy, pillow, numpy, networkx, MarkupSafe, idna, filelock, charset-normalizer, certifi, requests, jinja2, torch, torchvision, torchaudio
+  Attempting uninstall: torchvision
+    Found existing installation: torchvision 0.14.1
+    Uninstalling torchvision-0.14.1:
+      Successfully uninstalled torchvision-0.14.1
+  Attempting uninstall: torchaudio
+    Found existing installation: torchaudio 0.13.1
+    Uninstalling torchaudio-0.13.1:
+      Successfully uninstalled torchaudio-0.13.1
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+transformers 4.26.1 requires huggingface-hub&lt;1.0,&gt;=0.11.0, which is not installed.
+transformers 4.26.1 requires packaging&gt;=20.0, which is not installed.
+transformers 4.26.1 requires pyyaml&gt;=5.1, which is not installed.
+transformers 4.26.1 requires regex!=2019.12.17, which is not installed.
+transformers 4.26.1 requires tokenizers!=0.11.3,&lt;0.14,&gt;=0.11.1, which is not installed.
+Successfully installed MarkupSafe-2.1.2 certifi-2022.12.7 charset-normalizer-2.1.1 filelock-3.9.0 idna-3.4 jinja2-3.1.2 mpmath-1.2.1 networkx-3.0rc1 numpy-1.24.1 pillow-9.3.0 requests-2.28.1 sympy-1.11.1 torch-2.1.0.dev20230312+cpu torchaudio-2.0.0.dev20230312+cpu torchvision-0.15.0.dev20230312+cpu
+</code></pre>
+<center>实例</center>
+<p>重新安装这几个包</p>
+<h3 id="问题二">问题二</h3>
+<blockquote>
+<p>Read timed out 超时问题<br>
+<img src="https://xiaxi626.github.io/post-images/1678633653016.png" alt="" loading="lazy"><br>
+一般windows系统出现这个问题，可以在命令后面加上--user参数，类似：</p>
+</blockquote>
+<pre><code class="language-bash">pip install pyinstaller 
+# 上句报超时错误
+pip install pyinstaller --user
+</code></pre>
+<p>使用–help去查看–user的作用<br>
+<img src="https://xiaxi626.github.io/post-images/1678634498524.png" alt="" loading="lazy"><br>
+大意就是：把这个包换个地方安装</p>
+<h3 id="问题三">问题三</h3>
+<blockquote>
+<p>你想要安装一个第三方包，但是没有权限将它安装到系统Python库中去。 或者，你可能想要安装一个供自己使用的包，而不是系统上面所有用户。</p>
+</blockquote>
+<p>Python有一个用户安装目录，通常类似”~/.local/lib/python3.3/site-packages”。 要强制在这个目录中安装包，可使用安装选项“–user”。例如：</p>
+<pre><code class="language-bash">python3 setup.py install --user
+</code></pre>
+<p>或者</p>
+<pre><code class="language-bash">pip install --user packagename
+</code></pre>
+<p>在sys.path中用户的“site-packages”目录位于系统的“site-packages”目录之前。 因此，你安装在里面的包就比系统已安装的包优先级高 （尽管并不总是这样，要取决于第三方包管理器，比如distribute或pip）。</p>
+<h4 id="讨论">讨论</h4>
+<p>通常包会被安装到系统的site-packages目录中去，路径类似“/usr/local/lib/python3.3/site-packages”。 不过，这样做需要有管理员权限并且使用sudo命令。 就算你有这样的权限去执行命令，使用sudo去安装一个新的，可能没有被验证过的包有时候也不安全。</p>
+<p>安装包到用户目录中通常是一个有效的方案，它允许你创建一个自定义安装。</p>
+<p>另外，你还可以创建一个虚拟环境。</p>
+<h3 id="问题四">问题四</h3>
+<blockquote>
+<p>Installing build dependencies error安装构建依赖错误</p>
+</blockquote>
+<p><img src="https://xiaxi626.github.io/post-images/1678634550342.png" alt="" loading="lazy"><br>
+一般这种都是因为缺乏一些依赖包导致的，可以考虑直接使用conda安装，</p>
+<pre><code class="language-bash">conda install -c conda-forge pyinstaller
+</code></pre>
+<h3 id="问题五">问题五</h3>
+<blockquote>
+<p>pip install 没反应怎么办<br>
+<img src="https://xiaxi626.github.io/post-images/1678634749364.png" alt="" loading="lazy"><br>
+用<code>python -m pip install</code>便可</p>
+</blockquote>
+<h2 id="参考">参考</h2>
+<p><a href="https://python3-cookbook.readthedocs.io/zh_CN/latest/c10/p13_installing_packages_just_for_yourself.html">10.13 安装私有的包</a><br>
+<a href="https://cloud.tencent.com/developer/article/1743446">python用pip install时安装失败的一系列问题及解决方法</a></p>
+</div>
+                    <!-- Share to Twitter, Weibo, Telegram -->
+                    <div class="flex items-center">
+                        <div class="mr-4 flex items-center">
+                            <i class="ri-share-forward-line text-gray-500"></i>
+                        </div>
+                        <div
+                            class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex"
+                            @click="shareToTwitter"
+                        >
+                            <i class="ri-twitter-line"></i>
+                        </div>
+                        <div
+                            class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex"
+                            @click="shareToWeibo"
+                        >
+                            <i class="ri-weibo-line"></i>
+                        </div>
+                        <div
+                            class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex"
+                            @click="shareToTelegram"
+                        >
+                            <i class="ri-telegram-line"></i>
+                        </div>
+                    </div>
+                </div>
+
+                 
+                <div id="vlaine-comment"></div>
+                 <footer class="py-12 text-center px-4 md:px-0" v-pre>
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</footer>
+
+            </div>
+
+            <!-- TOC Container -->
+            <div
+                class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight"
+                @click="showToc = true"
+            >
+                <i class="ri-file-list-line"></i>
+            </div>
+
+            <div
+                class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast"
+                :class="{ '-mr-64': !showToc }"
+            >
+                <div class="flex mb-4 justify-end">
+                    <div
+                        class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast"
+                        @click="showToc = false"
+                    >
+                        <i class="ri-close-line text-lg"></i>
+                    </div>
+                </div>
+                <div class="post-toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85%E5%8D%B8%E8%BD%BD">安装卸载</a></li>
+<li><a href="#%E5%91%BD%E4%BB%A4">命令</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E9%80%89%E9%A1%B9">常用选项</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题</a>
+<ul>
+<li><a href="#%E9%97%AE%E9%A2%98%E4%B8%80">问题一</a></li>
+<li><a href="#%E9%97%AE%E9%A2%98%E4%BA%8C">问题二</a></li>
+<li><a href="#%E9%97%AE%E9%A2%98%E4%B8%89">问题三</a>
+<ul>
+<li><a href="#%E8%AE%A8%E8%AE%BA">讨论</a></li>
+</ul>
+</li>
+<li><a href="#%E9%97%AE%E9%A2%98%E5%9B%9B">问题四</a></li>
+<li><a href="#%E9%97%AE%E9%A2%98%E4%BA%94">问题五</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            </div>
+
+            <!-- Back to top -->
+            <div
+                class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200"
+                @click="backToUp"
+                v-show="scrolled"
+            >
+                <i class="ri-arrow-up-line"></i>
+            </div>
+        </div>
+
+        <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe.
+        It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button
+                    class="pswp__button pswp__button--close"
+                    title="Close (Esc)"
+                ></button>
+                <button
+                    class="pswp__button pswp__button--fs"
+                    title="Toggle fullscreen"
+                ></button>
+                <button
+                    class="pswp__button pswp__button--zoom"
+                    title="Zoom in/out"
+                ></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"
+            >
+                <div class="pswp__share-tooltip"></div>
+            </div>
+            <button
+                class="pswp__button pswp__button--arrow--left"
+                title="Previous (arrow left)"
+            ></button>
+            <button
+                class="pswp__button pswp__button--arrow--right"
+                title="Next (arrow right)"
+            ></button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <script src="https://fastly.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://xiaxi626.github.io/media/scripts/main.js"></script>
+
+        <!-- Code Highlight -->
+        
+        <script src="https://xiaxi626.github.io/media/prism.js"></script>
+        <script>
+            Prism.highlightAll()
+        </script>
+        
+
+        <script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+        <script>
+            //拿到预览框架，也就是上面的html代码
+            var pswpElement = document.querySelectorAll('.pswp')[0]
+            //定义图片数组变量
+            var imgitems
+            /**
+             * 用于显示预览界面
+             * @param index 图片数组下标
+             */
+            function viewImg(index) {
+                //其它选项这里不做过多阐述，详情见官网
+                var pswpoptions = {
+                    index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+                    bgOpacity: 0.7, // 背景透明度，0-1
+                    maxSpreadZoom: 3, // 缩放级别，不要太大
+                }
+                //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+                var gallery = new PhotoSwipe(
+                    pswpElement,
+                    PhotoSwipeUI_Default,
+                    imgitems,
+                    pswpoptions
+                )
+                gallery.init()
+            }
+            /**
+             * 用于添加图片点击事件
+             * @param img 图片元素
+             * @param index 所属下标（在imgitems中的位置）
+             */
+            function addImgClick(img, index) {
+                img.onclick = function () {
+                    viewImg(index)
+                }
+            }
+            /**
+             * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+             * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+             * 异步加载图片可在图片元素创建完成后调用此方法
+             */
+            function initImg() {
+                //重置图片数组
+                imgitems = []
+                //查找class:markdown 下的所有img元素并遍历
+                var imgs = document.querySelectorAll('.markdown img')
+                for (var i = 0; i < imgs.length; i++) {
+                    var img = imgs[i]
+                    //本站相册初始为loading图片，真实图片放在data-src
+                    var ds = img.getAttribute('data-src')
+                    //创建image对象，用于获取图片宽高
+                    var imgtemp = new Image()
+                    //判断是否存在data-src
+                    if (ds != null && ds.length > 0) {
+                        imgtemp.src = ds
+                    } else {
+                        imgtemp.src = img.src
+                    }
+                    //判断是否存在缓存
+                    if (imgtemp.complete) {
+                        var imgobj = {
+                            src: imgtemp.src,
+                            w: imgtemp.width,
+                            h: imgtemp.height,
+                        }
+                        imgitems[i] = imgobj
+                        addImgClick(img, i)
+                    } else {
+                        console.log('进来了2')
+                        imgtemp.index = i
+                        imgtemp.img = img
+                        imgtemp.onload = function () {
+                            var imgobj = {
+                                src: this.src,
+                                w: this.width,
+                                h: this.height,
+                            }
+                            //不要使用push，因为onload前后顺序会不同
+                            imgitems[this.index] = imgobj
+                            //添加点击事件
+                            addImgClick(this.img, this.index)
+                        }
+                    }
+                }
+            }
+            //初始化
+            initImg()
+        </script>
+         <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+    new Valine({
+        el: '#vlaine-comment',
+        appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
+        appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
+        pageSize: '10',
+        notify: 'false',
+        avatar: 'mp',
+        verify: 'true',
+        placeholder: '来都来了，不妨评论一下',
+        visitor: 'true',
+        highlight: 'false',
+        recordIP: 'true',
+    })
+</script>
+  
+    </body>
+</html>

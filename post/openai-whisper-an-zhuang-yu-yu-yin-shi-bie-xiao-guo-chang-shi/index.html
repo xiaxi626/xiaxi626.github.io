@@ -3,7 +3,7 @@
         <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<title>OpenAI Whisper 安装与语音识别效果尝试 -
+<title>OpenAI Whisper 安装与语音识别效果尝试+WebUI -
         飞爱碧玉的个人博客</title>
 <link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico" />
 <link
@@ -22,7 +22,7 @@
 <link
     rel="alternate"
     type="application/atom+xml"
-    title="OpenAI Whisper 安装与语音识别效果尝试 -
+    title="OpenAI Whisper 安装与语音识别效果尝试+WebUI -
         飞爱碧玉的个人博客 - Atom Feed"
     href="https://xiaxi626.github.io/atom.xml"
 />
@@ -32,7 +32,7 @@
         <meta name="description" content="近日为了制作 VITS 语音，需要获取某视频语音的日文字幕。我翻找了国内外多个网站，发现仅青翼字幕组、海月字幕组发过双语字幕，アニメ发过粤日雙語，极影字幕社&amp;amp;天使字幕组发的可能是双语字幕，但都已经死种。本人日语不好，于是打算借助语音..." />
         <meta
             property="og:title"
-            content="OpenAI Whisper 安装与语音识别效果尝试 - 飞爱碧玉的个人博客"
+            content="OpenAI Whisper 安装与语音识别效果尝试+WebUI - 飞爱碧玉的个人博客"
         />
         <meta property="og:description" content="近日为了制作 VITS 语音，需要获取某视频语音的日文字幕。我翻找了国内外多个网站，发现仅青翼字幕组、海月字幕组发过双语字幕，アニメ发过粤日雙語，极影字幕社&amp;amp;天使字幕组发的可能是双语字幕，但都已经死种。本人日语不好，于是打算借助语音..." />
         <meta property="og:type" content="articles" />
@@ -45,7 +45,7 @@
         <meta property="og:image:width" content="1200" />
         <meta
             name="twitter:title"
-            content="OpenAI Whisper 安装与语音识别效果尝试 - 飞爱碧玉的个人博客"
+            content="OpenAI Whisper 安装与语音识别效果尝试+WebUI - 飞爱碧玉的个人博客"
         />
         <meta name="twitter:description" content="近日为了制作 VITS 语音，需要获取某视频语音的日文字幕。我翻找了国内外多个网站，发现仅青翼字幕组、海月字幕组发过双语字幕，アニメ发过粤日雙語，极影字幕社&amp;amp;天使字幕组发的可能是双语字幕，但都已经死种。本人日语不好，于是打算借助语音..." />
         <meta name="twitter:card" content="summary_large_image" />
@@ -88,18 +88,18 @@
                     <h1
                         class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700"
                     >
-                        OpenAI Whisper 安装与语音识别效果尝试
+                        OpenAI Whisper 安装与语音识别效果尝试+WebUI
                     </h1>
                     
                     <img
                         src="https://xiaxi626.github.io/post-images/openai-whisper-an-zhuang-yu-yu-yin-shi-bie-xiao-guo-chang-shi.png"
-                        alt="OpenAI Whisper 安装与语音识别效果尝试"
+                        alt="OpenAI Whisper 安装与语音识别效果尝试+WebUI"
                         class="block w-full mb-8"
                     />
                     
                     <div class="mb-8 flex flex-wrap">
                         <div class="text-gray-400 text-sm mr-4">
-                            2023-02-26 · 75 min read
+                            2023-02-26 · 97 min read
                         </div>
                         
                         <a
@@ -525,6 +525,263 @@ g: FP16 is not supported on CPU; using FP32 instead
 <p>这句话的意思是FP16不支持CPU，现在用FP32代替。无论你的电脑没有显卡或者显卡不支持CUDA/CUDA版本低，还是在用CPU跑，都会蹦出这个提示。如果是前一种，安装支持CUDA新版本的Torch。如果是第二种，请无视。<br>
 另外，提示<code>RuntimeError: CUDA out of memory</code>意味着你的显卡适用不了当前模型，请换小点的模型；提示<code>No module named 'setuptools_rust'</code>意味着你要安装Rust——<code>pip install setuptools_rust</code>。<br>
 配置VITS环境后会严重拖慢Whisper，Unidecode库导致Whisper找不到正确编码，文件生成失败（未截图运行过程）。用较短音频再试一次即可恢复识别，cmd会出现『▒』乱码，进程加载变慢。</p>
+<h2 id="安装-whisper-webui">安装 whisper-webui</h2>
+<p>在你想要存放whisper-webui的地方打开git bash，克隆仓库。</p>
+<pre><code class="language-bash">git clone https://huggingface.co/spaces/aadnk/whisper-webui
+</code></pre>
+<p>进入本地仓库，安装requirements.txt中的包：</p>
+<pre><code class="language-bash">git+https://github.com/openai/whisper.git
+transformers
+ffmpeg-python==0.2.0
+gradio==3.13.0
+yt-dlp
+torchaudio
+altair
+</code></pre>
+<p>将 whisper-webui 中<code>requirements.txt</code>的第一行删去</p>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<p>cmd安装过程——</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /e/whisper-webui (main)
+$ pip install -r requirements.txt  -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple/
+Requirement already satisfied: transformers in c:\program files\python38\lib\site-packages (from -r requirements.txt (line 1)) (4.26.1)
+Requirement already satisfied: ffmpeg-python==0.2.0 in c:\program files\python38\lib\site-packages (from -r requirements.txt (line 2)) (0.2.0)
+Collecting gradio==3.13.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/61/e2/cb14526cf49689b5cc3cb942e20747257d98a2879bf53e7ee096eae4630a/gradio-3.13.0-py3-none-any.whl (13.8 MB)
+     -------------------------------------- 13.8/13.8 MB 590.5 kB/s eta 0:00:00
+Collecting yt-dlp
+  Downloading http://mirrors.aliyun.com/pypi/packages/a7/df/498c57f641e9993376cf52489047158e6d660e8bab06b72c470ad5cce2bd/yt_dlp-2023.3.4-py2.py3-none-any.whl (2.9 MB)
+     ---------------------------------------- 2.9/2.9 MB 612.0 kB/s eta 0:00:00
+Requirement already satisfied: torchaudio in c:\program files\python38\lib\site-packages (from -r requirements.txt (line 5)) (0.13.1)
+Collecting altair
+  Downloading http://mirrors.aliyun.com/pypi/packages/18/62/47452306e84d4d2e67f9c559380aeb230f5e6ca84fafb428dd36b96a99ba/altair-4.2.2-py3-none-any.whl (813 kB)
+     ------------------------------------ 813.6/813.6 kB 620.4 kB/s eta 0:00:00
+Requirement already satisfied: future in c:\program files\python38\lib\site-packages (from ffmpeg-python==0.2.0-&gt;-r requirements.txt (line 2)) (0.18.3)
+Collecting paramiko
+  Downloading http://mirrors.aliyun.com/pypi/packages/56/7c/9dd558ec0869fcecb661765d0a2504978dbfe85de24cbcccc847aa9b58e4/paramiko-3.1.0-py3-none-any.whl (211 kB)
+     ------------------------------------ 211.2/211.2 kB 537.4 kB/s eta 0:00:00
+Collecting h11&lt;0.13,&gt;=0.11
+  Downloading http://mirrors.aliyun.com/pypi/packages/60/0f/7a0eeea938eaf61074f29fed9717f2010e8d0e0905d36b38d3275a1e4622/h11-0.12.0-py3-none-any.whl (54 kB)
+     -------------------------------------- 54.9/54.9 kB 318.7 kB/s eta 0:00:00
+Collecting pydub
+  Downloading http://mirrors.aliyun.com/pypi/packages/a6/53/d78dc063216e62fc55f6b2eebb447f6a4b0a59f55c8406376f76bf959b08/pydub-0.25.1-py2.py3-none-any.whl (32 kB)
+Collecting fsspec
+  Downloading http://mirrors.aliyun.com/pypi/packages/4f/65/887925f1549fcb6ac3abb23a747c10f5ab083e8471fe568768b18bdb15b2/fsspec-2023.3.0-py3-none-any.whl (145 kB)
+     ------------------------------------ 145.4/145.4 kB 665.8 kB/s eta 0:00:00
+Collecting pycryptodome
+  Downloading http://mirrors.aliyun.com/pypi/packages/14/7a/f764564dceaf131e7a740c618d6bdfc30e2ca264e9de410ca757f6c4c3e3/pycryptodome-3.17-cp35-abi3-win_amd64.whl (1.7 MB)
+     ---------------------------------------- 1.7/1.7 MB 526.0 kB/s eta 0:00:00
+Collecting matplotlib
+  Downloading http://mirrors.aliyun.com/pypi/packages/92/01/2c04d328db6955d77f8f60c17068dde8aa66f153b2c599ca03c2cb0d5567/matplotlib-3.7.1-cp38-cp38-win_amd64.whl (7.6 MB)
+     ---------------------------------------- 7.6/7.6 MB 439.9 kB/s eta 0:00:00
+Collecting pandas
+  Downloading http://mirrors.aliyun.com/pypi/packages/ca/4e/d18db7d5ff9d28264cd2a7e2499b8701108f0e6c698e382cfd5d20685c21/pandas-1.5.3-cp38-cp38-win_amd64.whl (11.0 MB)
+     -------------------------------------- 11.0/11.0 MB 423.8 kB/s eta 0:00:00
+Requirement already satisfied: pillow in c:\program files\python38\lib\site-packages (from gradio==3.13.0-&gt;-r requirements.txt (line 3)) (9.4.0)
+Collecting aiohttp
+  Downloading http://mirrors.aliyun.com/pypi/packages/48/5b/dabb02a8fe7da607c0b65d9086af36a2c77c509f3ee7efb7a80b008d7c7a/aiohttp-3.8.4-cp38-cp38-win_amd64.whl (324 kB)
+     ------------------------------------ 324.5/324.5 kB 479.7 kB/s eta 0:00:00
+Collecting jinja2
+  Downloading http://mirrors.aliyun.com/pypi/packages/bc/c3/f068337a370801f372f2f8f6bad74a5c140f6fda3d9de154052708dd3c65/Jinja2-3.1.2-py3-none-any.whl (133 kB)
+     ------------------------------------ 133.1/133.1 kB 358.2 kB/s eta 0:00:00
+Requirement already satisfied: numpy in c:\program files\python38\lib\site-packages (from gradio==3.13.0-&gt;-r requirements.txt (line 3)) (1.23.5)
+Collecting ffmpy
+  Downloading http://mirrors.aliyun.com/pypi/packages/bf/e2/947df4b3d666bfdd2b0c6355d215c45d2d40f929451cb29a8a2995b29788/ffmpy-0.3.0.tar.gz (4.8 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: requests in c:\program files\python38\lib\site-packages (from gradio==3.13.0-&gt;-r requirements.txt (line 3)) (2.28.2)
+Collecting fastapi
+  Downloading http://mirrors.aliyun.com/pypi/packages/f5/07/8e950c4bcb953a0bcbb41e0d7b1d5496f9792edfd0dc2cd518cd7a42f948/fastapi-0.94.0-py3-none-any.whl (56 kB)
+     -------------------------------------- 56.3/56.3 kB 368.5 kB/s eta 0:00:00
+Collecting python-multipart
+  Downloading http://mirrors.aliyun.com/pypi/packages/b4/ff/b1e11d8bffb5e0e1b6d27f402eeedbeb9be6df2cdbc09356a1ae49806dbf/python_multipart-0.0.6-py3-none-any.whl (45 kB)
+     -------------------------------------- 45.7/45.7 kB 286.1 kB/s eta 0:00:00
+Collecting uvicorn
+  Downloading http://mirrors.aliyun.com/pypi/packages/24/ec/9e3e7c74c342e22dabcf0c6875a40269283f4c8aec2d2f5802b988c570f7/uvicorn-0.21.0-py3-none-any.whl (57 kB)
+     -------------------------------------- 57.8/57.8 kB 217.2 kB/s eta 0:00:00
+Collecting httpx
+  Downloading http://mirrors.aliyun.com/pypi/packages/ac/a2/0260c0f5d73bdf06e8d3fc1013a82b9f0633dc21750c9e3f3cb1dba7bb8c/httpx-0.23.3-py3-none-any.whl (71 kB)
+     -------------------------------------- 71.5/71.5 kB 327.4 kB/s eta 0:00:00
+Collecting orjson
+  Downloading http://mirrors.aliyun.com/pypi/packages/1e/52/ff9aa30cf25cb9c0e7fdf197883af79e45ed108e7f498ffd44ddcb86d8c1/orjson-3.8.7-cp38-none-win_amd64.whl (202 kB)
+     ------------------------------------ 202.6/202.6 kB 457.0 kB/s eta 0:00:00
+Collecting pydantic
+  Downloading http://mirrors.aliyun.com/pypi/packages/0e/86/8a40e374bc2e93bb285e2589953781b909ad2260ff64c17012327c740282/pydantic-1.10.6-cp38-cp38-win_amd64.whl (2.2 MB)
+     ---------------------------------------- 2.2/2.2 MB 511.0 kB/s eta 0:00:00
+Collecting markdown-it-py[linkify,plugins]
+  Downloading http://mirrors.aliyun.com/pypi/packages/bf/25/2d88e8feee8e055d015343f9b86e370a1ccbec546f2865c98397aaef24af/markdown_it_py-2.2.0-py3-none-any.whl (84 kB)
+     -------------------------------------- 84.5/84.5 kB 365.6 kB/s eta 0:00:00
+Collecting websockets&gt;=10.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/63/f2/ec4c59b4f91936eb2a5ddcf2f7e57184acbce5122d5d83911c5a47f25144/websockets-10.4-cp38-cp38-win_amd64.whl (101 kB)
+     ------------------------------------ 101.4/101.4 kB 451.5 kB/s eta 0:00:00
+Requirement already satisfied: pyyaml in c:\program files\python38\lib\site-packages (from gradio==3.13.0-&gt;-r requirements.txt (line 3)) (6.0)
+Requirement already satisfied: tqdm&gt;=4.27 in c:\program files\python38\lib\site-packages (from transformers-&gt;-r requirements.txt (line 1)) (4.65.0)
+Requirement already satisfied: regex!=2019.12.17 in c:\program files\python38\lib\site-packages (from transformers-&gt;-r requirements.txt (line 1)) (2022.10.31)
+Requirement already satisfied: tokenizers!=0.11.3,&lt;0.14,&gt;=0.11.1 in c:\program files\python38\lib\site-packages (from transformers-&gt;-r requirements.txt (line 1)) (0.13.2)
+Requirement already satisfied: huggingface-hub&lt;1.0,&gt;=0.11.0 in c:\program files\python38\lib\site-packages (from transformers-&gt;-r requirements.txt (line 1)) (0.13.1)
+Requirement already satisfied: filelock in c:\program files\python38\lib\site-packages (from transformers-&gt;-r requirements.txt (line 1)) (3.9.0)
+Requirement already satisfied: packaging&gt;=20.0 in c:\program files\python38\lib\site-packages (from transformers-&gt;-r requirements.txt (line 1)) (23.0)
+Collecting brotli
+  Downloading http://mirrors.aliyun.com/pypi/packages/63/29/1b104b5915e61d9f7443889657d93937b7e0b33b331609b82693547934a0/Brotli-1.0.9-cp38-cp38-win_amd64.whl (365 kB)
+     ------------------------------------ 365.3/365.3 kB 494.6 kB/s eta 0:00:00
+Collecting mutagen
+  Downloading http://mirrors.aliyun.com/pypi/packages/03/ee/114d7016d2e34f341e212fefb5e7bd87785077ebcfff0ad23a497c70eea1/mutagen-1.46.0-py3-none-any.whl (193 kB)
+     ------------------------------------ 193.6/193.6 kB 470.3 kB/s eta 0:00:00
+Collecting pycryptodomex
+  Downloading http://mirrors.aliyun.com/pypi/packages/ac/a4/b2758579debd57abf5482a1f2f3a2a36c815fba9d6252fcd7fb5a7946aa7/pycryptodomex-3.17-cp35-abi3-win_amd64.whl (1.7 MB)
+     ---------------------------------------- 1.7/1.7 MB 534.5 kB/s eta 0:00:00
+Requirement already satisfied: certifi in c:\program files\python38\lib\site-packages (from yt-dlp-&gt;-r requirements.txt (line 4)) (2022.12.7)
+Requirement already satisfied: torch==1.13.1 in c:\program files\python38\lib\site-packages (from torchaudio-&gt;-r requirements.txt (line 5)) (1.13.1)
+Requirement already satisfied: typing-extensions in c:\program files\python38\lib\site-packages (from torch==1.13.1-&gt;torchaudio-&gt;-r requirements.txt (line 5)) (4.5.0)
+Collecting jsonschema&gt;=3.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/c1/97/c698bd9350f307daad79dd740806e1a59becd693bd11443a0f531e3229b3/jsonschema-4.17.3-py3-none-any.whl (90 kB)
+     -------------------------------------- 90.4/90.4 kB 394.8 kB/s eta 0:00:00
+Collecting entrypoints
+  Downloading http://mirrors.aliyun.com/pypi/packages/35/a8/365059bbcd4572cbc41de17fd5b682be5868b218c3c5479071865cab9078/entrypoints-0.4-py3-none-any.whl (5.3 kB)
+Collecting toolz
+  Downloading http://mirrors.aliyun.com/pypi/packages/7f/5c/922a3508f5bda2892be3df86c74f9cf1e01217c2b1f8a0ac4841d903e3e9/toolz-0.12.0-py3-none-any.whl (55 kB)
+     -------------------------------------- 55.8/55.8 kB 364.8 kB/s eta 0:00:00
+Collecting attrs&gt;=17.4.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/fb/6e/6f83bf616d2becdf333a1640f1d463fef3150e2e926b7010cb0f81c95e88/attrs-22.2.0-py3-none-any.whl (60 kB)
+     -------------------------------------- 60.0/60.0 kB 398.2 kB/s eta 0:00:00
+Collecting importlib-resources&gt;=1.4.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/38/71/c13ea695a4393639830bf96baea956538ba7a9d06fcce7cef10bfff20f72/importlib_resources-5.12.0-py3-none-any.whl (36 kB)
+Collecting pkgutil-resolve-name&gt;=1.3.10
+  Downloading http://mirrors.aliyun.com/pypi/packages/c9/5c/3d4882ba113fd55bdba9326c1e4c62a15e674a2501de4869e6bd6301f87e/pkgutil_resolve_name-1.3.10-py3-none-any.whl (4.7 kB)
+Collecting pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,&gt;=0.14.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/b1/8d/bbce2d857ecdefb7170a8a37ade1de0f060052236c07693856ac23f3b1ee/pyrsistent-0.19.3-cp38-cp38-win_amd64.whl (62 kB)
+     -------------------------------------- 62.7/62.7 kB 306.7 kB/s eta 0:00:00
+Collecting python-dateutil&gt;=2.8.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+     ------------------------------------ 247.7/247.7 kB 474.9 kB/s eta 0:00:00
+Collecting pytz&gt;=2020.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/2e/09/fbd3c46dce130958ee8e0090f910f1fe39e502cc5ba0aadca1e8a2b932e5/pytz-2022.7.1-py2.py3-none-any.whl (499 kB)
+     ------------------------------------ 499.4/499.4 kB 454.6 kB/s eta 0:00:00
+Requirement already satisfied: colorama in c:\program files\python38\lib\site-packages (from tqdm&gt;=4.27-&gt;transformers-&gt;-r requirements.txt (line 1)) (0.4.6)
+Collecting async-timeout&lt;5.0,&gt;=4.0.0a3
+  Downloading http://mirrors.aliyun.com/pypi/packages/d6/c1/8991e7c5385b897b8c020cdaad718c5b087a6626d1d11a23e1ea87e325a7/async_timeout-4.0.2-py3-none-any.whl (5.8 kB)
+Collecting multidict&lt;7.0,&gt;=4.5
+  Downloading http://mirrors.aliyun.com/pypi/packages/d2/cf/d00992d281fb953a01685d9b2e68f66901c7dee7bcb75dad1a5ef9a879d3/multidict-6.0.4-cp38-cp38-win_amd64.whl (28 kB)
+Collecting aiosignal&gt;=1.1.2
+  Downloading http://mirrors.aliyun.com/pypi/packages/76/ac/a7305707cb852b7e16ff80eaf5692309bde30e2b1100a1fcacdc8f731d97/aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
+Requirement already satisfied: charset-normalizer&lt;4.0,&gt;=2.0 in c:\program files\python38\lib\site-packages (from aiohttp-&gt;gradio==3.13.0-&gt;-r requirements.txt (line 3)) (3.1.0)
+Collecting frozenlist&gt;=1.1.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/03/00/febbfd2ec244a0f91707bd879afe6aa278e337dc41cd9d0d25260e6da38e/frozenlist-1.3.3-cp38-cp38-win_amd64.whl (34 kB)
+Collecting yarl&lt;2.0,&gt;=1.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/f9/fa/9c746d29462714663d04cf9e34cc44a86efa17705a811c77556643b80f1b/yarl-1.8.2-cp38-cp38-win_amd64.whl (56 kB)
+     -------------------------------------- 56.9/56.9 kB 229.6 kB/s eta 0:00:00
+Collecting starlette&lt;0.27.0,&gt;=0.26.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/5b/54/169fef8cf7676c8bd9dbd6af0684eb448cf68ca59ea2979d6a3180ea5ece/starlette-0.26.0.post1-py3-none-any.whl (66 kB)
+     -------------------------------------- 66.9/66.9 kB 363.3 kB/s eta 0:00:00
+Collecting sniffio
+  Downloading http://mirrors.aliyun.com/pypi/packages/c3/a0/5dba8ed157b0136607c7f2151db695885606968d1fae123dc3391e0cfdbf/sniffio-1.3.0-py3-none-any.whl (10 kB)
+Collecting httpcore&lt;0.17.0,&gt;=0.15.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/04/7e/ef97af4623024e8159993b3114ce208de4f677098ae058ec5882a1bf7605/httpcore-0.16.3-py3-none-any.whl (69 kB)
+     -------------------------------------- 69.6/69.6 kB 420.7 kB/s eta 0:00:00
+Collecting rfc3986[idna2008]&lt;2,&gt;=1.3
+  Downloading http://mirrors.aliyun.com/pypi/packages/c4/e5/63ca2c4edf4e00657584608bee1001302bbf8c5f569340b78304f2f446cb/rfc3986-1.5.0-py2.py3-none-any.whl (31 kB)
+Collecting MarkupSafe&gt;=2.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/93/fa/d72f68f84f8537ee8aa3e0764d1eb11e5e025a5ca90c16e94a40f894c2fc/MarkupSafe-2.1.2-cp38-cp38-win_amd64.whl (16 kB)
+Collecting mdurl~=0.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Collecting linkify-it-py&lt;3,&gt;=1
+  Downloading http://mirrors.aliyun.com/pypi/packages/fa/1a/2280e2eb892162ef5c0480a131d1d176b61f5f24abdce8dd9862454f7d14/linkify_it_py-2.0.0-py3-none-any.whl (19 kB)
+Collecting mdit-py-plugins
+  Downloading http://mirrors.aliyun.com/pypi/packages/fe/4c/a9b222f045f98775034d243198212cbea36d3524c3ee1e8ab8c0346d6953/mdit_py_plugins-0.3.5-py3-none-any.whl (52 kB)
+     -------------------------------------- 52.1/52.1 kB 337.5 kB/s eta 0:00:00
+Collecting cycler&gt;=0.10
+  Downloading http://mirrors.aliyun.com/pypi/packages/5c/f9/695d6bedebd747e5eb0fe8fad57b72fdf25411273a39791cde838d5a8f51/cycler-0.11.0-py3-none-any.whl (6.4 kB)
+Collecting contourpy&gt;=1.0.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/08/ce/9bfe9f028cb5a8ee97898da52f4905e0e2d9ca8203ffdcdbe80e1769b549/contourpy-1.0.7-cp38-cp38-win_amd64.whl (162 kB)
+     ------------------------------------ 163.0/163.0 kB 326.3 kB/s eta 0:00:00
+Collecting pyparsing&gt;=2.3.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/6c/10/a7d0fa5baea8fe7b50f448ab742f26f52b80bfca85ac2be9d35cdd9a3246/pyparsing-3.0.9-py3-none-any.whl (98 kB)
+     -------------------------------------- 98.3/98.3 kB 434.0 kB/s eta 0:00:00
+Collecting fonttools&gt;=4.22.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/43/6e/810648a366d6488e1e0543f72dcb2016e54ec02933e302cd41d72599e90d/fonttools-4.39.0-py3-none-any.whl (1.0 MB)
+     ---------------------------------------- 1.0/1.0 MB 490.2 kB/s eta 0:00:00
+Collecting kiwisolver&gt;=1.0.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/4f/05/59b34e788bf2b45c7157c3d898d567d28bc42986c1b6772fb1af329eea0d/kiwisolver-1.4.4-cp38-cp38-win_amd64.whl (55 kB)
+     -------------------------------------- 55.4/55.4 kB 410.4 kB/s eta 0:00:00
+Collecting bcrypt&gt;=3.2
+  Downloading http://mirrors.aliyun.com/pypi/packages/46/81/d8c22cd7e5e1c6a7d48e41a1d1d46c92f17dae70a54d9814f746e6027dec/bcrypt-4.0.1-cp36-abi3-win_amd64.whl (152 kB)
+     ------------------------------------ 152.9/152.9 kB 416.0 kB/s eta 0:00:00
+Collecting pynacl&gt;=1.5
+  Downloading http://mirrors.aliyun.com/pypi/packages/5e/22/d3db169895faaf3e2eda892f005f433a62db2decbcfbc2f61e6517adfa87/PyNaCl-1.5.0-cp36-abi3-win_amd64.whl (212 kB)
+     ------------------------------------ 212.1/212.1 kB 380.2 kB/s eta 0:00:00
+Collecting cryptography&gt;=3.3
+  Downloading http://mirrors.aliyun.com/pypi/packages/4f/0e/55b8cff87b572da828e9c6b7e7c5ecb9dc955b551ab863c28464a15f6451/cryptography-39.0.2-cp36-abi3-win_amd64.whl (2.5 MB)
+     ---------------------------------------- 2.5/2.5 MB 529.2 kB/s eta 0:00:00
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\program files\python38\lib\site-packages (from requests-&gt;gradio==3.13.0-&gt;-r requirements.txt (line 3)) (3.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in c:\program files\python38\lib\site-packages (from requests-&gt;gradio==3.13.0-&gt;-r requirements.txt (line 3)) (1.26.15)
+Collecting click&gt;=7.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/c2/f1/df59e28c642d583f7dacffb1e0965d0e00b218e0186d7858ac5233dce840/click-8.1.3-py3-none-any.whl (96 kB)
+     -------------------------------------- 96.6/96.6 kB 502.0 kB/s eta 0:00:00
+Collecting cffi&gt;=1.12
+  Downloading http://mirrors.aliyun.com/pypi/packages/c9/e3/0a52838832408cfbbf3a59cb19bcd17e64eb33795c9710ca7d29ae10b5b7/cffi-1.15.1-cp38-cp38-win_amd64.whl (178 kB)
+     ------------------------------------ 178.8/178.8 kB 432.3 kB/s eta 0:00:00
+Collecting httpcore&lt;0.17.0,&gt;=0.15.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/91/52/93f22e5441539256c0d113faf17e45284aee16eebdd95089e3ca6f480b18/httpcore-0.16.2-py3-none-any.whl (68 kB)
+     -------------------------------------- 69.0/69.0 kB 314.2 kB/s eta 0:00:00
+  Downloading http://mirrors.aliyun.com/pypi/packages/b1/fa/6e6ebe637cef87401ee82e7d76313d9eb014524fc6de45eb3b13cedd4c14/httpcore-0.16.1-py3-none-any.whl (68 kB)
+     -------------------------------------- 68.7/68.7 kB 312.7 kB/s eta 0:00:00
+  Downloading http://mirrors.aliyun.com/pypi/packages/6f/d1/7d1cddbc4bc1e4e9f9233b79a5acf1a5e5665801157ca68a5fb4150584a1/httpcore-0.16.0-py3-none-any.whl (68 kB)
+     -------------------------------------- 68.7/68.7 kB 341.7 kB/s eta 0:00:00
+  Downloading http://mirrors.aliyun.com/pypi/packages/ad/b9/260603ca0913072a10a4367c2dca9998706812a8c1f4558eca510f85ae16/httpcore-0.15.0-py3-none-any.whl (68 kB)
+     -------------------------------------- 68.4/68.4 kB 465.7 kB/s eta 0:00:00
+Collecting anyio==3.*
+  Downloading http://mirrors.aliyun.com/pypi/packages/77/2b/b4c0b7a3f3d61adb1a1e0b78f90a94e2b6162a043880704b7437ef297cad/anyio-3.6.2-py3-none-any.whl (80 kB)
+     -------------------------------------- 80.6/80.6 kB 346.7 kB/s eta 0:00:00
+Requirement already satisfied: zipp&gt;=3.1.0 in c:\program files\python38\lib\site-packages (from importlib-resources&gt;=1.4.0-&gt;jsonschema&gt;=3.0-&gt;altair-&gt;-r requirements.txt (line 6)) (3.15.0)
+Collecting uc-micro-py
+  Downloading http://mirrors.aliyun.com/pypi/packages/14/0e/738dbd15b1afe372d0d788e1e2112cfa67c9cf9e1c777360eaf9cd429caf/uc_micro_py-1.0.1-py3-none-any.whl (6.2 kB)
+Collecting six&gt;=1.5
+  Downloading http://mirrors.aliyun.com/pypi/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl (11 kB)
+Collecting pycparser
+  Downloading http://mirrors.aliyun.com/pypi/packages/62/d5/5f610ebe421e85889f2e55e33b7f9a6795bd982198517d912eb1c76e1a53/pycparser-2.21-py2.py3-none-any.whl (118 kB)
+     ------------------------------------ 118.7/118.7 kB 497.5 kB/s eta 0:00:00
+Building wheels for collected packages: ffmpy
+  Building wheel for ffmpy (setup.py): started
+  Building wheel for ffmpy (setup.py): finished with status 'done'
+  Created wheel for ffmpy: filename=ffmpy-0.3.0-py3-none-any.whl size=4732 sha256=01a0f3eb0f3c0f4d68b999ba97a30dc5b046b194c47d200a92d42a02c970b2fb
+  Stored in directory: c:\users\administrator\appdata\local\pip\cache\wheels\b1\49\0c\25183293e165aae632d926519352e2a1984ac4db8a03d036a9
+Successfully built ffmpy
+Installing collected packages: rfc3986, pytz, pydub, ffmpy, brotli, websockets, uc-micro-py, toolz, sniffio, six, python-multipart, pyrsistent, pyparsing, pydantic, pycryptodomex, pycryptodome, pycparser, pkgutil-resolve-name, orjson, mutagen, multidict, mdurl, MarkupSafe, kiwisolver, importlib-resources, h11, fsspec, frozenlist, fonttools, entrypoints, cycler, contourpy, click, bcrypt, attrs, async-timeout, yt-dlp, yarl, uvicorn, python-dateutil, markdown-it-py, linkify-it-py, jsonschema, jinja2, cffi, anyio, aiosignal, starlette, pynacl, pandas, mdit-py-plugins, matplotlib, httpcore, cryptography, aiohttp, paramiko, httpx, fastapi, altair, gradio
+Successfully installed MarkupSafe-2.1.2 aiohttp-3.8.4 aiosignal-1.3.1 altair-4.2.2 anyio-3.6.2 async-timeout-4.0.2 attrs-22.2.0 bcrypt-4.0.1 brotli-1.0.9 cffi-1.15.1 click-8.1.3 contourpy-1.0.7 cryptography-39.0.2 cycler-0.11.0 entrypoints-0.4 fastapi-0.94.0 ffmpy-0.3.0 fonttools-4.39.0 frozenlist-1.3.3 fsspec-2023.3.0 gradio-3.13.0 h11-0.12.0 httpcore-0.15.0 httpx-0.23.3 importlib-resources-5.12.0 jinja2-3.1.2 jsonschema-4.17.3 kiwisolver-1.4.4 linkify-it-py-2.0.0 markdown-it-py-2.2.0 matplotlib-3.7.1 mdit-py-plugins-0.3.5 mdurl-0.1.2 multidict-6.0.4 mutagen-1.46.0 orjson-3.8.7 pandas-1.5.3 paramiko-3.1.0 pkgutil-resolve-name-1.3.10 pycparser-2.21 pycryptodome-3.17 pycryptodomex-3.17 pydantic-1.10.6 pydub-0.25.1 pynacl-1.5.0 pyparsing-3.0.9 pyrsistent-0.19.3 python-dateutil-2.8.2 python-multipart-0.0.6 pytz-2022.7.1 rfc3986-1.5.0 six-1.16.0 sniffio-1.3.0 starlette-0.26.0.post1 toolz-0.12.0 uc-micro-py-1.0.1 uvicorn-0.21.0 websockets-10.4 yarl-1.8.2 yt-dlp-2023.3.4
+</code></pre>
+<h2 id="使用-whisper-webui">使用 whisper-webui</h2>
+<p>在whisper-webui的目录下，确保whisper环境激活：</p>
+<pre><code class="language-bash">python app.py --input_audio_max_duration -1
+</code></pre>
+<p>知乎<a href="https://zhuanlan.zhihu.com/p/611439310">Windows本地配置OpenAI Whisper+WebUI</a>给出的提示是这样的——<br>
+<img src="https://xiaxi626.github.io/post-images/1678684124429.png" alt="" loading="lazy"><br>
+我一直卡在<code> warnings.warn(</code>（如下图）。<br>
+<img src="https://xiaxi626.github.io/post-images/1678684297148.png" alt="" loading="lazy"><br>
+不过浏览器打开<code>http://127.0.0.1:7860</code>也能用。</p>
+<p>对于较长的非英语音频文件（〉10分钟），建议您在VAD选项中选择Silero VAD（语音活动检测器）。</p>
+<p>在完整界面中更改某些选项时要小心-这可能会导致模型崩溃。</p>
+<p>建议使用Full界面，以调整更多参数。</p>
+<p><strong>Vad 选项</strong>：</p>
+<ul>
+<li>none：在整个音频输入上运行Whisper</li>
+<li>silero-vad：使用 Silero VAD 检测包含语音的部分，并在每个部分上独立运行Whisper。Whisper 也在运行关于每个语音部分之间的间隙。</li>
+<li>silero-vad-skip-gaps：同上，但不包含根据 Silero 的语音的部分将被跳过。这会稍微快一些，但是可能会导致对话被跳过。</li>
+<li>periodic-vad：“VAD - 最大合并大小”创建语音部分。这是非常快速和简单的，但可能会中断一个句子或单词一分为二。</li>
+</ul>
+<p><strong>VAD - Merge Window 选项</strong>：如果设置，任何相隔最多此秒数的相邻语音部分将被自动合并。</p>
+<p><strong>VAD - Max Merge Size (s) 选项</strong>：如果相邻语音部分的长度达到此秒数，则禁用它们的合并。</p>
+<p><strong>VAD - Padding (s) 选项</strong>：<br>
+添加到每个语音部分的开头和结尾的秒数（浮点数）。将此设置为一个数字，大于零确保 Whisper 更有可能正确转录句子开头的句子演讲部分。但是，这也增加了 Whisper 分配错误时间戳的概率到每个转录的行。默认值为 1 秒。</p>
+<center>
+    <div style="color:orange; border-top: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+      WebUI界面
+  	</div>
+</center>
+<figure data-type="image" tabindex="1"><img src="https://xiaxi626.github.io/post-images/1678684987212.png" alt="" loading="lazy"></figure>
 </div>
                     <!-- Share to Twitter, Weibo, Telegram -->
                     <div class="flex items-center">
@@ -596,6 +853,8 @@ g: FP16 is not supported on CPU; using FP32 instead
 <li><a href="#%E6%BC%94%E7%A4%BA">演示</a></li>
 </ul>
 </li>
+<li><a href="#%E5%AE%89%E8%A3%85-whisper-webui">安装 whisper-webui</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-whisper-webui">使用 whisper-webui</a></li>
 </ul>
 </li>
 </ul>
