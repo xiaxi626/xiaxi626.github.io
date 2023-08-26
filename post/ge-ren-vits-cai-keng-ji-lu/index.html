@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico" type="image/x-icon" />
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<meta name="apple-mobile-web-app-capable"content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style"content="black"/>
+<meta name="format-detection"content="telephone=no"/>
+<meta name="renderer"content="webkit">
+<meta name="description"content="">
+<meta charset="UTF-8">
+<title>在本地（Windows）从零开始训练VITS踩坑记录（一） | 飞爱碧玉的个人博客</title>
+
+<link href="https://xiaxi626.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://xiaxi626.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+
+<script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+
+<!-- DEMO CSS -->
+<style type="text/css">
+	
+</style>
+
+<link rel="canonical" href="https://xiaxi626.github.io/post/ge-ren-vits-cai-keng-ji-lu/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://xiaxi626.github.io"><img alt="logo" style="display:inline-block;" src="https://xiaxi626.github.io/images/avatar.png"/></a><h1 title="飞爱碧玉的个人博客" class="weaklink"><a  href="/">飞爱碧玉的个人博客</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1693051104581" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="搜索..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>在本地（Windows）从零开始训练VITS踩坑记录（一）</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2023-03-06</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://xiaxi626.github.io/tag/JcIpV52xSP/" class="tag">Technology</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">8175字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">46 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<img class="featureImg" alt="featureimg" src="https://xiaxi626.github.io/post-images/ge-ren-vits-cai-keng-ji-lu.png" referrerpolicy="no-referrer">
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+
+<div class="round-shape-one"></div>
+
+<p>VITS（Variational Inference with adversarial learning for end-to-end Text-to-Speech）是一种结合变分推理（variational inference）、标准化流（normalizing flows）和对抗训练的高表现力语音合成模型。</p>
+<p><strong>论文地址</strong>：<a href="http://proceedings.mlr.press/v139/kim21f/kim21f.pdf">Conditional Variational Autoencoder with Adversarial Learning for End-to-End Text-to-Speech</a></p>
+<p><strong>细读论文</strong>：<a href="https://zhuanlan.zhihu.com/p/419883319">细读经典：VITS，用于语音合成带有对抗学习的条件变分自编码器</a></p>
+<p><strong>VITS Github 仓库</strong>：<a href="https://github.com/jaywalnut310/vits">jaywalnut310/vits</a></p>
+<h1 id="前期准备">前期准备</h1>
+<p><strong>硬件要求</strong>：<br>
+内存最好在16G以上。<br>
+显存最好在12G以上，最低也得6G，而且必须是支持CUDA的N卡。A卡目前理论上也有办法跑torch，但是非常复杂且麻烦。<br>
+中文互联网上没找到小白能用的VITS本地训练教程（注：特指jaywalnut310/vits）。目前我的电脑无法完成本地训练，又无法长时间科学上网（学习jaywalnut310/vits仓库对应的云端训练），只能尝试一下是否可以完成模型训练前的所有操作。</p>
+<h2 id="vits仓库readme原文">VITS仓库README原文</h2>
+<ol>
+<li>
+<p>Python &gt;= 3.6</p>
+</li>
+<li>
+<p>Clone this repository</p>
+</li>
+<li>
+<p>Install python requirements. Please refer <a href="https://github.com/jaywalnut310/vits/blob/main/requirements.txt">requirements.txt</a></p>
+<p>i. You may need to install espeak first: apt-get install espeak</p>
+</li>
+<li>
+<p>Download datasets</p>
+<p>i. Download and extract the LJ Speech dataset, then rename or create a link to the dataset folder: <code>ln -s /path/to/LJSpeech-1.1/wavs DUMMY1</code><br>
+ii. For mult-speaker setting, download and extract the VCTK dataset, and downsample wav files to 22050 Hz. Then rename or create a link to the dataset folder: <code>ln -s /path/to/VCTK-Corpus/downsampled_wavs DUMMY2</code></p>
+</li>
+<li>
+<p>Build Monotonic Alignment Search and run preprocessing if you use your own datasets.</p>
+</li>
+</ol>
+<pre><code class="language-bash"># Cython-version Monotonoic Alignment Search
+cd monotonic_align
+python setup.py build_ext --inplace
+
+# Preprocessing (g2p) for your own datasets. Preprocessed phonemes for LJ Speech and VCTK have been already provided.
+# python preprocess.py --text_index 1 --filelists filelists/ljs_audio_text_train_filelist.txt filelists/ljs_audio_text_val_filelist.txt filelists/ljs_audio_text_test_filelist.txt 
+# python preprocess.py --text_index 2 --filelists filelists/vctk_audio_sid_text_train_filelist.txt filelists/vctk_audio_sid_text_val_filelist.txt filelists/vctk_audio_sid_text_test_filelist.txt
+</code></pre>
+<h2 id="准备过程">准备过程</h2>
+<ol start="0">
+<li>Windows 7 用户选择 Python 3.8</li>
+<li>克隆仓库</li>
+</ol>
+<pre><code class="language-bash">git clone git@github.com:jaywalnut310/vits.git
+</code></pre>
+<ol start="2">
+<li>安装 Python 环境，参阅 <a href="https://github.com/jaywalnut310/vits/blob/main/requirements.txt">requirements.txt</a>，如下：</li>
+</ol>
+<pre><code class="language-bash">Cython==0.29.21
+librosa==0.8.0
+matplotlib==3.3.1
+numpy==1.18.5
+phonemizer==2.2.1
+scipy==1.5.2
+tensorboard==2.3.0
+torch==1.6.0
+torchvision==0.7.0
+Unidecode==1.1.1
+</code></pre>
+<p>您可能需要先安装espeak：<code>apt-get install espeak</code></p>
+<h3 id="安装espeak">安装espeak</h3>
+<p>Windows下的 apt-get 官网地址如下:https://chocolatey.org/<br>
+在Win7中尝试装chocolatey时挺折腾人的，可以看这两篇文章——<br>
+<a href="https://blog.csdn.net/u013253924/article/details/83149821">Windows7下的包管理器Chocolatey的安装</a><br>
+<a href="https://blog.csdn.net/weixin_45255662/article/details/105800008">如何在Win 7中安装chocolatey</a></p>
+<p>不想用Chocolatey有没有办法安装呢？<br>
+去 Espeak 官网下载Windows安装包（.exe文件)<br>
+<img src="https://xiaxi626.github.io/post-images/1678066581931.png" alt="" loading="lazy"><br>
+网页跳转打不开，搜索Github出来一个espeak-NG<br>
+安装espeak-NG看看<br>
+<img src="https://xiaxi626.github.io/post-images/1678066648579.PNG" alt="" loading="lazy"><br>
+自动添加了系统环境变量<br>
+<img src="https://xiaxi626.github.io/post-images/1678066740444.PNG" alt="" loading="lazy"><br>
+<strong>教程</strong>：<a href="https://www.bilibili.com/read/cv9970630">eSpeak NG Windows 版中文发音简易教程 </a></p>
+<p>上面暂时下载不了，下载这个看看——<br>
+<img src="https://xiaxi626.github.io/post-images/1678066863324.png" alt="" loading="lazy"></p>
+<p>打开软件，提示——<br>
+<img src="https://xiaxi626.github.io/post-images/1678073486285.PNG" alt="" loading="lazy"><br>
+这是一个编辑器，需要读取<code>C:\Program Files\eSpeak\espeak-data</code>。</p>
+<p>重启电脑后可以 eSpeak 下载页面打开了。<br>
+参阅<a href="https://blog.csdn.net/potato_uncle/article/details/113016432">Espeak最详细安装过程！</a>安装 eSpeak 。</p>
+<p>i. 安装过程修改安装路径为 <code>C:\Program Files\eSpeak</code>。</p>
+<p>ii. 选择要安装的语言包，添加en-us、it、fr。</p>
+<p>各种语言的缩写请参见下表，更多信息请点我：</p>
+<pre><code class="language-bash">af is an Africaans voice.
+bs is a Bosnian voice.
+ca is a Catalan voice.
+cs is a Czech voice.
+cy is a Welsh voice.
+da is a Danish voice.
+de is a German voice.
+el is a Greek voice.
+en is an English voice.
+en-us is an American English voice.
+eo is a Esperanto voice.
+es is a Spanish voice.
+es-la is a Spanish Latin American voice.
+fi is a Finnish voice.
+fr is a French voice.
+fr-be is a French Belgian voice.
+hi is a Hindi voice.
+hr is a Croatian voice.
+hu is a Hungarian voice.
+hy is an Armenian voice.
+hy-west is an Armenian-west voice.
+id is an Indonesian voice.
+is is an experimental Icelandic voice.
+it is an Italian voice.
+ka is a Georgian voice.
+kn is a Kannada voice.
+ku is a Kurdish voice.
+la is a Latin voice.
+lv is a Lativian voice.
+mk is an experimental Macedonian voice.
+ml is a Malayam voice.
+nl is an experimental Dutch voice.
+no is a Norwegian Bokmal voice.
+pl is a Polish voice.
+pt is a Brazilian Portuguese voice.
+pt-pt is Portuguese voice.
+ro is a Romanian voice.
+ru is an experimental Russian voice.
+sk is a Slovak voice.
+sq is an Albanian voice.
+sr is a Serbian voice.
+sv is a Swedish voice.
+sw is an experimental Swahili voice.
+ta is a Tamil voice.
+tr is a Turkish voice.
+vi is a Vietnam voice.
+zh is a Mandarin Chinese voice.
+zh-yue is a Cantonese voice.
+</code></pre>
+<p>iii. 输入jp，安装后无法正常朗读，查阅<a href="https://kgithub.com/espeak-ng/espeak-ng/issues/864">Can't find Japanese language code.</a><br>
+反复提到</p>
+<blockquote>
+<p>“Can you check that ja_dict is really missing from C:\Program Files\eSpeak NG/espeak-ng-data”</p>
+</blockquote>
+<p>尝试把 C:\Program Files\eSpeak NG\espeak-ng-data 部分除 <code>lang</code> 以外移动到 C:\Program Files\eSpeak\espeak-data ，安装时添加语言<code>ja</code>。<br>
+很好，程序寄了。</p>
+<p><strong>eSpeak的其他数据</strong>：在<a href="https://espeak.sourceforge.net/data/index.html">该网站</a>下载文件后，解压缩到eSpeak的dictsource目录中。 在dictsource目录中，执行</p>
+<pre><code class="language-bash">espeak --compile=zh
+espeak --compile=zh-yue
+espeak --compile=ru
+</code></pre>
+<p>iV. 将 espeak/command_line 加入环境变量</p>
+<p>另外，不知安装 eSpeak 后是否需要安装 <code> python-espeak</code>  。如果需要，打开这个网站——<a href="https://pypi.org/project/python-espeak/">Text-To-Speech with Python Espeak</a>。</p>
+<pre><code class="language-bash，">Requires espeak and its libraries to be installed espeak/speak_lib.h should be in your include path somewhere. Install with
+
+`python setup.py install`
+
+or python setup.py build to get the library in the build without installation.
+</code></pre>
+<p>至此，eSpeak安装完成，没有按照官方建议 <code>apt-get install espeak</code> 可能会出错。</p>
+<h3 id="安装-requirementstxt-中相关包">安装 requirements.txt 中相关包</h3>
+<p>首先命令行输入 <code>pip list</code> 查看已安装的库或第三方包信息。</p>
+<pre><code class="language-bash">C:\Users\Administrator&gt;pip list
+Package            Version
+------------------ ----------
+certifi            2022.12.7
+charset-normalizer 3.0.1
+colorama           0.4.6
+ffmpeg-python      0.2.0
+filelock           3.9.0
+future             0.18.3
+huggingface-hub    0.12.1
+idna               3.4
+more-itertools     9.0.0
+numpy              1.24.2
+openai-whisper     20230124
+packaging          23.0
+Pillow             9.4.0
+pip                23.0.1
+PyYAML             6.0
+regex              2022.10.31
+requests           2.28.2
+setuptools         56.0.0
+tokenizers         0.13.2
+torch              1.13.1
+torchaudio         0.13.1
+torchvision        0.14.1
+tqdm               4.64.1
+transformers       4.26.1
+typing_extensions  4.5.0
+urllib3            1.26.14
+</code></pre>
+<p>看来现在需要安装</p>
+<pre><code class="language-bash">Cython==0.29.21
+librosa==0.8.0
+matplotlib==3.3.1
+numpy==1.18.5
+phonemizer==2.2.1
+scipy==1.5.2
+tensorboard==2.3.0
+Unidecode==1.1.1
+</code></pre>
+<h4 id="安装cython"><strong>安装Cython</strong></h4>
+<p>安装Cython的最简单方法是使用pip：</p>
+<pre><code class="language-bash">pip install Cython
+</code></pre>
+<p>最新的Cython版本始终可以从https://cython.org/下载 。<br>
+Cython的最新版本是3.0 beta 1（发布日期：2023年2月25日）。可以从<a href="http://pypi.python.org/pypi/Cython/">PyPI</a>包索引库中获得Cython。<br>
+解压缩tarball或zip文件，输入目录，然后运行：</p>
+<pre><code class="language-bash">python setup.py install
+</code></pre>
+<p>cmd安装过程——</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 ~
+$ pip install Cython
+Collecting Cython
+  Downloading Cython-0.29.33-py2.py3-none-any.whl (987 kB)
+     -------------------------------------- 987.3/987.3 kB 1.2 MB/s eta 0:00:00
+Installing collected packages: Cython
+Successfully installed Cython-0.29.33
+</code></pre>
+<p>Christoph Gohlke已经创建了Windows安装程序，可以在<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#cython">他的网站</a>上下载。<br>
+下载whl文件，与手动安装 torch 类似的命令——</p>
+<pre><code class="language-bash">activate pytorch_env (就是用activate打开自己的环境）
+cd Desktop (打开下载文件的地址）
+pip install torch-1.4.0+cpu-cp36-cp36m-win_amd64.whl (直接安装）
+</code></pre>
+<p>（以上命令摘自<a href="https://blog.csdn.net/Songyongchao1995/article/details/111186931">python安装torch的详细步骤（亲测成功）<br>
+</a>，<code>activate pytorch_env</code>不知道有没有起到作用，之前手动安装pytorch报了与文中类似的警告。）</p>
+<p>对于一次性构建，例如用于CI /测试，在PyPI上提供的一个轮组件未涵盖的平台上，它比完全源构建快得多，以安装未编译（较慢）的Cython版本</p>
+<pre><code class="language-bash">pip install Cython --install-option=&quot;--no-cython-compile&quot;
+</code></pre>
+<h4 id="安装librosa"><strong>安装librosa</strong></h4>
+<p>安装librosa的最简单方法是使用pip：</p>
+<pre><code class="language-bash">pip install librosa
+</code></pre>
+<p>如果安装了Anaconda，可以通过conda命令安装：</p>
+<pre><code class="language-bash">conda install -c conda-forge librosa
+</code></pre>
+<p>直接使用源码安装，需要提前下载源码（https://github.com/librosa/librosa/releases/），通过下面命令安装：</p>
+<pre><code class="language-bash">tar xzf librosa-VERSION.tar.gz
+cd librosa-VERSION/
+python setup.py install
+</code></pre>
+<p>cmd安装过程——</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /
+$ pip install librosa
+Collecting librosa
+  WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(&lt;pip._vendor.urllib3.connection.HTTPSConnection object at 0x0000000004B31070&gt;, 'Connection to files.pythonhosted.org timed out. (connect timeout=15)')': /packages/bc/2e/80370da514096c6190f8913668198380ea09c2d252cfa4e85a9c096d3b40/librosa-0.10.0-py3-none-any.whl
+  WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(&lt;pip._vendor.urllib3.connection.HTTPSConnection object at 0x0000000004B312E0&gt;, 'Connection to files.pythonhosted.org timed out. (connect timeout=15)')': /packages/bc/2e/80370da514096c6190f8913668198380ea09c2d252cfa4e85a9c096d3b40/librosa-0.10.0-py3-none-any.whl
+  WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(&lt;pip._vendor.urllib3.connection.HTTPSConnection object at 0x0000000004B31460&gt;, 'Connection to files.pythonhosted.org timed out. (connect timeout=15)')': /packages/bc/2e/80370da514096c6190f8913668198380ea09c2d252cfa4e85a9c096d3b40/librosa-0.10.0-py3-none-any.whl
+  WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(&lt;pip._vendor.urllib3.connection.HTTPSConnection object at 0x0000000004B31550&gt;, 'Connection to files.pythonhosted.org timed out. (connect timeout=15)')': /packages/bc/2e/80370da514096c6190f8913668198380ea09c2d252cfa4e85a9c096d3b40/librosa-0.10.0-py3-none-any.whl
+  WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(&lt;pip._vendor.urllib3.connection.HTTPSConnection object at 0x0000000004B316D0&gt;, 'Connection to files.pythonhosted.org timed out. (connect timeout=15)')': /packages/bc/2e/80370da514096c6190f8913668198380ea09c2d252cfa4e85a9c096d3b40/librosa-0.10.0-py3-none-any.whl
+ERROR: Could not install packages due to an OSError: HTTPSConnectionPool(host='files.pythonhosted.org', port=443): Max retries exceeded with url: /packages/bc/2e/80370da514096c6190f8913668198380ea09c2d252cfa4e85a9c096d3b40/librosa-0.10.0-py3-none-any.whl (Caused by ConnectTimeoutError(&lt;pip._vendor.urllib3.connection.HTTPSConnection object at 0x0000000004B31850&gt;, 'Connection to files.pythonhosted.org timed out. (connect timeout=15)'))
+</code></pre>
+<p>连接超时了，所以我们只要用一些国内的pip源就可以完美的解决。</p>
+<pre><code class="language-bash">pip install [whatyouwant] -i url
+</code></pre>
+<p>[whatyouwant]替换成自己需要的包，url替换成pip源<br>
+几个国内的pip源</p>
+<pre><code class="language-url">阿里云 http://mirrors.aliyun.com/pypi/simple/
+
+中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/
+
+豆瓣(douban) http://pypi.douban.com/simple/
+
+清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/
+
+中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/
+</code></pre>
+<p>cmd输入 <code>pip install librosa -i http://mirrors.aliyun.com/pypi/simple/</code> ，安装过程——</p>
+<pre><code class="language-bash">C:\Users\Administrator&gt;pip install librosa -i http://mirrors.aliyun.com/pypi/simple/
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple/
+WARNING: The repository located at mirrors.aliyun.com is not a trusted or secure
+ host and is being ignored. If this repository is available via HTTPS we recomme
+nd you use HTTPS instead, otherwise you may silence this warning and allow it an
+yway with '--trusted-host mirrors.aliyun.com'.
+ERROR: Could not find a version that satisfies the requirement librosa (from ver
+sions: none)
+ERROR: No matching distribution found for librosa
+</code></pre>
+<p>警告：存储库位于镜像。阿里云。com不是受信任或安全的主机，正在被忽略。如果此存储库可通过HTTPS访问，我们建议您改用HTTPS，否则您可能会使此waming静音，并允许使用’-受信任的主机镜像。阿里云。com”。<br>
+<strong>解决方法</strong>：在pip命令后面加上<code>--trusted-host mirrors.aliyun.com</code></p>
+<pre><code class="language-bash">pip install librosa -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+</code></pre>
+<p>cmd安装过程——</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /
+$ pip install librosa -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple/
+Collecting librosa
+  Downloading http://mirrors.aliyun.com/pypi/packages/bc/2e/80370da514096c6190f8913668198380ea09c2d252cfa4e85a9c096d3b40/librosa-0.10.0-py3-none-any.whl (252 kB)
+     ------------------------------------ 252.9/252.9 kB 353.7 kB/s eta 0:00:00
+Collecting audioread&gt;=2.1.9
+  Downloading http://mirrors.aliyun.com/pypi/packages/5d/cb/82a002441902dccbe427406785db07af10182245ee639ea9f4d92907c923/audioread-3.0.0.tar.gz (377 kB)
+     ------------------------------------ 377.0/377.0 kB 346.0 kB/s eta 0:00:00
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting scikit-learn&gt;=0.20.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/5d/30/3af7a1073da6181208cdefe749f8243cd66e1036601bc870dfafb7fd3602/scikit_learn-1.2.1-cp38-cp38-win_amd64.whl (8.3 MB)
+     ---------------------------------------- 8.3/8.3 MB 385.0 kB/s eta 0:00:00
+Collecting numba&gt;=0.51.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/22/6e/880d8ae26f26a3ecce71922797cc09b3b8a4e5274adecd0793f9b59d50b8/numba-0.56.4-cp38-cp38-win_amd64.whl (2.5 MB)
+     ---------------------------------------- 2.5/2.5 MB 387.2 kB/s eta 0:00:00
+Collecting joblib&gt;=0.14
+  Downloading http://mirrors.aliyun.com/pypi/packages/91/d4/3b4c8e5a30604df4c7518c562d4bf0502f2fa29221459226e140cf846512/joblib-1.2.0-py3-none-any.whl (297 kB)
+     ------------------------------------ 298.0/298.0 kB 335.3 kB/s eta 0:00:00
+Collecting soxr&gt;=0.3.2
+  Downloading http://mirrors.aliyun.com/pypi/packages/e8/f5/bfcf99a10250381ed76793d930da816836f2ac8a276de48522001271cc98/soxr-0.3.4-cp38-cp38-win_amd64.whl (184 kB)
+     ------------------------------------ 184.8/184.8 kB 338.9 kB/s eta 0:00:00
+Requirement already satisfied: typing-extensions&gt;=4.1.1 in c:\program files\python38\lib\site-packages (from librosa) (4.5.0)
+Collecting lazy-loader&gt;=0.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/bc/bf/58dbe1f382ecac2c0571c43b6e95028b14e159d67d75e49a00c26ef63d8f/lazy_loader-0.1-py3-none-any.whl (8.6 kB)
+Requirement already satisfied: numpy&gt;=1.20.3 in c:\program files\python38\lib\site-packages (from librosa) (1.24.2)
+Collecting soundfile&gt;=0.12.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/50/ff/26a4ee48d0b66625a4e4028a055b9f25bc9d7c7b2d17d21a45137621a50d/soundfile-0.12.1-py2.py3-none-win_amd64.whl (1.0 MB)
+     ---------------------------------------- 1.0/1.0 MB 363.8 kB/s eta 0:00:00
+Collecting scipy&gt;=1.2.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/32/8e/7f403535ddf826348c9b8417791e28712019962f7e90ff845896d6325d09/scipy-1.10.1-cp38-cp38-win_amd64.whl (42.2 MB)
+     -------------------------------------- 42.2/42.2 MB 391.8 kB/s eta 0:00:00
+Collecting pooch&gt;=1.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/84/8c/4da580db7fb4cfce8f5ed78e7d2aa542e6f201edd69d3d8a96917a8ff63c/pooch-1.7.0-py3-none-any.whl (60 kB)
+     -------------------------------------- 60.9/60.9 kB 269.3 kB/s eta 0:00:00
+Collecting decorator&gt;=4.3.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/d5/50/83c593b07763e1161326b3b8c6686f0f4b0f24d5526546bee538c89837d6/decorator-5.1.1-py3-none-any.whl (9.1 kB)
+Collecting msgpack&gt;=1.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/45/79/9d51bf36ab55059f8e96b13161d5867bb4bb359b03e82f240f64898d3ece/msgpack-1.0.4-cp38-cp38-win_amd64.whl (62 kB)
+     -------------------------------------- 62.2/62.2 kB 368.8 kB/s eta 0:00:00
+Collecting importlib-metadata
+  Downloading http://mirrors.aliyun.com/pypi/packages/26/a7/9da7d5b23fc98ab3d424ac2c65613d63c1f401efb84ad50f2fa27b2caab4/importlib_metadata-6.0.0-py3-none-any.whl (21 kB)
+Collecting numpy&gt;=1.20.3
+  Downloading http://mirrors.aliyun.com/pypi/packages/4c/42/6274f92514fbefcb1caa66d56d82ac7ac89f7652c0cef1e159a4b79e09f1/numpy-1.23.5-cp38-cp38-win_amd64.whl (14.7 MB)
+     -------------------------------------- 14.7/14.7 MB 391.7 kB/s eta 0:00:00
+Collecting llvmlite&lt;0.40,&gt;=0.39.0dev0
+  Downloading http://mirrors.aliyun.com/pypi/packages/75/7f/9055977016e713a5c033c376a9ea9cb3d1092a02ee1421c41ccbcc5aa043/llvmlite-0.39.1-cp38-cp38-win_amd64.whl (23.2 MB)
+     -------------------------------------- 23.2/23.2 MB 362.2 kB/s eta 0:00:00
+Requirement already satisfied: setuptools in c:\program files\python38\lib\site-packages (from numba&gt;=0.51.0-&gt;librosa) (56.0.0)
+Collecting platformdirs&gt;=2.5.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/ca/de/a33823fe54d52ea72fdae011115d737a2642d441c93b68ed17455a328e4c/platformdirs-3.1.0-py3-none-any.whl (14 kB)
+Requirement already satisfied: requests&gt;=2.19.0 in c:\program files\python38\lib\site-packages (from pooch&gt;=1.0-&gt;librosa) (2.28.2)
+Requirement already satisfied: packaging&gt;=20.0 in c:\program files\python38\lib\site-packages (from pooch&gt;=1.0-&gt;librosa) (23.0)
+Collecting threadpoolctl&gt;=2.0.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/61/cf/6e354304bcb9c6413c4e02a747b600061c21d38ba51e7e544ac7bc66aecc/threadpoolctl-3.1.0-py3-none-any.whl (14 kB)
+Collecting cffi&gt;=1.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/c9/e3/0a52838832408cfbbf3a59cb19bcd17e64eb33795c9710ca7d29ae10b5b7/cffi-1.15.1-cp38-cp38-win_amd64.whl (178 kB)
+     ------------------------------------ 178.8/178.8 kB 327.4 kB/s eta 0:00:00
+Collecting pycparser
+  Downloading http://mirrors.aliyun.com/pypi/packages/62/d5/5f610ebe421e85889f2e55e33b7f9a6795bd982198517d912eb1c76e1a53/pycparser-2.21-py2.py3-none-any.whl (118 kB)
+     ------------------------------------ 118.7/118.7 kB 330.7 kB/s eta 0:00:00
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\program files\python38\lib\site-packages (from requests&gt;=2.19.0-&gt;pooch&gt;=1.0-&gt;librosa) (3.0.1)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in c:\program files\python38\lib\site-packages (from requests&gt;=2.19.0-&gt;pooch&gt;=1.0-&gt;librosa) (1.26.14)
+Requirement already satisfied: certifi&gt;=2017.4.17 in c:\program files\python38\lib\site-packages (from requests&gt;=2.19.0-&gt;pooch&gt;=1.0-&gt;librosa) (2022.12.7)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\program files\python38\lib\site-packages (from requests&gt;=2.19.0-&gt;pooch&gt;=1.0-&gt;librosa) (3.4)
+Collecting zipp&gt;=0.5
+  Downloading http://mirrors.aliyun.com/pypi/packages/5b/fa/c9e82bbe1af6266adf08afb563905eb87cab83fde00a0a08963510621047/zipp-3.15.0-py3-none-any.whl (6.8 kB)
+Installing collected packages: msgpack, zipp, threadpoolctl, pycparser, platformdirs, numpy, llvmlite, lazy-loader, joblib, decorator, audioread, soxr, scipy, pooch, importlib-metadata, cffi, soundfile, scikit-learn, numba, librosa
+  Attempting uninstall: numpy
+    Found existing installation: numpy 1.24.2
+    Uninstalling numpy-1.24.2:
+      Successfully uninstalled numpy-1.24.2
+  DEPRECATION: audioread is being installed using the legacy 'setup.py install' method, because it does not have a 'pyproject.toml' and the 'wheel' package is not installed. pip 23.1 will enforce this behaviour change. A possible replacement is to enable the '--use-pep517' option. Discussion can be found at https://github.com/pypa/pip/issues/8559
+  Running setup.py install for audioread: started
+  Running setup.py install for audioread: finished with status 'done'
+Successfully installed audioread-3.0.0 cffi-1.15.1 decorator-5.1.1 importlib-metadata-6.0.0 joblib-1.2.0 lazy-loader-0.1 librosa-0.10.0 llvmlite-0.39.1 msgpack-1.0.4 numba-0.56.4 numpy-1.23.5 platformdirs-3.1.0 pooch-1.7.0 pycparser-2.21 scikit-learn-1.2.1 scipy-1.10.1 soundfile-0.12.1 soxr-0.3.4 threadpoolctl-3.1.0 zipp-3.15.0
+</code></pre>
+<p><a href="https://blog.csdn.net/zzc15806/article/details/79603994">librosa常用功能介绍</a></p>
+<h4 id="安装matplotlib"><strong>安装matplotlib</strong></h4>
+<p><a href="https://matplotlib.net/stable/users/index.html">matplotlib用户指南</a>——<a href="https://matplotlib.net/stable/users/installing/index.html">安装</a></p>
+<ol start="0">
+<li>安装matplotlib的最简单方法是使用pip：</li>
+</ol>
+<pre><code class="language-bash">pip install matplotlib
+</code></pre>
+<p>用国内的pip源安装</p>
+<pre><code class="language-bash">pip install matplotlib -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+</code></pre>
+<p>该过程不仅安装了  matplotlib ，还安装了依赖的 numpy、python-dateutil、kiwisolver 、 pillow 、pyparsing 、cycler 、six 库。</p>
+<ol>
+<li>如果安装了Anaconda，可以通过conda命令安装：</li>
+</ol>
+<pre><code class="language-bash">conda install matplotlib
+</code></pre>
+<ol start="2">
+<li>安装每晚构建<br>
+Matplotlib 在 scipy-wheels-nightly Anaconda Cloud 组织上提供夜间开发构建轮。pip可以通过将 scipy-wheels-nightly 指定为要查询的包索引来安装这些轮子：</li>
+</ol>
+<pre><code class="language-bash">python -m pip install \
+  --upgrade \
+  --pre \
+  --index-url https://pypi.anaconda.org/scipy-wheels-nightly/simple \
+  --extra-index-url https://pypi.org/simple \
+  matplotlib
+</code></pre>
+<ol start="3">
+<li>如果您想从 tarball 构建，请从<a href="https://pypi.org/project/matplotlib/">PyPI 文件页面获取最新的</a>tar.gz发布文件。（<a href="https://blog.csdn.net/tiao_god/article/details/119486428">python安装合适版本的matplotlib</a>中的截图略有不同）</li>
+</ol>
+<p>cmd安装过程——</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /
+$ pip install matplotlib -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple/
+Collecting matplotlib
+  Downloading http://mirrors.aliyun.com/pypi/packages/92/01/2c04d328db6955d77f8f60c17068dde8aa66f153b2c599ca03c2cb0d5567/matplotlib-3.7.1-cp38-cp38-win_amd64.whl (7.6 MB)
+     ---------------------------------------- 7.6/7.6 MB 389.8 kB/s eta 0:00:00
+Requirement already satisfied: pillow&gt;=6.2.0 in c:\program files\python38\lib\site-packages (from matplotlib) (9.4.0)
+Collecting kiwisolver&gt;=1.0.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/4f/05/59b34e788bf2b45c7157c3d898d567d28bc42986c1b6772fb1af329eea0d/kiwisolver-1.4.4-cp38-cp38-win_amd64.whl (55 kB)
+     -------------------------------------- 55.4/55.4 kB 289.4 kB/s eta 0:00:00
+Collecting contourpy&gt;=1.0.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/08/ce/9bfe9f028cb5a8ee97898da52f4905e0e2d9ca8203ffdcdbe80e1769b549/contourpy-1.0.7-cp38-cp38-win_amd64.whl (162 kB)
+     ------------------------------------ 163.0/163.0 kB 361.9 kB/s eta 0:00:00
+Collecting pyparsing&gt;=2.3.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/6c/10/a7d0fa5baea8fe7b50f448ab742f26f52b80bfca85ac2be9d35cdd9a3246/pyparsing-3.0.9-py3-none-any.whl (98 kB)
+     -------------------------------------- 98.3/98.3 kB 297.6 kB/s eta 0:00:00
+Requirement already satisfied: numpy&gt;=1.20 in c:\program files\python38\lib\site-packages (from matplotlib) (1.23.5)
+Collecting python-dateutil&gt;=2.7
+  Downloading http://mirrors.aliyun.com/pypi/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+     ------------------------------------ 247.7/247.7 kB 354.4 kB/s eta 0:00:00
+Collecting cycler&gt;=0.10
+  Downloading http://mirrors.aliyun.com/pypi/packages/5c/f9/695d6bedebd747e5eb0fe8fad57b72fdf25411273a39791cde838d5a8f51/cycler-0.11.0-py3-none-any.whl (6.4 kB)
+Collecting importlib-resources&gt;=3.2.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/38/71/c13ea695a4393639830bf96baea956538ba7a9d06fcce7cef10bfff20f72/importlib_resources-5.12.0-py3-none-any.whl (36 kB)
+Requirement already satisfied: packaging&gt;=20.0 in c:\program files\python38\lib\site-packages (from matplotlib) (23.0)
+Collecting fonttools&gt;=4.22.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/e3/d9/e9bae85e84737e76ebbcbea13607236da0c0699baed0ae4f1151b728a608/fonttools-4.38.0-py3-none-any.whl (965 kB)
+     ------------------------------------ 965.4/965.4 kB 385.0 kB/s eta 0:00:00
+Requirement already satisfied: zipp&gt;=3.1.0 in c:\program files\python38\lib\site-packages (from importlib-resources&gt;=3.2.0-&gt;matplotlib) (3.15.0)
+Collecting six&gt;=1.5
+  Downloading http://mirrors.aliyun.com/pypi/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl (11 kB)
+Installing collected packages: six, pyparsing, kiwisolver, importlib-resources, fonttools, cycler, contourpy, python-dateutil, matplotlib
+Successfully installed contourpy-1.0.7 cycler-0.11.0 fonttools-4.38.0 importlib-resources-5.12.0 kiwisolver-1.4.4 matplotlib-3.7.1 pyparsing-3.0.9 python-dateutil-2.8.2 six-1.16.0
+</code></pre>
+<p><strong>python安装matplotlib模块报错问题</strong><br>
+看了几篇博文，<code>read timed out</code> <code>error ：microsoft visual c+ is required</code> <code>error： command cl.exe failed with exit status 2</code> <code>Check the logs for full command output.</code> 报错经常串在一起。</p>
+<ol>
+<li>Check the logs for full command output.<br>
+输入<code>pip install --upgrade pip</code>指令 升级pip安装包。<br>
+输入<code>pip install wheel</code>指令安装wheel后在安装matplotlib<br>
+安装14.0以上版本的Microsoft C++ Build Tools，如Microsoft Visual C++ 14.0、Microsoft Visual C++ 2019。<br>
+以上pass，下载编译包以后，cmd命令输入 <code>pip install +编译包名称</code> 指令安装就可以了！编译包在上文提到的<a href="https://pypi.org/project/matplotlib/">PyPI 文件页面</a>下载。<br>
+（题外话）安装sklearn包的时候发现上面网站没有对应安装包，那只能上终极大招了：直接安装Microsoft Visual C++ 2015 BuildTools，不占用内存，而且完全满足python对C/C++源码编译的需求。安装包下载链接如下，下载以后联网默认安装步骤就可以了。</li>
+<li>read timed out<br>
+由于某原因导致访问pip仓库pypi时，安装时间超过默认值。</li>
+</ol>
+<p>（1）将默认连接时长修改更长（不推荐）</p>
+<pre><code class="language-bash">pip3 --default-timeout=100 install [whatyouwant]
+</code></pre>
+<p>（2）进入pypi直接下载安装（不推荐）</p>
+<ul>
+<li>pypi地址：https://pypi.org/</li>
+<li>安装方式：<br>
+下载完成后，进入安装包</li>
+</ul>
+<pre><code class="language-bash">python setup.py install
+</code></pre>
+<p>（3）使用清华大学开源软件镜像站（强烈推荐）</p>
+<ul>
+<li>传送门：https://mirrors.tuna.tsinghua.edu.cn/</li>
+<li>安装方式</li>
+</ul>
+<pre><code class="language-bash">pip install [whatyouwant] -i https://mirrors.ustc.edu.cn/pypi/web/simple/
+</code></pre>
+<ol start="3">
+<li>error： command cl.exe failed with exit status 2</li>
+</ol>
+<blockquote>
+<p>python3.8下载matplotlib模块时，总是出现以下错误<br>
+ERROR: Command errored out with exit status 1: 'c:\users\air\python\python38\python.exe' -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '&quot;'&quot;'C:\Users\air\AppData\Local\Temp\pip-install-5ntug3if\matplotlib\setup.py'&quot;'&quot;'; file='&quot;'&quot;'C:\Users\air\AppData\Local\Temp\pip-install-5ntug3if\matplotlib\setup.py'&quot;'&quot;';f=getattr(tokenize, '&quot;'&quot;'open'&quot;'&quot;', open)(<strong>file</strong>);code=f.read().replace('&quot;'&quot;'\r\n'&quot;'&quot;', '&quot;'&quot;'\n'&quot;'&quot;');f.close();exec(compile(code, file, '&quot;'&quot;'exec'&quot;'&quot;'))' install --record 'C:\Users\air\AppData\Local\Temp\pip-record-rp63qqyg\install-record.txt' --single-version-externally-managed --compile Check the logs for full command output.</p>
+</blockquote>
+<p>在cmd里输入下面的语句试试：</p>
+<pre><code class="language-bash">python -m pip install matplotlib
+</code></pre>
+<p>如果还是不行，再试试这个：</p>
+<pre><code class="language-bash">python -m pip install matplotlib --user air
+</code></pre>
+<p><strong>安装 matplotlib 参阅资料</strong>：<br>
+<a href="https://blog.csdn.net/qilei2010/article/details/115298605">【Python】matplotlib库的安装和简单使用</a><br>
+<a href="https://blog.csdn.net/wanghao77/article/details/105456375">python安装matplotlib库三种失败情况</a><br>
+<a href="https://blog.csdn.net/hhladminhhl/article/details/109071398">Python安装matplotlib库失败解决方法【Command errored out with exit status 1】</a><br>
+<a href="https://blog.csdn.net/QtKung/article/details/121185309">解决 python安装matplotlib模块报错问题详细步骤</a><br>
+<a href="https://blog.csdn.net/kongmingxiaoxiao/article/details/100612401">pip安装python模块时报错443超时</a></p>
+<h4 id="安装phonemizer"><strong>安装phonemizer</strong></h4>
+<p>Phonemizer 是一个精确寻址的 Python 包, 它将文本从其拼写表示转录为语音表示。该包设计用户友好的，并公开了一个高级音素化函数， 支持大约100种不同的语言。phonemizer 使用的默认后端是 eSpeak （Dunn &amp; Vitolins，2019 年），一种基于语言专业知识和手写转录规则的文本转语音软件。它将文本转录成国际音标，并支持一百多种语言。使用 MBROLA 声音（Tits &amp; Vitolins，2019），eSpeak 后端可用于大约 35 种语言，以 SAMPA 计算机可读语音字母表转录文本。<br>
+安装phonemizer前需要配置espeak。<a href="https://bootphon.github.io/phonemizer/install.html">Phonemizer 文档</a></p>
+<ol start="0">
+<li>安装phonemizer的最简单方法是使用pip：</li>
+</ol>
+<pre><code class="language-bash">pip install phonemizer
+</code></pre>
+<p>用国内的pip源安装</p>
+<pre><code class="language-bash">pip install phonemizer -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+</code></pre>
+<p>该过程不仅安装了 phonemizer ，还安装了依赖的 attrs、babel、clldutils、colorlog、csvw、dlinfo、isodate、jsonschema、language-tags、lxml、markdown、markupsafe、pkgutil-resolve-name、pylatexenc、pyrsistent、pytz、rdflib、rfc3986、segments、tabulate、uritemplate 库。</p>
+<ol>
+<li>或者从以下来源安装：：</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/bootphon/phonemizer
+cd phonemizer
+python setup.py install
+</code></pre>
+<p>如果在安装期间遇到错误，例如<code>ImportError: No module named setuptools</code>，请参阅问题<a href="https://github.com/bootphon/phonemizer/issues/11">#11</a>。</p>
+<ol start="2">
+<li>如果您想从 tarball 构建，请从<a href="https://pypi.org/project/phonemizer/#files">PyPI 文件页面获取最新的</a>tar.gz发布文件。<br>
+当然你也可以选择下载whl文件</li>
+</ol>
+<pre><code class="language-bash">pip install phonemizer-3.2.1-py3-none-any.whl
+</code></pre>
+<p>cmd安装过程——</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /
+$ pip install phonemizer -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple/
+Collecting phonemizer
+  Downloading http://mirrors.aliyun.com/pypi/packages/cb/5a/b699d5c74959c69728b44692cbacaf1035838ba5dc6aee9b8e80e60637f3/phonemizer-3.2.1-py3-none-any.whl (90 kB)
+     -------------------------------------- 90.6/90.6 kB 270.6 kB/s eta 0:00:00
+Requirement already satisfied: joblib in c:\program files\python38\lib\site-packages (from phonemizer) (1.2.0)
+Collecting attrs&gt;=18.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/fb/6e/6f83bf616d2becdf333a1640f1d463fef3150e2e926b7010cb0f81c95e88/attrs-22.2.0-py3-none-any.whl (60 kB)
+     -------------------------------------- 60.0/60.0 kB 291.1 kB/s eta 0:00:00
+Collecting segments
+  Downloading http://mirrors.aliyun.com/pypi/packages/93/d4/74dba5011533e66becf35aae5cf1d726e760f445db052592bad70e75305c/segments-2.2.1-py2.py3-none-any.whl (15 kB)
+Requirement already satisfied: typing-extensions in c:\program files\python38\lib\site-packages (from phonemizer) (4.5.0)
+Collecting dlinfo
+  Downloading http://mirrors.aliyun.com/pypi/packages/a7/f9/e014eb5740dfc6ebe6105f4c38890f361e5b0e1537a9f04bb4f34432efb9/dlinfo-1.2.1-py3-none-any.whl (3.6 kB)
+Requirement already satisfied: regex in c:\program files\python38\lib\site-packages (from segments-&gt;phonemizer) (2022.10.31)
+Collecting csvw&gt;=1.5.6
+  Downloading http://mirrors.aliyun.com/pypi/packages/93/0c/fbada6f0f50a57408b9f6699fecdc39c6ddbf46175d975a7de18edf605ae/csvw-3.1.3-py2.py3-none-any.whl (56 kB)
+     -------------------------------------- 56.7/56.7 kB 329.6 kB/s eta 0:00:00
+Collecting clldutils&gt;=1.7.3
+  Downloading http://mirrors.aliyun.com/pypi/packages/5c/75/18cfdd83c1176bf373c9bcfc60eb8e8c3358c56b24963dce9faaeb2c68ba/clldutils-3.19.0-py2.py3-none-any.whl (1.7 MB)
+     ---------------------------------------- 1.7/1.7 MB 345.3 kB/s eta 0:00:00
+Collecting pylatexenc
+  Downloading http://mirrors.aliyun.com/pypi/packages/5d/ab/34ec41718af73c00119d0351b7a2531d2ebddb51833a36448fc7b862be60/pylatexenc-2.10.tar.gz (162 kB)
+     ------------------------------------ 162.6/162.6 kB 305.3 kB/s eta 0:00:00
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting markupsafe
+  Downloading http://mirrors.aliyun.com/pypi/packages/93/fa/d72f68f84f8537ee8aa3e0764d1eb11e5e025a5ca90c16e94a40f894c2fc/MarkupSafe-2.1.2-cp38-cp38-win_amd64.whl (16 kB)
+Collecting tabulate&gt;=0.7.7
+  Downloading http://mirrors.aliyun.com/pypi/packages/40/44/4a5f08c96eb108af5cb50b41f76142f0afa346dfa99d5296fe7202a11854/tabulate-0.9.0-py3-none-any.whl (35 kB)
+Collecting lxml
+  Downloading http://mirrors.aliyun.com/pypi/packages/95/2c/b6326b95954fcd2d1133ff60e7c10af8d7dd17b52d09eaa6db828fd13afb/lxml-4.9.2-cp38-cp38-win_amd64.whl (3.9 MB)
+     ---------------------------------------- 3.9/3.9 MB 358.3 kB/s eta 0:00:00
+Requirement already satisfied: python-dateutil in c:\program files\python38\lib\site-packages (from clldutils&gt;=1.7.3-&gt;segments-&gt;phonemizer) (2.8.2)
+Collecting markdown
+  Downloading http://mirrors.aliyun.com/pypi/packages/86/be/ad281f7a3686b38dd8a307fa33210cdf2130404dfef668a37a4166d737ca/Markdown-3.4.1-py3-none-any.whl (93 kB)
+     -------------------------------------- 93.3/93.3 kB 295.6 kB/s eta 0:00:00
+Collecting colorlog
+  Downloading http://mirrors.aliyun.com/pypi/packages/58/43/a363c213224448f9e194d626221123ce00e3fb3d87c0c22aed52b620bdd1/colorlog-6.7.0-py2.py3-none-any.whl (11 kB)
+Requirement already satisfied: colorama in c:\program files\python38\lib\site-packages (from csvw&gt;=1.5.6-&gt;segments-&gt;phonemizer) (0.4.6)
+Requirement already satisfied: requests in c:\program files\python38\lib\site-packages (from csvw&gt;=1.5.6-&gt;segments-&gt;phonemizer) (2.28.2)
+Collecting uritemplate&gt;=3.0.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/81/c0/7461b49cd25aeece13766f02ee576d1db528f1c37ce69aee300e075b485b/uritemplate-4.1.1-py2.py3-none-any.whl (10 kB)
+Collecting rdflib
+  Downloading http://mirrors.aliyun.com/pypi/packages/50/fb/a0f8b6ab6598b49871a48a189dc1942fb0b0543ab4c84f689486233ef1ec/rdflib-6.2.0-py3-none-any.whl (500 kB)
+     ------------------------------------ 500.3/500.3 kB 356.9 kB/s eta 0:00:00
+Collecting jsonschema
+  Downloading http://mirrors.aliyun.com/pypi/packages/c1/97/c698bd9350f307daad79dd740806e1a59becd693bd11443a0f531e3229b3/jsonschema-4.17.3-py3-none-any.whl (90 kB)
+     -------------------------------------- 90.4/90.4 kB 342.5 kB/s eta 0:00:00
+Collecting rfc3986&lt;2
+  Downloading http://mirrors.aliyun.com/pypi/packages/c4/e5/63ca2c4edf4e00657584608bee1001302bbf8c5f569340b78304f2f446cb/rfc3986-1.5.0-py2.py3-none-any.whl (31 kB)
+Collecting language-tags
+  Downloading http://mirrors.aliyun.com/pypi/packages/b0/42/327554649ed2dd5ce59d3f5da176c7be20f9352c7c6c51597293660b7b08/language_tags-1.2.0-py3-none-any.whl (213 kB)
+     ------------------------------------ 213.4/213.4 kB 342.7 kB/s eta 0:00:00
+Collecting babel
+  Downloading http://mirrors.aliyun.com/pypi/packages/df/c4/1088865e0246d7ecf56d819a233ab2b72f7d6ab043965ef327d0731b5434/Babel-2.12.1-py3-none-any.whl (10.1 MB)
+     -------------------------------------- 10.1/10.1 MB 376.9 kB/s eta 0:00:00
+Collecting isodate
+  Downloading http://mirrors.aliyun.com/pypi/packages/b6/85/7882d311924cbcfc70b1890780763e36ff0b140c7e51c110fc59a532f087/isodate-0.6.1-py2.py3-none-any.whl (41 kB)
+     -------------------------------------- 41.7/41.7 kB 184.1 kB/s eta 0:00:00
+Collecting pytz&gt;=2015.7
+  Downloading http://mirrors.aliyun.com/pypi/packages/2e/09/fbd3c46dce130958ee8e0090f910f1fe39e502cc5ba0aadca1e8a2b932e5/pytz-2022.7.1-py2.py3-none-any.whl (499 kB)
+     ------------------------------------ 499.4/499.4 kB 344.5 kB/s eta 0:00:00
+Requirement already satisfied: six in c:\program files\python38\lib\site-packages (from isodate-&gt;csvw&gt;=1.5.6-&gt;segments-&gt;phonemizer) (1.16.0)
+Collecting pkgutil-resolve-name&gt;=1.3.10
+  Downloading http://mirrors.aliyun.com/pypi/packages/c9/5c/3d4882ba113fd55bdba9326c1e4c62a15e674a2501de4869e6bd6301f87e/pkgutil_resolve_name-1.3.10-py3-none-any.whl (4.7 kB)
+Collecting pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,&gt;=0.14.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/b1/8d/bbce2d857ecdefb7170a8a37ade1de0f060052236c07693856ac23f3b1ee/pyrsistent-0.19.3-cp38-cp38-win_amd64.whl (62 kB)
+     -------------------------------------- 62.7/62.7 kB 258.3 kB/s eta 0:00:00
+Requirement already satisfied: importlib-resources&gt;=1.4.0 in c:\program files\python38\lib\site-packages (from jsonschema-&gt;csvw&gt;=1.5.6-&gt;segments-&gt;phonemizer) (5.12.0)
+Requirement already satisfied: importlib-metadata&gt;=4.4 in c:\program files\python38\lib\site-packages (from markdown-&gt;clldutils&gt;=1.7.3-&gt;segments-&gt;phonemizer) (6.0.0)
+Requirement already satisfied: setuptools in c:\program files\python38\lib\site-packages (from rdflib-&gt;csvw&gt;=1.5.6-&gt;segments-&gt;phonemizer) (56.0.0)
+Requirement already satisfied: pyparsing in c:\program files\python38\lib\site-packages (from rdflib-&gt;csvw&gt;=1.5.6-&gt;segments-&gt;phonemizer) (3.0.9)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\program files\python38\lib\site-packages (from requests-&gt;csvw&gt;=1.5.6-&gt;segments-&gt;phonemizer) (3.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in c:\program files\python38\lib\site-packages (from requests-&gt;csvw&gt;=1.5.6-&gt;segments-&gt;phonemizer) (2022.12.7)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in c:\program files\python38\lib\site-packages (from requests-&gt;csvw&gt;=1.5.6-&gt;segments-&gt;phonemizer) (1.26.14)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\program files\python38\lib\site-packages (from requests-&gt;csvw&gt;=1.5.6-&gt;segments-&gt;phonemizer) (3.0.1)
+Requirement already satisfied: zipp&gt;=0.5 in c:\program files\python38\lib\site-packages (from importlib-metadata&gt;=4.4-&gt;markdown-&gt;clldutils&gt;=1.7.3-&gt;segments-&gt;phonemizer) (3.15.0)
+Installing collected packages: rfc3986, pytz, pylatexenc, language-tags, dlinfo, uritemplate, tabulate, pyrsistent, pkgutil-resolve-name, markupsafe, lxml, isodate, colorlog, babel, attrs, rdflib, markdown, jsonschema, csvw, clldutils, segments, phonemizer
+  DEPRECATION: pylatexenc is being installed using the legacy 'setup.py install' method, because it does not have a 'pyproject.toml' and the 'wheel' package is not installed. pip 23.1 will enforce this behaviour change. A possible replacement is to enable the '--use-pep517' option. Discussion can be found at https://github.com/pypa/pip/issues/8559
+  Running setup.py install for pylatexenc: started
+  Running setup.py install for pylatexenc: finished with status 'done'
+Successfully installed attrs-22.2.0 babel-2.12.1 clldutils-3.19.0 colorlog-6.7.0 csvw-3.1.3 dlinfo-1.2.1 isodate-0.6.1 jsonschema-4.17.3 language-tags-1.2.0 lxml-4.9.2 markdown-3.4.1 markupsafe-2.1.2 phonemizer-3.2.1 pkgutil-resolve-name-1.3.10 pylatexenc-2.10 pyrsistent-0.19.3 pytz-2022.7.1 rdflib-6.2.0 rfc3986-1.5.0 segments-2.2.1 tabulate-0.9.0 uritemplate-4.1.1
+</code></pre>
+<h4 id="安装tensorboard"><strong>安装tensorboard</strong></h4>
+<p>tensorboard是tensorflow开发的一款绘图插件，它可以绘制网络的图像，可以绘制训练时的 Loss ,Accuracy等参数指标，tensorboard现在已经支持在pytorch中使用，使用方法参考pytorch文档，链接如下：<a href="https://pytorch.org/docs/stable/tensorboard.html#module-torch.utils.tensorboard">torch.utils.tensorboard</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/471198169">TensorBoard最全使用教程：看这篇就够了</a></p>
+<ol start="0">
+<li>安装tensorboard的最简单方法是使用pip：</li>
+</ol>
+<pre><code class="language-bash">pip install tensorboard
+</code></pre>
+<p>用国内的pip源安装</p>
+<pre><code class="language-bash">pip install tensorboard -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+</code></pre>
+<p>该过程不仅安装了 tensorboard ，还安装了依赖的absl-py、cachetools、google-auth、google-<br>
+auth-oauthlib、grpcio、oauthlib、protobuf 、pyasn1、pyasn1-modules、requests-oauthlib、rsa、tensorboard-data-serve、tensorboard-plugin-wit、werkzeug、wheel库。</p>
+<ol>
+<li>
+<p>你也可以选择下载 whl 文件离线安装<br>
+进入.whl文件所在的<a href="https://pypi.org/simple/tensorboard/">网站</a>，下载对应版本到本地。注意，要对应本地环境的python版本。</p>
+</li>
+<li>
+<p>如果您想从 tarball 构建，请从<a href="https://pypi.org/project/tensorboard/#files">PyPI 文件页面获取最新的</a>tar.gz发布文件。<br>
+cmd安装过程——</p>
+</li>
+</ol>
+<pre><code class="language-bash">C:\Users\Administrator&gt;pip install tensorboard -i http://mirrors.aliyun.com/pypi
+/simple/ --trusted-host mirrors.aliyun.com
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple/
+Collecting tensorboard
+  Downloading http://mirrors.aliyun.com/pypi/packages/8d/71/75fcfab1ff98e3fad240
+f760d3a6b5ca6bdbcc5ed141fb7abd35cf63134c/tensorboard-2.12.0-py3-none-any.whl (5.
+6 MB)
+     ---------------------------------------- 5.6/5.6 MB 453.2 kB/s eta 0:00:00
+Collecting grpcio&gt;=1.48.2
+  Downloading http://mirrors.aliyun.com/pypi/packages/8d/0b/6b75908dac1028c0e7d0
+70088e10951a3fe8f5ecc189ed12175526568a89/grpcio-1.51.3-cp38-cp38-win_amd64.whl (
+3.7 MB)
+     ---------------------------------------- 3.7/3.7 MB 185.7 kB/s eta 0:00:00
+Collecting absl-py&gt;=0.4
+  Downloading http://mirrors.aliyun.com/pypi/packages/dd/87/de5c32fa1b1c6c3305d5
+76e299801d8655c175ca9557019906247b994331/absl_py-1.4.0-py3-none-any.whl (126 kB)
+
+     ------------------------------------ 126.5/126.5 kB 113.0 kB/s eta 0:00:00
+Requirement already satisfied: markdown&gt;=2.6.8 in c:\program files\python38\lib\
+site-packages (from tensorboard) (3.4.1)
+Collecting protobuf&gt;=3.19.6
+  Downloading http://mirrors.aliyun.com/pypi/packages/7e/76/df06bc132557a83e8a34
+77e50c3ccf06c489a90cdbc78083aa2eaeb60a4c/protobuf-4.22.0-cp38-cp38-win_amd64.whl
+ (420 kB)
+     ------------------------------------ 420.6/420.6 kB 461.6 kB/s eta 0:00:00
+Requirement already satisfied: setuptools&gt;=41.0.0 in c:\program files\python38\l
+ib\site-packages (from tensorboard) (56.0.0)
+Collecting wheel&gt;=0.26
+  Downloading http://mirrors.aliyun.com/pypi/packages/bd/7c/d38a0b30ce22fc26ed7d
+bc087c6d00851fb3395e9d0dac40bec1f905030c/wheel-0.38.4-py3-none-any.whl (36 kB)
+Collecting tensorboard-plugin-wit&gt;=1.6.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/e0/68/e8ecfac5dd594b676c23
+a7f07ea34c197d7d69b3313afdf8ac1b0a9905a2/tensorboard_plugin_wit-1.8.1-py3-none-a
+ny.whl (781 kB)
+     -------------------------------------- 781.3/781.3 kB 1.3 MB/s eta 0:00:00
+Collecting werkzeug&gt;=1.0.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/f6/f8/9da63c1617ae2a1dec2f
+bf6412f3a0cfe9d4ce029eccbda6e1e4258ca45f/Werkzeug-2.2.3-py3-none-any.whl (233 kB
+)
+     -------------------------------------- 233.6/233.6 kB 1.2 MB/s eta 0:00:00
+Requirement already satisfied: numpy&gt;=1.12.0 in c:\program files\python38\lib\si
+te-packages (from tensorboard) (1.23.5)
+Collecting tensorboard-data-server&lt;0.8.0,&gt;=0.7.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/9d/cc/6f07c0043b44b3c3879e
+cfec1b8a450b6f5e3f8dccfedc9f5f1bc2c650e6/tensorboard_data_server-0.7.0-py3-none-
+any.whl (2.4 kB)
+Requirement already satisfied: requests&lt;3,&gt;=2.21.0 in c:\program files\python38\
+lib\site-packages (from tensorboard) (2.28.2)
+Collecting google-auth&lt;3,&gt;=1.6.3
+  Downloading http://mirrors.aliyun.com/pypi/packages/93/c4/16f8ad44ed7544244a98
+83f35cc99dc96378652a0ec7cc39028b1c697a1e/google_auth-2.16.2-py2.py3-none-any.whl
+ (177 kB)
+     -------------------------------------- 177.2/177.2 kB 1.3 MB/s eta 0:00:00
+Collecting google-auth-oauthlib&lt;0.5,&gt;=0.4.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/b1/0e/0636cc1448a7abc444fb
+1b3a63655e294e0d2d49092dc3de05241be6d43c/google_auth_oauthlib-0.4.6-py2.py3-none
+-any.whl (18 kB)
+Collecting rsa&lt;5,&gt;=3.1.4
+  Downloading http://mirrors.aliyun.com/pypi/packages/49/97/fa78e3d2f65c02c8e126
+8b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl (34 kB)
+Collecting pyasn1-modules&gt;=0.2.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/95/de/214830a981892a3e286c
+3794f41ae67a4495df1108c3da8a9f62159b9a9d/pyasn1_modules-0.2.8-py2.py3-none-any.w
+hl (155 kB)
+     ------------------------------------ 155.3/155.3 kB 619.8 kB/s eta 0:00:00
+Collecting cachetools&lt;6.0,&gt;=2.0.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/db/14/2b48a834d349eee94677
+e8702ea2ef98b7c674b090153ea8d3f6a788584e/cachetools-5.3.0-py3-none-any.whl (9.3
+kB)
+Requirement already satisfied: six&gt;=1.9.0 in c:\program files\python38\lib\site-
+packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard) (1.16.0)
+Collecting requests-oauthlib&gt;=0.7.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/6f/bb/5deac77a9af870143c68
+4ab46a7934038a53eb4aa975bc0687ed6ca2c610/requests_oauthlib-1.3.1-py2.py3-none-an
+y.whl (23 kB)
+Requirement already satisfied: importlib-metadata&gt;=4.4 in c:\program files\pytho
+n38\lib\site-packages (from markdown&gt;=2.6.8-&gt;tensorboard) (6.0.0)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\program files\python38\lib\sit
+e-packages (from requests&lt;3,&gt;=2.21.0-&gt;tensorboard) (3.4)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\program files\pyth
+on38\lib\site-packages (from requests&lt;3,&gt;=2.21.0-&gt;tensorboard) (3.0.1)
+Requirement already satisfied: certifi&gt;=2017.4.17 in c:\program files\python38\l
+ib\site-packages (from requests&lt;3,&gt;=2.21.0-&gt;tensorboard) (2022.12.7)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in c:\program files\python3
+8\lib\site-packages (from requests&lt;3,&gt;=2.21.0-&gt;tensorboard) (1.26.14)
+Requirement already satisfied: MarkupSafe&gt;=2.1.1 in c:\program files\python38\li
+b\site-packages (from werkzeug&gt;=1.0.1-&gt;tensorboard) (2.1.2)
+Requirement already satisfied: zipp&gt;=0.5 in c:\program files\python38\lib\site-p
+ackages (from importlib-metadata&gt;=4.4-&gt;markdown&gt;=2.6.8-&gt;tensorboard) (3.15.0)
+Collecting pyasn1&lt;0.5.0,&gt;=0.4.6
+  Downloading http://mirrors.aliyun.com/pypi/packages/62/1e/a94a8d635fa3ce4cfc7f
+506003548d0a2447ae76fd5ca53932970fe3053f/pyasn1-0.4.8-py2.py3-none-any.whl (77 k
+B)
+     -------------------------------------- 77.1/77.1 kB 857.8 kB/s eta 0:00:00
+Collecting oauthlib&gt;=3.0.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/7e/80/cab10959dc1faead58dc
+8384a781dfbf93cb4d33d50988f7a69f1b7c9bbe/oauthlib-3.2.2-py3-none-any.whl (151 kB
+)
+     -------------------------------------- 151.7/151.7 kB 1.0 MB/s eta 0:00:00
+Installing collected packages: tensorboard-plugin-wit, pyasn1, wheel, werkzeug,
+tensorboard-data-server, rsa, pyasn1-modules, protobuf, oauthlib, grpcio, cachet
+ools, absl-py, requests-oauthlib, google-auth, google-auth-oauthlib, tensorboard
+
+Successfully installed absl-py-1.4.0 cachetools-5.3.0 google-auth-2.16.2 google-
+auth-oauthlib-0.4.6 grpcio-1.51.3 oauthlib-3.2.2 protobuf-4.22.0 pyasn1-0.4.8 py
+asn1-modules-0.2.8 requests-oauthlib-1.3.1 rsa-4.9 tensorboard-2.12.0 tensorboar
+d-data-server-0.7.0 tensorboard-plugin-wit-1.8.1 werkzeug-2.2.3 wheel-0.38.4
+</code></pre>
+<p><strong>安装 tensorboard 参阅资料</strong>：<br>
+<a href="https://zhuanlan.zhihu.com/p/450401909">Pytorch下tensorboard的安装与配置</a><br>
+<a href="https://zhuanlan.zhihu.com/p/471198169">TensorBoard最全使用教程：看这篇就够了</a></p>
+<h4 id="安装unidecode"><strong>安装Unidecode</strong></h4>
+<p>安装Unidecode的最简单方法是使用pip：</p>
+<pre><code class="language-bash">pip install Unidecode
+</code></pre>
+<p>要从源发行版安装Unidecode并运行单元测试，请用：</p>
+<pre><code class="language-bash">python setup.py install
+python setup.py test
+</code></pre>
+<p>您可以通过以下方式获得Unidecode的最新开发版本：</p>
+<pre><code class="language-bash">$ git clone https://www.tablix.org/~avian/git/unidecode.git
+</code></pre>
+<p>在 GitHub 上 有 一 个 官方 镜像 。 <a href="https://github.com/avian2/unidecode">https://github.com/avian2/unidecode</a><br>
+cmd安装过程——</p>
+<pre><code class="language-bash">C:\Users\Administrator&gt;pip install Unidecode
+Collecting Unidecode
+  Downloading Unidecode-1.3.6-py3-none-any.whl (235 kB)
+     ------------------------------------ 235.9/235.9 kB 268.0 kB/s eta 0:00:00
+Installing collected packages: Unidecode
+Successfully installed Unidecode-1.3.6
+</code></pre>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li><a href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87">前期准备</a>
+<ul>
+<li><a href="#vits%E4%BB%93%E5%BA%93readme%E5%8E%9F%E6%96%87">VITS仓库README原文</a></li>
+<li><a href="#%E5%87%86%E5%A4%87%E8%BF%87%E7%A8%8B">准备过程</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85espeak">安装espeak</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85-requirementstxt-%E4%B8%AD%E7%9B%B8%E5%85%B3%E5%8C%85">安装 requirements.txt 中相关包</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85cython"><strong>安装Cython</strong></a></li>
+<li><a href="#%E5%AE%89%E8%A3%85librosa"><strong>安装librosa</strong></a></li>
+<li><a href="#%E5%AE%89%E8%A3%85matplotlib"><strong>安装matplotlib</strong></a></li>
+<li><a href="#%E5%AE%89%E8%A3%85phonemizer"><strong>安装phonemizer</strong></a></li>
+<li><a href="#%E5%AE%89%E8%A3%85tensorboard"><strong>安装tensorboard</strong></a></li>
+<li><a href="#%E5%AE%89%E8%A3%85unidecode"><strong>安装Unidecode</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div>
+
+<div class="round-shape-one"></div>
+
+<section>
+<div class="doc_comments">
+
+            
+                <!--评论显示区，请插入合适的位置-->
+<div id="comment"></div>
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.6.1/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/valine/1.5.1/Valine.min.js"></script>
+<!--<script src="//cdn.jsdelivr.net/npm/valine@1.4.4/dist/Valine.min.js"></script>-->
+<script>
+    new Valine({
+        el:'#comment',
+        appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
+        appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
+        placeholder: 'Just Go Go',
+        avatar:'',
+        pageSize: '10',
+        recordIP: 'true',
+        requiredFields: ['nick','mail'],
+        enableQQ: 'true',
+        emojiCDN: '//i0.hdslb.com/bfs/',
+        emojiMaps: {
+        "tv-doge": "emote/6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+        "tv-坏笑": "emote/1f0b87f731a671079842116e0991c91c2c88645a.png",
+        "tv-难过": "emote/87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+        "tv-生气": "emote/26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+        "tv-委屈": "emote/d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+        "tv-斜眼笑": "emote/911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+        "tv-呆": "emote/fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+        "tv-发怒": "emote/34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+        "tv-惊吓": "emote/0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+        "tv-呕吐": "emote/9f996894a39e282ccf5e66856af49483f81870f3.png",
+        "tv-思考": "emote/90cf159733e558137ed20aa04d09964436f618a1.png",
+        "tv-微笑": "emote/70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+        "tv-疑问": "emote/0793d949b18d7be716078349c202c15ff166f314.png",
+        "tv-大哭": "emote/23269aeb35f99daee28dda129676f6e9ea87934f.png",
+        "tv-鼓掌": "emote/1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png",
+        "tv-抠鼻": "emote/c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+        "tv-亲亲": "emote/a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+        "tv-调皮": "emote/b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+        "tv-笑哭": "emote/1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+        "tv-晕": "emote/5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+        "tv-点赞": "emote/f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+        "tv-害羞": "emote/a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+        "tv-睡着": "emote/8b196675b53af58264f383c50ad0945048290b33.png",
+        "tv-色": "emote/61822c7e9aae5da76475e7892534545336b23a6f.png",
+        "tv-吐血": "emote/09dd16a7aa59b77baa1155d47484409624470c77.png",
+        "tv-无奈": "emote/ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+        "tv-再见": "emote/180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+        "tv-流汗": "emote/cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+        "tv-偷笑": "emote/bb690d4107620f1c15cff29509db529a73aee261.png",
+        "tv-抓狂": "emote/fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+        "tv-黑人问号": "emote/45821a01f51bc867da9edbaa2e070410819a95b2.png",
+        "tv-困": "emote/241ee304e44c0af029adceb294399391e4737ef2.png",
+        "tv-打脸": "emote/56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+        "tv-闭嘴": "emote/c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+        "tv-鄙视": "emote/6e72339f346a692a495b123174b49e4e8e781303.png",
+        "tv-腼腆": "emote/89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+        "tv-馋": "emote/fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+        "tv-可爱": "emote/9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+        "tv-发财": "emote/34db290afd2963723c6eb3c4560667db7253a21a.png",
+        "tv-生病": "emote/8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+        "tv-流鼻血": "emote/c32d39db2737f89b904ca32700d140a9241b0767.png",
+        "tv-尴尬": "emote/7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+        "tv-大佬": "emote/093c1e2c490161aca397afc45573c877cdead616.png",
+        "tv-流泪": "emote/7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+        "tv-冷漠": "emote/b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+        "tv-皱眉": "emote/72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+        "tv-鬼脸": "emote/0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+        "tv-调侃": "emote/4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+        "tv-目瞪口呆": "emote/0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+        "珑歌Taki_问号": "garb/15856c32cb30a08f361259a59c71b0edee4427dc.png@65w.webp",
+        "珑歌Taki_打Call": "garb/67544581bd5f1390e6d95ac34c47867a9e9ebbbb.png@65w.webp",
+        "珑歌Taki_好耶": "garb/0176869034a23b2523b552687ec851f4567bb452.png@65w.webp",
+        "珑歌Taki_点赞": "garb/243dcd30319137f2715adbea4a4b106835e5c772.png@65w.webp",
+        "珑歌Taki_啊对对": "garb/b2576d904e7fa6cada13a35236611f0128fe7a3a.png@65w.webp",
+        "珑歌Taki_达咩": "garb/e39b5d13f7276c08caef3ea7b9585ab94de423da.png@65w.webp",
+        "珑歌Taki_辣眼睛": "garb/7db3c777e5f618f4458fd379db9b6cfcc5f96a59.png@65w.webp",
+        "珑歌Taki_晚安": "garb/cf46da11526aae66fa9b29532a32f262feaf806b.png@65w.webp",
+        "珑歌Taki_羞羞": "garb/05ae694d1ef5335673825357ec3bcaee81ca2fd2.png@65w.webp",
+        "珑歌Taki_叉你": "garb/7b6c47c462770fd91ca78982cf43a2025564fead.png@65w.webp",
+        "珑歌Taki_给你一拳": "garb/1e46191feebe3412e07919dd33f2daef01884c0d.png@65w.webp",
+        "珑歌Taki_委屈": "live/e4ce02a977edbd40a6df488f8ce317f1efb77e01.png@65w.webp",
+        "珑歌Taki_呃呃": "live/e5c634f3c00b440af5e0269d6cd23a54dcd78a83.png@65w.webp",
+        "珑歌Taki_爱你": "live/27e8e2c6679a2e268a2dc0032adec7e0f68abd89.png@65w.webp",
+        "珑歌Taki_惊": "live/30fedf447cef730d5acb87c945bf964d4e43b8be.png@65w.webp",
+        "珑歌Taki_干杯": "live/68db36d0645df15f4bb8e678d7d9f3a13840eaec.png@65w.webp",
+        "樱吹雪_Yuki_啵啵": "garb/a963d838a5f6197defbb6e0591377d4bfd37707a.png@65w.webp",
+        "樱吹雪_Yuki_打call": "garb/18f1f1c34738ebb3e2fc6a99bb2afe24192906ab.png@65w.webp",
+        "樱吹雪_Yuki_晚安": "garb/c2651d764536e9de174dfc3ab6c0b74ba38d637e.png@65w.webp",
+        "樱吹雪_Yuki_贴贴": "garb/dd5d3510ff3169348cfbd0308432cbf4d86f95da.png@65w.webp",
+        "樱吹雪_Yuki_好耶": "garb/8a65b68d1c318f5878f610f0e6be5ab55cfad755.png@65w.webp",
+        "樱吹雪_Yuki_嗷呜": "garb/fbb35575d9eeb199895056f6f2e678ea1568034f.png@65w.webp",
+        "樱吹雪_Yuki_问号": "garb/31b0cd34cdf7d76c9167c319c4a3aa8c084bfd56.png@65w.webp",
+        "樱吹雪_Yuki_哈哈": "garb/b64bccc47c050c201dd1a046c03ebff6bc73f94c.png@65w.webp",
+        "樱吹雪_Yuki_妈": "garb/be0e78b625d6b76300b917445c65998c052cb3ce.png@65w.webp",
+        "樱吹雪_Yuki_比心": "garb/c6acc382cf720529338d9426e1e7a45bd00ac6db.png@65w.webp",
+        "樱吹雪_Yuki_wink": "garb/c2500df5817faf7ca63af1cefe62c2526d7693aa.png@65w.webp",
+        "樱吹雪_Yuki_狐狸": "garb/26ae388cad7fb59d8797e7e0d77f198cdab46928.png@65w.webp",
+        "花丸晴琉_mua": "emote/25be806bfbbb5300afdbeeb64977c90cd1254bf1.png",
+        "花丸晴琉_wink": "emote/343d2d4bbf5919f25e37f971cf114d07232c5e73.png",
+        "花丸晴琉_啊咧": "emote/b34c5a1827762b981d689bbc51f134469ef06f23.png",
+        "花丸晴琉_大笑": "emote/1e28846f5cbd897dd2653142b8be9db42dfbdcb3.png",
+        "花丸晴琉_呆住": "emote/2b31495e0c538e095d44ff1a17834abe317a05d2.png",
+        "花丸晴琉_对不起": "emote/02d1e8ddfac938b20956f3d83350f442d398286a.png",
+        "花丸晴琉_好耶": "emote/29724d41c08ec63962e0974aa653ea8be0cf3947.png",
+        "花丸晴琉_挥手": "emote/2c0753c98d4e098a3c5f27ab658b1046b4032572.png",
+        "花丸晴琉_惊慌": "emote/e8307d3bd2ad84434e2f6de1eea727aaa138d987.png",
+        "花丸晴琉_泪目": "emote/02a805b640a1bd824d21c5e21cf2dbb19f03b6a1.png",
+        "花丸晴琉_丧": "emote/e45bd7cf880f36a439ef47c355c73065911992ac.png",
+        "花丸晴琉_生气": "emote/dfbfccd43db22e547f62563b73ae7a474b1163a2.png",
+        "花丸晴琉_晚安": "emote/40b60d5c04c8e7037089c408e68a73d51fd3dee7.png",
+        "花丸晴琉_无语": "emote/ac4cf2356a708eb11199f266160cb76be129ead9.png",
+        "花丸晴琉_喜欢": "emote/71a508d3183fb59f1ddf3a42af59fa7495f2c18c.png",
+        "花丸晴琉_邪恶": "emote/0a8175363b7c8270836323a627b1fe437938399c.png",
+        "花丸晴琉_疑惑": "emote/4aef9a2a5c9800faf2501014e1fba1fbf180b8f0.png",
+        "花丸晴琉_嘤嘤": "emote/b5584ef24436d42364e7234a9cd8734e00f872f6.png",
+        "花丸晴琉_赞": "emote/adf49b5e19731a8176b774f55b5472b9234ee555.png",
+        "花丸晴琉_早安": "emote/c5e20c947c10bb931413b8e4bc80b2bd3b09971e.png",
+        "-菫時-打Call": "live/e8073adeb52036d0d563c848c4b55b8449bc4b85.png@65w.webp",
+        "-菫時-分号分号": "live/f2a7a0916015a741a192ae85ee593a39c6dd04a7.png@65w.webp",
+        "-菫時-哎呀": "live/0a691aec40c738918014b27acfefa3b295b8a458.png@65w.webp",
+        "-菫時-地蕾": "live/cdb1f3adeee987c1fe5303ca90443932edb23d30.png@65w.webp",
+        "-菫時-困困": "live/c9450e570d7abcf5a920b65e18b9624b75c9d4fb.png@65w.webp",
+        "-菫時-生气": "live/021761abdfe8dc417e5267b74877bebd43dcfd58.png@65w.webp",
+        "-菫時-亲亲": "live/e0ae55eb80c6b7c01eeb042a26a3bd2938ed679a.png@65w.webp",
+        "-菫時-急了": "live/bea985bcf662dc4d85c9f78633c57398b7c3d223.png@65w.webp",
+        "-菫時-问号": "live/5b29c4c15e6b97da2df564899f84906fc800590b.png@65w.webp",
+        "-菫時-拜比": "live/a9fa62db7b7233dac30d3abd851b992710bc1649.png@65w.webp",
+        "纱依shayi_打call": "garb/4d97de8b2d6bb9cb19621af93550b3560e85277f.png@65w.webp",
+        "纱依shayi_喜欢": "garb/d345b8ff2f2dcd5a4833aa613fc7849bfb25f5e2.png@65w.webp",
+        "纱依shayi_晚安": "garb/f34ec93c5aa7fdb7cc919544df401474bed1a3c1.png@65w.webp",
+        "纱依shayi_kira": "garb/f784e4dc7d40f3d3a7ddb6977c241ff6d6a5db26.png@65w.webp",
+        "纱依shayi_贴贴": "garb/003679cdb44d37576b700f8ed0f4e85bc6ffc8a7.png@65w.webp",
+        "纱依shayi_结婚": "garb/b1a9e35f04b81476d1d93fdc3979fe194e873915.png@65w.webp",
+        "纱依shayi_甜蜜的": "garb/415a5fec5062816d6c316a718cf7f739dc12dcef.png@65w.webp",
+        "纱依shayi_摸鱼": "garb/b7f7d09fec93dd889b9e12286989dbfa41770689.png@65w.webp",
+        "纱依shayi_好厉害": "garb/7dceff9c32cb6a7a617c910cc840eaeaa89f1e60.png@65w.webp",
+        "纱依shayi_开心": "garb/360612ea05619a9517f9735e10f6a8e592eb6b35.png@65w.webp",
+        "纱依shayi_疑问": "garb/f591282a33cb0eb16e6ac679792ea90ce42e6d67.png@65w.webp",
+        "纱依shayi_哼": "garb/538c428f2d5bcaeefa60c81bb96e9a82475a59d2.png@65w.webp",
+        "纱依shayi_心碎": "garb/59697798dd454428c773ae989745af62042025ee.png@65w.webp",
+        "纱依shayi_趴": "garb/5261ebff0fce07a4bde695f56b1e90e03b2a22b9.png@65w.webp",
+        "纱依shayi_蹭蹭": "garb/8feb22fa3a58e7a26c31792be79fab8c015fa7f6.png@65w.webp",
+        "纱依shayi_喵": "garb/9a05fc8a87b3f5f05a3c01eec984aaec0f6727e1.png@65w.webp",
+        "冥冥meichan_太爱钱了": "garb/item/e3d018abc7dfcaba7a95b512d313591ec015e984.png",
+        "冥冥meichan_不可以": "garb/item/5cfc0218594fbe8b2946e67e03fc4ea5c4a19d36.png",
+        "冥冥meichan_优雅红茶": "garb/item/8698f417982fd8d5abadf5207407532bb1b5b44f.png",
+        "冥冥meichan_哭哭": "garb/item/32817fbdd4226afe71e1aa3d8f0a91c62729567d.png",
+        "冥冥meichan_不想输": "garb/item/04fdc12859be022fba9992c76f89b0956d19262d.png",
+        "冥冥meichan_开车": "garb/item/3414c37849153f2ebd0fe6c8d7298bbc711c4ed9.png",
+        "冥冥meichan_大钻戒": "garb/item/fa42d4a68660e6c3d6447cdf0fe7d95cc4c7cdae.png",
+        "冥冥meichan_带走": "garb/item/9862fdd11fb28e2456a5cd3f864f87a46f20604f.png",
+        "冥冥meichan_我好了": "garb/item/8855c3fcfc538ee1d96e9ec25f758a0b5602cf66.png",
+        "冥冥meichan_嗨呀": "garb/item/caebcb782f3a8742548786cd52cb4d80d8353e03.png",
+        "冥冥meichan_好喜欢哦": "garb/item/3cc66caaf1a62e1778b18a458e58b38df99cfa0f.png",
+        "冥冥meichan_给你一拳": "garb/item/9b9e4aa83cedd7016bf2f2a83bbe838b648f01ff.png",
+        "冥冥meichan_理发店": "garb/item/6026b23be561844d08c5bc4b2d66316c3eeebb15.png",
+        "冥冥meichan_典": "garb/item/172ea06085c8d242f3105d0d04826217bbe4fbeb.png",
+        "冥冥meichan_信积拉奶": "garb/item/57902ef1f2392e1b8ca4a92ee9c844c18b633009.png",
+        "冥冥meichan_饭饭": "garb/item/79a5c3bda7449e06f032c095144d8218b9acb335.png",
+        "冥冥meichan_盯": "garb/item/9c9419db0b80a40ab36eed395251e7efe6421b69.png",
+        "冥冥meichan_流汗": "garb/item/014bd9e4519567f7f711c0ef8138ffcd022750cd.png",
+        "冥冥meichan_晚安": "garb/item/4ed6aba3c606484511e550e9d8070a74c004ba8e.png",
+        "冥冥meichan_mua": "garb/item/21b927b32c186a8c4dd12ff48fcb19461d8dcd0e.png",
+        "冥冥meichan_关注冥冥": "garb/item/55cfde3719b757aa211e5f1d136cd8c8a1e0dc2f.png",
+        "冥冥meichan_你是懂的": "garb/item/724e8fe83e63a0814995dc8fd7a5d874c0568028.png",
+        "冥冥meichan_你懂个P": "garb/item/ffa551eaec65b9b3e33eb388fb91f9c02e4ff67a.png",
+        "冥冥meichan_钱不够啊": "garb/item/d153516692abb248a2429319ff7eb8cff4b2d463.png",
+        "冥冥meichan_寄": "garb/item/4de329afec2e0ebe3c4d0db0da710721bed35ff3.png",
+        // ... 更多表情
+    }
+    });
+</script>
+<script>
+    // 点击回复直接评论,官方版本点击回复时都是跳回到页面上方的评论框进行回复，评论框是固定不动的
+    // 参考https://immmmm.com/valine-diy,用到jQuery
+    $(document).ready(function(){
+        //$('.vemoji-btn').text('😀');
+        $("#vcomments").on('click', 'span.vat',function(){
+            $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+            $('textarea#veditor').focus();
+        })
+    })
+</script>
+<script type="text/javascript">
+    //添加一言
+   fetch('https://v1.hitokoto.cn/?c=a')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("veditor").setAttribute("placeholder",data.hitokoto+"__"+data.from);
+    })
+    .catch(console.error)
+</script>
+
+            
+
+
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<div id="aplayer" class="aplayer" data-autoplay="true"  data-id="56868" data-server="netease" data-type="album" data-fixed="true" data-listfolded="true" data-order="random" data-theme="#F58EA8"></div>
+<script src="https://unpkg.com/meting@1.2.0/dist/Meting.min.js"></script>
+
+
+<a id="scrollUp" href="#" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://weibo.com/6392902197"title="weibo"><i class="iconfont icon-weibo"></i></a><a href="https://github.com/xiaxi626"title="github"><i class="iconfont icon-github"></i></a><a href="aijiang1220966821@163.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://xiaxi626.github.io/atom.xml"title="rss"><i class="iconfont icon-rss"></i></a><a href="https://www.zhihu.com/people/xiao-yan-shi-36"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © <a href="https://xiaxi626.github.io" style="margin:0;">飞爱碧玉的个人博客</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_pv"></span></strong></span>
+<span style="display: inline;margin-right:15px;">👤<strong><span id="busuanzi_value_site_uv"></span></strong></span>
+<span>📚<strong>62</strong> posts</span>
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+<script>
+//复制内容自动添加版权信息 
+ var Sys = {}; 
+    var ua = navigator.userAgent.toLowerCase(); 
+    if( window.ActiveXObject ) 
+    { 
+        document.body.oncopy=function() 
+        { 
+            event.returnValue = false; 
+            var t=document.selection.createRange().text; 
+            var s="\r\n原文出自 [飞爱碧玉的个人博客]  转载请保留原文链接: "+location.href; 
+            clipboardData.setData('Text',t+'\r\n'+s); 
+        } 
+    } 
+    else 
+    { 
+        function addLink() 
+        { 
+            var body_element = document.getElementsByTagName('body')[0]; 
+            var selection; 
+            selection = window.getSelection(); 
+            var pagelink = " 原文出自 [飞爱碧玉的个人博客]  转载请保留原文链接: "+document.location.href; 
+ 
+            var copytext = selection + pagelink; 
+            var newdiv = document.createElement('div'); 
+            newdiv.style.position='absolute'; 
+            newdiv.style.left='-99999px'; 
+            body_element.appendChild(newdiv); 
+            newdiv.innerHTML = copytext; 
+            selection.selectAllChildren(newdiv); 
+            window.setTimeout 
+            ( 
+                function() 
+                { 
+                    body_element.removeChild(newdiv); 
+                },0 
+            ); 
+        } 
+        document.oncopy = addLink; 
+    } 
+</script>
+
+<script type="text/javascript" async src="https://xiaxi626.github.io/media/js/prism.js"></script>
+</body>
+</html>

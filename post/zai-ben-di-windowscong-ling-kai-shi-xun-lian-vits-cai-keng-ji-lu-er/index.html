@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico" type="image/x-icon" />
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<meta name="apple-mobile-web-app-capable"content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style"content="black"/>
+<meta name="format-detection"content="telephone=no"/>
+<meta name="renderer"content="webkit">
+<meta name="description"content="">
+<meta charset="UTF-8">
+<title>在本地（Windows）从零开始训练VITS踩坑记录（二） | 飞爱碧玉的个人博客</title>
+
+<link href="https://xiaxi626.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://xiaxi626.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+
+<script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+
+<!-- DEMO CSS -->
+<style type="text/css">
+	
+</style>
+
+<link rel="canonical" href="https://xiaxi626.github.io/post/zai-ben-di-windowscong-ling-kai-shi-xun-lian-vits-cai-keng-ji-lu-er/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://xiaxi626.github.io"><img alt="logo" style="display:inline-block;" src="https://xiaxi626.github.io/images/avatar.png"/></a><h1 title="飞爱碧玉的个人博客" class="weaklink"><a  href="/">飞爱碧玉的个人博客</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1693051104581" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="搜索..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>在本地（Windows）从零开始训练VITS踩坑记录（二）</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2023-03-08</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://xiaxi626.github.io/tag/JcIpV52xSP/" class="tag">Technology</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">4360字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">24 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<img class="featureImg" alt="featureimg" src="https://xiaxi626.github.io/post-images/zai-ben-di-windowscong-ling-kai-shi-xun-lian-vits-cai-keng-ji-lu-er.png" referrerpolicy="no-referrer">
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+
+<div class="round-shape-one"></div>
+
+<h1 id="前期准备">前期准备</h1>
+<h2 id="准备过程">准备过程</h2>
+<blockquote>
+<p>Visit our <a href="https://jaywalnut310.github.io/vits-demo/index.html">demo</a> for audio samples.<br>
+We also provide the <a href="https://drive.google.com/drive/folders/1ksarh-cJf3F5eKJjLVWY0X1j1qsQqiS2?usp=sharing">pretrained models</a>.<br>
+** Update note: Thanks to <a href="https://github.com/jaywalnut310/vits/issues/1">Rishikesh (ऋषिकेश)</a>, our interactive TTS demo is now available on <a href="https://colab.research.google.com/drive/1CO61pZizDj7en71NQG_aqqKdGaA_SaBf?usp=sharing">Colab Notebook</a>.</p>
+</blockquote>
+<p>预训练模型在Google Drive上，需要科学上网</p>
+<ol>
+<li>下载数据集<br>
+i. 下载并解压缩 LJ Speech 数据集，然后重命名或创建指向数据集文件夹的链接： <code>ln -s /path/to/LJSpeech-1.1/wavs DUMMY1</code><br>
+ii. 对于 mult-speaker 设置，下载并提取VCTK数据集，并将wav文件降采样至22050 Hz。然后重命名或创建指向数据集文件夹的链接： <code>ln -s /path/to/VCTK-Corpus/downsampled_wavs DUMMY2</code><br>
+在Linux系统中存在两种链接文件方式
+<ul>
+<li>软链接（类似windows下的快捷方式）</li>
+</ul>
+<pre><code class="language-bash">ln -s 原文件名 链接文件名
+</code></pre>
+<ul>
+<li>硬链接（类似复制文件）</li>
+</ul>
+<pre><code class="language-bash">ln 原文件名 链接文件名
+</code></pre>
+如果文件被删除，则软链接文件失去指向，变为不可用<br>
+如果文件被删除，由于硬链接文件直接指向内容，因此不受影响<br>
+详解：<a href="https://zhuanlan.zhihu.com/p/370883288">深度剖析 Linux 的 3 种“拷贝”命令</a></li>
+</ol>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ ln -s &quot;E:\vits\LJSpeech-1.1\wavs&quot; DUMMY1
+/*请用上面的命令,生成的 DUMMY1 文件夹里是 wavs 文件夹中的文件，没有 wavs 文件夹*/
+Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ ln -s &quot;E:\vits\LJSpeech-1.1\wavs&quot; DUMMY1
+/*如果删掉 DUMMY1 文件夹中 wavs 文件，输入上面的命令 DUMMY1 文件夹中会出现 wavs 文件夹*/
+Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ ln -s E:\vits\LJSpeech-1.1\wavs DUMMY1
+/*如果删掉 DUMMY1 文件夹中 wavs 文件，输入上面的命令会出现*/
+ln: failed to create symbolic link 'DUMMY1/vitsLJSpeech-1.1wavs': No such file or directory
+/*创建一个 DUMMY1 空白文件夹，使用下面的命令*/
+Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ ln -s E:\vits\LJSpeech-1.1\wavs DUMMY1
+ln: failed to create symbolic link 'DUMMY1/vitsLJSpeech-1.1wavs': No such file or directory
+/*不创建 DUMMY1 空白文件夹，使用下面的命令*/
+Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ ln -s E:\vits\LJSpeech-1.1\wavs DUMMY1
+ln: failed to create symbolic link 'DUMMY1': No such file or directory
+</code></pre>
+<ol start="4">
+<li>如果您使用自己的数据集，请构建单调对齐搜索并运行预处理。</li>
+</ol>
+<pre><code class="language-bash"># Cython-version Monotonoic Alignment Search
+cd monotonic_align
+python setup.py build_ext --inplace
+
+# Preprocessing (g2p) for your own datasets. Preprocessed phonemes for LJ Speech and VCTK have been already provided.
+# python preprocess.py --text_index 1 --filelists filelists/ljs_audio_text_train_filelist.txt filelists/ljs_audio_text_val_filelist.txt filelists/ljs_audio_text_test_filelist.txt 
+# python preprocess.py --text_index 2 --filelists filelists/vctk_audio_sid_text_train_filelist.txt filelists/vctk_audio_sid_text_val_filelist.txt filelists/vctk_audio_sid_text_test_filelist.txt
+</code></pre>
+<p>翻回头我们看看数据集</p>
+<h3 id="ljspeech数据集">LJspeech数据集</h3>
+<p><strong>描述</strong>：<br>
+这是一个公共领域的语音数据集，由13,100个简短的音频剪辑组成，这些音频剪辑是单个说话者阅读7本非小说类书籍中的段落。为每个剪辑提供转录。短片的长度从1秒到10秒不等，总长度约为24小时。</p>
+<p>这些文本出版于1884年至1964年，属于公有领域。该音频于2016-17年由LibriVox项目录制，也属于公有领域。</p>
+<p>Homepage: <a href="https://keithito.com/LJ-Speech-Dataset/">The LJ Speech Dataset</a></p>
+<p><strong>介绍</strong>：<br>
+<a href="https://tensorflow.google.cn/datasets/catalog/ljspeech?hl=en">ljspeech</a></p>
+<p>在网上翻了翻——<br>
+LJspeech数据集 1.0版<br>
+链接：<a href="https://pan.baidu.com/s/1OGDXtmNtKn-5258HfabTGA">https://pan.baidu.com/s/1OGDXtmNtKn-5258HfabTGA</a><br>
+提取码：jkre<br>
+LJspeech数据集 1.1版<br>
+数据集：<a href="http://data.keithito.com/data/speech/LJSpeech-1.1.tar.bz2">http://data.keithito.com/data/speech/LJSpeech-1.1.tar.bz2</a> （用迅雷下载很快）<br>
+百度网盘地址：链接：<a href="https://pan.baidu.com/s/197LRZLNBb5gyREpYsMpkCg">https://pan.baidu.com/s/197LRZLNBb5gyREpYsMpkCg</a> 提取码：7o1a</p>
+<p>现在我没下载官方提供的预训练模型，</p>
+<h3 id="vctk数据集">VCTK数据集</h3>
+<p><strong>描述</strong>：<br>
+CSTR VCTK语料库包括110名英语使用者使用不同口音发出的语音数据。每个演讲者朗读大约400个句子，这些句子选自一份报纸、rainbow文章和一段用于语音重音档案的启发段落。<br>
+文本是根据贪婪算法选择的，贪婪算法可以增加上下文和语音覆盖率。<br>
+所有语音数据均使用相同的录音设置进行录音：一个全向麦克风（DPA 4035）和一个小振膜电容麦克风，带宽非常宽（Sennheiser MKH 800），采样频率为96kHz，24位，位于爱丁堡大学的半消声室中。<br>
+所有记录均转换为16位，降采样至48 kHz<br>
+该语料库最初用于基于HMM的文本到语音合成系统，尤其是基于说话人自适应HMM的语音合成，该合成使用多个说话人的平均语音模型和说话人自适应技术。该语料库也适用于基于DNN的多说话人文语合成系统和波形建模。<strong>这里的思想和PCA提取人脸特征加上平均人脸来合成指定人脸的思想类似</strong></p>
+<p>Homepage: <a href="https://doi.org/10.7488/ds/2645">CSTR VCTK Corpus: English Multi-speaker Corpus for CSTR Voice Cloning Toolkit (version 0.92)</a></p>
+<p><strong>介绍</strong>：<br>
+<a href="https://blog.csdn.net/weixin_45647721/article/details/125546132">关于VCTK数据集</a><br>
+<a href="https://datasets.activeloop.ai/docs/ml/datasets/vctk-dataset/">-MNIST dataset</a><br>
+<a href="https://tensorflow.google.cn/datasets/catalog/vctk">vctk</a></p>
+<h2 id="训练示例">训练示例</h2>
+<pre><code class="language-bash"># LJ Speech
+python train.py -c configs/ljs_base.json -m ljs_base
+
+# VCTK
+python train_ms.py -c configs/vctk_base.json -m vctk_base
+</code></pre>
+<h1 id="训练测试">训练测试</h1>
+<h2 id="用-ljspeech-和-vctk-数据集测试">用 LJspeech 和 VCTK 数据集测试</h2>
+<p>已下载 LJspeech 数据集并创建指向数据集文件夹的链接，没有下载预训练模型，直接运行</p>
+<pre><code class="language-bash"># LJ Speech
+python train.py -c configs/ljs_base.json -m ljs_base
+</code></pre>
+<p>cmd运行结果——</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ python train.py -c configs/ljs_base.json -m ljs_base
+DEBUG:numba.core.byteflow:bytecode dump:
+&gt;          0    NOP(arg=None, lineno=1054)
+           2    LOAD_FAST(arg=0, lineno=1054)
+           4    LOAD_CONST(arg=1, lineno=1054)
+           6    BINARY_SUBSCR(arg=None, lineno=1054)
+           8    LOAD_FAST(arg=0, lineno=1054)
+          10    LOAD_CONST(arg=2, lineno=1054)
+          12    BINARY_SUBSCR(arg=None, lineno=1054)
+          14    COMPARE_OP(arg=4, lineno=1054)
+          16    LOAD_FAST(arg=0, lineno=1054)
+          18    LOAD_CONST(arg=1, lineno=1054)
+          20    BINARY_SUBSCR(arg=None, lineno=1054)
+          22    LOAD_FAST(arg=0, lineno=1054)
+          24    LOAD_CONST(arg=3, lineno=1054)
+          26    BINARY_SUBSCR(arg=None, lineno=1054)
+          28    COMPARE_OP(arg=5, lineno=1054)
+          30    BINARY_AND(arg=None, lineno=1054)
+          32    RETURN_VALUE(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:pending: deque([State(pc_initial=0 nstack_initial=0)])
+DEBUG:numba.core.byteflow:stack: []
+DEBUG:numba.core.byteflow:dispatch pc=0, inst=NOP(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:stack []
+DEBUG:numba.core.byteflow:dispatch pc=2, inst=LOAD_FAST(arg=0, lineno=1054)
+DEBUG:numba.core.byteflow:stack []
+DEBUG:numba.core.byteflow:dispatch pc=4, inst=LOAD_CONST(arg=1, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$x2.0']
+DEBUG:numba.core.byteflow:dispatch pc=6, inst=BINARY_SUBSCR(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$x2.0', '$const4.1']
+DEBUG:numba.core.byteflow:dispatch pc=8, inst=LOAD_FAST(arg=0, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2']
+DEBUG:numba.core.byteflow:dispatch pc=10, inst=LOAD_CONST(arg=2, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2', '$x8.3']
+DEBUG:numba.core.byteflow:dispatch pc=12, inst=BINARY_SUBSCR(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2', '$x8.3', '$const10.4']
+DEBUG:numba.core.byteflow:dispatch pc=14, inst=COMPARE_OP(arg=4, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2', '$12binary_subscr.5']
+DEBUG:numba.core.byteflow:dispatch pc=16, inst=LOAD_FAST(arg=0, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6']
+DEBUG:numba.core.byteflow:dispatch pc=18, inst=LOAD_CONST(arg=1, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$x16.7']
+DEBUG:numba.core.byteflow:dispatch pc=20, inst=BINARY_SUBSCR(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$x16.7', '$const18.8']
+DEBUG:numba.core.byteflow:dispatch pc=22, inst=LOAD_FAST(arg=0, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9']
+DEBUG:numba.core.byteflow:dispatch pc=24, inst=LOAD_CONST(arg=3, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9', '$x22.10']
+DEBUG:numba.core.byteflow:dispatch pc=26, inst=BINARY_SUBSCR(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9', '$x22.10', '$const24.11']
+DEBUG:numba.core.byteflow:dispatch pc=28, inst=COMPARE_OP(arg=5, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9', '$26binary_subscr.12']
+DEBUG:numba.core.byteflow:dispatch pc=30, inst=BINARY_AND(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$28compare_op.13']
+DEBUG:numba.core.byteflow:dispatch pc=32, inst=RETURN_VALUE(arg=None, lineno=1054)
+DEBUG:numba.core.byteflow:stack ['$30binary_and.14']
+DEBUG:numba.core.byteflow:end state. edges=[]
+DEBUG:numba.core.byteflow:-------------------------Prune PHIs-------------------------
+DEBUG:numba.core.byteflow:Used_phis: defaultdict(&lt;class 'set'&gt;, {State(pc_initial=0 nstack_initial=0): set()})
+DEBUG:numba.core.byteflow:defmap: {}
+DEBUG:numba.core.byteflow:phismap: defaultdict(&lt;class 'set'&gt;, {})
+DEBUG:numba.core.byteflow:changing phismap: defaultdict(&lt;class 'set'&gt;, {})
+DEBUG:numba.core.byteflow:keep phismap: {}
+DEBUG:numba.core.byteflow:new_out: defaultdict(&lt;class 'dict'&gt;, {})
+DEBUG:numba.core.byteflow:----------------------DONE Prune PHIs-----------------------
+DEBUG:numba.core.byteflow:block_infos State(pc_initial=0 nstack_initial=0):
+AdaptBlockInfo(insts=((0, {}), (2, {'res': '$x2.0'}), (4, {'res': '$const4.1'}), (6, {'index': '$const4.1', 'target': '$x2.0', 'res': '$6binary_subscr.2'}), (8, {'res': '$x8.3'}), (10, {'res': '$const10.4'}), (12, {'index': '$const10.4', 'target': '$x8.3', 'res': '$12binary_subscr.5'}), (14, {'lhs': '$6binary_subscr.2', 'rhs': '$12binary_subscr.5', 'res': '$14compare_op.6'}), (16, {'res': '$x16.7'}), (18, {'res': '$const18.8'}), (20, {'index': '$const18.8', 'target': '$x16.7', 'res': '$20binary_subscr.9'}), (22, {'res': '$x22.10'}), (24, {'res': '$const24.11'}), (26, {'index': '$const24.11', 'target': '$x22.10', 'res': '$26binary_subscr.12'}), (28, {'lhs': '$20binary_subscr.9', 'rhs': '$26binary_subscr.12', 'res': '$28compare_op.13'}), (30, {'lhs': '$14compare_op.6', 'rhs': '$28compare_op.13', 'res': '$30binary_and.14'}), (32, {'retval': '$30binary_and.14', 'castval': '$32return_value.15'})), outgoing_phis={}, blockstack=(), active_try_block=None, outgoing_edgepushed={})
+DEBUG:numba.core.interpreter:label 0:
+    x = arg(0, name=x)                       ['x']
+    $const4.1 = const(int, 0)                ['$const4.1']
+    $6binary_subscr.2 = getitem(value=x, index=$const4.1, fn=&lt;built-in function getitem&gt;) ['$6binary_subscr.2', '$const4.1', 'x']
+    $const10.4 = const(int, -1)              ['$const10.4']
+    $12binary_subscr.5 = getitem(value=x, index=$const10.4, fn=&lt;built-in function getitem&gt;) ['$12binary_subscr.5', '$const10.4', 'x']
+    $14compare_op.6 = $6binary_subscr.2 &gt; $12binary_subscr.5 ['$12binary_subscr.5', '$14compare_op.6', '$6binary_subscr.2']
+    $const18.8 = const(int, 0)               ['$const18.8']
+    $20binary_subscr.9 = getitem(value=x, index=$const18.8, fn=&lt;built-in function getitem&gt;) ['$20binary_subscr.9', '$const18.8', 'x']
+    $const24.11 = const(int, 1)              ['$const24.11']
+    $26binary_subscr.12 = getitem(value=x, index=$const24.11, fn=&lt;built-in function getitem&gt;) ['$26binary_subscr.12', '$const24.11', 'x']
+    $28compare_op.13 = $20binary_subscr.9 &gt;= $26binary_subscr.12 ['$20binary_subscr.9', '$26binary_subscr.12', '$28compare_op.13']
+    $30binary_and.14 = $14compare_op.6 &amp; $28compare_op.13 ['$14compare_op.6', '$28compare_op.13', '$30binary_and.14']
+    $32return_value.15 = cast(value=$30binary_and.14) ['$30binary_and.14', '$32return_value.15']
+    return $32return_value.15                ['$32return_value.15']
+
+DEBUG:numba.core.byteflow:bytecode dump:
+&gt;          0    NOP(arg=None, lineno=1060)
+           2    LOAD_FAST(arg=0, lineno=1060)
+           4    LOAD_CONST(arg=1, lineno=1060)
+           6    BINARY_SUBSCR(arg=None, lineno=1060)
+           8    LOAD_FAST(arg=0, lineno=1060)
+          10    LOAD_CONST(arg=2, lineno=1060)
+          12    BINARY_SUBSCR(arg=None, lineno=1060)
+          14    COMPARE_OP(arg=0, lineno=1060)
+          16    LOAD_FAST(arg=0, lineno=1060)
+          18    LOAD_CONST(arg=1, lineno=1060)
+          20    BINARY_SUBSCR(arg=None, lineno=1060)
+          22    LOAD_FAST(arg=0, lineno=1060)
+          24    LOAD_CONST(arg=3, lineno=1060)
+          26    BINARY_SUBSCR(arg=None, lineno=1060)
+          28    COMPARE_OP(arg=1, lineno=1060)
+          30    BINARY_AND(arg=None, lineno=1060)
+          32    RETURN_VALUE(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:pending: deque([State(pc_initial=0 nstack_initial=0)])
+DEBUG:numba.core.byteflow:stack: []
+DEBUG:numba.core.byteflow:dispatch pc=0, inst=NOP(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:stack []
+DEBUG:numba.core.byteflow:dispatch pc=2, inst=LOAD_FAST(arg=0, lineno=1060)
+DEBUG:numba.core.byteflow:stack []
+DEBUG:numba.core.byteflow:dispatch pc=4, inst=LOAD_CONST(arg=1, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$x2.0']
+DEBUG:numba.core.byteflow:dispatch pc=6, inst=BINARY_SUBSCR(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$x2.0', '$const4.1']
+DEBUG:numba.core.byteflow:dispatch pc=8, inst=LOAD_FAST(arg=0, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2']
+DEBUG:numba.core.byteflow:dispatch pc=10, inst=LOAD_CONST(arg=2, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2', '$x8.3']
+DEBUG:numba.core.byteflow:dispatch pc=12, inst=BINARY_SUBSCR(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2', '$x8.3', '$const10.4']
+DEBUG:numba.core.byteflow:dispatch pc=14, inst=COMPARE_OP(arg=0, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2', '$12binary_subscr.5']
+DEBUG:numba.core.byteflow:dispatch pc=16, inst=LOAD_FAST(arg=0, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6']
+DEBUG:numba.core.byteflow:dispatch pc=18, inst=LOAD_CONST(arg=1, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$x16.7']
+DEBUG:numba.core.byteflow:dispatch pc=20, inst=BINARY_SUBSCR(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$x16.7', '$const18.8']
+DEBUG:numba.core.byteflow:dispatch pc=22, inst=LOAD_FAST(arg=0, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9']
+DEBUG:numba.core.byteflow:dispatch pc=24, inst=LOAD_CONST(arg=3, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9', '$x22.10']
+DEBUG:numba.core.byteflow:dispatch pc=26, inst=BINARY_SUBSCR(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9', '$x22.10', '$const24.11']
+DEBUG:numba.core.byteflow:dispatch pc=28, inst=COMPARE_OP(arg=1, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$20binary_subscr.9', '$26binary_subscr.12']
+DEBUG:numba.core.byteflow:dispatch pc=30, inst=BINARY_AND(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$14compare_op.6', '$28compare_op.13']
+DEBUG:numba.core.byteflow:dispatch pc=32, inst=RETURN_VALUE(arg=None, lineno=1060)
+DEBUG:numba.core.byteflow:stack ['$30binary_and.14']
+DEBUG:numba.core.byteflow:end state. edges=[]
+DEBUG:numba.core.byteflow:-------------------------Prune PHIs-------------------------
+DEBUG:numba.core.byteflow:Used_phis: defaultdict(&lt;class 'set'&gt;, {State(pc_initial=0 nstack_initial=0): set()})
+DEBUG:numba.core.byteflow:defmap: {}
+DEBUG:numba.core.byteflow:phismap: defaultdict(&lt;class 'set'&gt;, {})
+DEBUG:numba.core.byteflow:changing phismap: defaultdict(&lt;class 'set'&gt;, {})
+DEBUG:numba.core.byteflow:keep phismap: {}
+DEBUG:numba.core.byteflow:new_out: defaultdict(&lt;class 'dict'&gt;, {})
+DEBUG:numba.core.byteflow:----------------------DONE Prune PHIs-----------------------
+DEBUG:numba.core.byteflow:block_infos State(pc_initial=0 nstack_initial=0):
+AdaptBlockInfo(insts=((0, {}), (2, {'res': '$x2.0'}), (4, {'res': '$const4.1'}), (6, {'index': '$const4.1', 'target': '$x2.0', 'res': '$6binary_subscr.2'}), (8, {'res': '$x8.3'}), (10, {'res': '$const10.4'}), (12, {'index': '$const10.4', 'target': '$x8.3', 'res': '$12binary_subscr.5'}), (14, {'lhs': '$6binary_subscr.2', 'rhs': '$12binary_subscr.5', 'res': '$14compare_op.6'}), (16, {'res': '$x16.7'}), (18, {'res': '$const18.8'}), (20, {'index': '$const18.8', 'target': '$x16.7', 'res': '$20binary_subscr.9'}), (22, {'res': '$x22.10'}), (24, {'res': '$const24.11'}), (26, {'index': '$const24.11', 'target': '$x22.10', 'res': '$26binary_subscr.12'}), (28, {'lhs': '$20binary_subscr.9', 'rhs': '$26binary_subscr.12', 'res': '$28compare_op.13'}), (30, {'lhs': '$14compare_op.6', 'rhs': '$28compare_op.13', 'res': '$30binary_and.14'}), (32, {'retval': '$30binary_and.14', 'castval': '$32return_value.15'})), outgoing_phis={}, blockstack=(), active_try_block=None, outgoing_edgepushed={})
+DEBUG:numba.core.interpreter:label 0:
+    x = arg(0, name=x)                       ['x']
+    $const4.1 = const(int, 0)                ['$const4.1']
+    $6binary_subscr.2 = getitem(value=x, index=$const4.1, fn=&lt;built-in function getitem&gt;) ['$6binary_subscr.2', '$const4.1', 'x']
+    $const10.4 = const(int, -1)              ['$const10.4']
+    $12binary_subscr.5 = getitem(value=x, index=$const10.4, fn=&lt;built-in function getitem&gt;) ['$12binary_subscr.5', '$const10.4', 'x']
+    $14compare_op.6 = $6binary_subscr.2 &lt; $12binary_subscr.5 ['$12binary_subscr.5', '$14compare_op.6', '$6binary_subscr.2']
+    $const18.8 = const(int, 0)               ['$const18.8']
+    $20binary_subscr.9 = getitem(value=x, index=$const18.8, fn=&lt;built-in function getitem&gt;) ['$20binary_subscr.9', '$const18.8', 'x']
+    $const24.11 = const(int, 1)              ['$const24.11']
+    $26binary_subscr.12 = getitem(value=x, index=$const24.11, fn=&lt;built-in function getitem&gt;) ['$26binary_subscr.12', '$const24.11', 'x']
+    $28compare_op.13 = $20binary_subscr.9 &lt;= $26binary_subscr.12 ['$20binary_subscr.9', '$26binary_subscr.12', '$28compare_op.13']
+    $30binary_and.14 = $14compare_op.6 &amp; $28compare_op.13 ['$14compare_op.6', '$28compare_op.13', '$30binary_and.14']
+    $32return_value.15 = cast(value=$30binary_and.14) ['$30binary_and.14', '$32return_value.15']
+    return $32return_value.15                ['$32return_value.15']
+
+Traceback (most recent call last):
+  File &quot;train.py&quot;, line 23, in &lt;module&gt;
+    from models import (
+  File &quot;E:\vits\models.py&quot;, line 10, in &lt;module&gt;
+    import monotonic_align
+  File &quot;E:\vits\monotonic_align\__init__.py&quot;, line 3, in &lt;module&gt;
+    from .monotonic_align.core import maximum_path_c
+ModuleNotFoundError: No module named 'monotonic_align.monotonic_align'
+</code></pre>
+<p>创建了<code>E:\vits\monotonic_align\__pycache__</code>和<code>E:\vits\__pycache__</code>。<br>
+ModuleNotFoundError：没有名为“monotonic_align.monotonic_align”的模块<br>
+构建单调对齐搜索并运行预处理</p>
+<pre><code class="language-bash"># Cython-version Monotonoic Alignment Search
+cd monotonic_align
+python setup.py build_ext --inplace
+</code></pre>
+<p>cmd运行结果——</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ cd monotonic_align
+
+Administrator@AUTOBVT-Q90417J MINGW64 /e/vits/monotonic_align (main)
+$ python setup.py build_ext --inplace
+Compiling core.pyx because it changed.
+[1/1] Cythonizing core.pyx
+running build_ext
+building 'monotonic_align.core' extension
+C:\Program Files\Python38\lib\site-packages\Cython\Compiler\Main.py:369: FutureWarning: Cython directive 'language_level' not set, using 2 for now (Py2). This will change in a later release! File: E:\vits\monotonic_align\core.pyx
+  tree = Parsing.p_module(s, pxd, full_module_name)
+error: Unable to find vcvarsall.bat
+</code></pre>
+<p>报告了两个错误<br>
+1、<code>C:\Program Files\Python38\lib\site-packages\Cython\Compiler\Main.py:369: FutureWarning: Cython directive 'language_level' not set, using 2 for now (Py2). This will change in a later release!</code></p>
+<p>如果你期望编译的版本不是python2，那就指定自己要用哪个版本编译，或者在每个要编译的版本 .py 文件顶上添加一行指定cython版本，即<code># cython: language_level=3</code>，但如果有成千上成个 .py 或 .pyx 文件，就不好处理了，在 setup.py 中添加：</p>
+<pre><code class="language-bash">cythonize(module_item,compiler_directives={'language_level': '3'})
+</code></pre>
+<blockquote>
+<p>此处摘自<a href="https://www.cnblogs.com/nanfei/p/16888555.html">Cython directive 'language_level' not set, using 2 for now (Py2)</a><br>
+<a href="https://blog.csdn.net/weixin_43272781/article/details/112757469">Cython——[FutureWarning: Cython directive ‘language_level’ not set, using 2 for now (Py2)]解决方案</a><br>
+2、在运行带Cython模块的py文件时，有可能输出如下报错信息：</p>
+</blockquote>
+<pre><code class="language-bash">error: Unable to find vcvarsall.bat
+</code></pre>
+<p>原因是没有找到vcvarsall.bat指定的vc++编译器进行编译。大多数解决方案都要求安装Visual Studio。<br>
+当前主流Python版本与VC和VS的版本对应关系及各版本VS下载地址：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">CPython</th>
+<th style="text-align:center">Visual C++</th>
+<th style="text-align:center">Visual Studio</th>
+<th style="text-align:center">Visual Studio下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2.6, 2.7, 3.0, 3.1, 3.2</td>
+<td style="text-align:center">9.0</td>
+<td style="text-align:center">Visual Studio 2008</td>
+<td style="text-align:center"><a href="http://www.microsoft.com/en-us/download/details.aspx?id=29">x86下载</a> <a href="http://www.microsoft.com/en-us/download/details.aspx?id=15336">x64下载</a></td>
+</tr>
+<tr>
+<td style="text-align:center">3.3, 3.4</td>
+<td style="text-align:center">10.0</td>
+<td style="text-align:center">Visual Studio 2010</td>
+<td style="text-align:center"><a href="https://www.microsoft.com/en-us/download/details.aspx?id=5555">x86下载</a> <a href="http://www.microsoft.com/en-us/download/details.aspx?id=14632">x64下载</a></td>
+</tr>
+<tr>
+<td style="text-align:center">3.5</td>
+<td style="text-align:center">14.0</td>
+<td style="text-align:center">Visual Studio 2015</td>
+<td style="text-align:center"><a href="http://www.microsoft.com/en-us/download/details.aspx?id=53840">下载</a></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>上表摘自<a href="https://blog.csdn.net/wengduke/article/details/85331706">Cython出现错误：Unable to find vcvarsall.bat</a><br>
+<a href="https://blog.csdn.net/Draymond_666/article/details/85091235">无需安装VS，一行命令解决&quot;Unable to find vcvarsall.bat&quot;</a>提供了另一种解决方法</p>
+</blockquote>
+<p>运行环境</p>
+<ul>
+<li>Windows 10 (64-bit)</li>
+<li>Python 3.7</li>
+</ul>
+<p>1、安装anaconda。Anaconda强大的包管理和环境管理可以帮助我们节省大量时间与精力，让我们能更专注于代码，而不是把精力花在各种莫名其妙的环境或依赖问题上。<br>
+2、在anaconda的命令行中输入命令：<code>conda install libpython</code></p>
+<p>我用pip安装它：<code>pip install libpython</code><br>
+cmd运行结果——</p>
+<pre><code class="language-bash">$ pip install libpython
+Collecting libpython
+  Downloading libpython-0.2.tar.gz (15 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: requests in c:\program files\python38\lib\site-packages (from libpython) (2.28.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\program files\python38\lib\site-packages (from requests-&gt;libpython) (3.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in c:\program files\python38\lib\site-packages (from requests-&gt;libpython) (1.26.14)
+Requirement already satisfied: certifi&gt;=2017.4.17 in c:\program files\python38\lib\site-packages (from requests-&gt;libpython) (2022.12.7)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\program files\python38\lib\site-packages (from requests-&gt;libpython) (3.0.1)
+Building wheels for collected packages: libpython
+  Building wheel for libpython (setup.py): started
+  Building wheel for libpython (setup.py): finished with status 'done'
+  Created wheel for libpython: filename=libpython-0.2-py3-none-any.whl size=14410 sha256=c8c0bf0dbd5502f14e73d0da51314ce2507c4e118dc866d6722720c3f5c8c743
+  Stored in directory: c:\users\administrator\appdata\local\pip\cache\wheels\f8\0e\ae\9a8610c41be91787c7899e435d6bcb161fa8df32ea3d371ecf
+Successfully built libpython
+Installing collected packages: libpython
+Successfully installed libpython-0.2
+</code></pre>
+<p>回到「构建单调对齐搜索并运行预处理」，看看会发生什么</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /e/vits (main)
+$ cd monotonic_align
+
+Administrator@AUTOBVT-Q90417J MINGW64 /e/vits/monotonic_align (main)
+$ python setup.py build_ext --inplace
+running build_ext
+building 'monotonic_align.core' extension
+error: Unable to find vcvarsall.bat
+</code></pre>
+<p>即便卸载 libpython 也不再出现</p>
+<pre><code class="language-bash">C:\Program Files\Python38\lib\site-packages\Cython\Compiler\Main.py:369: FutureWarning: Cython directive 'language_level' not set, using 2 for now (Py2). This will change in a later release! File: E:\vits\monotonic_align\core.pyx
+  tree = Parsing.p_module(s, pxd, full_module_name)
+</code></pre>
+<p>删掉本地仓库重来方重现报错<br>
+看来在Windows 7 上安装 libpython 可能解决不了问题……</p>
+<pre><code class="language-bash"># Preprocessing (g2p) for your own datasets. Preprocessed phonemes for LJ Speech and VCTK have been already provided.
+# python preprocess.py --text_index 1 --filelists filelists/ljs_audio_text_train_filelist.txt filelists/ljs_audio_text_val_filelist.txt filelists/ljs_audio_text_test_filelist.txt 
+# python preprocess.py --text_index 2 --filelists filelists/vctk_audio_sid_text_train_filelist.txt filelists/vctk_audio_sid_text_val_filelist.txt filelists/vctk_audio_sid_text_test_filelist.txt
+</code></pre>
+<p>cmd运行结果——</p>
+<pre><code class="language-bash">$ python preprocess.py --text_index 1 --filelists filelists/ljs_audio_text_train_filelist.txt filelists/ljs_audio_text_val_filelist.txt filelists/ljs_audio_text_test_filelist.txt
+START: filelists/ljs_audio_text_train_filelist.txt
+Traceback (most recent call last):
+  File &quot;preprocess.py&quot;, line 20, in &lt;module&gt;
+    cleaned_text = text._clean_text(original_text, args.text_cleaners)
+  File &quot;E:\vits\text\__init__.py&quot;, line 53, in _clean_text
+    text = cleaner(text)
+  File &quot;E:\vits\text\cleaners.py&quot;, line 98, in english_cleaners2
+    phonemes = phonemize(text, language='en-us', backend='espeak', strip=True, preserve_punctuation=True, with_stress=True)
+  File &quot;C:\Program Files\Python38\lib\site-packages\phonemizer\phonemize.py&quot;, line 206, in phonemize
+    phonemizer = BACKENDS[backend](
+  File &quot;C:\Program Files\Python38\lib\site-packages\phonemizer\backend\espeak\espeak.py&quot;, line 45, in __init__
+    super().__init__(
+  File &quot;C:\Program Files\Python38\lib\site-packages\phonemizer\backend\espeak\base.py&quot;, line 39, in __init__
+    super().__init__(
+  File &quot;C:\Program Files\Python38\lib\site-packages\phonemizer\backend\base.py&quot;, line 77, in __init__
+    raise RuntimeError(  # pragma: nocover
+RuntimeError: espeak not installed on your system
+</code></pre>
+<p>创建了<code>E:\vits\text\__pycache__</code>和<code>E:\vits\__pycache__</code>。<br>
+<strong>解决方法</strong>：<br>
+<a href="https://www.bilibili.com/read/cv19743844">RuntimeError: espeak not installed on your system【已解决】</a><br>
+<a href="https://github.com/bootphon/phonemizer/issues/44"> RuntimeError: espeak not installed on your system #44 </a></p>
+<h1 id="未完待续">未完待续</h1>
+<p><a href="https://kgithub.com/jaywalnut310/vits">jaywalnut310/vits</a>坑就踩到这里，安装的依赖库严重影响Whisper正常使用。以后用Linux再试。<br>
+与<a href="https://kgithub.com/jaywalnut310/vits">jaywalnut310/vits</a>相关的「端到端语音合成模型VITS，日语数据训练」<a href="https://gitee.com/ikaros-521/vits-japanese">Ikaros/vits-japanese</a></p>
+<p><strong>下一篇开始学习</strong><br>
+<a href="https://kgithub.com/CjangCjengh/vits">CjangCjengh/vits</a><br>
+<a href="https://www.bilibili.com/video/BV1i24y1i7JY/">下江小春也能看懂的语音模型训练教程</a><br>
+<a href="https://www.bilibili.com/video/BV1yj411N7rt">【VITS/语音合成】使用『预训练模型』快速拟合你的语音模型</a></p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li><a href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87">前期准备</a>
+<ul>
+<li><a href="#%E5%87%86%E5%A4%87%E8%BF%87%E7%A8%8B">准备过程</a>
+<ul>
+<li><a href="#ljspeech%E6%95%B0%E6%8D%AE%E9%9B%86">LJspeech数据集</a></li>
+<li><a href="#vctk%E6%95%B0%E6%8D%AE%E9%9B%86">VCTK数据集</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AE%AD%E7%BB%83%E7%A4%BA%E4%BE%8B">训练示例</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AE%AD%E7%BB%83%E6%B5%8B%E8%AF%95">训练测试</a>
+<ul>
+<li><a href="#%E7%94%A8-ljspeech-%E5%92%8C-vctk-%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B5%8B%E8%AF%95">用 LJspeech 和 VCTK 数据集测试</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD">未完待续</a></li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div>
+
+<div class="round-shape-one"></div>
+
+<section>
+<div class="doc_comments">
+
+            
+                <!--评论显示区，请插入合适的位置-->
+<div id="comment"></div>
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.6.1/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/valine/1.5.1/Valine.min.js"></script>
+<!--<script src="//cdn.jsdelivr.net/npm/valine@1.4.4/dist/Valine.min.js"></script>-->
+<script>
+    new Valine({
+        el:'#comment',
+        appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
+        appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
+        placeholder: 'Just Go Go',
+        avatar:'',
+        pageSize: '10',
+        recordIP: 'true',
+        requiredFields: ['nick','mail'],
+        enableQQ: 'true',
+        emojiCDN: '//i0.hdslb.com/bfs/',
+        emojiMaps: {
+        "tv-doge": "emote/6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+        "tv-坏笑": "emote/1f0b87f731a671079842116e0991c91c2c88645a.png",
+        "tv-难过": "emote/87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+        "tv-生气": "emote/26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+        "tv-委屈": "emote/d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+        "tv-斜眼笑": "emote/911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+        "tv-呆": "emote/fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+        "tv-发怒": "emote/34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+        "tv-惊吓": "emote/0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+        "tv-呕吐": "emote/9f996894a39e282ccf5e66856af49483f81870f3.png",
+        "tv-思考": "emote/90cf159733e558137ed20aa04d09964436f618a1.png",
+        "tv-微笑": "emote/70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+        "tv-疑问": "emote/0793d949b18d7be716078349c202c15ff166f314.png",
+        "tv-大哭": "emote/23269aeb35f99daee28dda129676f6e9ea87934f.png",
+        "tv-鼓掌": "emote/1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png",
+        "tv-抠鼻": "emote/c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+        "tv-亲亲": "emote/a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+        "tv-调皮": "emote/b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+        "tv-笑哭": "emote/1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+        "tv-晕": "emote/5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+        "tv-点赞": "emote/f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+        "tv-害羞": "emote/a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+        "tv-睡着": "emote/8b196675b53af58264f383c50ad0945048290b33.png",
+        "tv-色": "emote/61822c7e9aae5da76475e7892534545336b23a6f.png",
+        "tv-吐血": "emote/09dd16a7aa59b77baa1155d47484409624470c77.png",
+        "tv-无奈": "emote/ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+        "tv-再见": "emote/180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+        "tv-流汗": "emote/cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+        "tv-偷笑": "emote/bb690d4107620f1c15cff29509db529a73aee261.png",
+        "tv-抓狂": "emote/fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+        "tv-黑人问号": "emote/45821a01f51bc867da9edbaa2e070410819a95b2.png",
+        "tv-困": "emote/241ee304e44c0af029adceb294399391e4737ef2.png",
+        "tv-打脸": "emote/56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+        "tv-闭嘴": "emote/c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+        "tv-鄙视": "emote/6e72339f346a692a495b123174b49e4e8e781303.png",
+        "tv-腼腆": "emote/89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+        "tv-馋": "emote/fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+        "tv-可爱": "emote/9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+        "tv-发财": "emote/34db290afd2963723c6eb3c4560667db7253a21a.png",
+        "tv-生病": "emote/8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+        "tv-流鼻血": "emote/c32d39db2737f89b904ca32700d140a9241b0767.png",
+        "tv-尴尬": "emote/7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+        "tv-大佬": "emote/093c1e2c490161aca397afc45573c877cdead616.png",
+        "tv-流泪": "emote/7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+        "tv-冷漠": "emote/b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+        "tv-皱眉": "emote/72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+        "tv-鬼脸": "emote/0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+        "tv-调侃": "emote/4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+        "tv-目瞪口呆": "emote/0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+        "珑歌Taki_问号": "garb/15856c32cb30a08f361259a59c71b0edee4427dc.png@65w.webp",
+        "珑歌Taki_打Call": "garb/67544581bd5f1390e6d95ac34c47867a9e9ebbbb.png@65w.webp",
+        "珑歌Taki_好耶": "garb/0176869034a23b2523b552687ec851f4567bb452.png@65w.webp",
+        "珑歌Taki_点赞": "garb/243dcd30319137f2715adbea4a4b106835e5c772.png@65w.webp",
+        "珑歌Taki_啊对对": "garb/b2576d904e7fa6cada13a35236611f0128fe7a3a.png@65w.webp",
+        "珑歌Taki_达咩": "garb/e39b5d13f7276c08caef3ea7b9585ab94de423da.png@65w.webp",
+        "珑歌Taki_辣眼睛": "garb/7db3c777e5f618f4458fd379db9b6cfcc5f96a59.png@65w.webp",
+        "珑歌Taki_晚安": "garb/cf46da11526aae66fa9b29532a32f262feaf806b.png@65w.webp",
+        "珑歌Taki_羞羞": "garb/05ae694d1ef5335673825357ec3bcaee81ca2fd2.png@65w.webp",
+        "珑歌Taki_叉你": "garb/7b6c47c462770fd91ca78982cf43a2025564fead.png@65w.webp",
+        "珑歌Taki_给你一拳": "garb/1e46191feebe3412e07919dd33f2daef01884c0d.png@65w.webp",
+        "珑歌Taki_委屈": "live/e4ce02a977edbd40a6df488f8ce317f1efb77e01.png@65w.webp",
+        "珑歌Taki_呃呃": "live/e5c634f3c00b440af5e0269d6cd23a54dcd78a83.png@65w.webp",
+        "珑歌Taki_爱你": "live/27e8e2c6679a2e268a2dc0032adec7e0f68abd89.png@65w.webp",
+        "珑歌Taki_惊": "live/30fedf447cef730d5acb87c945bf964d4e43b8be.png@65w.webp",
+        "珑歌Taki_干杯": "live/68db36d0645df15f4bb8e678d7d9f3a13840eaec.png@65w.webp",
+        "樱吹雪_Yuki_啵啵": "garb/a963d838a5f6197defbb6e0591377d4bfd37707a.png@65w.webp",
+        "樱吹雪_Yuki_打call": "garb/18f1f1c34738ebb3e2fc6a99bb2afe24192906ab.png@65w.webp",
+        "樱吹雪_Yuki_晚安": "garb/c2651d764536e9de174dfc3ab6c0b74ba38d637e.png@65w.webp",
+        "樱吹雪_Yuki_贴贴": "garb/dd5d3510ff3169348cfbd0308432cbf4d86f95da.png@65w.webp",
+        "樱吹雪_Yuki_好耶": "garb/8a65b68d1c318f5878f610f0e6be5ab55cfad755.png@65w.webp",
+        "樱吹雪_Yuki_嗷呜": "garb/fbb35575d9eeb199895056f6f2e678ea1568034f.png@65w.webp",
+        "樱吹雪_Yuki_问号": "garb/31b0cd34cdf7d76c9167c319c4a3aa8c084bfd56.png@65w.webp",
+        "樱吹雪_Yuki_哈哈": "garb/b64bccc47c050c201dd1a046c03ebff6bc73f94c.png@65w.webp",
+        "樱吹雪_Yuki_妈": "garb/be0e78b625d6b76300b917445c65998c052cb3ce.png@65w.webp",
+        "樱吹雪_Yuki_比心": "garb/c6acc382cf720529338d9426e1e7a45bd00ac6db.png@65w.webp",
+        "樱吹雪_Yuki_wink": "garb/c2500df5817faf7ca63af1cefe62c2526d7693aa.png@65w.webp",
+        "樱吹雪_Yuki_狐狸": "garb/26ae388cad7fb59d8797e7e0d77f198cdab46928.png@65w.webp",
+        "花丸晴琉_mua": "emote/25be806bfbbb5300afdbeeb64977c90cd1254bf1.png",
+        "花丸晴琉_wink": "emote/343d2d4bbf5919f25e37f971cf114d07232c5e73.png",
+        "花丸晴琉_啊咧": "emote/b34c5a1827762b981d689bbc51f134469ef06f23.png",
+        "花丸晴琉_大笑": "emote/1e28846f5cbd897dd2653142b8be9db42dfbdcb3.png",
+        "花丸晴琉_呆住": "emote/2b31495e0c538e095d44ff1a17834abe317a05d2.png",
+        "花丸晴琉_对不起": "emote/02d1e8ddfac938b20956f3d83350f442d398286a.png",
+        "花丸晴琉_好耶": "emote/29724d41c08ec63962e0974aa653ea8be0cf3947.png",
+        "花丸晴琉_挥手": "emote/2c0753c98d4e098a3c5f27ab658b1046b4032572.png",
+        "花丸晴琉_惊慌": "emote/e8307d3bd2ad84434e2f6de1eea727aaa138d987.png",
+        "花丸晴琉_泪目": "emote/02a805b640a1bd824d21c5e21cf2dbb19f03b6a1.png",
+        "花丸晴琉_丧": "emote/e45bd7cf880f36a439ef47c355c73065911992ac.png",
+        "花丸晴琉_生气": "emote/dfbfccd43db22e547f62563b73ae7a474b1163a2.png",
+        "花丸晴琉_晚安": "emote/40b60d5c04c8e7037089c408e68a73d51fd3dee7.png",
+        "花丸晴琉_无语": "emote/ac4cf2356a708eb11199f266160cb76be129ead9.png",
+        "花丸晴琉_喜欢": "emote/71a508d3183fb59f1ddf3a42af59fa7495f2c18c.png",
+        "花丸晴琉_邪恶": "emote/0a8175363b7c8270836323a627b1fe437938399c.png",
+        "花丸晴琉_疑惑": "emote/4aef9a2a5c9800faf2501014e1fba1fbf180b8f0.png",
+        "花丸晴琉_嘤嘤": "emote/b5584ef24436d42364e7234a9cd8734e00f872f6.png",
+        "花丸晴琉_赞": "emote/adf49b5e19731a8176b774f55b5472b9234ee555.png",
+        "花丸晴琉_早安": "emote/c5e20c947c10bb931413b8e4bc80b2bd3b09971e.png",
+        "-菫時-打Call": "live/e8073adeb52036d0d563c848c4b55b8449bc4b85.png@65w.webp",
+        "-菫時-分号分号": "live/f2a7a0916015a741a192ae85ee593a39c6dd04a7.png@65w.webp",
+        "-菫時-哎呀": "live/0a691aec40c738918014b27acfefa3b295b8a458.png@65w.webp",
+        "-菫時-地蕾": "live/cdb1f3adeee987c1fe5303ca90443932edb23d30.png@65w.webp",
+        "-菫時-困困": "live/c9450e570d7abcf5a920b65e18b9624b75c9d4fb.png@65w.webp",
+        "-菫時-生气": "live/021761abdfe8dc417e5267b74877bebd43dcfd58.png@65w.webp",
+        "-菫時-亲亲": "live/e0ae55eb80c6b7c01eeb042a26a3bd2938ed679a.png@65w.webp",
+        "-菫時-急了": "live/bea985bcf662dc4d85c9f78633c57398b7c3d223.png@65w.webp",
+        "-菫時-问号": "live/5b29c4c15e6b97da2df564899f84906fc800590b.png@65w.webp",
+        "-菫時-拜比": "live/a9fa62db7b7233dac30d3abd851b992710bc1649.png@65w.webp",
+        "纱依shayi_打call": "garb/4d97de8b2d6bb9cb19621af93550b3560e85277f.png@65w.webp",
+        "纱依shayi_喜欢": "garb/d345b8ff2f2dcd5a4833aa613fc7849bfb25f5e2.png@65w.webp",
+        "纱依shayi_晚安": "garb/f34ec93c5aa7fdb7cc919544df401474bed1a3c1.png@65w.webp",
+        "纱依shayi_kira": "garb/f784e4dc7d40f3d3a7ddb6977c241ff6d6a5db26.png@65w.webp",
+        "纱依shayi_贴贴": "garb/003679cdb44d37576b700f8ed0f4e85bc6ffc8a7.png@65w.webp",
+        "纱依shayi_结婚": "garb/b1a9e35f04b81476d1d93fdc3979fe194e873915.png@65w.webp",
+        "纱依shayi_甜蜜的": "garb/415a5fec5062816d6c316a718cf7f739dc12dcef.png@65w.webp",
+        "纱依shayi_摸鱼": "garb/b7f7d09fec93dd889b9e12286989dbfa41770689.png@65w.webp",
+        "纱依shayi_好厉害": "garb/7dceff9c32cb6a7a617c910cc840eaeaa89f1e60.png@65w.webp",
+        "纱依shayi_开心": "garb/360612ea05619a9517f9735e10f6a8e592eb6b35.png@65w.webp",
+        "纱依shayi_疑问": "garb/f591282a33cb0eb16e6ac679792ea90ce42e6d67.png@65w.webp",
+        "纱依shayi_哼": "garb/538c428f2d5bcaeefa60c81bb96e9a82475a59d2.png@65w.webp",
+        "纱依shayi_心碎": "garb/59697798dd454428c773ae989745af62042025ee.png@65w.webp",
+        "纱依shayi_趴": "garb/5261ebff0fce07a4bde695f56b1e90e03b2a22b9.png@65w.webp",
+        "纱依shayi_蹭蹭": "garb/8feb22fa3a58e7a26c31792be79fab8c015fa7f6.png@65w.webp",
+        "纱依shayi_喵": "garb/9a05fc8a87b3f5f05a3c01eec984aaec0f6727e1.png@65w.webp",
+        "冥冥meichan_太爱钱了": "garb/item/e3d018abc7dfcaba7a95b512d313591ec015e984.png",
+        "冥冥meichan_不可以": "garb/item/5cfc0218594fbe8b2946e67e03fc4ea5c4a19d36.png",
+        "冥冥meichan_优雅红茶": "garb/item/8698f417982fd8d5abadf5207407532bb1b5b44f.png",
+        "冥冥meichan_哭哭": "garb/item/32817fbdd4226afe71e1aa3d8f0a91c62729567d.png",
+        "冥冥meichan_不想输": "garb/item/04fdc12859be022fba9992c76f89b0956d19262d.png",
+        "冥冥meichan_开车": "garb/item/3414c37849153f2ebd0fe6c8d7298bbc711c4ed9.png",
+        "冥冥meichan_大钻戒": "garb/item/fa42d4a68660e6c3d6447cdf0fe7d95cc4c7cdae.png",
+        "冥冥meichan_带走": "garb/item/9862fdd11fb28e2456a5cd3f864f87a46f20604f.png",
+        "冥冥meichan_我好了": "garb/item/8855c3fcfc538ee1d96e9ec25f758a0b5602cf66.png",
+        "冥冥meichan_嗨呀": "garb/item/caebcb782f3a8742548786cd52cb4d80d8353e03.png",
+        "冥冥meichan_好喜欢哦": "garb/item/3cc66caaf1a62e1778b18a458e58b38df99cfa0f.png",
+        "冥冥meichan_给你一拳": "garb/item/9b9e4aa83cedd7016bf2f2a83bbe838b648f01ff.png",
+        "冥冥meichan_理发店": "garb/item/6026b23be561844d08c5bc4b2d66316c3eeebb15.png",
+        "冥冥meichan_典": "garb/item/172ea06085c8d242f3105d0d04826217bbe4fbeb.png",
+        "冥冥meichan_信积拉奶": "garb/item/57902ef1f2392e1b8ca4a92ee9c844c18b633009.png",
+        "冥冥meichan_饭饭": "garb/item/79a5c3bda7449e06f032c095144d8218b9acb335.png",
+        "冥冥meichan_盯": "garb/item/9c9419db0b80a40ab36eed395251e7efe6421b69.png",
+        "冥冥meichan_流汗": "garb/item/014bd9e4519567f7f711c0ef8138ffcd022750cd.png",
+        "冥冥meichan_晚安": "garb/item/4ed6aba3c606484511e550e9d8070a74c004ba8e.png",
+        "冥冥meichan_mua": "garb/item/21b927b32c186a8c4dd12ff48fcb19461d8dcd0e.png",
+        "冥冥meichan_关注冥冥": "garb/item/55cfde3719b757aa211e5f1d136cd8c8a1e0dc2f.png",
+        "冥冥meichan_你是懂的": "garb/item/724e8fe83e63a0814995dc8fd7a5d874c0568028.png",
+        "冥冥meichan_你懂个P": "garb/item/ffa551eaec65b9b3e33eb388fb91f9c02e4ff67a.png",
+        "冥冥meichan_钱不够啊": "garb/item/d153516692abb248a2429319ff7eb8cff4b2d463.png",
+        "冥冥meichan_寄": "garb/item/4de329afec2e0ebe3c4d0db0da710721bed35ff3.png",
+        // ... 更多表情
+    }
+    });
+</script>
+<script>
+    // 点击回复直接评论,官方版本点击回复时都是跳回到页面上方的评论框进行回复，评论框是固定不动的
+    // 参考https://immmmm.com/valine-diy,用到jQuery
+    $(document).ready(function(){
+        //$('.vemoji-btn').text('😀');
+        $("#vcomments").on('click', 'span.vat',function(){
+            $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+            $('textarea#veditor').focus();
+        })
+    })
+</script>
+<script type="text/javascript">
+    //添加一言
+   fetch('https://v1.hitokoto.cn/?c=a')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("veditor").setAttribute("placeholder",data.hitokoto+"__"+data.from);
+    })
+    .catch(console.error)
+</script>
+
+            
+
+
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<div id="aplayer" class="aplayer" data-autoplay="true"  data-id="56868" data-server="netease" data-type="album" data-fixed="true" data-listfolded="true" data-order="random" data-theme="#F58EA8"></div>
+<script src="https://unpkg.com/meting@1.2.0/dist/Meting.min.js"></script>
+
+
+<a id="scrollUp" href="#" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://weibo.com/6392902197"title="weibo"><i class="iconfont icon-weibo"></i></a><a href="https://github.com/xiaxi626"title="github"><i class="iconfont icon-github"></i></a><a href="aijiang1220966821@163.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://xiaxi626.github.io/atom.xml"title="rss"><i class="iconfont icon-rss"></i></a><a href="https://www.zhihu.com/people/xiao-yan-shi-36"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © <a href="https://xiaxi626.github.io" style="margin:0;">飞爱碧玉的个人博客</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_pv"></span></strong></span>
+<span style="display: inline;margin-right:15px;">👤<strong><span id="busuanzi_value_site_uv"></span></strong></span>
+<span>📚<strong>62</strong> posts</span>
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+<script>
+//复制内容自动添加版权信息 
+ var Sys = {}; 
+    var ua = navigator.userAgent.toLowerCase(); 
+    if( window.ActiveXObject ) 
+    { 
+        document.body.oncopy=function() 
+        { 
+            event.returnValue = false; 
+            var t=document.selection.createRange().text; 
+            var s="\r\n原文出自 [飞爱碧玉的个人博客]  转载请保留原文链接: "+location.href; 
+            clipboardData.setData('Text',t+'\r\n'+s); 
+        } 
+    } 
+    else 
+    { 
+        function addLink() 
+        { 
+            var body_element = document.getElementsByTagName('body')[0]; 
+            var selection; 
+            selection = window.getSelection(); 
+            var pagelink = " 原文出自 [飞爱碧玉的个人博客]  转载请保留原文链接: "+document.location.href; 
+ 
+            var copytext = selection + pagelink; 
+            var newdiv = document.createElement('div'); 
+            newdiv.style.position='absolute'; 
+            newdiv.style.left='-99999px'; 
+            body_element.appendChild(newdiv); 
+            newdiv.innerHTML = copytext; 
+            selection.selectAllChildren(newdiv); 
+            window.setTimeout 
+            ( 
+                function() 
+                { 
+                    body_element.removeChild(newdiv); 
+                },0 
+            ); 
+        } 
+        document.oncopy = addLink; 
+    } 
+</script>
+
+<script type="text/javascript" async src="https://xiaxi626.github.io/media/js/prism.js"></script>
+</body>
+</html>

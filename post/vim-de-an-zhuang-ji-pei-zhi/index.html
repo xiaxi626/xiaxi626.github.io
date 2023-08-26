@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico" type="image/x-icon" />
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<meta name="apple-mobile-web-app-capable"content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style"content="black"/>
+<meta name="format-detection"content="telephone=no"/>
+<meta name="renderer"content="webkit">
+<meta name="description"content="">
+<meta charset="UTF-8">
+<title> vim 的安装及配置 | 飞爱碧玉的个人博客</title>
+
+<link href="https://xiaxi626.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://xiaxi626.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+
+<script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+
+<!-- DEMO CSS -->
+<style type="text/css">
+	
+</style>
+
+<link rel="canonical" href="https://xiaxi626.github.io/post/vim-de-an-zhuang-ji-pei-zhi/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://xiaxi626.github.io"><img alt="logo" style="display:inline-block;" src="https://xiaxi626.github.io/images/avatar.png"/></a><h1 title="飞爱碧玉的个人博客" class="weaklink"><a  href="/">飞爱碧玉的个人博客</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1693051104581" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="搜索..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a> vim 的安装及配置</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2023-04-19</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://xiaxi626.github.io/tag/JcIpV52xSP/" class="tag">Technology</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">5119字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">20 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<img class="featureImg" alt="featureimg" src="https://xiaxi626.github.io/post-images/vim-de-an-zhuang-ji-pei-zhi.png" referrerpolicy="no-referrer">
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+
+<div class="round-shape-one"></div>
+
+<h2 id="vim的下载与安装">vim的下载与安装</h2>
+<h3 id="下载windows版vim">下载windows版vim</h3>
+<p>从github下载windows版的vim：<a href="https://github.com/vim/vim-win32-installer/releases">https://github.com/vim/vim-win32-installer/releases</a></p>
+<h3 id="安装vim">安装vim</h3>
+<p>无特殊要求默认安装即可。<br>
+安装完成后默认打开README文件。<br>
+<img src="https://xiaxi626.github.io/post-images/1682219903942.PNG" alt="" loading="lazy"></p>
+<h3 id="添加环境变量">添加环境变量</h3>
+<p>在安装路径中找到vim.exe或者gvim.exe（两者在同一文件夹下），复制路径。<br>
+<img src="https://xiaxi626.github.io/post-images/1682219998319.PNG" alt="" loading="lazy"><br>
+右键我的电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量，选中Path，并点击编辑，添加路径。<br>
+<img src="https://xiaxi626.github.io/post-images/1682220293628.PNG" alt="" loading="lazy"><br>
+添加vim的一个用户变量<code>$VIM</code>，右键我的电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量，点击上面的新建。<br>
+然后输入新建的环境变量名VIM以及变量值，并点击确定。<br>
+<img src="https://xiaxi626.github.io/post-images/1682220555084.PNG" alt="" loading="lazy"></p>
+<h2 id="认识vim">认识vim</h2>
+<p>安装结束后桌面Vim<br>
+<img src="https://xiaxi626.github.io/post-images/1682236706561.PNG" alt="" loading="lazy"><br>
+菜单栏Vim<br>
+<img src="https://xiaxi626.github.io/post-images/1682240411155.png" alt="" loading="lazy"></p>
+<ol>
+<li>有g和没有g<br>
+gVim 是在windows下的Gui图形用户界面的的 vim (GUI Vim)，支持windows的一些快捷方式，支持鼠标操作<br>
+vim 是在windows下的类似linux vi 编辑的界面，只能用键盘操作<br>
+vim的操作指令同时适用于gVim</li>
+<li>Vim, Vim Diff, Vim Easy, Vim Read-only<br>
+Diff 是用来对比两个文件内容用的，直接打开挺没用的，不过直接拖2个文件到快捷方式上倒是可行；<br>
+Easy启动的时候是insert模式，适合普通windows用户的习惯；<br>
+Read-Only的用途：比如用read-only打开已经用vim打开过的文件，就不会提示让人烦躁的.swp文件存在的问题；</li>
+</ol>
+<p>我们暂时会使用Vim来入门，最后您会使用gVim编程，这是因为gVim在没有配置的时候比Vim还不方便操作。</p>
+<h2 id="vim基本的使用说明">Vim基本的使用说明</h2>
+<h3 id="用vim打开文件">用Vim打开文件</h3>
+<p>在cmd下输入vim + 路径即可，同时直接将文件拖动到快捷方式图标上也可以。</p>
+<h3 id="vim的四种模式">Vim的四种模式</h3>
+<p>vim 共分为四种模式，分别是普通模式（Normal mode）、底行模式(Last line mode)、输入模式（Insert mode）和可视化模式（Visual mode）。四种模式的切换与作用如下<br>
+<img src="https://xiaxi626.github.io/post-images/1682414750036.png" alt="" loading="lazy"></p>
+<h4 id="normal-mode"><strong>Normal Mode</strong></h4>
+<p>这个模式一般用于浏览代码与进入底行模式输入命令，使用快捷键修改文章</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">h 或 向左箭头键(←)</td>
+<td style="text-align:center">光标向左移动一个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">j 或 向下箭头键(↓)</td>
+<td style="text-align:center">光标向下移动一个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">k 或 向上箭头键(↑)</td>
+<td style="text-align:center">光标向上移动一个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">l 或 向右箭头键(→)</td>
+<td style="text-align:center">光标向右移动一个字符</td>
+</tr>
+</tbody>
+</table>
+<p>用上面的按键你就可以上下浏览代码了，但是不建议使用方向键<br>
+Vim中还有一些键位是进行光标移动的</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">[Ctrl] + [f]</td>
+<td style="text-align:center">屏幕『向下』移动一页，相当于 [Page Down]按键 (常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">[Ctrl] + [b]</td>
+<td style="text-align:center">屏幕『向上』移动一页，相当于 [Page Up] 按键 (常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">[Ctrl] + [d]</td>
+<td style="text-align:center">屏幕『向下』移动半页</td>
+</tr>
+<tr>
+<td style="text-align:center">[Ctrl] + [u]</td>
+<td style="text-align:center">屏幕『向上』移动半页</td>
+</tr>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">光标移动到非空格符的下一行</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">光标移动到非空格符的上一行</td>
+</tr>
+<tr>
+<td style="text-align:center">n &lt; space &gt;</td>
+<td style="text-align:center">那个 n 表示『数字』，例如 20 。按下数字后再按空格键，光标会向右移动这一行的 n 个字符。例如 20&lt; space &gt; 则光标会向后面移动 20 个字符距离。</td>
+</tr>
+<tr>
+<td style="text-align:center">M</td>
+<td style="text-align:center">光标移动到这个屏幕的中央那一行的第一个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">L</td>
+<td style="text-align:center">光标移动到这个屏幕的最下方那一行的第一个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">G</td>
+<td style="text-align:center">移动到这个档案的最后一行(常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">nG</td>
+<td style="text-align:center">n 为数字。移动到这个档案的第 n 行。例如 20G 则会移动到这个档案的第 20 行(可配合 :set nu)</td>
+</tr>
+<tr>
+<td style="text-align:center">gg</td>
+<td style="text-align:center">移动到这个档案的第一行，相当于 1G 啊！ (常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">n&lt; Enter &gt;</td>
+<td style="text-align:center">n 为数字。光标向下移动 n 行(常用)</td>
+</tr>
+</tbody>
+</table>
+<p>以上是光标移动命令，然后是文档查询替换命令</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">/word</td>
+<td style="text-align:center">向光标之下寻找一个名称为 word 的字符串。例如要在档案内搜寻 vbird 这个字符串，就输入 / vbird 即可！ (常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">?word</td>
+<td style="text-align:center">向光标之上寻找一个字符串名称为 word 的字符串。</td>
+</tr>
+<tr>
+<td style="text-align:center">n</td>
+<td style="text-align:center">这个 n 是英文按键。代表重复前一个搜寻的动作。举例来说， 如果刚刚我们执行 /vbird 去向下搜寻 vbird 这个字符串，则按下 n 后，会向下继续搜寻下一个名称为 vbird 的字符串。如果是执行 ?vbird 的话，那么按下 n 则会向上继续搜寻名称为 vbird 的字符串！</td>
+</tr>
+<tr>
+<td style="text-align:center">N</td>
+<td style="text-align:center">这个 N 是英文按键。与 n 刚好相反，为『反向』进行前一个搜寻动作。 例如 /vbird 后，按下 N 则表示『向上』搜寻 vbird 。</td>
+</tr>
+<tr>
+<td style="text-align:center">使用 /word 配合 n 及 N 是非常有帮助的！可以让你重复的找到一些你搜寻的关键词！</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">:n1,n2s/word1/word2/g</td>
+<td style="text-align:center">n1 与 n2 为数字。在第 n1 与 n2 行之间寻找 word1 这个字符串，并将该字符串取代为 word2 ！举例来说，在 100 到 200 行之间搜寻 vbird 并取代为 VBIRD 则： 『:100,200s/vbird/VBIRD/g』。(常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">:1,$s/word1/word2/g 或 :%s/word1/word2/g</td>
+<td style="text-align:center">从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 ！(常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">:1,$s/word1/word2/gc 或 :%s/word1/word2/gc</td>
+<td style="text-align:center">从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 ！且在取代前显示提示字符给用户确认 (confirm) 是否需要取代！(常用)</td>
+</tr>
+</tbody>
+</table>
+<p>最后是最常用的<strong>增删改命令</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">x, X</td>
+<td style="text-align:center">在一行字当中，x 为向后删除一个字符 (相当于 [del] 按键)， X 为向前删除一个字符( 相当于 [backspace] 亦即是退格键) (常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">nx</td>
+<td style="text-align:center">n 为数字，连续向后删除 n 个字符。举例来说，我要连续删除 10 个字符， 『10x』。</td>
+</tr>
+<tr>
+<td style="text-align:center">dd</td>
+<td style="text-align:center">删除游标所在的那一整行(常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">ndd</td>
+<td style="text-align:center">n 为数字。删除光标所在的向下 n 行，例如 20dd 则是删除 20 行 (常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">d1G</td>
+<td style="text-align:center">删除光标所在到第一行的所有数据</td>
+</tr>
+<tr>
+<td style="text-align:center">dG</td>
+<td style="text-align:center">删除光标所在到最后一行的所有数据</td>
+</tr>
+<tr>
+<td style="text-align:center">d$</td>
+<td style="text-align:center">删除游标所在处，到该行的最后一个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">d0</td>
+<td style="text-align:center">那个是数字的 0 ，删除游标所在处，到该行的最前面一个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">yy</td>
+<td style="text-align:center">复制游标所在的那一行(常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">nyy</td>
+<td style="text-align:center">n 为数字。复制光标所在的向下 n 行，例如 20yy 则是复制 20 行(常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">y1G</td>
+<td style="text-align:center">复制游标所在行到第一行的所有数据</td>
+</tr>
+<tr>
+<td style="text-align:center">yG</td>
+<td style="text-align:center">复制游标所在行到最后一行的所有数据</td>
+</tr>
+<tr>
+<td style="text-align:center">y0</td>
+<td style="text-align:center">复制光标所在的那个字符到该行行首的所有数据</td>
+</tr>
+<tr>
+<td style="text-align:center">y$</td>
+<td style="text-align:center">复制光标所在的那个字符到该行行尾的所有数据</td>
+</tr>
+<tr>
+<td style="text-align:center">p, P</td>
+<td style="text-align:center">p 为将已复制的数据在光标下一行贴上，P 则为贴在游标上一行！ 举例来说，我目前光标在第 20 行，且已经复制了 10 行数据。则按下 p 后， 那 10 行数据会贴在原本的 20 行之后，亦即由 21 行开始贴。但如果是按下 P 呢？ 那么原本的第 20 行会被推到变成 30 行。 (常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">J</td>
+<td style="text-align:center">将光标所在行与下一行的数据结合成同一行</td>
+</tr>
+<tr>
+<td style="text-align:center">c</td>
+<td style="text-align:center">重复删除多个数据，例如向下删除 10 行，[ 10cj ]</td>
+</tr>
+<tr>
+<td style="text-align:center">u</td>
+<td style="text-align:center">复原前一个动作。(常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">[Ctrl]+r</td>
+<td style="text-align:center">重做上一个动作。(常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">.</td>
+<td style="text-align:center">不要怀疑！这就是小数点！意思是重复前一个动作的意思。 如果你想要重复删除、重复贴上等等动作，按下小数点『.』就好了！ (常用)</td>
+</tr>
+</tbody>
+</table>
+<p>以上的增删改查命令有一定的命名规律，比如<code>y</code>是复制，然后复制什么没说，你用<code>yw</code>就是复制一个单词(word)，重复写一个命令就是对这个对行操作，例如<code>yy</code>就是复制一行，还可以<code>y+数字</code>，例如<code>y3</code>就是复制三行，还可以与其他命令组合比如<code>yG</code>就是从当前光标位置复制到文档最后，这样组合才可以让我们高效的使用Vim</p>
+<h4 id="last-line-mode模式"><strong>Last line mode模式</strong></h4>
+<p>我一直觉得这就是Vim的Normal模式，结果别人都觉得这是一个新模式，那就当他是个新模式吧<br>
+你会发现在没有配置Vim的其他功能的时候，Vim的下面会写有一个Normal等，但是似乎下面还有一行，这一行是让你输入命令的，想要输入命令必须使用\或者:触发，\是用来查找内容的，严格说属于Normal模式，所以其实只有:开头的命令</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">:w</td>
+<td style="text-align:center">将编辑的数据写入硬盘档案中(常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">:w!</td>
+<td style="text-align:center">若文件属性为『只读』时，强制写入该档案。不过，到底能不能写入， 还是跟你对该档案的档案权限有关啊！</td>
+</tr>
+<tr>
+<td style="text-align:center">:q</td>
+<td style="text-align:center">离开 vi (常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">:q!</td>
+<td style="text-align:center">若曾修改过档案，又不想储存，使用 ! 为强制离开不储存档案。</td>
+</tr>
+<tr>
+<td style="text-align:center">注意一下啊，那个惊叹号 (!) 在 vi 当中，常常具有『强制』的意思～</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">:wq</td>
+<td style="text-align:center">储存后离开，若为 :wq! 则为强制储存后离开 (常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">:w [filename]</td>
+<td style="text-align:center">将编辑的数据储存成另一个档案（类似另存新档）</td>
+</tr>
+<tr>
+<td style="text-align:center">:r [filename]</td>
+<td style="text-align:center">在编辑的数据中，读入另一个档案的数据。亦即将 『filename』 这个档案内容加到游标所在行后面</td>
+</tr>
+<tr>
+<td style="text-align:center">:n1,n2 w [filename]</td>
+<td style="text-align:center">将 n1 到 n2 的内容储存成 filename 这个档案。</td>
+</tr>
+<tr>
+<td style="text-align:center">:! command</td>
+<td style="text-align:center">暂时离开 vi 到指令行模式下执行 command 的显示结果！例如 『:! ls /home』即可在 vi 当中察看 /home 底下以 ls 输出的档案信息！</td>
+</tr>
+</tbody>
+</table>
+<p>还有很多，但是都是特殊的命令，或者某一个插件特有的，这里不做介绍</p>
+<h4 id="insert模式"><strong>Insert模式</strong></h4>
+<p>插入模式是让你正常写代码的，注意的是，插入模式下hjkl的上下左右切换是失效的，可以用方向键，但是不建议，还是退出编辑模式在normal下改光标方便，进入插入模式的快捷键最常用的是i，还有如下的也可以</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">快捷键</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">i, I</td>
+<td style="text-align:center">进入输入模式(Insert mode)： i 为『从目前光标所在处输入』， I 为『在目前所在行的第一个非空格符处开始输入』。 (常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">a, A</td>
+<td style="text-align:center">进入输入模式(Insert mode)： a 为『从目前光标所在的下一个字符处开始输入』， A 为『从光标所在行的最后一个字符处开始输入』。(常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">o, O</td>
+<td style="text-align:center">进入输入模式(Insert mode)： 这是英文字母 o 的大小写。o 为『在目前光标所在的下一行处输入新的一行』； O 为在目前光标所在处的上一行输入新的一行！(常用)</td>
+</tr>
+<tr>
+<td style="text-align:center">r, R</td>
+<td style="text-align:center">进入取代模式(Replace mode)： r 只会取代光标所在的那一个字符一次；R会一直取代光标所在的文字，直到按下 ESC 为止；(常用)</td>
+</tr>
+</tbody>
+</table>
+<p>这一部分没什么好说的，因为没有快捷键(否则你打着打着代码就触发了什么快捷键)</p>
+<h4 id="visual模式"><strong>Visual模式</strong></h4>
+<p>可视化模式在很多文献中都没有介绍，但是是一个非常好用的模式，在这个模式下你可以用鼠标选择内容要选取一段文本，首先将光标移到段首，在普通模式下按 v 进入可视模式，然后把光标移到段末。 需要注意，光标所在字符是包含在选区中的</p>
+<ul>
+<li>v 进入字符可视化模式</li>
+<li>V 进入行可视化模式</li>
+<li>Ctrl+v 进入块可视化模式<br>
+块选择在表格中删除指定列非常有用<br>
+用 v 命令进入的字符可视化模式（Characterwise visual mode)。文本选择是以字符为单位的。<br>
+用 V 命令进入的行可视化模式（Linewise visual mode)。文本选择是以行为单位的。<br>
+用 ctrl-V 进入的块可视化模式（Blockwise visual mode）。可以选择一个矩形内的文本。</li>
+</ul>
+<p>使用鼠标或者hjkl即可选中字符/行/块，然后可以y，x…<br>
+更有用的是对块批量操作，例如批量注释可以这么写<br>
+<strong>批量注释：</strong><br>
+Ctrl + v 进入块选择模式，然后移动光标选中你要注释的行，再按大写的 I 进入行首插入模式输入注释符号如 // 或 #，输入完毕之后，按两下 ESC，Vim 会自动将你选中的所有行首都加上注释，保存退出完成注释。<br>
+<strong>取消注释：</strong><br>
+Ctrl + v 进入块选择模式，选中你要删除的行首的注释符号，注意 // 要选中两个，选好之后按 d 即可删除注释，ESC 保存退出<br>
+还可以在选择文字后输入:然后把你在平时这么用的就怎么写，注意按:会多出一些东西不要管他,例如</p>
+<pre><code class="language-bash">:A //这是一堆注释
+</code></pre>
+<p>然后Vim会根据你所写，先对每一样在Normal模式下使用A把光标移动到该行行尾，然后进入Insert模式输入<code>//这是一堆注释</code>对每一行都操作结束之后就会自动退出到Normal模式<br>
+具体的这个模式如何使用见<a href="https://linux.cn/article-10589-1.html">Vim可视化入门</a></p>
+<h2 id="配置vim">配置vim</h2>
+<p>安装好的vim文件夹下有一个<code>_vimrc</code>文件，相当于Linux下vim的<code>.vimrc</code>文件，在里面配置vim，大多数情况和Linux一样。<br>
+<strong>Windows 7</strong> <code>C:\Program Files\Vim\_vimrc</code>中默认是这样的——</p>
+<pre><code class="language-bash">&quot; Vim with all enhancements
+source $VIMRUNTIME/vimrc_example.vim
+
+&quot; Use the internal diff if available.
+&quot; Otherwise use the special 'diffexpr' for Windows.
+if &amp;diffopt !~# 'internal'
+  set diffexpr=MyDiff()
+endif
+function MyDiff()
+  let opt = '-a --binary '
+  if &amp;diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &amp;diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '&quot;' . arg1 . '&quot;' | endif
+  let arg1 = substitute(arg1, '!', '\!', 'g')
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '&quot;' . arg2 . '&quot;' | endif
+  let arg2 = substitute(arg2, '!', '\!', 'g')
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '&quot;' . arg3 . '&quot;' | endif
+  let arg3 = substitute(arg3, '!', '\!', 'g')
+  if $VIMRUNTIME =~ ' '
+    if &amp;sh =~ '\&lt;cmd'
+      if empty(&amp;shellxquote)
+        let l:shxq_sav = ''
+        set shellxquote&amp;
+      endif
+      let cmd = '&quot;' . $VIMRUNTIME . '\diff&quot;'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '&quot; ', '') . '\diff&quot;'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  let cmd = substitute(cmd, '!', '\!', 'g')
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' &gt; ' . arg3
+  if exists('l:shxq_sav')
+    let &amp;shellxquote=l:shxq_sav
+  endif
+endfunction
+</code></pre>
+<p>你会发现在Vim安装目录和<code>C://User/你的用户名</code>下还有一个，我们使用自己用户名下的,如果没有的话就自己新建一个，这个不是因为你的Vim没安装，他就是没有。</p>
+<h3 id="第一个vim配置行号">第一个Vim配置，行号</h3>
+<p>找到或者新建这个文件，右键选中用Vim打开，我们就打开了一个空的<code>_vimrc</code>文件，试着往里面写下<code>set number</code>，这个配置的意思是自动为添加行号，这样你写代码就可以在左边看到行号了<br>
+按动ZZ(大写的)保存文件，然而行号并没有出来，这是因为我们没有&quot;刷新配置文件&quot;,在Normal下输入命令<code>:source $MYVIMRC</code>然后你就可以看到行号了，至此你成功配置了第一个Vimrc</p>
+<h3 id="设置快捷键映射">设置快捷键映射</h3>
+<p>但是这似乎比较麻烦，每次修改之后还要输入那么长的刷新保存，如果有个快捷键帮助我们就好了,我设置的快捷键是大写的R，也就是Shift+R，那么我们应该如何设置呢？首先要想好自己要设置的快捷键，不能与之前的快捷键相重合，还有快捷键的生效范围，是只有在Normal模式下生效还是在四个模式下都生效。例如我将大写R作为快捷键最好只在Normal下操作，否则在Insert模式下我输入大写的R就没法输入了，但是例如F5这样的快捷键从来不会与其他模式冲突我们就可以设置为全局的<br>
+快捷键映射可以将一个组合键映射到一个命令，一个其他的组合键或者其他语法为</p>
+<pre><code class="language-bash">前缀+map 快捷键 映射结果
+</code></pre>
+<p>这里的前缀限定了map的作用范围是那几个模式，不写前缀默认是前缀n</p>
+<ul>
+<li>nmap：只有在Normal模式下生效</li>
+<li>vmap：只有在Visual模式下生效</li>
+<li>imap：只有在Insert模式下生效</li>
+<li>cmap：只有在行底命令的模式下生效</li>
+<li>Xnoremap：X是前面的n/v/i/c，nore表示非递归的例如a被映射为了b，b被映射为了c，那么如果是递归的的话a就映射为了c</li>
+</ul>
+<p>对于被映射与要映射的动作按键遵循以下写法</p>
+<ul>
+<li>普通按键就直接写</li>
+<li>Alt组合键写成<code>&lt;A-X&gt;</code>,例如Alt+S就是<code>&lt;A-S&gt;</code></li>
+<li>Ctrl组合键写成<code>&lt;C-X&gt;</code>,例如Ctrl+S就是<code>&lt;C-S&gt;</code></li>
+<li>FX写成<code>&lt;FX&gt;</code>，例如<code>&lt;F5&gt;</code>就是F5</li>
+<li>四个方向键写成<code>&lt;方向&gt;</code>，例如<code>&lt;LEFT&gt;</code>就是方向左键</li>
+<li>ESC就写成<code>&lt;ESC&gt;</code></li>
+<li>Leader键就写成</li>
+<li>回车写成<code>&lt;CR&gt;</code></li>
+</ul>
+<p>关于leader键：<br>
+Vim预置有很多快捷键，再加上各类插件的快捷键，大量快捷键出现在单层空间中难免引起冲突。为缓解该问题，而引入了前缀键<code>&lt;leader&gt;</code>。藉由前缀键， 则可以衍生出更多的快捷键命名空间（namespace)。例如将r键配置为<code>&lt;leader&gt;r</code>、<code>&lt;leader&gt;&lt;leader&gt;r</code>等多个快捷键。前缀键默认为<code>\</code><br>
+但是在我的键盘上<code>\</code>太远了，于是我就把leader换成了空格，只需要如下的命令<code>let mapleader = &quot;\&lt;space&gt;&quot;</code>写在开头就完成了替换。</p>
+<p>针对上面的问题我们就可以把刷新配置文件映射成S，配置如下</p>
+<pre><code class="language-bash">map R :source $MYVIMRC&lt;CR&gt;
+</code></pre>
+<h3 id="安装插件管理器">安装插件管理器</h3>
+<p>Vim好用就在于有大量插件供我们使用，这样我们可以自己配置自己喜欢的Vim，这里我们介绍插件管理器Vim-Pluig，同时我们一般的插件都是在GitHub上托管的，所以我们一般也是在GitHub上找插件，Vim的插件非常好识别，他使用的语言大多会写<code>Vim script</code>。<br>
+<img src="https://xiaxi626.github.io/post-images/1682425896308.png" alt="" loading="lazy"><br>
+打开插件管理器所在仓库。<br>
+<img src="https://xiaxi626.github.io/post-images/1682426083266.png" alt="" loading="lazy"><br>
+下载如下文件并放入Vim的安装目录下的autoload。<br>
+<img src="https://xiaxi626.github.io/post-images/1682426488347.png" alt="" loading="lazy"><br>
+这样我们就完成了插件管理器的安装<br>
+之后我们开始尝试安装第一个插件<br>
+首先在vimrc中写下这样三行，他可以帮助插件管理器识别你要装那些插件</p>
+<pre><code class="language-bash">call plug#begin('~/.vim/plugged')
+
+call plug#end()
+</code></pre>
+<p>以后只要是需要安装的插件我们只需要把地址写在里面就可以直接安装了</p>
+<p>另一款插件管理器—— <em>Vundle</em> 的安装教程：<a href="https://blog.csdn.net/weixin_42250302/article/details/108019214">Windows gvim安装插件_gvim插件</a></p>
+<h3 id="尝试安装第一个插件">尝试安装第一个插件</h3>
+<p>我们先来尝试安装一个主题插件。<br>
+首先我们找到<a href="https://github.com/connorholyday/vim-snazzy">这个主题的GitHub库</a>。<br>
+那如何告诉插件管理器我要安装这个插件，这个插件的安装包在哪里呢？<br>
+刚刚那个库的地址是<br>
+https://github.com/connorholyday/vim-snazzy<br>
+我们发现<code>https://github.com/</code>是GitHub的前缀，而插件管理器默认库在GitHub所以只要告诉插件<code>connorholyday/vim-snazzy</code>就可以了，于是我们只需要在哪两行代中间写上：</p>
+<pre><code class="language-bash">Plug 'connorholyday/vim-snazzy'
+</code></pre>
+<p>即为——</p>
+<pre><code class="language-bash">call plug#begin('~/.vim/plugged')
+Plug 'connorholyday/vim-snazzy'
+call plug#end()
+</code></pre>
+<p>完事，我们要让插件管理器去安装它，只需保存并刷新配置文件，输入命令:PlugInstall回车，等他跑完进度条即可。<br>
+至此我们完成了第一个插件的安装。</p>
+<h3 id="尝试卸载第一个插件">尝试卸载第一个插件</h3>
+<p>如果哪一天插件不想要了，可以卸载，方法很简单，要么删除插件安装的哪一行，要么把他注释掉(vim下的注释是<code>&quot;</code>)，然后保存刷新配置文件，输入命令<code>:PlugClean</code>。</p>
+<h2 id="powershell中使用vim">Powershell中使用Vim</h2>
+<p>执行Set-ExecutionPolicy RemoteSigned命令，在对话框中选择Y<br>
+<img src="https://xiaxi626.github.io/post-images/1682223107244.PNG" alt="" loading="lazy"><br>
+重启Shell，输入vim进行测试<br>
+<img src="https://xiaxi626.github.io/post-images/1682223163724.PNG" alt="" loading="lazy"></p>
+<h2 id="参考">参考</h2>
+<p><a href="https://www.cnblogs.com/qiyuexin/p/6398606.html">1. vim 的安装及配置 - QIYUEXIN - 博客园</a><br>
+<a href="https://blog.csdn.net/qyhaill/article/details/105425057">windows10安装配置vim_win10 vim_八块腹肌怎么练的博客</a><br>
+<a href="https://blog.csdn.net/Liukairui/article/details/107392243">Vim使用全指南 (环境配置，插件推荐，美化) (C++,Python,MarkDown,R...)_vim 编辑插件_Liukairui的博客</a><br>
+<a href="https://blog.csdn.net/themingyi/article/details/102468347">Powershell中使用Vim_powershell输入vim后蓝屏了_themingyi的博客</a><br>
+<a href="https://www.52pojie.cn/thread-1775620-1-1.html">(Linux学习笔记) - vi/vim编辑器的使用</a><br>
+<a href="https://blog.csdn.net/weixin_42250302/article/details/108019214">Windows gvim安装插件_gvim插件_其铄的博客-CSDN博客</a></p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#vim%E7%9A%84%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85">vim的下载与安装</a>
+<ul>
+<li><a href="#%E4%B8%8B%E8%BD%BDwindows%E7%89%88vim">下载windows版vim</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85vim">安装vim</a></li>
+<li><a href="#%E6%B7%BB%E5%8A%A0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">添加环境变量</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AE%A4%E8%AF%86vim">认识vim</a></li>
+<li><a href="#vim%E5%9F%BA%E6%9C%AC%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">Vim基本的使用说明</a>
+<ul>
+<li><a href="#%E7%94%A8vim%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6">用Vim打开文件</a></li>
+<li><a href="#vim%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%A8%A1%E5%BC%8F">Vim的四种模式</a>
+<ul>
+<li><a href="#normal-mode"><strong>Normal Mode</strong></a></li>
+<li><a href="#last-line-mode%E6%A8%A1%E5%BC%8F"><strong>Last line mode模式</strong></a></li>
+<li><a href="#insert%E6%A8%A1%E5%BC%8F"><strong>Insert模式</strong></a></li>
+<li><a href="#visual%E6%A8%A1%E5%BC%8F"><strong>Visual模式</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E9%85%8D%E7%BD%AEvim">配置vim</a>
+<ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E4%B8%AAvim%E9%85%8D%E7%BD%AE%E8%A1%8C%E5%8F%B7">第一个Vim配置，行号</a></li>
+<li><a href="#%E8%AE%BE%E7%BD%AE%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%98%A0%E5%B0%84">设置快捷键映射</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8">安装插件管理器</a></li>
+<li><a href="#%E5%B0%9D%E8%AF%95%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%8F%92%E4%BB%B6">尝试安装第一个插件</a></li>
+<li><a href="#%E5%B0%9D%E8%AF%95%E5%8D%B8%E8%BD%BD%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%8F%92%E4%BB%B6">尝试卸载第一个插件</a></li>
+</ul>
+</li>
+<li><a href="#powershell%E4%B8%AD%E4%BD%BF%E7%94%A8vim">Powershell中使用Vim</a></li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div>
+
+<div class="round-shape-one"></div>
+
+<section>
+<div class="doc_comments">
+
+            
+                <!--评论显示区，请插入合适的位置-->
+<div id="comment"></div>
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.6.1/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/valine/1.5.1/Valine.min.js"></script>
+<!--<script src="//cdn.jsdelivr.net/npm/valine@1.4.4/dist/Valine.min.js"></script>-->
+<script>
+    new Valine({
+        el:'#comment',
+        appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
+        appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
+        placeholder: 'Just Go Go',
+        avatar:'',
+        pageSize: '10',
+        recordIP: 'true',
+        requiredFields: ['nick','mail'],
+        enableQQ: 'true',
+        emojiCDN: '//i0.hdslb.com/bfs/',
+        emojiMaps: {
+        "tv-doge": "emote/6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+        "tv-坏笑": "emote/1f0b87f731a671079842116e0991c91c2c88645a.png",
+        "tv-难过": "emote/87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+        "tv-生气": "emote/26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+        "tv-委屈": "emote/d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+        "tv-斜眼笑": "emote/911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+        "tv-呆": "emote/fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+        "tv-发怒": "emote/34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+        "tv-惊吓": "emote/0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+        "tv-呕吐": "emote/9f996894a39e282ccf5e66856af49483f81870f3.png",
+        "tv-思考": "emote/90cf159733e558137ed20aa04d09964436f618a1.png",
+        "tv-微笑": "emote/70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+        "tv-疑问": "emote/0793d949b18d7be716078349c202c15ff166f314.png",
+        "tv-大哭": "emote/23269aeb35f99daee28dda129676f6e9ea87934f.png",
+        "tv-鼓掌": "emote/1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png",
+        "tv-抠鼻": "emote/c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+        "tv-亲亲": "emote/a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+        "tv-调皮": "emote/b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+        "tv-笑哭": "emote/1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+        "tv-晕": "emote/5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+        "tv-点赞": "emote/f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+        "tv-害羞": "emote/a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+        "tv-睡着": "emote/8b196675b53af58264f383c50ad0945048290b33.png",
+        "tv-色": "emote/61822c7e9aae5da76475e7892534545336b23a6f.png",
+        "tv-吐血": "emote/09dd16a7aa59b77baa1155d47484409624470c77.png",
+        "tv-无奈": "emote/ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+        "tv-再见": "emote/180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+        "tv-流汗": "emote/cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+        "tv-偷笑": "emote/bb690d4107620f1c15cff29509db529a73aee261.png",
+        "tv-抓狂": "emote/fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+        "tv-黑人问号": "emote/45821a01f51bc867da9edbaa2e070410819a95b2.png",
+        "tv-困": "emote/241ee304e44c0af029adceb294399391e4737ef2.png",
+        "tv-打脸": "emote/56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+        "tv-闭嘴": "emote/c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+        "tv-鄙视": "emote/6e72339f346a692a495b123174b49e4e8e781303.png",
+        "tv-腼腆": "emote/89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+        "tv-馋": "emote/fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+        "tv-可爱": "emote/9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+        "tv-发财": "emote/34db290afd2963723c6eb3c4560667db7253a21a.png",
+        "tv-生病": "emote/8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+        "tv-流鼻血": "emote/c32d39db2737f89b904ca32700d140a9241b0767.png",
+        "tv-尴尬": "emote/7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+        "tv-大佬": "emote/093c1e2c490161aca397afc45573c877cdead616.png",
+        "tv-流泪": "emote/7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+        "tv-冷漠": "emote/b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+        "tv-皱眉": "emote/72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+        "tv-鬼脸": "emote/0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+        "tv-调侃": "emote/4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+        "tv-目瞪口呆": "emote/0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+        "珑歌Taki_问号": "garb/15856c32cb30a08f361259a59c71b0edee4427dc.png@65w.webp",
+        "珑歌Taki_打Call": "garb/67544581bd5f1390e6d95ac34c47867a9e9ebbbb.png@65w.webp",
+        "珑歌Taki_好耶": "garb/0176869034a23b2523b552687ec851f4567bb452.png@65w.webp",
+        "珑歌Taki_点赞": "garb/243dcd30319137f2715adbea4a4b106835e5c772.png@65w.webp",
+        "珑歌Taki_啊对对": "garb/b2576d904e7fa6cada13a35236611f0128fe7a3a.png@65w.webp",
+        "珑歌Taki_达咩": "garb/e39b5d13f7276c08caef3ea7b9585ab94de423da.png@65w.webp",
+        "珑歌Taki_辣眼睛": "garb/7db3c777e5f618f4458fd379db9b6cfcc5f96a59.png@65w.webp",
+        "珑歌Taki_晚安": "garb/cf46da11526aae66fa9b29532a32f262feaf806b.png@65w.webp",
+        "珑歌Taki_羞羞": "garb/05ae694d1ef5335673825357ec3bcaee81ca2fd2.png@65w.webp",
+        "珑歌Taki_叉你": "garb/7b6c47c462770fd91ca78982cf43a2025564fead.png@65w.webp",
+        "珑歌Taki_给你一拳": "garb/1e46191feebe3412e07919dd33f2daef01884c0d.png@65w.webp",
+        "珑歌Taki_委屈": "live/e4ce02a977edbd40a6df488f8ce317f1efb77e01.png@65w.webp",
+        "珑歌Taki_呃呃": "live/e5c634f3c00b440af5e0269d6cd23a54dcd78a83.png@65w.webp",
+        "珑歌Taki_爱你": "live/27e8e2c6679a2e268a2dc0032adec7e0f68abd89.png@65w.webp",
+        "珑歌Taki_惊": "live/30fedf447cef730d5acb87c945bf964d4e43b8be.png@65w.webp",
+        "珑歌Taki_干杯": "live/68db36d0645df15f4bb8e678d7d9f3a13840eaec.png@65w.webp",
+        "樱吹雪_Yuki_啵啵": "garb/a963d838a5f6197defbb6e0591377d4bfd37707a.png@65w.webp",
+        "樱吹雪_Yuki_打call": "garb/18f1f1c34738ebb3e2fc6a99bb2afe24192906ab.png@65w.webp",
+        "樱吹雪_Yuki_晚安": "garb/c2651d764536e9de174dfc3ab6c0b74ba38d637e.png@65w.webp",
+        "樱吹雪_Yuki_贴贴": "garb/dd5d3510ff3169348cfbd0308432cbf4d86f95da.png@65w.webp",
+        "樱吹雪_Yuki_好耶": "garb/8a65b68d1c318f5878f610f0e6be5ab55cfad755.png@65w.webp",
+        "樱吹雪_Yuki_嗷呜": "garb/fbb35575d9eeb199895056f6f2e678ea1568034f.png@65w.webp",
+        "樱吹雪_Yuki_问号": "garb/31b0cd34cdf7d76c9167c319c4a3aa8c084bfd56.png@65w.webp",
+        "樱吹雪_Yuki_哈哈": "garb/b64bccc47c050c201dd1a046c03ebff6bc73f94c.png@65w.webp",
+        "樱吹雪_Yuki_妈": "garb/be0e78b625d6b76300b917445c65998c052cb3ce.png@65w.webp",
+        "樱吹雪_Yuki_比心": "garb/c6acc382cf720529338d9426e1e7a45bd00ac6db.png@65w.webp",
+        "樱吹雪_Yuki_wink": "garb/c2500df5817faf7ca63af1cefe62c2526d7693aa.png@65w.webp",
+        "樱吹雪_Yuki_狐狸": "garb/26ae388cad7fb59d8797e7e0d77f198cdab46928.png@65w.webp",
+        "花丸晴琉_mua": "emote/25be806bfbbb5300afdbeeb64977c90cd1254bf1.png",
+        "花丸晴琉_wink": "emote/343d2d4bbf5919f25e37f971cf114d07232c5e73.png",
+        "花丸晴琉_啊咧": "emote/b34c5a1827762b981d689bbc51f134469ef06f23.png",
+        "花丸晴琉_大笑": "emote/1e28846f5cbd897dd2653142b8be9db42dfbdcb3.png",
+        "花丸晴琉_呆住": "emote/2b31495e0c538e095d44ff1a17834abe317a05d2.png",
+        "花丸晴琉_对不起": "emote/02d1e8ddfac938b20956f3d83350f442d398286a.png",
+        "花丸晴琉_好耶": "emote/29724d41c08ec63962e0974aa653ea8be0cf3947.png",
+        "花丸晴琉_挥手": "emote/2c0753c98d4e098a3c5f27ab658b1046b4032572.png",
+        "花丸晴琉_惊慌": "emote/e8307d3bd2ad84434e2f6de1eea727aaa138d987.png",
+        "花丸晴琉_泪目": "emote/02a805b640a1bd824d21c5e21cf2dbb19f03b6a1.png",
+        "花丸晴琉_丧": "emote/e45bd7cf880f36a439ef47c355c73065911992ac.png",
+        "花丸晴琉_生气": "emote/dfbfccd43db22e547f62563b73ae7a474b1163a2.png",
+        "花丸晴琉_晚安": "emote/40b60d5c04c8e7037089c408e68a73d51fd3dee7.png",
+        "花丸晴琉_无语": "emote/ac4cf2356a708eb11199f266160cb76be129ead9.png",
+        "花丸晴琉_喜欢": "emote/71a508d3183fb59f1ddf3a42af59fa7495f2c18c.png",
+        "花丸晴琉_邪恶": "emote/0a8175363b7c8270836323a627b1fe437938399c.png",
+        "花丸晴琉_疑惑": "emote/4aef9a2a5c9800faf2501014e1fba1fbf180b8f0.png",
+        "花丸晴琉_嘤嘤": "emote/b5584ef24436d42364e7234a9cd8734e00f872f6.png",
+        "花丸晴琉_赞": "emote/adf49b5e19731a8176b774f55b5472b9234ee555.png",
+        "花丸晴琉_早安": "emote/c5e20c947c10bb931413b8e4bc80b2bd3b09971e.png",
+        "-菫時-打Call": "live/e8073adeb52036d0d563c848c4b55b8449bc4b85.png@65w.webp",
+        "-菫時-分号分号": "live/f2a7a0916015a741a192ae85ee593a39c6dd04a7.png@65w.webp",
+        "-菫時-哎呀": "live/0a691aec40c738918014b27acfefa3b295b8a458.png@65w.webp",
+        "-菫時-地蕾": "live/cdb1f3adeee987c1fe5303ca90443932edb23d30.png@65w.webp",
+        "-菫時-困困": "live/c9450e570d7abcf5a920b65e18b9624b75c9d4fb.png@65w.webp",
+        "-菫時-生气": "live/021761abdfe8dc417e5267b74877bebd43dcfd58.png@65w.webp",
+        "-菫時-亲亲": "live/e0ae55eb80c6b7c01eeb042a26a3bd2938ed679a.png@65w.webp",
+        "-菫時-急了": "live/bea985bcf662dc4d85c9f78633c57398b7c3d223.png@65w.webp",
+        "-菫時-问号": "live/5b29c4c15e6b97da2df564899f84906fc800590b.png@65w.webp",
+        "-菫時-拜比": "live/a9fa62db7b7233dac30d3abd851b992710bc1649.png@65w.webp",
+        "纱依shayi_打call": "garb/4d97de8b2d6bb9cb19621af93550b3560e85277f.png@65w.webp",
+        "纱依shayi_喜欢": "garb/d345b8ff2f2dcd5a4833aa613fc7849bfb25f5e2.png@65w.webp",
+        "纱依shayi_晚安": "garb/f34ec93c5aa7fdb7cc919544df401474bed1a3c1.png@65w.webp",
+        "纱依shayi_kira": "garb/f784e4dc7d40f3d3a7ddb6977c241ff6d6a5db26.png@65w.webp",
+        "纱依shayi_贴贴": "garb/003679cdb44d37576b700f8ed0f4e85bc6ffc8a7.png@65w.webp",
+        "纱依shayi_结婚": "garb/b1a9e35f04b81476d1d93fdc3979fe194e873915.png@65w.webp",
+        "纱依shayi_甜蜜的": "garb/415a5fec5062816d6c316a718cf7f739dc12dcef.png@65w.webp",
+        "纱依shayi_摸鱼": "garb/b7f7d09fec93dd889b9e12286989dbfa41770689.png@65w.webp",
+        "纱依shayi_好厉害": "garb/7dceff9c32cb6a7a617c910cc840eaeaa89f1e60.png@65w.webp",
+        "纱依shayi_开心": "garb/360612ea05619a9517f9735e10f6a8e592eb6b35.png@65w.webp",
+        "纱依shayi_疑问": "garb/f591282a33cb0eb16e6ac679792ea90ce42e6d67.png@65w.webp",
+        "纱依shayi_哼": "garb/538c428f2d5bcaeefa60c81bb96e9a82475a59d2.png@65w.webp",
+        "纱依shayi_心碎": "garb/59697798dd454428c773ae989745af62042025ee.png@65w.webp",
+        "纱依shayi_趴": "garb/5261ebff0fce07a4bde695f56b1e90e03b2a22b9.png@65w.webp",
+        "纱依shayi_蹭蹭": "garb/8feb22fa3a58e7a26c31792be79fab8c015fa7f6.png@65w.webp",
+        "纱依shayi_喵": "garb/9a05fc8a87b3f5f05a3c01eec984aaec0f6727e1.png@65w.webp",
+        "冥冥meichan_太爱钱了": "garb/item/e3d018abc7dfcaba7a95b512d313591ec015e984.png",
+        "冥冥meichan_不可以": "garb/item/5cfc0218594fbe8b2946e67e03fc4ea5c4a19d36.png",
+        "冥冥meichan_优雅红茶": "garb/item/8698f417982fd8d5abadf5207407532bb1b5b44f.png",
+        "冥冥meichan_哭哭": "garb/item/32817fbdd4226afe71e1aa3d8f0a91c62729567d.png",
+        "冥冥meichan_不想输": "garb/item/04fdc12859be022fba9992c76f89b0956d19262d.png",
+        "冥冥meichan_开车": "garb/item/3414c37849153f2ebd0fe6c8d7298bbc711c4ed9.png",
+        "冥冥meichan_大钻戒": "garb/item/fa42d4a68660e6c3d6447cdf0fe7d95cc4c7cdae.png",
+        "冥冥meichan_带走": "garb/item/9862fdd11fb28e2456a5cd3f864f87a46f20604f.png",
+        "冥冥meichan_我好了": "garb/item/8855c3fcfc538ee1d96e9ec25f758a0b5602cf66.png",
+        "冥冥meichan_嗨呀": "garb/item/caebcb782f3a8742548786cd52cb4d80d8353e03.png",
+        "冥冥meichan_好喜欢哦": "garb/item/3cc66caaf1a62e1778b18a458e58b38df99cfa0f.png",
+        "冥冥meichan_给你一拳": "garb/item/9b9e4aa83cedd7016bf2f2a83bbe838b648f01ff.png",
+        "冥冥meichan_理发店": "garb/item/6026b23be561844d08c5bc4b2d66316c3eeebb15.png",
+        "冥冥meichan_典": "garb/item/172ea06085c8d242f3105d0d04826217bbe4fbeb.png",
+        "冥冥meichan_信积拉奶": "garb/item/57902ef1f2392e1b8ca4a92ee9c844c18b633009.png",
+        "冥冥meichan_饭饭": "garb/item/79a5c3bda7449e06f032c095144d8218b9acb335.png",
+        "冥冥meichan_盯": "garb/item/9c9419db0b80a40ab36eed395251e7efe6421b69.png",
+        "冥冥meichan_流汗": "garb/item/014bd9e4519567f7f711c0ef8138ffcd022750cd.png",
+        "冥冥meichan_晚安": "garb/item/4ed6aba3c606484511e550e9d8070a74c004ba8e.png",
+        "冥冥meichan_mua": "garb/item/21b927b32c186a8c4dd12ff48fcb19461d8dcd0e.png",
+        "冥冥meichan_关注冥冥": "garb/item/55cfde3719b757aa211e5f1d136cd8c8a1e0dc2f.png",
+        "冥冥meichan_你是懂的": "garb/item/724e8fe83e63a0814995dc8fd7a5d874c0568028.png",
+        "冥冥meichan_你懂个P": "garb/item/ffa551eaec65b9b3e33eb388fb91f9c02e4ff67a.png",
+        "冥冥meichan_钱不够啊": "garb/item/d153516692abb248a2429319ff7eb8cff4b2d463.png",
+        "冥冥meichan_寄": "garb/item/4de329afec2e0ebe3c4d0db0da710721bed35ff3.png",
+        // ... 更多表情
+    }
+    });
+</script>
+<script>
+    // 点击回复直接评论,官方版本点击回复时都是跳回到页面上方的评论框进行回复，评论框是固定不动的
+    // 参考https://immmmm.com/valine-diy,用到jQuery
+    $(document).ready(function(){
+        //$('.vemoji-btn').text('😀');
+        $("#vcomments").on('click', 'span.vat',function(){
+            $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+            $('textarea#veditor').focus();
+        })
+    })
+</script>
+<script type="text/javascript">
+    //添加一言
+   fetch('https://v1.hitokoto.cn/?c=a')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("veditor").setAttribute("placeholder",data.hitokoto+"__"+data.from);
+    })
+    .catch(console.error)
+</script>
+
+            
+
+
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<div id="aplayer" class="aplayer" data-autoplay="true"  data-id="56868" data-server="netease" data-type="album" data-fixed="true" data-listfolded="true" data-order="random" data-theme="#F58EA8"></div>
+<script src="https://unpkg.com/meting@1.2.0/dist/Meting.min.js"></script>
+
+
+<a id="scrollUp" href="#" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://weibo.com/6392902197"title="weibo"><i class="iconfont icon-weibo"></i></a><a href="https://github.com/xiaxi626"title="github"><i class="iconfont icon-github"></i></a><a href="aijiang1220966821@163.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://xiaxi626.github.io/atom.xml"title="rss"><i class="iconfont icon-rss"></i></a><a href="https://www.zhihu.com/people/xiao-yan-shi-36"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © <a href="https://xiaxi626.github.io" style="margin:0;">飞爱碧玉的个人博客</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_pv"></span></strong></span>
+<span style="display: inline;margin-right:15px;">👤<strong><span id="busuanzi_value_site_uv"></span></strong></span>
+<span>📚<strong>62</strong> posts</span>
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+<script>
+//复制内容自动添加版权信息 
+ var Sys = {}; 
+    var ua = navigator.userAgent.toLowerCase(); 
+    if( window.ActiveXObject ) 
+    { 
+        document.body.oncopy=function() 
+        { 
+            event.returnValue = false; 
+            var t=document.selection.createRange().text; 
+            var s="\r\n原文出自 [飞爱碧玉的个人博客]  转载请保留原文链接: "+location.href; 
+            clipboardData.setData('Text',t+'\r\n'+s); 
+        } 
+    } 
+    else 
+    { 
+        function addLink() 
+        { 
+            var body_element = document.getElementsByTagName('body')[0]; 
+            var selection; 
+            selection = window.getSelection(); 
+            var pagelink = " 原文出自 [飞爱碧玉的个人博客]  转载请保留原文链接: "+document.location.href; 
+ 
+            var copytext = selection + pagelink; 
+            var newdiv = document.createElement('div'); 
+            newdiv.style.position='absolute'; 
+            newdiv.style.left='-99999px'; 
+            body_element.appendChild(newdiv); 
+            newdiv.innerHTML = copytext; 
+            selection.selectAllChildren(newdiv); 
+            window.setTimeout 
+            ( 
+                function() 
+                { 
+                    body_element.removeChild(newdiv); 
+                },0 
+            ); 
+        } 
+        document.oncopy = addLink; 
+    } 
+</script>
+
+<script type="text/javascript" async src="https://xiaxi626.github.io/media/js/prism.js"></script>
+</body>
+</html>

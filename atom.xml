@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://xiaxi626.github.io</id>
+    <title>飞爱碧玉的个人博客</title>
+    <updated>2023-08-26T11:58:29.752Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://xiaxi626.github.io"/>
+    <link rel="self" href="https://xiaxi626.github.io/atom.xml"/>
+    <logo>https://xiaxi626.github.io/images/avatar.png</logo>
+    <icon>https://xiaxi626.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2023, 飞爱碧玉的个人博客</rights>
+    <entry>
+        <title type="html"><![CDATA[GPG入门教程]]></title>
+        <id>https://xiaxi626.github.io/post/gpg-ru-men-jiao-cheng/</id>
+        <link href="https://xiaxi626.github.io/post/gpg-ru-men-jiao-cheng/">
+        </link>
+        <updated>2023-08-24T12:20:45.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[真白萌论坛推荐阅读]]></title>
+        <id>https://xiaxi626.github.io/post/zhen-bai-meng-lun-tan-tui-jian-yue-du/</id>
+        <link href="https://xiaxi626.github.io/post/zhen-bai-meng-lun-tan-tui-jian-yue-du/">
+        </link>
+        <updated>2023-08-08T13:10:04.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Bitcron Pro Plus主题修改（自用）]]></title>
+        <id>https://xiaxi626.github.io/post/bitcron-pro-plus-zhu-ti-xiu-gai-zi-yong/</id>
+        <link href="https://xiaxi626.github.io/post/bitcron-pro-plus-zhu-ti-xiu-gai-zi-yong/">
+        </link>
+        <updated>2023-08-03T11:16:12.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Debian系统安装使用教程]]></title>
+        <id>https://xiaxi626.github.io/post/debian-xi-tong-an-zhuang-shi-yong-jiao-cheng/</id>
+        <link href="https://xiaxi626.github.io/post/debian-xi-tong-an-zhuang-shi-yong-jiao-cheng/">
+        </link>
+        <updated>2023-07-26T08:45:31.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[8个高质量的日语字幕资源(以及如何用它们学习日语)]]></title>
+        <id>https://xiaxi626.github.io/post/8-high-quality-resources-for-japanese-subtitles-and-how-to-learn-japanese-with-them/</id>
+        <link href="https://xiaxi626.github.io/post/8-high-quality-resources-for-japanese-subtitles-and-how-to-learn-japanese-with-them/">
+        </link>
+        <updated>2023-07-06T01:25:06.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python处理PDF文件自动化]]></title>
+        <id>https://xiaxi626.github.io/post/python-chu-li-pdf-wen-jian-zi-dong-hua/</id>
+        <link href="https://xiaxi626.github.io/post/python-chu-li-pdf-wen-jian-zi-dong-hua/">
+        </link>
+        <updated>2023-07-04T03:05:07.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[在Windows服务器上安装Oracle数据库教程]]></title>
+        <id>https://xiaxi626.github.io/post/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng/</id>
+        <link href="https://xiaxi626.github.io/post/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng/">
+        </link>
+        <updated>2023-06-05T14:14:30.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用Sublime Text 4写Markdown]]></title>
+        <id>https://xiaxi626.github.io/post/shi-yong-sublime-text-4-xie-markdown/</id>
+        <link href="https://xiaxi626.github.io/post/shi-yong-sublime-text-4-xie-markdown/">
+        </link>
+        <updated>2023-04-29T00:09:22.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Sublime Text4安装及插件的安装卸载]]></title>
+        <id>https://xiaxi626.github.io/post/sublime-text3-an-zhuang-ji-cha-jian-de-an-zhuang-xie-zai/</id>
+        <link href="https://xiaxi626.github.io/post/sublime-text3-an-zhuang-ji-cha-jian-de-an-zhuang-xie-zai/">
+        </link>
+        <updated>2023-04-25T08:12:14.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ vim 的安装及配置]]></title>
+        <id>https://xiaxi626.github.io/post/vim-de-an-zhuang-ji-pei-zhi/</id>
+        <link href="https://xiaxi626.github.io/post/vim-de-an-zhuang-ji-pei-zhi/">
+        </link>
+        <updated>2023-04-19T03:13:17.000Z</updated>
+    </entry>
+</feed>

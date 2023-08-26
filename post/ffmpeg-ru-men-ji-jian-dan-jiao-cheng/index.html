@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico" type="image/x-icon" />
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<meta name="apple-mobile-web-app-capable"content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style"content="black"/>
+<meta name="format-detection"content="telephone=no"/>
+<meta name="renderer"content="webkit">
+<meta name="description"content="">
+<meta charset="UTF-8">
+<title>FFmpeg入门级简单教程 | 飞爱碧玉的个人博客</title>
+
+<link href="https://xiaxi626.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://xiaxi626.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+
+<script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+
+<!-- DEMO CSS -->
+<style type="text/css">
+	
+</style>
+
+<link rel="canonical" href="https://xiaxi626.github.io/post/ffmpeg-ru-men-ji-jian-dan-jiao-cheng/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://xiaxi626.github.io"><img alt="logo" style="display:inline-block;" src="https://xiaxi626.github.io/images/avatar.png"/></a><h1 title="飞爱碧玉的个人博客" class="weaklink"><a  href="/">飞爱碧玉的个人博客</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1693051104581" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="搜索..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>FFmpeg入门级简单教程</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-11-01</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://xiaxi626.github.io/tag/JcIpV52xSP/" class="tag">Technology</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">10542字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">43 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<img class="featureImg" alt="featureimg" src="https://xiaxi626.github.io/post-images/ffmpeg-ru-men-ji-jian-dan-jiao-cheng.jpeg" referrerpolicy="no-referrer">
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+
+<div class="round-shape-one"></div>
+
+<h2 id="0概述">0.概述</h2>
+<p>FFmpeg的名称来自MPEG视频编码标准，前面的&quot;FF&quot;代表&quot;Fast<br>
+Forward&quot;，FFmpeg是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。</p>
+<p>FFmpeg<br>
+是领先的多媒体框架，能够解码、编码、转码、混合、解密、流媒体、过滤和播放人类和机器创造的几乎所有东西。它支持最晦涩的古老格式，直到最尖端的格式。无论它们是由某个标准委员会、社区还是公司设计的。它还具有高度的便携性。<br>
+<br>
+FFmpeg 可以在 Linux、Mac OS X、Microsoft Windows、BSDs、Solaris<br>
+等各种构建环境、机器架构和配置下编译、运行，并通过测试基础设施 FATE。<br>
+<br>
+它包含了<br>
+libavcodec、libavutil、libavformat、libavfilter、libavdevice、libswscale<br>
+和 libswresample，可以被应用程序使用。还有 ffmpeg、ffplay 和<br>
+ffprobe，可以被终端用户用于转码和播放。</p>
+<p>其中：</p>
+<ol>
+<li>
+<p>ffmpeg：是一个命令行工具，用来对视频文件转换格式，也支持对电视卡实时编码</p>
+</li>
+<li>
+<p>libavformat：用于各种音视频封装格式的生成和解析，包括获取解码所需信息以生成解码上下文结构和读取音视频帧等功能，包含demuxers和muxer库；</p>
+</li>
+<li>
+<p>libavcodec：用于各种类型声音/图像编解码；</p>
+</li>
+<li>
+<p>libavfilter：滤镜库</p>
+</li>
+<li>
+<p>libavutil：包含一些公共的工具函数；</p>
+</li>
+<li>
+<p>libswscale：用于视频场景比例缩放、色彩映射转换；</p>
+</li>
+<li>
+<p>libpostproc：用于后期效果处理；</p>
+</li>
+<li>
+<p>ffsever：是一个HTTP多媒体实时广播流服务器，支持时光平移；（注：本文不介绍）</p>
+</li>
+<li>
+<p>ffplay：是一个简单的播放器，使用ffmpeg<br>
+库解析和解码，通过SDL显示；(一般编译完没有带ffplay，新版本版本依赖于sdl-2.0,需要安装sdl-2.0才能生成ffplay)</p>
+</li>
+</ol>
+<h3 id="01术语">0.1.术语</h3>
+<p>容器(Container)容器就是一种文件格式，比如flv，mkv等。包含下面5种流以及文件头信息。</p>
+<p>流(Stream)是一种视频数据信息的传输方式，5种流：音频(a)、附件(t)、数据(d)、字幕(s)和视频(v)。</p>
+<p>帧(Frame)帧代表一幅静止的图像，分为I帧，P帧，B帧。</p>
+<p>编解码器(Codec)是对视频进行压缩或者解压缩，CODEC =Code （编码）<br>
++DECode（解码）</p>
+<p>复用/解复用(mux/demux)把不同的流按照某种容器的规则放入容器，这种行为叫做复用（mux）把不同的流从某种容器中解析出来，这种行为叫做解复用(demux)；</p>
+<p><strong>视频转换流程解析</strong></p>
+<p>代码转换过程中，ffmpeg在libavformat库中调用demuxers来读取输入，并从数据包中获取编码数据。如果有更多的输入，ffmpeg可以通过跟踪任何活动输入流的最低时间戳来保持它们的同步。然后解码器从编码的数据包中生成未压缩的帧，在可选的过滤后，帧被发送到编码器。编码器产生新的编码包，它被发送到muxer并写入到输出。</p>
+<p><strong>流拷贝</strong></p>
+<p>流拷贝是对指定数据流仅仅进行复制，这种情况下不会进行编码解码，仅仅是分离和混合数据包，所以特别快，也不会造成质量损失，这也导致这种模式不适用复杂的滤镜处理等，这种模式常用于文件包格式或者修改部分元数据信息。</p>
+<p><strong>播放原理</strong></p>
+<p>封装格式作用：视频码流和音频码流按照一定的格式储存在一个文件汇总</p>
+<p>视频编码数据作用：将视频像素数据（RGB，YUV等）压缩成为视频码流，从而降低视频的数据量</p>
+<p>音频编码数据作用：将音频采样数据（PCM等）压缩成为音频码流，从而降低音频的数据量</p>
+<p>视频像素数据作用：保存了屏幕上每一个像素点的像素值格式：常见的像素数据格式有RGB24,<br>
+RGB32, YUV420P,YUV422P,YUV444P等。</p>
+<p>压缩编码中一般使用的是YUV格式的像素数据,最为常见的格式为YUV420P。特点：视频像素数据体积很大</p>
+<p>音频采样数据作用：保存了音频中每个采样点的值。特点：音频采样数据体积很大</p>
+<h3 id="02码流-kbs">0.2.码流 kb/s</h3>
+<p>码流(Data<br>
+Rate)是指视频图像经过编码压缩后在单位时间内的数据流量，也叫码率，一般我们用的单位是kb/s或者Mb/s。是视频编码中画面质量控制中最重要的部分。同样分辨率下，压缩比越小，视频图像的码率就越大，画面质量就越高，文件体积也越大。</p>
+<p>其计算公式是文件体积=时间X码率/8。</p>
+<h3 id="03采样率hz">0.3.采样率Hz</h3>
+<p>采样率（也称为采样速度或者采样频率）定义了每秒从连续信号中提取并组成离散信号的采样个数，它用赫兹（Hz）来表示。采样率是指将模拟信号转换成数字信号时的采样频率，也就是单位时间内采样多少点。一个采样点数据有多少个比特。</p>
+<h3 id="04比特率bps">0.4.比特率bps</h3>
+<p>比特率是指每秒传送的比特(bit)数。单位为bps(BitPer<br>
+Second)，比特率越高，传送的数据越大。比特率表示经过编码（压缩）后的音、视频数据每秒钟需要用多少个比特来表示，而比特就是二进制里面最小的单位，要么是0，要么是1。比特率与音、视频压缩的关系，简单的说就是比特率越高，音、视频的质量就越好，但编码后的文件就越大；如果比特率越少则情况刚好相反。比特率是指将数字声音、视频由模拟格式转化成数字格式的采样率，采样率越高，还原后的音质、画质就越好。</p>
+<p>比特率是决定整体音频或视频质量的参数。<br>
+它规定了每时间单位处理的位数，在Ffmpeg中，位速率以每秒位数表示。比特率决定了存储1秒编码流的位数</p>
+<p>比特率 =采样率 x 采用位数 x声道数.</p>
+<p>VBR（Variable Bitrate）动态比特率<br>
+也就是没有固定的比特率，压缩软件在压缩时根据音频数据即时确定使用什么比特率，这是以质量为前提兼顾文件大小的方式，推荐编码模式；</p>
+<p>ABR（Average<br>
+Bitrate）平均比特率是VBR的一种插值参数。LAME针对CBR不佳的文件体积比和VBR生成文件大小不定的特点独创了这种编码模式。ABR在指定的文件大小内，以每50帧（30帧约1秒）为一段，低频和不敏感频率使用相对低的流量，高频和大动态表现时使用高流量，可以做为VBR和CBR的一种折衷选择。</p>
+<p>CBR（Constant Bitrate），常数比特率<br>
+指文件从头到尾都是一种位速率。相对于VBR和ABR来讲，它压缩出来的文件体积很大，而且音质相对于VBR和ABR不会有明显的提高。</p>
+<h3 id="05帧速率">0.5.帧速率</h3>
+<p>帧速率是编码成视频文件的每秒帧数（FPS或fps），人眼需要至少约15<br>
+fps来观看连续运动。<br>
+帧率也称为帧频，其单位是赫兹（Hz），LCD显示器通常具有60<br>
+Hz的频率。有两种帧速率 --<br>
+隔行（在FPS编号后表示为i）和逐行（在FPS编号后表示为p）。越高的帧速率可以得到更流畅、更逼真的动画。每秒钟帧数(FPS)越多，所显示的动作就会越流畅。</p>
+<h3 id="06i-p-b-帧">0.6.I、P、B 帧</h3>
+<p>在视频编码序列中，主要有三种编码帧：I帧、P帧、B帧，如下图所示。</p>
+<ul>
+<li>
+<p>I帧即Intra-coded<br>
+picture（帧内编码图像帧），不参考其他图像帧，只利用本帧的信息进行编码</p>
+</li>
+<li>
+<p>P帧即Predictive-codedPicture（预测编码图像帧），利用之前的I帧或P帧，采用运动预测的方式进行帧间预测编码</p>
+</li>
+<li>
+<p>B帧即Bidirectionallypredicted<br>
+picture（双向预测编码图像帧），提供最高的压缩比，它既需要之前的图像帧(I帧或P帧)，也需要后来的图像帧(P帧)，采用运动预测的方式进行帧间双向预测编码</p>
+</li>
+</ul>
+<p>三种帧的说明</p>
+<ol>
+<li>I帧</li>
+</ol>
+<p>I帧:帧内编码帧<br>
+，I帧表示关键帧，你可以理解为这一帧画面的完整保留；解码时只需要本帧数据就可以完成（因为包含完整画面）</p>
+<p>I帧特点:</p>
+<p>1) 它是一个全帧压缩编码帧。它将全帧图像信息进行JPEG压缩编码及传输;</p>
+<p>2) 解码时仅用I帧的数据就可重构完整图像;</p>
+<p>3) I帧描述了图像背景和运动主体的详情;</p>
+<p>4) I帧不需要参考其他画面而生成;</p>
+<p>5) I帧是P帧和B帧的参考帧(其质量直接影响到同组中以后各帧的质量);</p>
+<p>6) I帧是帧组GOP的基础帧(第一帧),在一组中只有一个I帧;</p>
+<p>7) I帧不需要考虑运动矢量;</p>
+<p>8) I帧所占数据的信息量比较大。</p>
+<ol start="2">
+<li>P帧</li>
+</ol>
+<p>P帧:前向预测编码帧。P帧表示的是这一帧跟之前的一个关键帧（或P帧）的差别，解码时需要用之前缓存的画面叠加上本帧定义的差别，生成最终画面。（也就是差别帧，P帧没有完整画面数据，只有与前一帧的画面差别的数据）</p>
+<p>P帧的预测与重构：P帧是以I帧为参考帧,在I帧中找出P帧&quot;某点&quot;的预测值和运动矢量,取预测差值和运动矢量一起传送。在接收端根据运动矢量从I帧中找出P帧&quot;某点&quot;的预测值并与差值相加以得到P帧&quot;某点&quot;样值,从而可得到完整的P帧。</p>
+<p>P帧特点:</p>
+<p>1) P帧是I帧后面相隔1~2帧的编码帧;</p>
+<p>2) P帧采用运动补偿的方法传送它与前面的I或P帧的差值及运动矢量(预测误差);</p>
+<p>3) 解码时必须将I帧中的预测值与预测误差求和后才能重构完整的P帧图像;</p>
+<p>4) P帧属于前向预测的帧间编码。它只参考前面最靠近它的I帧或P帧;</p>
+<p>5) P帧可以是其后面P帧的参考帧,也可以是其前后的B帧的参考帧;</p>
+<p>6) 由于P帧是参考帧,它可能造成解码错误的扩散;</p>
+<p>7) 由于是差值传送,P帧的压缩比较高。</p>
+<ol start="3">
+<li>B帧</li>
+</ol>
+<p>B帧:双向预测内插编码帧。B帧是双向差别帧，也就是B帧记录的是本帧与前后帧的差别（具体比较复杂，有4种情况，但我这样说简单些），换言之，要解码B帧，不仅要取得之前的缓存画面，还要解码之后的画面，通过前后画面的与本帧数据的叠加取得最终的画面。B帧压缩率高，但是解码时CPU会比较累。</p>
+<p>B帧的预测与重构：B帧以前面的I或P帧和后面的P帧为参考帧,&quot;找出&quot;B帧&quot;某点&quot;的预测值和两个运动矢量,并取预测差值和运动矢量传送。接收端根据运动矢量在两个参考帧中&quot;找出(算出)&quot;预测值并与差值求和,得到B帧&quot;某点&quot;样值,从而可得到完整的B帧。</p>
+<p>B帧特点</p>
+<p>1）B帧是由前面的I或P帧和后面的P帧来进行预测的;</p>
+<p>2）B帧传送的是它与前面的I或P帧和后面的P帧之间的预测误差及运动矢量;</p>
+<p>3）B帧是双向预测编码帧;</p>
+<p>4）B帧压缩比最高,因为它只反映丙参考帧间运动主体的变化情况,预测比较准确;</p>
+<p>5）B帧不是参考帧,不会造成解码错误的扩散。</p>
+<p>I 帧、P 帧、B 帧的区别在于：</p>
+<p>I 帧（Intracoded frames）：I<br>
+帧图像采用帧内编码方式，即只利用了单帧图像内的空间相关性，而没有利用时间相关性。I<br>
+帧使用帧内压缩，不使用运动补偿，由于 I<br>
+帧不依赖其它帧，所以是随机存取的入点，同时是解码的基准帧。I<br>
+帧主要用于接收机的初始化和信道的获取，以及节目的切换和插入，I<br>
+帧图像的压缩倍数相对较低。I<br>
+帧图像是周期性出现在图像序列中的，出现频率可由编码器选择。</p>
+<p>P 帧（Predictedframes）：P 帧和 B<br>
+帧图像采用帧间编码方式，即同时利用了空间和时间上的相关性。P<br>
+帧图像只采用前向时间预测，可以提高压缩效率和图像质量。P<br>
+帧图像中可以包含帧内编码的部分，即 P<br>
+帧中的每一个宏块可以是前向预测，也可以是帧内编码。</p>
+<p>B 帧（Bi-directionalpredicted frames）：B<br>
+帧图像采用双向时间预测，可以大大提高压缩倍数。值得注意的是，由于 B<br>
+帧图像采用了未来帧作为参考，因此 MPEG-2<br>
+编码码流中图像帧的传输顺序和显示顺序是不同的。</p>
+<p>也就是说，一个 I 帧可以不依赖其他帧就解码出一幅完整的图像，而 P 帧、B<br>
+帧不行。P 帧需要依赖视频流中排在它前面的帧才能解码出图像。B<br>
+帧则需要依赖视频流中排在它前面或后面的帧才能解码出图像。</p>
+<p>在H264的概念中有一个帧称为IDR帧，那么IDR帧与I帧的区别是什么呢？</p>
+<p>首先来看一下IDR的英文全称instantaneous decoding refresh<br>
+picture，因为H264采用了多帧预测，所以I帧之后的P帧有可能会参考I帧之前的帧，这就使得在随机访问的时候不能以找到I帧作为参考条件，因为即使找到I帧，I帧之后的帧还是有可能解析不出来，而IDR帧就是一种特殊的I帧，即这一帧之后的所有参考帧只会参考到这个IDR帧，而不会再参考前面的帧。在解码器中，一旦收到一个IDR帧，就会立即清理参考帧缓冲区，并将IDR帧作为被参考的帧。</p>
+<h3 id="07gop">0.7.GOP</h3>
+<p>在视频编码序列中，GOP即Group of<br>
+picture（图像组），指两个I帧之间的距离，Reference（参考周期）指两个P帧之间的距离。一个I帧所占用的字节数大于一个P帧，一个P帧所占用的字节数大于一个B帧。所以在码率不变的前提下，GOP值越大，P、B帧的数量会越多，平均每个I、P、B帧所占用的字节数就越多，也就更容易获取较好的图像质量；Reference越大，B帧的数量越多，同理也更容易获得较好的图像质量。需要说明的是，通过提高GOP值来提高图像质量是有限度的，在遇到场景切换的情况时，H.264编码器会自动强制插入一个I帧，此时实际的GOP值被缩短了。另一方面，在一个GOP中，P、B帧是由I帧预测得到的，当I帧的图像质量比较差时，会影响到一个GOP中后续P、B帧的图像质量，直到下一个GOP开始才有可能得以恢复，所以GOP值也不宜设置过大。同时，由于P、B帧的复杂度大于I帧，所以过多的P、B帧会影响编码效率，使编码效率降低。另外，过长的GOP还会影响Seek操作的响应速度，由于P、B帧是由前面的I或P帧预测得到的，所以Seek操作需要直接定位，解码某一个P或B帧时，需要先解码得到本GOP内的I帧及之前的N个预测帧才可以，GOP值越长，需要解码的预测帧就越多，seek响应的时间也越长。</p>
+<h3 id="08dts-pts-的概念">0.8.DTS、PTS 的概念</h3>
+<p>DTS（Decoding Time<br>
+Stamp）：即解码时间戳，这个时间戳的意义在于告诉播放器该在什么时候解码这一帧的数据。</p>
+<p>PTS（Presentation Time<br>
+Stamp）：即显示时间戳，这个时间戳用来告诉播放器该在什么时候显示这一帧的数据。</p>
+<p>需要注意的是：虽然 DTS、PTS<br>
+是用于指导播放端的行为，但它们是在编码的时候由编码器生成的。</p>
+<p>当视频流中没有 B 帧时，通常 DTS 和 PTS 的顺序是一致的。但如果有 B<br>
+帧时，就回到了我们前面说的问题：解码顺序和播放顺序不一致了。</p>
+<p>比如一个视频中，帧的显示顺序是：I B B P，现在我们需要在解码 B 帧时知道 P<br>
+帧中信息，因此这几帧在视频流中的顺序可能是：I P B<br>
+B，这时候就体现出每帧都有 DTS 和 PTS 的作用了。DTS<br>
+告诉我们该按什么顺序解码这几帧图像，PTS<br>
+告诉我们该按什么顺序显示这几帧图像。顺序大概如下：</p>
+<p>PTS: 1 4 2 3</p>
+<p>DTS: 1 2 3 4</p>
+<p>Stream: I P B B</p>
+<h3 id="09音视频的同步">0.9.音视频的同步</h3>
+<p>上面说了视频帧、DTS、PTS<br>
+相关的概念。我们都知道在一个媒体流中，除了视频以外，通常还包括音频。音频的播放，也有<br>
+DTS、PTS 的概念，但是音频没有类似视频中 B<br>
+帧，不需要双向预测，所以音频帧的 DTS、PTS 顺序是一致的。</p>
+<p>音频视频混合在一起播放，就呈现了我们常常看到的广义的视频。在音视频一起播放的时候，我们通常需要面临一个问题：怎么去同步它们，以免出现画不对声的情况。</p>
+<p>要实现音视频同步，通常需要选择一个参考时钟，参考时钟上的时间是线性递增的，编码音视频流时依据参考时钟上的时间给每帧数据打上时间戳。在播放时，读取数据帧上的时间戳，同时参考当前参考时钟上的时间来安排播放。这里的说的时间戳就是我们前面说的<br>
+PTS。实践中，我们可以选择：同步视频到音频、同步音频到视频、同步音频和视频到外部时钟。</p>
+<p>PAR ------ Pixel Aspect Ratio<br>
+像素横纵比。表示每个像素的宽度与长度的比值。可以认为每个像素不是正方形的。</p>
+<p>DAR ------ Display Aspect Ratio<br>
+显示横纵比。最终显示的图像在长度单位上的横纵比。</p>
+<p>SAR ------ Sample Aspect Ratio<br>
+采样横纵比。表示横向的像素点数和纵向的像素点数的比值。</p>
+<h3 id="010ffmpeg滤镜filters-filterchainsfiltergraphs">0.10.Ffmpeg滤镜（Filters, filterchains，filtergraphs）</h3>
+<p>滤镜（Filters）：在编码前，对原音视频使用libavfilter库中的滤镜进行处理，Ffmpeg内置了许多多媒体过滤器，可以通过多种方式组合它们。</p>
+<p>分为两种滤镜：简单滤镜和复合滤镜</p>
+<p>简单滤镜：</p>
+<p>简单滤镜就是只有1个输入和输出的滤镜，使用-vf和-af分别对应视频和音频</p>
+<p>复合滤镜：</p>
+<p>复合滤镜就是那些不能简单的描述为一个线性处理过程应用到一个流的情况，例如包含多个输入输出。</p>
+<p>复合滤镜使用-filter_complex进行设置</p>
+<p>滤镜的使用一般是 滤镜名=由于冒号(隔开各个参数</p>
+<p>滤镜链图（filtergraphs）是连接滤镜的有向图，它可以包含循环动作，也可以在多个滤镜间形成链路，每个链接都有一个连接到滤镜的输入和一个连接到滤镜的输出</p>
+<p>一个滤镜链（filterchains）包含序列链接起来的滤镜，这个序列由&quot;,&quot;分隔各个滤镜</p>
+<p>一个滤镜链图（filtergraphs）包含序列滤镜链，这个序列由&quot;；&quot;分隔各个滤镜链</p>
+<p>同一路的滤镜间用逗号（，）进行分割，不同路的滤镜间用分号进行分割（；）</p>
+<p>https://blog.csdn.net/sinat_14826983/article/details/83043906</p>
+<h2 id="1安装">1.安装</h2>
+<p>首先登陆官网</p>
+<p><img src="https://xiaxi626.github.io/post-images/media/image1.jpeg" alt="" loading="lazy">{width=&quot;4.153543307086614in&quot;<br>
+height=&quot;2.578740157480315in&quot;}</p>
+<p>选择中间的Window版本，然后看到有两个， 先讲讲第一个链接。</p>
+<p>选择Windows builds from gyan.dev<br>
+跳转到下载页面如下图：</p>
+<p><img src="https://xiaxi626.github.io/post-images/media/image2.jpeg" alt="" loading="lazy">{width=&quot;2.874015748031496in&quot;<br>
+height=&quot;2.7559044181977255in&quot;}</p>
+<p>在页面中，选择release-full.7z下载。</p>
+<p>再说说第二个链接</p>
+<p>Windows builds by BtbN</p>
+<p>点击后会跳转到github上面。如下图：</p>
+<p><img src="https://xiaxi626.github.io/post-images/media/image3.jpeg" alt="" loading="lazy">{width=&quot;3.0196850393700787in&quot;<br>
+height=&quot;2.7913385826771653in&quot;}</p>
+<p>选择win64的gpl版本。然后下载下来。</p>
+<p>添加系统环境变量。C:\ffmpeg-4.4-full_build\ffmpeg-4.4-full_build\bin（解压后文件夹地址），将该bin目录添加到系统环境变量中。在原有基础上添加新的变量前面要输入分号。步骤如图所示------</p>
+<p>Win7</p>
+<p><img src="https://xiaxi626.github.io/post-images/media/image4.jpeg" alt="" loading="lazy">{width=&quot;2.7125984251968505in&quot;<br>
+height=&quot;2.854330708661417in&quot;}<img src="https://xiaxi626.github.io/post-images/media/image5.jpeg" alt="" loading="lazy">{width=&quot;2.7755905511811023in&quot;<br>
+height=&quot;2.8622047244094486in&quot;}</p>
+<p><img src="https://xiaxi626.github.io/post-images/media/image6.jpeg" alt="" loading="lazy">{width=&quot;2.7755905511811023in&quot;<br>
+height=&quot;2.8622047244094486in&quot;}<img src="https://xiaxi626.github.io/post-images/media/image7.jpeg" alt="" loading="lazy">{width=&quot;2.5984241032370954in&quot;<br>
+height=&quot;2.866140638670166in&quot;}</p>
+<p>Win10</p>
+<p><img src="https://xiaxi626.github.io/post-images/media/image8.jpeg" alt="" loading="lazy">{width=&quot;3.2086614173228347in&quot;<br>
+height=&quot;3.3779516622922134in&quot;}</p>
+<p>在PowerShell中输入：ffmpeg --version</p>
+<p><img src="https://xiaxi626.github.io/post-images/media/image9.jpeg" alt="" loading="lazy">{width=&quot;3.877952755905512in&quot;<br>
+height=&quot;3.12992125984252in&quot;}</p>
+<p>出现上面的信息，则配置成功。</p>
+<h2 id="2ffmpeg常用命令">2.ffmpeg常用命令</h2>
+<h3 id="20查看视频信息">2.0.查看视频信息</h3>
+<p>通过ffmpeg -i<br>
+input.mp4可以获取input.mp4的全部信息的文本。如果需要获取独立细节，可以通过------</p>
+<p>1.获取视频时长</p>
+<p>ffmpeg -i input.mp4 -hide_banner 2&gt;&amp;1 | findstr 'Duration'</p>
+<p>其中-hide_banner选项是用来屏蔽 FFmpeg<br>
+标语和其它细节。另外，如果获取不到视频的时长信息，有可能是因为视频为直流数据，没有时间轴，可以通过-c<br>
+copy命令选项处理。</p>
+<p>2.查看FFmpeg支持的所有格式</p>
+<p>ffmpeg --formats</p>
+<h3 id="21转换格式">2.1.转换格式</h3>
+<p>1.默认转换ffmpeg -i input.flv output.mp4其他格式同理。</p>
+<p>2.转换时保持源视频质量ffmpeg -i input.flv -qscale 0 output.mp4</p>
+<h3 id="22从视频中提取音频">2.2.从视频中提取音频</h3>
+<p>ffmpeg -i input.mp4 -vn output.mp3</p>
+<h3 id="23调整视频分辨率">2.3.调整视频分辨率</h3>
+<ol>
+<li>方式一</li>
+</ol>
+<p>ffmpeg -i input.mp4 -filter:v scale=1280:720 -c:a copy output.mp4</p>
+<ol start="2">
+<li>方式二</li>
+</ol>
+<p>ffmpeg -i input.mp4 -s 1280x720 -c:a copy output.mp4</p>
+<p>调整视频的分辨率会比较耗时。</p>
+<h3 id="24压缩视频文件">2.4.压缩视频文件</h3>
+<p>ffmpeg -i input.mp4 -vf scale=1280:-1 -c:v libx264 -preset veryslow -crf<br>
+24 output.mp4</p>
+<h3 id="25从视频中提取图像">2.5.从视频中提取图像</h3>
+<p>1.提取一帧ffmpeg -ss 50 -i input.mp4 -y -f image2 -vframes 1<br>
+output.jpg-ss后跟开始时间</p>
+<p>2.提取所有关键帧到图片序列ffmpeg -i input.mp4 -r 1 -f image2<br>
+image-%2d.jpg</p>
+<h3 id="26视频剪切">2.6.视频剪切</h3>
+<p>ffmpeg -ss 00:16:00 -t 00:01:00 -i input.mp4 -c:v copy -c:a copy<br>
+output.mp4</p>
+<p>这里关于视频和音频的导出需要使用-c:v copy和-c:a<br>
+copy，不要使用-vcodec和-acodec。使用后者可能会导致视频在开头或是结尾的卡顿。</p>
+<h3 id="27设置比特率">2.7.设置比特率</h3>
+<p>ffmpeg -i input.mp4 -b 1.5M output.mp4</p>
+<p>设置比特率时，实验中使用-b 1.5M后，将38.6MB的原视频压缩到了13.8MB。</p>
+<h3 id="28限制-cpu">2.8.限制 cpu</h3>
+<p>ffmpeg -i input.flv -y -threads 1 output.mp4</p>
+<p>如果想要降低对cpu的使用，-threads的值可以往小了给。</p>
+<h3 id="29裁剪视频">2.9.裁剪视频</h3>
+<p>ffmpeg -i input.mp4 -filter:v &quot;crop=w:h❌y&quot; output.mp4</p>
+<p>-filter:v -- 表示视频过滤器。    crop -- 表示裁剪过滤器。<br>
+w -- 我们想自源视频中裁剪的矩形的宽度。    <br>
+h -- 矩形的高度。    <br>
+x -- 我们想自源视频中裁剪的矩形的 x 坐标 。    <br>
+y -- 矩形的 y 坐标。</p>
+<h3 id="210视频播放速度">2.10.视频播放速度</h3>
+<p>1.加速播放ffmpeg -i input.mp4 -vf &quot;setpts=0.5*PTS&quot; output.mp4</p>
+<p>2.减速播放ffmpeg -i input.mp4 -vf &quot;setpts=4.0*PTS&quot; output.mp4</p>
+<h3 id="211无损合并视频的多种方法">2.11.无损合并视频的多种方法</h3>
+<p><strong>方法一：FFmpeg concat 协议</strong></p>
+<p>对于 MPEG 格式的视频，可以直接连接：</p>
+<p>ffmpeg -i &quot;concat:input1.mpg|input2.mpg|input3.mpg&quot; -c copy<br>
+output.mpg</p>
+<p>对于非 MPEG 格式容器，但是是 MPEG<br>
+编码器（H.264、DivX、XviD、MPEG4、MPEG2、AAC、MP2、MP3 等），可以包装进<br>
+TS 格式的容器再合并。在新浪视频，有很多视频使用 H.264<br>
+编码器，可以采用这个方法</p>
+<p>ffmpeg -i input1.flv -c copy -bsf:v h264_mp4toannexb -f mpegts<br>
+input1.ts<br>
+ffmpeg -i input2.flv -c copy -bsf:v h264_mp4toannexb -f mpegts<br>
+input2.ts<br>
+ffmpeg -i input3.flv -c copy -bsf:v h264_mp4toannexb -f mpegts input3.ts</p>
+<p>ffmpeg -i &quot;concat:input1.ts|input2.ts|input3.ts&quot; -c copy -bsf:a<br>
+aac_adtstoasc -movflags +faststart output.mp4</p>
+<p>保存 QuickTime/MP4 格式容器的时候，建议加上  -movflags<br>
++faststart。这样分享文件给别人的时候可以边下边看。</p>
+<p><strong>方法二：FFmpeg concat 分离器</strong></p>
+<p>这种方法成功率很高，也是最好的，但是需要 FFmpeg 1.1<br>
+以上版本。先创建一个文本文件 filelist.txt：</p>
+<p>file 'input1.mkv'</p>
+<p>file 'input2.mkv'</p>
+<p>file 'input3.mkv'</p>
+<p>然后：ffmpeg -f concat -i filelist.txt -c copy output.mkv</p>
+<p>注意：使用 FFmpeg concat<br>
+分离器时，如果文件名有奇怪的字符，要在  filelist.txt 中转义。</p>
+<p><strong>方法三：Mencoder 连接文件并重建索引</strong></p>
+<p>这种方法只对很少的视频格式生效。幸运的是，新浪视频使用的 FLV<br>
+格式是可以这样连接的。对于没有使用 MPEG 编码器的视频（如 FLV1<br>
+编码器），可以尝试这种方法，或许能够成功。</p>
+<p>mencoder -forceidx -of lavf -oac copy -ovc copy -o output.flv<br>
+input1.flv input2.flv input3.flv</p>
+<p><strong>方法四：使用 FFmpeg concat 过滤器重新编码（有损）</strong></p>
+<p>语法有点复杂，但是其实不难。这个方法可以合并不同编码器的视频片段，也可以作为其他方法失效的后备措施。<br>
+ffmpeg -i input1.mp4 -i input2.webm -i input3.avi -filter_complex<br>
+'[0:0] [0:1] [1:0] [1:1] [2:0] [2:1] concat=n=3:v=1:a=1<br>
+[v] [a]' -map '[v]' -map '[a]' &lt;编码器选项&gt; output.mkv</p>
+<p>如你所见，上面的命令合并了三种不同格式的文件，FFmpeg concat<br>
+过滤器会重新编码它们。 <strong>注意这是有损压缩</strong>。[0:0] [0:1] [1:0]<br>
+[1:1] [2:0] [2:1]<br>
+分别表示第一个输入文件的视频、音频、第二个输入文件的视频、音频、第三个输入文件的视频、音频。<br>
+concat=n=3:v=1:a=1 表示有三个输入文件，输出一条视频流和一条音频流。<br>
+[v] [a] 就是得到的视频流和音频流的名字，注意在 bash 等 shell<br>
+中需要用引号，防止通配符扩展。</p>
+<p><strong>提示：</strong></p>
+<p>以上三种方法，在可能的情况下，最好使用第二种。第一种次之，第三种更次。第四种是后备方案，尽量避免。<br>
+规格不同的视频合并后可能会有无法预测的结果。</p>
+<p>有些媒体需要先分离视频和音频，合并完成后再封装回去。</p>
+<p>对于 Packed B-Frames 的视频，如果封装成 MKV 格式的时候提示 Can't write<br>
+packet with unknown timestamp，尝试在 FFmpeg 命令的 ffmpeg 后面加上<br>
+-fflags +genpts</p>
+<h3 id="212ffmpeg-视频实现各种特效">2.12.ffmpeg 视频实现各种特效</h3>
+<p>//渐入</p>
+<p>ffmpeg i in.mp4 -vf fade=in:0:90 out.mp4</p>
+<p>//黑白</p>
+<p>ffmpeg i in.mp4 -vf lutyuv=&quot;u=128:v=128&quot; out.mp4</p>
+<p>//锐化</p>
+<p>ffmpeg i in.mp4 -vf<br>
+unsharp=luma_msize_x=7:luma_msize_y=7:luma_amount=2.5 out.mp4</p>
+<p>//反锐化</p>
+<p>ffmpeg i in.mp4 -vf unsharp=7:7:-2:7:7:-2 out.mp4</p>
+<p>//渐晕</p>
+<p>ffmpeg i in.mp4 -vf vignette=PI/4 out.mp4</p>
+<p>//闪烁渐晕</p>
+<p>ffmpeg i in.mp4 -vf vignette='PI/4+random(1)*PI/50':eval=frame out.mp4</p>
+<p>//视频颤抖</p>
+<p>ffmpeg i in.mp4 -vf<br>
+crop=&quot;in_w/2:in_h/2:(in_w-out_w)/2+((in_w-out_w)/2)*sin(n/10):(in_h-out_h)/2+((in_h-out_h)/2)*sin(n/7)&quot;<br>
+out.mp4</p>
+<p>//色彩变幻</p>
+<p>ffmpeg i in.mp4 -vf hue=&quot;H=2*PI*t:s=sin(2*PI*t)+1&quot; out.mp4</p>
+<p>//模糊处理</p>
+<p>ffmpeg i in.mp4 -vf boxblur=5:1:cr=0:ar=0 out.mp4</p>
+<p>//镜像翻转</p>
+<p>ffmpeg i in.mp4 -vf<br>
+crop=iw/2:ih:0:0,split[left][tmp];[tmp]hflip[right];[left]pad=iw*2[a];[a][right]overlay=w<br>
+out.mp4</p>
+<p>//水平翻转</p>
+<p>ffmpeg i in.mp4 -vf geq=p(W-X\\,Y) out.mp4</p>
+<p>//垂直翻转</p>
+<p>ffmpeg i in.mp4 -vf vflip out.mp4</p>
+<p>//浮雕效果</p>
+<p>ffmpeg i in.mp4 -vf<br>
+format=gray,geq=lum_expr='(p(X,Y)+(256-p(X-4,Y-4)))/2' out.mp4</p>
+<p>//均匀噪声</p>
+<p>ffmpeg i in.mp4 -vf noise=alls=20:allf=t+u out.mp4</p>
+<h3 id="213使用ffmpeg命令合并音视频画幅">2.13.使用FFmpeg命令合并音视频(画幅)</h3>
+<ol>
+<li>合并音频和视频</li>
+</ol>
+<p>ffmpeg -i video.mp4 -i audio.aac -c:v copy -c:a copy -bsf:a<br>
+aac_adtstoasc output.mp4</p>
+<p>如果视频中已经包含了音频，替换视频中的音频，使用下面命令行</p>
+<p>ffmpeg -i video.mp4 -i audio.aac -c:v copy -c:a copy -bsf:a<br>
+aac_adtstoascmap 0✌️0 -map 1🅰️0 output.mp4</p>
+<ol start="2">
+<li>横向合并视频</li>
+</ol>
+<p>ffmpeg -i input1.mp4 -i input2.mp4 -lavfi hstack output.mp4</p>
+<p>上面的命令虽然可以合并视频，两个视频可以正常播放，但是只保留了input1.mp4的音频。input1和input2必须同样的高度，如果不一样的高度可以使用-shortest参数来保证同样的高度。</p>
+<p>合并多个视频，可以使用下面命令行：</p>
+<p>ffmpeg -i input1.mp4 -i input2.mp4 -i input3.mp4 -lavfi hstack=inputs=3<br>
+output.mp4</p>
+<p>其中input=3表示希望合并的视频的个数</p>
+<ol start="3">
+<li>纵向合并视频</li>
+</ol>
+<p>ffmpeg -i input1.mp4 -i input2.mp4 -lavfi vstack output.mp4</p>
+<ol start="4">
+<li>网格合并视频</li>
+</ol>
+<p>当多个视频时，还可以合并成网格状，比如2x2，3x3这种。但是视频个数不一定需要是偶数，如果是奇数，可以用黑色图片来占位。</p>
+<p>ffmpeg -f lavfi -i color=c=black:s=1280x720 -vframes 1 black.png</p>
+<p>该命令将创建一张1280*720的图片</p>
+<p>然后就可以使用下面这个命令来合并成网格视频了，如果只有三个视频，可以选择上面创建的黑色图片替代。</p>
+<p>ffmpeg -i top_left.mp4 -i top_right.mp4 -i bottom_left.mp4 -i<br>
+bottom_right.mp4 \ -lavfi<br>
+&quot;[0:v][1:v]hstack[top];[2:v][3:v]hstack[bottom];[top][bottom]vstack&quot;<br>
+-shortest 2by2grid.mp4</p>
+<p>上面创建的是正规的2x2网格视频。想象一下，现在只有三个视频，我想把第一个视频摆放在第一行的中间，然后把第二、三个视频摆放在第二行。那么就可以使用下面两个命令了。</p>
+<p>ffmpeg -f lavfi -i color=c=black:s=640x720 -vframes 1 black.png ffmpeg<br>
+-i black.png -i top_center.mp4 -i bottom_left.mp4 -i bottom_right.mp4<br>
+-lavfi<br>
+&quot;[0:v][1:v][0:v]hstack=inputs=3[top];[2:v][3:v]hstack[bottom];[top][bottom]vstack&quot;<br>
+-shortest 3_videos_2x2_grid.mp4</p>
+<h3 id="214如何给视频添加字幕ffmpeg-wiki翻译">2.14.如何给视频添加字幕（ffmpeg-wiki翻译）</h3>
+<p>您可以使用以下两种过滤器之一来刻录文本字幕（硬字幕）： subtitles或者<br>
+ass.</p>
+<p><strong>Subtitles 过滤器</strong></p>
+<p>使用 libass 库在输入视频之上绘制字幕。 此过滤器需要 ffmpeg编译<br>
+--enable-libass. 看到 <a href="http://ffmpeg.org/ffmpeg-filters.html#subtitles-1">[​subtitles video filter<br>
+documentation]{.underline}</a>的更多细节。</p>
+<p>如果字幕是一个单独的文件，称为 subtitle.srt，你可以使用这个命令：</p>
+<p>ffmpeg -i video.avi -vf subtitles=subtitle.srt out.avi</p>
+<p>如果字幕嵌入在容器中 video.mkv， 你可以这样做：</p>
+<p>ffmpeg -i video.mkv -vf subtitles=video.mkv out.avi</p>
+<p><strong>ass过滤器</strong></p>
+<p>与Subtitles过滤器相同，只是它不需要 libavcodec 和 libavformat 即可工作。<br>
+此过滤器需要 ffmpeg编译 --enable-libass. 在另一方面，它仅限于<a href="http://en.wikipedia.org/wiki/SubStation_Alpha#Advanced_SubStation_Alpha">[​ASS<br>
+(Advanced Substation<br>
+Alpha)]{.underline}</a>字幕文件。<br>
+见<a href="http://ffmpeg.org/ffmpeg-filters.html#ass">[​ass video filter<br>
+documentation]{.underline}</a>的更多细节。</p>
+<p>ffmpeg -i video.avi -vf &quot;ass=subtitle.ass&quot; out.avi</p>
+<p>如果你的副标题在 SubRip,<br>
+MicroDVD或任何其他支持的文本字幕，您必须在使用此过滤器之前将其转换为<br>
+ASS：</p>
+<p>ffmpeg -i subtitle.srt subtitle.ass</p>
+<p>Windows用户必须 <a href="http://ffmpeg.zeranoe.com/forum/viewtopic.php?f=10&amp;t=318&amp;start=20">[​​setup font<br>
+paths]{.underline}</a><br>
+获得libass工作。</p>
+<p><strong>基于图片的字幕</strong></p>
+<p>你可以把 &quot;基于图像的&quot;字幕烧进一部电影中，通过使用<a href="http://ffmpeg.org/ffmpeg-filters.html#overlay-1">[​overlay video<br>
+filter]{.underline}</a>以覆盖图像。<br>
+例如，dvdsub 是一种基于图片的叠加字幕。 在单独的流中带有 dvdsub 字幕的<br>
+MKV 示例：</p>
+<p>ffmpeg -i input.mkv -filter_complex &quot;[0:v][0:s]overlay[v]&quot; -map<br>
+&quot;[v]&quot; -map 0:a &lt;output options&gt; output.mkv</p>
+<p>如果您有多个字幕流，您可以通过替换来选择使用哪一个 [0:s]和<br>
+[0:s:0]选择第一个字幕流或 [0:s:1]选择第二个字幕流，依此类推。<br>
+另请参见<a href="http://ffmpeg.org/ffmpeg.html">[​the official<br>
+documentation]{.underline}</a>;<br>
+搜索&quot;hardcode&quot;。</p>
+<p>有时，当输入文件有多个音频流并且其中一些可能有问题时，添加此过滤器会产生破坏编码的副作用；<br>
+在这种情况下，选择一个（或多个）音频流应该可以解决问题：</p>
+<p>ffmpeg -i input.ts -filter_complex &quot;[0:v][0:s]overlay[v]&quot; -map<br>
+&quot;[v]&quot; -map 0🅰️0 &lt;output options&gt; output.mkv</p>
+<p><strong>Windows</strong></p>
+<p>需要注意的是在Windows上您可能必须采取适当措施，增加设置您的fontconfig等：<a href="https://ffmpeg.zeranoe.com/forum/viewtopic.php?f=7&amp;t=2554">[​https://ffmpeg.zeranoe.com/forum/viewtopic.php?f=7&amp;t=2554]{.underline}</a></p>
+<h2 id="3ffplay常用命令和注意事项">3.ffplay常用命令和注意事项</h2>
+<h3 id="31预览或测试视频或音频文件">3.1.预览或测试视频或音频文件</h3>
+<p>ffplay input.mp4<br>
+类似地，音频文件也可以使用ffplay进行播放。<br>
+ffplay input.mp3</p>
+<p><strong>注意事项</strong>： 在window7<br>
+64bit下安装了ffmpeg，然后用ffplay命令播放声音时发生这个错误：SDL_OpenAudio<br>
+(2 channels, 44100 Hz): WASAPI can't initialize audio client</p>
+<p>那么只能播放视频图像而不能播放视频声音。<br>
+只要设置环境一个变量SDL_AUDIODRIVER=directsound或者winmm即可。</p>
+<p>可在调用ffplay前输入set SDL_AUDIODRIVER=directsound。<br>
+或写一个start.bat加入下面代码:</p>
+<p>SDL_AUDIODRIVER=directsound<br>
+ffplay myVideo.mp4</p>
+<h3 id="32过滤器">3.2.过滤器</h3>
+<p>1、视频过滤器</p>
+<p>1）视频旋转播放</p>
+<p>ffplay test.mp4 -vf transpose=1<br>
+(0:逆时针旋转90°然后垂直翻转;；1:顺时针旋转90°；2:逆时针旋转90°；3:顺时针旋转90°然后水平翻转)</p>
+<p>2）视频水平翻转播放</p>
+<p>ffplay test.mp4 -vf hflip</p>
+<p>3）视频垂直翻转播放</p>
+<p>ffplay test.mp4 -vf vflip</p>
+<p>4）视频水平翻转，并且再顺时针旋转90度播放</p>
+<p>ffplay test.mp4 -vf transpose=1,hflip</p>
+<p>2、音频过滤器</p>
+<p>1）音频变速播放</p>
+<p>ffplay test.mp4 -af atempo=2 （atempo的范围【0.5， 2】）</p>
+<p>2）视频变速播放</p>
+<p>ffplay test.mp4 -vf setpts=0.5 * PTS (setpts的范围是【0.25,4】)</p>
+<p>3）音视频同时变速播放</p>
+<p>ffplay test.mp4 -vf setpts=PTS/2 -af atempo=2</p>
+<h2 id="4ffprobe常用命令">4.ffprobe常用命令</h2>
+<p>ffprobe常用的参数比较多，可以通过ffprobe --help来查看详细的帮助信息:</p>
+<h3 id="41查看多媒体数据包信息">4.1.查看多媒体数据包信息</h3>
+<p>ffprobe -show_packets inuput.flv</p>
+<p>通过show_packets查看的多媒体数据包信息使用PACKET标签括起来，其中包含信息主要如下表：</p>
+<p><img src="https://xiaxi626.github.io/post-images/media/image10.png" alt="" loading="lazy">{width=&quot;6.673228346456693in&quot;<br>
+height=&quot;2.783464566929134in&quot;}</p>
+<p>PACKET字段说明</p>
+<h3 id="42分析多媒体的封装格式">4.2.分析多媒体的封装格式</h3>
+<p>ffprobe -show_format output.mp4</p>
+<p>上述命令可以查看多媒体的封装格式，其使用FORMAT标签括起来显示：</p>
+<p><img src="https://xiaxi626.github.io/post-images/media/image11.png" alt="" loading="lazy">{width=&quot;6.452755905511811in&quot;<br>
+height=&quot;2.181101268591426in&quot;}</p>
+<p>format字段说明</p>
+<h3 id="43查看视频文件中的帧信息">4.3.查看视频文件中的帧信息</h3>
+<p>通过-show_frames参数可以查看每一帧的信息</p>
+<p>ffprobe -show_frames inuput.flv<br>
+查看视频文件中的帧信息，输出的帧信息使用FRAME标签括起来：</p>
+<p><img src="https://xiaxi626.github.io/post-images/media/image12.png" alt="" loading="lazy">{width=&quot;5.881889763779528in&quot;<br>
+height=&quot;3.625984251968504in&quot;}</p>
+<p>frame字段说明</p>
+<h3 id="44查看多媒体文件中的流信息">4.4.查看多媒体文件中的流信息</h3>
+<p>ffprobe -show_streams inuput.flv</p>
+<p>流的信息将使用STREAM标签括起来：</p>
+<p><img src="https://xiaxi626.github.io/post-images/media/image13.png" alt="" loading="lazy">{width=&quot;6.551181102362205in&quot;<br>
+height=&quot;3.547244094488189in&quot;}</p>
+<p><img src="https://xiaxi626.github.io/post-images/media/image14.png" alt="" loading="lazy">{width=&quot;6.291338582677166in&quot;<br>
+height=&quot;1.5433070866141732in&quot;}</p>
+<p>stream字段说明</p>
+<h3 id="45多种格式输出">4.5.多种格式输出</h3>
+<ol>
+<li>通过以下得到XML输出格式命令如下：</li>
+</ol>
+<p>ffprobe -of xml -show_streams inuput.xml</p>
+<ol start="2">
+<li>通过以下命令得到INI格式的输出：</li>
+</ol>
+<p>ffprobe -of ini-show_streams inuput.flv</p>
+<ol start="3">
+<li>通过以下命令输出JSON格式：</li>
+</ol>
+<p>ffprobe -of json -show_packets inuput.flv</p>
+<p>这种格式的数据可以用在以JSON解析为主的业务中。</p>
+<ol start="4">
+<li>通过以下命令输出CSV格式：</li>
+</ol>
+<p>fforobe -of csv -show_packets inuput.flv</p>
+<p>CSV格式输出后可使用EXCEL打开表格形象</p>
+<h2 id="5技术分享">5.技术分享</h2>
+<h3 id="51实时生成字符画">5.1.实时生成字符画</h3>
+<p>示例图像帧文本:</p>
+<p>h1ri . i3+i,</p>
+<p>irrr;.;i+:i,</p>
+<p>.5mBBmmBx3risi9:+:;.</p>
+<p>.#mBmmmB&amp;xGxGGG3hiiss::1G&amp;</p>
+<p>~xGGGG9!!9hsiiiii;ri:+;😒!</p>
+<p>:x!si:&amp;11!GBs9B~19!!G!&amp;G1!!3</p>
+<p>!3hshrssrsris1sr11r;ir5533</p>
+<p>1h11sG1sG1sii1s19&amp;&amp;31rh,</p>
+<p>9!~!sGshsiisGG&amp;~x5ssi</p>
+<p>- ;ri:. s;1sx!hsrriGGx&amp;G5shhrr;</p>
+<p>ri+ .sr+ -r; :.xsh51sr9!!55hshh11sr :i,.;i</p>
+<p>:ssr;: :s1s, si. hhh&amp;&amp;!91G3995shhh11si ;r -</p>
+<p>x5;,:rrrrrrrriirrrriiir:;;+. .rr+ . ~xGG3&amp;~h3s9!G5sss1 .;r,</p>
+<p>x9i, .-::-. .-1993:, .,:s1i .,+:,-&amp;&amp;&amp;~3555GGh;+. :r5r,. ,;</p>
+<p>G1- ,:155s+. ,:9!!!!3;,<br>
+,:9!i11r:::x#&amp;x~xG&amp;~hh~&amp;&amp;!93i-:G&amp;! ;s31!3:,,:9</p>
+<p>s: -rs3335h:,<br>
+.-9G!!993;-.-rx!!!hisr;h&amp;!9&amp;~~&amp;G3x~&amp;&amp;&amp;&amp;5s:rG&amp;~5s:rss1G!Gx:-:5</p>
+<p>-139!9335s+ ,:G!!99r-,-1!!GG!!Bm#iiri;iiri;+:;;ir;::::;+:iir+.+h!GGGr-,:</p>
+<p>.;539935h:. +s!933+...;GGGGGx#hG5hhirri;:++:;:::;::::;isi35s .:GG!G;. .</p>
+<p>-s33355;, ,:!93+.<br>
+.+5GG!Gi#m&amp;!G&amp;&amp;xG::iii:;iii;;:+i!&amp;&amp;xGs -s!G5-.</p>
+<p>.:h333r- -s!i, ,;xG!:-rBmBG!!!r:;;:::;;;;;::;GGG!9!, ,:!!i,</p>
+<p>,i551:. ,+r+ .+GG1-,Bm~93553:i;;::;;;;;;:::GGx933G .:9:</p>
+<p>-ss;, ,;h+,.&amp;~x!93+:::;;;:;ii;;;:+:+;xx~~9 .,.</p>
+<p>.-+. .. ,~hh&amp;x:;;;;;;;:;:;:::::::;h!&amp;~~.</p>
+<p>..hhh~&amp;i:;irsrri::;;;:;:::::;hG&amp;~:</p>
+<p>B~h~!xGxGGsr;i;::+:::+++:::,xx&amp;&amp;G</p>
+<p>~B&amp;xx&amp;&amp;&amp;&amp;x111hs5G!x!ss9s;:. 1&amp;~~9</p>
+<p>使用ege demo就实现了类似的功能， 打开本程序， 按下空格键，<br>
+选择一个输出文本， 输入使用的分辨率， 再选择一个输入视频，<br>
+就可以看到美美的字符画啦~</p>
+<p>百度网盘下载地址: <a href="http://pan.baidu.com/s/1mhKae3u">http://pan.baidu.com/s/1mhKae3u</a></p>
+<h3 id="52基于ffmpeg实现屏幕录制">5.2.基于Ffmpeg实现屏幕录制</h3>
+<p>基于Ffmpeg实现屏幕录制</p>
+<p>录制屏幕</p>
+<p>为了实现对于Window桌面录制，有两种方式进行采集：</p>
+<p>DirectShow 设备</p>
+<p>Gdigrab设备</p>
+<p>其基本命令行如下：</p>
+<p>//Dshow设备</p>
+<p>ffmpeg -f dshow -I video=&quot;screen-capture-recorder&quot; output.mkv</p>
+<p>//gdigrab设备 采集整个桌面</p>
+<p>ffmpeg -f gdigrab -framerate 30 -I desktop output.mkv</p>
+<p>这两个命令默认都是采用x264<br>
+进行编码，在本地CPU不是足够高的情况下，录制的视频画面根本看不清楚，这是因为编码效率太低导致；</p>
+<p>为了提高录制效果，我们可以采用无损编码+提高编码速度方式进行录制，具体命令如下：</p>
+<p>ffmpeg -framerate 30 -f gdigrab -I desktop -c:v libx264rgb -crf 0<br>
+-preset ultrafast output.mkv</p>
+<p>或者</p>
+<p>ffmpeg -framerate 30 -f gdigrab -I desktop -c:v libx264rgb -preset:v<br>
+ultrafast -tune:v zerolatency output.mkv</p>
+<p>关于Ffmpeg屏幕采集可以参考<br>
+<a href="https://trac.ffmpeg.org/wiki/Capture/Desktop">https://trac.ffmpeg.org/wiki/Capture/Desktop</a>文章</p>
+<p>关于H264编码方面的知识可以参考<a href="https://trac.ffmpeg.org/wiki/Encode/H.264">https://trac.ffmpeg.org/wiki/Encode/H.264</a>文章</p>
+<p>录制声音</p>
+<p>在上面提到过录制屏幕除了采用gdigrab外，还可以采用dshow方式；它们的区别就是：gdigrab设置仅支持截取屏幕信息，对声音的录制是不支持的，而show方式可以支持录制屏幕和声音。</p>
+<p>这个dshow软件的下载信息如下：</p>
+<p>1、编译好的下载地址是:</p>
+<p><a href="http://sourceforge.net/projects/screencapturer/">http://sourceforge.net/projects/screencapturer/</a></p>
+<p>2、源码地址是:</p>
+<p><a href="https://github.com/rdp/screen-capture-recorder-to-video-windows-free">https://github.com/rdp/screen-capture-recorder-to-video-windows-free</a></p>
+<p>为了使系统能识别出dshow设备，我们首先需要进行注册，为了去掉不必要的文件，我们只提取四个dll：</p>
+<p>Screen-capture-recorder.dll</p>
+<p>Screen-capture-recorder-x64.dll</p>
+<p>Audio_sniffer-x64.dll</p>
+<p>Audio_sniffer.dll</p>
+<p>注册命令行如下：</p>
+<p>//注册屏幕录制设备（我们采用32位的ffmpeg，可以不用注册带x64的dll）</p>
+<p>Regsvr32 /s screen-capture-recorder.dll</p>
+<p>//注册虚拟音频设备</p>
+<p>Regsvr32 /s audio_sniffer.dll</p>
+<p>注册成功后，可以采用以下命令进行检查是否注册成功</p>
+<p>ffmpeg -list_devices true -f dshow -I dummy</p>
+<p>系统输出大致如下:<img src="https://xiaxi626.github.io/post-images/media/image15.jpeg" alt="" loading="lazy">{width=&quot;5.708333333333333in&quot;<br>
+height=&quot;1.5520833333333333in&quot;}</p>
+<p>&quot;screen-capture-recorder&quot; 这个就是桌面捕获设备,用于录制屏幕</p>
+<p>&quot;virtual-audio-capturer&quot; 这个是音频捕获设备，用于录制声音</p>
+<p>-f dshow -I audio=&quot;virtual-audio-capturer&quot;<br>
+这代表声音从&quot;virtual-audio-capturer&quot;音频设备获取</p>
+<p>为了能够同时录制声音和画面，我们可以使用以下命令进行采集：</p>
+<p>ffmpeg -framerate 30 -f gdigrab -I desktop -f dshow -I<br>
+audio=&quot;virtual-audio-capturer&quot; -c:v libx264rgb -preset:v ultrafast<br>
+-tune:v zerolatency output.mp4</p>
+<p>用vlc打开录制文件，可以看书画面显示正常以及声音正常被播放处理，截图如下：</p>
+<p><img src="https://xiaxi626.github.io/post-images/media/image16.jpeg" alt="" loading="lazy">{width=&quot;7.59166447944007in&quot;<br>
+height=&quot;4.324305555555555in&quot;}</p>
+<p>以上就是关于ffmpeg录制window桌面的全部过程了，欢迎大家交流~</p>
+<h1 id="参阅">参阅</h1>
+<p>FFmpeg 音视频处理入门基础概念</p>
+<p><a href="https://blog.csdn.net/sinat_14826983/article/details/83043906">https://blog.csdn.net/sinat_14826983/article/details/83043906</a></p>
+<p>Windows安装ffmpeg，使用ffmpeg从视频中的抽取图像</p>
+<p><a href="https://blog.csdn.net/hhhhhhhhhhwwwwwwwwww/article/details/117842049?utm_source=app&amp;app_version=4.16.0&amp;code=app_1562916241&amp;uLinkId=usr1mkqgl919blen">https://blog.csdn.net/hhhhhhhhhhwwwwwwwwww/article/details/117842049?utm_source=app&amp;app_version=4.16.0&amp;code=app_1562916241&amp;uLinkId=usr1mkqgl919blen</a></p>
+<p>FFMpeg无损合并视频的多种方法</p>
+<p><a href="https://blog.csdn.net/doublefi123/article/details/47276739?utm_source=app&amp;app_version=4.16.0&amp;code=app_1562916241&amp;uLinkId=usr1mkqgl919blen">https://blog.csdn.net/doublefi123/article/details/47276739?utm_source=app&amp;app_version=4.16.0&amp;code=app_1562916241&amp;uLinkId=usr1mkqgl919blen</a></p>
+<p>通过 ffmpeg 无损剪切与拼接视频方法</p>
+<p><a href="https://blog.csdn.net/weixin_34365635/article/details/92354967?utm_source=app&amp;app_version=4.16.0&amp;code=app_1562916241&amp;uLinkId=usr1mkqgl919blen">https://blog.csdn.net/weixin_34365635/article/details/92354967?utm_source=app&amp;app_version=4.16.0&amp;code=app_1562916241&amp;uLinkId=usr1mkqgl919blen</a></p>
+<p>利用FFMPEG进行视频分割</p>
+<p><a href="https://blog.csdn.net/qingfengtsing/article/details/55295253?utm_source=app&amp;app_version=4.16.0&amp;code=app_1562916241&amp;uLinkId=usr1mkqgl919blen">https://blog.csdn.net/qingfengtsing/article/details/55295253?utm_source=app&amp;app_version=4.16.0&amp;code=app_1562916241&amp;uLinkId=usr1mkqgl919blen</a></p>
+<p>ffmpeg视频压缩速度_使用ffmpeg修改视频速度</p>
+<p><a href="https://blog.csdn.net/culuo8053/article/details/107910449?utm_source=app&amp;app_version=4.16.0&amp;code=app_1562916241&amp;uLinkId=usr1mkqgl919blen">https://blog.csdn.net/culuo8053/article/details/107910449?utm_source=app&amp;app_version=4.16.0&amp;code=app_1562916241&amp;uLinkId=usr1mkqgl919blen</a></p>
+<p>ffplay播放没有声音SDL_OpenAudio (2 channels, 44100 Hz): WASAPI can't<br>
+initialize audio client</p>
+<p><a href="https://blog.csdn.net/A694543965/article/details/78786230?utm_source=app&amp;app_version=4.16.0&amp;code=app_1562916241&amp;uLinkId=usr1mkqgl919blen">https://blog.csdn.net/A694543965/article/details/78786230?utm_source=app&amp;app_version=4.16.0&amp;code=app_1562916241&amp;uLinkId=usr1mkqgl919blen</a></p>
+<p>ffmpeg批量处理（图片文字水印批量处理）</p>
+<p><a href="https://blog.csdn.net/qq_45753908/article/details/102568691">https://blog.csdn.net/qq_45753908/article/details/102568691</a></p>
+<p>ffmpeg 视频实现各种特效</p>
+<p><a href="http://m.mamicode.com/info-detail-2635863.html">http://m.mamicode.com/info-detail-2635863.html</a></p>
+<p>使用FFmpeg命令合并音视频</p>
+<p><a href="https://blog.csdn.net/qq_33349051/article/details/104061448">https://blog.csdn.net/qq_33349051/article/details/104061448</a></p>
+<p>ffmpeg 硬压字幕的实现</p>
+<p><a href="https://blog.csdn.net/ternence_hsu/article/details/108437008">https://blog.csdn.net/ternence_hsu/article/details/108437008</a></p>
+<p>使用 FFMPEG 命令为视频嵌入字幕</p>
+<p><a href="https://blog.csdn.net/weixin_33929309/article/details/94308779">https://blog.csdn.net/weixin_33929309/article/details/94308779</a></p>
+<p>可移除的方式嵌入字幕</p>
+<p><a href="https://www.cnblogs.com/freedom-try/p/15200670.html">https://www.cnblogs.com/freedom-try/p/15200670.html</a></p>
+<p>ffmpeg 提取音频，音频转换，添加字幕</p>
+<p><a href="https://blog.csdn.net/u011020636/article/details/89785227?utm_medium=distribute.wap_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_ecpm_v1~rank_aggregation-17-89785227.wap_agg_rank_aggregation&amp;utm_term=ffmpeg%E5%B5%8C%E5%85%A5%E5%AD%97%E5%B9%95">https://blog.csdn.net/u011020636/article/details/89785227?utm_medium=distribute.wap_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_ecpm_v1~rank_aggregation-17-89785227.wap_agg_rank_aggregation&amp;utm_term=ffmpeg嵌入字幕</a></p>
+<p>通过ffmpeg和opencv生成视频的缩略图。</p>
+<p><a href="https://github.com/ximikang/ffmpegThumbnail">https://github.com/ximikang/ffmpegThumbnail</a></p>
+<p>关于实现视频预览缩略图功能</p>
+<p><a href="https://blog.csdn.net/printf_scnaf/article/details/108256985">https://blog.csdn.net/printf_scnaf/article/details/108256985</a></p>
+<p>ffprobe常用命令总结</p>
+<p><a href="https://blog.51cto.com/u_12204415/3804327">https://blog.51cto.com/u_12204415/3804327</a></p>
+<p>使用ege+ffmpeg解码+播放视频， 实时生成字符画</p>
+<p><a href="https://xege.org/ege_ffmpeg_char_movie.html">https://xege.org/ege_ffmpeg_char_movie.html</a></p>
+<p>基于Ffmpeg实现屏幕录制</p>
+<p>https://blog.csdn.net/c_base_jin/article/details/106773589</p>
+<p>Ffmpeg 支持的所有格式列表</p>
+<p><a href="https://blog.csdn.net/ustcxiangchun/article/details/6981914">https://blog.csdn.net/ustcxiangchun/article/details/6981914</a></p>
+<p>《Ffmpeg从入门到精通》读书笔记（一）</p>
+<ul>
+<li><a href="https://blog.csdn.net/asd501823206/article/details/92798749?utm_medium=distribute.wap_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1.wap_blog_relevant_pic&amp;spm=1001.2101.3001.4242.2">https://blog.csdn.net/asd501823206/article/details/92798749?utm_medium=distribute.wap_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1.wap_blog_relevant_pic&amp;spm=1001.2101.3001.4242.2</a></li>
+</ul>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#0%E6%A6%82%E8%BF%B0">0.概述</a>
+<ul>
+<li><a href="#01%E6%9C%AF%E8%AF%AD">0.1.术语</a></li>
+<li><a href="#02%E7%A0%81%E6%B5%81-kbs">0.2.码流 kb/s</a></li>
+<li><a href="#03%E9%87%87%E6%A0%B7%E7%8E%87hz">0.3.采样率Hz</a></li>
+<li><a href="#04%E6%AF%94%E7%89%B9%E7%8E%87bps">0.4.比特率bps</a></li>
+<li><a href="#05%E5%B8%A7%E9%80%9F%E7%8E%87">0.5.帧速率</a></li>
+<li><a href="#06i-p-b-%E5%B8%A7">0.6.I、P、B 帧</a></li>
+<li><a href="#07gop">0.7.GOP</a></li>
+<li><a href="#08dts-pts-%E7%9A%84%E6%A6%82%E5%BF%B5">0.8.DTS、PTS 的概念</a></li>
+<li><a href="#09%E9%9F%B3%E8%A7%86%E9%A2%91%E7%9A%84%E5%90%8C%E6%AD%A5">0.9.音视频的同步</a></li>
+<li><a href="#010ffmpeg%E6%BB%A4%E9%95%9Cfilters-filterchainsfiltergraphs">0.10.Ffmpeg滤镜（Filters, filterchains，filtergraphs）</a></li>
+</ul>
+</li>
+<li><a href="#1%E5%AE%89%E8%A3%85">1.安装</a></li>
+<li><a href="#2ffmpeg%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">2.ffmpeg常用命令</a>
+<ul>
+<li><a href="#20%E6%9F%A5%E7%9C%8B%E8%A7%86%E9%A2%91%E4%BF%A1%E6%81%AF">2.0.查看视频信息</a></li>
+<li><a href="#21%E8%BD%AC%E6%8D%A2%E6%A0%BC%E5%BC%8F">2.1.转换格式</a></li>
+<li><a href="#22%E4%BB%8E%E8%A7%86%E9%A2%91%E4%B8%AD%E6%8F%90%E5%8F%96%E9%9F%B3%E9%A2%91">2.2.从视频中提取音频</a></li>
+<li><a href="#23%E8%B0%83%E6%95%B4%E8%A7%86%E9%A2%91%E5%88%86%E8%BE%A8%E7%8E%87">2.3.调整视频分辨率</a></li>
+<li><a href="#24%E5%8E%8B%E7%BC%A9%E8%A7%86%E9%A2%91%E6%96%87%E4%BB%B6">2.4.压缩视频文件</a></li>
+<li><a href="#25%E4%BB%8E%E8%A7%86%E9%A2%91%E4%B8%AD%E6%8F%90%E5%8F%96%E5%9B%BE%E5%83%8F">2.5.从视频中提取图像</a></li>
+<li><a href="#26%E8%A7%86%E9%A2%91%E5%89%AA%E5%88%87">2.6.视频剪切</a></li>
+<li><a href="#27%E8%AE%BE%E7%BD%AE%E6%AF%94%E7%89%B9%E7%8E%87">2.7.设置比特率</a></li>
+<li><a href="#28%E9%99%90%E5%88%B6-cpu">2.8.限制 cpu</a></li>
+<li><a href="#29%E8%A3%81%E5%89%AA%E8%A7%86%E9%A2%91">2.9.裁剪视频</a></li>
+<li><a href="#210%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E9%80%9F%E5%BA%A6">2.10.视频播放速度</a></li>
+<li><a href="#211%E6%97%A0%E6%8D%9F%E5%90%88%E5%B9%B6%E8%A7%86%E9%A2%91%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E6%B3%95">2.11.无损合并视频的多种方法</a></li>
+<li><a href="#212ffmpeg-%E8%A7%86%E9%A2%91%E5%AE%9E%E7%8E%B0%E5%90%84%E7%A7%8D%E7%89%B9%E6%95%88">2.12.ffmpeg 视频实现各种特效</a></li>
+<li><a href="#213%E4%BD%BF%E7%94%A8ffmpeg%E5%91%BD%E4%BB%A4%E5%90%88%E5%B9%B6%E9%9F%B3%E8%A7%86%E9%A2%91%E7%94%BB%E5%B9%85">2.13.使用FFmpeg命令合并音视频(画幅)</a></li>
+<li><a href="#214%E5%A6%82%E4%BD%95%E7%BB%99%E8%A7%86%E9%A2%91%E6%B7%BB%E5%8A%A0%E5%AD%97%E5%B9%95ffmpeg-wiki%E7%BF%BB%E8%AF%91">2.14.如何给视频添加字幕（ffmpeg-wiki翻译）</a></li>
+</ul>
+</li>
+<li><a href="#3ffplay%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%92%8C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">3.ffplay常用命令和注意事项</a>
+<ul>
+<li><a href="#31%E9%A2%84%E8%A7%88%E6%88%96%E6%B5%8B%E8%AF%95%E8%A7%86%E9%A2%91%E6%88%96%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6">3.1.预览或测试视频或音频文件</a></li>
+<li><a href="#32%E8%BF%87%E6%BB%A4%E5%99%A8">3.2.过滤器</a></li>
+</ul>
+</li>
+<li><a href="#4ffprobe%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">4.ffprobe常用命令</a>
+<ul>
+<li><a href="#41%E6%9F%A5%E7%9C%8B%E5%A4%9A%E5%AA%92%E4%BD%93%E6%95%B0%E6%8D%AE%E5%8C%85%E4%BF%A1%E6%81%AF">4.1.查看多媒体数据包信息</a></li>
+<li><a href="#42%E5%88%86%E6%9E%90%E5%A4%9A%E5%AA%92%E4%BD%93%E7%9A%84%E5%B0%81%E8%A3%85%E6%A0%BC%E5%BC%8F">4.2.分析多媒体的封装格式</a></li>
+<li><a href="#43%E6%9F%A5%E7%9C%8B%E8%A7%86%E9%A2%91%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%B8%A7%E4%BF%A1%E6%81%AF">4.3.查看视频文件中的帧信息</a></li>
+<li><a href="#44%E6%9F%A5%E7%9C%8B%E5%A4%9A%E5%AA%92%E4%BD%93%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%B5%81%E4%BF%A1%E6%81%AF">4.4.查看多媒体文件中的流信息</a></li>
+<li><a href="#45%E5%A4%9A%E7%A7%8D%E6%A0%BC%E5%BC%8F%E8%BE%93%E5%87%BA">4.5.多种格式输出</a></li>
+</ul>
+</li>
+<li><a href="#5%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB">5.技术分享</a>
+<ul>
+<li><a href="#51%E5%AE%9E%E6%97%B6%E7%94%9F%E6%88%90%E5%AD%97%E7%AC%A6%E7%94%BB">5.1.实时生成字符画</a></li>
+<li><a href="#52%E5%9F%BA%E4%BA%8Effmpeg%E5%AE%9E%E7%8E%B0%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B6">5.2.基于Ffmpeg实现屏幕录制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E9%98%85">参阅</a></li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div>
+
+<div class="round-shape-one"></div>
+
+<section>
+<div class="doc_comments">
+
+            
+                <!--评论显示区，请插入合适的位置-->
+<div id="comment"></div>
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.6.1/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/valine/1.5.1/Valine.min.js"></script>
+<!--<script src="//cdn.jsdelivr.net/npm/valine@1.4.4/dist/Valine.min.js"></script>-->
+<script>
+    new Valine({
+        el:'#comment',
+        appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
+        appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
+        placeholder: 'Just Go Go',
+        avatar:'',
+        pageSize: '10',
+        recordIP: 'true',
+        requiredFields: ['nick','mail'],
+        enableQQ: 'true',
+        emojiCDN: '//i0.hdslb.com/bfs/',
+        emojiMaps: {
+        "tv-doge": "emote/6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+        "tv-坏笑": "emote/1f0b87f731a671079842116e0991c91c2c88645a.png",
+        "tv-难过": "emote/87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+        "tv-生气": "emote/26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+        "tv-委屈": "emote/d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+        "tv-斜眼笑": "emote/911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+        "tv-呆": "emote/fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+        "tv-发怒": "emote/34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+        "tv-惊吓": "emote/0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+        "tv-呕吐": "emote/9f996894a39e282ccf5e66856af49483f81870f3.png",
+        "tv-思考": "emote/90cf159733e558137ed20aa04d09964436f618a1.png",
+        "tv-微笑": "emote/70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+        "tv-疑问": "emote/0793d949b18d7be716078349c202c15ff166f314.png",
+        "tv-大哭": "emote/23269aeb35f99daee28dda129676f6e9ea87934f.png",
+        "tv-鼓掌": "emote/1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png",
+        "tv-抠鼻": "emote/c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+        "tv-亲亲": "emote/a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+        "tv-调皮": "emote/b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+        "tv-笑哭": "emote/1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+        "tv-晕": "emote/5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+        "tv-点赞": "emote/f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+        "tv-害羞": "emote/a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+        "tv-睡着": "emote/8b196675b53af58264f383c50ad0945048290b33.png",
+        "tv-色": "emote/61822c7e9aae5da76475e7892534545336b23a6f.png",
+        "tv-吐血": "emote/09dd16a7aa59b77baa1155d47484409624470c77.png",
+        "tv-无奈": "emote/ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+        "tv-再见": "emote/180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+        "tv-流汗": "emote/cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+        "tv-偷笑": "emote/bb690d4107620f1c15cff29509db529a73aee261.png",
+        "tv-抓狂": "emote/fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+        "tv-黑人问号": "emote/45821a01f51bc867da9edbaa2e070410819a95b2.png",
+        "tv-困": "emote/241ee304e44c0af029adceb294399391e4737ef2.png",
+        "tv-打脸": "emote/56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+        "tv-闭嘴": "emote/c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+        "tv-鄙视": "emote/6e72339f346a692a495b123174b49e4e8e781303.png",
+        "tv-腼腆": "emote/89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+        "tv-馋": "emote/fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+        "tv-可爱": "emote/9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+        "tv-发财": "emote/34db290afd2963723c6eb3c4560667db7253a21a.png",
+        "tv-生病": "emote/8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+        "tv-流鼻血": "emote/c32d39db2737f89b904ca32700d140a9241b0767.png",
+        "tv-尴尬": "emote/7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+        "tv-大佬": "emote/093c1e2c490161aca397afc45573c877cdead616.png",
+        "tv-流泪": "emote/7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+        "tv-冷漠": "emote/b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+        "tv-皱眉": "emote/72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+        "tv-鬼脸": "emote/0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+        "tv-调侃": "emote/4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+        "tv-目瞪口呆": "emote/0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+        "珑歌Taki_问号": "garb/15856c32cb30a08f361259a59c71b0edee4427dc.png@65w.webp",
+        "珑歌Taki_打Call": "garb/67544581bd5f1390e6d95ac34c47867a9e9ebbbb.png@65w.webp",
+        "珑歌Taki_好耶": "garb/0176869034a23b2523b552687ec851f4567bb452.png@65w.webp",
+        "珑歌Taki_点赞": "garb/243dcd30319137f2715adbea4a4b106835e5c772.png@65w.webp",
+        "珑歌Taki_啊对对": "garb/b2576d904e7fa6cada13a35236611f0128fe7a3a.png@65w.webp",
+        "珑歌Taki_达咩": "garb/e39b5d13f7276c08caef3ea7b9585ab94de423da.png@65w.webp",
+        "珑歌Taki_辣眼睛": "garb/7db3c777e5f618f4458fd379db9b6cfcc5f96a59.png@65w.webp",
+        "珑歌Taki_晚安": "garb/cf46da11526aae66fa9b29532a32f262feaf806b.png@65w.webp",
+        "珑歌Taki_羞羞": "garb/05ae694d1ef5335673825357ec3bcaee81ca2fd2.png@65w.webp",
+        "珑歌Taki_叉你": "garb/7b6c47c462770fd91ca78982cf43a2025564fead.png@65w.webp",
+        "珑歌Taki_给你一拳": "garb/1e46191feebe3412e07919dd33f2daef01884c0d.png@65w.webp",
+        "珑歌Taki_委屈": "live/e4ce02a977edbd40a6df488f8ce317f1efb77e01.png@65w.webp",
+        "珑歌Taki_呃呃": "live/e5c634f3c00b440af5e0269d6cd23a54dcd78a83.png@65w.webp",
+        "珑歌Taki_爱你": "live/27e8e2c6679a2e268a2dc0032adec7e0f68abd89.png@65w.webp",
+        "珑歌Taki_惊": "live/30fedf447cef730d5acb87c945bf964d4e43b8be.png@65w.webp",
+        "珑歌Taki_干杯": "live/68db36d0645df15f4bb8e678d7d9f3a13840eaec.png@65w.webp",
+        "樱吹雪_Yuki_啵啵": "garb/a963d838a5f6197defbb6e0591377d4bfd37707a.png@65w.webp",
+        "樱吹雪_Yuki_打call": "garb/18f1f1c34738ebb3e2fc6a99bb2afe24192906ab.png@65w.webp",
+        "樱吹雪_Yuki_晚安": "garb/c2651d764536e9de174dfc3ab6c0b74ba38d637e.png@65w.webp",
+        "樱吹雪_Yuki_贴贴": "garb/dd5d3510ff3169348cfbd0308432cbf4d86f95da.png@65w.webp",
+        "樱吹雪_Yuki_好耶": "garb/8a65b68d1c318f5878f610f0e6be5ab55cfad755.png@65w.webp",
+        "樱吹雪_Yuki_嗷呜": "garb/fbb35575d9eeb199895056f6f2e678ea1568034f.png@65w.webp",
+        "樱吹雪_Yuki_问号": "garb/31b0cd34cdf7d76c9167c319c4a3aa8c084bfd56.png@65w.webp",
+        "樱吹雪_Yuki_哈哈": "garb/b64bccc47c050c201dd1a046c03ebff6bc73f94c.png@65w.webp",
+        "樱吹雪_Yuki_妈": "garb/be0e78b625d6b76300b917445c65998c052cb3ce.png@65w.webp",
+        "樱吹雪_Yuki_比心": "garb/c6acc382cf720529338d9426e1e7a45bd00ac6db.png@65w.webp",
+        "樱吹雪_Yuki_wink": "garb/c2500df5817faf7ca63af1cefe62c2526d7693aa.png@65w.webp",
+        "樱吹雪_Yuki_狐狸": "garb/26ae388cad7fb59d8797e7e0d77f198cdab46928.png@65w.webp",
+        "花丸晴琉_mua": "emote/25be806bfbbb5300afdbeeb64977c90cd1254bf1.png",
+        "花丸晴琉_wink": "emote/343d2d4bbf5919f25e37f971cf114d07232c5e73.png",
+        "花丸晴琉_啊咧": "emote/b34c5a1827762b981d689bbc51f134469ef06f23.png",
+        "花丸晴琉_大笑": "emote/1e28846f5cbd897dd2653142b8be9db42dfbdcb3.png",
+        "花丸晴琉_呆住": "emote/2b31495e0c538e095d44ff1a17834abe317a05d2.png",
+        "花丸晴琉_对不起": "emote/02d1e8ddfac938b20956f3d83350f442d398286a.png",
+        "花丸晴琉_好耶": "emote/29724d41c08ec63962e0974aa653ea8be0cf3947.png",
+        "花丸晴琉_挥手": "emote/2c0753c98d4e098a3c5f27ab658b1046b4032572.png",
+        "花丸晴琉_惊慌": "emote/e8307d3bd2ad84434e2f6de1eea727aaa138d987.png",
+        "花丸晴琉_泪目": "emote/02a805b640a1bd824d21c5e21cf2dbb19f03b6a1.png",
+        "花丸晴琉_丧": "emote/e45bd7cf880f36a439ef47c355c73065911992ac.png",
+        "花丸晴琉_生气": "emote/dfbfccd43db22e547f62563b73ae7a474b1163a2.png",
+        "花丸晴琉_晚安": "emote/40b60d5c04c8e7037089c408e68a73d51fd3dee7.png",
+        "花丸晴琉_无语": "emote/ac4cf2356a708eb11199f266160cb76be129ead9.png",
+        "花丸晴琉_喜欢": "emote/71a508d3183fb59f1ddf3a42af59fa7495f2c18c.png",
+        "花丸晴琉_邪恶": "emote/0a8175363b7c8270836323a627b1fe437938399c.png",
+        "花丸晴琉_疑惑": "emote/4aef9a2a5c9800faf2501014e1fba1fbf180b8f0.png",
+        "花丸晴琉_嘤嘤": "emote/b5584ef24436d42364e7234a9cd8734e00f872f6.png",
+        "花丸晴琉_赞": "emote/adf49b5e19731a8176b774f55b5472b9234ee555.png",
+        "花丸晴琉_早安": "emote/c5e20c947c10bb931413b8e4bc80b2bd3b09971e.png",
+        "-菫時-打Call": "live/e8073adeb52036d0d563c848c4b55b8449bc4b85.png@65w.webp",
+        "-菫時-分号分号": "live/f2a7a0916015a741a192ae85ee593a39c6dd04a7.png@65w.webp",
+        "-菫時-哎呀": "live/0a691aec40c738918014b27acfefa3b295b8a458.png@65w.webp",
+        "-菫時-地蕾": "live/cdb1f3adeee987c1fe5303ca90443932edb23d30.png@65w.webp",
+        "-菫時-困困": "live/c9450e570d7abcf5a920b65e18b9624b75c9d4fb.png@65w.webp",
+        "-菫時-生气": "live/021761abdfe8dc417e5267b74877bebd43dcfd58.png@65w.webp",
+        "-菫時-亲亲": "live/e0ae55eb80c6b7c01eeb042a26a3bd2938ed679a.png@65w.webp",
+        "-菫時-急了": "live/bea985bcf662dc4d85c9f78633c57398b7c3d223.png@65w.webp",
+        "-菫時-问号": "live/5b29c4c15e6b97da2df564899f84906fc800590b.png@65w.webp",
+        "-菫時-拜比": "live/a9fa62db7b7233dac30d3abd851b992710bc1649.png@65w.webp",
+        "纱依shayi_打call": "garb/4d97de8b2d6bb9cb19621af93550b3560e85277f.png@65w.webp",
+        "纱依shayi_喜欢": "garb/d345b8ff2f2dcd5a4833aa613fc7849bfb25f5e2.png@65w.webp",
+        "纱依shayi_晚安": "garb/f34ec93c5aa7fdb7cc919544df401474bed1a3c1.png@65w.webp",
+        "纱依shayi_kira": "garb/f784e4dc7d40f3d3a7ddb6977c241ff6d6a5db26.png@65w.webp",
+        "纱依shayi_贴贴": "garb/003679cdb44d37576b700f8ed0f4e85bc6ffc8a7.png@65w.webp",
+        "纱依shayi_结婚": "garb/b1a9e35f04b81476d1d93fdc3979fe194e873915.png@65w.webp",
+        "纱依shayi_甜蜜的": "garb/415a5fec5062816d6c316a718cf7f739dc12dcef.png@65w.webp",
+        "纱依shayi_摸鱼": "garb/b7f7d09fec93dd889b9e12286989dbfa41770689.png@65w.webp",
+        "纱依shayi_好厉害": "garb/7dceff9c32cb6a7a617c910cc840eaeaa89f1e60.png@65w.webp",
+        "纱依shayi_开心": "garb/360612ea05619a9517f9735e10f6a8e592eb6b35.png@65w.webp",
+        "纱依shayi_疑问": "garb/f591282a33cb0eb16e6ac679792ea90ce42e6d67.png@65w.webp",
+        "纱依shayi_哼": "garb/538c428f2d5bcaeefa60c81bb96e9a82475a59d2.png@65w.webp",
+        "纱依shayi_心碎": "garb/59697798dd454428c773ae989745af62042025ee.png@65w.webp",
+        "纱依shayi_趴": "garb/5261ebff0fce07a4bde695f56b1e90e03b2a22b9.png@65w.webp",
+        "纱依shayi_蹭蹭": "garb/8feb22fa3a58e7a26c31792be79fab8c015fa7f6.png@65w.webp",
+        "纱依shayi_喵": "garb/9a05fc8a87b3f5f05a3c01eec984aaec0f6727e1.png@65w.webp",
+        "冥冥meichan_太爱钱了": "garb/item/e3d018abc7dfcaba7a95b512d313591ec015e984.png",
+        "冥冥meichan_不可以": "garb/item/5cfc0218594fbe8b2946e67e03fc4ea5c4a19d36.png",
+        "冥冥meichan_优雅红茶": "garb/item/8698f417982fd8d5abadf5207407532bb1b5b44f.png",
+        "冥冥meichan_哭哭": "garb/item/32817fbdd4226afe71e1aa3d8f0a91c62729567d.png",
+        "冥冥meichan_不想输": "garb/item/04fdc12859be022fba9992c76f89b0956d19262d.png",
+        "冥冥meichan_开车": "garb/item/3414c37849153f2ebd0fe6c8d7298bbc711c4ed9.png",
+        "冥冥meichan_大钻戒": "garb/item/fa42d4a68660e6c3d6447cdf0fe7d95cc4c7cdae.png",
+        "冥冥meichan_带走": "garb/item/9862fdd11fb28e2456a5cd3f864f87a46f20604f.png",
+        "冥冥meichan_我好了": "garb/item/8855c3fcfc538ee1d96e9ec25f758a0b5602cf66.png",
+        "冥冥meichan_嗨呀": "garb/item/caebcb782f3a8742548786cd52cb4d80d8353e03.png",
+        "冥冥meichan_好喜欢哦": "garb/item/3cc66caaf1a62e1778b18a458e58b38df99cfa0f.png",
+        "冥冥meichan_给你一拳": "garb/item/9b9e4aa83cedd7016bf2f2a83bbe838b648f01ff.png",
+        "冥冥meichan_理发店": "garb/item/6026b23be561844d08c5bc4b2d66316c3eeebb15.png",
+        "冥冥meichan_典": "garb/item/172ea06085c8d242f3105d0d04826217bbe4fbeb.png",
+        "冥冥meichan_信积拉奶": "garb/item/57902ef1f2392e1b8ca4a92ee9c844c18b633009.png",
+        "冥冥meichan_饭饭": "garb/item/79a5c3bda7449e06f032c095144d8218b9acb335.png",
+        "冥冥meichan_盯": "garb/item/9c9419db0b80a40ab36eed395251e7efe6421b69.png",
+        "冥冥meichan_流汗": "garb/item/014bd9e4519567f7f711c0ef8138ffcd022750cd.png",
+        "冥冥meichan_晚安": "garb/item/4ed6aba3c606484511e550e9d8070a74c004ba8e.png",
+        "冥冥meichan_mua": "garb/item/21b927b32c186a8c4dd12ff48fcb19461d8dcd0e.png",
+        "冥冥meichan_关注冥冥": "garb/item/55cfde3719b757aa211e5f1d136cd8c8a1e0dc2f.png",
+        "冥冥meichan_你是懂的": "garb/item/724e8fe83e63a0814995dc8fd7a5d874c0568028.png",
+        "冥冥meichan_你懂个P": "garb/item/ffa551eaec65b9b3e33eb388fb91f9c02e4ff67a.png",
+        "冥冥meichan_钱不够啊": "garb/item/d153516692abb248a2429319ff7eb8cff4b2d463.png",
+        "冥冥meichan_寄": "garb/item/4de329afec2e0ebe3c4d0db0da710721bed35ff3.png",
+        // ... 更多表情
+    }
+    });
+</script>
+<script>
+    // 点击回复直接评论,官方版本点击回复时都是跳回到页面上方的评论框进行回复，评论框是固定不动的
+    // 参考https://immmmm.com/valine-diy,用到jQuery
+    $(document).ready(function(){
+        //$('.vemoji-btn').text('😀');
+        $("#vcomments").on('click', 'span.vat',function(){
+            $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+            $('textarea#veditor').focus();
+        })
+    })
+</script>
+<script type="text/javascript">
+    //添加一言
+   fetch('https://v1.hitokoto.cn/?c=a')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("veditor").setAttribute("placeholder",data.hitokoto+"__"+data.from);
+    })
+    .catch(console.error)
+</script>
+
+            
+
+
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<div id="aplayer" class="aplayer" data-autoplay="true"  data-id="56868" data-server="netease" data-type="album" data-fixed="true" data-listfolded="true" data-order="random" data-theme="#F58EA8"></div>
+<script src="https://unpkg.com/meting@1.2.0/dist/Meting.min.js"></script>
+
+
+<a id="scrollUp" href="#" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://weibo.com/6392902197"title="weibo"><i class="iconfont icon-weibo"></i></a><a href="https://github.com/xiaxi626"title="github"><i class="iconfont icon-github"></i></a><a href="aijiang1220966821@163.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://xiaxi626.github.io/atom.xml"title="rss"><i class="iconfont icon-rss"></i></a><a href="https://www.zhihu.com/people/xiao-yan-shi-36"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © <a href="https://xiaxi626.github.io" style="margin:0;">飞爱碧玉的个人博客</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_pv"></span></strong></span>
+<span style="display: inline;margin-right:15px;">👤<strong><span id="busuanzi_value_site_uv"></span></strong></span>
+<span>📚<strong>62</strong> posts</span>
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+<script>
+//复制内容自动添加版权信息 
+ var Sys = {}; 
+    var ua = navigator.userAgent.toLowerCase(); 
+    if( window.ActiveXObject ) 
+    { 
+        document.body.oncopy=function() 
+        { 
+            event.returnValue = false; 
+            var t=document.selection.createRange().text; 
+            var s="\r\n原文出自 [飞爱碧玉的个人博客]  转载请保留原文链接: "+location.href; 
+            clipboardData.setData('Text',t+'\r\n'+s); 
+        } 
+    } 
+    else 
+    { 
+        function addLink() 
+        { 
+            var body_element = document.getElementsByTagName('body')[0]; 
+            var selection; 
+            selection = window.getSelection(); 
+            var pagelink = " 原文出自 [飞爱碧玉的个人博客]  转载请保留原文链接: "+document.location.href; 
+ 
+            var copytext = selection + pagelink; 
+            var newdiv = document.createElement('div'); 
+            newdiv.style.position='absolute'; 
+            newdiv.style.left='-99999px'; 
+            body_element.appendChild(newdiv); 
+            newdiv.innerHTML = copytext; 
+            selection.selectAllChildren(newdiv); 
+            window.setTimeout 
+            ( 
+                function() 
+                { 
+                    body_element.removeChild(newdiv); 
+                },0 
+            ); 
+        } 
+        document.oncopy = addLink; 
+    } 
+</script>
+
+<script type="text/javascript" async src="https://xiaxi626.github.io/media/js/prism.js"></script>
+</body>
+</html>

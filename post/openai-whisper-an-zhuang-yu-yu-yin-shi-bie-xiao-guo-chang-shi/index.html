@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico" type="image/x-icon" />
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<meta name="apple-mobile-web-app-capable"content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style"content="black"/>
+<meta name="format-detection"content="telephone=no"/>
+<meta name="renderer"content="webkit">
+<meta name="description"content="">
+<meta charset="UTF-8">
+<title>OpenAI Whisper 安装与语音识别效果尝试+WebUI+Buzz+云端识别 | 飞爱碧玉的个人博客</title>
+
+<link href="https://xiaxi626.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://xiaxi626.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+
+<script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+
+<!-- DEMO CSS -->
+<style type="text/css">
+	
+</style>
+
+<link rel="canonical" href="https://xiaxi626.github.io/post/openai-whisper-an-zhuang-yu-yu-yin-shi-bie-xiao-guo-chang-shi/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://xiaxi626.github.io"><img alt="logo" style="display:inline-block;" src="https://xiaxi626.github.io/images/avatar.png"/></a><h1 title="飞爱碧玉的个人博客" class="weaklink"><a  href="/">飞爱碧玉的个人博客</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1693051104581" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="搜索..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>OpenAI Whisper 安装与语音识别效果尝试+WebUI+Buzz+云端识别</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2023-02-26</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://xiaxi626.github.io/tag/JcIpV52xSP/" class="tag">Technology</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">16939字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">99 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<img class="featureImg" alt="featureimg" src="https://xiaxi626.github.io/post-images/openai-whisper-an-zhuang-yu-yu-yin-shi-bie-xiao-guo-chang-shi.png" referrerpolicy="no-referrer">
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+
+<div class="round-shape-one"></div>
+
+<p>近日为了制作 VITS 语音，需要获取某视频语音的日文字幕。我翻找了国内外多个网站，发现仅青翼字幕组、海月字幕组发过双语字幕，アニメ发过粤日雙語，极影字幕社&amp;天使字幕组发的可能是双语字幕，但都已经死种。本人日语不好，于是打算借助语音识别生成日语字幕。<br>
+考虑再三，网易见外只识别中英文，别的大多需要阿里、腾讯的付费服务，部分Windows 7 上无法使用，遂尝试OpenAI Whisper。</p>
+<h2 id="安装openai-whisper">安装OpenAI Whisper</h2>
+<p>Github上的安装说明——</p>
+<p>We used Python 3.9.9 and PyTorch 1.10.1 to train and test our models, but the codebase is expected to be compatible with Python 3.8-3.10 and recent PyTorch versions. The codebase also depends on a few Python packages, most notably HuggingFace Transformers for their fast tokenizer implementation and ffmpeg-python for reading audio files. You can download and install (or update to) the latest release of Whisper with the following command:</p>
+<pre><code class="language-dash">pip install -U openai-whisper
+</code></pre>
+<p>Alternatively, the following command will pull and install the latest commit from this repository, along with its Python dependencies:</p>
+<pre><code class="language-dash">pip install git+https://github.com/openai/whisper.git 
+</code></pre>
+<p>To update the package to the latest version of this repository, please run:</p>
+<pre><code class="language-dash">pip install --upgrade --no-deps --force-reinstall git+https://github.com/openai/whisper.git
+</code></pre>
+<p>It also requires the command-line tool ffmpeg to be installed on your system, which is available from most package managers:</p>
+<pre><code class="language-dash"># on Ubuntu or Debian
+sudo apt update &amp;&amp; sudo apt install ffmpeg
+
+# on Arch Linux
+sudo pacman -S ffmpeg
+
+# on MacOS using Homebrew (https://brew.sh/)
+brew install ffmpeg
+
+# on Windows using Chocolatey (https://chocolatey.org/)
+choco install ffmpeg
+
+# on Windows using Scoop (https://scoop.sh/)
+scoop install ffmpeg
+</code></pre>
+<p>You may need rust installed as well, in case tokenizers does not provide a pre-built wheel for your platform. If you see installation errors during the pip install command above, please follow the Getting started page to install Rust development environment. Additionally, you may need to configure the PATH environment variable, e.g. export PATH=&quot;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>H</mi><mi>O</mi><mi>M</mi><mi>E</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">.</mi><mi>c</mi><mi>a</mi><mi>r</mi><mi>g</mi><mi>o</mi><mi mathvariant="normal">/</mi><mi>b</mi><mi>i</mi><mi>n</mi><mo>:</mo></mrow><annotation encoding="application/x-tex">HOME/.cargo/bin:</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">/</span><span class="mord">.</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">o</span><span class="mord">/</span><span class="mord mathdefault">b</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span></span></span></span>PATH&quot;. If the installation fails with No module named 'setuptools_rust', you need to install setuptools_rust, e.g. by running:</p>
+<pre><code class="language-dash">pip install setuptools-rust
+</code></pre>
+<h3 id="第一步安装ffmpeg和git">第一步，安装FFmpeg和Git</h3>
+<h3 id="第二步安装python">第二步，安装Python</h3>
+<p>Windows 7 建议安装Python 3.8，不要捣鼓网上那些Windows 10 安装Python 3.10的招了，试过了，一样的操作现在不管用了，学人家那样费时费力换各个小版本，下载既不方便，大多也无法实现。</p>
+<p>安装过程按这篇文章来就行——<a href="https://zhuanlan.zhihu.com/p/108894054">Python3.8 最新详细安装步骤</a></p>
+<h3 id="第三步安装-pytorch">第三步，安装 PyTorch</h3>
+<p>使用pip安装。</p>
+<p>打开pytorch.org,下拉页面。</p>
+<p>按照下图选择要安装的版本。我选择的是稳定版，windows系统，pip安装方式，python语言、cpu版本的软件。<br>
+<img src="https://xiaxi626.github.io/post-images/1677392302766.png" alt="" loading="lazy"><br>
+CUDA 11.6和CUDA 11.7都是gpu版本的软件，我一开始下载的也是gpu版本的，但是因为我的电脑显卡的显存比较低，运行whisper模型的时候大模型运行不了。为了能运行更大的模型以保证语音识别较高的准确率，我最终只能选择安装cpu版本。</p>
+<p>cmd安装过程——</p>
+<pre><code class="language-bash">C:\Users\Administrator&gt;pip3 install torch torchvision torchaudio
+Collecting torch
+  Using cached torch-1.13.1-cp38-cp38-win_amd64.whl (162.6 MB)
+Collecting torchvision
+  Using cached torchvision-0.14.1-cp38-cp38-win_amd64.whl (1.1 MB)
+Collecting torchaudio
+  Using cached torchaudio-0.13.1-cp38-cp38-win_amd64.whl (2.0 MB)
+Requirement already satisfied: typing-extensions in c:\program files\python38\li
+b\site-packages (from torch) (4.5.0)
+Requirement already satisfied: requests in c:\program files\python38\lib\site-pa
+ckages (from torchvision) (2.28.2)
+Requirement already satisfied: numpy in c:\program files\python38\lib\site-packa
+ges (from torchvision) (1.24.2)
+Requirement already satisfied: pillow!=8.3.*,&gt;=5.3.0 in c:\program files\python3
+8\lib\site-packages (from torchvision) (9.4.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in c:\program files\python38\l
+ib\site-packages (from requests-&gt;torchvision) (2022.12.7)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\program files\python38\lib\sit
+e-packages (from requests-&gt;torchvision) (3.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in c:\program files\python3
+8\lib\site-packages (from requests-&gt;torchvision) (1.26.14)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\program files\pyth
+on38\lib\site-packages (from requests-&gt;torchvision) (3.0.1)
+Installing collected packages: torch, torchvision, torchaudio
+Successfully installed torch-1.13.1 torchaudio-0.13.1 torchvision-0.14.1
+</code></pre>
+<p>安装PyTorch一般不会出错。</p>
+<h3 id="第四步安装whisper">第四步，安装Whisper</h3>
+<p>在终端命令行中执行</p>
+<pre><code class="language-dash">pip install git+https://github.com/openai/whisper.git 
+</code></pre>
+<p>cmd报错——</p>
+<pre><code class="language-dash">C:\Users\Administrator&gt;pip install git+https://github.com/openai/whisper.git
+Collecting git+https://github.com/openai/whisper.git
+  Cloning https://github.com/openai/whisper.git to c:\users\administrator\appdat
+a\local\temp\pip-req-build-zed49a2d
+  Running command git clone --filter=blob:none --quiet https://github.com/openai
+/whisper.git 'C:\Users\Administrator\AppData\Local\Temp\pip-req-build-zed49a2d'
+  error: RPC failed; curl 92 HTTP/2 stream 3 was not closed cleanly before end o
+f the underlying stream
+  error: 6240 bytes of body are still expected
+  fetch-pack: unexpected disconnect while reading sideband packet
+  fatal: early EOF
+  fatal: index-pack failed
+  fatal: could not fetch 116c859375fdf68107b80ceb7eb3678780eef5b8 from promisor
+remote
+  warning: Clone succeeded, but checkout failed.
+  You can inspect what was checked out with 'git status'
+  and retry with 'git restore --source=HEAD :/'
+
+  error: subprocess-exited-with-error
+
+  × git clone --filter=blob:none --quiet https://github.com/openai/whisper.git
+'C:\Users\Administrator\AppData\Local\Temp\pip-req-build-zed49a2d' did not run s
+uccessfully.
+  │ exit code: 128
+  ╰─&gt; See above for output.
+
+  note: This error originates from a subprocess, and is likely not a problem wit
+h pip.
+error: subprocess-exited-with-error
+
+× git clone --filter=blob:none --quiet https://github.com/openai/whisper.git 'C
+:\Users\Administrator\AppData\Local\Temp\pip-req-build-zed49a2d' did not run suc
+cessfully.
+│ exit code: 128
+╰─&gt; See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with
+pip.
+</code></pre>
+<p>分析报错提示可知，上述报错主要是由于git 使用 https 协议时报错。<br>
+<strong>解决方案</strong></p>
+<pre><code class="language-dash">git config --global --unset http.proxy
+</code></pre>
+<p>接着，我重新输入<code>pip install git+https://github.com/openai/whisper.git</code><br>
+cmd安装过程——</p>
+<pre><code class="language-dash">C:\Users\Administrator&gt;pip install git+https://github.com/openai/whisper.git
+Collecting git+https://github.com/openai/whisper.git
+  Cloning https://github.com/openai/whisper.git to c:\users\administrator\appdat
+a\local\temp\pip-req-build-zfi9jb7o
+  Running command git clone --filter=blob:none --quiet https://github.com/openai
+/whisper.git 'C:\Users\Administrator\AppData\Local\Temp\pip-req-build-zfi9jb7o'
+  Resolved https://github.com/openai/whisper.git to commit 7858aa9c08d98f7557503
+5ecd6481f462d66ca27
+  Preparing metadata (setup.py) ... done
+Requirement already satisfied: numpy in c:\program files\python38\lib\site-packa
+ges (from openai-whisper==20230124) (1.24.2)
+Requirement already satisfied: torch in c:\program files\python38\lib\site-packa
+ges (from openai-whisper==20230124) (1.13.1)
+Requirement already satisfied: tqdm in c:\program files\python38\lib\site-packag
+es (from openai-whisper==20230124) (4.64.1)
+Requirement already satisfied: more-itertools in c:\program files\python38\lib\s
+ite-packages (from openai-whisper==20230124) (9.0.0)
+Requirement already satisfied: transformers&gt;=4.19.0 in c:\program files\python38
+\lib\site-packages (from openai-whisper==20230124) (4.26.1)
+Collecting ffmpeg-python==0.2.0
+  Using cached ffmpeg_python-0.2.0-py3-none-any.whl (25 kB)
+Requirement already satisfied: future in c:\program files\python38\lib\site-pack
+ages (from ffmpeg-python==0.2.0-&gt;openai-whisper==20230124) (0.18.3)
+Requirement already satisfied: regex!=2019.12.17 in c:\program files\python38\li
+b\site-packages (from transformers&gt;=4.19.0-&gt;openai-whisper==20230124) (2022.10.3
+1)
+Requirement already satisfied: filelock in c:\program files\python38\lib\site-pa
+ckages (from transformers&gt;=4.19.0-&gt;openai-whisper==20230124) (3.9.0)
+Requirement already satisfied: packaging&gt;=20.0 in c:\program files\python38\lib\
+site-packages (from transformers&gt;=4.19.0-&gt;openai-whisper==20230124) (23.0)
+Requirement already satisfied: pyyaml&gt;=5.1 in c:\program files\python38\lib\site
+-packages (from transformers&gt;=4.19.0-&gt;openai-whisper==20230124) (6.0)
+Requirement already satisfied: tokenizers!=0.11.3,&lt;0.14,&gt;=0.11.1 in c:\program f
+iles\python38\lib\site-packages (from transformers&gt;=4.19.0-&gt;openai-whisper==2023
+0124) (0.13.2)
+Requirement already satisfied: huggingface-hub&lt;1.0,&gt;=0.11.0 in c:\program files\
+python38\lib\site-packages (from transformers&gt;=4.19.0-&gt;openai-whisper==20230124)
+ (0.12.1)
+Requirement already satisfied: requests in c:\program files\python38\lib\site-pa
+ckages (from transformers&gt;=4.19.0-&gt;openai-whisper==20230124) (2.28.2)
+Requirement already satisfied: colorama in c:\program files\python38\lib\site-pa
+ckages (from tqdm-&gt;openai-whisper==20230124) (0.4.6)
+Requirement already satisfied: typing-extensions in c:\program files\python38\li
+b\site-packages (from torch-&gt;openai-whisper==20230124) (4.5.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in c:\program files\python38\l
+ib\site-packages (from requests-&gt;transformers&gt;=4.19.0-&gt;openai-whisper==20230124)
+ (2022.12.7)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\program files\pyth
+on38\lib\site-packages (from requests-&gt;transformers&gt;=4.19.0-&gt;openai-whisper==202
+30124) (3.0.1)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in c:\program files\python3
+8\lib\site-packages (from requests-&gt;transformers&gt;=4.19.0-&gt;openai-whisper==202301
+24) (1.26.14)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\program files\python38\lib\sit
+e-packages (from requests-&gt;transformers&gt;=4.19.0-&gt;openai-whisper==20230124) (3.4)
+
+Installing collected packages: ffmpeg-python, openai-whisper
+  DEPRECATION: openai-whisper is being installed using the legacy 'setup.py inst
+all' method, because it does not have a 'pyproject.toml' and the 'wheel' package
+ is not installed. pip 23.1 will enforce this behaviour change. A possible repla
+cement is to enable the '--use-pep517' option. Discussion can be found at https:
+//github.com/pypa/pip/issues/8559
+  Running setup.py install for openai-whisper ... done
+Successfully installed ffmpeg-python-0.2.0 openai-whisper-20230124
+
+C:\Users\Administrator&gt;
+</code></pre>
+<p>注意上文这一段<br>
+To update the package to the latest version of this repository, please run:</p>
+<pre><code class="language-dash">pip install --upgrade --no-deps --force-reinstall git+https://github.com/openai/whisper.git
+</code></pre>
+<p>输入上面的代码将软件包更新到此存储库的最新版本<br>
+我跳过这步直接输入<code>whisper audio.mp3</code>，开始语音识别<br>
+cmd运行——</p>
+<pre><code class="language-dash">Administrator@AUTOBVT-Q90417J MINGW64 ~/Desktop/新建文件夹
+$ whisper audio.mp3
+c:\program files\python38\lib\site-packages\whisper\__init__.py:48: UserWarning: C:\Users\Administrator\.cache\whisper\small.pt exists, but the SHA256 checksum does not match; re-downloading the file
+  warnings.warn(f&quot;{download_target} exists, but the SHA256 checksum does not match; re-downloading the file&quot;)
+  0%|▒▒                                     | 1.55M/461M [00:01&lt;07:29, 1.07MiB/s  0%|▒▒                                     | 1.66M/461M [00:01&lt;07:38, 1.05MiB/s  0%|▒▒                                     | 1.77M/461M [00:01&lt;07:34, 1.06MiB/s  0%|▒▒                                     | 1.89M/461M [00:02&lt;07:17, 1.10MiB/s  0%|▒▒                                     | 2.02M/461M [00:02&lt;06:59, 1.15MiB/s  0%|▒▒                                     | 2.13M/461M [00:02&lt;07:04, 1.13MiB/s  0%|▒▒                                     | 2.25M/461M [00:02&lt;06:54, 1.16MiB/s  1%|▒▒                                     | 2.38M/461M [00:02&lt;06:41, 1.20MiB/s  1%|▒▒                                     | 2.49M/461M [00:02&lt;06:43, 1.19MiB/s  1%|▒▒                                     | 2.61M/461M [00:02&lt;06:39, 1.20MiB/s  1%|▒▒                                     | 2.73M/461M [00:02&lt;06:38, 1.21MiB/s  1%|▒▒                                     | 2.84M/461M [00:02&lt;06:38, 1.21MiB/s  1%|▒▒                                     | 2.96M/461M [00:02&lt;06:52, 1.16MiB/s  1%|▒▒                                     | 3.11M/461M [00:03&lt;06:56, 1.15MiB/s  1%|▒▒                                     | 3.25M/461M [00:03&lt;06:29, 1.23MiB/s  1%|▒▒                                     | 3.38M/461M [00:03&lt;06:36, 1.21MiB/s  1%|▒▒                                     | 3.50M/461M [00:03&lt;06:29, 1.23MiB/s  1%|▒▒                                     | 3.66M/461M [00:03&lt;06:11, 1.29MiB/s  1%|▒▒                                     | 3.80M/461M [00:03&lt;06:31, 1.23MiB/s  1%|▒▒                                     | 3.95M/461M [00:03&lt;06:02, 1.32MiB/s  1%|▒▒                                     | 4.09M/461M [00:03&lt;05:55, 1.35MiB/s  1%|▒▒                                     | 4.23M/461M [00:04&lt;05:56, 1.34MiB/s  1%|▒▒                                     | 4.36M/461M [00:04&lt;05:53, 1.36MiB/s  1%|▒▒                                     | 4.52M/461M [00:04&lt;05:56, 1.34MiB/s  1%|▒▒                                     | 4.65M/461M [00:04&lt;06:21, 1.25MiB/s  1%|▒▒                                     | 4.77M/461M [00:04&lt;07:00, 1.14MiB/s  1%|▒▒                                      | 4.89M/461M [00:04&lt;08:00, 996kiB/s  1%|▒▒                                      | 4.99M/461M [00:04&lt;08:23, 951kiB/s  1%|▒▒                                      | 5.09M/461M [00:04&lt;08:50, 902kiB/s  1%|▒▒                                      | 5.18M/461M [00:05&lt;09:48, 812kiB/s  1%|▒▒                                      | 5.27M/461M [00:05&lt;09:37, 827kiB/s  1%|▒▒                                      | 5.36M/461M [00:05&lt;09:14, 862kiB/s  1%|▒▒                                      | 5.45M/461M [00:05&lt;09:10, 868kiB/s  1%|▒▒                                      | 5.53M/461M [00:05&lt;09:24, 847kiB/s  1%|▒▒                                      | 5.62M/461M [00:05&lt;10:13, 779kiB/s  1%|▒▒                                      | 5.70M/461M [00:05&lt;10:09, 784kiB/s  1%|▒▒                                      | 5.81M/461M [00:05&lt;09:29, 838kiB/s  1%|▒▒                                      | 5.90M/461M [00:05&lt;09:48, 812kiB/s  1%|▒▒                                      | 5.98M/461M [00:06&lt;09:35, 829kiB/s  1%|▒▒                                      | 6.08M/461M [00:06&lt;09:20, 852kiB/s  1%|▒▒                                      | 6.17M/461M [00:06&lt;09:06, 874kiB/s  1%|▒▒                                      | 6.30M/461M [00:06&lt;08:05, 982kiB/s  1%|▒▒                                      | 6.41M/461M [00:06&lt;08:08, 976kiB/s  1%|▒▒                                     | 6.53M/461M [00:06&lt;07:37, 1.04MiB/s  1%|▒▒                                     | 6.66M/461M [00:06&lt;07:16, 1.09MiB/s  1%|▒▒                                     | 6.77M/461M [00:06&lt;07:22, 1.08MiB/s  1%|▒▒                                     | 6.88M/461M [00:06&lt;07:38, 1.04MiB/s  2%|▒▒                                     | 7.02M/461M [00:07&lt;07:02, 1.13MiB/s  2%|▒▒                                     | 7.16M/461M [00:07&lt;06:30, 1.22MiB/s  2%|▒▒                                     | 7.28M/461M [00:07&lt;07:04, 1.12MiB/s  2%|▒▒                                     | 7.39M/461M [00:07&lt;07:08, 1.11MiB/s  2%|▒▒                                     | 7.53M/461M [00:07&lt;06:54, 1.15MiB/s  2%|▒▒                                     | 7.67M/461M [00:07&lt;06:30, 1.22MiB/s  2%|▒▒                                     | 7.81M/461M [00:07&lt;07:47, 1.02MiB/s  2%|▒▒                                     | 7.95M/461M [00:07&lt;07:07, 1.11MiB/s  2%|▒▒                                     | 8.07M/461M [00:08&lt;07:34, 1.04MiB/s  2%|▒▒                                     | 8.18M/461M [00:08&lt;07:53, 1.00MiB/s  2%|▒▒                                      | 8.28M/461M [00:08&lt;14:48, 535kiB/s  2%|▒▒                                      | 8.36M/461M [00:08&lt;13:48, 573kiB/s  2%|▒▒                                      | 8.45M/461M [00:08&lt;13:00, 608kiB/s  2%|▒▒                                      | 8.55M/461M [00:09&lt;12:03, 656kiB/s  2%|▒▒                                      | 8.64M/461M [00:09&lt;11:18, 700kiB/s  2%|▒▒                                      | 8.72M/461M [00:09&lt;11:01, 717kiB/s  2%|▒▒                                      | 8.81M/461M [00:09&lt;10:15, 770kiB/s  2%|▒▒                                      | 8.90M/461M [00:09&lt;10:08, 780kiB/s  2%|▒▒                                      | 8.98M/461M [00:09&lt;10:39, 742kiB/s  2%|▒▒                                      | 9.09M/461M [00:09&lt;09:49, 804kiB/s  2%|▒▒                                      | 9.18M/461M [00:09&lt;09:43, 812kiB/s  2%|▒▒                                      | 9.27M/461M [00:09&lt;10:09, 778kiB/s  2%|▒▒                                      | 9.36M/461M [00:10&lt;09:35, 823kiB/s  2%|▒▒                                      | 9.45M/461M [00:10&lt;09:56, 795kiB/s  2%|▒▒                                      | 9.55M/461M [00:10&lt;09:41, 815kiB/s  2%|▒▒                                      | 9.63M/461M [00:10&lt;09:43, 812kiB/s  2%|▒▒                                      | 9.71M/461M [00:10&lt;09:43, 812kiB/s  2%|▒▒                                      | 9.81M/461M [00:10&lt;09:22, 842kiB/s  2%|▒▒                                      | 9.92M/461M [00:10&lt;08:39, 910kiB/s  2%|▒▒                                      | 10.0M/461M [00:10&lt;08:29, 928kiB/s  2%|▒▒                                      | 10.1M/461M [00:11&lt;09:33, 824kiB/s  2%|▒▒                                      | 10.2M/461M [00:11&lt;08:59, 877kiB/s  2%|▒▒                                      | 10.3M/461M [00:11&lt;08:04, 976kiB/s  2%|▒▒                                      | 10.4M/461M [00:11&lt;07:55, 995kiB/s  2%|▒▒                                      | 10.5M/461M [00:11&lt;08:19, 946kiB/s  2%|▒▒                                     | 10.7M/461M [00:11&lt;07:52, 1.00MiB/s  2%|▒▒                                     | 10.8M/461M [00:11&lt;07:40, 1.03MiB/s  2%|▒▒                                     | 10.9M/461M [00:11&lt;07:19, 1.07MiB/s  2%|▒▒                                     | 11.0M/461M [00:11&lt;07:29, 1.05MiB/s  2%|▒▒                                     | 11.1M/461M [00:12&lt;07:36, 1.03MiB/s  2%|▒▒                                      | 11.2M/461M [00:12&lt;08:13, 957kiB/s  2%|▒▒                                     | 11.3M/461M [00:12&lt;07:49, 1.01MiB/s  2%|▒▒                                     | 11.4M/461M [00:12&lt;07:51, 1.00MiB/s  2%|▒▒                                      | 11.5M/461M [00:12&lt;07:53, 996kiB/s  3%|▒▒                                     | 11.6M/461M [00:12&lt;07:46, 1.01MiB/s  3%|▒▒                                     | 11.7M/461M [00:12&lt;07:44, 1.01MiB/s  3%|▒▒                                     | 11.8M/461M [00:12&lt;07:29, 1.05MiB/s  3%|▒▒                                     | 12.0M/461M [00:12&lt;07:00, 1.12MiB/s  3%|▒▒                                     | 12.1M/461M [00:12&lt;06:51, 1.15MiB/s  3%|▒▒                                     | 12.2M/461M [00:13&lt;06:34, 1.19MiB/s  3%|▒▒                                     | 12.3M/461M [00:13&lt;06:31, 1.20MiB/s  3%|▒▒                                     | 12.5M/461M [00:13&lt;06:58, 1.12MiB/s  3%|▒▒                                     | 12.6M/461M [00:13&lt;07:15, 1.08MiB/s  3%|▒▒                                     | 12.7M/461M [00:13&lt;07:16, 1.08MiB/s  3%|▒▒                                     | 12.8M/461M [00:13&lt;07:01, 1.12MiB/s  3%|▒▒                                     | 12.9M/461M [00:13&lt;07:04, 1.11MiB/s  3%|▒▒                                     | 13.0M/461M [00:13&lt;07:00, 1.12MiB/s  3%|▒▒                                     | 13.2M/461M [00:13&lt;06:48, 1.15MiB/s  3%|▒▒                                     | 13.3M/461M [00:14&lt;06:52, 1.14MiB/s  3%|▒▒                                     | 13.4M/461M [00:14&lt;07:10, 1.09MiB/s  3%|▒▒                                     | 13.5M/461M [00:14&lt;06:44, 1.16MiB/s  3%|▒▒▒▒                                    | 13.7M/461M [00:14&lt;06:38, 1.18MiB/  3%|▒▒▒▒                                    | 13.8M/461M [00:14&lt;06:45, 1.16MiB/  3%|▒▒▒▒                                    | 13.9M/461M [00:14&lt;06:27, 1.21MiB/  3%|▒▒▒▒                                    | 14.1M/461M [00:14&lt;06:05, 1.28MiB/  3%|▒▒▒▒                                    | 14.2M/461M [00:14&lt;06:16, 1.24MiB/  3%|▒▒▒▒                                    | 14.3M/461M [00:14&lt;05:58, 1.31MiB/  3%|▒▒▒▒                                    | 14.5M/461M [00:15&lt;05:59, 1.30MiB/  3%|▒▒▒▒                                    | 14.6M/461M [00:15&lt;06:05, 1.28MiB/  3%|▒▒▒▒                                    | 14.7M/461M [00:15&lt;06:30, 1.20MiB/  3%|▒▒▒▒                                    | 14.8M/461M [00:15&lt;07:14, 1.08MiB/  3%|▒▒▒▒                                    | 15.0M/461M [00:15&lt;07:07, 1.09MiB/  3%|▒▒▒▒                                    | 15.1M/461M [00:15&lt;06:48, 1.15MiB/  3%|▒▒▒▒                                    | 15.2M/461M [00:15&lt;07:41, 1.01MiB/  3%|▒▒▒▒                                    | 15.3M/461M [00:15&lt;07:39, 1.02MiB/  3%|▒▒▒▒                                     | 15.4M/461M [00:16&lt;07:51, 991kiB/  3%|▒▒▒▒                                     | 15.5M/461M [00:16&lt;08:20, 934kiB/  3%|▒▒▒▒                                     | 15.6M/461M [00:16&lt;08:30, 916kiB/  3%|▒▒▒▒                                     | 15.7M/461M [00:16&lt;08:21, 931kiB/  3%|▒▒▒▒                                     | 15.8M/461M [00:16&lt;08:16, 940kiB/  3%|▒▒▒▒                                     | 15.9M/461M [00:16&lt;08:04, 963kiB/  3%|▒▒▒▒                                    | 16.0M/461M [00:16&lt;07:37, 1.02MiB/  3%|▒▒▒▒                                    | 16.1M/461M [00:16&lt;07:38, 1.02MiB/  4%|▒▒▒▒                                     | 16.2M/461M [00:16&lt;07:48, 995kiB/  4%|▒▒▒▒                                     | 16.3M/461M [00:17&lt;07:56, 979kiB/  4%|▒▒▒▒                                     | 16.4M/461M [00:17&lt;08:02, 967kiB/  4%|▒▒▒▒                                     | 16.5M/461M [00:17&lt;07:48, 995kiB/  4%|▒▒▒▒                                    | 16.6M/461M [00:17&lt;07:44, 1.00MiB/  4%|▒▒▒▒                                     | 16.7M/461M [00:17&lt;07:59, 972kiB/  4%|▒▒▒▒                                     | 16.8M/461M [00:17&lt;08:09, 951kiB/  4%|▒▒▒▒                                     | 16.9M/461M [00:17&lt;08:13, 944kiB/  4%|▒▒▒▒                                     | 17.0M/461M [00:17&lt;08:07, 955kiB/  4%|▒▒▒▒                                     | 17.1M/461M [00:17&lt;08:18, 934kiB/  4%|▒▒▒▒                                    | 17.2M/461M [00:18&lt;07:40, 1.01MiB/  4%|▒▒▒▒                                    | 17.4M/461M [00:18&lt;07:13, 1.07MiB/  4%|▒▒▒▒                                    | 17.5M/461M [00:18&lt;07:10, 1.08MiB/  4%|▒▒▒▒                                     | 17.6M/461M [00:18&lt;08:03, 962kiB/  4%|▒▒▒▒                                    | 17.7M/461M [00:18&lt;07:42, 1.01MiB/  4%|▒▒▒▒                                     | 17.8M/461M [00:18&lt;07:57, 974kiB/  4%|▒▒▒▒                                     | 17.9M/461M [00:18&lt;08:17, 935kiB/  4%|▒▒▒▒                                     | 18.0M/461M [00:18&lt;08:02, 963kiB/  4%|▒▒▒▒                                     | 18.1M/461M [00:18&lt;08:04, 958kiB/  4%|▒▒▒▒                                     | 18.2M/461M [00:19&lt;07:46, 997kiB/  4%|▒▒▒▒                                     | 18.3M/461M [00:19&lt;07:50, 988kiB/  4%|▒▒▒▒                                     | 18.4M/461M [00:19&lt;07:54, 979kiB/  4%|▒▒▒▒                                     | 18.5M/461M [00:19&lt;08:02, 962kiB/  4%|▒▒▒▒                                    | 18.6M/461M [00:19&lt;07:13, 1.07MiB/  4%|▒▒▒▒                                     | 18.8M/461M [00:19&lt;08:06, 954kiB/  4%|▒▒▒▒                                     | 18.9M/461M [00:19&lt;08:05, 954kiB/  4%|▒▒▒▒                                     | 18.9M/461M [00:19&lt;08:45, 882kiB/  4%|▒▒▒▒                                     | 19.1M/461M [00:20&lt;08:34, 902kiB/  4%|▒▒▒▒                                     | 19.1M/461M [00:20&lt;10:16, 751kiB/  4%|▒▒▒▒                                     | 19.2M/461M [00:20&lt;09:53, 781kiB/  4%|▒▒▒▒                                     | 19.4M/461M [00:20&lt;09:22, 824kiB/  4%|▒▒▒▒                                     | 19.5M/461M [00:20&lt;08:39, 891kiB/  4%|▒▒▒▒                                     | 19.6M/461M [00:20&lt;08:45, 882kiB/  4%|▒▒▒▒                                     | 19.7M/461M [00:20&lt;08:30, 908kiB/  4%|▒▒▒▒                                     | 19.8M/461M [00:20&lt;08:45, 882kiB/  4%|▒▒▒▒                                     | 19.9M/461M [00:21&lt;08:24, 917kiB/  4%|▒▒▒▒                                     | 20.0M/461M [00:21&lt;08:16, 932kiB/  4%|▒▒▒▒                                     | 20.1M/461M [00:21&lt;10:33, 731kiB/  4%|▒▒▒▒                                     | 20.1M/461M [00:21&lt;17:07, 450kiB/  4%|▒▒▒▒                                     | 20.2M/461M [00:21&lt;15:50, 486kiB/  4%|▒▒▒▒                                     | 20.3M/461M [00:21&lt;13:29, 571kiB/  4%|▒▒▒▒                                     | 20.4M/461M [00:22&lt;12:17, 626kiB/  4%|▒▒▒▒                                     | 20.5M/461M [00:22&lt;11:48, 652kiB/  4%|▒▒▒▒                                     | 20.6M/461M [00:22&lt;10:18, 747kiB/  4%|▒▒▒▒                                     | 20.7M/461M [00:22&lt;09:44, 791kiB/  5%|▒▒▒▒                                     | 20.8M/461M [00:22&lt;09:36, 801kiB/  5%|▒▒▒▒                                     | 20.9M/461M [00:22&lt;09:00, 854kiB/  5%|▒▒▒▒                                     | 21.0M/461M [00:22&lt;08:10, 941kiB/  5%|▒▒▒▒                                     | 21.2M/461M [00:22&lt;08:00, 960kiB/  5%|▒▒▒▒                                     | 21.3M/461M [00:23&lt;08:07, 946kiB/  5%|▒▒▒▒                                     | 21.4M/461M [00:23&lt;07:42, 998kiB/  5%|▒▒▒▒                                    | 21.5M/461M [00:23&lt;07:29, 1.03MiB/  5%|▒▒▒▒                                    | 21.6M/461M [00:23&lt;07:21, 1.05MiB/  5%|▒▒▒▒                                     | 21.7M/461M [00:23&lt;08:11, 938kiB/  5%|▒▒▒▒                                     | 21.8M/461M [00:23&lt;08:10, 940kiB/  5%|▒▒▒▒                                     | 21.9M/461M [00:23&lt;08:32, 898kiB/  5%|▒▒▒▒                                     | 22.0M/461M [00:23&lt;08:24, 913kiB/  5%|▒▒▒▒                                     | 22.1M/461M [00:23&lt;08:15, 929kiB/  5%|▒▒▒▒                                     | 22.2M/461M [00:24&lt;08:09, 941kiB/  5%|▒▒▒▒                                     | 22.3M/461M [00:24&lt;08:11, 937kiB/  5%|▒▒▒▒                                     | 22.4M/461M [00:24&lt;07:48, 982kiB/  5%|▒▒▒▒                                     | 22.5M/461M [00:24&lt;07:49, 981kiB/  5%|▒▒▒▒                                    | 22.6M/461M [00:24&lt;07:34, 1.01MiB/  5%|▒▒▒▒                                    | 22.7M/461M [00:24&lt;07:34, 1.01MiB/  5%|▒▒▒▒                                     | 22.8M/461M [00:24&lt;07:42, 994kiB/  5%|▒▒▒▒                                    | 23.0M/461M [00:24&lt;07:18, 1.05MiB/  5%|▒▒▒▒                                    | 23.1M/461M [00:24&lt;07:12, 1.06MiB/  5%|▒▒▒▒                                     | 23.2M/461M [00:25&lt;20:38, 371kiB/  5%|▒▒▒▒                                     | 23.2M/461M [00:25&lt;18:43, 409kiB/  5%|▒▒▒▒                                     | 23.4M/461M [00:25&lt;14:32, 526kiB/  5%|▒▒▒▒                                     | 23.5M/461M [00:26&lt;12:06, 632kiB/  5%|▒▒▒▒                                     | 23.6M/461M [00:26&lt;10:01, 763kiB/  5%|▒▒▒▒                                     | 23.7M/461M [00:26&lt;08:41, 880kiB/  5%|▒▒▒▒                                     | 23.9M/461M [00:26&lt;07:52, 971kiB/  5%|▒▒▒▒                                    | 24.0M/461M [00:26&lt;07:30, 1.02MiB/  5%|▒▒▒▒                                    | 24.1M/461M [00:26&lt;07:15, 1.05MiB/  5%|▒▒▒▒                                    | 24.2M/461M [00:26&lt;07:19, 1.04MiB/  5%|▒▒▒▒                                    | 24.3M/461M [00:26&lt;07:02, 1.09MiB/  5%|▒▒▒▒                                    | 24.5M/461M [00:26&lt;06:34, 1.16MiB/  5%|▒▒▒▒                                    | 24.6M/461M [00:27&lt;06:29, 1.18MiB/  5%|▒▒▒▒                                    | 24.7M/461M [00:27&lt;06:42, 1.14MiB/  5%|▒▒▒▒                                    | 24.8M/461M [00:27&lt;06:46, 1.13MiB/  5%|▒▒▒▒                                    | 25.0M/461M [00:27&lt;05:53, 1.29MiB/  5%|▒▒▒▒                                    | 25.1M/461M [00:27&lt;06:01, 1.26MiB/  5%|▒▒▒▒                                    | 25.3M/461M [00:27&lt;05:51, 1.30MiB/  6%|▒▒▒▒                                    | 25.4M/461M [00:27&lt;05:34, 1.36MiB/  6%|▒▒▒▒                                    | 25.6M/461M [00:27&lt;05:27, 1.40MiB/  6%|▒▒▒▒                                    | 25.7M/461M [00:27&lt;05:43, 1.33MiB/  6%|▒▒▒▒▒▒                                   | 25.9M/461M [00:28&lt;05:55, 1.28MiB  6%|▒▒▒▒▒▒                                   | 26.0M/461M [00:28&lt;05:27, 1.39MiB  6%|▒▒▒▒▒▒                                   | 26.2M/461M [00:28&lt;05:49, 1.31MiB  6%|▒▒▒▒▒▒                                   | 26.3M/461M [00:28&lt;07:05, 1.07MiB  6%|▒▒▒▒▒▒                                   | 26.5M/461M [00:28&lt;06:08, 1.24MiB  6%|▒▒▒▒▒▒                                   | 26.6M/461M [00:28&lt;07:08, 1.06MiB  6%|▒▒▒▒▒▒                                   | 26.7M/461M [00:28&lt;06:58, 1.09MiB  6%|▒▒▒▒▒▒                                   | 26.9M/461M [00:29&lt;07:25, 1.02MiB  6%|▒▒▒▒▒▒                                   | 27.0M/461M [00:29&lt;07:33, 1.00MiB  6%|▒▒▒▒▒▒                                   | 27.1M/461M [00:29&lt;07:32, 1.01MiB  6%|▒▒▒▒▒▒                                    | 27.2M/461M [00:29&lt;07:56, 954kiB  6%|▒▒▒▒▒▒                                   | 27.3M/461M [00:29&lt;07:27, 1.02MiB  6%|▒▒▒▒▒▒                                   | 27.4M/461M [00:29&lt;07:25, 1.02MiB  6%|▒▒▒▒▒▒                                   | 27.5M/461M [00:29&lt;07:29, 1.01MiB  6%|▒▒▒▒▒▒                                   | 27.6M/461M [00:29&lt;07:16, 1.04MiB  6%|▒▒▒▒▒▒                                    | 27.7M/461M [00:29&lt;08:56, 847kiB  6%|▒▒▒▒▒▒                                    | 27.9M/461M [00:30&lt;07:48, 969kiB  6%|▒▒▒▒▒▒                                    | 28.0M/461M [00:30&lt;08:00, 946kiB  6%|▒▒▒▒▒▒                                    | 28.1M/461M [00:30&lt;08:19, 909kiB  6%|▒▒▒▒▒▒                                    | 28.2M/461M [00:30&lt;08:30, 890kiB  6%|▒▒▒▒▒▒                                    | 28.3M/461M [00:30&lt;08:34, 882kiB  6%|▒▒▒▒▒▒                                    | 28.4M/461M [00:30&lt;08:25, 897kiB  6%|▒▒▒▒▒▒                                    | 28.5M/461M [00:30&lt;07:57, 950kiB  6%|▒▒▒▒▒▒                                    | 28.6M/461M [00:30&lt;07:51, 961kiB  6%|▒▒▒▒▒▒                                    | 28.7M/461M [00:31&lt;07:50, 965kiB  6%|▒▒▒▒▒▒                                    | 28.8M/461M [00:31&lt;07:37, 990kiB  6%|▒▒▒▒▒▒                                   | 28.9M/461M [00:31&lt;07:28, 1.01MiB  6%|▒▒▒▒▒▒                                    | 29.0M/461M [00:31&lt;07:34, 998kiB  6%|▒▒▒▒▒▒                                   | 29.1M/461M [00:31&lt;07:24, 1.02MiB  6%|▒▒▒▒▒▒                                   | 29.2M/461M [00:31&lt;07:08, 1.06MiB  6%|▒▒▒▒▒▒                                   | 29.3M/461M [00:31&lt;07:09, 1.05MiB  6%|▒▒▒▒▒▒                                   | 29.4M/461M [00:31&lt;07:08, 1.06MiB  6%|▒▒▒▒▒▒                                   | 29.5M/461M [00:31&lt;07:04, 1.07MiB  6%|▒▒▒▒▒▒                                    | 29.6M/461M [00:32&lt;08:41, 868kiB  6%|▒▒▒▒▒▒                                    | 29.8M/461M [00:32&lt;07:38, 986kiB  6%|▒▒▒▒▒▒                                    | 29.9M/461M [00:32&lt;07:47, 967kiB  7%|▒▒▒▒▒▒                                    | 30.0M/461M [00:32&lt;08:04, 934kiB  7%|▒▒▒▒▒▒                                    | 30.1M/461M [00:32&lt;08:02, 937kiB  7%|▒▒▒▒▒▒                                    | 30.2M/461M [00:32&lt;08:01, 939kiB  7%|▒▒▒▒▒▒                                    | 30.3M/461M [00:32&lt;07:50, 959kiB  7%|▒▒▒▒▒▒                                    | 30.4M/461M [00:32&lt;07:42, 976kiB  7%|▒▒▒▒▒▒                                   | 30.5M/461M [00:32&lt;07:22, 1.02MiB  7%|▒▒▒▒▒▒                                   | 30.6M/461M [00:33&lt;07:16, 1.04MiB  7%|▒▒▒▒▒▒                                   | 30.7M/461M [00:33&lt;07:18, 1.03MiB  7%|▒▒▒▒▒▒                                   | 30.9M/461M [00:33&lt;06:56, 1.08MiB  7%|▒▒▒▒▒▒                                    | 31.0M/461M [00:33&lt;08:06, 927kiB  7%|▒▒▒▒▒▒                                   | 31.1M/461M [00:33&lt;07:26, 1.01MiB  7%|▒▒▒▒▒▒                                   | 31.2M/461M [00:33&lt;07:30, 1.00MiB  7%|▒▒▒▒▒▒                                    | 31.3M/461M [00:33&lt;08:08, 922kiB  7%|▒▒▒▒▒▒                                    | 31.4M/461M [00:33&lt;08:00, 938kiB  7%|▒▒▒▒▒▒                                    | 31.5M/461M [00:33&lt;08:03, 932kiB  7%|▒▒▒▒▒▒                                    | 31.6M/461M [00:34&lt;08:00, 938kiB  7%|▒▒▒▒▒▒                                    | 31.7M/461M [00:34&lt;07:35, 988kiB  7%|▒▒▒▒▒▒                                    | 31.8M/461M [00:34&lt;07:52, 953kiB  7%|▒▒▒▒▒▒                                    | 31.9M/461M [00:34&lt;07:54, 948kiB  7%|▒▒▒▒▒▒                                    | 32.0M/461M [00:34&lt;08:10, 917kiB  7%|▒▒▒▒▒▒                                   | 32.1M/461M [00:34&lt;07:24, 1.01MiB  7%|▒▒▒▒▒▒                                   | 32.2M/461M [00:34&lt;07:09, 1.05MiB  7%|▒▒▒▒▒▒                                   | 32.3M/461M [00:34&lt;07:08, 1.05MiB  7%|▒▒▒▒▒▒                                    | 32.4M/461M [00:35&lt;08:21, 896kiB  7%|▒▒▒▒▒▒                                   | 32.6M/461M [00:35&lt;07:16, 1.03MiB  7%|▒▒▒▒▒▒                                    | 32.7M/461M [00:35&lt;07:52, 952kiB  7%|▒▒▒▒▒▒                                    | 32.8M/461M [00:35&lt;07:47, 961kiB  7%|▒▒▒▒▒▒                                    | 32.9M/461M [00:35&lt;08:11, 914kiB  7%|▒▒▒▒▒▒                                    | 33.0M/461M [00:35&lt;07:45, 964kiB  7%|▒▒▒▒▒▒                                    | 33.1M/461M [00:35&lt;07:40, 975kiB  7%|▒▒▒▒▒▒                                    | 33.2M/461M [00:35&lt;07:33, 989kiB  7%|▒▒▒▒▒▒                                   | 33.3M/461M [00:35&lt;07:18, 1.02MiB  7%|▒▒▒▒▒▒                                   | 33.4M/461M [00:36&lt;07:16, 1.03MiB  7%|▒▒▒▒▒▒                                   | 33.5M/461M [00:36&lt;07:28, 1.00MiB  7%|▒▒▒▒▒▒                                   | 33.6M/461M [00:36&lt;07:20, 1.02MiB  7%|▒▒▒▒▒▒                                   | 33.7M/461M [00:36&lt;07:07, 1.05MiB  7%|▒▒▒▒▒▒                                   | 33.8M/461M [00:36&lt;06:57, 1.07MiB  7%|▒▒▒▒▒▒                                    | 33.9M/461M [00:36&lt;07:53, 947kiB  7%|▒▒▒▒▒▒                                    | 34.0M/461M [00:36&lt;08:10, 913kiB  7%|▒▒▒▒▒▒                                    | 34.1M/461M [00:36&lt;08:15, 903kiB  7%|▒▒▒▒▒▒                                    | 34.2M/461M [00:36&lt;08:22, 891kiB  7%|▒▒▒▒▒▒                                    | 34.3M/461M [00:37&lt;08:26, 884kiB  7%|▒▒▒▒▒▒                                    | 34.4M/461M [00:37&lt;08:52, 840kiB  7%|▒▒▒▒▒▒                                    | 34.5M/461M [00:37&lt;08:52, 841kiB  7%|▒▒▒▒▒▒                                    | 34.6M/461M [00:37&lt;09:56, 750kiB  8%|▒▒▒▒▒▒                                    | 34.6M/461M [00:37&lt;09:48, 760kiB  8%|▒▒▒▒▒▒                                    | 34.7M/461M [00:37&lt;09:47, 761kiB  8%|▒▒▒▒▒▒                                    | 34.8M/461M [00:37&lt;09:54, 753kiB  8%|▒▒▒▒▒▒                                    | 34.9M/461M [00:37&lt;09:30, 783kiB  8%|▒▒▒▒▒▒                                    | 35.0M/461M [00:38&lt;09:37, 774kiB  8%|▒▒▒▒▒▒                                    | 35.1M/461M [00:38&lt;09:48, 759kiB  8%|▒▒▒▒▒▒                                    | 35.1M/461M [00:38&lt;09:40, 769kiB  8%|▒▒▒▒▒▒                                    | 35.2M/461M [00:38&lt;09:38, 773kiB  8%|▒▒▒▒▒▒                                    | 35.3M/461M [00:38&lt;09:11, 809kiB  8%|▒▒▒▒▒▒                                    | 35.4M/461M [00:38&lt;08:46, 849kiB  8%|▒▒▒▒▒▒                                    | 35.5M/461M [00:38&lt;08:37, 862kiB  8%|▒▒▒▒▒▒                                    | 35.6M/461M [00:38&lt;08:05, 920kiB  8%|▒▒▒▒▒▒                                    | 35.7M/461M [00:38&lt;07:59, 930kiB  8%|▒▒▒▒▒▒                                    | 35.8M/461M [00:38&lt;07:32, 986kiB  8%|▒▒▒▒▒▒                                    | 35.9M/461M [00:39&lt;07:34, 982kiB  8%|▒▒▒▒▒▒                                   | 36.0M/461M [00:39&lt;06:58, 1.07MiB  8%|▒▒▒▒▒▒                                   | 36.1M/461M [00:39&lt;06:49, 1.09MiB  8%|▒▒▒▒▒▒                                   | 36.3M/461M [00:39&lt;06:46, 1.10MiB  8%|▒▒▒▒▒▒                                   | 36.4M/461M [00:39&lt;06:25, 1.16MiB  8%|▒▒▒▒▒▒                                   | 36.5M/461M [00:39&lt;06:21, 1.17MiB  8%|▒▒▒▒▒▒                                   | 36.6M/461M [00:39&lt;06:15, 1.18MiB  8%|▒▒▒▒▒▒                                   | 36.8M/461M [00:39&lt;06:04, 1.22MiB  8%|▒▒▒▒▒▒                                   | 36.9M/461M [00:39&lt;06:30, 1.14MiB  8%|▒▒▒▒▒▒                                   | 37.0M/461M [00:40&lt;06:25, 1.16MiB  8%|▒▒▒▒▒▒                                   | 37.1M/461M [00:40&lt;06:10, 1.20MiB  8%|▒▒▒▒▒▒                                   | 37.3M/461M [00:40&lt;05:54, 1.25MiB  8%|▒▒▒▒▒▒                                   | 37.4M/461M [00:40&lt;05:39, 1.31MiB  8%|▒▒▒▒▒▒                                   | 37.5M/461M [00:40&lt;06:38, 1.12MiB  8%|▒▒▒▒▒▒                                   | 37.7M/461M [00:40&lt;06:16, 1.18MiB  8%|▒▒▒▒▒▒                                   | 37.8M/461M [00:40&lt;07:07, 1.04MiB  8%|▒▒▒▒▒▒▒▒                                   | 37.9M/461M [00:40&lt;08:22, 883ki  8%|▒▒▒▒▒▒▒▒                                   | 38.0M/461M [00:41&lt;09:30, 778ki  8%|▒▒▒▒▒▒▒▒                                   | 38.1M/461M [00:41&lt;10:35, 698ki  8%|▒▒▒▒▒▒▒▒                                   | 38.2M/461M [00:41&lt;10:53, 679ki  8%|▒▒▒▒▒▒▒▒                                   | 38.2M/461M [00:41&lt;10:47, 685ki  8%|▒▒▒▒▒▒▒▒                                   | 38.3M/461M [00:41&lt;10:52, 679ki  8%|▒▒▒▒▒▒▒▒                                   | 38.4M/461M [00:41&lt;10:03, 735ki  8%|▒▒▒▒▒▒▒▒                                   | 38.5M/461M [00:41&lt;10:54, 677ki  8%|▒▒▒▒▒▒▒▒                                   | 38.5M/461M [00:42&lt;10:45, 687ki  8%|▒▒▒▒▒▒▒▒                                   | 38.6M/461M [00:42&lt;09:47, 755ki  8%|▒▒▒▒▒▒▒▒                                   | 38.7M/461M [00:42&lt;09:33, 772ki  8%|▒▒▒▒▒▒▒▒                                   | 38.8M/461M [00:42&lt;09:25, 783ki  8%|▒▒▒▒▒▒▒▒                                   | 38.9M/461M [00:42&lt;08:51, 833ki  8%|▒▒▒▒▒▒▒▒                                   | 39.0M/461M [00:42&lt;08:48, 837ki  8%|▒▒▒▒▒▒▒▒                                   | 39.1M/461M [00:42&lt;08:23, 878ki  8%|▒▒▒▒▒▒▒▒                                   | 39.2M/461M [00:42&lt;08:09, 903ki  9%|▒▒▒▒▒▒▒▒                                   | 39.3M/461M [00:42&lt;07:59, 924ki  9%|▒▒▒▒▒▒▒▒                                   | 39.4M/461M [00:42&lt;07:31, 980ki  9%|▒▒▒▒▒▒▒▒                                   | 39.5M/461M [00:43&lt;07:22, 999ki  9%|▒▒▒▒▒▒▒▒                                  | 39.6M/461M [00:43&lt;07:09, 1.03Mi  9%|▒▒▒▒▒▒▒▒                                  | 39.7M/461M [00:43&lt;06:48, 1.08Mi  9%|▒▒▒▒▒▒▒▒                                  | 39.8M/461M [00:43&lt;06:42, 1.10Mi  9%|▒▒▒▒▒▒▒▒                                  | 39.9M/461M [00:43&lt;06:38, 1.11Mi  9%|▒▒▒▒▒▒▒▒                                  | 40.1M/461M [00:43&lt;06:23, 1.15Mi  9%|▒▒▒▒▒▒▒▒                                  | 40.2M/461M [00:43&lt;06:20, 1.16Mi  9%|▒▒▒▒▒▒▒▒                                  | 40.3M/461M [00:43&lt;06:19, 1.16Mi  9%|▒▒▒▒▒▒▒▒                                  | 40.4M/461M [00:43&lt;06:09, 1.20Mi  9%|▒▒▒▒▒▒▒▒                                  | 40.6M/461M [00:43&lt;05:51, 1.25Mi  9%|▒▒▒▒▒▒▒▒                                  | 40.7M/461M [00:44&lt;05:47, 1.27Mi  9%|▒▒▒▒▒▒▒▒                                  | 40.8M/461M [00:44&lt;05:32, 1.33Mi  9%|▒▒▒▒▒▒▒▒                                  | 41.0M/461M [00:44&lt;05:23, 1.36Mi  9%|▒▒▒▒▒▒▒▒                                  | 41.1M/461M [00:44&lt;05:15, 1.39Mi  9%|▒▒▒▒▒▒▒▒                                  | 41.3M/461M [00:44&lt;05:14, 1.40Mi  9%|▒▒▒▒▒▒▒▒                                  | 41.4M/461M [00:44&lt;06:15, 1.17Mi  9%|▒▒▒▒▒▒▒▒                                  | 41.5M/461M [00:44&lt;06:06, 1.20Mi  9%|▒▒▒▒▒▒▒▒                                  | 41.7M/461M [00:44&lt;06:53, 1.06Mi  9%|▒▒▒▒▒▒▒▒                                   | 41.8M/461M [00:45&lt;07:34, 968ki  9%|▒▒▒▒▒▒▒▒                                   | 41.9M/461M [00:45&lt;07:55, 925ki  9%|▒▒▒▒▒▒▒▒                                   | 42.0M/461M [00:45&lt;07:56, 923ki  9%|▒▒▒▒▒▒▒▒                                   | 42.1M/461M [00:45&lt;08:09, 897ki  9%|▒▒▒▒▒▒▒▒                                   | 42.2M/461M [00:45&lt;08:06, 903ki  9%|▒▒▒▒▒▒▒▒                                   | 42.3M/461M [00:45&lt;08:01, 912ki  9%|▒▒▒▒▒▒▒▒                                   | 42.4M/461M [00:45&lt;08:01, 912ki  9%|▒▒▒▒▒▒▒▒                                   | 42.5M/461M [00:45&lt;07:41, 952ki  9%|▒▒▒▒▒▒▒▒                                   | 42.6M/461M [00:45&lt;07:40, 953ki  9%|▒▒▒▒▒▒▒▒                                   | 42.7M/461M [00:46&lt;07:24, 988ki  9%|▒▒▒▒▒▒▒▒                                  | 42.8M/461M [00:46&lt;07:04, 1.03Mi  9%|▒▒▒▒▒▒▒▒                                  | 42.9M/461M [00:46&lt;06:51, 1.07Mi  9%|▒▒▒▒▒▒▒▒                                  | 43.0M/461M [00:46&lt;06:47, 1.08Mi  9%|▒▒▒▒▒▒▒▒                                  | 43.1M/461M [00:46&lt;06:25, 1.14Mi  9%|▒▒▒▒▒▒▒▒                                   | 43.2M/461M [00:46&lt;07:41, 949ki  9%|▒▒▒▒▒▒▒▒                                  | 43.4M/461M [00:46&lt;07:02, 1.04Mi  9%|▒▒▒▒▒▒▒▒                                  | 43.5M/461M [00:46&lt;07:17, 1.00Mi  9%|▒▒▒▒▒▒▒▒                                   | 43.6M/461M [00:47&lt;07:28, 977ki  9%|▒▒▒▒▒▒▒▒                                   | 43.7M/461M [00:47&lt;07:20, 995ki  9%|▒▒▒▒▒▒▒▒                                  | 43.8M/461M [00:47&lt;07:17, 1.00Mi 10%|▒▒▒▒▒▒▒▒                                   | 43.9M/461M [00:47&lt;08:12, 889ki 10%|▒▒▒▒▒▒▒▒                                   | 44.0M/461M [00:47&lt;08:01, 908ki 10%|▒▒▒▒▒▒▒▒                                   | 44.1M/461M [00:47&lt;08:00, 911ki 10%|▒▒▒▒▒▒▒▒                                   | 44.2M/461M [00:47&lt;08:55, 817ki 10%|▒▒▒▒▒▒▒▒                                   | 44.3M/461M [00:47&lt;08:44, 834ki 10%|▒▒▒▒▒▒▒▒                                   | 44.3M/461M [00:47&lt;08:43, 834ki 10%|▒▒▒▒▒▒▒▒                                   | 44.4M/461M [00:48&lt;08:52, 821ki 10%|▒▒▒▒▒▒▒▒                                   | 44.5M/461M [00:48&lt;08:38, 843ki 10%|▒▒▒▒▒▒▒▒                                   | 44.6M/461M [00:48&lt;08:38, 843ki 10%|▒▒▒▒▒▒▒▒                                   | 44.7M/461M [00:48&lt;08:29, 857ki 10%|▒▒▒▒▒▒▒▒                                   | 44.8M/461M [00:48&lt;08:30, 855ki 10%|▒▒▒▒▒▒▒▒                                   | 44.9M/461M [00:48&lt;08:11, 889ki 10%|▒▒▒▒▒▒▒▒                                   | 45.0M/461M [00:48&lt;08:06, 898ki 10%|▒▒▒▒▒▒▒▒                                   | 45.1M/461M [00:48&lt;07:46, 935ki 10%|▒▒▒▒▒▒▒▒                                   | 45.2M/461M [00:48&lt;07:22, 987ki 10%|▒▒▒▒▒▒▒▒                                  | 45.3M/461M [00:49&lt;07:03, 1.03Mi 10%|▒▒▒▒▒▒▒▒                                  | 45.4M/461M [00:49&lt;06:52, 1.06Mi 10%|▒▒▒▒▒▒▒▒                                  | 45.5M/461M [00:49&lt;06:42, 1.08Mi 10%|▒▒▒▒▒▒▒▒                                  | 45.6M/461M [00:49&lt;06:38, 1.09Mi 10%|▒▒▒▒▒▒▒▒                                  | 45.7M/461M [00:49&lt;06:19, 1.15Mi 10%|▒▒▒▒▒▒▒▒                                  | 45.9M/461M [00:49&lt;06:06, 1.19Mi 10%|▒▒▒▒▒▒▒▒                                   | 46.0M/461M [00:49&lt;07:19, 990ki 10%|▒▒▒▒▒▒▒▒                                  | 46.1M/461M [00:49&lt;06:37, 1.09Mi 10%|▒▒▒▒▒▒▒▒                                  | 46.2M/461M [00:49&lt;07:05, 1.02Mi 10%|▒▒▒▒▒▒▒▒                                  | 46.3M/461M [00:50&lt;06:55, 1.05Mi 10%|▒▒▒▒▒▒▒▒                                  | 46.5M/461M [00:50&lt;06:55, 1.05Mi 10%|▒▒▒▒▒▒▒▒                                  | 46.6M/461M [00:50&lt;06:55, 1.05Mi 10%|▒▒▒▒▒▒▒▒                                  | 46.7M/461M [00:50&lt;06:48, 1.06Mi 10%|▒▒▒▒▒▒▒▒                                   | 46.8M/461M [00:50&lt;08:21, 866ki 10%|▒▒▒▒▒▒▒▒                                   | 46.9M/461M [00:50&lt;08:11, 884ki 10%|▒▒▒▒▒▒▒▒                                   | 47.0M/461M [00:50&lt;08:12, 882ki 10%|▒▒▒▒▒▒▒▒                                   | 47.1M/461M [00:50&lt;08:55, 811ki 10%|▒▒▒▒▒▒▒▒                                   | 47.1M/461M [00:51&lt;08:43, 829ki 10%|▒▒▒▒▒▒▒▒                                   | 47.2M/461M [00:51&lt;08:39, 835ki 10%|▒▒▒▒▒▒▒▒                                   | 47.3M/461M [00:51&lt;08:46, 824ki 10%|▒▒▒▒▒▒▒▒                                   | 47.4M/461M [00:51&lt;08:33, 845ki 10%|▒▒▒▒▒▒▒▒                                   | 47.5M/461M [00:51&lt;08:25, 858ki 10%|▒▒▒▒▒▒▒▒                                   | 47.6M/461M [00:51&lt;08:06, 891ki 10%|▒▒▒▒▒▒▒▒                                   | 47.7M/461M [00:51&lt;07:37, 948ki 10%|▒▒▒▒▒▒▒▒                                   | 47.8M/461M [00:51&lt;07:34, 953ki 10%|▒▒▒▒▒▒▒▒                                   | 47.9M/461M [00:51&lt;07:30, 962ki 10%|▒▒▒▒▒▒▒▒                                   | 48.0M/461M [00:52&lt;07:25, 972ki 10%|▒▒▒▒▒▒▒▒                                  | 48.1M/461M [00:52&lt;07:10, 1.01Mi 10%|▒▒▒▒▒▒▒▒                                  | 48.3M/461M [00:52&lt;06:44, 1.07Mi 10%|▒▒▒▒▒▒▒▒                                  | 48.4M/461M [00:52&lt;06:36, 1.09Mi 11%|▒▒▒▒▒▒▒▒                                  | 48.5M/461M [00:52&lt;06:17, 1.15Mi 11%|▒▒▒▒▒▒▒▒                                  | 48.6M/461M [00:52&lt;06:04, 1.19Mi 11%|▒▒▒▒▒▒▒▒                                  | 48.7M/461M [00:52&lt;06:39, 1.08Mi 11%|▒▒▒▒▒▒▒▒▒▒                                  | 48.8M/461M [00:52&lt;07:22, 978k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 48.9M/461M [00:52&lt;07:23, 975k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 49.0M/461M [00:53&lt;07:16, 991k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 49.1M/461M [00:53&lt;07:13, 998k 11%|▒▒▒▒▒▒▒▒                                  | 49.2M/461M [00:53&lt;07:10, 1.00Mi 11%|▒▒▒▒▒▒▒▒                                  | 49.4M/461M [00:53&lt;07:10, 1.00Mi 11%|▒▒▒▒▒▒▒▒▒▒                                  | 49.5M/461M [00:53&lt;07:58, 903k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 49.5M/461M [00:53&lt;07:50, 917k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 49.6M/461M [00:53&lt;07:59, 901k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 49.7M/461M [00:53&lt;08:48, 816k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 49.8M/461M [00:53&lt;08:47, 817k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 49.9M/461M [00:54&lt;08:38, 833k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 50.0M/461M [00:54&lt;08:32, 842k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 50.1M/461M [00:54&lt;08:40, 829k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 50.2M/461M [00:54&lt;08:29, 846k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 50.3M/461M [00:54&lt;08:08, 882k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 50.4M/461M [00:54&lt;07:59, 898k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 50.5M/461M [00:54&lt;07:33, 951k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 50.6M/461M [00:54&lt;07:17, 984k 11%|▒▒▒▒▒▒▒▒▒▒                                 | 50.7M/461M [00:54&lt;07:08, 1.00M 11%|▒▒▒▒▒▒▒▒▒▒                                 | 50.8M/461M [00:55&lt;06:51, 1.05M 11%|▒▒▒▒▒▒▒▒▒▒                                 | 50.9M/461M [00:55&lt;06:42, 1.07M 11%|▒▒▒▒▒▒▒▒▒▒                                 | 51.0M/461M [00:55&lt;06:22, 1.13M 11%|▒▒▒▒▒▒▒▒▒▒                                 | 51.1M/461M [00:55&lt;06:24, 1.12M 11%|▒▒▒▒▒▒▒▒▒▒                                 | 51.2M/461M [00:55&lt;06:24, 1.12M 11%|▒▒▒▒▒▒▒▒▒▒                                  | 51.4M/461M [00:55&lt;07:26, 963k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 51.5M/461M [00:55&lt;07:21, 974k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 51.6M/461M [00:55&lt;07:19, 978k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 51.7M/461M [00:55&lt;07:19, 977k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 51.8M/461M [00:56&lt;08:44, 818k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 51.9M/461M [00:56&lt;07:46, 920k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 52.0M/461M [00:56&lt;07:52, 909k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 52.1M/461M [00:56&lt;08:32, 838k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 52.2M/461M [00:56&lt;08:22, 854k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 52.3M/461M [00:56&lt;08:26, 846k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 52.3M/461M [00:56&lt;08:18, 861k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 52.4M/461M [00:56&lt;08:15, 865k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 52.5M/461M [00:56&lt;08:42, 820k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 52.6M/461M [00:57&lt;08:33, 835k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 52.7M/461M [00:57&lt;08:11, 871k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 52.8M/461M [00:57&lt;07:56, 898k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 52.9M/461M [00:57&lt;07:46, 917k 11%|▒▒▒▒▒▒▒▒▒▒                                  | 53.0M/461M [00:57&lt;07:27, 956k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 53.1M/461M [00:57&lt;07:11, 991k 12%|▒▒▒▒▒▒▒▒▒▒                                 | 53.2M/461M [00:57&lt;07:07, 1.00M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 53.3M/461M [00:57&lt;07:05, 1.01M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 53.4M/461M [00:57&lt;06:50, 1.04M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 53.5M/461M [00:58&lt;06:42, 1.06M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 53.7M/461M [00:58&lt;06:23, 1.12M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 53.8M/461M [00:58&lt;06:07, 1.16M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 53.9M/461M [00:58&lt;06:02, 1.18M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 54.1M/461M [00:58&lt;05:41, 1.25M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 54.2M/461M [00:58&lt;05:28, 1.30M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 54.3M/461M [00:58&lt;06:15, 1.14M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 54.4M/461M [00:58&lt;06:50, 1.04M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 54.5M/461M [00:58&lt;06:49, 1.04M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 54.7M/461M [00:59&lt;06:43, 1.06M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 54.8M/461M [00:59&lt;06:41, 1.06M 12%|▒▒▒▒▒▒▒▒▒▒                                  | 54.9M/461M [00:59&lt;08:09, 870k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 55.0M/461M [00:59&lt;07:28, 949k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 55.1M/461M [00:59&lt;07:27, 952k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 55.2M/461M [00:59&lt;08:04, 878k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 55.3M/461M [00:59&lt;07:57, 891k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 55.4M/461M [00:59&lt;07:45, 915k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 55.5M/461M [01:00&lt;07:40, 923k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 55.6M/461M [01:00&lt;08:11, 866k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 55.7M/461M [01:00&lt;07:52, 900k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 55.8M/461M [01:00&lt;07:50, 903k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 55.9M/461M [01:00&lt;07:43, 917k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 56.0M/461M [01:00&lt;07:25, 954k 12%|▒▒▒▒▒▒▒▒▒▒                                 | 56.1M/461M [01:00&lt;07:02, 1.01M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 56.2M/461M [01:00&lt;06:37, 1.07M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 56.3M/461M [01:00&lt;06:32, 1.08M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 56.4M/461M [01:01&lt;06:26, 1.10M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 56.5M/461M [01:01&lt;06:25, 1.10M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 56.6M/461M [01:01&lt;07:03, 1.00M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 56.8M/461M [01:01&lt;06:49, 1.04M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 56.9M/461M [01:01&lt;06:49, 1.03M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 57.0M/461M [01:01&lt;07:00, 1.01M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 57.1M/461M [01:01&lt;06:57, 1.02M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 57.2M/461M [01:01&lt;06:53, 1.02M 12%|▒▒▒▒▒▒▒▒▒▒                                 | 57.3M/461M [01:01&lt;06:52, 1.03M 12%|▒▒▒▒▒▒▒▒▒▒                                  | 57.4M/461M [01:02&lt;07:35, 930k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 57.5M/461M [01:02&lt;07:35, 929k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 57.6M/461M [01:02&lt;08:31, 828k 12%|▒▒▒▒▒▒▒▒▒▒                                  | 57.6M/461M [01:02&lt;08:26, 836k 13%|▒▒▒▒▒▒▒▒▒▒                                  | 57.7M/461M [01:02&lt;08:18, 849k 13%|▒▒▒▒▒▒▒▒▒▒                                  | 57.8M/461M [01:02&lt;08:11, 861k 13%|▒▒▒▒▒▒▒▒▒▒                                  | 57.9M/461M [01:02&lt;08:11, 860k 13%|▒▒▒▒▒▒▒▒▒▒                                  | 58.0M/461M [01:02&lt;07:52, 895k 13%|▒▒▒▒▒▒▒▒▒▒                                  | 58.1M/461M [01:02&lt;07:47, 905k 13%|▒▒▒▒▒▒▒▒▒▒                                  | 58.2M/461M [01:03&lt;07:38, 922k 13%|▒▒▒▒▒▒▒▒▒▒                                  | 58.3M/461M [01:03&lt;07:30, 937k 13%|▒▒▒▒▒▒▒▒▒▒                                  | 58.4M/461M [01:03&lt;07:06, 990k 13%|▒▒▒▒▒▒▒▒▒▒                                 | 58.5M/461M [01:03&lt;06:57, 1.01M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 58.6M/461M [01:03&lt;06:55, 1.02M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 58.7M/461M [01:03&lt;06:58, 1.01M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 58.8M/461M [01:03&lt;06:48, 1.03M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 58.9M/461M [01:03&lt;06:30, 1.08M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 59.0M/461M [01:03&lt;06:23, 1.10M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 59.2M/461M [01:03&lt;06:08, 1.14M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 59.3M/461M [01:04&lt;06:56, 1.01M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 59.4M/461M [01:04&lt;06:33, 1.07M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 59.5M/461M [01:04&lt;06:55, 1.01M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 59.6M/461M [01:04&lt;06:47, 1.03M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 59.7M/461M [01:04&lt;06:46, 1.04M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 59.8M/461M [01:04&lt;06:54, 1.02M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 59.9M/461M [01:04&lt;06:59, 1.00M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 60.0M/461M [01:04&lt;06:53, 1.02M 13%|▒▒▒▒▒▒▒▒▒▒                                  | 60.1M/461M [01:05&lt;07:31, 931k 13%|▒▒▒▒▒▒▒▒▒▒                                  | 60.2M/461M [01:05&lt;07:25, 945k 13%|▒▒▒▒▒▒▒▒▒▒                                  | 60.3M/461M [01:05&lt;07:37, 920k 13%|▒▒▒▒▒▒▒▒▒▒                                  | 60.4M/461M [01:05&lt;08:04, 868k 13%|▒▒▒▒▒▒▒▒▒▒                                  | 60.5M/461M [01:05&lt;08:05, 865k 13%|▒▒▒▒▒▒▒▒▒▒                                  | 60.6M/461M [01:05&lt;08:06, 864k 13%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 60.7M/461M [01:05&lt;07:57, 880 13%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 60.8M/461M [01:05&lt;07:46, 901 13%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 60.9M/461M [01:05&lt;07:39, 914 13%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 61.0M/461M [01:05&lt;07:17, 958 13%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 61.1M/461M [01:06&lt;07:09, 976 13%|▒▒▒▒▒▒▒▒▒▒                                 | 61.2M/461M [01:06&lt;06:51, 1.02M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 61.3M/461M [01:06&lt;06:43, 1.04M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 61.4M/461M [01:06&lt;06:31, 1.07M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 61.5M/461M [01:06&lt;06:44, 1.04M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 61.7M/461M [01:06&lt;06:23, 1.09M 13%|▒▒▒▒▒▒▒▒▒▒                                 | 61.8M/461M [01:06&lt;06:45, 1.03M 13%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 61.9M/461M [01:06&lt;07:03, 988 13%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 62.0M/461M [01:07&lt;07:36, 918 13%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 62.1M/461M [01:07&lt;07:31, 927 13%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 62.2M/461M [01:07&lt;07:26, 937 13%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 62.3M/461M [01:07&lt;07:24, 942 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 62.4M/461M [01:07&lt;07:01, 991 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 62.5M/461M [01:07&lt;06:54, 1.01 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 62.6M/461M [01:07&lt;06:53, 1.01 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 62.7M/461M [01:07&lt;06:48, 1.02 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 62.8M/461M [01:07&lt;06:51, 1.01 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 62.9M/461M [01:07&lt;06:42, 1.04 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 63.0M/461M [01:08&lt;06:56, 1.00 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 63.1M/461M [01:08&lt;07:36, 914 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 63.2M/461M [01:08&lt;07:37, 913 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 63.3M/461M [01:08&lt;07:58, 873 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 63.4M/461M [01:08&lt;08:03, 863 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 63.5M/461M [01:08&lt;08:00, 868 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 63.5M/461M [01:08&lt;07:55, 877 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 63.6M/461M [01:08&lt;07:47, 892 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 63.7M/461M [01:08&lt;07:35, 915 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 63.8M/461M [01:09&lt;07:29, 927 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 63.9M/461M [01:09&lt;07:24, 938 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 64.0M/461M [01:09&lt;07:09, 970 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 64.1M/461M [01:09&lt;06:48, 1.02 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 64.2M/461M [01:09&lt;06:40, 1.04 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 64.4M/461M [01:09&lt;06:31, 1.06 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 64.5M/461M [01:09&lt;06:22, 1.09 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 64.6M/461M [01:09&lt;06:25, 1.08 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 64.7M/461M [01:09&lt;07:22, 939 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 64.8M/461M [01:10&lt;06:42, 1.03 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 64.9M/461M [01:10&lt;07:24, 934 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 65.0M/461M [01:10&lt;07:24, 935 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 65.1M/461M [01:10&lt;07:00, 987 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 65.2M/461M [01:10&lt;06:56, 998 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 65.3M/461M [01:10&lt;06:56, 997 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 65.4M/461M [01:10&lt;06:53, 1.00 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 65.6M/461M [01:10&lt;06:44, 1.03 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 65.7M/461M [01:10&lt;06:32, 1.06 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 65.8M/461M [01:11&lt;07:12, 958 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 65.9M/461M [01:11&lt;07:04, 976 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 66.0M/461M [01:11&lt;06:55, 997 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 66.1M/461M [01:11&lt;07:45, 890 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 66.2M/461M [01:11&lt;07:43, 893 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 66.3M/461M [01:11&lt;07:38, 903 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 66.4M/461M [01:11&lt;07:43, 893 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 66.5M/461M [01:11&lt;07:34, 910 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 66.6M/461M [01:12&lt;07:07, 968 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 66.7M/461M [01:12&lt;07:24, 932 14%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 66.8M/461M [01:12&lt;07:12, 956 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 66.9M/461M [01:12&lt;06:51, 1.01 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 67.0M/461M [01:12&lt;06:35, 1.04 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 67.1M/461M [01:12&lt;06:28, 1.06 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 67.2M/461M [01:12&lt;06:22, 1.08 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 67.3M/461M [01:12&lt;06:46, 1.02 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 67.4M/461M [01:12&lt;07:09, 961 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 67.5M/461M [01:13&lt;07:36, 903 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 67.6M/461M [01:13&lt;07:33, 910 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 67.7M/461M [01:13&lt;07:15, 947 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 67.8M/461M [01:13&lt;07:12, 954 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 67.9M/461M [01:13&lt;06:52, 1.00 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 68.0M/461M [01:13&lt;06:40, 1.03 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 68.1M/461M [01:13&lt;06:59, 982 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 68.3M/461M [01:13&lt;06:56, 989 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 68.4M/461M [01:13&lt;06:47, 1.01 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 68.5M/461M [01:14&lt;06:32, 1.05 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 68.6M/461M [01:14&lt;06:16, 1.09 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 68.7M/461M [01:14&lt;06:50, 1.00 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 68.8M/461M [01:14&lt;06:55, 989 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 68.9M/461M [01:14&lt;07:33, 907 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 69.0M/461M [01:14&lt;07:39, 894 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 69.1M/461M [01:14&lt;07:41, 892 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 69.2M/461M [01:14&lt;07:38, 897 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 69.3M/461M [01:14&lt;07:43, 887 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 69.4M/461M [01:15&lt;07:17, 940 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 69.5M/461M [01:15&lt;07:18, 937 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 69.6M/461M [01:15&lt;06:57, 983 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 69.7M/461M [01:15&lt;06:48, 1.01 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 69.8M/461M [01:15&lt;06:43, 1.02 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 69.9M/461M [01:15&lt;06:33, 1.04 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 70.1M/461M [01:15&lt;06:09, 1.11 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 70.2M/461M [01:15&lt;06:08, 1.11 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 70.3M/461M [01:15&lt;06:36, 1.03 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 70.4M/461M [01:16&lt;06:57, 982 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 70.5M/461M [01:16&lt;07:19, 931 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 70.6M/461M [01:16&lt;07:16, 938 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 70.7M/461M [01:16&lt;07:15, 940 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 70.8M/461M [01:16&lt;07:10, 952 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 70.9M/461M [01:16&lt;06:55, 985 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 71.0M/461M [01:16&lt;06:38, 1.03 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 71.1M/461M [01:16&lt;06:31, 1.04 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 71.2M/461M [01:16&lt;07:07, 956 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 71.3M/461M [01:17&lt;07:18, 933 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 71.4M/461M [01:17&lt;07:42, 884 15%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 71.5M/461M [01:17&lt;07:42, 884 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 71.6M/461M [01:17&lt;07:43, 881 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 71.6M/461M [01:17&lt;07:43, 882 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 71.7M/461M [01:17&lt;07:53, 863 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 71.8M/461M [01:17&lt;07:48, 871 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 71.9M/461M [01:17&lt;07:47, 872 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 72.0M/461M [01:17&lt;07:50, 868 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 72.1M/461M [01:18&lt;07:24, 917 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 72.2M/461M [01:18&lt;07:18, 931 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                 | 72.3M/461M [01:18&lt;06:53, 985 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 72.4M/461M [01:18&lt;06:39, 1.02 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 72.5M/461M [01:18&lt;06:35, 1.03 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 72.6M/461M [01:18&lt;06:19, 1.07 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 72.7M/461M [01:18&lt;06:13, 1.09 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 72.8M/461M [01:18&lt;06:07, 1.11 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 73.0M/461M [01:18&lt;05:53, 1.15 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 73.1M/461M [01:19&lt;06:38, 1.02 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 73.2M/461M [01:19&lt;06:19, 1.07 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 73.3M/461M [01:19&lt;06:55, 98 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 73.4M/461M [01:19&lt;06:47, 99 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 73.5M/461M [01:19&lt;06:46, 99 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 73.6M/461M [01:19&lt;06:39, 1.02 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 73.7M/461M [01:19&lt;06:40, 1.01 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 73.8M/461M [01:19&lt;06:37, 1.02 16%|▒▒▒▒▒▒▒▒▒▒▒▒                                | 73.9M/461M [01:19&lt;06:37, 1.02 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 74.0M/461M [01:19&lt;06:56, 97 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 74.1M/461M [01:20&lt;08:06, 83 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 74.2M/461M [01:20&lt;08:01, 84 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 74.3M/461M [01:20&lt;08:16, 81 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 74.4M/461M [01:20&lt;08:08, 83 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 74.5M/461M [01:20&lt;08:07, 83 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 74.5M/461M [01:20&lt;07:59, 84 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 74.6M/461M [01:20&lt;07:54, 85 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 74.7M/461M [01:20&lt;07:47, 86 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 74.8M/461M [01:20&lt;07:44, 87 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 74.9M/461M [01:21&lt;07:22, 91 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 75.0M/461M [01:21&lt;07:08, 94 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 75.1M/461M [01:21&lt;06:49, 98 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 75.2M/461M [01:21&lt;06:34, 1.0 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 75.4M/461M [01:21&lt;06:49, 98 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 75.5M/461M [01:21&lt;06:33, 1.0 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 75.6M/461M [01:21&lt;06:11, 1.0 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 75.7M/461M [01:21&lt;06:05, 1.1 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 75.8M/461M [01:21&lt;05:51, 1.1 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 75.9M/461M [01:22&lt;05:39, 1.1 16%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 76.1M/461M [01:22&lt;06:26, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 76.2M/461M [01:22&lt;06:29, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 76.3M/461M [01:22&lt;06:43, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 76.4M/461M [01:22&lt;06:45, 99 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 76.5M/461M [01:22&lt;06:47, 98 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 76.6M/461M [01:22&lt;06:33, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 76.7M/461M [01:22&lt;06:39, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 76.8M/461M [01:22&lt;06:39, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 76.9M/461M [01:23&lt;06:28, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 77.0M/461M [01:23&lt;07:20, 91 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 77.1M/461M [01:23&lt;07:04, 94 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 77.2M/461M [01:23&lt;07:08, 94 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 77.3M/461M [01:23&lt;07:11, 93 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 77.4M/461M [01:23&lt;07:37, 87 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 77.5M/461M [01:23&lt;07:34, 88 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 77.6M/461M [01:23&lt;07:29, 89 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 77.7M/461M [01:24&lt;07:35, 88 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 77.8M/461M [01:24&lt;07:27, 89 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 77.9M/461M [01:24&lt;07:09, 93 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 78.0M/461M [01:24&lt;06:54, 97 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 78.1M/461M [01:24&lt;06:57, 96 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 78.2M/461M [01:24&lt;06:42, 99 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 78.3M/461M [01:24&lt;06:30, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 78.4M/461M [01:24&lt;06:27, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 78.5M/461M [01:24&lt;06:14, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 78.6M/461M [01:24&lt;06:11, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 78.8M/461M [01:25&lt;05:54, 1.1 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 78.9M/461M [01:25&lt;06:30, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 79.0M/461M [01:25&lt;06:21, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 79.1M/461M [01:25&lt;06:36, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 79.2M/461M [01:25&lt;06:51, 97 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 79.3M/461M [01:25&lt;06:48, 98 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 79.4M/461M [01:25&lt;06:50, 97 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 79.5M/461M [01:25&lt;06:54, 96 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 79.6M/461M [01:26&lt;07:02, 94 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 79.7M/461M [01:26&lt;07:04, 94 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 79.8M/461M [01:26&lt;06:43, 99 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 79.9M/461M [01:26&lt;06:41, 99 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 80.0M/461M [01:26&lt;06:35, 1.0 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 80.1M/461M [01:26&lt;07:28, 89 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 80.2M/461M [01:26&lt;06:50, 97 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 80.3M/461M [01:26&lt;06:49, 97 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 80.4M/461M [01:26&lt;07:36, 87 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 80.5M/461M [01:27&lt;07:24, 89 17%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 80.6M/461M [01:27&lt;07:17, 91 18%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 80.7M/461M [01:27&lt;07:10, 92 18%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 80.8M/461M [01:27&lt;07:05, 93 18%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 80.9M/461M [01:27&lt;06:49, 97 18%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 81.0M/461M [01:27&lt;06:55, 96 18%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 81.1M/461M [01:27&lt;06:33, 1.0 18%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 81.2M/461M [01:27&lt;06:24, 1.0 18%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 81.3M/461M [01:27&lt;06:42, 99 18%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 81.4M/461M [01:28&lt;06:59, 95 18%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                                | 81.6M/461M [01:28&lt;06:47, 97 18%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒                               | 81.7M/461M [01:28&lt;06:23, 1.0100%|▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒| 461M/461M [08:36&lt;00:00, 937kiB/s]
+c:\program files\python38\lib\site-packages\whisper\transcribe.py:79: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn(&quot;FP16 is not supported on CPU; using FP32 instead&quot;)
+Detecting language using up to the first 30 seconds. Use `--language` to specify the language
+Detected language: Chinese
+[00:00.000 --&gt; 00:03.000] ▒▒λ▒^▒▒ ▒▒▒Ϻ▒
+[00:03.000 --&gt; 00:07.000] ▒▒▒▒▒▒12▒▒29̖ ▒▒▒▒▒▒ ▒r▒▒12▒³▒▒▒
+[00:07.000 --&gt; 00:09.000] ▒gӭ▒տ▒▒▒ī朲▒▒▒Ŀ
+[00:09.000 --&gt; 00:29.000] ▒▒▒Ȟ▒▒▒▒▒B▒▒▒칝Ŀ▒▒▒▒Ҫ▒▒▒▒
+
+Administrator@AUTOBVT-Q90417J MINGW64 ~/Desktop/新建文件夹
+$ 
+</code></pre>
+<p>因为没指定语言，所以出现了一堆▒▒，生成了以下文件</p>
+<pre><code>&quot;C:\Users\Administrator\Desktop\新建文件夹\audio.mp3.vtt&quot;
+&quot;C:\Users\Administrator\Desktop\新建文件夹\audio.mp3.json&quot;
+&quot;C:\Users\Administrator\Desktop\新建文件夹\audio.mp3.srt&quot;
+&quot;C:\Users\Administrator\Desktop\新建文件夹\audio.mp3.tsv&quot;
+&quot;C:\Users\Administrator\Desktop\新建文件夹\audio.mp3.txt&quot;
+</code></pre>
+<p>语音识别成功</p>
+<pre><code class="language-srt">1
+00:00:00,000 --&gt; 00:00:03,000
+各位觀眾 晚上好
+
+2
+00:00:03,000 --&gt; 00:00:07,000
+今天是12月29號 星期四 農曆12月初期
+
+3
+00:00:07,000 --&gt; 00:00:09,000
+歡迎收看新墨鏈播節目
+
+4
+00:00:09,000 --&gt; 00:00:29,000
+我先為您介紹今天節目的主要內容
+</code></pre>
+<p>我们回过头来运行<code>pip install --upgrade --no-deps --force-reinstall git+https://github.com/openai/whisper.git</code><br>
+cmd运行——</p>
+<pre><code class="language-dash">
+Administrator@AUTOBVT-Q90417J MINGW64 ~/Desktop/新建文件夹
+$ pip install --upgrade --no-deps --force-reinstall git+https://github.com/openai/whisper.git
+Collecting git+https://github.com/openai/whisper.git
+  Cloning https://github.com/openai/whisper.git to c:\users\administrator\appdata\local\temp\pip-req-build-9lcjywga
+  Running command git clone --filter=blob:none --quiet https://github.com/openai/whisper.git 'C:\Users\Administrator\AppData\Local\Temp\pip-req-build-9lcjywga'
+  error: RPC failed; curl 28 Recv failure: Connection was reset
+  fatal: expected flush after ref listing
+  error: subprocess-exited-with-error
+
+  git clone --filter=blob:none --quiet https://github.com/openai/whisper.git 'C:\Users\Administrator\AppData\Local\Temp\pip-req-build-9lcjywga' did not run successfully.
+  exit code: 128
+
+  See above for output.
+
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: subprocess-exited-with-error
+
+git clone --filter=blob:none --quiet https://github.com/openai/whisper.git 'C:\Users\Administrator\AppData\Local\Temp\pip-req-build-9lcjywga' did not run successfully.
+exit code: 128
+
+See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.
+</code></pre>
+<p>与上文相同的报错，如法炮制</p>
+<pre><code class="language-dash">Administrator@AUTOBVT-Q90417J MINGW64 ~/Desktop/新建文件夹
+$ git config --global --unset http.proxy
+</code></pre>
+<p>这一次仍然报错</p>
+<pre><code class="language-dash">Administrator@AUTOBVT-Q90417J MINGW64 ~/Desktop/新建文件夹
+$ pip install --upgrade --no-deps --force-reinstall git+https://github.com/openai/whisper.git
+Collecting git+https://github.com/openai/whisper.git
+  Cloning https://github.com/openai/whisper.git to c:\users\administrator\appdata\local\temp\pip-req-build-01i8kn9k
+  Running command git clone --filter=blob:none --quiet https://github.com/openai/whisper.git 'C:\Users\Administrator\AppData\Local\Temp\pip-req-build-01i8kn9k'
+  error: RPC failed; curl 28 Recv failure: Connection was reset
+  fatal: expected 'packfile'
+  error: subprocess-exited-with-error
+
+  git clone --filter=blob:none --quiet https://github.com/openai/whisper.git 'C:\Users\Administrator\AppData\Local\Temp\pip-req-build-01i8kn9k' did not run successfully.
+  exit code: 128
+
+  See above for output.
+
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: subprocess-exited-with-error
+
+git clone --filter=blob:none --quiet https://github.com/openai/whisper.git 'C:\Users\Administrator\AppData\Local\Temp\pip-req-build-01i8kn9k' did not run successfully.
+exit code: 128
+
+See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.
+
+Administrator@AUTOBVT-Q90417J MINGW64 ~/Desktop/新建文件夹
+$ 
+</code></pre>
+<p><code>pip install --upgrade --no-deps --force-reinstall git+https://github.com/openai/whisper.git</code>是将软件包更新到此存储库的最新版本，既然 Whisper 能用，就不必纠结报错了。</p>
+<h2 id="使用whisper">使用Whisper</h2>
+<p>直接在命令行中执行<code>whisper /Users/bmob/Downloads/8.m4a --model base  --language Chinese</code><br>
+其中，/Users/bmob/Downloads/8.m4a 是你的语音文件路径，base是模型名称。</p>
+<pre><code class="language-dash"> [--model {tiny.en,tiny,base.en,base,small.en,small,medium.en,medium,large-v1,large-v2,large}]
+</code></pre>
+<p>越往后的模型，对硬件的要求越高，识别精度越高，当然了，速度也越慢。<br>
+问题不大，一个medium模型也就1.42GB，哪个模型不想用了去默认路径<code>C:\Users\Administrator\.cache\whisper</code>删掉 <em>.pt</em> 文件就行。<br>
+命令行运行<code>whisper --help</code>查看帮助。</p>
+<hr>
+<p>Whisper 默认识别是英文，无法准确识别语言会自动<code>Detecting language: English</code>。<br>
+如果第一次命令设定了<code>--language Chinese</code>，自动下载的模型将能识别中文，往后命令加不加<code>--language Chinese</code>都能识别中文。这时命令如果设定<code>--language Japanese</code>会出现「第一次命令未设定<code>--language</code>时识别中文的情况」，即「cmd识别内容中有『▒』，识别结果正常」，同时cmd不会自动下载新的模型文件。</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 ~/Desktop/新建文件夹
+$ whisper out.wav --language Japanese
+c:\program files\python38\lib\site-packages\whisper\transcribe.py:79: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn(&quot;FP16 is not supported on CPU; using FP32 instead&quot;)
+[00:00.000 --&gt; 00:04.000] һ▒ˤ▒▒▒▒꤬▒⤦▒▒▒▒▒▒▒̤▒▒▒
+[00:04.000 --&gt; 00:07.500] ▒▒▒▒▒▒▒▒ȫ▒Ƥ▒ʼ▒ޤ▒
+[00:07.500 --&gt; 00:10.000] ▒▒▒▒▒ʯ▒Ȥʤ▒
+[00:10.000 --&gt; 00:12.000] ܞ▒▒▒▒ʼ▒▒▒
+[00:13.000 --&gt; 00:14.500] ▒ҡ▒▒Ϥɤ▒▒▒▒▒▒
+[00:14.500 --&gt; 00:34.500] ▒̤▒▒Ƥ▒▒▒▒▒▒▒!▒▒å▒▒▒▒`▒Θ▒!
+
+</code></pre>
+<p>因此我们还需研究设定<code>--language</code>基础上添加<code>--model</code>会不会下载一个新的模型，或是覆盖现有模型，还是需要我们删掉原模型文件重新下载新模型?</p>
+<p><strong>记录</strong><br>
+原模型small.pf 修改日期2023.2.26 18:15 创建日期2023.2.26 17:50<br>
+输入命令<code>whisper out.wav --model small --language Japanese</code></p>
+<pre><code class="language-bash">C:\Users\Administrator\Desktop\新建文件夹&gt;whisper out.wav --model small --language Japanese
+c:\program files\python38\lib\site-packages\whisper\transcribe.py:79: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn(&quot;FP16 is not supported on CPU; using FP32 instead&quot;)
+[00:00.000 --&gt; 00:04.000] 一人の青年がもうすぐ死ぬだろう
+[00:04.000 --&gt; 00:07.500] その死が全ての始まり
+[00:07.500 --&gt; 00:10.000] 世界は石となり
+[00:10.000 --&gt; 00:12.000] 転がり始める
+[00:13.000 --&gt; 00:14.500] 我々はどうすれば
+[00:14.500 --&gt; 00:34.500] 教えてください!ロックサーノ様!
+</code></pre>
+<p>模型small.pf 修改日期2023.2.26 18:15 创建日期2023.2.26 17:50<br>
+没有自动下载新模型，没有被覆盖，cmd识别内容显示正常。</p>
+<p>现在我们需要研究删掉<code>--model</code>∪<code>--language Japanese</code>是否继续出现「▒」。<br>
+1、<code>whisper out.wav</code><br>
+cmd运行——</p>
+<pre><code class="language-bash">C:\Users\Administrator\Desktop\新建文件夹&gt;whisper out.wav
+c:\program files\python38\lib\site-packages\whisper\transcribe.py:79: UserWarnin
+g: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn(&quot;FP16 is not supported on CPU; using FP32 instead&quot;)
+Detecting language using up to the first 30 seconds. Use `--language` to specify
+ the language
+Detected language: Japanese
+[00:00.000 --&gt; 00:04.000] 一人の青年がもうすぐ死ぬだろう
+[00:04.000 --&gt; 00:07.500] その死が全ての始まり
+[00:07.500 --&gt; 00:10.000] 世界は石となり
+[00:10.000 --&gt; 00:12.000] 転がり始める
+[00:13.000 --&gt; 00:14.500] 我々はどうすれば
+[00:14.500 --&gt; 00:34.500] 教えてください!ロックサーノ様!
+</code></pre>
+<p>2、<code>whisper out.wav --model small</code><br>
+cmd运行——</p>
+<pre><code class="language-bash">C:\Users\Administrator\Desktop\新建文件夹&gt;whisper out.wav --model small
+c:\program files\python38\lib\site-packages\whisper\transcribe.py:79: UserWarnin
+g: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn(&quot;FP16 is not supported on CPU; using FP32 instead&quot;)
+Detecting language using up to the first 30 seconds. Use `--language` to specify
+ the language
+Detected language: Japanese
+[00:00.000 --&gt; 00:04.000] 一人の青年がもうすぐ死ぬだろう
+[00:04.000 --&gt; 00:07.500] その死が全ての始まり
+[00:07.500 --&gt; 00:10.000] 世界は石となり
+[00:10.000 --&gt; 00:12.000] 転がり始める
+[00:13.000 --&gt; 00:14.500] 我々はどうすれば
+[00:14.500 --&gt; 00:34.500] 教えてください!ロックサーノ様!
+</code></pre>
+<p>3、<code>whisper out.wav --language Japanese</code><br>
+回过头来看是否继续乱码<br>
+cmd运行——</p>
+<pre><code class="language-bash">C:\Users\Administrator\Desktop\新建文件夹&gt;whisper out.wav --language Japanese
+c:\program files\python38\lib\site-packages\whisper\transcribe.py:79: UserWarnin
+g: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn(&quot;FP16 is not supported on CPU; using FP32 instead&quot;)
+[00:00.000 --&gt; 00:04.000] 一人の青年がもうすぐ死ぬだろう
+[00:04.000 --&gt; 00:07.500] その死が全ての始まり
+[00:07.500 --&gt; 00:10.000] 世界は石となり
+[00:10.000 --&gt; 00:12.000] 転がり始める
+[00:13.000 --&gt; 00:14.500] 我々はどうすれば
+[00:14.500 --&gt; 00:34.500] 教えてください!ロックサーノ様!
+</code></pre>
+<p><em>速度：<code>--model --language Japanese</code>＞<code>--language Japanese</code>＞<code>--model</code>＞<code> </code></em><br>
+（大概是这样）<br>
+现在<code>whisper audio.mp3 --language Chinese</code>切回去识别中文语音<br>
+cmd运行——</p>
+<pre><code class="language-bash">C:\Users\Administrator\Desktop\新建文件夹&gt;whisper audio.mp3 --language Chinese
+c:\program files\python38\lib\site-packages\whisper\transcribe.py:79: UserWarnin
+g: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn(&quot;FP16 is not supported on CPU; using FP32 instead&quot;)
+[00:00.000 --&gt; 00:03.000] 各位觀眾 晚上好
+[00:03.000 --&gt; 00:07.000] 今天是12月29號 星期四 農曆12月初期
+[00:07.000 --&gt; 00:09.000] 歡迎收看新墨鏈播節目
+[00:09.000 --&gt; 00:29.000] 我先為您介紹今天節目的主要內容
+</code></pre>
+<p>正常</p>
+<p><strong>总结一下</strong>：<br>
+第一次输入<code>whisper audio.mp3</code>（自动下载模型）默认识别English，可以识别其他语言但cmd界面识别内容会有乱码，设定<code>--language Chinese</code>后可识别中英文，识别其他语言cmd仍有乱码。需要完整输入<code>--model [xxx] --language [xxx]</code>，cmd方可正常显示，往后识别该语言删掉model∪language，cmd均能正常显示。<br>
+还是不要偷懒为好。<br>
+建议将长音频拆分，批量识别。<br>
+目前还没读过 <a href="https://github.com/AlexandaJerry/whisper-vits-japanese">whisper-vits-japanese</a>的代码，不知道作者是如何做到「将Whisper只能读取少数音频文件的限制，放宽到可以遍历文件夹下的所有音频文件。」的？<br>
+不过我目前缺少whisper-vits的条件，想办法把第一步路铺好是我当下能做到的，另外显然我需要校对文本。</p>
+<h3 id="演示">演示</h3>
+<p>用CPU跑 Whisper ，第一次CPU使用率会高达100%，往后偶尔100%，正常使用一般保持在50%-70%；物理内存使用记录一个波形对应一次识别输出（四五段字幕），我的机型比较落后，识别1分钟语音需要等10~15分钟。<br>
+<img src="https://xiaxi626.github.io/post-images/1677507625642.PNG" alt="" loading="lazy"><br>
+烧CPU跟Torch版本关系不大，如果电脑嗡嗡作响且CPU使用率保持100%，请关掉程序，命令中删除--language选项用短音频测试几次，确认正常后重启电脑。<br>
+<img src="https://xiaxi626.github.io/post-images/1677507631937.PNG" alt="" loading="lazy"><br>
+一份<code>24:22</code>的音频，我使用 medium 模型，耗时8小时。选用 large 模型也能跑，跳出下面内容开始识别花的时间较长，加内存条速度会快些。</p>
+<pre><code class="language-bash">c:\program files\python38\lib\site-packages\whisper\transcribe.py:79: UserWarnin
+g: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn(&quot;FP16 is not supported on CPU; using FP32 instead&quot;)
+</code></pre>
+<p>这句话的意思是FP16不支持CPU，现在用FP32代替。无论你的电脑没有显卡或者显卡不支持CUDA/CUDA版本低，还是在用CPU跑，都会蹦出这个提示。如果是前一种，安装支持CUDA新版本的Torch。如果是第二种，请无视。<br>
+另外，提示<code>RuntimeError: CUDA out of memory</code>意味着你的显卡适用不了当前模型，请换小点的模型；提示<code>No module named 'setuptools_rust'</code>意味着你要安装Rust——<code>pip install setuptools_rust</code>。<br>
+配置VITS环境后会严重拖慢Whisper，Unidecode库导致Whisper找不到正确编码，文件生成失败（未截图运行过程）。用较短音频再试一次即可恢复识别，cmd会出现『▒』乱码，进程加载变慢。</p>
+<h2 id="安装-whisper-webui">安装 whisper-webui</h2>
+<p>在你想要存放whisper-webui的地方打开git bash，克隆仓库。</p>
+<pre><code class="language-bash">git clone https://huggingface.co/spaces/aadnk/whisper-webui
+</code></pre>
+<p>进入本地仓库，安装requirements.txt中的包：</p>
+<pre><code class="language-bash">git+https://github.com/openai/whisper.git
+transformers
+ffmpeg-python==0.2.0
+gradio==3.13.0
+yt-dlp
+torchaudio
+altair
+</code></pre>
+<p>将 whisper-webui 中<code>requirements.txt</code>的第一行删去</p>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<p>cmd安装过程——</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /e/whisper-webui (main)
+$ pip install -r requirements.txt  -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple/
+Requirement already satisfied: transformers in c:\program files\python38\lib\site-packages (from -r requirements.txt (line 1)) (4.26.1)
+Requirement already satisfied: ffmpeg-python==0.2.0 in c:\program files\python38\lib\site-packages (from -r requirements.txt (line 2)) (0.2.0)
+Collecting gradio==3.13.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/61/e2/cb14526cf49689b5cc3cb942e20747257d98a2879bf53e7ee096eae4630a/gradio-3.13.0-py3-none-any.whl (13.8 MB)
+     -------------------------------------- 13.8/13.8 MB 590.5 kB/s eta 0:00:00
+Collecting yt-dlp
+  Downloading http://mirrors.aliyun.com/pypi/packages/a7/df/498c57f641e9993376cf52489047158e6d660e8bab06b72c470ad5cce2bd/yt_dlp-2023.3.4-py2.py3-none-any.whl (2.9 MB)
+     ---------------------------------------- 2.9/2.9 MB 612.0 kB/s eta 0:00:00
+Requirement already satisfied: torchaudio in c:\program files\python38\lib\site-packages (from -r requirements.txt (line 5)) (0.13.1)
+Collecting altair
+  Downloading http://mirrors.aliyun.com/pypi/packages/18/62/47452306e84d4d2e67f9c559380aeb230f5e6ca84fafb428dd36b96a99ba/altair-4.2.2-py3-none-any.whl (813 kB)
+     ------------------------------------ 813.6/813.6 kB 620.4 kB/s eta 0:00:00
+Requirement already satisfied: future in c:\program files\python38\lib\site-packages (from ffmpeg-python==0.2.0-&gt;-r requirements.txt (line 2)) (0.18.3)
+Collecting paramiko
+  Downloading http://mirrors.aliyun.com/pypi/packages/56/7c/9dd558ec0869fcecb661765d0a2504978dbfe85de24cbcccc847aa9b58e4/paramiko-3.1.0-py3-none-any.whl (211 kB)
+     ------------------------------------ 211.2/211.2 kB 537.4 kB/s eta 0:00:00
+Collecting h11&lt;0.13,&gt;=0.11
+  Downloading http://mirrors.aliyun.com/pypi/packages/60/0f/7a0eeea938eaf61074f29fed9717f2010e8d0e0905d36b38d3275a1e4622/h11-0.12.0-py3-none-any.whl (54 kB)
+     -------------------------------------- 54.9/54.9 kB 318.7 kB/s eta 0:00:00
+Collecting pydub
+  Downloading http://mirrors.aliyun.com/pypi/packages/a6/53/d78dc063216e62fc55f6b2eebb447f6a4b0a59f55c8406376f76bf959b08/pydub-0.25.1-py2.py3-none-any.whl (32 kB)
+Collecting fsspec
+  Downloading http://mirrors.aliyun.com/pypi/packages/4f/65/887925f1549fcb6ac3abb23a747c10f5ab083e8471fe568768b18bdb15b2/fsspec-2023.3.0-py3-none-any.whl (145 kB)
+     ------------------------------------ 145.4/145.4 kB 665.8 kB/s eta 0:00:00
+Collecting pycryptodome
+  Downloading http://mirrors.aliyun.com/pypi/packages/14/7a/f764564dceaf131e7a740c618d6bdfc30e2ca264e9de410ca757f6c4c3e3/pycryptodome-3.17-cp35-abi3-win_amd64.whl (1.7 MB)
+     ---------------------------------------- 1.7/1.7 MB 526.0 kB/s eta 0:00:00
+Collecting matplotlib
+  Downloading http://mirrors.aliyun.com/pypi/packages/92/01/2c04d328db6955d77f8f60c17068dde8aa66f153b2c599ca03c2cb0d5567/matplotlib-3.7.1-cp38-cp38-win_amd64.whl (7.6 MB)
+     ---------------------------------------- 7.6/7.6 MB 439.9 kB/s eta 0:00:00
+Collecting pandas
+  Downloading http://mirrors.aliyun.com/pypi/packages/ca/4e/d18db7d5ff9d28264cd2a7e2499b8701108f0e6c698e382cfd5d20685c21/pandas-1.5.3-cp38-cp38-win_amd64.whl (11.0 MB)
+     -------------------------------------- 11.0/11.0 MB 423.8 kB/s eta 0:00:00
+Requirement already satisfied: pillow in c:\program files\python38\lib\site-packages (from gradio==3.13.0-&gt;-r requirements.txt (line 3)) (9.4.0)
+Collecting aiohttp
+  Downloading http://mirrors.aliyun.com/pypi/packages/48/5b/dabb02a8fe7da607c0b65d9086af36a2c77c509f3ee7efb7a80b008d7c7a/aiohttp-3.8.4-cp38-cp38-win_amd64.whl (324 kB)
+     ------------------------------------ 324.5/324.5 kB 479.7 kB/s eta 0:00:00
+Collecting jinja2
+  Downloading http://mirrors.aliyun.com/pypi/packages/bc/c3/f068337a370801f372f2f8f6bad74a5c140f6fda3d9de154052708dd3c65/Jinja2-3.1.2-py3-none-any.whl (133 kB)
+     ------------------------------------ 133.1/133.1 kB 358.2 kB/s eta 0:00:00
+Requirement already satisfied: numpy in c:\program files\python38\lib\site-packages (from gradio==3.13.0-&gt;-r requirements.txt (line 3)) (1.23.5)
+Collecting ffmpy
+  Downloading http://mirrors.aliyun.com/pypi/packages/bf/e2/947df4b3d666bfdd2b0c6355d215c45d2d40f929451cb29a8a2995b29788/ffmpy-0.3.0.tar.gz (4.8 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: requests in c:\program files\python38\lib\site-packages (from gradio==3.13.0-&gt;-r requirements.txt (line 3)) (2.28.2)
+Collecting fastapi
+  Downloading http://mirrors.aliyun.com/pypi/packages/f5/07/8e950c4bcb953a0bcbb41e0d7b1d5496f9792edfd0dc2cd518cd7a42f948/fastapi-0.94.0-py3-none-any.whl (56 kB)
+     -------------------------------------- 56.3/56.3 kB 368.5 kB/s eta 0:00:00
+Collecting python-multipart
+  Downloading http://mirrors.aliyun.com/pypi/packages/b4/ff/b1e11d8bffb5e0e1b6d27f402eeedbeb9be6df2cdbc09356a1ae49806dbf/python_multipart-0.0.6-py3-none-any.whl (45 kB)
+     -------------------------------------- 45.7/45.7 kB 286.1 kB/s eta 0:00:00
+Collecting uvicorn
+  Downloading http://mirrors.aliyun.com/pypi/packages/24/ec/9e3e7c74c342e22dabcf0c6875a40269283f4c8aec2d2f5802b988c570f7/uvicorn-0.21.0-py3-none-any.whl (57 kB)
+     -------------------------------------- 57.8/57.8 kB 217.2 kB/s eta 0:00:00
+Collecting httpx
+  Downloading http://mirrors.aliyun.com/pypi/packages/ac/a2/0260c0f5d73bdf06e8d3fc1013a82b9f0633dc21750c9e3f3cb1dba7bb8c/httpx-0.23.3-py3-none-any.whl (71 kB)
+     -------------------------------------- 71.5/71.5 kB 327.4 kB/s eta 0:00:00
+Collecting orjson
+  Downloading http://mirrors.aliyun.com/pypi/packages/1e/52/ff9aa30cf25cb9c0e7fdf197883af79e45ed108e7f498ffd44ddcb86d8c1/orjson-3.8.7-cp38-none-win_amd64.whl (202 kB)
+     ------------------------------------ 202.6/202.6 kB 457.0 kB/s eta 0:00:00
+Collecting pydantic
+  Downloading http://mirrors.aliyun.com/pypi/packages/0e/86/8a40e374bc2e93bb285e2589953781b909ad2260ff64c17012327c740282/pydantic-1.10.6-cp38-cp38-win_amd64.whl (2.2 MB)
+     ---------------------------------------- 2.2/2.2 MB 511.0 kB/s eta 0:00:00
+Collecting markdown-it-py[linkify,plugins]
+  Downloading http://mirrors.aliyun.com/pypi/packages/bf/25/2d88e8feee8e055d015343f9b86e370a1ccbec546f2865c98397aaef24af/markdown_it_py-2.2.0-py3-none-any.whl (84 kB)
+     -------------------------------------- 84.5/84.5 kB 365.6 kB/s eta 0:00:00
+Collecting websockets&gt;=10.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/63/f2/ec4c59b4f91936eb2a5ddcf2f7e57184acbce5122d5d83911c5a47f25144/websockets-10.4-cp38-cp38-win_amd64.whl (101 kB)
+     ------------------------------------ 101.4/101.4 kB 451.5 kB/s eta 0:00:00
+Requirement already satisfied: pyyaml in c:\program files\python38\lib\site-packages (from gradio==3.13.0-&gt;-r requirements.txt (line 3)) (6.0)
+Requirement already satisfied: tqdm&gt;=4.27 in c:\program files\python38\lib\site-packages (from transformers-&gt;-r requirements.txt (line 1)) (4.65.0)
+Requirement already satisfied: regex!=2019.12.17 in c:\program files\python38\lib\site-packages (from transformers-&gt;-r requirements.txt (line 1)) (2022.10.31)
+Requirement already satisfied: tokenizers!=0.11.3,&lt;0.14,&gt;=0.11.1 in c:\program files\python38\lib\site-packages (from transformers-&gt;-r requirements.txt (line 1)) (0.13.2)
+Requirement already satisfied: huggingface-hub&lt;1.0,&gt;=0.11.0 in c:\program files\python38\lib\site-packages (from transformers-&gt;-r requirements.txt (line 1)) (0.13.1)
+Requirement already satisfied: filelock in c:\program files\python38\lib\site-packages (from transformers-&gt;-r requirements.txt (line 1)) (3.9.0)
+Requirement already satisfied: packaging&gt;=20.0 in c:\program files\python38\lib\site-packages (from transformers-&gt;-r requirements.txt (line 1)) (23.0)
+Collecting brotli
+  Downloading http://mirrors.aliyun.com/pypi/packages/63/29/1b104b5915e61d9f7443889657d93937b7e0b33b331609b82693547934a0/Brotli-1.0.9-cp38-cp38-win_amd64.whl (365 kB)
+     ------------------------------------ 365.3/365.3 kB 494.6 kB/s eta 0:00:00
+Collecting mutagen
+  Downloading http://mirrors.aliyun.com/pypi/packages/03/ee/114d7016d2e34f341e212fefb5e7bd87785077ebcfff0ad23a497c70eea1/mutagen-1.46.0-py3-none-any.whl (193 kB)
+     ------------------------------------ 193.6/193.6 kB 470.3 kB/s eta 0:00:00
+Collecting pycryptodomex
+  Downloading http://mirrors.aliyun.com/pypi/packages/ac/a4/b2758579debd57abf5482a1f2f3a2a36c815fba9d6252fcd7fb5a7946aa7/pycryptodomex-3.17-cp35-abi3-win_amd64.whl (1.7 MB)
+     ---------------------------------------- 1.7/1.7 MB 534.5 kB/s eta 0:00:00
+Requirement already satisfied: certifi in c:\program files\python38\lib\site-packages (from yt-dlp-&gt;-r requirements.txt (line 4)) (2022.12.7)
+Requirement already satisfied: torch==1.13.1 in c:\program files\python38\lib\site-packages (from torchaudio-&gt;-r requirements.txt (line 5)) (1.13.1)
+Requirement already satisfied: typing-extensions in c:\program files\python38\lib\site-packages (from torch==1.13.1-&gt;torchaudio-&gt;-r requirements.txt (line 5)) (4.5.0)
+Collecting jsonschema&gt;=3.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/c1/97/c698bd9350f307daad79dd740806e1a59becd693bd11443a0f531e3229b3/jsonschema-4.17.3-py3-none-any.whl (90 kB)
+     -------------------------------------- 90.4/90.4 kB 394.8 kB/s eta 0:00:00
+Collecting entrypoints
+  Downloading http://mirrors.aliyun.com/pypi/packages/35/a8/365059bbcd4572cbc41de17fd5b682be5868b218c3c5479071865cab9078/entrypoints-0.4-py3-none-any.whl (5.3 kB)
+Collecting toolz
+  Downloading http://mirrors.aliyun.com/pypi/packages/7f/5c/922a3508f5bda2892be3df86c74f9cf1e01217c2b1f8a0ac4841d903e3e9/toolz-0.12.0-py3-none-any.whl (55 kB)
+     -------------------------------------- 55.8/55.8 kB 364.8 kB/s eta 0:00:00
+Collecting attrs&gt;=17.4.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/fb/6e/6f83bf616d2becdf333a1640f1d463fef3150e2e926b7010cb0f81c95e88/attrs-22.2.0-py3-none-any.whl (60 kB)
+     -------------------------------------- 60.0/60.0 kB 398.2 kB/s eta 0:00:00
+Collecting importlib-resources&gt;=1.4.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/38/71/c13ea695a4393639830bf96baea956538ba7a9d06fcce7cef10bfff20f72/importlib_resources-5.12.0-py3-none-any.whl (36 kB)
+Collecting pkgutil-resolve-name&gt;=1.3.10
+  Downloading http://mirrors.aliyun.com/pypi/packages/c9/5c/3d4882ba113fd55bdba9326c1e4c62a15e674a2501de4869e6bd6301f87e/pkgutil_resolve_name-1.3.10-py3-none-any.whl (4.7 kB)
+Collecting pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,&gt;=0.14.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/b1/8d/bbce2d857ecdefb7170a8a37ade1de0f060052236c07693856ac23f3b1ee/pyrsistent-0.19.3-cp38-cp38-win_amd64.whl (62 kB)
+     -------------------------------------- 62.7/62.7 kB 306.7 kB/s eta 0:00:00
+Collecting python-dateutil&gt;=2.8.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+     ------------------------------------ 247.7/247.7 kB 474.9 kB/s eta 0:00:00
+Collecting pytz&gt;=2020.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/2e/09/fbd3c46dce130958ee8e0090f910f1fe39e502cc5ba0aadca1e8a2b932e5/pytz-2022.7.1-py2.py3-none-any.whl (499 kB)
+     ------------------------------------ 499.4/499.4 kB 454.6 kB/s eta 0:00:00
+Requirement already satisfied: colorama in c:\program files\python38\lib\site-packages (from tqdm&gt;=4.27-&gt;transformers-&gt;-r requirements.txt (line 1)) (0.4.6)
+Collecting async-timeout&lt;5.0,&gt;=4.0.0a3
+  Downloading http://mirrors.aliyun.com/pypi/packages/d6/c1/8991e7c5385b897b8c020cdaad718c5b087a6626d1d11a23e1ea87e325a7/async_timeout-4.0.2-py3-none-any.whl (5.8 kB)
+Collecting multidict&lt;7.0,&gt;=4.5
+  Downloading http://mirrors.aliyun.com/pypi/packages/d2/cf/d00992d281fb953a01685d9b2e68f66901c7dee7bcb75dad1a5ef9a879d3/multidict-6.0.4-cp38-cp38-win_amd64.whl (28 kB)
+Collecting aiosignal&gt;=1.1.2
+  Downloading http://mirrors.aliyun.com/pypi/packages/76/ac/a7305707cb852b7e16ff80eaf5692309bde30e2b1100a1fcacdc8f731d97/aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
+Requirement already satisfied: charset-normalizer&lt;4.0,&gt;=2.0 in c:\program files\python38\lib\site-packages (from aiohttp-&gt;gradio==3.13.0-&gt;-r requirements.txt (line 3)) (3.1.0)
+Collecting frozenlist&gt;=1.1.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/03/00/febbfd2ec244a0f91707bd879afe6aa278e337dc41cd9d0d25260e6da38e/frozenlist-1.3.3-cp38-cp38-win_amd64.whl (34 kB)
+Collecting yarl&lt;2.0,&gt;=1.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/f9/fa/9c746d29462714663d04cf9e34cc44a86efa17705a811c77556643b80f1b/yarl-1.8.2-cp38-cp38-win_amd64.whl (56 kB)
+     -------------------------------------- 56.9/56.9 kB 229.6 kB/s eta 0:00:00
+Collecting starlette&lt;0.27.0,&gt;=0.26.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/5b/54/169fef8cf7676c8bd9dbd6af0684eb448cf68ca59ea2979d6a3180ea5ece/starlette-0.26.0.post1-py3-none-any.whl (66 kB)
+     -------------------------------------- 66.9/66.9 kB 363.3 kB/s eta 0:00:00
+Collecting sniffio
+  Downloading http://mirrors.aliyun.com/pypi/packages/c3/a0/5dba8ed157b0136607c7f2151db695885606968d1fae123dc3391e0cfdbf/sniffio-1.3.0-py3-none-any.whl (10 kB)
+Collecting httpcore&lt;0.17.0,&gt;=0.15.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/04/7e/ef97af4623024e8159993b3114ce208de4f677098ae058ec5882a1bf7605/httpcore-0.16.3-py3-none-any.whl (69 kB)
+     -------------------------------------- 69.6/69.6 kB 420.7 kB/s eta 0:00:00
+Collecting rfc3986[idna2008]&lt;2,&gt;=1.3
+  Downloading http://mirrors.aliyun.com/pypi/packages/c4/e5/63ca2c4edf4e00657584608bee1001302bbf8c5f569340b78304f2f446cb/rfc3986-1.5.0-py2.py3-none-any.whl (31 kB)
+Collecting MarkupSafe&gt;=2.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/93/fa/d72f68f84f8537ee8aa3e0764d1eb11e5e025a5ca90c16e94a40f894c2fc/MarkupSafe-2.1.2-cp38-cp38-win_amd64.whl (16 kB)
+Collecting mdurl~=0.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Collecting linkify-it-py&lt;3,&gt;=1
+  Downloading http://mirrors.aliyun.com/pypi/packages/fa/1a/2280e2eb892162ef5c0480a131d1d176b61f5f24abdce8dd9862454f7d14/linkify_it_py-2.0.0-py3-none-any.whl (19 kB)
+Collecting mdit-py-plugins
+  Downloading http://mirrors.aliyun.com/pypi/packages/fe/4c/a9b222f045f98775034d243198212cbea36d3524c3ee1e8ab8c0346d6953/mdit_py_plugins-0.3.5-py3-none-any.whl (52 kB)
+     -------------------------------------- 52.1/52.1 kB 337.5 kB/s eta 0:00:00
+Collecting cycler&gt;=0.10
+  Downloading http://mirrors.aliyun.com/pypi/packages/5c/f9/695d6bedebd747e5eb0fe8fad57b72fdf25411273a39791cde838d5a8f51/cycler-0.11.0-py3-none-any.whl (6.4 kB)
+Collecting contourpy&gt;=1.0.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/08/ce/9bfe9f028cb5a8ee97898da52f4905e0e2d9ca8203ffdcdbe80e1769b549/contourpy-1.0.7-cp38-cp38-win_amd64.whl (162 kB)
+     ------------------------------------ 163.0/163.0 kB 326.3 kB/s eta 0:00:00
+Collecting pyparsing&gt;=2.3.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/6c/10/a7d0fa5baea8fe7b50f448ab742f26f52b80bfca85ac2be9d35cdd9a3246/pyparsing-3.0.9-py3-none-any.whl (98 kB)
+     -------------------------------------- 98.3/98.3 kB 434.0 kB/s eta 0:00:00
+Collecting fonttools&gt;=4.22.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/43/6e/810648a366d6488e1e0543f72dcb2016e54ec02933e302cd41d72599e90d/fonttools-4.39.0-py3-none-any.whl (1.0 MB)
+     ---------------------------------------- 1.0/1.0 MB 490.2 kB/s eta 0:00:00
+Collecting kiwisolver&gt;=1.0.1
+  Downloading http://mirrors.aliyun.com/pypi/packages/4f/05/59b34e788bf2b45c7157c3d898d567d28bc42986c1b6772fb1af329eea0d/kiwisolver-1.4.4-cp38-cp38-win_amd64.whl (55 kB)
+     -------------------------------------- 55.4/55.4 kB 410.4 kB/s eta 0:00:00
+Collecting bcrypt&gt;=3.2
+  Downloading http://mirrors.aliyun.com/pypi/packages/46/81/d8c22cd7e5e1c6a7d48e41a1d1d46c92f17dae70a54d9814f746e6027dec/bcrypt-4.0.1-cp36-abi3-win_amd64.whl (152 kB)
+     ------------------------------------ 152.9/152.9 kB 416.0 kB/s eta 0:00:00
+Collecting pynacl&gt;=1.5
+  Downloading http://mirrors.aliyun.com/pypi/packages/5e/22/d3db169895faaf3e2eda892f005f433a62db2decbcfbc2f61e6517adfa87/PyNaCl-1.5.0-cp36-abi3-win_amd64.whl (212 kB)
+     ------------------------------------ 212.1/212.1 kB 380.2 kB/s eta 0:00:00
+Collecting cryptography&gt;=3.3
+  Downloading http://mirrors.aliyun.com/pypi/packages/4f/0e/55b8cff87b572da828e9c6b7e7c5ecb9dc955b551ab863c28464a15f6451/cryptography-39.0.2-cp36-abi3-win_amd64.whl (2.5 MB)
+     ---------------------------------------- 2.5/2.5 MB 529.2 kB/s eta 0:00:00
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\program files\python38\lib\site-packages (from requests-&gt;gradio==3.13.0-&gt;-r requirements.txt (line 3)) (3.4)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in c:\program files\python38\lib\site-packages (from requests-&gt;gradio==3.13.0-&gt;-r requirements.txt (line 3)) (1.26.15)
+Collecting click&gt;=7.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/c2/f1/df59e28c642d583f7dacffb1e0965d0e00b218e0186d7858ac5233dce840/click-8.1.3-py3-none-any.whl (96 kB)
+     -------------------------------------- 96.6/96.6 kB 502.0 kB/s eta 0:00:00
+Collecting cffi&gt;=1.12
+  Downloading http://mirrors.aliyun.com/pypi/packages/c9/e3/0a52838832408cfbbf3a59cb19bcd17e64eb33795c9710ca7d29ae10b5b7/cffi-1.15.1-cp38-cp38-win_amd64.whl (178 kB)
+     ------------------------------------ 178.8/178.8 kB 432.3 kB/s eta 0:00:00
+Collecting httpcore&lt;0.17.0,&gt;=0.15.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/91/52/93f22e5441539256c0d113faf17e45284aee16eebdd95089e3ca6f480b18/httpcore-0.16.2-py3-none-any.whl (68 kB)
+     -------------------------------------- 69.0/69.0 kB 314.2 kB/s eta 0:00:00
+  Downloading http://mirrors.aliyun.com/pypi/packages/b1/fa/6e6ebe637cef87401ee82e7d76313d9eb014524fc6de45eb3b13cedd4c14/httpcore-0.16.1-py3-none-any.whl (68 kB)
+     -------------------------------------- 68.7/68.7 kB 312.7 kB/s eta 0:00:00
+  Downloading http://mirrors.aliyun.com/pypi/packages/6f/d1/7d1cddbc4bc1e4e9f9233b79a5acf1a5e5665801157ca68a5fb4150584a1/httpcore-0.16.0-py3-none-any.whl (68 kB)
+     -------------------------------------- 68.7/68.7 kB 341.7 kB/s eta 0:00:00
+  Downloading http://mirrors.aliyun.com/pypi/packages/ad/b9/260603ca0913072a10a4367c2dca9998706812a8c1f4558eca510f85ae16/httpcore-0.15.0-py3-none-any.whl (68 kB)
+     -------------------------------------- 68.4/68.4 kB 465.7 kB/s eta 0:00:00
+Collecting anyio==3.*
+  Downloading http://mirrors.aliyun.com/pypi/packages/77/2b/b4c0b7a3f3d61adb1a1e0b78f90a94e2b6162a043880704b7437ef297cad/anyio-3.6.2-py3-none-any.whl (80 kB)
+     -------------------------------------- 80.6/80.6 kB 346.7 kB/s eta 0:00:00
+Requirement already satisfied: zipp&gt;=3.1.0 in c:\program files\python38\lib\site-packages (from importlib-resources&gt;=1.4.0-&gt;jsonschema&gt;=3.0-&gt;altair-&gt;-r requirements.txt (line 6)) (3.15.0)
+Collecting uc-micro-py
+  Downloading http://mirrors.aliyun.com/pypi/packages/14/0e/738dbd15b1afe372d0d788e1e2112cfa67c9cf9e1c777360eaf9cd429caf/uc_micro_py-1.0.1-py3-none-any.whl (6.2 kB)
+Collecting six&gt;=1.5
+  Downloading http://mirrors.aliyun.com/pypi/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl (11 kB)
+Collecting pycparser
+  Downloading http://mirrors.aliyun.com/pypi/packages/62/d5/5f610ebe421e85889f2e55e33b7f9a6795bd982198517d912eb1c76e1a53/pycparser-2.21-py2.py3-none-any.whl (118 kB)
+     ------------------------------------ 118.7/118.7 kB 497.5 kB/s eta 0:00:00
+Building wheels for collected packages: ffmpy
+  Building wheel for ffmpy (setup.py): started
+  Building wheel for ffmpy (setup.py): finished with status 'done'
+  Created wheel for ffmpy: filename=ffmpy-0.3.0-py3-none-any.whl size=4732 sha256=01a0f3eb0f3c0f4d68b999ba97a30dc5b046b194c47d200a92d42a02c970b2fb
+  Stored in directory: c:\users\administrator\appdata\local\pip\cache\wheels\b1\49\0c\25183293e165aae632d926519352e2a1984ac4db8a03d036a9
+Successfully built ffmpy
+Installing collected packages: rfc3986, pytz, pydub, ffmpy, brotli, websockets, uc-micro-py, toolz, sniffio, six, python-multipart, pyrsistent, pyparsing, pydantic, pycryptodomex, pycryptodome, pycparser, pkgutil-resolve-name, orjson, mutagen, multidict, mdurl, MarkupSafe, kiwisolver, importlib-resources, h11, fsspec, frozenlist, fonttools, entrypoints, cycler, contourpy, click, bcrypt, attrs, async-timeout, yt-dlp, yarl, uvicorn, python-dateutil, markdown-it-py, linkify-it-py, jsonschema, jinja2, cffi, anyio, aiosignal, starlette, pynacl, pandas, mdit-py-plugins, matplotlib, httpcore, cryptography, aiohttp, paramiko, httpx, fastapi, altair, gradio
+Successfully installed MarkupSafe-2.1.2 aiohttp-3.8.4 aiosignal-1.3.1 altair-4.2.2 anyio-3.6.2 async-timeout-4.0.2 attrs-22.2.0 bcrypt-4.0.1 brotli-1.0.9 cffi-1.15.1 click-8.1.3 contourpy-1.0.7 cryptography-39.0.2 cycler-0.11.0 entrypoints-0.4 fastapi-0.94.0 ffmpy-0.3.0 fonttools-4.39.0 frozenlist-1.3.3 fsspec-2023.3.0 gradio-3.13.0 h11-0.12.0 httpcore-0.15.0 httpx-0.23.3 importlib-resources-5.12.0 jinja2-3.1.2 jsonschema-4.17.3 kiwisolver-1.4.4 linkify-it-py-2.0.0 markdown-it-py-2.2.0 matplotlib-3.7.1 mdit-py-plugins-0.3.5 mdurl-0.1.2 multidict-6.0.4 mutagen-1.46.0 orjson-3.8.7 pandas-1.5.3 paramiko-3.1.0 pkgutil-resolve-name-1.3.10 pycparser-2.21 pycryptodome-3.17 pycryptodomex-3.17 pydantic-1.10.6 pydub-0.25.1 pynacl-1.5.0 pyparsing-3.0.9 pyrsistent-0.19.3 python-dateutil-2.8.2 python-multipart-0.0.6 pytz-2022.7.1 rfc3986-1.5.0 six-1.16.0 sniffio-1.3.0 starlette-0.26.0.post1 toolz-0.12.0 uc-micro-py-1.0.1 uvicorn-0.21.0 websockets-10.4 yarl-1.8.2 yt-dlp-2023.3.4
+</code></pre>
+<h2 id="使用-whisper-webui">使用 whisper-webui</h2>
+<p>在whisper-webui的目录下，确保whisper环境激活：</p>
+<pre><code class="language-bash">python app.py --input_audio_max_duration -1
+</code></pre>
+<p>知乎<a href="https://zhuanlan.zhihu.com/p/611439310">Windows本地配置OpenAI Whisper+WebUI</a>给出的提示是这样的——<br>
+<img src="https://xiaxi626.github.io/post-images/1678684124429.png" alt="" loading="lazy"><br>
+我一直卡在<code> warnings.warn(</code>（如下图）。<br>
+<img src="https://xiaxi626.github.io/post-images/1678684297148.png" alt="" loading="lazy"><br>
+不过浏览器打开<code>http://127.0.0.1:7860</code>也能用。</p>
+<p>对于较长的非英语音频文件（〉10分钟），建议您在VAD选项中选择Silero VAD（语音活动检测器）。</p>
+<p>在完整界面中更改某些选项时要小心-这可能会导致模型崩溃。</p>
+<p>建议使用Full界面，以调整更多参数。</p>
+<p><strong>Vad 选项</strong>：</p>
+<ul>
+<li>none：在整个音频输入上运行Whisper</li>
+<li>silero-vad：使用 Silero VAD 检测包含语音的部分，并在每个部分上独立运行Whisper。Whisper 也在运行关于每个语音部分之间的间隙。</li>
+<li>silero-vad-skip-gaps：同上，但不包含根据 Silero 的语音的部分将被跳过。这会稍微快一些，但是可能会导致对话被跳过。</li>
+<li>periodic-vad：“VAD - 最大合并大小”创建语音部分。这是非常快速和简单的，但可能会中断一个句子或单词一分为二。</li>
+</ul>
+<p><strong>VAD - Merge Window 选项</strong>：如果设置，任何相隔最多此秒数的相邻语音部分将被自动合并。</p>
+<p><strong>VAD - Max Merge Size (s) 选项</strong>：如果相邻语音部分的长度达到此秒数，则禁用它们的合并。</p>
+<p><strong>VAD - Padding (s) 选项</strong>：<br>
+添加到每个语音部分的开头和结尾的秒数（浮点数）。将此设置为一个数字，大于零确保 Whisper 更有可能正确转录句子开头的句子演讲部分。但是，这也增加了 Whisper 分配错误时间戳的概率到每个转录的行。默认值为 1 秒。</p>
+<center>
+    <div style="color:orange; border-top: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+      WebUI界面
+  	</div>
+</center>
+<figure data-type="image" tabindex="1"><img src="https://xiaxi626.github.io/post-images/1678684987212.png" alt="" loading="lazy"></figure>
+<h2 id="使用-buzz">使用 Buzz</h2>
+<p>Buzz是whisper的GUI版。Buzz可在Mac、Windows和Linux上使用。<br>
+去<a href="https://github.com/chidiwilliams/buzz">Buzz开源地址</a>下载安装包，下载并安装</p>
+<p>打开Buzz的界面非常简单，话筒图标是直接调用录音软件录音转换字幕。+按钮则是选择语音或视频文件进行转换。<br>
+软件选项也很简单选择对应的语言和选择的模型进行转换即可，初次使用需要从网上下载模型到本地。<br>
+Buzz适合用于“实时录制”和“录制计算机播放的音频”场景。</p>
+<h2 id="使用-colab-google云端识别">使用 colab Google云端识别</h2>
+<p>Google相关服务需要科学上网。</p>
+<h3 id="上传音频文件">上传音频文件</h3>
+<ol>
+<li>上传音频文件到Google Drive，建议一个项目一个文件夹。</li>
+<li>点击左上角云端硬盘下方的<code>+新建</code> -&gt;<code>更多</code> -&gt;<code>关联更多应用</code>-&gt;搜索<code>Google Colaboratory</code>添加以使用 Colab。</li>
+</ol>
+<h3 id="安装-whisper">安装 Whisper</h3>
+<p>点击<code>代码执行程序</code>-&gt;<code>更改运行时类型</code>-&gt;硬件加速器选择 <code>GPU</code><br>
+编辑区域<code>+代码</code></p>
+<pre><code class="language-bash">!pip install git+https://github.com/openai/whisper.git
+</code></pre>
+<h3 id="装载云端硬盘">装载云端硬盘</h3>
+<p>编辑区域<code>+代码</code></p>
+<pre><code class="language-bash">from google.colab import drive
+drive.mount('/content/drive')
+</code></pre>
+<h3 id="运行whisper">运行whisper</h3>
+<p>编辑区域<code>+文本</code><br>
+audio.mp3是你准备识别的语音文件，--model选择语音识别模型，large是模型名称，有 tiny.en,tiny,base.en,base,small.en,small,medium.en,medium,large-v1,large-v2,large 多个模型可供选择，--language选择识别语言。示例：<br>
+编辑区域<code>+代码</code></p>
+<pre><code class="language-bash">!whisper audio.mp3 --model large --language Chinese
+</code></pre>
+<p>右键<code>文件</code>区域要识别的文件-&gt;复制路径</p>
+<pre><code class="language-bash">!whisper /content/drive/MyDrive/GOSICK-audio/output01.wav --model large --language Japanese
+</code></pre>
+<h3 id="保存工程">保存工程</h3>
+<p>点击左上角修改<code>.ipynb</code>名称，点击文件-&gt;保存。下一个<strong>运行时</strong>系统会自动删除sample_date同级目录下上传和生成的文件。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85openai-whisper">安装OpenAI Whisper</a>
+<ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E5%AE%89%E8%A3%85ffmpeg%E5%92%8Cgit">第一步，安装FFmpeg和Git</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E5%AE%89%E8%A3%85python">第二步，安装Python</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E5%AE%89%E8%A3%85-pytorch">第三步，安装 PyTorch</a></li>
+<li><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%E5%AE%89%E8%A3%85whisper">第四步，安装Whisper</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8whisper">使用Whisper</a>
+<ul>
+<li><a href="#%E6%BC%94%E7%A4%BA">演示</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%89%E8%A3%85-whisper-webui">安装 whisper-webui</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-whisper-webui">使用 whisper-webui</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-buzz">使用 Buzz</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-colab-google%E4%BA%91%E7%AB%AF%E8%AF%86%E5%88%AB">使用 colab Google云端识别</a>
+<ul>
+<li><a href="#%E4%B8%8A%E4%BC%A0%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6">上传音频文件</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85-whisper">安装 Whisper</a></li>
+<li><a href="#%E8%A3%85%E8%BD%BD%E4%BA%91%E7%AB%AF%E7%A1%AC%E7%9B%98">装载云端硬盘</a></li>
+<li><a href="#%E8%BF%90%E8%A1%8Cwhisper">运行whisper</a></li>
+<li><a href="#%E4%BF%9D%E5%AD%98%E5%B7%A5%E7%A8%8B">保存工程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div>
+
+<div class="round-shape-one"></div>
+
+<section>
+<div class="doc_comments">
+
+            
+                <!--评论显示区，请插入合适的位置-->
+<div id="comment"></div>
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.6.1/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/valine/1.5.1/Valine.min.js"></script>
+<!--<script src="//cdn.jsdelivr.net/npm/valine@1.4.4/dist/Valine.min.js"></script>-->
+<script>
+    new Valine({
+        el:'#comment',
+        appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
+        appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
+        placeholder: 'Just Go Go',
+        avatar:'',
+        pageSize: '10',
+        recordIP: 'true',
+        requiredFields: ['nick','mail'],
+        enableQQ: 'true',
+        emojiCDN: '//i0.hdslb.com/bfs/',
+        emojiMaps: {
+        "tv-doge": "emote/6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+        "tv-坏笑": "emote/1f0b87f731a671079842116e0991c91c2c88645a.png",
+        "tv-难过": "emote/87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+        "tv-生气": "emote/26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+        "tv-委屈": "emote/d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+        "tv-斜眼笑": "emote/911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+        "tv-呆": "emote/fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+        "tv-发怒": "emote/34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+        "tv-惊吓": "emote/0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+        "tv-呕吐": "emote/9f996894a39e282ccf5e66856af49483f81870f3.png",
+        "tv-思考": "emote/90cf159733e558137ed20aa04d09964436f618a1.png",
+        "tv-微笑": "emote/70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+        "tv-疑问": "emote/0793d949b18d7be716078349c202c15ff166f314.png",
+        "tv-大哭": "emote/23269aeb35f99daee28dda129676f6e9ea87934f.png",
+        "tv-鼓掌": "emote/1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png",
+        "tv-抠鼻": "emote/c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+        "tv-亲亲": "emote/a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+        "tv-调皮": "emote/b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+        "tv-笑哭": "emote/1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+        "tv-晕": "emote/5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+        "tv-点赞": "emote/f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+        "tv-害羞": "emote/a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+        "tv-睡着": "emote/8b196675b53af58264f383c50ad0945048290b33.png",
+        "tv-色": "emote/61822c7e9aae5da76475e7892534545336b23a6f.png",
+        "tv-吐血": "emote/09dd16a7aa59b77baa1155d47484409624470c77.png",
+        "tv-无奈": "emote/ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+        "tv-再见": "emote/180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+        "tv-流汗": "emote/cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+        "tv-偷笑": "emote/bb690d4107620f1c15cff29509db529a73aee261.png",
+        "tv-抓狂": "emote/fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+        "tv-黑人问号": "emote/45821a01f51bc867da9edbaa2e070410819a95b2.png",
+        "tv-困": "emote/241ee304e44c0af029adceb294399391e4737ef2.png",
+        "tv-打脸": "emote/56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+        "tv-闭嘴": "emote/c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+        "tv-鄙视": "emote/6e72339f346a692a495b123174b49e4e8e781303.png",
+        "tv-腼腆": "emote/89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+        "tv-馋": "emote/fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+        "tv-可爱": "emote/9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+        "tv-发财": "emote/34db290afd2963723c6eb3c4560667db7253a21a.png",
+        "tv-生病": "emote/8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+        "tv-流鼻血": "emote/c32d39db2737f89b904ca32700d140a9241b0767.png",
+        "tv-尴尬": "emote/7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+        "tv-大佬": "emote/093c1e2c490161aca397afc45573c877cdead616.png",
+        "tv-流泪": "emote/7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+        "tv-冷漠": "emote/b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+        "tv-皱眉": "emote/72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+        "tv-鬼脸": "emote/0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+        "tv-调侃": "emote/4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+        "tv-目瞪口呆": "emote/0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+        "珑歌Taki_问号": "garb/15856c32cb30a08f361259a59c71b0edee4427dc.png@65w.webp",
+        "珑歌Taki_打Call": "garb/67544581bd5f1390e6d95ac34c47867a9e9ebbbb.png@65w.webp",
+        "珑歌Taki_好耶": "garb/0176869034a23b2523b552687ec851f4567bb452.png@65w.webp",
+        "珑歌Taki_点赞": "garb/243dcd30319137f2715adbea4a4b106835e5c772.png@65w.webp",
+        "珑歌Taki_啊对对": "garb/b2576d904e7fa6cada13a35236611f0128fe7a3a.png@65w.webp",
+        "珑歌Taki_达咩": "garb/e39b5d13f7276c08caef3ea7b9585ab94de423da.png@65w.webp",
+        "珑歌Taki_辣眼睛": "garb/7db3c777e5f618f4458fd379db9b6cfcc5f96a59.png@65w.webp",
+        "珑歌Taki_晚安": "garb/cf46da11526aae66fa9b29532a32f262feaf806b.png@65w.webp",
+        "珑歌Taki_羞羞": "garb/05ae694d1ef5335673825357ec3bcaee81ca2fd2.png@65w.webp",
+        "珑歌Taki_叉你": "garb/7b6c47c462770fd91ca78982cf43a2025564fead.png@65w.webp",
+        "珑歌Taki_给你一拳": "garb/1e46191feebe3412e07919dd33f2daef01884c0d.png@65w.webp",
+        "珑歌Taki_委屈": "live/e4ce02a977edbd40a6df488f8ce317f1efb77e01.png@65w.webp",
+        "珑歌Taki_呃呃": "live/e5c634f3c00b440af5e0269d6cd23a54dcd78a83.png@65w.webp",
+        "珑歌Taki_爱你": "live/27e8e2c6679a2e268a2dc0032adec7e0f68abd89.png@65w.webp",
+        "珑歌Taki_惊": "live/30fedf447cef730d5acb87c945bf964d4e43b8be.png@65w.webp",
+        "珑歌Taki_干杯": "live/68db36d0645df15f4bb8e678d7d9f3a13840eaec.png@65w.webp",
+        "樱吹雪_Yuki_啵啵": "garb/a963d838a5f6197defbb6e0591377d4bfd37707a.png@65w.webp",
+        "樱吹雪_Yuki_打call": "garb/18f1f1c34738ebb3e2fc6a99bb2afe24192906ab.png@65w.webp",
+        "樱吹雪_Yuki_晚安": "garb/c2651d764536e9de174dfc3ab6c0b74ba38d637e.png@65w.webp",
+        "樱吹雪_Yuki_贴贴": "garb/dd5d3510ff3169348cfbd0308432cbf4d86f95da.png@65w.webp",
+        "樱吹雪_Yuki_好耶": "garb/8a65b68d1c318f5878f610f0e6be5ab55cfad755.png@65w.webp",
+        "樱吹雪_Yuki_嗷呜": "garb/fbb35575d9eeb199895056f6f2e678ea1568034f.png@65w.webp",
+        "樱吹雪_Yuki_问号": "garb/31b0cd34cdf7d76c9167c319c4a3aa8c084bfd56.png@65w.webp",
+        "樱吹雪_Yuki_哈哈": "garb/b64bccc47c050c201dd1a046c03ebff6bc73f94c.png@65w.webp",
+        "樱吹雪_Yuki_妈": "garb/be0e78b625d6b76300b917445c65998c052cb3ce.png@65w.webp",
+        "樱吹雪_Yuki_比心": "garb/c6acc382cf720529338d9426e1e7a45bd00ac6db.png@65w.webp",
+        "樱吹雪_Yuki_wink": "garb/c2500df5817faf7ca63af1cefe62c2526d7693aa.png@65w.webp",
+        "樱吹雪_Yuki_狐狸": "garb/26ae388cad7fb59d8797e7e0d77f198cdab46928.png@65w.webp",
+        "花丸晴琉_mua": "emote/25be806bfbbb5300afdbeeb64977c90cd1254bf1.png",
+        "花丸晴琉_wink": "emote/343d2d4bbf5919f25e37f971cf114d07232c5e73.png",
+        "花丸晴琉_啊咧": "emote/b34c5a1827762b981d689bbc51f134469ef06f23.png",
+        "花丸晴琉_大笑": "emote/1e28846f5cbd897dd2653142b8be9db42dfbdcb3.png",
+        "花丸晴琉_呆住": "emote/2b31495e0c538e095d44ff1a17834abe317a05d2.png",
+        "花丸晴琉_对不起": "emote/02d1e8ddfac938b20956f3d83350f442d398286a.png",
+        "花丸晴琉_好耶": "emote/29724d41c08ec63962e0974aa653ea8be0cf3947.png",
+        "花丸晴琉_挥手": "emote/2c0753c98d4e098a3c5f27ab658b1046b4032572.png",
+        "花丸晴琉_惊慌": "emote/e8307d3bd2ad84434e2f6de1eea727aaa138d987.png",
+        "花丸晴琉_泪目": "emote/02a805b640a1bd824d21c5e21cf2dbb19f03b6a1.png",
+        "花丸晴琉_丧": "emote/e45bd7cf880f36a439ef47c355c73065911992ac.png",
+        "花丸晴琉_生气": "emote/dfbfccd43db22e547f62563b73ae7a474b1163a2.png",
+        "花丸晴琉_晚安": "emote/40b60d5c04c8e7037089c408e68a73d51fd3dee7.png",
+        "花丸晴琉_无语": "emote/ac4cf2356a708eb11199f266160cb76be129ead9.png",
+        "花丸晴琉_喜欢": "emote/71a508d3183fb59f1ddf3a42af59fa7495f2c18c.png",
+        "花丸晴琉_邪恶": "emote/0a8175363b7c8270836323a627b1fe437938399c.png",
+        "花丸晴琉_疑惑": "emote/4aef9a2a5c9800faf2501014e1fba1fbf180b8f0.png",
+        "花丸晴琉_嘤嘤": "emote/b5584ef24436d42364e7234a9cd8734e00f872f6.png",
+        "花丸晴琉_赞": "emote/adf49b5e19731a8176b774f55b5472b9234ee555.png",
+        "花丸晴琉_早安": "emote/c5e20c947c10bb931413b8e4bc80b2bd3b09971e.png",
+        "-菫時-打Call": "live/e8073adeb52036d0d563c848c4b55b8449bc4b85.png@65w.webp",
+        "-菫時-分号分号": "live/f2a7a0916015a741a192ae85ee593a39c6dd04a7.png@65w.webp",
+        "-菫時-哎呀": "live/0a691aec40c738918014b27acfefa3b295b8a458.png@65w.webp",
+        "-菫時-地蕾": "live/cdb1f3adeee987c1fe5303ca90443932edb23d30.png@65w.webp",
+        "-菫時-困困": "live/c9450e570d7abcf5a920b65e18b9624b75c9d4fb.png@65w.webp",
+        "-菫時-生气": "live/021761abdfe8dc417e5267b74877bebd43dcfd58.png@65w.webp",
+        "-菫時-亲亲": "live/e0ae55eb80c6b7c01eeb042a26a3bd2938ed679a.png@65w.webp",
+        "-菫時-急了": "live/bea985bcf662dc4d85c9f78633c57398b7c3d223.png@65w.webp",
+        "-菫時-问号": "live/5b29c4c15e6b97da2df564899f84906fc800590b.png@65w.webp",
+        "-菫時-拜比": "live/a9fa62db7b7233dac30d3abd851b992710bc1649.png@65w.webp",
+        "纱依shayi_打call": "garb/4d97de8b2d6bb9cb19621af93550b3560e85277f.png@65w.webp",
+        "纱依shayi_喜欢": "garb/d345b8ff2f2dcd5a4833aa613fc7849bfb25f5e2.png@65w.webp",
+        "纱依shayi_晚安": "garb/f34ec93c5aa7fdb7cc919544df401474bed1a3c1.png@65w.webp",
+        "纱依shayi_kira": "garb/f784e4dc7d40f3d3a7ddb6977c241ff6d6a5db26.png@65w.webp",
+        "纱依shayi_贴贴": "garb/003679cdb44d37576b700f8ed0f4e85bc6ffc8a7.png@65w.webp",
+        "纱依shayi_结婚": "garb/b1a9e35f04b81476d1d93fdc3979fe194e873915.png@65w.webp",
+        "纱依shayi_甜蜜的": "garb/415a5fec5062816d6c316a718cf7f739dc12dcef.png@65w.webp",
+        "纱依shayi_摸鱼": "garb/b7f7d09fec93dd889b9e12286989dbfa41770689.png@65w.webp",
+        "纱依shayi_好厉害": "garb/7dceff9c32cb6a7a617c910cc840eaeaa89f1e60.png@65w.webp",
+        "纱依shayi_开心": "garb/360612ea05619a9517f9735e10f6a8e592eb6b35.png@65w.webp",
+        "纱依shayi_疑问": "garb/f591282a33cb0eb16e6ac679792ea90ce42e6d67.png@65w.webp",
+        "纱依shayi_哼": "garb/538c428f2d5bcaeefa60c81bb96e9a82475a59d2.png@65w.webp",
+        "纱依shayi_心碎": "garb/59697798dd454428c773ae989745af62042025ee.png@65w.webp",
+        "纱依shayi_趴": "garb/5261ebff0fce07a4bde695f56b1e90e03b2a22b9.png@65w.webp",
+        "纱依shayi_蹭蹭": "garb/8feb22fa3a58e7a26c31792be79fab8c015fa7f6.png@65w.webp",
+        "纱依shayi_喵": "garb/9a05fc8a87b3f5f05a3c01eec984aaec0f6727e1.png@65w.webp",
+        "冥冥meichan_太爱钱了": "garb/item/e3d018abc7dfcaba7a95b512d313591ec015e984.png",
+        "冥冥meichan_不可以": "garb/item/5cfc0218594fbe8b2946e67e03fc4ea5c4a19d36.png",
+        "冥冥meichan_优雅红茶": "garb/item/8698f417982fd8d5abadf5207407532bb1b5b44f.png",
+        "冥冥meichan_哭哭": "garb/item/32817fbdd4226afe71e1aa3d8f0a91c62729567d.png",
+        "冥冥meichan_不想输": "garb/item/04fdc12859be022fba9992c76f89b0956d19262d.png",
+        "冥冥meichan_开车": "garb/item/3414c37849153f2ebd0fe6c8d7298bbc711c4ed9.png",
+        "冥冥meichan_大钻戒": "garb/item/fa42d4a68660e6c3d6447cdf0fe7d95cc4c7cdae.png",
+        "冥冥meichan_带走": "garb/item/9862fdd11fb28e2456a5cd3f864f87a46f20604f.png",
+        "冥冥meichan_我好了": "garb/item/8855c3fcfc538ee1d96e9ec25f758a0b5602cf66.png",
+        "冥冥meichan_嗨呀": "garb/item/caebcb782f3a8742548786cd52cb4d80d8353e03.png",
+        "冥冥meichan_好喜欢哦": "garb/item/3cc66caaf1a62e1778b18a458e58b38df99cfa0f.png",
+        "冥冥meichan_给你一拳": "garb/item/9b9e4aa83cedd7016bf2f2a83bbe838b648f01ff.png",
+        "冥冥meichan_理发店": "garb/item/6026b23be561844d08c5bc4b2d66316c3eeebb15.png",
+        "冥冥meichan_典": "garb/item/172ea06085c8d242f3105d0d04826217bbe4fbeb.png",
+        "冥冥meichan_信积拉奶": "garb/item/57902ef1f2392e1b8ca4a92ee9c844c18b633009.png",
+        "冥冥meichan_饭饭": "garb/item/79a5c3bda7449e06f032c095144d8218b9acb335.png",
+        "冥冥meichan_盯": "garb/item/9c9419db0b80a40ab36eed395251e7efe6421b69.png",
+        "冥冥meichan_流汗": "garb/item/014bd9e4519567f7f711c0ef8138ffcd022750cd.png",
+        "冥冥meichan_晚安": "garb/item/4ed6aba3c606484511e550e9d8070a74c004ba8e.png",
+        "冥冥meichan_mua": "garb/item/21b927b32c186a8c4dd12ff48fcb19461d8dcd0e.png",
+        "冥冥meichan_关注冥冥": "garb/item/55cfde3719b757aa211e5f1d136cd8c8a1e0dc2f.png",
+        "冥冥meichan_你是懂的": "garb/item/724e8fe83e63a0814995dc8fd7a5d874c0568028.png",
+        "冥冥meichan_你懂个P": "garb/item/ffa551eaec65b9b3e33eb388fb91f9c02e4ff67a.png",
+        "冥冥meichan_钱不够啊": "garb/item/d153516692abb248a2429319ff7eb8cff4b2d463.png",
+        "冥冥meichan_寄": "garb/item/4de329afec2e0ebe3c4d0db0da710721bed35ff3.png",
+        // ... 更多表情
+    }
+    });
+</script>
+<script>
+    // 点击回复直接评论,官方版本点击回复时都是跳回到页面上方的评论框进行回复，评论框是固定不动的
+    // 参考https://immmmm.com/valine-diy,用到jQuery
+    $(document).ready(function(){
+        //$('.vemoji-btn').text('😀');
+        $("#vcomments").on('click', 'span.vat',function(){
+            $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+            $('textarea#veditor').focus();
+        })
+    })
+</script>
+<script type="text/javascript">
+    //添加一言
+   fetch('https://v1.hitokoto.cn/?c=a')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("veditor").setAttribute("placeholder",data.hitokoto+"__"+data.from);
+    })
+    .catch(console.error)
+</script>
+
+            
+
+
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<div id="aplayer" class="aplayer" data-autoplay="true"  data-id="56868" data-server="netease" data-type="album" data-fixed="true" data-listfolded="true" data-order="random" data-theme="#F58EA8"></div>
+<script src="https://unpkg.com/meting@1.2.0/dist/Meting.min.js"></script>
+
+
+<a id="scrollUp" href="#" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://weibo.com/6392902197"title="weibo"><i class="iconfont icon-weibo"></i></a><a href="https://github.com/xiaxi626"title="github"><i class="iconfont icon-github"></i></a><a href="aijiang1220966821@163.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://xiaxi626.github.io/atom.xml"title="rss"><i class="iconfont icon-rss"></i></a><a href="https://www.zhihu.com/people/xiao-yan-shi-36"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © <a href="https://xiaxi626.github.io" style="margin:0;">飞爱碧玉的个人博客</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_pv"></span></strong></span>
+<span style="display: inline;margin-right:15px;">👤<strong><span id="busuanzi_value_site_uv"></span></strong></span>
+<span>📚<strong>62</strong> posts</span>
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+<script>
+//复制内容自动添加版权信息 
+ var Sys = {}; 
+    var ua = navigator.userAgent.toLowerCase(); 
+    if( window.ActiveXObject ) 
+    { 
+        document.body.oncopy=function() 
+        { 
+            event.returnValue = false; 
+            var t=document.selection.createRange().text; 
+            var s="\r\n原文出自 [飞爱碧玉的个人博客]  转载请保留原文链接: "+location.href; 
+            clipboardData.setData('Text',t+'\r\n'+s); 
+        } 
+    } 
+    else 
+    { 
+        function addLink() 
+        { 
+            var body_element = document.getElementsByTagName('body')[0]; 
+            var selection; 
+            selection = window.getSelection(); 
+            var pagelink = " 原文出自 [飞爱碧玉的个人博客]  转载请保留原文链接: "+document.location.href; 
+ 
+            var copytext = selection + pagelink; 
+            var newdiv = document.createElement('div'); 
+            newdiv.style.position='absolute'; 
+            newdiv.style.left='-99999px'; 
+            body_element.appendChild(newdiv); 
+            newdiv.innerHTML = copytext; 
+            selection.selectAllChildren(newdiv); 
+            window.setTimeout 
+            ( 
+                function() 
+                { 
+                    body_element.removeChild(newdiv); 
+                },0 
+            ); 
+        } 
+        document.oncopy = addLink; 
+    } 
+</script>
+
+<script type="text/javascript" async src="https://xiaxi626.github.io/media/js/prism.js"></script>
+</body>
+</html>

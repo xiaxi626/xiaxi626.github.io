@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico" type="image/x-icon" />
+<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<meta name="apple-mobile-web-app-capable"content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style"content="black"/>
+<meta name="format-detection"content="telephone=no"/>
+<meta name="renderer"content="webkit">
+<meta name="description"content="">
+<meta charset="UTF-8">
+<title>Markdown语法 | 飞爱碧玉的个人博客</title>
+
+<link href="https://xiaxi626.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://xiaxi626.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+
+<script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+
+<!-- DEMO CSS -->
+<style type="text/css">
+	
+</style>
+
+<link rel="canonical" href="https://xiaxi626.github.io/post/markdown-yu-fa-si-wei-dao-tu/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://xiaxi626.github.io"><img alt="logo" style="display:inline-block;" src="https://xiaxi626.github.io/images/avatar.png"/></a><h1 title="飞爱碧玉的个人博客" class="weaklink"><a  href="/">飞爱碧玉的个人博客</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1693051104581" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="搜索..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Markdown语法</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-11-24</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://xiaxi626.github.io/tag/JcIpV52xSP/" class="tag">Technology</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">3423字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">16 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<img class="featureImg" alt="featureimg" src="https://xiaxi626.github.io/post-images/markdown-yu-fa-si-wei-dao-tu.jpg" referrerpolicy="no-referrer">
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+
+<div class="round-shape-one"></div>
+
+<h2 id="标题">标题</h2>
+<h3 id="使用标记1~6级标题">使用#标记1~6级标题</h3>
+<h3 id="语法">语法</h3>
+<pre><code># H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
+</code></pre>
+<h3 id="说明">说明</h3>
+<p>#+空格+标题内容<br>
+可以添加六级标题<br>
+一般正文字体默认比四级标题大一号</p>
+<h3 id="使用和-分别标记一级-二级标题">使用=和-分别标记一级、二级标题</h3>
+<p>语法</p>
+<pre><code>一级标题 =====
+二级标题 -----
+</code></pre>
+<h2 id="缩进-换行-空行-对齐方式">缩进、换行、空行、对齐方式</h2>
+<h3 id="缩进">缩进</h3>
+<pre><code>&amp;emsp;或&amp;#8195; //全角
+输入两个空格
+&amp;ensp;或&amp;#8194; //半角
+输入一个空格
+&amp;nbsp;或&amp;#160;  //半角之半角
+输入一个空格
+</code></pre>
+<h3 id="换行">换行</h3>
+<ul>
+<li>部分markdown编辑器<br>
+在一行字后面，直接换行回车</li>
+<li>Visual Studio Code<br>
+必须在一行字后面空两个格子才行</li>
+</ul>
+<h3 id="空行">空行</h3>
+<p>只要这一行只有回车或者space没有其他的字符就算空行</p>
+<h3 id="对齐方式">对齐方式</h3>
+<ul>
+<li>行中心对齐</li>
+</ul>
+<pre><code>&lt;center&gt;内容&lt;/center&gt;
+&lt;div align=center&gt; 内容 &lt;/div&gt;
+</code></pre>
+<ul>
+<li>行左对齐</li>
+</ul>
+<pre><code>&lt;p align=&quot;left&quot;&gt;左对齐&lt;/p&gt;
+</code></pre>
+<ul>
+<li>行右对齐</li>
+</ul>
+<pre><code>&lt;p align=&quot;right&quot;&gt;右对齐&lt;/p&gt;
+</code></pre>
+<h2 id="任务列表">任务列表</h2>
+<h3 id="已做任务">已做任务</h3>
+<pre><code>- [x][空格]文字
+</code></pre>
+<h3 id="未做任务">未做任务</h3>
+<pre><code>- [ ][空格]文字
+</code></pre>
+<h2 id="列表">列表</h2>
+<h3 id="无序列表">无序列表</h3>
+<pre><code>* 无序列表项 一
++ 无序列表项 二
+- 无序列表项 三
+</code></pre>
+<h3 id="有序列表">有序列表</h3>
+<pre><code>1. 有序列表项 一 2. 有序列表项 二 3. 有序列表项 三
+</code></pre>
+<h2 id="文本样式">文本样式</h2>
+<h3 id="强调">强调</h3>
+<pre><code>**加粗**
+</code></pre>
+<h3 id="倾斜">倾斜</h3>
+<pre><code>*斜体*
+_斜体_
+</code></pre>
+<h3 id="删除线">删除线</h3>
+<pre><code>~~删除线~~
+</code></pre>
+<h3 id="下划线">下划线</h3>
+<pre><code>&lt;u&gt;下划线&lt;/u&gt;
+</code></pre>
+<h3 id="底纹">底纹</h3>
+<pre><code>`底纹`
+</code></pre>
+<h3 id="背景高亮">背景高亮</h3>
+<pre><code>==背景高亮==
+</code></pre>
+<h2 id="多级引用">多级引用</h2>
+<h3 id="语法-2">语法</h3>
+<pre><code>&gt; 请问 Markdwon 怎么用？ - 小白 &gt;&gt; 自己看教程！ - 愤青 &gt;&gt;&gt; 教程在哪？ - 小白 &gt;&gt;&gt;&gt;   
+&gt; 最后
+</code></pre>
+<h3 id="说明-2">说明</h3>
+<p>引用需要在被引用的文本前加上&gt;符号和空格，允许多层嵌套，也允许你偷懒只在整个段落的第一行最前面加上 &gt;，最后一个符号与前一个之间空五格后面的文字会变成代码块类型。</p>
+<h2 id="代码块">代码块</h2>
+<h3 id="方法一">方法一</h3>
+<h4 id="语法-3">语法</h4>
+<pre><code>    public static void main(String[] args) {
+        System.out.println(&quot;Hello, Markdown);     
+    }
+</code></pre>
+<h4 id="说明-3">说明</h4>
+<p>将每一行都缩进 4 个空格或者 1 个水平制表符。</p>
+<h3 id="方法二">方法二</h3>
+<h4 id="语法-4">语法</h4>
+<pre><code>```java This is a code block. ```
+</code></pre>
+<h4 id="说明-4">说明</h4>
+<pre><code>```后可添加编程语言类型，如java, c, c++, python, javascript等，将标识出语言关键字
+</code></pre>
+<h2 id="图片">图片</h2>
+<h3 id="本地图片相对路径">本地图片，相对路径</h3>
+<p>假设要插入的图片与 md 文件位于同级目录</p>
+<h4 id="语法-5">语法</h4>
+<pre><code>![相对路径的图片](./example.png)
+</code></pre>
+<h3 id="本地图片绝对路径">本地图片，绝对路径</h3>
+<p>假设要插入的图片位于D:/picture/example.png</p>
+<h4 id="语法-6">语法</h4>
+<pre><code>![绝对路径的图片](D:/picture/example.png)
+</code></pre>
+<h3 id="网络图片">网络图片</h3>
+<p>假设我们在百度图片上找到一张图片，通过右键单击图片-&gt; 复制图片地址可以获得图片网络地址，<code>https://t7.baidu.com/it/u=1956604245,3662848045&amp;fm=193&amp;f=GIF</code></p>
+<h4 id="语法-7">语法</h4>
+<pre><code>![网络图片地址](https://t7.baidu.com/it/u=1956604245,3662848045&amp;fm=193&amp;f=GIF)
+&lt;div&gt; &lt;img src=&quot;https://meiyan.tech/rest/file/get/leaf_bg.jpg&quot;&gt; &lt;/div&gt;
+</code></pre>
+<h2 id="链接">链接</h2>
+<h3 id="行内式">行内式</h3>
+<h4 id="语法-8">语法</h4>
+<pre><code>欢迎阅读 [musescore-translate](https://github.com/xiaxi626/musescore-translate &quot;xiaxi626&quot;)
+</code></pre>
+<h4 id="说明-5">说明</h4>
+<p>[]里写链接文字，()里写链接地址, ()中的&quot;&quot;中可以为链接指定title属性，title属性可加可不加。title属性的效果是鼠标悬停在链接上会出现指定的 title文字，链接地址与title前有一个空格。</p>
+<h3 id="参考式">参考式</h3>
+<h4 id="第一种">第一种</h4>
+<pre><code>我经常去的几个网站[Google][1]、[Leanote][2]。  [1]:http://www.google.com  [2]:http://www.leanote.com
+</code></pre>
+<h4 id="第二种">第二种</h4>
+<pre><code>我经常去的几个网站[Google][]、[Leanote][]。  [Google]:http://www.google.com  [Leanote]:http://www.leanote.com
+</code></pre>
+<h4 id="说明-6">说明</h4>
+<p>参考式链接分为两部分，文中的写法<code> [链接文字][链接标记]</code>，在文本的任意位置添加<code>[链接标记]:链接地址</code>。 如果链接文字本身可以做为链接标记，你也可以写成<code>[链接文字][]</code> <code>[链接文字]：链接地址</code>的形式，见代码的最后一行。</p>
+<h3 id="注脚">注脚</h3>
+<h4 id="语法-9">语法</h4>
+<pre><code>使用 Markdown[^1]可以效率的书写文档, 直接转换成 HTML[^2]。  [^1]:Markdown是一种纯文本标记语言  [^2]:HyperText Markup Language 超文本标记语言
+</code></pre>
+<h4 id="说明-7">说明</h4>
+<p>在需要添加注脚的文字后加上脚注名字[^注脚名字],称为加注。 然后在文本的任意位置(一般在最后)添加脚注，脚注前必须有对应的脚注名字。 注意：经测试注脚与注脚之间必须空一行，不然会失效。成功后会发现，即使你没有把注脚写在文末，经Markdown转换后，也会自动归类到文章的最后。</p>
+<h3 id="锚点页内超链接">锚点（页内超链接）</h3>
+<h4 id="语法-10">语法</h4>
+<pre><code>## 0. 目录{#index}
+</code></pre>
+<h4 id="说明-8">说明</h4>
+<p>网页中，锚点其实就是页内超链接，也就是链接本文档内部的某些元素，实现当前页面中的跳转。比如我这里写下一个锚点，点击回到目录，就能跳转到目录。 在目录中点击这一节，就能跳过来。还有下一节的注脚。这些根本上都是用锚点来实现的，只支持在标题后插入锚点，其它地方无效。如果本页面没有锚点所指位置，当你点击该锚点时，会自动移动浏览页面使该位置在最上方。</p>
+<h3 id="自动链接">自动链接</h3>
+<h4 id="语法-11">语法</h4>
+<pre><code>&lt;https://github.com/xiaxi626/&gt; 
+&lt;address@example.com&gt;
+</code></pre>
+<h4 id="说明-9">说明</h4>
+<p>Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用&lt;&gt;包起来， Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样</p>
+<h2 id="公式-矩阵-方程式-条件表达式-数组与表格-连分数-交换图标-一些特殊的注意事项">公式、矩阵、方程式 、条件表达式、数组与表格 、连分数、交换图标 ，一些特殊的注意事项</h2>
+<p><a href="https://mbd.baidu.com/ma/s/bGKw54Sk">【史上最全Markdown语法手册.pdf-原创力文档】</a><br>
+写得不错，完整内容需付费观看</p>
+<h2 id="分隔线">分隔线</h2>
+<pre><code>* * *
+***
+*****
+- - -
+-----------
+___
+</code></pre>
+<h2 id="表格">表格</h2>
+<h4 id="语法-12">语法</h4>
+<pre><code>| 表头 | 表头 | | ---- | ----- | | 单元格 | 单元格 | | 单元格 | 单元格 |
+</code></pre>
+<pre><code>| Align left | Align center  | Align Right | | :------------ |:---------------:| -----:| | col 3 is      | some wordy text | $1600 | | col 2 is      | centered        |   $12 | | zebra stripes | are neat        |    $1 |
+</code></pre>
+<h4 id="说明-10">说明</h4>
+<p>不管是哪种方式，第一行为表头，第二行分隔表头和主体部分，第三行开始每一行为一个表格行。  列于列之间用管道符|隔开。原生方式的表格每一行的两边也要有管道符。  第二行还可以为不同的列指定对齐方向。默认为左对齐，在-右边加上:就右对齐。 - 左对齐（或者:-)，:-: 中心对齐，-: 右对齐</p>
+<h2 id="公式仅供参考">公式(仅供参考）</h2>
+<h3 id="inline-math-expression-such-as">Inline math expression such as</h3>
+<pre><code>$C_n^2$, $\vec a$, $\overrightarrow{xy}$, $\mathbb{A}$, $10^10+10^{10}$, $\left(\frac{x}{y}\right)$
+</code></pre>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>C</mi><mi>n</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">C_n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.061108em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>a</mi><mo>⃗</mo></mover></mrow><annotation encoding="application/x-tex">\vec a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.714em;vertical-align:0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.714em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault">a</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2355em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg width='0.471em' height='0.714em' style='width:0.471em' viewBox='0 0 471 714' preserveAspectRatio='xMinYMin'><path d='M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z'/></svg></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>x</mi><mi>y</mi></mrow><mo stretchy="true">→</mo></mover></mrow><annotation encoding="application/x-tex">\overrightarrow{xy}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.147em;vertical-align:-0.19444em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9525600000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span><span class="svg-align" style="top:-3.43056em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="height:0.522em;min-width:0.888em;"><svg width='400em' height='0.522em' viewBox='0 0 400000 522' preserveAspectRatio='xMaxYMin slice'><path d='M0 241v40h399891c-47.3 35.3-84 78-110 128
+-16.7 32-27.7 63.7-33 95 0 1.3-.2 2.7-.5 4-.3 1.3-.5 2.3-.5 3 0 7.3 6.7 11 20
+ 11 8 0 13.2-.8 15.5-2.5 2.3-1.7 4.2-5.5 5.5-11.5 2-13.3 5.7-27 11-41 14.7-44.7
+ 39-84.5 73-119.5s73.7-60.2 119-75.5c6-2 9-5.7 9-11s-3-9-9-11c-45.3-15.3-85
+-40.5-119-75.5s-58.3-74.8-73-119.5c-4.7-14-8.3-27.3-11-40-1.3-6.7-3.2-10.8-5.5
+-12.5-2.3-1.7-7.5-2.5-15.5-2.5-14 0-21 3.7-21 11 0 2 2 10.3 6 25 20.7 83.3 67
+ 151.7 139 205zm0 0v40h399900v-40z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="double-struck">A</mi></mrow><annotation encoding="application/x-tex">\mathbb{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbb">A</span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>1</mn></msup><mn>0</mn><mo>+</mo><mn>1</mn><msup><mn>0</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">10^10+10^{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo fence="true">(</mo><mfrac><mi>x</mi><mi>y</mi></mfrac><mo fence="true">)</mo></mrow><annotation encoding="application/x-tex">\left(\frac{x}{y}\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span></span></span></span></p>
+<h3 id="and-more-complicated-ones-for-example">And more complicated ones, for example</h3>
+<pre><code>$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$, $\int_0^\infty{fxdx}$ and $\sqrt[x]{y}$
+</code></pre>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>N</mi></msubsup><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mi>g</mi><mo>(</mo><mi>t</mi><mo separator="true">,</mo><mi>i</mi><mo>)</mo><mtext>d</mtext><mi>t</mi></mrow><annotation encoding="application/x-tex">\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.399828em;vertical-align:-0.35582em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.981231em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0005599999999999772em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.044008em;"><span style="top:-2.34418em;margin-left:-0.19445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span style="top:-3.2579000000000002em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35582em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">)</span><span class="mord text"><span class="mord">d</span></span><span class="mord mathdefault">t</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∫</mo><mn>0</mn><mi mathvariant="normal">∞</mi></msubsup><mrow><mi>f</mi><mi>x</mi><mi>d</mi><mi>x</mi></mrow></mrow><annotation encoding="application/x-tex">\int_0^\infty{fxdx}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.215112em;vertical-align:-0.35582em;"></span><span class="mop"><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0005599999999999772em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8592920000000001em;"><span style="top:-2.34418em;margin-left:-0.19445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span style="top:-3.2579000000000002em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35582em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">x</span><span class="mord mathdefault">d</span><span class="mord mathdefault">x</span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mroot><mi>y</mi><mi>x</mi></mroot></mrow><annotation encoding="application/x-tex">\sqrt[x]{y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.33693999999999996em;"></span><span class="mord sqrt"><span class="root"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.434952em;"><span style="top:-2.719672em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size6 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.70306em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span><span style="top:-2.66306em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.33693999999999996em;"><span></span></span></span></span></span></span></span></span></p>
+<h3 id="also-the-single-line-math-expressions-such-as">Also, the single line math expressions, such as</h3>
+<pre><code>$$\begin{matrix} 1&amp;0&amp;0\\ 0&amp;1&amp;0\\ 0&amp;0&amp;1\\ \end{matrix}$$
+$$\sin x，\ln x，\max(A,B,C)$$
+$$\begin{bmatrix} {a_{11}}&amp;{a_{12}}&amp;{\cdots}&amp;{a_{1n}}\\ {a_{21}}&amp;{a_{22}}&amp;{\cdots}&amp;{a_{2n}}\\ {\vdots}&amp;{\vdots}&amp;{\ddots}&amp;{\vdots}\\ {a_{m1}}&amp;{a_{m2}}&amp;{\cdots}&amp;{a_{mn}}\\ \end{bmatrix}$$
+$$\begin{array}{c|lll} {↓}&amp;{a}&amp;{b}&amp;{c}\\ \hline {R_1}&amp;{c}&amp;{b}&amp;{a}\\ {R_2}&amp;{b}&amp;{c}&amp;{c}\\ \end{array}$$
+$$\begin{cases} a_1x+b_1y+c_1z=d_1\\ a_2x+b_2y+c_2z=d_2\\ a_3x+b_3y+c_3z=d_3\\ \end{cases} $$
+</code></pre>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{matrix} 1&amp;0&amp;0\\ 0&amp;1&amp;0\\ 0&amp;0&amp;1\\ \end{matrix}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.6000000000000005em;vertical-align:-1.5500000000000007em;"></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5500000000000007em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5500000000000007em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5500000000000007em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>sin</mi><mo>⁡</mo><mi>x</mi><mi mathvariant="normal">，</mi><mi>ln</mi><mo>⁡</mo><mi>x</mi><mi mathvariant="normal">，</mi><mi>max</mi><mo>⁡</mo><mo>(</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo separator="true">,</mo><mi>C</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\sin x，\ln x，\max(A,B,C)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span><span class="mord cjk_fallback">，</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">ln</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span><span class="mord cjk_fallback">，</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mclose">)</span></span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo fence="true">[</mo><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><msub><mi>a</mi><mn>11</mn></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><msub><mi>a</mi><mn>12</mn></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo>⋯</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><msub><mi>a</mi><mrow><mn>1</mn><mi>n</mi></mrow></msub></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><msub><mi>a</mi><mn>21</mn></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><msub><mi>a</mi><mn>22</mn></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo>⋯</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><msub><mi>a</mi><mrow><mn>2</mn><mi>n</mi></mrow></msub></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mi mathvariant="normal">⋮</mi><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi mathvariant="normal">⋮</mi><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo>⋱</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi mathvariant="normal">⋮</mi><mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><msub><mi>a</mi><mrow><mi>m</mi><mn>1</mn></mrow></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><msub><mi>a</mi><mrow><mi>m</mi><mn>2</mn></mrow></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mo>⋯</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><msub><mi>a</mi><mrow><mi>m</mi><mi>n</mi></mrow></msub></mstyle></mtd></mtr></mtable><mo fence="true">]</mo></mrow><annotation encoding="application/x-tex">\begin{bmatrix} {a_{11}}&amp;{a_{12}}&amp;{\cdots}&amp;{a_{1n}}\\ {a_{21}}&amp;{a_{22}}&amp;{\cdots}&amp;{a_{2n}}\\ {\vdots}&amp;{\vdots}&amp;{\ddots}&amp;{\vdots}\\ {a_{m1}}&amp;{a_{m2}}&amp;{\cdots}&amp;{a_{mn}}\\ \end{bmatrix}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:5.459999999999999em;vertical-align:-2.4799999999999995em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.953005em;"><span style="top:-1.3499850000000007em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎣</span></span></span><span style="top:-2.5049850000000005em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎢</span></span></span><span style="top:-3.1059850000000004em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎢</span></span></span><span style="top:-3.7069850000000004em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎢</span></span></span><span style="top:-4.953005em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎡</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.4500349999999997em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.9799999999999995em;"><span style="top:-5.8275em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-4.6275em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-2.7674999999999996em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span><span style="top:-1.5675000000000006em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.4799999999999995em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.9799999999999995em;"><span style="top:-5.8275em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-4.6275em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-2.7674999999999996em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span><span style="top:-1.5675000000000006em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.4799999999999995em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.9799999999999995em;"><span style="top:-5.64em;"><span class="pstrut" style="height:3.5em;"></span><span class="mord"><span class="mord"><span class="minner">⋯</span></span></span></span><span style="top:-4.44em;"><span class="pstrut" style="height:3.5em;"></span><span class="mord"><span class="mord"><span class="minner">⋯</span></span></span></span><span style="top:-2.5799999999999996em;"><span class="pstrut" style="height:3.5em;"></span><span class="mord"><span class="mord"><span class="minner">⋱</span></span></span></span><span style="top:-1.3800000000000006em;"><span class="pstrut" style="height:3.5em;"></span><span class="mord"><span class="mord"><span class="minner">⋯</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.4799999999999995em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.9799999999999995em;"><span style="top:-5.8275em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-4.6275em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-2.7674999999999996em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord">⋮</span><span class="mord rule" style="border-right-width:0em;border-top-width:1.5em;bottom:0em;"></span></span></span></span></span><span style="top:-1.5675000000000006em;"><span class="pstrut" style="height:3.6875em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.4799999999999995em;"><span></span></span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.953005em;"><span style="top:-1.3499850000000007em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎦</span></span></span><span style="top:-2.5049850000000005em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎥</span></span></span><span style="top:-3.1059850000000004em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎥</span></span></span><span style="top:-3.7069850000000004em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎥</span></span></span><span style="top:-4.953005em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎤</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.4500349999999997em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mo>↓</mo></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>a</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>b</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>c</mi></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><msub><mi>R</mi><mn>1</mn></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>c</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>b</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>a</mi></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><msub><mi>R</mi><mn>2</mn></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>b</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>c</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>c</mi></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{c|lll} {↓}&amp;{a}&amp;{b}&amp;{c}\\ \hline {R_1}&amp;{c}&amp;{b}&amp;{a}\\ {R_2}&amp;{b}&amp;{c}&amp;{c}\\ \end{array}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.6000000000000005em;vertical-align:-1.5500000000000007em;"></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.05em;"><span class="pstrut" style="height:4.05em;"></span><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mrel">↓</span></span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5500000000000007em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="vertical-separator" style="height:3.6em;vertical-align:-1.5500000000000003em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">a</span></span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">c</span></span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5500000000000007em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">b</span></span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">b</span></span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5500000000000007em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">c</span></span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">a</span></span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5500000000000007em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span><span style="top:-4.8999999999999995em;"><span class="pstrut" style="height:4.05em;"></span><span class="hline" style="border-bottom-width:0.05em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5500000000000007em;"><span></span></span></span></span></span></span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo fence="true">{</mo><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>a</mi><mn>1</mn></msub><mi>x</mi><mo>+</mo><msub><mi>b</mi><mn>1</mn></msub><mi>y</mi><mo>+</mo><msub><mi>c</mi><mn>1</mn></msub><mi>z</mi><mo>=</mo><msub><mi>d</mi><mn>1</mn></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>a</mi><mn>2</mn></msub><mi>x</mi><mo>+</mo><msub><mi>b</mi><mn>2</mn></msub><mi>y</mi><mo>+</mo><msub><mi>c</mi><mn>2</mn></msub><mi>z</mi><mo>=</mo><msub><mi>d</mi><mn>2</mn></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>a</mi><mn>3</mn></msub><mi>x</mi><mo>+</mo><msub><mi>b</mi><mn>3</mn></msub><mi>y</mi><mo>+</mo><msub><mi>c</mi><mn>3</mn></msub><mi>z</mi><mo>=</mo><msub><mi>d</mi><mn>3</mn></msub></mrow></mstyle></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{cases} a_1x+b_1y+c_1z=d_1\\ a_2x+b_2y+c_2z=d_2\\ a_3x+b_3y+c_3z=d_3\\ \end{cases} 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:4.32em;vertical-align:-1.9099999999999997em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.35002em;"><span style="top:-2.19999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-2.19999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-3.1500100000000004em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.30001em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-4.60002em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.8500199999999998em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.41em;"><span style="top:-4.41em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.97em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-1.5300000000000002em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.9099999999999997em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<h2 id="特殊字符">特殊字符</h2>
+<h3 id="空格符">空格符</h3>
+<h4 id="语法-13">语法</h4>
+<pre><code>中&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;国
+</code></pre>
+<h4 id="说明-11">说明</h4>
+<p>文字之间插入<code>&amp;nbsp;</code></p>
+<h3 id="小于号">小于号</h3>
+<p><code>＜</code></p>
+<h3 id="大于号">大于号</h3>
+<p><code>＞</code></p>
+<h3 id="和号">和号</h3>
+<p><code>＆</code></p>
+<h3 id="人民币">人民币</h3>
+<p><code>￥</code></p>
+<h3 id="版权">版权</h3>
+<p><code>©</code></p>
+<h3 id="注册商标">注册商标</h3>
+<p><code>®</code></p>
+<h3 id="摄氏度">摄氏度</h3>
+<p><code>℃</code></p>
+<h3 id="正负号">正负号</h3>
+<p><code>±</code></p>
+<h3 id="乘号">乘号</h3>
+<p><code>×</code></p>
+<h3 id="除号">除号</h3>
+<p><code>÷</code></p>
+<h3 id="上标">上标</h3>
+<h4 id="语法-14">语法</h4>
+<p><code>x^2^</code></p>
+<h4 id="说明-12">说明</h4>
+<p><code>^(编辑文字/符号)^</code></p>
+<h3 id="下标">下标</h3>
+<h4 id="语法-15">语法</h4>
+<p><code>x~2~</code></p>
+<h4 id="说明-13">说明</h4>
+<p><code>~(编辑文字/符号)~</code></p>
+<h3 id="更多特殊字符">更多特殊字符</h3>
+<p><code>△</code><br>
+<code>□</code><br>
+<code>○</code><br>
+<code>⊙</code><br>
+<code>∴／∴</code><br>
+<code>％／‰</code><br>
+<code>……</code></p>
+<h2 id="markdown-mermaid语法-转载自httpsblogcsdnnet-ftswsfbarticledetails119523080">Markdown-mermaid语法 转载自：https://blog.csdn.net /ftswsfb/article/details/119523080</h2>
+<h3 id="mermaid语法文档about-mermaid-mermaid-jsgithubio">Mermaid语法文档：About Mermaid (mermaid-js.github.io)</h3>
+<h3 id="流程图flowchart">流程图（Flowchart）</h3>
+<p><code>graph TD;     A--&gt;B;     A--&gt;C;     B--&gt;D;     C--&gt;D;</code></p>
+<h3 id="时序图sequence-diagram">时序图（Sequence diagram）</h3>
+<p><code>sequenceDiagram     participant Alice     participant Bob     Alice-&gt;&gt;John: Hello John, how are you?     loop Healthcheck         John-&gt;&gt;John: Fight against hypochondria     end     Note right of John: Rational thoughts &lt;br/&gt;prevail!     John--&gt;&gt;Alice: Great!     John-&gt;&gt;Bob: How about you?     Bob--&gt;&gt;John: Jolly good!</code></p>
+<h3 id="状态图state-diagrams">状态图（State diagrams）</h3>
+<p><code>stateDiagram-v2     [*] --&gt; Still     Still --&gt; [*]      Still --&gt; Moving     Moving --&gt; Still     Moving --&gt; Crash     Crash --&gt; [*]</code></p>
+<h3 id="类图class-diagram">类图（Class diagram）</h3>
+<p><code>classDiagram Class01 &lt;|-- AveryLongClass : Cool Class03 *-- Class04 Class05 o-- Class06 Class07 .. Class08 Class09 --&gt; C2 : Where am i? Class09 --* C3 Class09 --|&gt; Class07 Class07 : equals() Class07 : Object[] elementData Class01 : size() Class01 : int chimp Class01 : int gorilla Class08 &lt;--&gt; C2: Cool label</code></p>
+<h3 id="甘特图gantt-diagram">甘特图（Gantt diagram）</h3>
+<p><code>gantt     dateFormat  YYYY-MM-DD     title       Adding GANTT diagram functionality to mermaid     excludes    weekends     %% (</code>excludes<code> accepts specific dates in YYYY-MM-DD format, days of the week (&quot;sunday&quot;) or &quot;weekends&quot;, but not the word &quot;weekdays&quot;.)      section A section     Completed task            :done,    des1, 2014-01-06,2014-01-08     Active task               :active,  des2, 2014-01-09, 3d     Future task               :         des3, after des2, 5d     Future task2              :         des4, after des3, 5d      section Critical tasks     Completed task in the critical line :crit, done, 2014-01-06,24h     Implement parser and jison          :crit, done, after des1, 2d     Create tests for parser             :crit, active, 3d     Future task in critical line        :crit, 5d     Create tests for renderer           :2d     Add to mermaid                      :1d      section Documentation     Describe gantt syntax               :active, a1, after des1, 3d     Add gantt diagram to demo page      :after a1  , 20h     Add another diagram to demo page    :doc1, after a1  , 48h      section Last section     Describe gantt syntax               :after doc1, 3d     Add gantt diagram to demo page      :20h     Add another diagram to demo page    :48h</code></p>
+<h3 id="git图git-graph">Git图（Git graph）</h3>
+<p><code>gitGraph: options {     &quot;nodeSpacing&quot;: 20,     &quot;nodeRadius&quot;: 5 } end commit branch newbranch branch branch1 branch branch2 checkout newbranch commit commit checkout branch1 commit commit checkout master commit commit merge newbranch</code></p>
+<h3 id="饼图pie-chart">饼图（Pie chart）</h3>
+<p><code>pie title Pets adopted by volunteers     &quot;Dogs&quot; : 386     &quot;Cats&quot; : 85     &quot;Rats&quot; : 15</code></p>
+<h2 id="转义字符字体-字号颜色-背景色">转义字符，字体， 字号，颜色 ，背景色……</h2>
+<h3 id="转义字符">转义字符</h3>
+<p>Markdown中的转义字符为\，转义的有： \ 反斜杠 ` 反引号 * 星号 _ 下划线 {} 大括号 [] 中括号 () 小括号  # 井号 + 加号 - 减号 . 英文句号 ! 感叹号</p>
+<h3 id="颜色">颜色</h3>
+<pre><code>浅红色文字：&lt;font color=&quot;#dd0000&quot;&gt;浅红色文字：&lt;/font&gt;&lt;br /&gt;  深红色文字：&lt;font color=&quot;#660000&quot;&gt;深红色文字&lt;/font&gt;&lt;br /&gt;  浅绿色文字：&lt;font color=&quot;#00dd00&quot;&gt;浅绿色文字&lt;/font&gt;&lt;br /&gt;  深绿色文字：&lt;font color=&quot;#006600&quot;&gt;深绿色文字&lt;/font&gt;&lt;br /&gt;  浅蓝色文字：&lt;font color=&quot;#0000dd&quot;&gt;浅蓝色文字&lt;/font&gt;&lt;br /&gt;  深蓝色文字：&lt;font color=&quot;#000066&quot;&gt;深蓝色文字&lt;/font&gt;&lt;br /&gt;  浅黄色文字：&lt;font color=&quot;#dddd00&quot;&gt;浅黄色文字&lt;/font&gt;&lt;br /&gt;  深黄色文字：&lt;font color=&quot;#666600&quot;&gt;深黄色文字&lt;/font&gt;&lt;br /&gt;  浅青色文字：&lt;font color=&quot;#00dddd&quot;&gt;浅青色文字&lt;/font&gt;&lt;br /&gt;  深青色文字：&lt;font color=&quot;#006666&quot;&gt;深青色文字&lt;/font&gt;&lt;br /&gt;  浅紫色文字：&lt;font color=&quot;#dd00dd&quot;&gt;浅紫色文字&lt;/font&gt;&lt;br /&gt;  深紫色文字：&lt;font color=&quot;#660066&quot;&gt;深紫色文字&lt;/font&gt;&lt;br /&gt;
+</code></pre>
+<p>浅红色文字：<font color="#dd0000">浅红色文字：</font><br />  深红色文字：<font color="#660000">深红色文字</font><br />  浅绿色文字：<font color="#00dd00">浅绿色文字</font><br />  深绿色文字：<font color="#006600">深绿色文字</font><br />  浅蓝色文字：<font color="#0000dd">浅蓝色文字</font><br />  深蓝色文字：<font color="#000066">深蓝色文字</font><br />  浅黄色文字：<font color="#dddd00">浅黄色文字</font><br />  深黄色文字：<font color="#666600">深黄色文字</font><br />  浅青色文字：<font color="#00dddd">浅青色文字</font><br />  深青色文字：<font color="#006666">深青色文字</font><br />  浅紫色文字：<font color="#dd00dd">浅紫色文字</font><br />  深紫色文字：<font color="#660066">深紫色文字</font><br /></p>
+<h3 id="字体">字体</h3>
+<pre><code>&lt;font face=&quot;黑体&quot;&gt;我是黑体字&lt;/font&gt; &lt;font face=&quot;宋体&quot;&gt;我是宋体字&lt;/font&gt; &lt;font face=&quot;微软雅黑&quot;&gt;我是微软雅黑字&lt;/font&gt; &lt;font face=&quot;fantasy&quot;&gt;我是fantasy字&lt;/font&gt; &lt;font face=&quot;Helvetica&quot;&gt;我是Helvetica字&lt;/font&gt;
+</code></pre>
+<p><font face="黑体">我是黑体字</font> <font face="宋体">我是宋体字</font> <font face="微软雅黑">我是微软雅黑字</font> <font face="fantasy">我是fantasy字</font> <font face="Helvetica">我是Helvetica字</font></p>
+<h3 id="背景色">背景色</h3>
+<pre><code>&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=#FF00FF&gt;背景色的设置是按照十六进制颜色值：#7FFFD4&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; &lt;table&gt;&lt;tr&gt;&lt;td bgcolor=#FF83FA&gt;背景色的设置是按照十六进制颜色值：#FF83FA&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; &lt;table&gt;&lt;tr&gt;&lt;td bgcolor=#D1EEEE&gt;背景色的设置是按照十六进制颜色值：#D1EEEE&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; &lt;table&gt;&lt;tr&gt;&lt;td bgcolor=#C0FF3E&gt;背景色的设置是按照十六进制颜色值：#C0FF3E&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; &lt;table&gt;&lt;tr&gt;&lt;td bgcolor=#54FF9F&gt;背景色的设置是按照十六进制颜色值：#54FF9F&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+</code></pre>
+<table><tr><td bgcolor=#FF00FF>背景色的设置是按照十六进制颜色值：#7FFFD4</td></tr></table> <table><tr><td bgcolor=#FF83FA>背景色的设置是按照十六进制颜色值：#FF83FA</td></tr></table> <table><tr><td bgcolor=#D1EEEE>背景色的设置是按照十六进制颜色值：#D1EEEE</td></tr></table> <table><tr><td bgcolor=#C0FF3E>背景色的设置是按照十六进制颜色值：#C0FF3E</td></tr></table> <table><tr><td bgcolor=#54FF9F>背景色的设置是按照十六进制颜色值：#54FF9F</td></tr></table>
+<h3 id="字体颜色-大小-字体类型">字体颜色、大小、字体类型</h3>
+<pre><code>&lt;font color=&quot;#0099ff&quot; size=4 face=&quot;微软雅黑&quot;&gt;3、字体颜色、大小、字体类型&lt;/font&gt;
+</code></pre>
+<p><font color="#0099ff" size=4 face="微软雅黑">3、字体颜色、大小、字体类型</font></p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%A0%87%E9%A2%98">标题</a>
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8%E6%A0%87%E8%AE%B01~6%E7%BA%A7%E6%A0%87%E9%A2%98">使用#标记1~6级标题</a></li>
+<li><a href="#%E8%AF%AD%E6%B3%95">语法</a></li>
+<li><a href="#%E8%AF%B4%E6%98%8E">说明</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%92%8C-%E5%88%86%E5%88%AB%E6%A0%87%E8%AE%B0%E4%B8%80%E7%BA%A7-%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98">使用=和-分别标记一级、二级标题</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BC%A9%E8%BF%9B-%E6%8D%A2%E8%A1%8C-%E7%A9%BA%E8%A1%8C-%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F">缩进、换行、空行、对齐方式</a>
+<ul>
+<li><a href="#%E7%BC%A9%E8%BF%9B">缩进</a></li>
+<li><a href="#%E6%8D%A2%E8%A1%8C">换行</a></li>
+<li><a href="#%E7%A9%BA%E8%A1%8C">空行</a></li>
+<li><a href="#%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F">对齐方式</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8">任务列表</a>
+<ul>
+<li><a href="#%E5%B7%B2%E5%81%9A%E4%BB%BB%E5%8A%A1">已做任务</a></li>
+<li><a href="#%E6%9C%AA%E5%81%9A%E4%BB%BB%E5%8A%A1">未做任务</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%97%E8%A1%A8">列表</a>
+<ul>
+<li><a href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8">无序列表</a></li>
+<li><a href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8">有序列表</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E6%9C%AC%E6%A0%B7%E5%BC%8F">文本样式</a>
+<ul>
+<li><a href="#%E5%BC%BA%E8%B0%83">强调</a></li>
+<li><a href="#%E5%80%BE%E6%96%9C">倾斜</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E7%BA%BF">删除线</a></li>
+<li><a href="#%E4%B8%8B%E5%88%92%E7%BA%BF">下划线</a></li>
+<li><a href="#%E5%BA%95%E7%BA%B9">底纹</a></li>
+<li><a href="#%E8%83%8C%E6%99%AF%E9%AB%98%E4%BA%AE">背景高亮</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A4%9A%E7%BA%A7%E5%BC%95%E7%94%A8">多级引用</a>
+<ul>
+<li><a href="#%E8%AF%AD%E6%B3%95-2">语法</a></li>
+<li><a href="#%E8%AF%B4%E6%98%8E-2">说明</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%9D%97">代码块</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%B8%80">方法一</a>
+<ul>
+<li><a href="#%E8%AF%AD%E6%B3%95-3">语法</a></li>
+<li><a href="#%E8%AF%B4%E6%98%8E-3">说明</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C">方法二</a>
+<ul>
+<li><a href="#%E8%AF%AD%E6%B3%95-4">语法</a></li>
+<li><a href="#%E8%AF%B4%E6%98%8E-4">说明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%9B%BE%E7%89%87">图片</a>
+<ul>
+<li><a href="#%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84">本地图片，相对路径</a>
+<ul>
+<li><a href="#%E8%AF%AD%E6%B3%95-5">语法</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84">本地图片，绝对路径</a>
+<ul>
+<li><a href="#%E8%AF%AD%E6%B3%95-6">语法</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BD%91%E7%BB%9C%E5%9B%BE%E7%89%87">网络图片</a>
+<ul>
+<li><a href="#%E8%AF%AD%E6%B3%95-7">语法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E9%93%BE%E6%8E%A5">链接</a>
+<ul>
+<li><a href="#%E8%A1%8C%E5%86%85%E5%BC%8F">行内式</a>
+<ul>
+<li><a href="#%E8%AF%AD%E6%B3%95-8">语法</a></li>
+<li><a href="#%E8%AF%B4%E6%98%8E-5">说明</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E8%80%83%E5%BC%8F">参考式</a>
+<ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E7%A7%8D">第一种</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D">第二种</a></li>
+<li><a href="#%E8%AF%B4%E6%98%8E-6">说明</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B3%A8%E8%84%9A">注脚</a>
+<ul>
+<li><a href="#%E8%AF%AD%E6%B3%95-9">语法</a></li>
+<li><a href="#%E8%AF%B4%E6%98%8E-7">说明</a></li>
+</ul>
+</li>
+<li><a href="#%E9%94%9A%E7%82%B9%E9%A1%B5%E5%86%85%E8%B6%85%E9%93%BE%E6%8E%A5">锚点（页内超链接）</a>
+<ul>
+<li><a href="#%E8%AF%AD%E6%B3%95-10">语法</a></li>
+<li><a href="#%E8%AF%B4%E6%98%8E-8">说明</a></li>
+</ul>
+</li>
+<li><a href="#%E8%87%AA%E5%8A%A8%E9%93%BE%E6%8E%A5">自动链接</a>
+<ul>
+<li><a href="#%E8%AF%AD%E6%B3%95-11">语法</a></li>
+<li><a href="#%E8%AF%B4%E6%98%8E-9">说明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%85%AC%E5%BC%8F-%E7%9F%A9%E9%98%B5-%E6%96%B9%E7%A8%8B%E5%BC%8F-%E6%9D%A1%E4%BB%B6%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E6%95%B0%E7%BB%84%E4%B8%8E%E8%A1%A8%E6%A0%BC-%E8%BF%9E%E5%88%86%E6%95%B0-%E4%BA%A4%E6%8D%A2%E5%9B%BE%E6%A0%87-%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">公式、矩阵、方程式 、条件表达式、数组与表格 、连分数、交换图标 ，一些特殊的注意事项</a></li>
+<li><a href="#%E5%88%86%E9%9A%94%E7%BA%BF">分隔线</a></li>
+<li><a href="#%E8%A1%A8%E6%A0%BC">表格</a><br>
+*
+<ul>
+<li><a href="#%E8%AF%AD%E6%B3%95-12">语法</a></li>
+<li><a href="#%E8%AF%B4%E6%98%8E-10">说明</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AC%E5%BC%8F%E4%BB%85%E4%BE%9B%E5%8F%82%E8%80%83">公式(仅供参考）</a>
+<ul>
+<li><a href="#inline-math-expression-such-as">Inline math expression such as</a></li>
+<li><a href="#and-more-complicated-ones-for-example">And more complicated ones, for example</a></li>
+<li><a href="#also-the-single-line-math-expressions-such-as">Also, the single line math expressions, such as</a></li>
+</ul>
+</li>
+<li><a href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6">特殊字符</a>
+<ul>
+<li><a href="#%E7%A9%BA%E6%A0%BC%E7%AC%A6">空格符</a>
+<ul>
+<li><a href="#%E8%AF%AD%E6%B3%95-13">语法</a></li>
+<li><a href="#%E8%AF%B4%E6%98%8E-11">说明</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B0%8F%E4%BA%8E%E5%8F%B7">小于号</a></li>
+<li><a href="#%E5%A4%A7%E4%BA%8E%E5%8F%B7">大于号</a></li>
+<li><a href="#%E5%92%8C%E5%8F%B7">和号</a></li>
+<li><a href="#%E4%BA%BA%E6%B0%91%E5%B8%81">人民币</a></li>
+<li><a href="#%E7%89%88%E6%9D%83">版权</a></li>
+<li><a href="#%E6%B3%A8%E5%86%8C%E5%95%86%E6%A0%87">注册商标</a></li>
+<li><a href="#%E6%91%84%E6%B0%8F%E5%BA%A6">摄氏度</a></li>
+<li><a href="#%E6%AD%A3%E8%B4%9F%E5%8F%B7">正负号</a></li>
+<li><a href="#%E4%B9%98%E5%8F%B7">乘号</a></li>
+<li><a href="#%E9%99%A4%E5%8F%B7">除号</a></li>
+<li><a href="#%E4%B8%8A%E6%A0%87">上标</a>
+<ul>
+<li><a href="#%E8%AF%AD%E6%B3%95-14">语法</a></li>
+<li><a href="#%E8%AF%B4%E6%98%8E-12">说明</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%8B%E6%A0%87">下标</a>
+<ul>
+<li><a href="#%E8%AF%AD%E6%B3%95-15">语法</a></li>
+<li><a href="#%E8%AF%B4%E6%98%8E-13">说明</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9B%B4%E5%A4%9A%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6">更多特殊字符</a></li>
+</ul>
+</li>
+<li><a href="#markdown-mermaid%E8%AF%AD%E6%B3%95-%E8%BD%AC%E8%BD%BD%E8%87%AAhttpsblogcsdnnet-ftswsfbarticledetails119523080">Markdown-mermaid语法 转载自：https://blog.csdn.net /ftswsfb/article/details/119523080</a>
+<ul>
+<li><a href="#mermaid%E8%AF%AD%E6%B3%95%E6%96%87%E6%A1%A3about-mermaid-mermaid-jsgithubio">Mermaid语法文档：About Mermaid (mermaid-js.github.io)</a></li>
+<li><a href="#%E6%B5%81%E7%A8%8B%E5%9B%BEflowchart">流程图（Flowchart）</a></li>
+<li><a href="#%E6%97%B6%E5%BA%8F%E5%9B%BEsequence-diagram">时序图（Sequence diagram）</a></li>
+<li><a href="#%E7%8A%B6%E6%80%81%E5%9B%BEstate-diagrams">状态图（State diagrams）</a></li>
+<li><a href="#%E7%B1%BB%E5%9B%BEclass-diagram">类图（Class diagram）</a></li>
+<li><a href="#%E7%94%98%E7%89%B9%E5%9B%BEgantt-diagram">甘特图（Gantt diagram）</a></li>
+<li><a href="#git%E5%9B%BEgit-graph">Git图（Git graph）</a></li>
+<li><a href="#%E9%A5%BC%E5%9B%BEpie-chart">饼图（Pie chart）</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6%E5%AD%97%E4%BD%93-%E5%AD%97%E5%8F%B7%E9%A2%9C%E8%89%B2-%E8%83%8C%E6%99%AF%E8%89%B2">转义字符，字体， 字号，颜色 ，背景色……</a>
+<ul>
+<li><a href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6">转义字符</a></li>
+<li><a href="#%E9%A2%9C%E8%89%B2">颜色</a></li>
+<li><a href="#%E5%AD%97%E4%BD%93">字体</a></li>
+<li><a href="#%E8%83%8C%E6%99%AF%E8%89%B2">背景色</a></li>
+<li><a href="#%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2-%E5%A4%A7%E5%B0%8F-%E5%AD%97%E4%BD%93%E7%B1%BB%E5%9E%8B">字体颜色、大小、字体类型</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div>
+
+<div class="round-shape-one"></div>
+
+<section>
+<div class="doc_comments">
+
+            
+                <!--评论显示区，请插入合适的位置-->
+<div id="comment"></div>
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.6.1/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/valine/1.5.1/Valine.min.js"></script>
+<!--<script src="//cdn.jsdelivr.net/npm/valine@1.4.4/dist/Valine.min.js"></script>-->
+<script>
+    new Valine({
+        el:'#comment',
+        appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
+        appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
+        placeholder: 'Just Go Go',
+        avatar:'',
+        pageSize: '10',
+        recordIP: 'true',
+        requiredFields: ['nick','mail'],
+        enableQQ: 'true',
+        emojiCDN: '//i0.hdslb.com/bfs/',
+        emojiMaps: {
+        "tv-doge": "emote/6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+        "tv-坏笑": "emote/1f0b87f731a671079842116e0991c91c2c88645a.png",
+        "tv-难过": "emote/87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+        "tv-生气": "emote/26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+        "tv-委屈": "emote/d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+        "tv-斜眼笑": "emote/911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+        "tv-呆": "emote/fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+        "tv-发怒": "emote/34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+        "tv-惊吓": "emote/0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+        "tv-呕吐": "emote/9f996894a39e282ccf5e66856af49483f81870f3.png",
+        "tv-思考": "emote/90cf159733e558137ed20aa04d09964436f618a1.png",
+        "tv-微笑": "emote/70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+        "tv-疑问": "emote/0793d949b18d7be716078349c202c15ff166f314.png",
+        "tv-大哭": "emote/23269aeb35f99daee28dda129676f6e9ea87934f.png",
+        "tv-鼓掌": "emote/1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png",
+        "tv-抠鼻": "emote/c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+        "tv-亲亲": "emote/a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+        "tv-调皮": "emote/b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+        "tv-笑哭": "emote/1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+        "tv-晕": "emote/5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+        "tv-点赞": "emote/f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+        "tv-害羞": "emote/a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+        "tv-睡着": "emote/8b196675b53af58264f383c50ad0945048290b33.png",
+        "tv-色": "emote/61822c7e9aae5da76475e7892534545336b23a6f.png",
+        "tv-吐血": "emote/09dd16a7aa59b77baa1155d47484409624470c77.png",
+        "tv-无奈": "emote/ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+        "tv-再见": "emote/180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+        "tv-流汗": "emote/cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+        "tv-偷笑": "emote/bb690d4107620f1c15cff29509db529a73aee261.png",
+        "tv-抓狂": "emote/fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+        "tv-黑人问号": "emote/45821a01f51bc867da9edbaa2e070410819a95b2.png",
+        "tv-困": "emote/241ee304e44c0af029adceb294399391e4737ef2.png",
+        "tv-打脸": "emote/56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+        "tv-闭嘴": "emote/c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+        "tv-鄙视": "emote/6e72339f346a692a495b123174b49e4e8e781303.png",
+        "tv-腼腆": "emote/89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+        "tv-馋": "emote/fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+        "tv-可爱": "emote/9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+        "tv-发财": "emote/34db290afd2963723c6eb3c4560667db7253a21a.png",
+        "tv-生病": "emote/8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+        "tv-流鼻血": "emote/c32d39db2737f89b904ca32700d140a9241b0767.png",
+        "tv-尴尬": "emote/7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+        "tv-大佬": "emote/093c1e2c490161aca397afc45573c877cdead616.png",
+        "tv-流泪": "emote/7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+        "tv-冷漠": "emote/b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+        "tv-皱眉": "emote/72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+        "tv-鬼脸": "emote/0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+        "tv-调侃": "emote/4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+        "tv-目瞪口呆": "emote/0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+        "珑歌Taki_问号": "garb/15856c32cb30a08f361259a59c71b0edee4427dc.png@65w.webp",
+        "珑歌Taki_打Call": "garb/67544581bd5f1390e6d95ac34c47867a9e9ebbbb.png@65w.webp",
+        "珑歌Taki_好耶": "garb/0176869034a23b2523b552687ec851f4567bb452.png@65w.webp",
+        "珑歌Taki_点赞": "garb/243dcd30319137f2715adbea4a4b106835e5c772.png@65w.webp",
+        "珑歌Taki_啊对对": "garb/b2576d904e7fa6cada13a35236611f0128fe7a3a.png@65w.webp",
+        "珑歌Taki_达咩": "garb/e39b5d13f7276c08caef3ea7b9585ab94de423da.png@65w.webp",
+        "珑歌Taki_辣眼睛": "garb/7db3c777e5f618f4458fd379db9b6cfcc5f96a59.png@65w.webp",
+        "珑歌Taki_晚安": "garb/cf46da11526aae66fa9b29532a32f262feaf806b.png@65w.webp",
+        "珑歌Taki_羞羞": "garb/05ae694d1ef5335673825357ec3bcaee81ca2fd2.png@65w.webp",
+        "珑歌Taki_叉你": "garb/7b6c47c462770fd91ca78982cf43a2025564fead.png@65w.webp",
+        "珑歌Taki_给你一拳": "garb/1e46191feebe3412e07919dd33f2daef01884c0d.png@65w.webp",
+        "珑歌Taki_委屈": "live/e4ce02a977edbd40a6df488f8ce317f1efb77e01.png@65w.webp",
+        "珑歌Taki_呃呃": "live/e5c634f3c00b440af5e0269d6cd23a54dcd78a83.png@65w.webp",
+        "珑歌Taki_爱你": "live/27e8e2c6679a2e268a2dc0032adec7e0f68abd89.png@65w.webp",
+        "珑歌Taki_惊": "live/30fedf447cef730d5acb87c945bf964d4e43b8be.png@65w.webp",
+        "珑歌Taki_干杯": "live/68db36d0645df15f4bb8e678d7d9f3a13840eaec.png@65w.webp",
+        "樱吹雪_Yuki_啵啵": "garb/a963d838a5f6197defbb6e0591377d4bfd37707a.png@65w.webp",
+        "樱吹雪_Yuki_打call": "garb/18f1f1c34738ebb3e2fc6a99bb2afe24192906ab.png@65w.webp",
+        "樱吹雪_Yuki_晚安": "garb/c2651d764536e9de174dfc3ab6c0b74ba38d637e.png@65w.webp",
+        "樱吹雪_Yuki_贴贴": "garb/dd5d3510ff3169348cfbd0308432cbf4d86f95da.png@65w.webp",
+        "樱吹雪_Yuki_好耶": "garb/8a65b68d1c318f5878f610f0e6be5ab55cfad755.png@65w.webp",
+        "樱吹雪_Yuki_嗷呜": "garb/fbb35575d9eeb199895056f6f2e678ea1568034f.png@65w.webp",
+        "樱吹雪_Yuki_问号": "garb/31b0cd34cdf7d76c9167c319c4a3aa8c084bfd56.png@65w.webp",
+        "樱吹雪_Yuki_哈哈": "garb/b64bccc47c050c201dd1a046c03ebff6bc73f94c.png@65w.webp",
+        "樱吹雪_Yuki_妈": "garb/be0e78b625d6b76300b917445c65998c052cb3ce.png@65w.webp",
+        "樱吹雪_Yuki_比心": "garb/c6acc382cf720529338d9426e1e7a45bd00ac6db.png@65w.webp",
+        "樱吹雪_Yuki_wink": "garb/c2500df5817faf7ca63af1cefe62c2526d7693aa.png@65w.webp",
+        "樱吹雪_Yuki_狐狸": "garb/26ae388cad7fb59d8797e7e0d77f198cdab46928.png@65w.webp",
+        "花丸晴琉_mua": "emote/25be806bfbbb5300afdbeeb64977c90cd1254bf1.png",
+        "花丸晴琉_wink": "emote/343d2d4bbf5919f25e37f971cf114d07232c5e73.png",
+        "花丸晴琉_啊咧": "emote/b34c5a1827762b981d689bbc51f134469ef06f23.png",
+        "花丸晴琉_大笑": "emote/1e28846f5cbd897dd2653142b8be9db42dfbdcb3.png",
+        "花丸晴琉_呆住": "emote/2b31495e0c538e095d44ff1a17834abe317a05d2.png",
+        "花丸晴琉_对不起": "emote/02d1e8ddfac938b20956f3d83350f442d398286a.png",
+        "花丸晴琉_好耶": "emote/29724d41c08ec63962e0974aa653ea8be0cf3947.png",
+        "花丸晴琉_挥手": "emote/2c0753c98d4e098a3c5f27ab658b1046b4032572.png",
+        "花丸晴琉_惊慌": "emote/e8307d3bd2ad84434e2f6de1eea727aaa138d987.png",
+        "花丸晴琉_泪目": "emote/02a805b640a1bd824d21c5e21cf2dbb19f03b6a1.png",
+        "花丸晴琉_丧": "emote/e45bd7cf880f36a439ef47c355c73065911992ac.png",
+        "花丸晴琉_生气": "emote/dfbfccd43db22e547f62563b73ae7a474b1163a2.png",
+        "花丸晴琉_晚安": "emote/40b60d5c04c8e7037089c408e68a73d51fd3dee7.png",
+        "花丸晴琉_无语": "emote/ac4cf2356a708eb11199f266160cb76be129ead9.png",
+        "花丸晴琉_喜欢": "emote/71a508d3183fb59f1ddf3a42af59fa7495f2c18c.png",
+        "花丸晴琉_邪恶": "emote/0a8175363b7c8270836323a627b1fe437938399c.png",
+        "花丸晴琉_疑惑": "emote/4aef9a2a5c9800faf2501014e1fba1fbf180b8f0.png",
+        "花丸晴琉_嘤嘤": "emote/b5584ef24436d42364e7234a9cd8734e00f872f6.png",
+        "花丸晴琉_赞": "emote/adf49b5e19731a8176b774f55b5472b9234ee555.png",
+        "花丸晴琉_早安": "emote/c5e20c947c10bb931413b8e4bc80b2bd3b09971e.png",
+        "-菫時-打Call": "live/e8073adeb52036d0d563c848c4b55b8449bc4b85.png@65w.webp",
+        "-菫時-分号分号": "live/f2a7a0916015a741a192ae85ee593a39c6dd04a7.png@65w.webp",
+        "-菫時-哎呀": "live/0a691aec40c738918014b27acfefa3b295b8a458.png@65w.webp",
+        "-菫時-地蕾": "live/cdb1f3adeee987c1fe5303ca90443932edb23d30.png@65w.webp",
+        "-菫時-困困": "live/c9450e570d7abcf5a920b65e18b9624b75c9d4fb.png@65w.webp",
+        "-菫時-生气": "live/021761abdfe8dc417e5267b74877bebd43dcfd58.png@65w.webp",
+        "-菫時-亲亲": "live/e0ae55eb80c6b7c01eeb042a26a3bd2938ed679a.png@65w.webp",
+        "-菫時-急了": "live/bea985bcf662dc4d85c9f78633c57398b7c3d223.png@65w.webp",
+        "-菫時-问号": "live/5b29c4c15e6b97da2df564899f84906fc800590b.png@65w.webp",
+        "-菫時-拜比": "live/a9fa62db7b7233dac30d3abd851b992710bc1649.png@65w.webp",
+        "纱依shayi_打call": "garb/4d97de8b2d6bb9cb19621af93550b3560e85277f.png@65w.webp",
+        "纱依shayi_喜欢": "garb/d345b8ff2f2dcd5a4833aa613fc7849bfb25f5e2.png@65w.webp",
+        "纱依shayi_晚安": "garb/f34ec93c5aa7fdb7cc919544df401474bed1a3c1.png@65w.webp",
+        "纱依shayi_kira": "garb/f784e4dc7d40f3d3a7ddb6977c241ff6d6a5db26.png@65w.webp",
+        "纱依shayi_贴贴": "garb/003679cdb44d37576b700f8ed0f4e85bc6ffc8a7.png@65w.webp",
+        "纱依shayi_结婚": "garb/b1a9e35f04b81476d1d93fdc3979fe194e873915.png@65w.webp",
+        "纱依shayi_甜蜜的": "garb/415a5fec5062816d6c316a718cf7f739dc12dcef.png@65w.webp",
+        "纱依shayi_摸鱼": "garb/b7f7d09fec93dd889b9e12286989dbfa41770689.png@65w.webp",
+        "纱依shayi_好厉害": "garb/7dceff9c32cb6a7a617c910cc840eaeaa89f1e60.png@65w.webp",
+        "纱依shayi_开心": "garb/360612ea05619a9517f9735e10f6a8e592eb6b35.png@65w.webp",
+        "纱依shayi_疑问": "garb/f591282a33cb0eb16e6ac679792ea90ce42e6d67.png@65w.webp",
+        "纱依shayi_哼": "garb/538c428f2d5bcaeefa60c81bb96e9a82475a59d2.png@65w.webp",
+        "纱依shayi_心碎": "garb/59697798dd454428c773ae989745af62042025ee.png@65w.webp",
+        "纱依shayi_趴": "garb/5261ebff0fce07a4bde695f56b1e90e03b2a22b9.png@65w.webp",
+        "纱依shayi_蹭蹭": "garb/8feb22fa3a58e7a26c31792be79fab8c015fa7f6.png@65w.webp",
+        "纱依shayi_喵": "garb/9a05fc8a87b3f5f05a3c01eec984aaec0f6727e1.png@65w.webp",
+        "冥冥meichan_太爱钱了": "garb/item/e3d018abc7dfcaba7a95b512d313591ec015e984.png",
+        "冥冥meichan_不可以": "garb/item/5cfc0218594fbe8b2946e67e03fc4ea5c4a19d36.png",
+        "冥冥meichan_优雅红茶": "garb/item/8698f417982fd8d5abadf5207407532bb1b5b44f.png",
+        "冥冥meichan_哭哭": "garb/item/32817fbdd4226afe71e1aa3d8f0a91c62729567d.png",
+        "冥冥meichan_不想输": "garb/item/04fdc12859be022fba9992c76f89b0956d19262d.png",
+        "冥冥meichan_开车": "garb/item/3414c37849153f2ebd0fe6c8d7298bbc711c4ed9.png",
+        "冥冥meichan_大钻戒": "garb/item/fa42d4a68660e6c3d6447cdf0fe7d95cc4c7cdae.png",
+        "冥冥meichan_带走": "garb/item/9862fdd11fb28e2456a5cd3f864f87a46f20604f.png",
+        "冥冥meichan_我好了": "garb/item/8855c3fcfc538ee1d96e9ec25f758a0b5602cf66.png",
+        "冥冥meichan_嗨呀": "garb/item/caebcb782f3a8742548786cd52cb4d80d8353e03.png",
+        "冥冥meichan_好喜欢哦": "garb/item/3cc66caaf1a62e1778b18a458e58b38df99cfa0f.png",
+        "冥冥meichan_给你一拳": "garb/item/9b9e4aa83cedd7016bf2f2a83bbe838b648f01ff.png",
+        "冥冥meichan_理发店": "garb/item/6026b23be561844d08c5bc4b2d66316c3eeebb15.png",
+        "冥冥meichan_典": "garb/item/172ea06085c8d242f3105d0d04826217bbe4fbeb.png",
+        "冥冥meichan_信积拉奶": "garb/item/57902ef1f2392e1b8ca4a92ee9c844c18b633009.png",
+        "冥冥meichan_饭饭": "garb/item/79a5c3bda7449e06f032c095144d8218b9acb335.png",
+        "冥冥meichan_盯": "garb/item/9c9419db0b80a40ab36eed395251e7efe6421b69.png",
+        "冥冥meichan_流汗": "garb/item/014bd9e4519567f7f711c0ef8138ffcd022750cd.png",
+        "冥冥meichan_晚安": "garb/item/4ed6aba3c606484511e550e9d8070a74c004ba8e.png",
+        "冥冥meichan_mua": "garb/item/21b927b32c186a8c4dd12ff48fcb19461d8dcd0e.png",
+        "冥冥meichan_关注冥冥": "garb/item/55cfde3719b757aa211e5f1d136cd8c8a1e0dc2f.png",
+        "冥冥meichan_你是懂的": "garb/item/724e8fe83e63a0814995dc8fd7a5d874c0568028.png",
+        "冥冥meichan_你懂个P": "garb/item/ffa551eaec65b9b3e33eb388fb91f9c02e4ff67a.png",
+        "冥冥meichan_钱不够啊": "garb/item/d153516692abb248a2429319ff7eb8cff4b2d463.png",
+        "冥冥meichan_寄": "garb/item/4de329afec2e0ebe3c4d0db0da710721bed35ff3.png",
+        // ... 更多表情
+    }
+    });
+</script>
+<script>
+    // 点击回复直接评论,官方版本点击回复时都是跳回到页面上方的评论框进行回复，评论框是固定不动的
+    // 参考https://immmmm.com/valine-diy,用到jQuery
+    $(document).ready(function(){
+        //$('.vemoji-btn').text('😀');
+        $("#vcomments").on('click', 'span.vat',function(){
+            $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+            $('textarea#veditor').focus();
+        })
+    })
+</script>
+<script type="text/javascript">
+    //添加一言
+   fetch('https://v1.hitokoto.cn/?c=a')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("veditor").setAttribute("placeholder",data.hitokoto+"__"+data.from);
+    })
+    .catch(console.error)
+</script>
+
+            
+
+
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<div id="aplayer" class="aplayer" data-autoplay="true"  data-id="56868" data-server="netease" data-type="album" data-fixed="true" data-listfolded="true" data-order="random" data-theme="#F58EA8"></div>
+<script src="https://unpkg.com/meting@1.2.0/dist/Meting.min.js"></script>
+
+
+<a id="scrollUp" href="#" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://weibo.com/6392902197"title="weibo"><i class="iconfont icon-weibo"></i></a><a href="https://github.com/xiaxi626"title="github"><i class="iconfont icon-github"></i></a><a href="aijiang1220966821@163.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://xiaxi626.github.io/atom.xml"title="rss"><i class="iconfont icon-rss"></i></a><a href="https://www.zhihu.com/people/xiao-yan-shi-36"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © <a href="https://xiaxi626.github.io" style="margin:0;">飞爱碧玉的个人博客</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_pv"></span></strong></span>
+<span style="display: inline;margin-right:15px;">👤<strong><span id="busuanzi_value_site_uv"></span></strong></span>
+<span>📚<strong>62</strong> posts</span>
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+<script>
+//复制内容自动添加版权信息 
+ var Sys = {}; 
+    var ua = navigator.userAgent.toLowerCase(); 
+    if( window.ActiveXObject ) 
+    { 
+        document.body.oncopy=function() 
+        { 
+            event.returnValue = false; 
+            var t=document.selection.createRange().text; 
+            var s="\r\n原文出自 [飞爱碧玉的个人博客]  转载请保留原文链接: "+location.href; 
+            clipboardData.setData('Text',t+'\r\n'+s); 
+        } 
+    } 
+    else 
+    { 
+        function addLink() 
+        { 
+            var body_element = document.getElementsByTagName('body')[0]; 
+            var selection; 
+            selection = window.getSelection(); 
+            var pagelink = " 原文出自 [飞爱碧玉的个人博客]  转载请保留原文链接: "+document.location.href; 
+ 
+            var copytext = selection + pagelink; 
+            var newdiv = document.createElement('div'); 
+            newdiv.style.position='absolute'; 
+            newdiv.style.left='-99999px'; 
+            body_element.appendChild(newdiv); 
+            newdiv.innerHTML = copytext; 
+            selection.selectAllChildren(newdiv); 
+            window.setTimeout 
+            ( 
+                function() 
+                { 
+                    body_element.removeChild(newdiv); 
+                },0 
+            ); 
+        } 
+        document.oncopy = addLink; 
+    } 
+</script>
+
+<script type="text/javascript" async src="https://xiaxi626.github.io/media/js/prism.js"></script>
+</body>
+</html>
