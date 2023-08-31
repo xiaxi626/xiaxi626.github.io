@@ -987,6 +987,12 @@ img.vimg:hover {
 .switch_default:checked + label:after {
   left: 17px;
 }
+.darkmode {
+  background: url(../media/images/682df424b899a901fff1b8541c950a7b0308f5ae.jpg) fixed;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  opacity: 70%;
+}
 .toc-container .markdownIt-TOC {
   position: sticky;
   top: 32px;

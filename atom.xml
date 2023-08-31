@@ -2,13 +2,20 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xiaxi626.github.io</id>
     <title>飞爱碧玉的个人博客</title>
-    <updated>2023-08-26T11:58:29.752Z</updated>
+    <updated>2023-08-31T14:06:26.291Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xiaxi626.github.io"/>
     <link rel="self" href="https://xiaxi626.github.io/atom.xml"/>
     <logo>https://xiaxi626.github.io/images/avatar.png</logo>
     <icon>https://xiaxi626.github.io/favicon.ico</icon>
     <rights>All rights reserved 2023, 飞爱碧玉的个人博客</rights>
+    <entry>
+        <title type="html"><![CDATA[如何使用Sublime Text 4搭建 C/C++ 语言开发环境]]></title>
+        <id>https://xiaxi626.github.io/post/ru-he-shi-yong-sublime-text-4-da-jian-cc-yu-yan-kai-fa-huan-jing/</id>
+        <link href="https://xiaxi626.github.io/post/ru-he-shi-yong-sublime-text-4-da-jian-cc-yu-yan-kai-fa-huan-jing/">
+        </link>
+        <updated>2023-08-29T14:39:16.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[GPG入门教程]]></title>
         <id>https://xiaxi626.github.io/post/gpg-ru-men-jiao-cheng/</id>
@@ -71,12 +78,5 @@
         <link href="https://xiaxi626.github.io/post/sublime-text3-an-zhuang-ji-cha-jian-de-an-zhuang-xie-zai/">
         </link>
         <updated>2023-04-25T08:12:14.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ vim 的安装及配置]]></title>
-        <id>https://xiaxi626.github.io/post/vim-de-an-zhuang-ji-pei-zhi/</id>
-        <link href="https://xiaxi626.github.io/post/vim-de-an-zhuang-ji-pei-zhi/">
-        </link>
-        <updated>2023-04-19T03:13:17.000Z</updated>
     </entry>
 </feed>
