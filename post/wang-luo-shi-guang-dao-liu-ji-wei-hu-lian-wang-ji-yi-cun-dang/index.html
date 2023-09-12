@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style"content="black"/>
 <meta name="format-detection"content="telephone=no"/>
 <meta name="renderer"content="webkit">
-<meta name="description"content="">
+<meta name="description"content="温故而知新">
 <meta charset="UTF-8">
 <title>网络时光倒流机-为互联网记忆存档 | 飞爱碧玉的个人博客</title>
 
@@ -20,7 +20,46 @@
 
 <!-- DEMO CSS -->
 <style type="text/css">
-	
+	.github-badge {
+    display: inline-block;
+    border-radius: 4px;
+    text-shadow: none;
+    font-size: 12px;
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: 5px
+}
+
+.github-badge a {
+    color: #fff
+}
+
+.github-badge .badge-subject {
+    display: inline-block;
+    background-color: #555;
+    padding: 4px 4px 4px 6px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px
+}
+
+.github-badge .badge-value {
+    display: inline-block;
+    padding: 4px 6px 4px 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px
+}
+
+.github-badge .bg-blue {
+    background-color: #007ec6 !important
+}
+
+.github-badge .bg-green {
+    background-color: #97ca00 !important
+}
+
+#footer span {
+    font-size: .9em
+}
 </style>
 
 <link rel="canonical" href="https://xiaxi626.github.io/post/wang-luo-shi-guang-dao-liu-ji-wei-hu-lian-wang-ji-yi-cun-dang/" />
@@ -35,7 +74,7 @@
 <div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
 <div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
 <div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
-<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1693490701625" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="搜索..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1694487788303" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="搜索..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
 </div></div>
 <script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
 
@@ -120,7 +159,8 @@
                 <!--评论显示区，请插入合适的位置-->
 <div id="comment"></div>
 <!--Leancloud 操作库:-->
-<script src="//cdn1.lncld.net/static/js/3.6.1/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@4.13.2/dist/av-min.js"></script>
+<!--<script src="//cdn1.lncld.net/static/js/3.6.1/av-min.js"></script>-->
 <!--Valine 的核心代码库-->
 <script src="//cdnjs.cloudflare.com/ajax/libs/valine/1.5.1/Valine.min.js"></script>
 <!--<script src="//cdn.jsdelivr.net/npm/valine@1.4.4/dist/Valine.min.js"></script>-->
@@ -129,7 +169,7 @@
         el:'#comment',
         appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
         appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
-        placeholder: 'Just Go Go',
+        placeholder: '',
         avatar:'',
         pageSize: '10',
         recordIP: 'true',
@@ -309,6 +349,38 @@
     })
     .catch(console.error)
 </script>
+<script>
+// 自定义邮箱审核规则
+document.body.addEventListener('click', function (e) {
+    if (e.target.classList.contains('vsubmit')) {
+        const email = document.querySelector('input[type=email]');
+        const nick = document.querySelector('input[name=nick]');
+        const reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+        if (!email.value || !nick.value || !reg.test(email.value)) {
+            const str = `<div class="valert text-center"><div class="vtext">请填写正确的昵称和邮箱！</div></div>`;
+            const vmark = document.querySelector('.vmark');
+            vmark.innerHTML = str;
+            vmark.style.display = 'block';
+            setTimeout(function () {
+                vmark.style.display = 'none';
+                vmark.innerHTML = '';
+            }, 2500);
+        }
+    }
+})
+</script>
+
+<style>
+    #veditor {
+    /*评论框背景图片*/
+    box-sizing: border-box;
+    background: url("/../media/images/veditor-bg.webp") 100% 100% no-repeat;
+    background-size: contain;
+    background-position: right;
+    background-color: rgba(255, 255, 255, 0);
+    }
+</style>
+
 
             
 
@@ -330,7 +402,8 @@ var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:doc
 <script src="https://unpkg.com/meting@1.2.0/dist/Meting.min.js"></script>
 
 
-<a id="scrollUp" href="#" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://weibo.com/6392902197"title="weibo"><i class="iconfont icon-weibo"></i></a><a href="https://github.com/xiaxi626"title="github"><i class="iconfont icon-github"></i></a><a href="aijiang1220966821@163.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://xiaxi626.github.io/atom.xml"title="rss"><i class="iconfont icon-rss"></i></a><a href="https://www.zhihu.com/people/xiao-yan-shi-36"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © <a href="https://xiaxi626.github.io" style="margin:0;">飞爱碧玉的个人博客</a>.</div>
+<a id="scrollUp" href="#" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://weibo.com/6392902197"title="weibo"><i class="iconfont icon-weibo"></i></a><a href="https://github.com/xiaxi626"title="github"><i class="iconfont icon-github"></i></a><a href="aijiang1220966821@163.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://xiaxi626.github.io/atom.xml"title="rss"><i class="iconfont icon-rss"></i></a><a href="https://www.zhihu.com/people/xiao-yan-shi-36"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>Copyright © <a href="https://xiaxi626.github.io" style="margin:0;">飞爱碧玉的个人博客</a>.</div>
+<div><div class="github-badge"><a href="https://open.gridea.dev" target="_blank" rel="nofollow"><span class="badge-subject">Powered by</span><span class="badge-value bg-blue">Gridea</span></a></div><div style="display: inline-block">&nbsp;</div><div class="github-badge"><a href="https://github.com/Wu-jiyan/gridea-theme-bitcron-pro-plus" target="_blank" rel="nofollow"><span class="badge-subject">Theme</span><span class="badge-value bg-green">Bitcron Pro Plus</span></a></div></div>
 <span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_pv"></span></strong></span>
 <span style="display: inline;margin-right:15px;">👤<strong><span id="busuanzi_value_site_uv"></span></strong></span>
 <span>📚<strong>63</strong> posts</span>

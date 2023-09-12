@@ -40,7 +40,7 @@ Bitcron Pro的原作者为 [`Yuxiang Qiu`](https://github.com/yuxqiu) 原作品�
 9.更好的暗黑模式<br>
 ……
 
-## 对Plus 版修改：
+## 对Plus 版修订：
 1、Valine评论可显示<br>
 2、点哪条的回复，评论框就显示在此条评论下方<br>
 3、打开Valine功能<br>

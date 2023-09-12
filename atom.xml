@@ -2,10 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xiaxi626.github.io</id>
     <title>飞爱碧玉的个人博客</title>
-    <updated>2023-08-31T14:06:26.291Z</updated>
+    <updated>2023-09-12T03:05:15.586Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xiaxi626.github.io"/>
     <link rel="self" href="https://xiaxi626.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
     <logo>https://xiaxi626.github.io/images/avatar.png</logo>
     <icon>https://xiaxi626.github.io/favicon.ico</icon>
     <rights>All rights reserved 2023, 飞爱碧玉的个人博客</rights>
