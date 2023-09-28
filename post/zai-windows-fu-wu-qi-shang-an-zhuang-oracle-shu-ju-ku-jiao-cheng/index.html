@@ -74,7 +74,7 @@
 <div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
 <div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
 <div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
-<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1694487788303" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="搜索..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1695908135496" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="搜索..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
 </div></div>
 <script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
 
@@ -94,13 +94,13 @@
 <div class="round-shape-one"></div>
 
 <h2 id="安装oracle">安装Oracle</h2>
-<p>解压Oracle安装包时两个压缩包都要解压，否则安装时会缺失各种文件。<br>
-Oracle服务端11g\win64_11gR2_database_2of2.zip<br>
-Oracle服务端11g\win64_11gR2_database_1of2.zip<br>
-<img src="https://xiaxi626.github.io/post-images/1685974556739.png" alt="" loading="lazy"><br>
-打开../database/stage/cvu/cvu_prereq<br>
-<img src="https://xiaxi626.github.io/post-images/1685974702632.png" alt="" loading="lazy"><br>
-在&lt;CERTIFIED_SYSTEMS&gt;之后添加：</p>
+<p>解压Oracle安装包时两个压缩包都要解压，否则安装时会缺失各种文件。</p>
+<p>Oracle服务端11g\win64_11gR2_database_2of2.zip</p>
+<p>Oracle服务端11g\win64_11gR2_database_1of2.zip</p>
+<figure data-type="image" tabindex="1"><img src="https://xiaxi626.github.io/post-images/1685974556739.png" alt="" loading="lazy"></figure>
+<p>打开../database/stage/cvu/cvu_prereq</p>
+<figure data-type="image" tabindex="2"><img src="https://xiaxi626.github.io/post-images/1685974702632.png" alt="" loading="lazy"></figure>
+<p>在&lt;CERTIFIED_SYSTEMS&gt;之后添加：</p>
 <pre><code class="language-bash">&lt;OPERATING_SYSTEM RELEASE=&quot;6.2&quot;&gt;
     &lt;VERSION VALUE=&quot;3&quot;/&gt;
     &lt;ARCHITECTURE VALUE=&quot;64-bit&quot;/&gt;
@@ -110,14 +110,14 @@ Oracle服务端11g\win64_11gR2_database_1of2.zip<br>
     &lt;/ENV_VAR_LIST&gt;
 &lt;/OPERATING_SYSTEM&gt;
 </code></pre>
-<p><img src="https://xiaxi626.github.io/post-images/1685974826548.png" alt="" loading="lazy"><br>
-NAME VALUE填写系统名称，如果在Windows 10上安装就填“Windows 10”；<br>
-ARCHITECTURE VALUE=&quot;64-bit&quot;对应的是多少位系统就填多少位；<br>
-如果 cvu_prereq文件配置为OPERATING_SYSTEM RELEASE=“6.1”，可能会遇到：<br>
-[INS-13001]此环境不满足最低配置”<br>
-<img src="https://xiaxi626.github.io/post-images/1685974882568.png" alt="" loading="lazy"><br>
-改成OPERATING_SYSTEM RELEASE=“6.2”<br>
-ENV_VAR NAME=&quot;PATH&quot; MAX_LENGTH=&quot;1023&quot;</p>
+<figure data-type="image" tabindex="3"><img src="https://xiaxi626.github.io/post-images/1685974826548.png" alt="" loading="lazy"></figure>
+<p>NAME VALUE填写系统名称，如果在Windows 10上安装就填“Windows 10”；</p>
+<p>ARCHITECTURE VALUE=&quot;64-bit&quot;对应的是多少位系统就填多少位；</p>
+<p>如果 cvu_prereq文件配置为OPERATING_SYSTEM RELEASE=“6.1”，可能会遇到：</p>
+<p>[INS-13001]此环境不满足最低配置”</p>
+<figure data-type="image" tabindex="4"><img src="https://xiaxi626.github.io/post-images/1685974882568.png" alt="" loading="lazy"></figure>
+<p>改成OPERATING_SYSTEM RELEASE=“6.2”</p>
+<p>ENV_VAR NAME=&quot;PATH&quot; MAX_LENGTH=&quot;1023&quot;</p>
 <p>启动setup.exe，会出现cmd程序：</p>
 <pre><code class="language-bash">正在启动 Oracle Universal Installer...
 
@@ -125,93 +125,93 @@ ENV_VAR NAME=&quot;PATH&quot; MAX_LENGTH=&quot;1023&quot;</p>
  准备从以下地址启动 Oracle Universal Installer C:\Users\aijia\AppData\Local\Temp\OraInstall2023-05-30_10-21-25PM. 请稍候...
 </code></pre>
 <p>不必管它。</p>
-<p>取消勾选“我希望通过 My Oracle Support 接收安全更新)。”<br>
-<img src="https://xiaxi626.github.io/post-images/1685974936885.png" alt="" loading="lazy"><br>
-出现尚未提供电子邮件地址，选择是。<br>
-<img src="https://xiaxi626.github.io/post-images/1685974979077.png" alt="" loading="lazy"><br>
-继续。<br>
-<img src="https://xiaxi626.github.io/post-images/1685975005386.png" alt="" loading="lazy"><br>
-选桌面。不要急多等一会。<br>
-<img src="https://xiaxi626.github.io/post-images/1685975012378.png" alt="" loading="lazy"><br>
-建议在Windows及Windows虚拟机上安装时不要安装到C盘。<br>
-填写管理口令，注意提示。<br>
-<img src="https://xiaxi626.github.io/post-images/1685975028727.png" alt="" loading="lazy"><br>
-点击保存响应文件，完成。<br>
-<img src="https://xiaxi626.github.io/post-images/1685975087752.png" alt="" loading="lazy"><br>
-接下来会跳出防火墙警告，选择允许访问。<br>
-<img src="https://xiaxi626.github.io/post-images/1685975157128.png" alt="" loading="lazy"><br>
-<img src="https://xiaxi626.github.io/post-images/1685975170247.png" alt="" loading="lazy"><br>
-安装.NET Framework 3.5。<br>
-<img src="https://xiaxi626.github.io/post-images/1685975247598.png" alt="" loading="lazy"><br>
-<img src="https://xiaxi626.github.io/post-images/1685975259303.png" alt="" loading="lazy"><br>
-等待安装程序完成，这里如果安装压缩包未全部解压，会出现大量缺失文件提示。<br>
-<img src="https://xiaxi626.github.io/post-images/1685975376322.png" alt="" loading="lazy"><br>
-安装进度条100%后会跳出该界面，重点内容如下：<br>
-<img src="https://xiaxi626.github.io/post-images/1685975427930.png" alt="" loading="lazy"></p>
+<p>取消勾选“我希望通过 My Oracle Support 接收安全更新)。”</p>
+<figure data-type="image" tabindex="5"><img src="https://xiaxi626.github.io/post-images/1685974936885.png" alt="" loading="lazy"></figure>
+<p>出现尚未提供电子邮件地址，选择是。</p>
+<figure data-type="image" tabindex="6"><img src="https://xiaxi626.github.io/post-images/1685974979077.png" alt="" loading="lazy"></figure>
+<p>继续。</p>
+<figure data-type="image" tabindex="7"><img src="https://xiaxi626.github.io/post-images/1685975005386.png" alt="" loading="lazy"></figure>
+<p>选桌面。不要急多等一会。</p>
+<figure data-type="image" tabindex="8"><img src="https://xiaxi626.github.io/post-images/1685975012378.png" alt="" loading="lazy"></figure>
+<p>建议在Windows及Windows虚拟机上安装时不要安装到C盘。</p>
+<p>填写管理口令，注意提示。</p>
+<figure data-type="image" tabindex="9"><img src="https://xiaxi626.github.io/post-images/1685975028727.png" alt="" loading="lazy"></figure>
+<p>点击保存响应文件，完成。</p>
+<figure data-type="image" tabindex="10"><img src="https://xiaxi626.github.io/post-images/1685975087752.png" alt="" loading="lazy"></figure>
+<p>接下来会跳出防火墙警告，选择允许访问。</p>
+<figure data-type="image" tabindex="11"><img src="https://xiaxi626.github.io/post-images/1685975157128.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="12"><img src="https://xiaxi626.github.io/post-images/1685975170247.png" alt="" loading="lazy"></figure>
+<p>安装.NET Framework 3.5。</p>
+<figure data-type="image" tabindex="13"><img src="https://xiaxi626.github.io/post-images/1685975247598.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="14"><img src="https://xiaxi626.github.io/post-images/1685975259303.png" alt="" loading="lazy"></figure>
+<p>等待安装程序完成，这里如果安装压缩包未全部解压，会出现大量缺失文件提示。</p>
+<figure data-type="image" tabindex="15"><img src="https://xiaxi626.github.io/post-images/1685975376322.png" alt="" loading="lazy"></figure>
+<p>安装进度条100%后会跳出该界面，重点内容如下：</p>
+<figure data-type="image" tabindex="16"><img src="https://xiaxi626.github.io/post-images/1685975427930.png" alt="" loading="lazy"></figure>
 <pre><code class="language-bash">Database Control URL 为 https://localhost:1158/em
 
 管理资料档案库已置于安全模式下, 在此模式下将对 Enterprise Manager 数据进行加密。加密密钥已放置在文件 D:/Oracle/Oracle11g/product/11.2.0/dbhome_1/localhost_orcl/sysman/config/emkey.ora 中。请务必备份此文件, 因为如果此文件丢失, 则加密数据将不可用。
 </code></pre>
-<p>点击<code>口令管理…</code>，进行如下设置：<br>
-1.解锁scott并修改口令<br>
-2.选择“口令管理”，查看并修改以下用户<br>
-取消勾选是否锁定账户（这是设置完成后再打开的样子）<br>
-（1）普通用户：SCOTT（密码：tiger）<br>
-（2）普通管理员：SYSTEM（密码：manager）</p>
-<p>（3）超级管理员：SYS（密码：manager）<br>
-（4）普通用户：HR（密码：hr）<br>
-设置完成之后会有警告，点击继续，即可</p>
+<p>点击<code>口令管理…</code>，进行如下设置：</p>
+<p>1.解锁scott并修改口令</p>
+<p>2.选择“口令管理”，查看并修改以下用户</p>
+<p>取消勾选是否锁定账户（这是设置完成后再打开的样子）</p>
+<p>（1）普通用户：SCOTT（密码：tiger）</p>
+<p>（2）普通管理员：SYSTEM（密码：manager）</p>
+<p>（3）超级管理员：SYS（密码：manager）</p>
+<p>（4）普通用户：HR（密码：hr）</p>
+<p>设置完成之后会有警告，点击继续，即可</p>
 <p>修改完成之后单击确定。</p>
-<p>Enterprise Manager Database Control URL - (orcl) :<br>
-https://localhost:1158/em<br>
-口令管理修改后再进入界面就是这个样子。<br>
-<img src="https://xiaxi626.github.io/post-images/1685975590403.png" alt="" loading="lazy"><br>
-最后我们完成了安装。<br>
-<img src="https://xiaxi626.github.io/post-images/1685975627372.png" alt="" loading="lazy"></p>
+<p>Enterprise Manager Database Control URL - (orcl) :</p>
+<p>https://localhost:1158/em</p>
+<p>口令管理修改后再进入界面就是这个样子。</p>
+<figure data-type="image" tabindex="17"><img src="https://xiaxi626.github.io/post-images/1685975590403.png" alt="" loading="lazy"></figure>
+<p>最后我们完成了安装。</p>
+<figure data-type="image" tabindex="18"><img src="https://xiaxi626.github.io/post-images/1685975627372.png" alt="" loading="lazy"></figure>
 <pre><code class="language-bash">数据库配置文件已经安装到 D:\Oracle\Oracle11g,同时其他选定的安装组件也已经安装到 D:\Oracle\Oracle11g\product\11.2.0\dbhome_1。
 </code></pre>
-<p>最后一步打开网址：https://localhost:1158/em<br>
-edge显示：<br>
-<img src="https://xiaxi626.github.io/post-images/1685975650289.png" alt="" loading="lazy"></p>
-<p>点击帮助出现“完成 此对话框显示 Oracle 数据库的安装已成功。 单击关闭。 版权所有 © 2007, 2009, Oracle 和/或其子公司。保留所有权利。”<br>
-说明安装成功。<br>
-<img src="https://xiaxi626.github.io/post-images/1685975678847.png" alt="" loading="lazy"></p>
+<p>最后一步打开网址：https://localhost:1158/em</p>
+<p>edge显示：</p>
+<figure data-type="image" tabindex="19"><img src="https://xiaxi626.github.io/post-images/1685975650289.png" alt="" loading="lazy"></figure>
+<p>点击帮助出现“完成 此对话框显示 Oracle 数据库的安装已成功。 单击关闭。 版权所有 © 2007, 2009, Oracle 和/或其子公司。保留所有权利。”</p>
+<p>说明安装成功。</p>
+<figure data-type="image" tabindex="20"><img src="https://xiaxi626.github.io/post-images/1685975678847.png" alt="" loading="lazy"></figure>
 <h2 id="plsql-developer的下载-安装-使用-破解">PL/SQL developer的下载、安装、使用、破解</h2>
 <p>PL/SQL Developer是一个集成开发环境，专门开发面向Oracle数据库的应用。PL/SQL也是一种程序语言，叫做过程化SQL语言（Procedural Language/SQL）。PL/SQL是Oracle数据库对SQL语句的扩展。在普通SQL语句的使用上增加了编程语言的特点，所以PL/SQL把数据操作和查询语句组织在PL/SQL代码的过程性单元中，通过逻辑判断、循环等操作实现复杂的功能或者计算。PL/SQL 只有 Oracle 数据库有。 MySQL 目前不支持 PL/SQL 的，但支持Navicat Premium。</p>
 <h3 id="下载-plsql-developer">下载 PL/SQL developer</h3>
-<p>直接进入官网下载网址：https://www.allroundautomations.com/registered-plsqldev/<br>
-或者进入官网，自己寻找下载<br>
-进入PL/SQL developer官网https://www.allroundautomations.com/<br>
-<img src="https://xiaxi626.github.io/post-images/1685978459282.png" alt="" loading="lazy"><br>
-找到下载完的安装包，双击打开。<br>
-<img src="https://xiaxi626.github.io/post-images/1685978556398.png" alt="" loading="lazy"><br>
-选择enter license information，<br>
-<img src="https://xiaxi626.github.io/post-images/1685978687936.png" alt="" loading="lazy"><br>
-在<a href="https://www.jb51.net/softs/820654.html#downintro2">本站</a>下载并解压，<br>
-<img src="https://xiaxi626.github.io/post-images/1685978706594.png" alt="" loading="lazy"><br>
-运行keygen注册机，将注册机中的注册信息对应复制到软件中，点击next，<br>
-<img src="https://xiaxi626.github.io/post-images/1685978735020.png" alt="" loading="lazy"><br>
-安装中，稍等一会儿，安装完成，点击finish退出向导</p>
+<p>直接进入官网下载网址：https://www.allroundautomations.com/registered-plsqldev/</p>
+<p>或者进入官网，自己寻找下载</p>
+<p>进入PL/SQL developer官网https://www.allroundautomations.com/</p>
+<figure data-type="image" tabindex="21"><img src="https://xiaxi626.github.io/post-images/1685978459282.png" alt="" loading="lazy"></figure>
+<p>找到下载完的安装包，双击打开。</p>
+<figure data-type="image" tabindex="22"><img src="https://xiaxi626.github.io/post-images/1685978556398.png" alt="" loading="lazy"></figure>
+<p>选择enter license information，</p>
+<figure data-type="image" tabindex="23"><img src="https://xiaxi626.github.io/post-images/1685978687936.png" alt="" loading="lazy"></figure>
+<p>在<a href="https://www.jb51.net/softs/820654.html#downintro2">本站</a>下载并解压，</p>
+<figure data-type="image" tabindex="24"><img src="https://xiaxi626.github.io/post-images/1685978706594.png" alt="" loading="lazy"></figure>
+<p>运行keygen注册机，将注册机中的注册信息对应复制到软件中，点击next，</p>
+<figure data-type="image" tabindex="25"><img src="https://xiaxi626.github.io/post-images/1685978735020.png" alt="" loading="lazy"></figure>
+<p>安装中，稍等一会儿，安装完成，点击finish退出向导</p>
 <h3 id="运行plsql-developer">运行PL/SQL developer</h3>
-<p>打开软件后，<br>
-<img src="https://xiaxi626.github.io/post-images/1685979521022.png" alt="" loading="lazy"><br>
-<img src="https://xiaxi626.github.io/post-images/1685979528675.png" alt="" loading="lazy"><br>
-<img src="https://xiaxi626.github.io/post-images/1685979538762.png" alt="" loading="lazy"></p>
+<p>打开软件后，</p>
+<figure data-type="image" tabindex="26"><img src="https://xiaxi626.github.io/post-images/1685979521022.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="27"><img src="https://xiaxi626.github.io/post-images/1685979528675.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="28"><img src="https://xiaxi626.github.io/post-images/1685979538762.png" alt="" loading="lazy"></figure>
 <h2 id="参考">参考</h2>
-<p><a href="https://cloud.tencent.com/developer/article/2091762">Oracle 11g安装及配置详解</a><br>
-<a href="https://blog.csdn.net/qq_40036754/article/details/83379042">PL/SQL developer的下载、安装、使用、破解，亲自测试。安全使用。</a><br>
-<a href="https://www.jb51.net/softs/820654.html#downintro2">PL/SQL Developer v15.0.3.2059 中文激活版(附补丁+安装教程) 32位/64位</a><br>
-<a href="https://blog.csdn.net/xggbest/article/details/104422421">Oracle 11g+PLSQL Developer+SQL Developer+JDK 详细安装教程</a><br>
-<a href="https://blog.csdn.net/qq_36173194/article/details/79104171">win10安装Oracle11g常见问题</a><br>
-<a href="https://blog.csdn.net/Mrchai521/article/details/108988119">Windows下Oracle安装图解----oracle-win-64-11g 详细安装步骤</a><br>
-<a href="https://blog.csdn.net/weixin_45740811/article/details/125841798">（保姆级）Oracle的下载及安装详细教程</a><br>
-<a href="https://max.book118.com/html/2016/0815/51565194.shtm">oracle-解决httpslocalhost1158em页面无法打开的问题.docx</a><br>
-<a href="https://www.dandelioncloud.cn/article/details/1481351682306166786">Win10下安装Oracle11g 不满足配置解决方法</a><br>
-<a href="https://blog.csdn.net/qyfx123456/article/details/129767271">win11&amp;win7下安装oracle11g数据库全过程</a><br>
-<a href="https://blog.csdn.net/haojian855/article/details/99869451">oracle-安装系统报：Environment variable: &quot;PATH&quot; 预期值  : 1023 实际值  : 1090，解决方案</a><br>
-<a href="https://www.cnblogs.com/jinxiuze/p/7986590.html">安装ORACLE服务出现Oracle Net Configuration Assistant 失败问题</a><br>
-<a href="https://blog.csdn.net/u011200959/article/details/125718954">Windows10安装出现Oracle Net Configuration Assistant 失败</a><br>
-<a href="https://www.dbs724.com/35835.html">Oracle 11g安装错误提示未找到wfmlrsvcapp.ear的解决方法</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/2091762">Oracle 11g安装及配置详解</a></p>
+<p><a href="https://blog.csdn.net/qq_40036754/article/details/83379042">PL/SQL developer的下载、安装、使用、破解，亲自测试。安全使用。</a></p>
+<p><a href="https://www.jb51.net/softs/820654.html#downintro2">PL/SQL Developer v15.0.3.2059 中文激活版(附补丁+安装教程) 32位/64位</a></p>
+<p><a href="https://blog.csdn.net/xggbest/article/details/104422421">Oracle 11g+PLSQL Developer+SQL Developer+JDK 详细安装教程</a></p>
+<p><a href="https://blog.csdn.net/qq_36173194/article/details/79104171">win10安装Oracle11g常见问题</a></p>
+<p><a href="https://blog.csdn.net/Mrchai521/article/details/108988119">Windows下Oracle安装图解----oracle-win-64-11g 详细安装步骤</a></p>
+<p><a href="https://blog.csdn.net/weixin_45740811/article/details/125841798">（保姆级）Oracle的下载及安装详细教程</a></p>
+<p><a href="https://max.book118.com/html/2016/0815/51565194.shtm">oracle-解决httpslocalhost1158em页面无法打开的问题.docx</a></p>
+<p><a href="https://www.dandelioncloud.cn/article/details/1481351682306166786">Win10下安装Oracle11g 不满足配置解决方法</a></p>
+<p><a href="https://blog.csdn.net/qyfx123456/article/details/129767271">win11&amp;win7下安装oracle11g数据库全过程</a></p>
+<p><a href="https://blog.csdn.net/haojian855/article/details/99869451">oracle-安装系统报：Environment variable: &quot;PATH&quot; 预期值  : 1023 实际值  : 1090，解决方案</a></p>
+<p><a href="https://www.cnblogs.com/jinxiuze/p/7986590.html">安装ORACLE服务出现Oracle Net Configuration Assistant 失败问题</a></p>
+<p><a href="https://blog.csdn.net/u011200959/article/details/125718954">Windows10安装出现Oracle Net Configuration Assistant 失败</a></p>
+<p><a href="https://www.dbs724.com/35835.html">Oracle 11g安装错误提示未找到wfmlrsvcapp.ear的解决方法</a></p>
 
 <span id="footnote"></span>
 <div id = "warn"></div>
