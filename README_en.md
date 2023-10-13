@@ -101,6 +101,8 @@ The original author of Bitcron Pro is [ `Yuxiang Qiu`](https://github.com/yuxqiu
 6. Hide the comment system Valine Powered By information<br>
    
 7. Review avatar rotation<br>
+
+8. Add a background image in dark mode<br>
    
    ...
    

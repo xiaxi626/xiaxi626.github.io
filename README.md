@@ -55,6 +55,7 @@ Bitcron Pro的原作者为 [`Yuxiang Qiu`](https://github.com/yuxqiu) 原作品�
 5、评论输入界面增加背景图<br>
 6、隐藏评论系统 Valine Powered By信息<br>
 7、评论头像旋转<br>
+8、添加黑暗模式背景图<br>
 ……
 ***
 # 如何使用
