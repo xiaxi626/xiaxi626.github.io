@@ -1,0 +1,263 @@
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>飞爱碧玉的个人博客</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico?v=1708146931921">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://xiaxi626.github.io/styles/main.css">
+
+<script src="https://xiaxi626.github.io/media/scripts/vue.js"></script>
+<script src="https://xiaxi626.github.io/media/scripts/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="carousel carousel-slider center index-cover" data-indicators="true">
+    <div class="bg-cover" style="background: url('https://xiaxi626.github.io/images/cover.jpg?v=1708146931921') no-repeat center center fixed">
+        <div class="container">
+            <div class="row">
+                <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                    <div class="brand">
+                        <div class="title center-align">
+                            
+                        </div>
+                        <div class="description center-align">
+                            <span id="subtitle" data-subtitle=""></span><span class="typed-cursor">|</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cover-btns">
+                <a href="#content" class="waves-effect waves-light btn">
+                    <i class="fa fa-angle-double-down"></i>开始阅读
+                </a>
+            </div>
+            <div class="cover-social-link">
+                
+                    
+                      <a href="https://github.com/xiaxi626" target="_blank">
+                        <i class="fab fa-github"></i>
+                      </a>
+                    
+                  
+                    
+                  
+                    
+                  
+                    
+                  
+                    
+                      <a href="https://space.bilibili.com/328031473/bangumi" target="_blank">
+                        <i class="fab fa-bilibili"></i>
+                      </a>
+                    
+                  
+                    
+                      <a href="https://www.zhihu.com/people/xiao-yan-shi-36" target="_blank">
+                        <i class="fab fa-zhihu"></i>
+                      </a>
+                    
+                  
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+<script>
+    window.onload = function () {
+        var subtitle = document.querySelector("#subtitle");
+        var text = subtitle.dataset.subtitle;
+        var typed = new Typed("#subtitle", {
+            strings: [ 
+                
+                    "从来没有真正的绝境, 只有心灵的迷途",
+                
+                    text,
+                
+            ],
+            startDelay: 300,
+            typeSpeed: 100,
+            loop: true,
+            backSpeed: 50,
+            showCursor: true
+        });
+    }
+    document.addEventListener("DOMContentLoaded", (event) => {
+        let cover = document.querySelector('.bg-cover');
+        if (document.location.pathname !== '/'){
+            cover.classList.add('pd-header');
+            let btns = document.querySelector('.cover-btns');
+            let social = document.querySelector('.cover-social-link');
+            btns.classList.add('hide');
+            social.classList.add('hide');
+        }
+    });
+</script>
+
+
+    <div id="app" class="main">
+      <div class="site-header-container nav-transparent">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://xiaxi626.github.io">
+        <img class="avatar" src="https://xiaxi626.github.io/images/avatar.png?v=1708146931921" alt=""
+          width="32px" height="32px">
+      </a>
+      <a href="https://xiaxi626.github.io">
+        <h1 class="site-title">
+          飞爱碧玉的个人博客
+        </h1>
+      </a>
+    </div>
+    <div class="right">
+        <div class="menu">
+            <a href="/post/about" v-if="headSearchShow">
+                <i class="fa-solid fa-user"></i>&nbsp;个人
+            </a>
+            <a href="/archives" v-if="headSearchShow">
+                <i class="fa-solid fa-box-archive"></i>&nbsp;归档
+            </a>
+            <a href="/tags" v-if="headSearchShow">
+                <i class="fa-solid fa-tag"></i>&nbsp;标签
+            </a>
+            <a href="/life" v-if="headSearchShow">
+                <i class="fa-fw fas fa-heart"></i>&nbsp;生活
+            </a>
+            
+        </div>
+      <div class="gridea-search-div" v-if="headSearchShow">
+        <form id="gridea-search-form" action="https://xiaxi626.github.io/search/">
+          <input class="gridea-search-input" autocomplete="off" spellcheck="false" name="q" />
+        </form>
+      </div>
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }"
+          @click="menuClick()" v-if="menuSearchShow"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      <div class="gridea-search-div" v-if="menuSearchShow">
+        <form id="gridea-search-form" action="https://xiaxi626.github.io/search/">
+          <input class="gridea-search-input" autocomplete="off" spellcheck="false" name="q" />
+        </form>
+      </div>
+      
+        
+            <a href="/" class="menu purple-link">
+              首页
+            </a>
+            
+              
+        
+            <a href="/archives" class="menu purple-link">
+              归档
+            </a>
+            
+              
+        
+            <a href="/tags" class="menu purple-link">
+              标签
+            </a>
+            
+              
+        
+            <a href="/post/about" class="menu purple-link">
+              关于
+            </a>
+            
+              
+        
+            <a href="/friends" class="menu purple-link">
+              友情链接
+            </a>
+            
+              
+              
+    </div>
+  </div>
+</transition>
+
+<script>
+    window.onscroll = function () {
+        var t = document.documentElement.scrollTop || document.body.scrollTop;
+        var header = document.querySelector('.site-header-container');
+        if (t > 0) {
+            header.classList.remove('nav-transparent');
+        } else {
+            header.classList.add('nav-transparent');
+        }
+    }
+</script>
+
+      <div class="content-container">
+        
+        
+
+
+
+      </div>
+
+
+    </div>
+    <div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/xiaxi626" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://space.bilibili.com/328031473/bangumi" target="_blank">
+          <i class="fab fa-bilibili"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.zhihu.com/people/xiao-yan-shi-36" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+  </div>
+  <div class="slogan">温故而知新</div> |
+  <a href="https://github.com/Decade-qiu/gridea-theme-Eternal" target="_blank">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></a> | <a href="https://github.com/Decade-qiu/gridea-theme-Eternal" target="_blank">Powered by Eternal</a> | <a href="https://xiaxi626.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+    <script src="https://xiaxi626.github.io/media/scripts/index.js"></script>
+
+
+    <script src='https://xiaxi626.github.io/media/scripts/valine.min.js'></script>
+    <script>
+        new Valine({
+            el: '#gitalk-container',
+            appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
+            appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
+            placeholder: 'Write something...',
+        })
+    </script>
+
+
+
+  </body>
+</html>

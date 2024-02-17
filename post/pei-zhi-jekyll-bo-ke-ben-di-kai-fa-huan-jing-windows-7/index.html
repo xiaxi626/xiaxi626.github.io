@@ -1,97 +1,196 @@
+
 <!DOCTYPE html>
 <html>
-<head>
-<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico" type="image/x-icon" />
-<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-<meta name="apple-mobile-web-app-capable"content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style"content="black"/>
-<meta name="format-detection"content="telephone=no"/>
-<meta name="renderer"content="webkit">
-<meta name="description"content="温故而知新">
-<meta charset="UTF-8">
+  <head>
+    
+<meta charset="utf-8" >
+
 <title>配置Jekyll博客本地开发环境(Windows 7) | 飞爱碧玉的个人博客</title>
+<meta name="description" content="温故而知新">
 
-<link href="https://xiaxi626.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://xiaxi626.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
-<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico?v=1708146931921">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://xiaxi626.github.io/styles/main.css">
 
-<script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+<script src="https://xiaxi626.github.io/media/scripts/vue.js"></script>
+<script src="https://xiaxi626.github.io/media/scripts/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.5.0/tocbot.min.js"></script>
+  </head>
+  <body>
+    <div class="carousel carousel-slider center index-cover" data-indicators="true">
+    <div class="bg-cover pd-header" style="background: url('') no-repeat center center fixed" data-link="https://xiaxi626.github.io/post/pei-zhi-jekyll-bo-ke-ben-di-kai-fa-huan-jing-windows-7/">
+        <div class="container">
+            <div class="row">
+                <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                    <div class="brand">
+                        <div class="title center-align">
+                            配置Jekyll博客本地开发环境(Windows 7)
+                        </div>
+                        <div class="description center-align">
+                            <span id="subtitle">
+                                
+                            </span><span class="typed-cursor">|</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+<script>
+    window.onload = function () {
+        var typed = new Typed("#subtitle", {
+            strings: [ 
+                
+                    "从来没有真正的绝境, 只有心灵的迷途",
+                
+                    '',
 
-<!-- DEMO CSS -->
-<style type="text/css">
-	.github-badge {
-    display: inline-block;
-    border-radius: 4px;
-    text-shadow: none;
-    font-size: 12px;
-    color: #fff;
-    line-height: 1.25;
-    margin-bottom: 5px
-}
-
-.github-badge a {
-    color: #fff
-}
-
-.github-badge .badge-subject {
-    display: inline-block;
-    background-color: #555;
-    padding: 4px 4px 4px 6px;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px
-}
-
-.github-badge .badge-value {
-    display: inline-block;
-    padding: 4px 6px 4px 4px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px
-}
-
-.github-badge .bg-blue {
-    background-color: #007ec6 !important
-}
-
-.github-badge .bg-green {
-    background-color: #97ca00 !important
-}
-
-#footer span {
-    font-size: .9em
-}
-</style>
-
-<link rel="canonical" href="https://xiaxi626.github.io/post/pei-zhi-jekyll-bo-ke-ben-di-kai-fa-huan-jing-windows-7/" />
-</head>
-<body>
-<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
-<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://xiaxi626.github.io"><img alt="logo" style="display:inline-block;" src="https://xiaxi626.github.io/images/avatar.png"/></a><h1 title="飞爱碧玉的个人博客" class="weaklink"><a  href="/">飞爱碧玉的个人博客</a></h1>
-
-<div class="navbar weaklink">
-<div class="normal_nav">
-<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul></nav>
-<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
-<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
-<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/friends" class="selected active current nav__item" >友情链接</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
-<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1697680213512" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="搜索..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
-</div></div>
-<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+            ],
+            startDelay: 300,
+            typeSpeed: 100,
+            loop: true,
+            backSpeed: 50,
+            showCursor: true
+        });
+        let cover = document.querySelector('.bg-cover');
+        cover.setAttribute('style', `background: url('${localStorage[cover.dataset.link]}') no-repeat center center fixed`);
+    }
+</script>
 
 
-<div class="main"><div class="main-inner"><div class="content">
-<article class="post">
-<h2 class="post_title sm_margin"><a>配置Jekyll博客本地开发环境(Windows 7)</a></h2>
-<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
-<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2023-10-04</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://xiaxi626.github.io/tag/JcIpV52xSP/" class="tag">Technology</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">2236字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">10 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
-</section>
+    <div class="toc-body hide">  
+        <div class="toc"></div>
+    </div>
+    <div id="floating-toc-btn">
+        <i class="fas fa-list-ul bg-color"></i>
+    </div>
+    <div id="app" class="main">
+      <div class="site-header-container nav-transparent">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://xiaxi626.github.io">
+        <img class="avatar" src="https://xiaxi626.github.io/images/avatar.png?v=1708146931921" alt=""
+          width="32px" height="32px">
+      </a>
+      <a href="https://xiaxi626.github.io">
+        <h1 class="site-title">
+          飞爱碧玉的个人博客
+        </h1>
+      </a>
+    </div>
+    <div class="right">
+        <div class="menu">
+            <a href="/post/about" v-if="headSearchShow">
+                <i class="fa-solid fa-user"></i>&nbsp;个人
+            </a>
+            <a href="/archives" v-if="headSearchShow">
+                <i class="fa-solid fa-box-archive"></i>&nbsp;归档
+            </a>
+            <a href="/tags" v-if="headSearchShow">
+                <i class="fa-solid fa-tag"></i>&nbsp;标签
+            </a>
+            <a href="/life" v-if="headSearchShow">
+                <i class="fa-fw fas fa-heart"></i>&nbsp;生活
+            </a>
+            
+        </div>
+      <div class="gridea-search-div" v-if="headSearchShow">
+        <form id="gridea-search-form" action="https://xiaxi626.github.io/search/">
+          <input class="gridea-search-input" autocomplete="off" spellcheck="false" name="q" />
+        </form>
+      </div>
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }"
+          @click="menuClick()" v-if="menuSearchShow"></i>
+      </transition>
+    </div>
+  </div>
+</div>
 
-<div style="display:flex">
-<div class="md_block" id="md_block">
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      <div class="gridea-search-div" v-if="menuSearchShow">
+        <form id="gridea-search-form" action="https://xiaxi626.github.io/search/">
+          <input class="gridea-search-input" autocomplete="off" spellcheck="false" name="q" />
+        </form>
+      </div>
+      
+        
+            <a href="/" class="menu purple-link">
+              首页
+            </a>
+            
+              
+        
+            <a href="/archives" class="menu purple-link">
+              归档
+            </a>
+            
+              
+        
+            <a href="/tags" class="menu purple-link">
+              标签
+            </a>
+            
+              
+        
+            <a href="/post/about" class="menu purple-link">
+              关于
+            </a>
+            
+              
+        
+            <a href="/friends" class="menu purple-link">
+              友情链接
+            </a>
+            
+              
+              
+    </div>
+  </div>
+</transition>
 
-<div class="round-shape-one"></div>
+<script>
+    window.onscroll = function () {
+        var t = document.documentElement.scrollTop || document.body.scrollTop;
+        var header = document.querySelector('.site-header-container');
+        if (t > 0) {
+            header.classList.remove('nav-transparent');
+        } else {
+            header.classList.add('nav-transparent');
+        }
+    }
+</script>
 
-<p>本教程主要基于<a href="https://zhuanlan.zhihu.com/p/139567128">配置Jekyll博客本地开发环境(Windows)</a>和<a href="https://blog.csdn.net/weixin_34161029/article/details/91498266">win7下搭建Jekyll写作环境</a>，以我自己的方式尝试搭建，把过程和遇到的困难总结一下。<br>
+      <div class="content-body">
+        <div class="content-container content-card">
+            <div class="post-detail">
+              <div class="post-info post-detail-info">
+                <span><i class="icon-calendar-outline"></i> 2023-10-04</span>
+                
+                  <span>
+                    
+                        <i class="icon-pricetags-outline"></i>
+                      <a href="https://xiaxi626.github.io/tag/JcIpV52xSP/">
+                        Technology
+                      </a>
+                    
+                  </span>
+                
+              </div>
+              
+              <hr class="clear">
+              <div class="post-content">
+                <p>本教程主要基于<a href="https://zhuanlan.zhihu.com/p/139567128">配置Jekyll博客本地开发环境(Windows)</a>和<a href="https://blog.csdn.net/weixin_34161029/article/details/91498266">win7下搭建Jekyll写作环境</a>，以我自己的方式尝试搭建，把过程和遇到的困难总结一下。<br>
 相信各位读者在阅读本文后，在Windows 7上能更快地配置好Jekyll博客本地开发环境。</p>
 <h2 id="一-安装-ruby">一、安装 Ruby</h2>
 <p>在 <strong>Windows</strong> 上运行 <strong>Jekyll</strong> 需要先安装 <strong>Ruby</strong>。在<a href="https:/rubyinstaller.org/downloads/">Ruby 官网</a>中我们可以看到官网推荐的版本。<br>
@@ -248,6 +347,353 @@ gem install bundler-2.4.20/*.gemspec --no-document
 <h3 id="bundle-install显示fetching-source-index-from-retrying-fetcher-due-to-error-24-bundlerhttperror-could-not-fetch-specs-from-due-to-underlying-error-timed-out">bundle install显示Fetching source index from … Retrying fetcher due to error (2/4): Bundler::HTTPError Could not fetch specs from … due to underlying error &lt;timed out …</h3>
 <p>通常跟网络连接和Rubygems 服务器没多大关系，请检查jekyll serve时是否报告jekyll版本旧了，比如原先该主题Jekyll 3.8.5 即可，这会提示要Jekyll 3.9.3。<br>
 如果一直不行请从Ruby开始重新操作。</p>
+<h2 id="三-卸载一切">三、卸载一切</h2>
+<h3 id="卸载jekyll">卸载Jekyll</h3>
+<p>通常我们输入以下命令卸载Jekyll——</p>
+<pre><code class="language-bash">gem uninstall jekyll -v &lt;jekyll version&gt;
+</code></pre>
+<p>提示我们</p>
+<pre><code class="language-bash">ERROR:  While executing gem ... (Gem::DependencyRemovalException)
+    Uninstallation aborted due to dependent gem(s)
+</code></pre>
+<p>这个错误表明至少有一个或多个 gem 依赖于 Jekyll，因此系统不允许你卸载它。<br>
+为了解决这个问题，你可以采取以下步骤：</p>
+<ol>
+<li><strong>查找依赖 Jekyll 的 gem</strong></li>
+</ol>
+<p>你可以使用以下命令来查找哪些 gem 依赖于 Jekyll：</p>
+<pre><code class="language-bash">gem dependency jekyll
+</code></pre>
+<p>这会列出所有直接依赖于 Jekyll 的 gem。<br>
+2. <strong>考虑卸载依赖的 gem</strong></p>
+<p>如果你确定不再需要那些依赖于 Jekyll 的 gem，你可以尝试先卸载它们，然后再卸载 Jekyll。例如，如果 <code>some_gem</code> 依赖于 Jekyll，你可以这样操作：</p>
+<pre><code class="language-bash">gem uninstall some_gem
+</code></pre>
+<ol start="3">
+<li>使用 --ignore-dependencies 选项</li>
+</ol>
+<p>如果你确定要卸载 Jekyll，并且不关心其他 gem 是否还能正常工作，你可以使用 <code>--ignore-dependencies</code> 选项来强制卸载它：</p>
+<pre><code class="language-bash">gem uninstall jekyll --ignore-dependencies
+</code></pre>
+<h3 id="卸载所有gem包">卸载所有gem包</h3>
+<p>要卸载所有gem包，你可以使用Ruby的包管理器gem提供的命令来完成。以下是一些步骤来卸载所有gem包：</p>
+<ol>
+<li>使用 <code>gem list</code> 命令来列出所有已安装的gem包。这将显示所有已安装的gem包及其版本号。像这样——</li>
+</ol>
+<pre><code class="language-bash">gem list
+activesupport (7.0.8)
+addressable (2.8.5)
+base64 (0.1.1)
+benchmark (default: 0.1.0)
+bigdecimal (default: 2.0.0)
+bundler (default: 2.1.4)
+cgi (default: 0.1.0.1)
+coffee-script (2.4.1)
+coffee-script-source (1.11.1)
+colorator (1.1.0)
+commonmarker (0.23.10)
+concurrent-ruby (1.2.2)
+csv (default: 3.1.2)
+date (default: 3.0.3)
+dbm (default: 1.1.0)
+delegate (default: 0.1.0)
+did_you_mean (default: 1.4.0)
+dnsruby (1.70.0)
+em-websocket (0.5.3)
+etc (default: 1.1.0)
+ethon (0.16.0)
+eventmachine (1.2.7 x64-mingw32)
+execjs (2.9.1)
+faraday (2.7.11)
+faraday-net_http (3.0.2)
+fcntl (default: 1.0.0)
+ffi (1.16.2 x64-mingw32)
+fiddle (default: 1.0.0)
+fileutils (default: 1.4.1)
+forwardable (default: 1.3.1)
+forwardable-extended (2.6.0)
+gdbm (default: 2.1.0)
+gemoji (3.0.1)
+getoptlong (default: 0.1.0)
+github-pages (228)
+github-pages-health-check (1.17.9)
+google-protobuf (3.24.3 x64-mingw32)
+html-pipeline (2.14.3)
+http_parser.rb (0.8.0)
+i18n (1.14.1)
+io-console (default: 0.5.6)
+ipaddr (default: 1.2.2)
+irb (default: 1.2.6)
+jekyll-avatar (0.7.0)
+jekyll-coffeescript (1.1.1)
+jekyll-commonmark (1.4.0)
+jekyll-commonmark-ghpages (0.4.0)
+jekyll-default-layout (0.1.4)
+jekyll-feed (0.17.0, 0.15.1)
+jekyll-gist (1.5.0)
+jekyll-github-metadata (2.13.0)
+jekyll-include-cache (0.2.1)
+jekyll-mentions (1.6.0)
+jekyll-optional-front-matter (0.3.2)
+jekyll-paginate (1.1.0)
+jekyll-readme-index (0.3.0)
+jekyll-redirect-from (0.16.0)
+jekyll-relative-links (0.6.1)
+jekyll-remote-theme (0.4.3)
+jekyll-sass-converter (1.5.2)
+jekyll-seo-tag (2.8.0)
+jekyll-sitemap (1.4.0)
+jekyll-swiss (1.0.0)
+jekyll-theme-architect (0.2.0)
+jekyll-theme-cayman (0.2.0)
+jekyll-theme-dinky (0.2.0)
+jekyll-theme-hacker (0.2.0)
+jekyll-theme-leap-day (0.2.0)
+jekyll-theme-merlot (0.2.0)
+jekyll-theme-midnight (0.2.0)
+jekyll-theme-minimal (0.2.0)
+jekyll-theme-modernist (0.2.0)
+jekyll-theme-primer (0.6.0)
+jekyll-theme-slate (0.2.0)
+jekyll-theme-tactile (0.2.0)
+jekyll-theme-time-machine (0.2.0)
+jekyll-titles-from-headings (0.5.3)
+jekyll-watch (2.2.1)
+jemoji (0.12.0)
+json (default: 2.3.0)
+kramdown (2.4.0, 2.3.2)
+kramdown-parser-gfm (1.1.0)
+liquid (4.0.4)
+listen (3.8.0)
+logger (default: 1.4.2)
+matrix (default: 0.2.0)
+mercenary (0.3.6)
+minima (2.5.1)
+minitest (5.13.0)
+mutex_m (default: 0.1.0)
+net-pop (default: 0.1.0)
+net-smtp (default: 0.1.0)
+net-telnet (0.2.0)
+nokogiri (1.15.4 x64-mingw32)
+observer (default: 0.1.0)
+octokit (4.25.1)
+open3 (default: 0.1.0)
+openssl (default: 2.1.3)
+ostruct (default: 0.2.0)
+pathutil (0.16.2)
+power_assert (1.1.7)
+prime (default: 0.1.1)
+pstore (default: 0.1.0)
+psych (default: 3.1.0)
+public_suffix (5.0.3, 4.0.7)
+racc (default: 1.4.16)
+rake (13.0.1)
+rb-fsevent (0.11.2)
+rb-inotify (0.10.1)
+rdoc (default: 6.2.1.1)
+readline (default: 0.0.2)
+reline (default: 0.1.5)
+rexml (default: 3.2.3.1)
+rouge (3.30.0, 3.26.0)
+rss (default: 0.2.8)
+ruby2_keywords (0.0.5)
+rubyzip (2.3.2)
+safe_yaml (1.0.5)
+sass (3.7.4)
+sass-listen (4.0.0)
+sawyer (0.9.2)
+sdbm (default: 1.0.0)
+simpleidn (0.2.1)
+singleton (default: 0.1.0)
+stringio (default: 0.1.0)
+strscan (default: 1.0.3)
+terminal-table (3.0.2, 1.8.0)
+test-unit (3.3.4)
+thread_safe (0.3.6)
+timeout (default: 0.1.0)
+tracer (default: 0.1.0)
+typhoeus (1.4.0)
+tzinfo (2.0.6)
+tzinfo-data (1.2023.3)
+unf (0.1.4)
+unf_ext (0.0.8.2 x64-mingw32)
+unicode-display_width (2.5.0, 1.8.0)
+uri (default: 0.10.0)
+wdm (0.1.1)
+webrick (1.8.1, default: 1.6.1)
+xmlrpc (0.3.0)
+yaml (default: 0.1.0)
+zlib (default: 1.1.0)
+</code></pre>
+<ol start="2">
+<li>要卸载所有gem包，你可以使用gem uninstall命令，并跟上每个gem包的名称和版本号。例如，如果你想要卸载名为gem-name的gem包，可以使用以下命令：</li>
+</ol>
+<pre><code class="language-bash">gem uninstall gem-name -v versionNumber
+</code></pre>
+<ol start="3">
+<li>重复上述步骤，为每个gem包执行gem uninstall命令，直到你卸载了所有不需要的gem包。</li>
+<li>在卸载所有gem包后，你还可以使用gem cleanup命令来清理无用的gem文件。这将删除所有不再需要的gem文件，以释放磁盘空间。</li>
+</ol>
+<pre><code class="language-bash">gem cleanup
+</code></pre>
+<p>我们换种思路卸载所有gem包。<strong>有两种方法可以实现这个目标。</strong></p>
+<p><strong>第一种方法：</strong></p>
+<pre><code class="language-bash">ruby -e &quot;gem_list = `gem list --no-versions`.split($/).drop(1); gem_list.each { |gem| `gem uninstall -aIx #{gem}` }&quot;
+</code></pre>
+<p>这段代码首先会获取所有已安装的gem包的列表，然后遍历这个列表，对每个gem包执行卸载操作。</p>
+<p><strong>第二种方法：</strong><br>
+如果你的RubyGems版本大于等于2.1.0，你可以使用以下命令：</p>
+<pre><code class="language-bash">gem uninstall -aIx
+</code></pre>
+<p>这个命令会卸载所有版本的gem包，忽略依赖项，并包含可执行文件。<br>
+示例：</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /e/Ramme (master)
+$ gem uninstall -aIx
+Successfully uninstalled activesupport-7.0.8
+Successfully uninstalled addressable-2.8.5
+Successfully uninstalled base64-0.1.1
+Successfully uninstalled coffee-script-2.4.1
+Successfully uninstalled coffee-script-source-1.11.1
+Successfully uninstalled colorator-1.1.0
+Removing commonmarker
+Successfully uninstalled commonmarker-0.23.10
+Successfully uninstalled concurrent-ruby-1.2.2
+Successfully uninstalled dnsruby-1.70.0
+Successfully uninstalled em-websocket-0.5.3
+Successfully uninstalled ethon-0.16.0
+Successfully uninstalled eventmachine-1.2.7-x64-mingw32
+Successfully uninstalled execjs-2.9.1
+Successfully uninstalled faraday-2.7.11
+Successfully uninstalled faraday-net_http-3.0.2
+Successfully uninstalled ffi-1.16.2-x64-mingw32
+Successfully uninstalled forwardable-extended-2.6.0
+Removing gemoji
+Successfully uninstalled gemoji-3.0.1
+Removing github-pages
+Successfully uninstalled github-pages-228
+Successfully uninstalled github-pages-health-check-1.17.9
+Successfully uninstalled google-protobuf-3.24.3-x64-mingw32
+Successfully uninstalled html-pipeline-2.14.3
+Successfully uninstalled http_parser.rb-0.8.0
+Successfully uninstalled i18n-1.14.1
+Successfully uninstalled jekyll-avatar-0.7.0
+Successfully uninstalled jekyll-coffeescript-1.1.1
+Successfully uninstalled jekyll-commonmark-1.4.0
+Successfully uninstalled jekyll-commonmark-ghpages-0.4.0
+Successfully uninstalled jekyll-default-layout-0.1.4
+Successfully uninstalled jekyll-feed-0.17.0
+Successfully uninstalled jekyll-feed-0.15.1
+Successfully uninstalled jekyll-gist-1.5.0
+Successfully uninstalled jekyll-github-metadata-2.13.0
+Successfully uninstalled jekyll-include-cache-0.2.1
+Successfully uninstalled jekyll-mentions-1.6.0
+Successfully uninstalled jekyll-optional-front-matter-0.3.2
+Successfully uninstalled jekyll-paginate-1.1.0
+Successfully uninstalled jekyll-readme-index-0.3.0
+Successfully uninstalled jekyll-redirect-from-0.16.0
+Successfully uninstalled jekyll-relative-links-0.6.1
+Successfully uninstalled jekyll-remote-theme-0.4.3
+Successfully uninstalled jekyll-sass-converter-1.5.2
+Successfully uninstalled jekyll-seo-tag-2.8.0
+Successfully uninstalled jekyll-sitemap-1.4.0
+Successfully uninstalled jekyll-swiss-1.0.0
+Successfully uninstalled jekyll-theme-architect-0.2.0
+Successfully uninstalled jekyll-theme-cayman-0.2.0
+Successfully uninstalled jekyll-theme-dinky-0.2.0
+Successfully uninstalled jekyll-theme-hacker-0.2.0
+Successfully uninstalled jekyll-theme-leap-day-0.2.0
+Successfully uninstalled jekyll-theme-merlot-0.2.0
+Successfully uninstalled jekyll-theme-midnight-0.2.0
+Successfully uninstalled jekyll-theme-minimal-0.2.0
+Successfully uninstalled jekyll-theme-modernist-0.2.0
+Successfully uninstalled jekyll-theme-primer-0.6.0
+Successfully uninstalled jekyll-theme-slate-0.2.0
+Successfully uninstalled jekyll-theme-tactile-0.2.0
+Successfully uninstalled jekyll-theme-time-machine-0.2.0
+Successfully uninstalled jekyll-titles-from-headings-0.5.3
+Successfully uninstalled jekyll-watch-2.2.1
+Successfully uninstalled jemoji-0.12.0
+Successfully uninstalled kramdown-2.4.0
+Removing kramdown
+Successfully uninstalled kramdown-2.3.2
+Successfully uninstalled kramdown-parser-gfm-1.1.0
+Successfully uninstalled liquid-4.0.4
+Removing listen
+Successfully uninstalled listen-3.8.0
+Successfully uninstalled mercenary-0.3.6
+Successfully uninstalled minima-2.5.1
+Successfully uninstalled minitest-5.13.0
+Successfully uninstalled net-telnet-0.2.0
+Removing nokogiri
+Successfully uninstalled nokogiri-1.15.4-x64-mingw32
+Successfully uninstalled octokit-4.25.1
+Successfully uninstalled pathutil-0.16.2
+Successfully uninstalled power_assert-1.1.7
+Successfully uninstalled public_suffix-5.0.3
+Successfully uninstalled public_suffix-4.0.7
+Removing rake
+Successfully uninstalled rake-13.0.1
+Successfully uninstalled rb-fsevent-0.11.2
+Successfully uninstalled rb-inotify-0.10.1
+Successfully uninstalled rouge-3.30.0
+Removing rougify
+Successfully uninstalled rouge-3.26.0
+Successfully uninstalled ruby2_keywords-0.0.5
+Successfully uninstalled rubyzip-2.3.2
+Removing safe_yaml
+Successfully uninstalled safe_yaml-1.0.5
+Removing sass
+Removing sass-convert
+Removing scss
+Successfully uninstalled sass-3.7.4
+Successfully uninstalled sass-listen-4.0.0
+Successfully uninstalled sawyer-0.9.2
+Successfully uninstalled simpleidn-0.2.1
+Successfully uninstalled terminal-table-3.0.2
+Successfully uninstalled terminal-table-1.8.0
+Successfully uninstalled test-unit-3.3.4
+Successfully uninstalled thread_safe-0.3.6
+Successfully uninstalled typhoeus-1.4.0
+Successfully uninstalled tzinfo-2.0.6
+Successfully uninstalled tzinfo-data-1.2023.3
+Successfully uninstalled unf-0.1.4
+Successfully uninstalled unf_ext-0.0.8.2-x64-mingw32
+Successfully uninstalled unicode-display_width-2.5.0
+Successfully uninstalled unicode-display_width-1.8.0
+Successfully uninstalled wdm-0.1.1
+Successfully uninstalled webrick-1.8.1
+Successfully uninstalled xmlrpc-0.3.0
+INFO:  Uninstalled all gems in C:/Ruby27-x64/lib/ruby/gems/2.7.0
+</code></pre>
+<p>如果你的RubyGems版本小于2.1.0，你需要使用类似下面的脚本：</p>
+<pre><code class="language-bash">for i in `gem list --no-versions`; do gem uninstall -aIx $i; done
+</code></pre>
+<p>这段代码同样会遍历所有已安装的gem包，并对每个gem包执行卸载操作。</p>
+<p>请注意，这些操作会卸载你系统上安装的所有gem包，包括那些可能对你的系统或项目至关重要的包。在执行这些操作之前，请确保你了解卸载这些gem包可能带来的影响，并确保你有恢复这些gem包的方法（例如，通过备份或重新安装它们）。此外，这些命令只会卸载你通过gem安装的gem包，如果你使用其他方式（如RVM、rbenv或其他包管理器）安装的gem包，你可能需要使用相应的方法来卸载它们。</p>
+<p>鉴于gem包如此之多，如果你需要快速卸载多个gem包，请阅读以下内容——</p>
+<h4 id="sublime-text-如何删除所有括号内内容">Sublime Text 如何删除所有括号内内容</h4>
+<p>Sublime Text 并没有直接提供一键删除所有括号内内容的功能。但你可以使用正则表达式（Regex）配合查找和替换（Find and Replace）功能来实现这个目标。</p>
+<ol>
+<li>使用 Ctrl + H 打开查找和替换面板。</li>
+<li>在 &quot;Find&quot; 框中，输入以下的正则表达式：<code>\([^)]*\)</code>。这个正则表达式会匹配任何在圆括号 () 中的内容。如果你想要匹配方括号 [] 或大括号 {} 中的内容，你可以相应地修改这个正则表达式。</li>
+</ol>
+<pre><code class="language-bash">\([^)]*\)
+</code></pre>
+<ol start="3">
+<li>点击 &quot;Replace All&quot; 按钮，Sublime Text 就会删除所有匹配到的括号内的内容。</li>
+</ol>
+<h3 id="卸载gem和bundler">卸载gem和bundler</h3>
+<p>Ruby自带gem环境，因此当你卸载Ruby时，gem也会被一并卸载。这是因为gem是Ruby的一部分，它们共同构成了Ruby的运行环境。所以，如果你需要重新安装gem，通常需要在重新安装Ruby之后进行。</p>
+<p>当你卸载Ruby时，Bundler通常也会被卸载，因为Bundler是一个Ruby gem，它依赖于Ruby的运行环境。Bundler用于管理Ruby项目的依赖关系，它是Ruby生态系统中的一个关键组件，但它是作为gem安装的，因此与Ruby本身紧密相关。</p>
+<p>卸载Ruby后检查gem和bundler。</p>
+<pre><code class="language-bash">$ gem -v
+bash: gem: command not found
+
+$ bundler -v
+bash: bundler: command not found
+
+</code></pre>
+<h2 id="end"><strong>END!</strong></h2>
 <h2 id="参考">参考</h2>
 <p><a href="https://zhuanlan.zhihu.com/p/139567128">配置Jekyll博客本地开发环境(Windows)</a><br>
 <a href="https://blog.csdn.net/weixin_34161029/article/details/91498266">win7下搭建Jekyll写作环境</a><br>
@@ -260,349 +706,123 @@ gem install bundler-2.4.20/*.gemspec --no-document
 <p><a href="https://cloud.tencent.com/developer/ask/sof/101984785">如何卸载使用` `bundle install`安装的所有gem-腾讯云开发者社区</a><br>
 <a href="https://jamstackthemes.dev/ssg/">Static Site Generators - Jamstack Themes</a></p>
 
-<span id="footnote"></span>
-<div id = "warn"></div>
-</div>
-<div class="toc-container"><ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E4%B8%80-%E5%AE%89%E8%A3%85-ruby">一、安装 Ruby</a></li>
-<li><a href="#%E4%BA%8C-%E5%AE%89%E8%A3%85-jekyll">二、安装 Jekyll</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8-bundle-config-%E4%BF%AE%E6%94%B9-ruby-%E9%95%9C%E5%83%8F%E6%BA%90">使用 bundle config 修改 Ruby 镜像源</a></li>
-<li><a href="#jeklly%E5%90%AF%E5%8A%A8">Jeklly，启动！</a>
-<ul>
-<li><a href="#%E5%87%BA%E7%8E%B0bundlergemnotfound%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">出现...(Bundler::GemNotFound)问题解决方法</a></li>
-<li><a href="#%E5%87%BA%E7%8E%B0-you-have-already-activated-i18n-1141-but-your-gemfile-requires-i18n-095-gemloaderror-%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">出现 You have already activated i18n 1.14.1, but your Gemfile requires i18n 0.9.5. …(Gem::LoadError) 问题解决方法</a></li>
-</ul>
-</li>
-<li><a href="#jekyll%E4%B8%BB%E9%A2%98ramme">Jekyll主题Ramme</a></li>
-<li><a href="#%E6%80%BB%E7%BB%93">总结</a>
-<ul>
-<li><a href="#%E8%BF%90%E8%A1%8Cgem-uninstall-all%E6%8F%90%E7%A4%BAerror-while-executing-gem-gemdependencyremovalexception-uninstallation-aborted-due-to-dependent-gems">运行gem uninstall --all提示：ERROR:  While executing gem ... (Gem::DependencyRemovalException) Uninstallation aborted due to dependent gem(s)</a></li>
-<li><a href="#error-could-not-find-a-valid-gem-jekyll-385-in-any-repository">ERROR:  Could not find a valid gem 'jekyll' (= 3.8.5) in any repository</a></li>
-<li><a href="#gem-source-a-httpsrubygemsorg%E6%8F%90%E7%A4%BAerror-fetching-httpsrubygemsorg-timed-out-httpsrubygemsorgspecs48gz">gem source -a https://rubygems.org提示Error fetching https://rubygems.org: timed out (https://rubygems.org/specs.4.8.gz)</a></li>
-<li><a href="#gem-source-r-httpsrubygemsorg-%E6%8F%90%E7%A4%BAsource-httpsrubygemsorg-not-present-in-cache">gem source -r https://rubygems.org 提示source https://rubygems.org not present in cache</a></li>
-<li><a href="#jekyll%E6%8F%90%E7%A4%BA%E4%BD%BF%E7%94%A8%E4%BA%86older%E7%9A%84bundler%E7%89%88%E6%9C%AC">Jekyll提示使用了older的bundler版本</a></li>
-<li><a href="#%E6%8F%90%E7%A4%BAerror-while-executing-gem-gemremotefetcherunknownhosterror">提示ERROR:  While executing gem ... (Gem::RemoteFetcher::UnknownHostError)</a></li>
-<li><a href="#bundle-install%E6%98%BE%E7%A4%BAfetching-source-index-from-retrying-fetcher-due-to-error-24-bundlerhttperror-could-not-fetch-specs-from-due-to-underlying-error-timed-out">bundle install显示Fetching source index from … Retrying fetcher due to error (2/4): Bundler::HTTPError Could not fetch specs from … due to underlying error &lt;timed out …</a></li>
-</ul>
-</li>
-<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
-<li><a href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB">扩展阅读</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div id="fullPage"><canvas id="canvas"></canvas></div>
-</article>
-<div id="eof"><span>EOF</span></div>
+              </div>
+              <hr class="clear">
+              
+                <div class="next-post">
+                  <a class="purple-link" href="https://xiaxi626.github.io/post/ru-he-shi-yong-sublime-text-4-da-jian-cc-yu-yan-kai-fa-huan-jing/">
+                    <h3 class="post-title">
+                      下一篇：如何使用Sublime Text 4搭建 C/C++ 语言开发环境
+                    </h3>
+                  </a>
+                </div>
+                
+            </div>
+          </div>
+      </div>
 
-<div class="round-shape-one"></div>
+      
+          <div id="gitalk-container"></div>
+      
 
-<section>
-<div class="doc_comments">
+    
+    </div>
+    <div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/xiaxi626" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://space.bilibili.com/328031473/bangumi" target="_blank">
+          <i class="fab fa-bilibili"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.zhihu.com/people/xiao-yan-shi-36" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+  </div>
+  <div class="slogan">温故而知新</div> |
+  <a href="https://github.com/Decade-qiu/gridea-theme-Eternal" target="_blank">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></a> | <a href="https://github.com/Decade-qiu/gridea-theme-Eternal" target="_blank">Powered by Eternal</a> | <a href="https://xiaxi626.github.io/atom.xml" target="_blank">RSS</a>
+</div>
 
-            
-                <!--评论显示区，请插入合适的位置-->
-<div id="comment"></div>
-<!--Leancloud 操作库:-->
-<script src="//cdn.jsdelivr.net/npm/leancloud-storage@4.13.2/dist/av-min.js"></script>
-<!--<script src="//cdn1.lncld.net/static/js/3.6.1/av-min.js"></script>-->
-<!--Valine 的核心代码库-->
-<script src="//cdnjs.cloudflare.com/ajax/libs/valine/1.5.1/Valine.min.js"></script>
-<!--<script src="//cdn.jsdelivr.net/npm/valine@1.4.4/dist/Valine.min.js"></script>-->
-<script>
-    new Valine({
-        el:'#comment',
-        appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
-        appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
-        placeholder: '',
-        avatar:'',
-        pageSize: '10',
-        recordIP: 'true',
-        requiredFields: ['nick','mail'],
-        enableQQ: 'true',
-        emojiCDN: '//i0.hdslb.com/bfs/',
-        emojiMaps: {
-        "tv-doge": "emote/6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
-        "tv-坏笑": "emote/1f0b87f731a671079842116e0991c91c2c88645a.png",
-        "tv-难过": "emote/87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
-        "tv-生气": "emote/26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
-        "tv-委屈": "emote/d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
-        "tv-斜眼笑": "emote/911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
-        "tv-呆": "emote/fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
-        "tv-发怒": "emote/34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
-        "tv-惊吓": "emote/0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
-        "tv-呕吐": "emote/9f996894a39e282ccf5e66856af49483f81870f3.png",
-        "tv-思考": "emote/90cf159733e558137ed20aa04d09964436f618a1.png",
-        "tv-微笑": "emote/70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
-        "tv-疑问": "emote/0793d949b18d7be716078349c202c15ff166f314.png",
-        "tv-大哭": "emote/23269aeb35f99daee28dda129676f6e9ea87934f.png",
-        "tv-鼓掌": "emote/1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png",
-        "tv-抠鼻": "emote/c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
-        "tv-亲亲": "emote/a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
-        "tv-调皮": "emote/b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
-        "tv-笑哭": "emote/1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
-        "tv-晕": "emote/5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
-        "tv-点赞": "emote/f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
-        "tv-害羞": "emote/a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
-        "tv-睡着": "emote/8b196675b53af58264f383c50ad0945048290b33.png",
-        "tv-色": "emote/61822c7e9aae5da76475e7892534545336b23a6f.png",
-        "tv-吐血": "emote/09dd16a7aa59b77baa1155d47484409624470c77.png",
-        "tv-无奈": "emote/ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
-        "tv-再见": "emote/180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
-        "tv-流汗": "emote/cead1c351ab8d79e9f369605beb90148db0fbed3.png",
-        "tv-偷笑": "emote/bb690d4107620f1c15cff29509db529a73aee261.png",
-        "tv-抓狂": "emote/fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
-        "tv-黑人问号": "emote/45821a01f51bc867da9edbaa2e070410819a95b2.png",
-        "tv-困": "emote/241ee304e44c0af029adceb294399391e4737ef2.png",
-        "tv-打脸": "emote/56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
-        "tv-闭嘴": "emote/c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
-        "tv-鄙视": "emote/6e72339f346a692a495b123174b49e4e8e781303.png",
-        "tv-腼腆": "emote/89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
-        "tv-馋": "emote/fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
-        "tv-可爱": "emote/9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
-        "tv-发财": "emote/34db290afd2963723c6eb3c4560667db7253a21a.png",
-        "tv-生病": "emote/8b0ec90e6b86771092a498c54f09fc94621c1900.png",
-        "tv-流鼻血": "emote/c32d39db2737f89b904ca32700d140a9241b0767.png",
-        "tv-尴尬": "emote/7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
-        "tv-大佬": "emote/093c1e2c490161aca397afc45573c877cdead616.png",
-        "tv-流泪": "emote/7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
-        "tv-冷漠": "emote/b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
-        "tv-皱眉": "emote/72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
-        "tv-鬼脸": "emote/0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
-        "tv-调侃": "emote/4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
-        "tv-目瞪口呆": "emote/0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
-        "珑歌Taki_问号": "garb/15856c32cb30a08f361259a59c71b0edee4427dc.png@65w.webp",
-        "珑歌Taki_打Call": "garb/67544581bd5f1390e6d95ac34c47867a9e9ebbbb.png@65w.webp",
-        "珑歌Taki_好耶": "garb/0176869034a23b2523b552687ec851f4567bb452.png@65w.webp",
-        "珑歌Taki_点赞": "garb/243dcd30319137f2715adbea4a4b106835e5c772.png@65w.webp",
-        "珑歌Taki_啊对对": "garb/b2576d904e7fa6cada13a35236611f0128fe7a3a.png@65w.webp",
-        "珑歌Taki_达咩": "garb/e39b5d13f7276c08caef3ea7b9585ab94de423da.png@65w.webp",
-        "珑歌Taki_辣眼睛": "garb/7db3c777e5f618f4458fd379db9b6cfcc5f96a59.png@65w.webp",
-        "珑歌Taki_晚安": "garb/cf46da11526aae66fa9b29532a32f262feaf806b.png@65w.webp",
-        "珑歌Taki_羞羞": "garb/05ae694d1ef5335673825357ec3bcaee81ca2fd2.png@65w.webp",
-        "珑歌Taki_叉你": "garb/7b6c47c462770fd91ca78982cf43a2025564fead.png@65w.webp",
-        "珑歌Taki_给你一拳": "garb/1e46191feebe3412e07919dd33f2daef01884c0d.png@65w.webp",
-        "珑歌Taki_委屈": "live/e4ce02a977edbd40a6df488f8ce317f1efb77e01.png@65w.webp",
-        "珑歌Taki_呃呃": "live/e5c634f3c00b440af5e0269d6cd23a54dcd78a83.png@65w.webp",
-        "珑歌Taki_爱你": "live/27e8e2c6679a2e268a2dc0032adec7e0f68abd89.png@65w.webp",
-        "珑歌Taki_惊": "live/30fedf447cef730d5acb87c945bf964d4e43b8be.png@65w.webp",
-        "珑歌Taki_干杯": "live/68db36d0645df15f4bb8e678d7d9f3a13840eaec.png@65w.webp",
-        "樱吹雪_Yuki_啵啵": "garb/a963d838a5f6197defbb6e0591377d4bfd37707a.png@65w.webp",
-        "樱吹雪_Yuki_打call": "garb/18f1f1c34738ebb3e2fc6a99bb2afe24192906ab.png@65w.webp",
-        "樱吹雪_Yuki_晚安": "garb/c2651d764536e9de174dfc3ab6c0b74ba38d637e.png@65w.webp",
-        "樱吹雪_Yuki_贴贴": "garb/dd5d3510ff3169348cfbd0308432cbf4d86f95da.png@65w.webp",
-        "樱吹雪_Yuki_好耶": "garb/8a65b68d1c318f5878f610f0e6be5ab55cfad755.png@65w.webp",
-        "樱吹雪_Yuki_嗷呜": "garb/fbb35575d9eeb199895056f6f2e678ea1568034f.png@65w.webp",
-        "樱吹雪_Yuki_问号": "garb/31b0cd34cdf7d76c9167c319c4a3aa8c084bfd56.png@65w.webp",
-        "樱吹雪_Yuki_哈哈": "garb/b64bccc47c050c201dd1a046c03ebff6bc73f94c.png@65w.webp",
-        "樱吹雪_Yuki_妈": "garb/be0e78b625d6b76300b917445c65998c052cb3ce.png@65w.webp",
-        "樱吹雪_Yuki_比心": "garb/c6acc382cf720529338d9426e1e7a45bd00ac6db.png@65w.webp",
-        "樱吹雪_Yuki_wink": "garb/c2500df5817faf7ca63af1cefe62c2526d7693aa.png@65w.webp",
-        "樱吹雪_Yuki_狐狸": "garb/26ae388cad7fb59d8797e7e0d77f198cdab46928.png@65w.webp",
-        "花丸晴琉_mua": "emote/25be806bfbbb5300afdbeeb64977c90cd1254bf1.png",
-        "花丸晴琉_wink": "emote/343d2d4bbf5919f25e37f971cf114d07232c5e73.png",
-        "花丸晴琉_啊咧": "emote/b34c5a1827762b981d689bbc51f134469ef06f23.png",
-        "花丸晴琉_大笑": "emote/1e28846f5cbd897dd2653142b8be9db42dfbdcb3.png",
-        "花丸晴琉_呆住": "emote/2b31495e0c538e095d44ff1a17834abe317a05d2.png",
-        "花丸晴琉_对不起": "emote/02d1e8ddfac938b20956f3d83350f442d398286a.png",
-        "花丸晴琉_好耶": "emote/29724d41c08ec63962e0974aa653ea8be0cf3947.png",
-        "花丸晴琉_挥手": "emote/2c0753c98d4e098a3c5f27ab658b1046b4032572.png",
-        "花丸晴琉_惊慌": "emote/e8307d3bd2ad84434e2f6de1eea727aaa138d987.png",
-        "花丸晴琉_泪目": "emote/02a805b640a1bd824d21c5e21cf2dbb19f03b6a1.png",
-        "花丸晴琉_丧": "emote/e45bd7cf880f36a439ef47c355c73065911992ac.png",
-        "花丸晴琉_生气": "emote/dfbfccd43db22e547f62563b73ae7a474b1163a2.png",
-        "花丸晴琉_晚安": "emote/40b60d5c04c8e7037089c408e68a73d51fd3dee7.png",
-        "花丸晴琉_无语": "emote/ac4cf2356a708eb11199f266160cb76be129ead9.png",
-        "花丸晴琉_喜欢": "emote/71a508d3183fb59f1ddf3a42af59fa7495f2c18c.png",
-        "花丸晴琉_邪恶": "emote/0a8175363b7c8270836323a627b1fe437938399c.png",
-        "花丸晴琉_疑惑": "emote/4aef9a2a5c9800faf2501014e1fba1fbf180b8f0.png",
-        "花丸晴琉_嘤嘤": "emote/b5584ef24436d42364e7234a9cd8734e00f872f6.png",
-        "花丸晴琉_赞": "emote/adf49b5e19731a8176b774f55b5472b9234ee555.png",
-        "花丸晴琉_早安": "emote/c5e20c947c10bb931413b8e4bc80b2bd3b09971e.png",
-        "-菫時-打Call": "live/e8073adeb52036d0d563c848c4b55b8449bc4b85.png@65w.webp",
-        "-菫時-分号分号": "live/f2a7a0916015a741a192ae85ee593a39c6dd04a7.png@65w.webp",
-        "-菫時-哎呀": "live/0a691aec40c738918014b27acfefa3b295b8a458.png@65w.webp",
-        "-菫時-地蕾": "live/cdb1f3adeee987c1fe5303ca90443932edb23d30.png@65w.webp",
-        "-菫時-困困": "live/c9450e570d7abcf5a920b65e18b9624b75c9d4fb.png@65w.webp",
-        "-菫時-生气": "live/021761abdfe8dc417e5267b74877bebd43dcfd58.png@65w.webp",
-        "-菫時-亲亲": "live/e0ae55eb80c6b7c01eeb042a26a3bd2938ed679a.png@65w.webp",
-        "-菫時-急了": "live/bea985bcf662dc4d85c9f78633c57398b7c3d223.png@65w.webp",
-        "-菫時-问号": "live/5b29c4c15e6b97da2df564899f84906fc800590b.png@65w.webp",
-        "-菫時-拜比": "live/a9fa62db7b7233dac30d3abd851b992710bc1649.png@65w.webp",
-        "纱依shayi_打call": "garb/4d97de8b2d6bb9cb19621af93550b3560e85277f.png@65w.webp",
-        "纱依shayi_喜欢": "garb/d345b8ff2f2dcd5a4833aa613fc7849bfb25f5e2.png@65w.webp",
-        "纱依shayi_晚安": "garb/f34ec93c5aa7fdb7cc919544df401474bed1a3c1.png@65w.webp",
-        "纱依shayi_kira": "garb/f784e4dc7d40f3d3a7ddb6977c241ff6d6a5db26.png@65w.webp",
-        "纱依shayi_贴贴": "garb/003679cdb44d37576b700f8ed0f4e85bc6ffc8a7.png@65w.webp",
-        "纱依shayi_结婚": "garb/b1a9e35f04b81476d1d93fdc3979fe194e873915.png@65w.webp",
-        "纱依shayi_甜蜜的": "garb/415a5fec5062816d6c316a718cf7f739dc12dcef.png@65w.webp",
-        "纱依shayi_摸鱼": "garb/b7f7d09fec93dd889b9e12286989dbfa41770689.png@65w.webp",
-        "纱依shayi_好厉害": "garb/7dceff9c32cb6a7a617c910cc840eaeaa89f1e60.png@65w.webp",
-        "纱依shayi_开心": "garb/360612ea05619a9517f9735e10f6a8e592eb6b35.png@65w.webp",
-        "纱依shayi_疑问": "garb/f591282a33cb0eb16e6ac679792ea90ce42e6d67.png@65w.webp",
-        "纱依shayi_哼": "garb/538c428f2d5bcaeefa60c81bb96e9a82475a59d2.png@65w.webp",
-        "纱依shayi_心碎": "garb/59697798dd454428c773ae989745af62042025ee.png@65w.webp",
-        "纱依shayi_趴": "garb/5261ebff0fce07a4bde695f56b1e90e03b2a22b9.png@65w.webp",
-        "纱依shayi_蹭蹭": "garb/8feb22fa3a58e7a26c31792be79fab8c015fa7f6.png@65w.webp",
-        "纱依shayi_喵": "garb/9a05fc8a87b3f5f05a3c01eec984aaec0f6727e1.png@65w.webp",
-        "冥冥meichan_太爱钱了": "garb/item/e3d018abc7dfcaba7a95b512d313591ec015e984.png",
-        "冥冥meichan_不可以": "garb/item/5cfc0218594fbe8b2946e67e03fc4ea5c4a19d36.png",
-        "冥冥meichan_优雅红茶": "garb/item/8698f417982fd8d5abadf5207407532bb1b5b44f.png",
-        "冥冥meichan_哭哭": "garb/item/32817fbdd4226afe71e1aa3d8f0a91c62729567d.png",
-        "冥冥meichan_不想输": "garb/item/04fdc12859be022fba9992c76f89b0956d19262d.png",
-        "冥冥meichan_开车": "garb/item/3414c37849153f2ebd0fe6c8d7298bbc711c4ed9.png",
-        "冥冥meichan_大钻戒": "garb/item/fa42d4a68660e6c3d6447cdf0fe7d95cc4c7cdae.png",
-        "冥冥meichan_带走": "garb/item/9862fdd11fb28e2456a5cd3f864f87a46f20604f.png",
-        "冥冥meichan_我好了": "garb/item/8855c3fcfc538ee1d96e9ec25f758a0b5602cf66.png",
-        "冥冥meichan_嗨呀": "garb/item/caebcb782f3a8742548786cd52cb4d80d8353e03.png",
-        "冥冥meichan_好喜欢哦": "garb/item/3cc66caaf1a62e1778b18a458e58b38df99cfa0f.png",
-        "冥冥meichan_给你一拳": "garb/item/9b9e4aa83cedd7016bf2f2a83bbe838b648f01ff.png",
-        "冥冥meichan_理发店": "garb/item/6026b23be561844d08c5bc4b2d66316c3eeebb15.png",
-        "冥冥meichan_典": "garb/item/172ea06085c8d242f3105d0d04826217bbe4fbeb.png",
-        "冥冥meichan_信积拉奶": "garb/item/57902ef1f2392e1b8ca4a92ee9c844c18b633009.png",
-        "冥冥meichan_饭饭": "garb/item/79a5c3bda7449e06f032c095144d8218b9acb335.png",
-        "冥冥meichan_盯": "garb/item/9c9419db0b80a40ab36eed395251e7efe6421b69.png",
-        "冥冥meichan_流汗": "garb/item/014bd9e4519567f7f711c0ef8138ffcd022750cd.png",
-        "冥冥meichan_晚安": "garb/item/4ed6aba3c606484511e550e9d8070a74c004ba8e.png",
-        "冥冥meichan_mua": "garb/item/21b927b32c186a8c4dd12ff48fcb19461d8dcd0e.png",
-        "冥冥meichan_关注冥冥": "garb/item/55cfde3719b757aa211e5f1d136cd8c8a1e0dc2f.png",
-        "冥冥meichan_你是懂的": "garb/item/724e8fe83e63a0814995dc8fd7a5d874c0568028.png",
-        "冥冥meichan_你懂个P": "garb/item/ffa551eaec65b9b3e33eb388fb91f9c02e4ff67a.png",
-        "冥冥meichan_钱不够啊": "garb/item/d153516692abb248a2429319ff7eb8cff4b2d463.png",
-        "冥冥meichan_寄": "garb/item/4de329afec2e0ebe3c4d0db0da710721bed35ff3.png",
-        // ... 更多表情
-    }
-    });
-</script>
-<script>
-    // 点击回复直接评论,官方版本点击回复时都是跳回到页面上方的评论框进行回复，评论框是固定不动的
-    // 参考https://immmmm.com/valine-diy,用到jQuery
-    $(document).ready(function(){
-        //$('.vemoji-btn').text('😀');
-        $("#vcomments").on('click', 'span.vat',function(){
-            $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
-            $('textarea#veditor').focus();
+    <script src="https://xiaxi626.github.io/media/scripts/index.js"></script>
+
+
+    <script src='https://xiaxi626.github.io/media/scripts/valine.min.js'></script>
+    <script>
+        new Valine({
+            el: '#gitalk-container',
+            appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
+            appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
+            placeholder: 'Write something...',
         })
-    })
-</script>
-<script type="text/javascript">
-    //添加一言
-   fetch('https://v1.hitokoto.cn/?c=a')
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById("veditor").setAttribute("placeholder",data.hitokoto+"__"+data.from);
-    })
-    .catch(console.error)
-</script>
-<script>
-// 自定义邮箱审核规则
-document.body.addEventListener('click', function (e) {
-    if (e.target.classList.contains('vsubmit')) {
-        const email = document.querySelector('input[type=email]');
-        const nick = document.querySelector('input[name=nick]');
-        const reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-        if (!email.value || !nick.value || !reg.test(email.value)) {
-            const str = `<div class="valert text-center"><div class="vtext">请填写正确的昵称和邮箱！</div></div>`;
-            const vmark = document.querySelector('.vmark');
-            vmark.innerHTML = str;
-            vmark.style.display = 'block';
-            setTimeout(function () {
-                vmark.style.display = 'none';
-                vmark.innerHTML = '';
-            }, 2500);
-        }
-    }
-})
-</script>
-
-<style>
-    #veditor {
-    /*评论框背景图片*/
-    box-sizing: border-box;
-    background: url("/../media/images/veditor-bg.webp") 100% 100% no-repeat;
-    background-size: contain;
-    background-position: right;
-    background-color: rgba(255, 255, 255, 0);
-    }
-</style>
-
-
-            
+    </script>
 
 
 
-</div></section>
-</div></div></div><script>
-"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
-let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
-if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
-if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
-var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
-var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
-</script>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
-<div id="aplayer" class="aplayer" data-autoplay="true"  data-id="56868" data-server="netease" data-type="album" data-fixed="true" data-listfolded="true" data-order="random" data-theme="#F58EA8"></div>
-<script src="https://unpkg.com/meting@1.2.0/dist/Meting.min.js"></script>
-
-
-<a id="scrollUp" href="#" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://weibo.com/6392902197"title="weibo"><i class="iconfont icon-weibo"></i></a><a href="https://github.com/xiaxi626"title="github"><i class="iconfont icon-github"></i></a><a href="aijiang1220966821@163.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://xiaxi626.github.io/atom.xml"title="rss"><i class="iconfont icon-rss"></i></a><a href="https://www.zhihu.com/people/xiao-yan-shi-36"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>Copyright © <a href="https://xiaxi626.github.io" style="margin:0;">飞爱碧玉的个人博客</a>.</div>
-<div><div class="github-badge"><a href="https://open.gridea.dev" target="_blank" rel="nofollow"><span class="badge-subject">Powered by</span><span class="badge-value bg-blue">Gridea</span></a></div><div style="display: inline-block">&nbsp;</div><div class="github-badge"><a href="https://github.com/Wu-jiyan/gridea-theme-bitcron-pro-plus" target="_blank" rel="nofollow"><span class="badge-subject">Theme</span><span class="badge-value bg-green">Bitcron Pro Plus</span></a></div></div>
-<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_pv"></span></strong></span>
-<span style="display: inline;margin-right:15px;">👤<strong><span id="busuanzi_value_site_uv"></span></strong></span>
-<span>📚<strong>64</strong> posts</span>
-</div></div>
-<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
-
-
-
-
-<script>
-//复制内容自动添加版权信息 
- var Sys = {}; 
-    var ua = navigator.userAgent.toLowerCase(); 
-    if( window.ActiveXObject ) 
-    { 
-        document.body.oncopy=function() 
-        { 
-            event.returnValue = false; 
-            var t=document.selection.createRange().text; 
-            var s="\r\n原文出自 [飞爱碧玉的个人博客]  转载请保留原文链接: "+location.href; 
-            clipboardData.setData('Text',t+'\r\n'+s); 
-        } 
-    } 
-    else 
-    { 
-        function addLink() 
-        { 
-            var body_element = document.getElementsByTagName('body')[0]; 
-            var selection; 
-            selection = window.getSelection(); 
-            var pagelink = " 原文出自 [飞爱碧玉的个人博客]  转载请保留原文链接: "+document.location.href; 
- 
-            var copytext = selection + pagelink; 
-            var newdiv = document.createElement('div'); 
-            newdiv.style.position='absolute'; 
-            newdiv.style.left='-99999px'; 
-            body_element.appendChild(newdiv); 
-            newdiv.innerHTML = copytext; 
-            selection.selectAllChildren(newdiv); 
-            window.setTimeout 
-            ( 
-                function() 
-                { 
-                    body_element.removeChild(newdiv); 
-                },0 
-            ); 
-        } 
-        document.oncopy = addLink; 
-    } 
-</script>
-
-<script type="text/javascript" async src="https://xiaxi626.github.io/media/js/prism.js"></script>
-</body>
+  </body>
 </html>
+
+<script>
+    window.onload = function() {
+        let id = 1;
+        let post_content = document.querySelector('.content-card');
+        post_content.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach(function (item) {
+            item.setAttribute('id', 'toc-' + id);
+            id++;
+        });
+        tocbot.init({
+            tocSelector: '.toc',
+            contentSelector: '.post-content',
+            headingSelector: 'h1,h2,h3,h4',
+            headingsOffset: 58,
+        });
+        // 检测页面滚动距离 用eventlistener
+        window.addEventListener('scroll', function () {
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            let toc = document.querySelector('.toc');
+            let tocBtn = document.querySelector('.toc-body');
+            if (scrollTop > 250) {
+                tocBtn.classList.add('toc-body-fixed');
+                toc.classList.add('toc-fixed');
+            } else {
+                tocBtn.classList.remove('toc-body-fixed');
+                toc.classList.remove('toc-fixed');
+            }
+        });
+        document.querySelector('#floating-toc-btn').addEventListener('click', function () {
+            let toc = document.querySelector('.toc-body');
+            let main = document.querySelector('.main');
+            if (toc.classList.contains('hide')) {
+                main.classList.add('main-small');
+                toc.classList.remove('hide');
+            } else {
+                toc.classList.add('hide');
+                main.classList.remove('main-small');
+            }
+        });
+        window.addEventListener('resize', function() {
+            // 获取屏幕宽度
+            var screenWidth = window.innerWidth || document.documentElement.clientWidth;
+            // 设置 .content-card 的 max-width
+            var contentCard = document.querySelector('.content-card');
+            contentCard.style.maxWidth = screenWidth + 'px';
+        });
+        // 初始加载时执行一次，确保初始状态下也设置正确
+        window.dispatchEvent(new Event('resize'));
+    };
+</script>

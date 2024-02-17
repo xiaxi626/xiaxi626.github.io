@@ -1,0 +1,848 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Windows平台Sublime+LaTex配置教程 | 飞爱碧玉的个人博客</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://xiaxi626.github.io/favicon.ico?v=1708146931921">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://xiaxi626.github.io/styles/main.css">
+
+<script src="https://xiaxi626.github.io/media/scripts/vue.js"></script>
+<script src="https://xiaxi626.github.io/media/scripts/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.5.0/tocbot.min.js"></script>
+  </head>
+  <body>
+    <div class="carousel carousel-slider center index-cover" data-indicators="true">
+    <div class="bg-cover pd-header" style="background: url('') no-repeat center center fixed" data-link="https://xiaxi626.github.io/post/windows-ping-tai-sublimelatex-pei-zhi-jiao-cheng/">
+        <div class="container">
+            <div class="row">
+                <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                    <div class="brand">
+                        <div class="title center-align">
+                            Windows平台Sublime+LaTex配置教程
+                        </div>
+                        <div class="description center-align">
+                            <span id="subtitle">
+                                
+                            </span><span class="typed-cursor">|</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+<script>
+    window.onload = function () {
+        var typed = new Typed("#subtitle", {
+            strings: [ 
+                
+                    "从来没有真正的绝境, 只有心灵的迷途",
+                
+                    '',
+
+            ],
+            startDelay: 300,
+            typeSpeed: 100,
+            loop: true,
+            backSpeed: 50,
+            showCursor: true
+        });
+        let cover = document.querySelector('.bg-cover');
+        cover.setAttribute('style', `background: url('${localStorage[cover.dataset.link]}') no-repeat center center fixed`);
+    }
+</script>
+
+
+    <div class="toc-body hide">  
+        <div class="toc"></div>
+    </div>
+    <div id="floating-toc-btn">
+        <i class="fas fa-list-ul bg-color"></i>
+    </div>
+    <div id="app" class="main">
+      <div class="site-header-container nav-transparent">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://xiaxi626.github.io">
+        <img class="avatar" src="https://xiaxi626.github.io/images/avatar.png?v=1708146931921" alt=""
+          width="32px" height="32px">
+      </a>
+      <a href="https://xiaxi626.github.io">
+        <h1 class="site-title">
+          飞爱碧玉的个人博客
+        </h1>
+      </a>
+    </div>
+    <div class="right">
+        <div class="menu">
+            <a href="/post/about" v-if="headSearchShow">
+                <i class="fa-solid fa-user"></i>&nbsp;个人
+            </a>
+            <a href="/archives" v-if="headSearchShow">
+                <i class="fa-solid fa-box-archive"></i>&nbsp;归档
+            </a>
+            <a href="/tags" v-if="headSearchShow">
+                <i class="fa-solid fa-tag"></i>&nbsp;标签
+            </a>
+            <a href="/life" v-if="headSearchShow">
+                <i class="fa-fw fas fa-heart"></i>&nbsp;生活
+            </a>
+            
+        </div>
+      <div class="gridea-search-div" v-if="headSearchShow">
+        <form id="gridea-search-form" action="https://xiaxi626.github.io/search/">
+          <input class="gridea-search-input" autocomplete="off" spellcheck="false" name="q" />
+        </form>
+      </div>
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }"
+          @click="menuClick()" v-if="menuSearchShow"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      <div class="gridea-search-div" v-if="menuSearchShow">
+        <form id="gridea-search-form" action="https://xiaxi626.github.io/search/">
+          <input class="gridea-search-input" autocomplete="off" spellcheck="false" name="q" />
+        </form>
+      </div>
+      
+        
+            <a href="/" class="menu purple-link">
+              首页
+            </a>
+            
+              
+        
+            <a href="/archives" class="menu purple-link">
+              归档
+            </a>
+            
+              
+        
+            <a href="/tags" class="menu purple-link">
+              标签
+            </a>
+            
+              
+        
+            <a href="/post/about" class="menu purple-link">
+              关于
+            </a>
+            
+              
+        
+            <a href="/friends" class="menu purple-link">
+              友情链接
+            </a>
+            
+              
+              
+    </div>
+  </div>
+</transition>
+
+<script>
+    window.onscroll = function () {
+        var t = document.documentElement.scrollTop || document.body.scrollTop;
+        var header = document.querySelector('.site-header-container');
+        if (t > 0) {
+            header.classList.remove('nav-transparent');
+        } else {
+            header.classList.add('nav-transparent');
+        }
+    }
+</script>
+
+      <div class="content-body">
+        <div class="content-container content-card">
+            <div class="post-detail">
+              <div class="post-info post-detail-info">
+                <span><i class="icon-calendar-outline"></i> 2023-08-27</span>
+                
+                  <span>
+                    
+                        <i class="icon-pricetags-outline"></i>
+                      <a href="https://xiaxi626.github.io/tag/JcIpV52xSP/">
+                        Technology
+                      </a>
+                    
+                  </span>
+                
+              </div>
+              
+              <hr class="clear">
+              <div class="post-content">
+                <h1 id="详细教程">详细教程</h1>
+<h2 id="下载latex">下载LaTex</h2>
+<p>访问<a href="https://tug.org/texlive/">官网</a>，点击<code>Concise instructions, per platform:</code> 下的 <code>install on Windows</code> 。<br>
+<img src="https://xiaxi626.github.io/post-images/1707881029658.png" alt="" loading="lazy"></p>
+<p>找到<code>Easy install</code>。</p>
+<blockquote>
+<p>When installing from the internet, we recommend downloading and running <a href="https://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe">install-tl-windows.exe</a>.</p>
+</blockquote>
+<blockquote>
+<p>This installer first unpacks itself and then starts the installer proper, which is the same as for other platforms. An ‘Advanced’ button gives you many additional customization options.</p>
+</blockquote>
+<blockquote>
+<p>When successful, the installer tries to do the post-install things that are considered appropriate on Windows:</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>Adds a TeX Live submenu of Windows’ Start menu. Entries include a GUI for TeX Live Manager and the TeXworks editor if was installed.</li>
+<li>Optionally adds some filetypes and file associations.</li>
+<li>Adds the directory of TeX Live Windows binaries to the search path.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>The TeX Live Manager GUI mentioned above can be used to add or remove packages, and to keep the installation up to date.</p>
+</blockquote>
+<blockquote>
+<p>Note. For Cygwin installations, see the <a href="https://tug.org/texlive/quickinstall.html">Unix/Linux page</a>.</p>
+</blockquote>
+<p>下载上文的<code>install-tl-windows.exe</code> 到本地，双击运行。<br>
+<img src="https://xiaxi626.github.io/post-images/1707881890659.png" alt="" loading="lazy"><br>
+<img src="https://xiaxi626.github.io/post-images/1707881922360.png" alt="" loading="lazy"><br>
+<img src="https://xiaxi626.github.io/post-images/1707881942837.png" alt="" loading="lazy"><br>
+<img src="https://xiaxi626.github.io/post-images/1707882001120.png" alt="" loading="lazy"><br>
+<img src="https://xiaxi626.github.io/post-images/1707882027398.png" alt="" loading="lazy"><br>
+安装完成，如下图：<br>
+<img src="https://xiaxi626.github.io/post-images/1707882063684.png" alt="" loading="lazy"></p>
+<h2 id="sublime-text-配置">Sublime Text 配置</h2>
+<p>Ctrl+Shift+P，输入LaTeXTools安装它。不过如今安装不上，只能手动安装。<br>
+把整个仓库克隆到本地，塞到 Sublime Text 的插件文件夹（C:\Users\Administrator\AppData\Roaming\Sublime Text\Packages）</p>
+<pre><code class="language-bash">git clone https://github.com/SublimeText/LaTeXTools
+</code></pre>
+<p>先把Sublime关闭掉，然后再重启软件，使Sublime能够在菜单中加载出 LaTeXTools。</p>
+<h3 id="sublime中进行latextools配置">Sublime中进行LaTexTools配置</h3>
+<p>在Sublime菜单栏依次选择Preferences-Package Settings-LaTexTools-Reset user settings to default。</p>
+<p>然后重新在Sublime菜单栏依次选择Preferences-Package Settings-LaTexTools-Settings-User。</p>
+<p>使用快捷键Ctrl+F，下方弹出搜索窗口，在其中输入windows为关键字，按Enter进行搜索。找到“windows”的path路径：</p>
+<pre><code class="language-bash">	&quot;windows&quot;: {
+		// Path used when invoking tex &amp; friends; &quot;&quot; is fine for MiKTeX
+		// For TeXlive 2011 (or other years) use
+		// &quot;texpath&quot; : &quot;C:\\texlive\\2011\\bin\\win32;$PATH&quot;,
+		&quot;texpath&quot; : &quot;&quot;,
+		// TeX distro: &quot;miktex&quot; or &quot;texlive&quot;
+		&quot;distro&quot; : &quot;miktex&quot;,
+		// Command to invoke Sumatra. If blank, &quot;SumatraPDF.exe&quot; is used (it has to be on your PATH)
+		&quot;sumatra&quot;: &quot;&quot;,
+		// Command to invoke Sublime Text. Used if the keep_focus toggle is true.
+		// If blank, &quot;subl.exe&quot; or &quot;sublime_text.exe&quot; will be used.
+		&quot;sublime_executable&quot;: &quot;&quot;,
+		// how long (in seconds) to wait after the jump_to_pdf command completes
+		// before switching focus back to Sublime Text. This may need to be
+		// adjusted depending on your machine and configuration.
+		&quot;keep_focus_delay&quot;: 0.5
+	},
+</code></pre>
+<p>将其修改成如下内容：</p>
+<pre><code class="language-bash">	&quot;windows&quot;: {
+		// Path used when invoking tex &amp; friends; &quot;&quot; is fine for MiKTeX
+		// For TeXlive 2011 (or other years) use
+		// &quot;texpath&quot; : &quot;C:\\texlive\\2011\\bin\\win32;$PATH&quot;,
+		&quot;texpath&quot; : &quot;E:\\texlive\\2023\\bin\\windows;$PATH&quot;,
+		// TeX distro: &quot;miktex&quot; or &quot;texlive&quot;
+		&quot;distro&quot; : &quot;texlive&quot;,
+		// Command to invoke Sumatra. If blank, &quot;SumatraPDF.exe&quot; is used (it has to be on your PATH)
+		&quot;sumatra&quot;: &quot;&quot;,
+		// Command to invoke Sublime Text. Used if the keep_focus toggle is true.
+		// If blank, &quot;subl.exe&quot; or &quot;sublime_text.exe&quot; will be used.
+		&quot;sublime_executable&quot;: &quot;C:\\Program Files\\Sublime Text\\subl.exe&quot;,
+		// how long (in seconds) to wait after the jump_to_pdf command completes
+		// before switching focus back to Sublime Text. This may need to be
+		// adjusted depending on your machine and configuration.
+		&quot;keep_focus_delay&quot;: 60
+	},
+</code></pre>
+<p>注意观察上面更改的部分, 分别是:</p>
+<ul>
+<li>第 5 行: 在 texpath 后面的双引号之间添加 texlive 的 win32 的文件路径.</li>
+<li>第 7 行: 在 distro 后面的双引号之间键入 texlive, 也就选择你安装的 TeX 的发行版本的,我的是 texlive, 所以键入 texlive , 如果你安装的是 miktex, 当然也应该改成 miktex.</li>
+<li>第 9 行: 在 sumatra 后面的双引号之间输入 SumatraPDF 的安装路径.</li>
+<li>第 12 行: sublime_executable 后面的双引号后面填入 subl.exe 的路径.</li>
+<li>第 16 行: 此行是设置从pdf 阅读器调整到 Sublime Text 的时间, 通常也设置长些, 默认的 0.5 秒的效果就是看到 SumatraPDF阅读器一闪而过, 这也许不是一个好的体验.</li>
+</ul>
+<p><strong>关闭 Sublime text 编译过程中开启新窗口</strong></p>
+<p>这里大家可以看到我们没有添加第 9 行的内容，而是修改了第 12 行的内容。<br>
+Windows平台 subl.exe 与 Sublime_text.exe 在同一个安装路径下，我们可以只填入 <code>subl.exe</code> 的路径。</p>
+<hr>
+<p>至于一些教程提到的改<code>&quot;builder&quot;: &quot;traditional&quot;,</code>为<code>&quot;builder&quot;: &quot;simple&quot;,</code>……<br>
+默认是<code>traditional</code>，<strong>请勿修改</strong>。</p>
+<p>使用LaTeXTools前请阅读该插件的 <code>README.markdown</code>，这里我摘取部分大家需要关注的内容——</p>
+<h2 id="keybindings">Keybindings</h2>
+<p>Keybindings have been chosen to make them easier to remember, and also to minimize clashes with existing (and standard) ST bindings. I am taking advantage of the fact that ST supports key combinations, i.e. sequences of two (or more) keys. The basic principle is simple:</p>
+<ul>
+<li>
+<p><strong>Most LaTeXTools facilities are triggered using <code>Ctrl+l</code> (Windows, Linux) or <code>Cmd+l</code> (OS X), followed by some other key or key combination</strong></p>
+</li>
+<li>
+<p>Compilation uses the standard ST &quot;build&quot; keybinding, i.e. <code>Ctrl-b</code> on Windows and Linux and <code>Cmd-b</code> on OS X. So does the &quot;goto anything&quot; facility (though this may change).</p>
+</li>
+</ul>
+<p>For example: to jump to the point in the PDF file corresponding to the current cursor position, use <code>Ctrl-l, j</code>: that is, hit <code>Ctrl-l</code>, then release both the <code>Ctrl</code> and the <code>l</code> keys, and quickly type the <code>j</code> key (OS X users: replace <code>Ctrl</code> with <code>Cmd</code>). To wrap the selected text in an <code>\emph{}</code> command, use <code>Ctrl-l, Ctrl-e</code>: that is, hit <code>Ctrl-l</code>, release both keys, then hit <code>Ctrl-e</code> (again, OS X users hit <code>Cmd-l</code> and then <code>Cmd-e</code>).</p>
+<p><code>Ctrl-l</code> (<code>Cmd-l</code> on OS X) is the standard ST keybinding for &quot;expand selection to line&quot;; this is <strong>remapped</strong> to <code>Ctrl-l,Ctrl-l</code> (<code>Cmd-l,Cmd-l</code> on OS X). This is the <em>only</em> standard ST keybinding that is affected by the plugin---an advantage of new-style keybindings.</p>
+<p>Most plugin facilities are invoked using sequences of 2 keys or key combinations, as in the examples just given. A few use sequences of 3 keys or key combinations.</p>
+<p>Henceforth, I will write <code>C-</code> to mean <code>Ctrl-</code> for Linux or Windows, and <code>Cmd-</code> for OS X. You know your platform, so you know what you should use. In a few places, to avoid ambiguities, I will spell out which key I mean.</p>
+<h2 id="compiling-latex-files">Compiling LaTeX files</h2>
+<p><strong>Keybinding:</strong> <code>C-b</code> (standard ST keybinding)</p>
+<p>LaTeXTools offers a fully customizable build process. This section describes the default process, also called &quot;traditional&quot; because it is the same (with minor tweaks) as the one used in previous releases. However, see below for how to customize the build process.</p>
+<p>The default ST Build command takes care of the following:</p>
+<ul>
+<li>It saves the current file</li>
+<li>It invokes the tex build command (<code>texify</code> for MikTeX; <code>latexmk</code> for TeXlive and MacTeX).</li>
+<li>It parses the tex log file and lists all errors, warnings and, if enabled, bad boxes in an output panel at the bottom of the ST window: click on any error/warning/bad boxes to jump to the corresponding line in the text, or use the ST-standard Next Error/Previous Error commands.</li>
+<li>It invokes the PDF viewer for your platform and performs a forward search: that is, it displays the PDF page where the text corresponding to the current cursor position is located.</li>
+</ul>
+<p><strong>Project files</strong> are fully supported! Some of the options related to building <code>tex</code> files are described here. However, you should consult the <a href="#project-specific-settings">subsection on project-specific settings</a> for further details.</p>
+<p><strong>Multi-file documents</strong> are supported as follows. If the first line in the current file consists of the text <code>%!TEX root = &lt;master file name&gt;</code>, then tex &amp; friends are invoked on the specified master file, instead of the current one. Note: the only file that gets saved automatically is the current one. Also, the master file name <strong>must</strong> have a valid tex extension (i.e., one configured in the <code>tex_file_exts</code> settings), or it won't be recognized.</p>
+<p>As an alternative, to using the <code>%!TEX root = &lt;master file name&gt;</code> syntax, if you use a Sublime project, you can set the <code>TEXroot</code> option (under <code>settings</code>):</p>
+<pre><code class="language-json">{
+	... &lt;folder-related settings&gt; ...
+
+	&quot;settings&quot;: {
+		&quot;TEXroot&quot;: &quot;yourfilename.tex&quot;
+	}
+}
+</code></pre>
+<p>Note that if you specify a relative path as the <code>TEXroot</code> in the project file, the path is determined <em>relative to the location of the project file itself</em>. It may be less ambiguous to specify an absolute path to the <code>TEXroot</code> if possible.</p>
+<p><strong>TeX engine selection</strong> is supported. If the first line of the current file consists of the text <code>%!TEX program = &lt;program&gt;</code>, where <code>program</code> is <code>pdflatex</code>, <code>lualatex</code> or <code>xelatex</code>, the corresponding engine is selected. If no such directive is specified, <code>pdflatex</code> is the default. Multi-file documents are supported: the directive must be in the <em>root</em> (i.e. master) file. Also, for compatibility with TeXshop, you can use <code>TS-program</code> instead of <code>program</code>. <strong>Note</strong>: for this to work, you must <strong>not</strong> customize the <code>command</code> option in <code>LaTeXTools.sublime-settings</code>. If you do, you will not get this functionality. Finally, if you use project files, the <code>program</code> builder setting can also be customized there, under <code>settings</code>.</p>
+<p><strong>TeX options</strong>: you can pass TeX options to your engine in two ways (thanks Ian Bacher!). One is to use a <code>%!TEX options = ...</code> line at the top of your file. The other is to use the <code>options</code> builder setting in your settings file. This can be useful, for instance, if you need to allow shell escape. Finally, if you use project files, the <code>options</code> builder setting can also be customized there (again, under <code>settings</code>).</p>
+<p><strong>Customizing or replacing the compilation command</strong> (<code>latexmk</code> or <code>texify</code>) is also possible by setting the <code>command</code> option under Builder Settings. If you do, the TeX engine selection facility may no longer work because it relies on a specific compilation command. However, if you want to customize or replace <code>latexmk</code>/<code>texify</code>, you probably know how to select the right TeX engine, so this shouldn't be a concern. Also note that if you are using <code>latexmk</code> and you set the <code>$pdflatex</code> variable, the TeX options facility will not function, as <code>latexmk</code> does not support this. See the Settings option below for details. <em>Note</em>: if you change the compilation command, you are responsible for making it work on your setup. Only customize the compilation command if you know what you're doing.</p>
+<p><strong>使用 LaTeXTools 时我们要注意以下几点：</strong></p>
+<ol>
+<li>编译前，注意将编译系统改为LaTeX，按 Ctrl+Shift+B 编译；</li>
+<li>默认使用的是 pdflatex ，现在想使用 xelatex 进行编译，使用如下代码：</li>
+</ol>
+<pre><code class="language-bash">%!TEX program = xelatex
+\documentclass{article}
+\begin{document}
+this is a way
+\end{document} 
+</code></pre>
+<p>加上 <code>%!TEX program = xelatex</code> 后，可以切换到 xelatex 进行编译。</p>
+<h2 id="开启-sumatrapdf-的反向搜索功能">开启 SumatraPDF 的反向搜索功能</h2>
+<h3 id="方法-1">方法 1</h3>
+<p>使用 Win+R 后，输入 cmd，执行以下命令</p>
+<pre><code class="language-bash">sumatrapdf.exe -inverse-search &quot;\&quot; C:\Program Files\Sublime Text\sublime_text.exe\&quot; \&quot;%f:%l\&quot;
+</code></pre>
+<h3 id="方法-2">方法 2</h3>
+<p>通常我们在 设置-选项 中是找不到 <strong>设置反向搜索命令行</strong> 的，因为 SumatraPDF 默认不开启TeX 增强功能。<br>
+我们需要打开高级设置，settings-&gt;Advanced options，然后找到如下代码</p>
+<pre><code class="language-bash">EnableTeXEnhancements = false
+</code></pre>
+<p>将参数 false 改为 true。</p>
+<pre><code class="language-bash">EnableTeXEnhancements = true
+</code></pre>
+<p>重新启动 SumatraPDF ，<strong>设置反向搜索命令行</strong> 部分就出现了。</p>
+<p>在 SumatraPDF 中点 设置-选项，在 <strong>设置反向搜索命令行</strong> 底下的输入框中输入</p>
+<pre><code class="language-bash">&quot;C:\Program Files\Sublime Text\sublime_text.exe&quot; &quot;%f:%l&quot;
+</code></pre>
+<p>这样在 SumatraPDF 中双击 PDF 显示的相应位置就可以跳转到 Sublime Text 编辑的 LaTeX 源代码处, 实现反向搜索。</p>
+<h2 id="sumatrapdf-配置">SumatraPDF 配置</h2>
+<p>最后我们提一点SumatraPDF 高级设置。<br>
+SumatraPDF 菜单 - 设置 - 高级选项，替换内容为</p>
+<pre><code class="language-bash">// 无文档时,窗口的背景色,默认为黄色
+MainWindowBackground = #fff200
+// 是否允许用 Esc 键退出 SumatraPDF
+EscToExit = false
+// 是否用现有窗口打开文档
+ReuseInstance = false
+
+// 是否使用系统颜色显示 背景/文本色
+UseSysColors = false
+
+// 启动时是否恢复会话
+RestoreSession = true
+
+// 自定义 PDF, XPS, DjVu 和 PostScript 的 UI 界面
+FixedPageUI [
+// 文本色,默认为黑    
+    TextColor = #000000
+
+// 背景色,默认为白    
+    BackgroundColor = #ffffff
+
+// 选定文本色
+    SelectionColor = #f5fc0c
+
+// 文档在窗口中显示时的上,右,下,左边距
+    WindowMargin = 2 4 2 4
+
+// 书籍模式双页显示时,水平和垂直间距
+    PageSpacing = 4 4
+
+//梯度渐变色,只支持三种颜色. 实验性, 也许对继续阅读有帮助.
+
+//通常建议为: #2828aa #28aa28 #aa2828
+    GradientColors =
+]
+
+// 电子书(EPUB, Mobi, FictionBook)的 UI 界面定制选项.
+
+// 若 UseFixedPageUI 为 True 时使用默认配置.
+EbookUI [
+//字体名称.重新打开文档后生效
+    FontName = Georgia
+
+//字体大小.重新打开文档后生效
+    FontSize = 12.5
+
+//文本色
+    TextColor = #5f4b32
+
+//页面背景色
+    BackgroundColor = #fbf0d9
+
+// 如果为 True, 电子书也将使用 PDF 文档的默认配置(开启打印和搜索,禁用自动 reflow)
+    UseFixedPageUI = false
+]
+
+//漫画书和图片的 UI 界面定制选项
+ComicBookUI [
+// 文档在窗口中显示时的上,右,下,左边距
+    WindowMargin = 0 0 0 0
+
+// 书籍模式双页显示时,水平和垂直间距
+    PageSpacing = 4 4
+
+// 如果为 True, 默认显示漫画书文件为漫画模式 (一次性从右向左显示2页)
+    CbxMangaMode = false
+]
+
+// CHM 文件定制选项.
+ChmUI [
+//若为真,界面将使用默认的 PDF 文档风格
+    UseFixedPageUI = false
+]
+
+//各种文件类型的附加外部查看器列表（可以有多个条目格式）
+ExternalViewers [
+[
+//命令行的调用外部查看器，可以用 %p 页号和 “%1” 文件名（在包含空格的路径中添加引号）
+    CommandLine =
+
+//菜单中显示外部查看器的名称
+Name =打开对话框的过滤选项,要指定支持的文件类型,多个项目使用;分割,不要包含任何空格 (比如 *.pdf;*.xps)
+Filter =
+]
+]
+
+//是否显示菜单栏,可以使用 F9 或 ALT
+ShowMenubar = true
+
+//文件更改后是否自动重载 (目前还不支持工作在 ebook UI 模式) (introduced in version 2.5)
+ReloadModifiedDocuments = true
+
+//标题栏是否显示完整路径 (introduced in version 3.0)
+FullPathInTitle = false
+
+//缩放比例的间隔 介于 8.33 和 6400 之间
+ZoomLevels = 8.33 12.5 18 25 33.33 50 66.67 75 100 125 150 200 300 400 600 800 1000
+
+//缩放比率的步长,如果为0,则使用默认
+ZoomIncrement = 0
+
+//设置打印对话框的默认选项
+PrinterDefaults [
+默认值是 scaling (shrink, fit, none)
+PrintScale = shrink
+]
+
+//自定义显示搜索结果 (used from LaTeX editors)
+ForwardSearch [
+
+//当设置为正数值时，将向前搜索高亮样式改为矩形.在页面的左边（从页边空白处注明）
+    HighlightOffset = 0
+
+//高亮选区的高度 (if HighlightOffset is &gt; 0)
+    HighlightWidth = 15
+
+//高亮搜索的颜色
+    HighlightColor = #6581ff
+
+//为真时一直显示高亮
+    HighlightPermanent = false
+]
+
+//一个空格分隔的密码尝试打开受密码保护的文件时（必须输入包含空格的密码时）
+
+//(introduced in version 2.4)
+DefaultPasswords =
+
+//自定义主屏幕 DPI
+
+//（如果这个值不是正数，将使用系统的UI设置  (introduced in version 2.5)
+CustomScreenDPI = 0
+
+//是否为每个文档保存显示配置
+RememberStatePerDocument = true
+
+// 当前 UI 的语言, 使用 ISO 码
+UiLanguage =
+
+//是否显示工具栏
+ShowToolbar = true
+
+//是否侧栏显示收藏夹
+ShowFavorites = false
+
+// SumatraPDF 关联的文件格式扩展名 (e.g. “.pdf .xps .epub”)
+AssociatedExtensions =
+
+//是否自动应用文件扩展名关联
+AssociateSilently = false
+
+// 是否每天检测一次更新
+CheckForUpdates = true
+
+//要忽略更新的版本
+VersionToSkip =
+
+//是否记住上次打开的文档
+RememberOpenedFiles = true
+
+//反向搜索时启动 LaTeX 编辑器
+InverseSearchCmdLine =
+
+//是否增强的 LaTex 反向搜索
+EnableTeXEnhancements = false
+
+//默认的页面布局.
+
+//有效值: automatic, single page, facing, book view, 
+
+//continuous, continuous facing, continuous book view
+DefaultDisplayMode = automatic
+
+//默认缩放模式 使用比例(in %) 或下述值: fit page, fit width, fit content
+DefaultZoom = fit page
+
+//默认窗口状态. 1 is normal, 2 is maximized, 
+
+//3 is fullscreen, 4 is minimized
+WindowState = 1
+
+//默认窗口位置(x,y)和尺寸(宽,高)
+WindowPos = 0 0 0 0
+
+//对于支持解析的文档, 在侧栏显示目录标签(书签)
+ShowToc = true
+
+//侧栏宽度 favorites/bookmarks
+SidebarDx = 0
+
+//如果收藏夹和书签侧边栏部分可见，这就是书签的高度（目录表）部分
+TocDy = 0
+
+//是否显示启动页面
+ShowStartPage = true
+
+//是否使用标签模式
+UseTabs = true
+
+//打开文件的信息
+FileStates [
+[
+//文档路径
+    FilePath =
+
+//为书签/收藏夹保留的值
+    Favorites [
+[
+收藏夹在菜单中显示的名称
+Name =
+
+//书签页面数值
+        PageNo = 0
+
+//页面标签
+        PageLabel =
+]
+]
+
+//文档列表项目是否可以使用固定
+    IsPinned = false
+
+//文档列表项目是否可以隐藏
+    IsMissing = false
+
+//是否记录文档打开次数
+    OpenCount = 0
+
+//再次打开加密文档时,是否询问密码
+    DecryptionKey =
+
+//打开文件是否使用通用对话框
+    UseDefaultState = false
+
+//页面布局.
+
+//有效值为: automatic, single page, facing, book view,
+
+//continuous, continuous facing, continuous book view
+    DisplayMode = automatic
+
+//文档滚动距离 (in x and y direction)
+    ScrollPos = 0 0
+
+//上次阅读页面的编号
+    PageNo = 1
+
+//缩放比例或有效值: fit page, fit width, fit content
+    Zoom = fit page
+
+//页面旋转角度, 90 度递增
+    Rotation = 0
+
+//窗口状态. 1 is normal, 2 is maximized, 3 is fullscreen, 4 is minimized
+    WindowState = 0
+
+//默认位置 (可以任意显示器)
+    WindowPos = 0 0 0 0
+
+//是否显示书签
+    ShowToc = true
+
+//侧栏宽度
+    SidebarDx = 0
+
+//漫画模式,只限于漫画书
+    DisplayR2L = false
+
+//在电子书UI中恢复上次读取页所需的数据
+    ReparseIdx = 0
+
+//需要确定表的哪些部分已展开的数据.
+    TocState =
+]
+]
+
+//保存上次会话,用于崩溃时恢复会话 (introduced in version 3.1)
+SessionData [
+[
+//data required for restoring the view state of a single tab
+    TabStates [
+[
+//path of the document
+        FilePath =
+
+//same as FileStates -&gt; DisplayMode
+        DisplayMode = automatic
+
+//number of the last read page
+        PageNo = 1
+
+//same as FileStates -&gt; Zoom
+        Zoom = fit page
+
+//same as FileStates -&gt; Rotation
+        Rotation = 0
+
+//how far this document has been scrolled (in x and y direction)
+        ScrollPos = 0 0
+
+//if true, the table of contents was shown when the document was closed
+        ShowToc = true
+
+//same as FileStates -&gt; TocState
+        TocState =
+]
+]
+
+//当前选择的标签序列 ( 1 为基数)
+    TabIndex = 1
+
+//同步 FileState -&gt; WindowState
+    WindowState = 0
+
+//默认位置
+    WindowPos = 0 0 0 0
+
+//侧栏关闭时的宽度
+    SidebarDx = 0
+]
+]
+
+//自动更新后重载文档的数据请求 (introduced in version 3.0)
+ReopenOnce =
+
+//上次更新时间
+TimeOfLastUpdateCheck = 0 0
+
+//在历史记录中保存打开次数
+OpenCountWeek = 0
+
+</code></pre>
+<p>保存后重启 SumatraPDF ，再次打开高级设置。找到 ShortCuts 配置处，添加以下内容：</p>
+<pre><code class="language-bash">Shortcuts [
+	[
+		Cmd = CmdSaveAnnotations
+		Key = s, S
+	]
+	[
+		Cmd = CmdDeleteAnnotation
+		Key = d, D
+	]
+	[
+		Cmd = CmdEditAnnotations
+		Key = e, E
+	]
+	[
+		Cmd = CmdCreateAnnotUnderline
+		Key = w, W
+	]
+	[
+		Cmd = CmdCreateAnnotFreeText
+		Key = t, T
+	]
+]
+</code></pre>
+<p>请根据需要修改高级设置内容。</p>
+<h1 id="参考">参考</h1>
+<p><a href="https://www.zhihu.com/question/64651976/answer/413116741">Sublime Text 3 插件 latextools 无法切换编译器？ - 知乎</a><br>
+<a href="https://blog.csdn.net/m0_38006970/article/details/95102613">Sublime text 3 + Latex + SumatraPDF反向检索_反向查找 sumatra sublime-CSDN博客</a><br>
+<a href="https://zhuanlan.zhihu.com/p/635088283">如何优雅地使用 Sublime 编辑 LaTeX - 知乎</a><br>
+<a href="https://zhuanlan.zhihu.com/p/537022317">LaTex+Sublime+SumatraPDF安装详细教程 - 知乎</a><br>
+<a href="https://www.cnblogs.com/MTAz/p/14672104.html">SumatraPDF 高级设置 - MTAz - 博客园</a><br>
+<a href="https://zhuanlan.zhihu.com/p/613119812">配置SumatraPDF快捷键实现Pdf阅读快速标注 - 知乎</a><br>
+<a href="https://www.sumatrapdfreader.org/settings/settings3-5-1.html">Customizing SumatraPDF 3.5.1</a><br>
+<a href="https://blog.csdn.net/cfunction/article/details/108686217">调整SumatraPDF暗黑模式_sumatrapdf 黑色-CSDN博客</a></p>
+
+              </div>
+              <hr class="clear">
+              
+                <div class="next-post">
+                  <a class="purple-link" href="https://xiaxi626.github.io/post/zai-windows-zhong-an-zhuang-flac/">
+                    <h3 class="post-title">
+                      下一篇：在Windows中使用FLAC无损音频编解码器
+                    </h3>
+                  </a>
+                </div>
+                
+            </div>
+          </div>
+      </div>
+
+      
+          <div id="gitalk-container"></div>
+      
+
+    
+    </div>
+    <div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/xiaxi626" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://space.bilibili.com/328031473/bangumi" target="_blank">
+          <i class="fab fa-bilibili"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.zhihu.com/people/xiao-yan-shi-36" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+  </div>
+  <div class="slogan">温故而知新</div> |
+  <a href="https://github.com/Decade-qiu/gridea-theme-Eternal" target="_blank">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></a> | <a href="https://github.com/Decade-qiu/gridea-theme-Eternal" target="_blank">Powered by Eternal</a> | <a href="https://xiaxi626.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+    <script src="https://xiaxi626.github.io/media/scripts/index.js"></script>
+
+
+    <script src='https://xiaxi626.github.io/media/scripts/valine.min.js'></script>
+    <script>
+        new Valine({
+            el: '#gitalk-container',
+            appId: '2EhI3kZCg0PpwHaW4CRpwsYu-gzGzoHsz',
+            appKey: 'XEh9nruDRqlHqqfaFkHmeyKq',
+            placeholder: 'Write something...',
+        })
+    </script>
+
+
+
+  </body>
+</html>
+
+<script>
+    window.onload = function() {
+        let id = 1;
+        let post_content = document.querySelector('.content-card');
+        post_content.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach(function (item) {
+            item.setAttribute('id', 'toc-' + id);
+            id++;
+        });
+        tocbot.init({
+            tocSelector: '.toc',
+            contentSelector: '.post-content',
+            headingSelector: 'h1,h2,h3,h4',
+            headingsOffset: 58,
+        });
+        // 检测页面滚动距离 用eventlistener
+        window.addEventListener('scroll', function () {
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            let toc = document.querySelector('.toc');
+            let tocBtn = document.querySelector('.toc-body');
+            if (scrollTop > 250) {
+                tocBtn.classList.add('toc-body-fixed');
+                toc.classList.add('toc-fixed');
+            } else {
+                tocBtn.classList.remove('toc-body-fixed');
+                toc.classList.remove('toc-fixed');
+            }
+        });
+        document.querySelector('#floating-toc-btn').addEventListener('click', function () {
+            let toc = document.querySelector('.toc-body');
+            let main = document.querySelector('.main');
+            if (toc.classList.contains('hide')) {
+                main.classList.add('main-small');
+                toc.classList.remove('hide');
+            } else {
+                toc.classList.add('hide');
+                main.classList.remove('main-small');
+            }
+        });
+        window.addEventListener('resize', function() {
+            // 获取屏幕宽度
+            var screenWidth = window.innerWidth || document.documentElement.clientWidth;
+            // 设置 .content-card 的 max-width
+            var contentCard = document.querySelector('.content-card');
+            contentCard.style.maxWidth = screenWidth + 'px';
+        });
+        // 初始加载时执行一次，确保初始状态下也设置正确
+        window.dispatchEvent(new Event('resize'));
+    };
+</script>

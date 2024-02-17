@@ -2,14 +2,21 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xiaxi626.github.io</id>
     <title>飞爱碧玉的个人博客</title>
-    <updated>2023-10-19T01:50:58.733Z</updated>
+    <updated>2024-02-17T05:17:42.827Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xiaxi626.github.io"/>
     <link rel="self" href="https://xiaxi626.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://xiaxi626.github.io/images/avatar.png</logo>
     <icon>https://xiaxi626.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2023, 飞爱碧玉的个人博客</rights>
+    <rights>All rights reserved 2024, 飞爱碧玉的个人博客</rights>
+    <entry>
+        <title type="html"><![CDATA[文献管理工具：Zotero的使用教程]]></title>
+        <id>https://xiaxi626.github.io/post/wen-xian-guan-li-gong-ju-zotero-de-shi-yong-jiao-cheng/</id>
+        <link href="https://xiaxi626.github.io/post/wen-xian-guan-li-gong-ju-zotero-de-shi-yong-jiao-cheng/">
+        </link>
+        <updated>2023-11-14T02:42:24.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[配置Jekyll博客本地开发环境(Windows 7)]]></title>
         <id>https://xiaxi626.github.io/post/pei-zhi-jekyll-bo-ke-ben-di-kai-fa-huan-jing-windows-7/</id>
@@ -23,6 +30,20 @@
         <link href="https://xiaxi626.github.io/post/ru-he-shi-yong-sublime-text-4-da-jian-cc-yu-yan-kai-fa-huan-jing/">
         </link>
         <updated>2023-08-29T14:39:16.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Windows平台Sublime+LaTex配置教程]]></title>
+        <id>https://xiaxi626.github.io/post/windows-ping-tai-sublimelatex-pei-zhi-jiao-cheng/</id>
+        <link href="https://xiaxi626.github.io/post/windows-ping-tai-sublimelatex-pei-zhi-jiao-cheng/">
+        </link>
+        <updated>2023-08-27T03:08:25.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[在Windows中使用FLAC无损音频编解码器]]></title>
+        <id>https://xiaxi626.github.io/post/zai-windows-zhong-an-zhuang-flac/</id>
+        <link href="https://xiaxi626.github.io/post/zai-windows-zhong-an-zhuang-flac/">
+        </link>
+        <updated>2023-08-26T12:46:59.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[GPG入门教程]]></title>
@@ -39,6 +60,13 @@
         <updated>2023-08-08T13:10:04.000Z</updated>
     </entry>
     <entry>
+        <title type="html"><![CDATA[学习Git 分支 (learn-git-branching)]]></title>
+        <id>https://xiaxi626.github.io/post/learn-git-branching/</id>
+        <link href="https://xiaxi626.github.io/post/learn-git-branching/">
+        </link>
+        <updated>2023-08-05T04:29:13.000Z</updated>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Bitcron Pro Plus主题修改（自用）]]></title>
         <id>https://xiaxi626.github.io/post/bitcron-pro-plus-zhu-ti-xiu-gai-zi-yong/</id>
         <link href="https://xiaxi626.github.io/post/bitcron-pro-plus-zhu-ti-xiu-gai-zi-yong/">
@@ -51,33 +79,5 @@
         <link href="https://xiaxi626.github.io/post/debian-xi-tong-an-zhuang-shi-yong-jiao-cheng/">
         </link>
         <updated>2023-07-26T08:45:31.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[8个高质量的日语字幕资源(以及如何用它们学习日语)]]></title>
-        <id>https://xiaxi626.github.io/post/8-high-quality-resources-for-japanese-subtitles-and-how-to-learn-japanese-with-them/</id>
-        <link href="https://xiaxi626.github.io/post/8-high-quality-resources-for-japanese-subtitles-and-how-to-learn-japanese-with-them/">
-        </link>
-        <updated>2023-07-06T01:25:06.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Python处理PDF文件自动化]]></title>
-        <id>https://xiaxi626.github.io/post/python-chu-li-pdf-wen-jian-zi-dong-hua/</id>
-        <link href="https://xiaxi626.github.io/post/python-chu-li-pdf-wen-jian-zi-dong-hua/">
-        </link>
-        <updated>2023-07-04T03:05:07.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[在Windows服务器上安装Oracle数据库教程]]></title>
-        <id>https://xiaxi626.github.io/post/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng/</id>
-        <link href="https://xiaxi626.github.io/post/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng/">
-        </link>
-        <updated>2023-06-05T14:14:30.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[使用Sublime Text 4写Markdown]]></title>
-        <id>https://xiaxi626.github.io/post/shi-yong-sublime-text-4-xie-markdown/</id>
-        <link href="https://xiaxi626.github.io/post/shi-yong-sublime-text-4-xie-markdown/">
-        </link>
-        <updated>2023-04-29T00:09:22.000Z</updated>
     </entry>
 </feed>
