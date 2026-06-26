@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="technology">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>ADS中用W-Element模拟方形同轴线的RLGC建模方法 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="ADS中用W-Element模拟方形同轴线的RLGC建模方法">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="此文为记录ADS方形同轴线RLGC建模从报错到功能正常调用的过程，最终解决方案见文末。 我们知道ADS中只有圆柱同轴线符号，没有其他结构的同轴线，因此我们在ADS仿真时，为了达到同样的阻抗，需要使用LineCalc计算实际阻抗在ADS中的同轴尺寸。 那有没有办法不用圆柱同轴符号呢？我们可以尝试一下用RLGC电路来&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/ads-w-element-simulate-square-coaxial-rlgc-modeling/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"ADS中用W-Element模拟方形同轴线的RLGC建模方法","url":"https://xiaxi626.github.io/post/ads-w-element-simulate-square-coaxial-rlgc-modeling/","description":"此文为记录ADS方形同轴线RLGC建模从报错到功能正常调用的过程，最终解决方案见文末。 我们知道ADS中只有圆柱同轴线符号，没有其他结构的同轴线，因此我们在ADS仿真时，为了达到同样的阻抗，需要使用LineCalc计算实际阻抗在ADS中的同轴尺寸。 那有没有办法不用圆柱同轴符号呢？我们可以尝试一下用RLGC电路来\u0026hellip;","datePublished":"2026-05-15T19:40:37+08:00","dateModified":"2026-06-21T22:22:15+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/ads-w-element-simulate-square-coaxial-rlgc-modeling/","name":"ADS中用W-Element模拟方形同轴线的RLGC建模方法","position":2}]}</script>
+<meta property="og:title" content="ADS中用W-Element模拟方形同轴线的RLGC建模方法">
+<meta property="og:description" content="此文为记录ADS方形同轴线RLGC建模从报错到功能正常调用的过程，最终解决方案见文末。 我们知道ADS中只有圆柱同轴线符号，没有其他结构的同轴线，因此我们在ADS仿真时，为了达到同样的阻抗，需要使用LineCalc计算实际阻抗在ADS中的同轴尺寸。 那有没有办法不用圆柱同轴符号呢？我们可以尝试一下用RLGC电路来&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/ads-w-element-simulate-square-coaxial-rlgc-modeling/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/images/avatar.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/ads-w-element-simulate-square-coaxial-rlgc-modeling/">
+<meta name="twitter:title" content="ADS中用W-Element模拟方形同轴线的RLGC建模方法">
+<meta name="twitter:description" content="此文为记录ADS方形同轴线RLGC建模从报错到功能正常调用的过程，最终解决方案见文末。 我们知道ADS中只有圆柱同轴线符号，没有其他结构的同轴线，因此我们在ADS仿真时，为了达到同样的阻抗，需要使用LineCalc计算实际阻抗在ADS中的同轴尺寸。 那有没有办法不用圆柱同轴符号呢？我们可以尝试一下用RLGC电路来&amp;hellip;">
+<meta name="twitter:image" content="/images/avatar.png">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>ADS中用W-Element模拟方形同轴线的RLGC建模方法</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2026-05-15</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/ads-w-element-simulate-square-coaxial-rlgc-modeling/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="technology">technology</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><p>此文为记录ADS方形同轴线RLGC建模从报错到功能正常调用的过程，最终解决方案见文末。</p>
+<p>我们知道ADS中只有圆柱同轴线符号，没有其他结构的同轴线，因此我们在ADS仿真时，为了达到同样的阻抗，需要使用LineCalc计算实际阻抗在ADS中的同轴尺寸。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image1.png" alt="" /></p>
+<p>那有没有办法不用圆柱同轴符号呢？我们可以尝试一下用RLGC电路来模拟符号的方法。</p>
+<p>比如使用W_Element符号，该符号用于通过 RLGC 参数配置多导体输电线路。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image2.png" alt="" /></p>
+<p>为了使用W_Element，我们需要准备RLGC文件。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image3.png" alt="" /></p>
+<p>首先记住一定要打开一个workspace后再打开这个窗口，否则界面是这样的。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image4.png" alt="" /></p>
+<p>打开workspace后command line窗口就变成这样了。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image5.png" alt="" /></p>
+<p>点击Apply运行文件，点击保存按钮保存ael文件到指定位置。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image6.png" alt="" /></p>
+<p>由于我们准备的代码是静默生成文件，所以控制台无输出。</p>
+<p>代码如下&mdash;&mdash;</p>
+<pre><code class="language-ael">
+decl pi; pi = 3.14159265358979;
+decl c; c = 299792458;
+decl mu0; mu0 = 1.2566370614e-6;
+decl eps0; eps0 = 8.854187817e-12;
+decl a; a = 0.35;
+decl b; b = 0.64;
+decl eps_r; eps_r = 1.0006;
+decl tand; tand = 0.002;
+decl sigma; sigma = 5.96e7;
+decl start_freq; start_freq = 1e6;
+decl stop_freq; stop_freq = 150e6;
+decl num_points; num_points = 150;
+decl ratio; ratio = a / b;
+decl Z0; Z0 = (47.086 / sqrt(eps_r)) \* (1.0 - ratio) / (0.279 + 0.721
+\* ratio);
+decl v; v = c / sqrt(eps_r);
+decl L0; L0 = Z0 / v;
+decl C0; C0 = 1.0 / (Z0 \* v);
+decl df; df = (stop_freq - start_freq) / (num_points - 1);
+decl fid; fid = fopen(\&quot;square_coax.rlgc\&quot;, \&quot;w\&quot;);
+fprintf(fid, \&quot;\* RLGC File\\n\&quot;);
+fprintf(fid, \&quot;\* Z0=%.2f\\n\&quot;, Z0);
+fprintf(fid, \&quot;\\n\&quot;);
+decl Rdc; Rdc = 1.0/(sigma\*a\*a);
+fprintf(fid, \&quot;0.000000e+00 %.6e %.6e %.6e 0.000000e+00\\n\&quot;, Rdc, L0,
+C0);
+decl i; i = 1;
+decl f;
+decl Rs;
+decl R;
+decl G;
+while(i \&lt;= num_points)
+{
+f = start_freq + (i-1)\*df;
+Rs = sqrt(pi \* f \* mu0 / sigma);
+R = Rs \* (1.0/(2.0\*a) + 1.0/(2.0\*b));
+G = 2.0 \* pi \* f \* C0 \* tand;
+fprintf(fid, \&quot;%.6e %.6e %.6e %.6e %.6e\\n\&quot;, f, R, L0, C0, G);
+i = i + 1;
+}
+fclose(fid);
+</code></pre>
+<p>可以看到已经生成了RLGC文件。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image7.png" alt="" /></p>
+<p>但是在如下的电路中运行报错了。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image8.png" alt="" /></p>
+<p>W_Element1的设置如图所示。截图是错的，输入路径不能带双引号，否则会找不到文件。建议将rlgc文件放在项目文件夹，默认文件夹层级是“.\Megawave_wrk\data”。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image9.png" alt="" /></p>
+<p>为了验证RLGC文件是否正常，以及确认W_Element1是否设置错误，我们搭建这样一个电路，频率范围设置与RLGC代码中的一致。</p>
+<ol>
+<li>
+<p>新建一个 <strong>空白原理图</strong></p>
+</li>
+<li>
+<p>只放这 4 个元件：</p>
+<ul>
+<li>
+<p><strong>PORT</strong> 两个</p>
+</li>
+<li>
+<p><strong>W-ELEMENT1</strong> 一个</p>
+</li>
+<li>
+<p><strong>SP1</strong> （仿真控制器）一个</p>
+</li>
+</ul>
+</li>
+<li>
+<p>连线：<br />
+PORT1 → W-ELEMENT1 → PORT2<br />
+地线全部默认</p>
+</li>
+</ol>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image10.png" alt="" /></p>
+<p>确认一下设置有没有问题。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image11.png" alt="" /></p>
+<p>运行提示如图所示，依然无法读取RLGC文件。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image12.png" alt="" /></p>
+<p>查阅官方文档寻找原因，得出以下结论。</p>
+<p>我现在用的是 Model_type=0（静态模型），但我的 RLGC文件是按频率分段的格式写的，这完全不匹配！</p>
+<p>一、官方文档明确说明：两种模式的文件格式完全不同</p>
+<p>1. Model_type=0（静态模型）</p>
+<ul>
+<li>
+<p>只能用 RLGCfile 参数</p>
+</li>
+<li>
+<p>文件里<strong>没有频率点</strong>！</p>
+</li>
+<li>
+<p>格式：[N] L11 L21 L22 C11 C21 C22 Rdc11 Rdc21 Rdc22 Gdc11 Gdc21<br />
+Gdc22 Rs11 Rs21 Rs22 Gd11 Gd21 Gd22</p>
+</li>
+<li>
+<p>我的文件里写了频率、1MHz、150MHz 这些，Model_type=0 会直接当成无效数据，报读取错误。</p>
+</li>
+</ul>
+<p>2. Model_type=1（频率相关模型）</p>
+<ul>
+<li>
+<p>不能用 RLGCfile 参数</p>
+</li>
+<li>
+<p>必须用 Lfile / Cfile / Rfile / Gfile 分别定义每个矩阵的文件</p>
+</li>
+<li>
+<p>每个文件的格式才是：[点数] 频率 L11 L21 L22 ...</p>
+</li>
+<li>
+<p>我现在的文件格式，只能给 Model_type=1 用，给 Model_type=0 用必然报错！</p>
+</li>
+</ul>
+<p>那我们试着把 W-Element 改成频率相关模式。因为 Model_type=1 要求每个矩阵单独一个文件，把我的RLGC 文件拆成 4 个独立文件试试。</p>
+<p>编写一下生成四个独立文件的代码&mdash;&mdash;</p>
+<pre><code class="language-ael">decl pi; pi = 3.14159265358979;
+decl c; c = 299792458;
+decl mu0; mu0 = 1.2566370614e-6;
+decl a; a = 0.35;
+decl b; b = 0.64;
+decl eps_r; eps_r = 1.0006;
+decl tand; tand = 0.002;
+decl sigma; sigma = 5.96e7;
+decl start_freq; start_freq = 1e6;
+decl stop_freq; stop_freq = 150e6;
+decl num_points; num_points = 150;
+decl ratio; ratio = a / b;
+decl Z0; Z0 = (47.086 / sqrt(eps_r)) \* (1.0 - ratio) / (0.279 + 0.721
+\* ratio);
+decl v; v = c / sqrt(eps_r);
+decl L0; L0 = Z0 / v;
+decl C0; C0 = 1.0 / (Z0 \* v);
+decl df; df = (stop_freq - start_freq) / (num_points - 1);
+decl fidL; fidL = fopen(\&quot;L.rlgc\&quot;, \&quot;w\&quot;);
+decl fidC; fidC = fopen(\&quot;C.rlgc\&quot;, \&quot;w\&quot;);
+decl fidR; fidR = fopen(\&quot;R.rlgc\&quot;, \&quot;w\&quot;);
+decl fidG; fidG = fopen(\&quot;G.rlgc\&quot;, \&quot;w\&quot;);
+// 写入点数（含DC点，共151个）
+fprintf(fidL, \&quot;%d\\n\&quot;, num_points + 1);
+fprintf(fidC, \&quot;%d\\n\&quot;, num_points + 1);
+fprintf(fidR, \&quot;%d\\n\&quot;, num_points + 1);
+fprintf(fidG, \&quot;%d\\n\&quot;, num_points + 1);
+// DC点
+decl Rdc; Rdc = 1.0/(sigma\*a\*a);
+fprintf(fidL, \&quot;%.6e %.6e\\n\&quot;, 0.0, L0);
+fprintf(fidC, \&quot;%.6e %.6e\\n\&quot;, 0.0, C0);
+fprintf(fidR, \&quot;%.6e %.6e\\n\&quot;, 0.0, Rdc);
+fprintf(fidG, \&quot;%.6e %.6e\\n\&quot;, 0.0, 0.0);
+decl i; i = 1;
+decl f;
+decl Rs;
+decl R;
+decl G;
+while(i \&lt;= num_points)
+{
+f = start_freq + (i-1)\*df;
+Rs = sqrt(pi \* f \* mu0 / sigma);
+R = Rs \* (1.0/(2.0\*a) + 1.0/(2.0\*b));
+G = 2.0 \* pi \* f \* C0 \* tand;
+fprintf(fidL, \&quot;%.6e %.6e\\n\&quot;, f, L0);
+fprintf(fidC, \&quot;%.6e %.6e\\n\&quot;, f, C0);
+fprintf(fidR, \&quot;%.6e %.6e\\n\&quot;, f, R);
+fprintf(fidG, \&quot;%.6e %.6e\\n\&quot;, f, G);
+i = i + 1;
+}
+fclose(fidL);
+fclose(fidC);
+fclose(fidR);
+fclose(fidG);
+</code></pre>
+<p>运行后，我的工程目录会生成这 4 个文件，然后 W-Element1这样设置（Model_type=1）。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image13.png" alt="" /></p>
+<p>然后我们发现报了这个奇怪的错误。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image14.png" alt="" /></p>
+<p>然后人工智能给了我提供奇怪的提示&mdash;&mdash;</p>
+<p>官方文档的隐藏要求：Model_type=1 的文件格式</p>
+<p>我再仔细看了一遍我贴的帮助文档，里面写了关键一句：</p>
+<pre><code>For Model_type=1, the data consists of pairs, where each pair is formed
+by a frequency value followed by the matrix entries at that frequency.
+
+对 N=1 的传输线，L/C/R/G 都是 **1x1 矩阵**，所以每一行的数据格式是：
+
+频率值 矩阵元素
+
+但还有一个 **关键细节**，官方文档没写死，但 ADS 强制要求：
+
+**频率值必须是整数，不能是科学计数法！**
+
+ADS 的解析器对科学计数法（如
+1.000000e+06）有兼容性问题，我文件里的频率用 1.000000e+06
+写，它会解析失败，直接报 Error reading the W_Element data file。
+</code></pre>
+<p>我们现在将频率全部改成普通数字。</p>
+<pre><code class="language-ael">decl pi; pi = 3.14159265358979;
+decl c; c = 299792458;
+decl mu0; mu0 = 1.2566370614e-6;
+decl a; a = 0.35;
+decl b; b = 0.64;
+decl eps_r; eps_r = 1.0006;
+decl tand; tand = 0.002;
+decl sigma; sigma = 5.96e7;
+decl start_freq; start_freq = 1e6;
+decl stop_freq; stop_freq = 150e6;
+decl num_points; num_points = 150;
+decl ratio; ratio = a / b;
+decl Z0; Z0 = (47.086 / sqrt(eps_r)) \* (1.0 - ratio) / (0.279 + 0.721
+\* ratio);
+decl v; v = c / sqrt(eps_r);
+decl L0; L0 = Z0 / v;
+decl C0; C0 = 1.0 / (Z0 \* v);
+decl df; df = (stop_freq - start_freq) / (num_points - 1);
+decl fidL; fidL = fopen(\&quot;L.rlgc\&quot;, \&quot;w\&quot;);
+decl fidC; fidC = fopen(\&quot;C.rlgc\&quot;, \&quot;w\&quot;);
+decl fidR; fidR = fopen(\&quot;R.rlgc\&quot;, \&quot;w\&quot;);
+decl fidG; fidG = fopen(\&quot;G.rlgc\&quot;, \&quot;w\&quot;);
+fprintf(fidL, \&quot;%d\\n\&quot;, num_points + 1);
+fprintf(fidC, \&quot;%d\\n\&quot;, num_points + 1);
+fprintf(fidR, \&quot;%d\\n\&quot;, num_points + 1);
+fprintf(fidG, \&quot;%d\\n\&quot;, num_points + 1);
+decl Rdc; Rdc = 1.0/(sigma\*a\*a);
+fprintf(fidL, \&quot;0 %.6e\\n\&quot;, L0);
+fprintf(fidC, \&quot;0 %.6e\\n\&quot;, C0);
+fprintf(fidR, \&quot;0 %.6e\\n\&quot;, Rdc);
+fprintf(fidG, \&quot;0 %.6e\\n\&quot;, 0.0);
+decl i; i = 1;
+decl f;
+decl Rs;
+decl R;
+decl G;
+while(i \&lt;= num_points)
+{
+f = start_freq + (i-1)\*df;
+Rs = sqrt(pi \* f \* mu0 / sigma);
+R = Rs \* (1.0/(2.0\*a) + 1.0/(2.0\*b));
+G = 2.0 \* pi \* f \* C0 \* tand;
+fprintf(fidL, \&quot;%.0f %.6e\\n\&quot;, f, L0);
+fprintf(fidC, \&quot;%.0f %.6e\\n\&quot;, f, C0);
+fprintf(fidR, \&quot;%.0f %.6e\\n\&quot;, f, R);
+fprintf(fidG, \&quot;%.0f %.6e\\n\&quot;, f, G);
+i = i + 1;
+}
+fclose(fidL);
+fclose(fidC);
+fclose(fidR);
+fclose(fidG);
+</code></pre>
+<p>运行提示依然如上图所示。</p>
+<p>我们再翻一下help文件。</p>
+<p>For Model_type=1, the data consists of pairs, where each pair is formed<br />
+by a frequency value followed by the matrix entries at that frequency.</p>
+<p>For N signal lines, the matrix entries are:</p>
+<p>L11 L12 &hellip; L1N L21 L22 &hellip; LNN</p>
+<p>Similarly for R, C, G files.</p>
+<p>&hellip;&hellip;</p>
+<p>When N=1, the matrices are scalar (1×1).</p>
+<p>So each line is:</p>
+<p>frequency value</p>
+<p>&hellip;&hellip;</p>
+<p>NOTE:</p>
+<p>The tabular model (Model_type=1) is intended for coupled lines (N ≥ 2).</p>
+<p>For a single line (N=1), use the static RLGC model (Model_type=0).</p>
+<p>N=1 不能用 Model_type=1，只能用 Model_type=0。</p>
+<p>放弃 Model_type=1，回到 Model_type=0（static），只用 1 个 RLGC 文件。</p>
+<p>我们写这样一段.ael代码，生成文件名static的RLGC文件。</p>
+<pre><code class="language-ael">decl pi; pi = 3.14159265358979;
+decl c; c = 299792458;
+decl mu0; mu0 = 4 \* pi \* 1e-6;
+decl a; a = 0.35;
+decl b; b = 0.64;
+decl eps_r; eps_r = 1.0006;
+decl tand; tand = 0.002;
+decl sigma; sigma = 5.96e7;
+decl ratio; ratio = a / b;
+decl Z0; Z0 = (47.086 / sqrt(eps_r)) \* (1.0 - ratio) / (0.279 + 0.721
+\* ratio);
+decl v; v = c / sqrt(eps_r);
+decl L0; L0 = Z0 / v;
+decl C0; C0 = 1.0 / (Z0 \* v);
+decl Rdc; Rdc = 1.0/(sigma\*a\*a);
+decl Gdc; Gdc = 0.0;
+// 生成 STATIC 格式 RLGC 文件（N=1 专用）
+decl fid; fid = fopen(\&quot;static.rlgc\&quot;, \&quot;w\&quot;);
+fprintf(fid, \&quot;1\\n\&quot;); // N=1
+fprintf(fid, \&quot;%.6e \&quot;, L0); // L11
+fprintf(fid, \&quot;%.6e \&quot;, C0); // C11
+fprintf(fid, \&quot;%.6e \&quot;, Rdc); // Rdc11
+fprintf(fid, \&quot;%.6e \&quot;, Gdc); // Gdc11
+fprintf(fid, \&quot;0.0 \&quot;); // Rs11
+fprintf(fid, \&quot;0.0\\n\&quot;); // Gd11
+fclose(fid);
+</code></pre>
+<p>然后我们试一下，完美。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image15.png" alt="" /></p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image16.png" alt="" /></p>
+<p>结果一模一样。</p>
+<style>
+  .image-container {
+      display: flex;
+      gap: 2px;  /* 图片间距 */
+        align-items: center;
+  }
+        
+  .image-container img {
+      width: 40%;  /* 缩放到容器宽度的25% */
+      height: auto; /* 保持宽高比 */
+  }
+</style>
+<div class="image-container">
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image17.png" alt="">
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image18.png" alt="">
+</div>
+<p>现在我们回过头来说明一下代码的计算过程：</p>
+<ol>
+<li>基础物理常数</li>
+</ol>
+<ul>
+<li>
+<p>pi → 圆周率</p>
+</li>
+<li>
+<p>c = 299792458 → 真空中光速</p>
+</li>
+<li>
+<p>mu0 = 4πe-7 → 真空磁导率</p>
+</li>
+</ul>
+<p>这些是传输线计算的基础常数。</p>
+<ol start="2">
+<li>传输线几何参数</li>
+</ol>
+<p>我仿真的是 <strong>方形同轴线</strong>：</p>
+<ul>
+<li>
+<p>a = 0.35：内导体半边长</p>
+</li>
+<li>
+<p>b = 0.64：外导体内半边长</p>
+</li>
+</ul>
+<ol start="3">
+<li>半径比 ratio</li>
+</ol>
+<p>ratio = a / b</p>
+<p>用于后面的阻抗经验公式。</p>
+<ol start="4">
+<li><strong>核心公式：方形同轴线特性阻抗 Z0</strong></li>
+</ol>
+<p>Z0 = (47.086 / sqrt(eps_r)) * (1 - ratio) / (0.279 + 0.721 * ratio)</p>
+<p>这是 <strong>ADS 官方方形同轴线阻抗经验公式</strong></p>
+<ul>
+<li>
+<p>47.086 → 固定系数</p>
+</li>
+<li>
+<p>sqrt (eps_r) → 介质影响</p>
+</li>
+<li>
+<p>(1-ratio) → 几何尺寸影响</p>
+</li>
+<li>
+<p>分母是拟合系数</p>
+</li>
+</ul>
+<p><strong>输出：Z0 ≈ 31.68 Ω</strong></p>
+<ol start="5">
+<li>相速度 v</li>
+</ol>
+<p>v = c / sqrt(eps_r)</p>
+<p>传输线中电磁波速度，永远比光速慢，由介质决定。</p>
+<ol start="6">
+<li>单位长度电感 L0</li>
+</ol>
+<p>L0 = Z0 / v</p>
+<p>传输线理论基础公式：</p>
+<p>Z0 = sqrt(L0/C0)</p>
+<p>v = 1/sqrt(L0*C0)</p>
+<p>推导得到：</p>
+<p>L0 = Z0 / v</p>
+<ol start="7">
+<li>单位长度电容 C0</li>
+</ol>
+<p>C0 = 1 / (Z0 * v)</p>
+<p>同样由传输线基础公式推导而来。</p>
+<ol start="8">
+<li>直流电阻 Rdc</li>
+</ol>
+<p>Rdc = 1 / (sigma * a²)</p>
+<ul>
+<li>
+<p>sigma：导体电导率</p>
+</li>
+<li>
+<p>a²：截面积</p>
+</li>
+</ul>
+<p>这是<strong>直流电阻模型</strong>。</p>
+<ol start="9">
+<li>直流电导 Gdc</li>
+</ol>
+<p>Gdc = 0</p>
+<p>理想介质，无漏电流。</p>
+<ol start="10">
+<li>生成静态 RLGC 文件（ADS 专用格式）</li>
+</ol>
+<pre><code>1
+L11 C11 Rdc11 Gdc11 Rs11 Gd11
+</code></pre>
+<p>格式严格对应：</p>
+<pre><code>1 → N=1
+
+L0 → 单位长度电感
+
+C0 → 单位长度电容
+
+Rdc → 直流电阻
+
+Gdc → 直流漏电导
+
+0 → 集肤效应电阻（静态模型不用）
+
+0 → 介质损耗电导（静态模型不用）
+</code></pre>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        <span class="pre pagbuttons">
+            <a role="navigation" href="/post/ru-he-zai-github-shang-ti-jiao-pull-request/" title="如何在 GitHub 上提交 Pull Request">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                prev_post: 如何在 GitHub 上提交 Pull Request
+            </a>
+        </span>
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/dian-zi-si-ji-guan-can-shu-ji-suan-fang-fa-di-yi-bu-fen/" title="电子四极管参数计算方法——第一部分">
+                next_post: 电子四极管参数计算方法——第一部分
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/scripts/jquery.appear.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

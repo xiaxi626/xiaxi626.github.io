@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="Discussion">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>Git使用问题解决 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="Git使用问题解决">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="Git使用问题 比较好的入门教程 配置 Git 连接 GitHub 使用中发现Could not read from remote repository 解决方法：[Git解决fatal: Could not read from remote rep&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/git-shi-yong-wen-ti-jie-jue/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Git使用问题解决","url":"https://xiaxi626.github.io/post/git-shi-yong-wen-ti-jie-jue/","description":"Git使用问题 比较好的入门教程 配置 Git 连接 GitHub 使用中发现Could not read from remote repository 解决方法：[Git解决fatal: Could not read from remote rep\u0026hellip;","image":"/post-images/git-shi-yong-wen-ti-jie-jue.jpg","datePublished":"2023-01-27T22:18:11+08:00","dateModified":"2023-01-27T22:18:11+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/git-shi-yong-wen-ti-jie-jue/","name":"Git使用问题解决","position":2}]}</script>
+<meta property="og:title" content="Git使用问题解决">
+<meta property="og:description" content="Git使用问题 比较好的入门教程 配置 Git 连接 GitHub 使用中发现Could not read from remote repository 解决方法：[Git解决fatal: Could not read from remote rep&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/git-shi-yong-wen-ti-jie-jue/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/post-images/git-shi-yong-wen-ti-jie-jue.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/git-shi-yong-wen-ti-jie-jue/">
+<meta name="twitter:title" content="Git使用问题解决">
+<meta name="twitter:description" content="Git使用问题 比较好的入门教程 配置 Git 连接 GitHub 使用中发现Could not read from remote repository 解决方法：[Git解决fatal: Could not read from remote rep&amp;hellip;">
+<meta name="twitter:image" content="/post-images/git-shi-yong-wen-ti-jie-jue.jpg">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>Git使用问题解决</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2023-01-27</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/git-shi-yong-wen-ti-jie-jue/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/discussion/" title="Discussion">Discussion</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><h2 id="git">Git使用问题</h2>
+<h3 id="heading">比较好的入门教程</h3>
+<p><a href="https://blog.csdn.net/qq_42815188/article/details/128735530">配置 Git 连接 GitHub</a></p>
+<h3 id="could-not-read-from-remote-repository">使用中发现Could not read from remote repository</h3>
+<p>解决方法：<a href="https://blog.csdn.net/baoyin0822/article/details/122584931">Git解决fatal: Could not read from remote repository.的问题</a></p>
+<p>第二种方法pass，尝试重新生成ssh密钥</p>
+<h3 id="-ssh--t-gitgithubcom-connection-reset-by-xxxxxxxxx-port-22">测试连接：$ ssh -T <a href="mailto:git@github.com">git@github.com</a> 出现Connection reset by xxx.xx.xxx.x port 22</h3>
+<p>解决方法：<a href="https://blog.csdn.net/weixin_51594453/article/details/120605700">【Note】git上手-解决连接github时connection reset的问题</a></p>
+<p>尝试新建22端口的入站规则</p>
+<h3 id="hi-xiaxi626-youve-successfully-authenticated-but-github-does-not-provide-shell-access">出现Hi xiaxi626! You’ve successfully authenticated, but GitHub does not provide shell access.</h3>
+<p>这玩意在第一篇文章配置图片中也有，不放心，顺便查一下</p>
+<p>解决方法：<a href="https://blog.csdn.net/weixin_42562387/article/details/114443451">解决git连接问题: You‘ve successfully authenticated, but GitHub does not provide shell access.</a></p>
+<h2 id="heading-1">日常使用</h2>
+<h3 id="-git-">配置 Git 的用户名和邮箱</h3>
+<pre><code class="language-bash">git config --global user.name &quot;你的用户名&quot;
+git config --global user.email &quot;你的邮箱&quot;
+</code></pre>
+<p><strong>查看配置好的 Git 的用户名和邮箱</strong></p>
+<pre><code class="language-bash">git config --list
+</code></pre>
+<h3 id="-ssh--git--github">基于 SSH 协议配置 Git 连接 GitHub</h3>
+<p><strong>为本机生成 SSH 密钥对</strong></p>
+<pre><code class="language-bash">ssh-keygen -t rsa -C &quot;本机标识&quot;
+</code></pre>
+<p>复制 <code>id_rsa.pub</code> 公钥里的内容到剪贴板</p>
+<pre><code class="language-bash">clip &lt; ~/.ssh/id_rsa.pub
+</code></pre>
+<p><strong>将公钥拷贝到 GitHub 上</strong><br />
+<strong>SSH 测试</strong></p>
+<pre><code class="language-bash">ssh -T git@github.com
+</code></pre>
+<p><strong>将本地仓库和远程仓库关联起来</strong><br />
+第一种方法：<br />
+首先在 GitHub 上创建一个远程仓库<br />
+接着执行如下命令初始化一个本地仓库</p>
+<pre><code class="language-bash">git init
+</code></pre>
+<p>将想要上传的文件放到这个本地仓库文件夹下</p>
+<pre><code class="language-bash">git add .
+</code></pre>
+<p>接着将文件提交到本地仓库</p>
+<pre><code class="language-bash">git commit -m &quot;注释&quot;
+</code></pre>
+<p>使用GPG签名提交</p>
+<pre><code class="language-bash">git commit -S -m &quot;注释&quot;
+</code></pre>
+<p>然后复制远程仓库的 SSH 地址，执行如下命令将本地仓库与远程仓库关联起来</p>
+<pre><code class="language-bash">git remote add origin 远程仓库的SSH地址
+</code></pre>
+<p>将文件上传到 GitHub 的远程仓库</p>
+<pre><code class="language-bash">git push -u origin main
+</code></pre>
+<p>第二种方法:<br />
+首先在 GitHub 上创建一个远程仓库<br />
+复制远程仓库的 SSH 地址，克隆仓库</p>
+<pre><code class="language-bash">git clone 远程仓库的SSH地址
+</code></pre>
+<p>依次执行如下命令将文件添加并提交到本地仓库</p>
+<pre><code class="language-bash">git add .
+</code></pre>
+<pre><code class="language-bash">git commit -m &quot;注释&quot;
+</code></pre>
+<p>最后执行如下命令，将文件上传到 GitHub 的远程仓库</p>
+<pre><code class="language-bash">git push -u origin main
+</code></pre>
+<p>往后push时如果失败可以输入 <code>git push</code> 将文件上传。</p>
+<p><strong>如果代码之前已经push到远程仓库里，想要撤消线上的push</strong><br />
+回退到指定版本 放弃工作区的所有修改，还原到指定版本的代码。</p>
+<pre><code class="language-bash">git reset --hard &lt;指定版本提交的Hash值&gt;
+git push 目标分支 本地分支 -f
+</code></pre>
+<blockquote>
+<p>此时如果用“git push”会报错，因为我们本地库HEAD指向的版本比远程库的要旧,要加-f参数强制推送</p>
+</blockquote>
+<h2 id="heading-2">拓展阅读</h2>
+<p><a href="https://codechina_dev.gitcode.host/learn-git-branching/?locale=zh_CN">Learn Git Branching</a><br />
+<a href="https://www.cnblogs.com/haima/p/13365483.html">Git：如何撤销已经提交的代码 - HaimaBlog - 博客园</a><br />
+<a href="https://blog.csdn.net/qq_42815188/article/details/128735530">配置 Git 连接 GitHub_早睡身体好hh的博客-CSDN博客</a><br />
+<a href="https://blog.csdn.net/zemprogram/article/details/93139672">git&mdash;-文件修改的上传_前端小黑的博客-CSDN博客_git push会把所有修改的上传吗</a><br />
+<a href="https://www.cnblogs.com/upstudy/p/15870787.html">Git使用教程（超全，看一篇就够了） - 三叔测试笔记 - 博客园</a><br />
+<a href="https://zhuanlan.zhihu.com/p/393050270">Github 部署个人网页 | 自定义域名 - 知乎</a><br />
+<a href="https://blog.csdn.net/qq_52827181/article/details/120572994">解决git@gitee.com: Permission denied (publickey). Could not read from remote repository._小艾的未解之谜的博客-CSDN博客</a><br />
+<a href="https://blog.csdn.net/Haa__/article/details/119353185">(61条消息) Git同时配置Gitee和GitHub_MsLeesSun的博客-CSDN博客</a><br />
+<a href="https://blog.csdn.net/Smilelfq/article/details/107019207">Github上如何给别人贡献代码、fork别人打代码后如何保持和原作者同步的更新_本地向其他人的github贡献_微笑の天使的博客-CSDN博客</a><br />
+<a href="https://qastack.cn/programming/11868447/how-can-i-remove-an-entry-in-global-configuration-with-git-config">如何使用git config删除全局配置中的条目？</a><br />
+<a href="https://zhuanlan.zhihu.com/p/521340971">坑：ssh: connect to host github.com port 22: Connection refused - 知乎</a><br />
+<a href="https://blog.csdn.net/qq_29493173/article/details/113094143">Github——git本地仓库建立与远程连接（最详细清晰版本！附简化步骤与常见错误）_github仓库_你脸上有BUG的博客-CSDN博客</a><br />
+<a href="https://www.cnblogs.com/maizhelun/p/16044905.html">git clone出现 fatal: unable to access &lsquo;https://github.com/&hellip;&lsquo;的解决办法(亲测有效) - 麦哲伦没有企鹅 - 博客园</a><br />
+<a href="https://blog.csdn.net/teng_liang/article/details/121464977">git仓库迁移后，更新本地代码关联的git地址_git 更换仓库地址后 本地代码怎么关联_teng316的博客-CSDN博客</a><br />
+<a href="https://www.cnblogs.com/stonefeng/p/5703272.html">查看，添加和删除GIT配置的正确姿势 - StoneFeng - 博客园</a><br />
+<a href="https://blog.kelu.org/tech/2022/03/15/git-global-config-reset.html">修改/重置 git 的全局配置 | 血衫非弧の一存</a><br />
+<a href="https://www.cnblogs.com/php-han/p/15398032.html">码云gitee 配置公钥 解决出现git@gitee.com: Permission denied (publickey). - 雨过了天晴 - 博客园</a><br />
+<a href="https://blog.csdn.net/m0_52640673/article/details/120376784">【Git】创建远程仓库并首次提交本地的代码_git远程创建 本地首次提交_DanteIoVeYou的博客-CSDN博客</a><br />
+<a href="https://blog.csdn.net/commshare/article/details/130523009">【github】Connection reset by 20.205.243.160 port 443_等风来不如迎风去的博客-CSDN博客</a><br />
+<a href="https://blog.csdn.net/baoyin0822/article/details/122584931">Git解决fatal: Could not read from remote repository.的问题_BreenCL的博客-CSDN博客</a><br />
+<a href="https://juejin.cn/post/7089249145252216862">git清除本地项目缓存 - 掘金</a><br />
+<a href="https://blog.csdn.net/sichen1900/article/details/121909009">Git：443超时的解决办法_git 443_一条小金毛的博客-CSDN博客</a><br />
+<a href="https://juejin.cn/post/7143067114025254919">手把手教你将github项目部署到vercel上 - 掘金</a><br />
+<a href="https://zhuanlan.zhihu.com/p/291845721">Github 使用经典问题：如何同步 fork 项目原仓库的更新 - 知乎</a><br />
+<a href="https://blog.csdn.net/qq_37925382/article/details/104701928">GIt学习及命令的使用(七 )—— Git tag 和 GitHub releases_git releases_陌上寒山的博客-CSDN博客</a><br />
+<a href="https://blog.csdn.net/xc_zhou/article/details/87984242">[543]GitHub怎样fork别人代码到自己仓库并进行贡献_github fork_周小董的博客-CSDN博客</a></p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        <span class="pre pagbuttons">
+            <a role="navigation" href="/post/gridea-ruo-gan-wen-ti-de-jie-jue-fang-fa/" title="Gridea若干问题的解决方法">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                prev_post: Gridea若干问题的解决方法
+            </a>
+        </span>
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/gosick-dong-hua-zi-yuan-tong-ji/" title="GOSICK 动画资源统计">
+                next_post: GOSICK 动画资源统计
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/scripts/jquery.appear.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

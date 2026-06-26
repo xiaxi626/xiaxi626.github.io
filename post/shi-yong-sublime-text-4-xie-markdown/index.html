@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="Technology">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>使用Sublime Text 4写Markdown · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="使用Sublime Text 4写Markdown">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="编辑插件 推荐安装Markdown Editing， github主页。 Ctrl+Shift+P，输入install打开 Package Control: Install Package，搜索选中MarkdownEditing，回车安装。 菜单栏打开首选项-配色方案，输&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/shi-yong-sublime-text-4-xie-markdown/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"使用Sublime Text 4写Markdown","url":"https://xiaxi626.github.io/post/shi-yong-sublime-text-4-xie-markdown/","description":"编辑插件 推荐安装Markdown Editing， github主页。 Ctrl+Shift+P，输入install打开 Package Control: Install Package，搜索选中MarkdownEditing，回车安装。 菜单栏打开首选项-配色方案，输\u0026hellip;","image":"/post-images/shi-yong-sublime-text-4-xie-markdown.png","datePublished":"2023-04-29T08:09:22+08:00","dateModified":"2026-05-15T22:34:46+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/shi-yong-sublime-text-4-xie-markdown/","name":"使用Sublime Text 4写Markdown","position":2}]}</script>
+<meta property="og:title" content="使用Sublime Text 4写Markdown">
+<meta property="og:description" content="编辑插件 推荐安装Markdown Editing， github主页。 Ctrl+Shift+P，输入install打开 Package Control: Install Package，搜索选中MarkdownEditing，回车安装。 菜单栏打开首选项-配色方案，输&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/shi-yong-sublime-text-4-xie-markdown/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/post-images/shi-yong-sublime-text-4-xie-markdown.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/shi-yong-sublime-text-4-xie-markdown/">
+<meta name="twitter:title" content="使用Sublime Text 4写Markdown">
+<meta name="twitter:description" content="编辑插件 推荐安装Markdown Editing， github主页。 Ctrl+Shift+P，输入install打开 Package Control: Install Package，搜索选中MarkdownEditing，回车安装。 菜单栏打开首选项-配色方案，输&amp;hellip;">
+<meta name="twitter:image" content="/post-images/shi-yong-sublime-text-4-xie-markdown.png">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>使用Sublime Text 4写Markdown</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2023-04-29</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/shi-yong-sublime-text-4-xie-markdown/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><h2 id="heading">编辑插件</h2>
+<p>推荐安装Markdown Editing， <a href="https://github.com/SublimeText-Markdown/MarkdownEditing">github主页</a>。<br />
+Ctrl+Shift+P，输入<code>install</code>打开 Package Control: Install Package，搜索选中MarkdownEditing，回车安装。<br />
+菜单栏打开首选项-配色方案，输入 MarkdownEditing，有MarkdownEditor、MarkdownEditor-Dark、MarkdownEditor-Focus、MarkdownEditor-Yellow、MarkdownEditor-Arcdark四种配色方案。<br />
+接下来看一下插件设置，打开首选项-Package-Settings-Markdown Editing，打开了一个<code>Preference.sublime-settings</code>文件，有些朋友打开以后可能跟我一样，默认是这样的——</p>
+<pre><code class="language-bash">{
+	&quot;ignored_packages&quot;:
+	[
+		&quot;Vintage&quot;,
+	],
+}
+</code></pre>
+<h3 id="vintage">我们查一下什么是Vintage？</h3>
+<h4 id="heading-1"><strong>启用复古</strong></h4>
+<p>Vintage是一个用于Sublime Text的vi模式编辑包。它允许您将vi的命令模式与Sublime Text的功能（包括多个选择）组合。<br />
+复古默认情况下禁用，通过ignored_pa​​ckages设置。如果您删除“复古”从忽略的软件包列表，你就可以用vi键编辑：</p>
+<ol>
+<li>选择▸设置首选项菜单项</li>
+<li>编辑ignored_pa​​ckages设置，对其进行更改：</li>
+</ol>
+<pre><code class="language-bash">&quot;ignored_packages&quot;: [&quot;Vintage&quot;]
+</code></pre>
+<p>至：</p>
+<pre><code class="language-bash">&quot;ignored_packages&quot;: []
+</code></pre>
+<p>现在保存文件。<br />
+3. 复制模式现已启用 - 您将在状态栏中看到“INSERT MODE”<br />
+默认情况下，复古以插入模式启动。可以通过向用户设置添加以下设置来更改此设置：</p>
+<pre><code class="language-bash">&quot;vintage_start_in_command_mode&quot;: true
+</code></pre>
+<p><a href="https://www.sublimetextcn.com/docs/3/vintage.html">Vintage Mode – Sublime Text 3 Documentation</a></p>
+<h4 id="heading-2"><strong>包含什么</strong></h4>
+<p>复古包括最基本的动作：d（删除），y（复制），c（更改），gu（小写），gU（大写），g〜（rot13），&lt;（unindent）和&gt;（indent）。</p>
+<p>它还包括许多运动，包括<code>l，h，j，k，w，w，e，E，b，B，alt + w</code>（通过子词移动），<code>alt + W</code>（通过子词向后移动） <code>$，^，％，0，G，gg，f，F，t，T，^ f，^ b，H，M</code>和<code>L</code>.</p>
+<p>支持文本对象，包括单词，引号，括号和标签。</p>
+<p>重复（&rsquo;。&rsquo;）在那里，指定命令和动作的计数。支持寄存器，宏和书签。还支持许多其他杂项命令，例如<code>*，/，n，N，s，S</code>等。</p>
+<h4 id="heading-3"><strong>什么不是</strong></h4>
+<p>插入模式是常规的Sublime Text编辑，与通常的Sublime Text键绑定：vi插入模式键绑定不会被模拟。<br />
+Ex命令不实现，除了：w和：e，它们通过命令选项板工作。</p>
+<p>当你打开首选项-配色方案和主题，不作修改，插件设置会多出这两行。</p>
+<pre><code class="language-bash">	&quot;color_scheme&quot;: &quot;Mariana.sublime-color-scheme&quot;,
+	&quot;theme&quot;: &quot;auto&quot;,
+</code></pre>
+<p>这里介绍几个推荐的配置。</p>
+<pre><code class="language-bash">&quot;highlight_line&quot;: true, // 高亮正在编辑的行
+&quot;line_numbers&quot;: true,   // 显示行号
+&quot;tab_size&quot;: 4,          // tab宽度
+&quot;translate_tabs_to_spaces&quot;: true,   // tab转换为空格
+&quot;trim_trailing_white_space_on_save&quot;: true,  // 保存时去掉行尾空格
+&quot;word_wrap&quot;: true,      // 自动换行
+&quot;wrap_width&quot;: &quot;auto&quot;,    // 换行的宽度,默认80会造成左侧大量留白
+&quot;mde.keep_centered&quot;: true,  // 可以保持你正在编辑的行始终处于屏幕的中间
+</code></pre>
+<h2 id="heading-4">预览插件</h2>
+<h3 id="markdownlivepreview">MarkdownLivePreview</h3>
+<p>MarkdownLivePreview可以实现实时预览,在首选项-&gt;Package Setting里修改MarkdownLivePreview的user配置文件,设置在打开时同步预览。</p>
+<pre><code class="language-bash">&quot;markdown_live_preview_on_open&quot;: true
+</code></pre>
+<p>如果安装后在 Package Setting 中未找到该插件，Ctrl+Shift+P，输入<code>MarkdownLivePreview: Open Settings</code>。<br />
+官网：<a href="https://math2001.github.io/MarkdownLivePreview/">MarkdownLivePreview 3</a><br />
+要打开预览，只需打开一个markdown文件，并在命令 调色板，您应该找到MarkdownLivePreview: Open Preview。<br />
+如果你想使用一个键绑定，只需要将这个添加到你的 keybinding 文件中。</p>
+<pre><code class="language-bash">{
+    &quot;keys&quot;: [&quot;alt+m&quot;],
+    &quot;command&quot;: &quot;open_markdown_preview&quot;
+}
+</code></pre>
+<p>这个插件的预览效果并不理想，很难加载网络图片链接，比如github仓库图片。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682734627894.png" alt="" /><br />
+而且不能横向滚动，调整编辑区和预览区中间的界限可以预览完整内容，实在不方便。而且装上它后虽然可以实时预览，但不知道因为什么原因输入的时候会有些卡。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682734581587.png" alt="" /></p>
+<h3 id="markdownpreview--livereload">实时自动刷新预览：MarkdownPreview + LiveReload</h3>
+<h4 id="markdownpreview">MarkdownPreview</h4>
+<p><strong>功能</strong></p>
+<ol>
+<li>支持在浏览器中预览markdown文件</li>
+<li>将md文件导出为html代码</li>
+</ol>
+<p><strong>将md文件用浏览器预览——1.常规方法</strong></p>
+<ol>
+<li>组合键 Ctrl+Shift+P 调出命令面板</li>
+<li>输入mdp找到并选中<code>Markdown Preview： Preview in Browser</code></li>
+<li>出现两个选项：github和markdown。任选其一即可，github是利用GitHub的在线API来解析.md文件，支持在线资源的预览，如在线图片它的解析速度取决于你的联网速度。该方式据说一天只能打开60次。markdown就是传统的本地打开，不支持在线资源的预览。</li>
+<li>默认浏览器中显示预览结果</li>
+</ol>
+<p><strong>将md文件用浏览器预览——2.用快捷键打开</strong><br />
+在Preferences -&gt;  Package Settings -&gt; Markdown Editing -&gt; Key Bindings打开的文件的右侧栏的中括号中添加一行代码：</p>
+<pre><code class="language-bash">{ 
+&quot;keys&quot;: [&quot;alt+m&quot;],
+&quot;command&quot;: &quot;markdown_preview&quot;,
+&quot;args&quot;: {&quot;target&quot;: &quot;browser&quot;, &quot;parser&quot;:&quot;markdown&quot;}
+}
+</code></pre>
+<blockquote>
+<p>&ldquo;alt+m&rdquo; 可设置为自己喜欢的按键。<br />
+&ldquo;parser&rdquo;: &ldquo;markdown&quot;也可设置为&quot;parser&rdquo;:&ldquo;github&rdquo;，改为使用Github在线API解析markdown。</p>
+</blockquote>
+<p><strong>配置Markdown Preview</strong><br />
+打开配置文件 Preferences -&gt; Package Settings -&gt; Markdown Preview -&gt; Settings，检查左侧enable_autoreload条目是否为true，若是，跳过。若不是，右侧栏加一条下面这个后重启Sublime:</p>
+<pre><code class="language-bash">{
+    &quot;enable_autoreload&quot;: true
+}
+</code></pre>
+<h4 id="livereload">LiveReload</h4>
+<p>Ctrl+Shift+p, 输入 Install Package，输入<code>LiveReload</code>，回车安装<br />
+安装成功后，再次Ctrl+shift+p，输入<code>LiveReload: Enable/disable plug-ins</code>，回车，选择 <code>Simple Reload with delay (400ms)</code>或者<code>Simple Reload</code>，两者的区别仅仅在于后者没有延迟。<br />
+<strong>Package Control下载报错</strong><br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1683030479312.png" alt="" /><br />
+打开控制台查看<code>Ctrl + 反引号</code></p>
+<pre><code class="language-bash">DPI mode: system
+DPI scale: 1
+startup, version: 4143 windows x64 channel: stable
+executable: /C/Program Files/Sublime Text/sublime_text.exe
+application: /C/Program Files/Sublime Text
+working dir: /C/Program Files/Sublime Text
+packages path: /C/Users/Administrator/AppData/Roaming/Sublime Text/Packages
+state path: /C/Users/Administrator/AppData/Roaming/Sublime Text/Local
+zip path: /C/Program Files/Sublime Text/Packages
+zip path: /C/Users/Administrator/AppData/Roaming/Sublime Text/Installed Packages
+ignored_packages: [&quot;Vintage&quot;]
+pre session restore time: 0.120201
+startup time: 0.146201
+first paint time: 0.209201
+git: using configuration from C:\Program Files\Git\cmd\git.exe
+git: tracking working dir E:\xiaxi626.github.io
+reloading plugin Default.arithmetic
+reloading plugin Default.auto_indent_tag
+reloading plugin Default.block
+reloading plugin Default.colors
+reloading plugin Default.comment
+reloading plugin Default.convert_color_scheme
+reloading plugin Default.convert_syntax
+reloading plugin Default.copy_path
+reloading plugin Default.echo
+reloading plugin Default.exec
+reloading plugin Default.fold
+reloading plugin Default.font
+reloading plugin Default.goto_line
+reloading plugin Default.history_list
+reloading plugin Default.html_print
+reloading plugin Default.indentation
+reloading plugin Default.install_package_control
+reloading plugin Default.keymap
+reloading plugin Default.kill_ring
+reloading plugin Default.mark
+reloading plugin Default.new_templates
+reloading plugin Default.open_context_url
+reloading plugin Default.open_in_browser
+reloading plugin Default.pane
+reloading plugin Default.paragraph
+reloading plugin Default.paste_from_history
+reloading plugin Default.profile
+reloading plugin Default.quick_panel
+reloading plugin Default.rename
+reloading plugin Default.run_syntax_tests
+reloading plugin Default.save_on_focus_lost
+reloading plugin Default.scroll
+reloading plugin Default.set_unsaved_view_name
+reloading plugin Default.settings
+reloading plugin Default.show_scope_name
+reloading plugin Default.side_bar
+reloading plugin Default.sort
+reloading plugin Default.switch_file
+reloading python 3.3 plugin 0_package_control_loader.00-package_control
+reloading plugin Default.symbol
+reloading python 3.3 plugin 0_package_control_loader.01-pygments
+reloading plugin Default.transform
+reloading plugin Default.transpose
+reloading python 3.3 plugin 0_package_control_loader.50-backrefs
+reloading python 3.3 plugin 0_package_control_loader.50-markupsafe
+reloading plugin Default.ui
+reloading python 3.3 plugin 0_package_control_loader.50-pymdownx
+reloading python 3.3 plugin 0_package_control_loader.50-python-markdown
+reloading python 3.3 plugin 0_package_control_loader.50-pyyaml
+reloading python 3.3 plugin 0_package_control_loader.51-python-jinja2
+reloading python 3.3 plugin 0_package_control_loader.55-mdpopups
+reloading python 3.3 plugin Alignment.Alignment
+reloading plugin CSS.css_completions
+reloading python 3.3 plugin AutoFileName.autofilename
+reloading python 3.3 plugin AutoFileName.getimageinfo
+reloading python 3.3 plugin BracketHighlighter.bh_core
+reloading plugin Diff.diff
+reloading plugin HTML.encode_html_entities
+reloading plugin HTML.html_completions
+reloading plugin ShellScript.ShellScript
+reloading plugin Emmet.main
+reloading plugin MarkdownEditing.plugin
+reloading python 3.3 plugin BracketHighlighter.bh_logging
+reloading python 3.3 plugin BracketHighlighter.bh_plugin
+reloading python 3.3 plugin BracketHighlighter.bh_popup
+reloading python 3.3 plugin BracketHighlighter.bh_regions
+reloading python 3.3 plugin BracketHighlighter.bh_remove
+reloading python 3.3 plugin BracketHighlighter.bh_rules
+reloading python 3.3 plugin BracketHighlighter.bh_search
+reloading python 3.3 plugin BracketHighlighter.bh_swapping
+reloading python 3.3 plugin BracketHighlighter.bh_wrapping
+reloading python 3.3 plugin BracketHighlighter.support
+reloading python 3.3 plugin ChineseLocalizations.Localization
+reloading python 3.3 plugin DocBlockr.jsdocs
+reloading python 3.3 plugin FileDiffs.file_diffs
+reloading python 3.3 plugin Markdown Preview.helper
+reloading python 3.3 plugin Markdown Preview.markdown_settings
+reloading python 3.3 plugin Markdown Preview.markdown_wrapper
+reloading python 3.3 plugin Markdown Preview.MarkdownPreview
+reloading python 3.3 plugin Package Control.1_reloader
+reloading python 3.3 plugin Package Control.2_bootstrap
+reloading python 3.3 plugin Package Control.Package Control
+plugins loaded
+Package Control: Skipping automatic upgrade, last run at 2023-05-02 20:12:26, next run at 2023-05-02 21:12:26 or after
+</code></pre>
+<p>没找到所谓</p>
+<blockquote>
+<p>由于github采用https协议,sublime使用urllib就会报错</p>
+</blockquote>
+<p>解决方法1：<br />
+Preference -&gt; Package Setting -&gt; Package Control -&gt; User Setting<br />
+增加如下内容：</p>
+<pre><code class="language-bash">&quot;debug&quot;: true,
+&quot;downloader_precedence&quot;:
+{
+    &quot;linux&quot;: [ &quot;curl&quot;, &quot;urllib&quot;, &quot;wget&quot; ],
+    &quot;osx&quot;: [ &quot;curl&quot;, &quot;urllib&quot; ],
+    &quot;windows&quot;: [ &quot;wininet&quot; ]
+},
+</code></pre>
+<p>最终内容如下：</p>
+<pre><code class="language-bash">{
+    &quot;bootstrapped&quot;: true,
+    &quot;debug&quot;: true,
+    &quot;installed_packages&quot;:
+    [
+        &quot;Package Control&quot;
+    ],
+    &quot;downloader_precedence&quot;:
+    {
+        &quot;linux&quot;: [ &quot;curl&quot;, &quot;urllib&quot;,    &quot;wget&quot; ],
+        &quot;osx&quot;: [ &quot;curl&quot;, &quot;urllib&quot; ],
+        &quot;windows&quot;: [ &quot;wininet&quot; ]
+    },
+}
+</code></pre>
+<p>再次安装插件就没问题了。</p>
+<p>解决方法2：<br />
+大家安装时会注意到该插件已经是2013年的插件了<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1683031180497.png" alt="" /><br />
+直接打开<a href="https://github.com/dz0ny/LiveReload-sublimetext2">网址</a>发现已经404，搜索同名插件会发现一个<a href="https://github.com/sgricci/LiveReload-sublimetext2">sgricci/LiveReload-sublimetext2</a><br />
+仓库让我们</p>
+<blockquote>
+<p>Install with [Sublime Package Control](<a href="http://wbond.net/sublime_packages/package_control">http://wbond.net/sublime_packages/package_control</a> &ldquo;Sublime Package Control), search for LiveReload and install.</p>
+</blockquote>
+<p>但这样安装不了它，我们可以<strong>从指定github仓库安装插件</strong></p>
+<ol>
+<li>Crtl + Shift + p 调出 package control，输入 add repository，确定</li>
+<li>输入 github 仓库地址，例如 <a href="https://github.com/sgricci/LiveReload-sublimetext2">https://github.com/sgricci/LiveReload-sublimetext2</a> （Notice：结尾的.git要去掉）</li>
+<li>Crtl + Shift + p 调出 package control，输入 install package，确定，然后再输入 github 仓库的名称，比如 LiveReload，确定安装。</li>
+</ol>
+<p>解决方法3：<br />
+安装另一款更新的LiveReload，如<a href="https://github.com/NickWoodhams/LiveReload">NickWoodhams/LiveReload</a>，方法同上。</p>
+<p>Installation</p>
+<p>Open package control and choose Package Control: Add Repository Add this git repository <a href="https://github.com/NickWoodhams/LiveReload.git">https://github.com/NickWoodhams/LiveReload.git</a> Open package control again and choose Package Control: Install Package Search for LiveReload and you&rsquo;ll see the Git url under the title. Choose the LiveReload we just added.</p>
+<p>To Use</p>
+<p>Open package control and search LiveReload and you&rsquo;ll see several options including Disable/enable plugins.</p>
+<h4 id="heading-5">开始使用</h4>
+<p>如前面提到的手动或者快捷键打开预览网页，之后便再也不用管它，只要你的sublime保存一次，网页那边就会自动刷新预览。</p>
+<h3 id="omnimarkuppreviewer">OmniMarkupPreviewer</h3>
+<p>OmniMarkupPreviewer是Sublime Text 2和Sublime Text 3的一个插件，用于在Web浏览器中预览markups。OmniMarkupPreviewer将Markup呈现为htmls并将其发送到后台的Web浏览器，从而实现实时预览。此外，OmniMarkupPreviewer还支持将结果导出到html文件。</p>
+<ol>
+<li>调出命令面板（Windows和Linux上的<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>。OS X上的<kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd>）。</li>
+<li>键入“Install”并选择“Package Control: Install Package”。</li>
+<li>从列表中选择“OmniMarkupPreviewer”。</li>
+</ol>
+<p><strong>Key Bindings</strong><br />
+默认 key bindings:</p>
+<p>Windows, Linux:</p>
+<ul>
+<li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>O</kbd>: 在浏览器中预览Markup。</li>
+<li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>X</kbd>: 将Markup导出为HTML。</li>
+<li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd>: 将Markup复制为HTML。</li>
+</ul>
+<p>OSX:</p>
+<ul>
+<li><kbd>⌘</kbd>+<kbd>⌥</kbd>+<kbd>O</kbd>: 在浏览器中预览Markup。</li>
+<li><kbd>⌘</kbd>+<kbd>⌥</kbd>+<kbd>X</kbd>: 将Markup导出为HTML。</li>
+<li><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd>: 将Markup复制为HTML。</li>
+</ul>
+<p><strong>Command Palette</strong></p>
+<p>命令选项板中可用的OmniMarkupPreviewer命令：</p>
+<ul>
+<li><code>OmniMarkupPreviewer: Preview Current Markup in Browser</code></li>
+<li><code>OmniMarkupPreviewer: Export Current Markup as HTML</code></li>
+<li><code>OmniMarkupPreviewer: Empty Cache</code></li>
+</ul>
+<p><strong>注意</strong> 如果当前文件语法（或文件名）与任何OmniMarkupPreviewer渲染器都不匹配，则命令将不可用（灰显）。</p>
+<p><strong>Error: 404 Not Found</strong></p>
+<pre><code class="language-bash">Sorry, the requested URL 'http://127.0.0.1:50000/view/68' caused an error:
+
+'buffer_id(68) is not valid (closed or unsupported file format)'
+
+**NOTE:** If you run multiple instances of Sublime Text, you may want to adjust
+the `server_port` option in order to get this plugin work again.
+</code></pre>
+<p>请修改OmniMarkupPreviewer的Settings-Default，调整“server_port”选项，默认为</p>
+<pre><code class="language-bash">&quot;server_port&quot;: 51004,
+</code></pre>
+<p><strong>1、127.0.0.1拒绝了我们的连接请求</strong><br />
+在控制面板中，打开程序与功能。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682903867775.png" alt="" /><br />
+重新安装llS，记得展开全部勾选。安装完毕后，进入127.0.0.1出现以下画面就是成功了。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682903996149.png" alt="" /><br />
+<strong>2、&lsquo;buffer_id(68) is not valid (closed or unsupported file format)&rsquo;</strong><br />
+修改“server_port”为80得，<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682944821896.png" alt="" /></p>
+<p>于是我上网查了一下，有这么几种方法——</p>
+<h4 id="heading-6"><strong>更改服务器或端口</strong></h4>
+<p>404错误有可能是服务器更改服务器地址或者端口出错，这两样可以在Preferences &gt; Package Settings &gt; OmniMarkupPreviewer &gt; Settings - Default里面更改：</p>
+<pre><code class="language-bash">// 原配置
+&quot;server_host&quot;: &quot;127.0.0.1&quot;,
+&quot;server_port&quot;: 51004,
+
+// 更改后的配置
+&quot;server_host&quot;: &quot;0.0.0.0&quot;,
+&quot;server_port&quot;: 52000,
+</code></pre>
+<p>并不确定是端口还是服务器地址的问题，所以可以一项项更改后看效果。</p>
+<h4 id="strikethrough"><strong>删除Strikethrough扩展</strong></h4>
+<p>进入Preferences &gt; Package Settings &gt; OmniMarkupPreviewer &gt; Settings - User 粘贴以下内容，然后保存。\</p>
+<pre><code class="language-bash">{
+    &quot;renderer_options-MarkdownRenderer&quot;: {
+        &quot;extensions&quot;: [&quot;tables&quot;, &quot;fenced_code&quot;, &quot;codehilite&quot;]
+    }
+}
+</code></pre>
+<h4 id="strikethrough-1"><strong>修复Strikethrough扩展</strong></h4>
+<p>要修复这个扩展需要先找到扩展的存放位置：</p>
+<p>Mac</p>
+<blockquote>
+<p>subl “/Users//Library/Application Support/Sublime Text 3/Packages/OmniMarkupPreviewer/OmniMarkupLib/Renderers/libs/mdx_strikeout.py”</p>
+</blockquote>
+<p>Linux</p>
+<blockquote>
+<p>~/.config/sublime-text-3/Packages/OmniMarkupPreviewer/OmniMarkupLib/Renderers/libs/mdx_strikeout.py</p>
+</blockquote>
+<p>Windows平台就自己找了，文件是OmniMarkupPreviewer目录下的mdx_strikeout.py即可。</p>
+<p>然后直接更改配置文件，将最后的</p>
+<pre><code class="language-bash">def makeExtension(configs=None):
+    return StrikeoutExtension(configs=configs)
+</code></pre>
+<p>更改完后是这样的：</p>
+<pre><code class="language-bash">import markdown
+from markdown.inlinepatterns import SimpleTagPattern
+
+
+STRIKEOUT_RE = r'(\~\~)([^\s](?:.*))(\~\~)'
+
+
+class StrikeoutExtension(markdown.Extension):
+    &quot;&quot;&quot; Strikeout extension for Python-Markdown. &quot;&quot;&quot;
+
+    def extendMarkdown(self, md, md_globals):
+        &quot;&quot;&quot; Modifies inline patterns. &quot;&quot;&quot;
+        md.inlinePatterns.add('del', SimpleTagPattern(STRIKEOUT_RE, 'del'), '&lt;not_strong')
+
+
+#def makeExtension(configs=None):
+#    return StrikeoutExtension(configs=configs)
+def makeExtension(*args, **kwargs):
+    return StrikeoutExtension(*args, **kwargs)
+</code></pre>
+<h2 id="heading-7">表格格式化+自动完成</h2>
+<p>Table Editor 可以帮助你自动完成表格并格式化,快捷键<code>tab</code><br />
+Ctrl+Shift+P，选择 Table Editor: Enable for current syntax or Table Editor: Enable for current view 或 &ldquo;Table Editor: Set table syntax &hellip; for current view&rdquo;<br />
+然后在 Table Editor 启用时键入</p>
+<pre><code class="language-bash">| Name | Phone |
+|-
+</code></pre>
+<p>然后按Tab键，你会得到漂亮的打印表</p>
+<pre><code class="language-bash">| Name | Phone |
+|------|-------|
+| _    |       |
+</code></pre>
+<p>然后填写数据并按Tab键导航到下一个字段或添加新行（如有必要）</p>
+<pre><code class="language-bash">|    Name   |   Phone   |
+|-----------|-----------|
+| Anna      | 123456789 |
+| Alexander | 987654321 |
+| _         |           |
+</code></pre>
+<p>要让更快一点键入表格，只需</p>
+<pre><code class="language-bash">|Name|Phone
+</code></pre>
+<p>然后点击Ctrl+K，回车。</p>
+<pre><code class="language-bash">| Name | Phone |
+|------|-------|
+| _    |       |
+</code></pre>
+<p>Table Editor 支持带有字符‘=’的双插边线。在下面键入</p>
+<pre><code class="language-bash">| Name | Phone |
+|=
+</code></pre>
+<p>并单击Tab键</p>
+<pre><code class="language-bash">| Name | Phone |
+|======|=======|
+| _    |       |
+</code></pre>
+<p>然后填充行并点击ctrl+k，每次光标在 Phone 位置时输入</p>
+<pre><code class="language-bash">|    Name   |   Phone   |
+|===========|===========|
+| Anna      | 123456789 |
+|-----------|-----------|
+| Alexander | 987654321 |
+|-----------|-----------|
+| _         |           |
+</code></pre>
+<p>除了tab和shift+tab之外，如果需要，还可以使用enter来向下移动光标并插入新行。<br />
+详细教程请见<a href="https://github.com/hzhu212/SublimeTableEditor">项目的github主页</a></p>
+<h2 id="heading-8">生成目录</h2>
+<p>推荐使用 MarkdownTOC，MarkdownTOC插件具有丰富的功能和自定义功能，对于在单个 Markdown 文件或如果您有多个 Markdown需要特殊TOC生成的文档。</p>
+<h3 id="heading-9">快速启动</h3>
+<ol>
+<li>安装 MarkdownTOC插件</li>
+<li>打开 Markdown文件</li>
+<li>将光标放在要插入目录的位置</li>
+<li>从菜单中选择：工具&gt;Markdown TOC&gt;插入TOC</li>
+<li>目录插入到 Markdown文件</li>
+<li>保存文档，就完成了</li>
+</ol>
+<p>现在你可以继续编辑你的文档，或者你可以自定义你的目录，详细介绍原文请<a href="https://github.com/naokazuterada/MarkdownTOC">查阅github仓库</a>。本人全文翻译如下。</p>
+<h3 id="markdowntoc">根据Markdown文档中的标题插入TOC</h3>
+<p>示例markdown文档：</p>
+<pre><code class="language-bash">
+# Heading 0
+
+Headings before MarkdownTOC tags will be ignored.
+
+◀ place the cursor here and generate the TOC
+
+# Heading 1
+Lorem ipsum...
+
+## Heading 2
+Lorem ipsum...
+</code></pre>
+<p>MarkdownTOC插件将开箱即用生成：</p>
+<pre><code class="language-bash"># Heading 0
+
+Headings before MarkdownTOC tags will be ignored.
+
+&lt;!-- MarkdownTOC --&gt;
+
+- Heading 1
+  - Heading 2
+
+&lt;!-- /MarkdownTOC --&gt;
+
+# Heading 1
+Lorem ipsum...
+
+## Heading 2
+Lorem ipsum...
+</code></pre>
+<p>由此可见，在MarkdownTOC标签部分之上的标题被忽略，只有文档的其余部分被考虑在范围内。</p>
+<h3 id="markdown">保存Markdown文档时自动刷新目录</h3>
+<p>如果我们再编辑Markdown文档并添加一个额外的标题：</p>
+<pre><code class="language-bash">## Heading 3
+</code></pre>
+<p>当我们保存文档时，TOC会自动更新。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC --&gt;
+
+- Heading 1
+  - Heading 2
+  - Heading 3
+
+&lt;!-- /MarkdownTOC --&gt;
+
+# Heading 1
+Lorem ipsum...
+
+## Heading 2
+Lorem ipsum...
+
+## Heading 3
+Lorem ipsum... (the added text)
+</code></pre>
+<p>删除的标题也是如此，这些都被清除了。<br />
+通过从菜单中选择，也可以在不保存的情况下完成TOC的更新：工具&gt;Markdown TOC&gt;更新TOC</p>
+<h4 id="heading-10">支持的文件扩展名</h4>
+<p>确保文件的扩展名在以下列表中。<br />
+<code>.md</code> <code>.markdown</code> <code>.mdown</code> <code>.mdwn</code> <code>.mkdn</code> <code>.mkd</code> <code>.mark</code></p>
+<h3 id="toc">使用属性自定义TOC的生成</h3>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;true&quot; --&gt;
+
+- [Heading 1](#heading-1)
+  - [Heading 2](#heading-2)
+  - [Heading 3](#heading-3)
+
+&lt;!-- /MarkdownTOC --&gt;
+
+# Heading 1
+Lorem ipsum...
+
+## Heading 2
+Lorem ipsum...
+
+## Heading 3
+Lorem ipsum... (the added text)
+</code></pre>
+<ol>
+<li>TOC标记可以覆盖默认值 <a href="https://github.com/naokazuterada/MarkdownTOC#Attributes">属性</a> 使用本地设置并影响TOC的呈现。参见： <a href="https://github.com/naokazuterada/MarkdownTOC#configuration">配置</a> 关于如何为插件设置自己的默认值</li>
+<li>标题可以自动链接（请参阅：自动<a href="https://github.com/naokazuterada/MarkdownTOC#auto-link">链接</a>）</li>
+<li>标题可以自动链接锚点（请参阅：<a href="https://github.com/naokazuterada/MarkdownTOC#auto-anchoring-when-heading-has-anchor-defined">当标题已定义锚点时自动锚定</a>）</li>
+</ol>
+<p>默认行为也可以描述为：</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC levels=&quot;1,2,3,4,5,6&quot; autolink=&quot;false&quot; bracket=&quot;round&quot; autoanchor=&quot;false&quot; style=&quot;unordered&quot; indent=&quot;\t&quot; --&gt;
+</code></pre>
+<p>请看： <a href="https://github.com/naokazuterada/MarkdownTOC#github-configuration">Github配置</a> 以获取配置MarkdownTOC的指南 GitHub使用。</p>
+<h3 id="heading-11">当标题已定义锚点时自动锚点</h3>
+<p>您可以在标题前自动添加HTML锚（<code>&lt;a name=&quot;xxx&quot;&gt;&lt;/a&gt;</code>）。</p>
+<pre><code class="language-bash"># Heading with anchor [with-anchor]
+</code></pre>
+<p>TOC生成可以被指定为尊重这一点，并且生成以下格式的TOC元素：</p>
+<pre><code class="language-bash">- [Heading with anchor](#with-anchor)
+</code></pre>
+<p>请注意，该属性的默认值为：<a href="https://github.com/naokazuterada/MarkdownTOC#autoanchor">autoanchor</a>是 <code>false</code>。您可以在标题前自动添加HTML锚点（<code>&lt;a name=&quot;xxx&quot;&gt;&lt;/a&gt;</code>）。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;true&quot; autoanchor=&quot;true&quot; --&gt;
+
+- [Changelog](#changelog)
+- [Glossary](#glossary)
+- [API Specification](#api-specification)
+
+&lt;!-- /MarkdownTOC --&gt;
+
+&lt;a name=&quot;changelog&quot;&gt;&lt;/a&gt;
+# Changelog
+Lorem ipsum...
+
+&lt;a name=&quot;glossary&quot;&gt;&lt;/a&gt;
+# Glossary
+Lorem ipsum...
+
+&lt;a name=&quot;api-specification&quot;&gt;&lt;/a&gt;
+# API Specification
+Lorem ipsum...
+</code></pre>
+<p>请注意，自动链接的默认值是由<a href="https://github.com/naokazuterada/MarkdownTOC#attributes">属性</a><code>false</code>定义的<code>defaults.autoanchor</code>。另请参阅：<a href="https://github.com/naokazuterada/MarkdownTOC#how-to-remove-anchors-added-by-markdowntoc">如何删除MarkdownTOC添加的锚点</a>。</p>
+<h3 id="heading-12">可点击目录的自动链接</h3>
+<p>该插件可以被指定为自动链接标题，这样你就可以得到一个带有可点击超链接元素的目录。<br />
+以下示例文档：</p>
+<pre><code class="language-bash"># Heading 1
+Lorem ipsum...
+
+## Heading 2
+Lorem ipsum...
+
+## Heading 3
+Lorem ipsum...
+</code></pre>
+<p>将<code>autolink</code>设置为<code>true</code>将呈现以下内容：</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;true&quot; --&gt;
+
+- [Heading 1](#heading-1)
+  - [Heading 2](#heading-2)
+  - [Heading 3](#heading-3)
+  - [Heading 4](#heading-4)
+- [Heading with anchor](#with-anchor)
+
+&lt;!-- /MarkdownTOC --&gt;
+</code></pre>
+<p>自动链接标记样式可以是以下样式之一：</p>
+<ul>
+<li><code>round</code>，默认，支持的样式 <a href="https://github.com/extdomains/help.github.com/articles/basic-writing-and-formatting-syntax/">GitHub</a></li>
+<li><code>square</code>，<a href="http://daringfireball.net/projects/markdown/syntax#link">“Markdown标准参考样式链接”</a>样式。</li>
+</ul>
+<p>请注意，自动链接的默认值是由<a href="https://github.com/naokazuterada/MarkdownTOC#attributes">属性</a><code>false</code>定义的<code>defaults.autolink</code>。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;false&quot; --&gt;
+
+- MarkdownTOC Plugin for Sublime Text
+  - Feature
+  - Feature
+  - Feature
+
+&lt;!-- /MarkdownTOC --&gt;
+</code></pre>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;true&quot; --&gt;
+
+- [MarkdownTOC Plugin for Sublime Text](#markdowntoc-plugin-for-sublime-text)
+  - [Feature](#feature)
+  - [Feature](#feature-1)
+  - [Feature](#feature-2)
+
+&lt;!-- /MarkdownTOC --&gt;
+</code></pre>
+<p><strong>round:</strong> 根据 <a href="https://github.com/extdomains/help.github.com/articles/basic-writing-and-formatting-syntax/">Github</a> 风格。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC bracket=&quot;round&quot; --&gt;
+
+- [Heading](#heading)
+
+&lt;!-- /MarkdownTOC --&gt;
+</code></pre>
+<p><strong>square:</strong> 根据 <a href="http://daringfireball.net/projects/markdown/syntax#link">&ldquo;Markdown standard reference-style links&rdquo;</a>。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC bracket=&quot;square&quot; --&gt;
+
+- [Heading][heading]
+
+&lt;!-- /MarkdownTOC --&gt;
+</code></pre>
+<h4 id="lowercasing-in-idsids">Lowercasing in ids（在ids中小写）</h4>
+<p>默认情况下，插件小写ASCII基于字母（<code>a</code>到<code>z</code>）的自动链接。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;true&quot; --&gt;
+
+- [ПРИМЕР EXAMPLE][ПРИМЕР-example]
+
+&lt;!-- /MarkdownTOC --&gt;
+
+# ПРИМЕР EXAMPLE
+</code></pre>
+<p>这与将<code>lowercase</code>属性设置为<code>only_ascii</code>相同。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;true&quot; lowercase=&quot;only_ascii&quot; --&gt;
+
+- [ПРИМЕР EXAMPLE][ПРИМЕР-example]
+
+&lt;!-- /MarkdownTOC --&gt;
+
+# ПРИМЕР EXAMPLE
+</code></pre>
+<h5 id="heading-13">保存案例</h5>
+<p>您可以通过将<code>lowecase</code>属性设置为<code>false</code>来禁用小写功能。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;true&quot; lowercase=&quot;false&quot; --&gt;
+
+- [One Two Three][One-Two-Three]
+
+&lt;!-- /MarkdownTOC --&gt;
+
+# One Two Three
+</code></pre>
+<h5 id="heading-14">小写所有字符</h5>
+<p>此外，您还可以通过将<code>lowercase</code>属性设置为<code>all</code>（或除<code>false</code>和<code>only_ascii</code>之外的任何值）来扩展小写功能。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;true&quot; lowercase=&quot;all&quot; --&gt;
+
+- [ПРИМЕР EXAMPLE][пример-example]
+
+&lt;!-- /MarkdownTOC --&gt;
+
+# ПРИМЕР EXAMPLE
+</code></pre>
+<p>您也可以在<a href="https://github.com/naokazuterada/MarkdownTOC#configuration">配置</a>中使用密钥 <code>defaults.lowercase</code> 来指定这一点。</p>
+<h4 id="id">自动链接ID的操作</h4>
+<p>您可以使用密钥 <code>id_replacements</code> 在<a href="https://github.com/naokazuterada/MarkdownTOC#configuration">配置</a>中操作链接ID。</p>
+<pre><code class="language-bash">{
+  &quot;id_replacements&quot;: [
+    {
+      &quot;pattern&quot;: &quot;\\s+&quot;,
+      &quot;replacement&quot;: &quot;-&quot;
+    },
+    {
+      &quot;pattern&quot;: &quot;!|#|$|&amp;|'|\\(|\\)|\\*|\\+|,|/|:|;|=|_|\\?|@|\\[|\\]|`|\&quot;|\\.|&lt;|&gt;|{|}|™|®|©|&amp;lt;|&amp;gt;|&amp;amp;|&amp;apos;|&amp;quot;|&amp;#60;|&amp;#62;|&amp;#38;|&amp;#39;|&amp;#34;&quot;,
+      &quot;replacement&quot;: &quot;&quot;
+    }
+  ]
+}
+</code></pre>
+<ol>
+<li>每个集合都允许使用正则表达式
+<ul>
+<li>它将被简单地扩展为python的re。sub（pattern，replacement，id）</li>
+</ul>
+</li>
+<li>替换序列从上到下执行</li>
+</ol>
+<p>举个例子：</p>
+<pre><code class="language-bash"># Super Product™
+</code></pre>
+<p>此标题的此标题链接更改为以下id</p>
+<pre><code class="language-bash">#super-product
+</code></pre>
+<ul>
+<li>由于&rsquo; &lsquo;包含在第一组中，因此将-（空格）替换为&rsquo; &lsquo;（破折号）</li>
+<li>由于“™”包含在第二个集合中，因此“™”被替换为空</li>
+</ul>
+<h4 id="uri">URI编码</h4>
+<p>默认情况下，链接ID中的非ASCII字符是<a href="https://en.wikipedia.org/wiki/Percent-encoding">URL编码</a>的。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;true&quot; --&gt;
+
+- [Ejemplos de español](#ejemplos-de-espa%C3%B1ol)
+- [日本語の例](#%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E4%BE%8B)
+- [Примеры русского](#%D0%9F%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D1%8B-%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%BE%D0%B3%D0%BE)
+- [中国的例子](#%E4%B8%AD%E5%9B%BD%E7%9A%84%E4%BE%8B%E5%AD%90)
+
+&lt;!-- /MarkdownTOC --&gt;
+
+# Ejemplos de español
+# 日本語の例
+# Примеры русского
+# 中国的例子
+</code></pre>
+<p>如前所述，您可以通过将<code>uri_encoding</code>属性设置为<code>false</code>来禁用此选项，如下所示：<code>uri_encoding=&quot;false&quot;</code>.</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;true&quot; uri_encoding=&quot;false&quot; --&gt;
+
+- [Ejemplos de español](#ejemplos-de-español)
+- [日本語の例](#日本語の例)
+- [Примеры русского](#Примеры-русского)
+- [中国的例子](#中国的例子)
+
+&lt;!-- /MarkdownTOC --&gt;
+
+# Ejemplos de español
+# 日本語の例
+# Примеры русского
+# 中国的例子
+</code></pre>
+<h4 id="markdown-preview">Markdown Preview兼容</h4>
+<p>如果你想在 <a href="https://packagecontrol.io/packages/Markdown%20Preview">Markdown Preview</a> 中使用MarkdownTOC，您应该使用<code>markdown_preview</code>属性。 您可以将此属性设置为<code>markdown</code>或<code>github</code>。<br />
+当你将它设置为<code>markdown</code>时，你可以得到MarkdownPreview的markdown解析器呈现的相同链接。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;true&quot; markdown_preview=&quot;markdown&quot; --&gt;
+
+- [Hello 世界 World](#hello-world)
+- [ESPAÑA](#espana)
+- [ПРИМЕР RUSSIAN](#russian)
+
+&lt;!-- /MarkdownTOC --&gt;
+
+# Hello 世界 World
+# ESPAÑA
+# ПРИМЕР RUSSIAN
+</code></pre>
+<p>当你将它设置为<code>github</code>时，你可以得到MarkdownPreview的github解析器呈现的相同链接。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;true&quot; markdown_preview=&quot;github&quot; --&gt;
+
+- [Hello 世界 World](#hello-%25E4%25B8%2596%25E7%2595%258C-world)
+- [ESPAÑA](#espa%25C3%25B1a)
+- [ПРИМЕР RUSSIAN](#%25D0%25BF%25D1%2580%25D0%25B8%25D0%25BC%25D0%25B5%25D1%2580-russian)
+
+&lt;!-- /MarkdownTOC --&gt;
+
+# Hello 世界 World
+# ESPAÑA
+# ПРИМЕР RUSSIAN
+</code></pre>
+<p>目前不支持其他解析器。<br />
+如果要禁用此功能，请将其设置为<code>false</code>。</p>
+<h4 id="heading-15">链接前缀</h4>
+<p>也可以设置链接的前缀。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=true link_prefix=&quot;user-content-&quot; --&gt;
+
+- [My Heading](#user-content-my-heading)
+
+&lt;!-- /MarkdownTOC --&gt;
+
+# My Heading
+</code></pre>
+<p>您可以在您的<a href="https://github.com/naokazuterada/MarkdownTOC#configuration">配置</a>中使用密钥 <code>defaults.link_prefix</code> 进行操作。</p>
+<h3 id="toc-1">控制TOC中列出的等级</h3>
+<pre><code class="language-bash"># Heading 1
+Lorem ipsum...
+
+## Heading 2
+Lorem ipsum...
+
+### Heading 3
+Lorem ipsum...
+
+#### Heading 4
+Lorem ipsum...
+</code></pre>
+<p>使用默认级别：</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC --&gt;
+
+- Heading 1
+  - Heading 2
+    - Heading 3
+      - Heading 4
+
+&lt;!-- /MarkdownTOC --&gt;
+</code></pre>
+<p>将级别设置为1，2时：</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC levels=&quot;1,2&quot; --&gt;
+
+- Heading 1
+  - Heading 2
+
+&lt;!-- /MarkdownTOC --&gt;
+</code></pre>
+<p>请注意， <a href="https://github.com/naokazuterada/MarkdownTOC#attributes">属性</a>levels是<code>&quot;1,2,3,4,5,6&quot;</code>，这意味着将包括所有标题大小。<br />
+您也可以在配置中使用密钥 <code>defaults.levels</code> 来指定这一点。<br />
+标题的最大大小为6，根据 <a href="http://daringfireball.net/projects/markdown/syntax">Markdown规范</a></p>
+<h3 id="toc-2">TOC元素的有序或无序样式</h3>
+<p>该插件支持两种样式的TOC元素列表：</p>
+<ul>
+<li>unordered</li>
+<li>ordered</li>
+</ul>
+<p>一个<a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>文档，包含以下内容：</p>
+<pre><code class="language-bash"># Heading 1
+Lorem ipsum...
+
+## Heading 2
+Lorem ipsum...
+
+### Heading 3
+Lorem ipsum...
+
+### Heading 4
+Lorem ipsum...
+
+## Heading 5
+Lorem ipsum...
+
+# Heading 6
+Lorem ipsum...
+</code></pre>
+<p>将使用 <code>unordered</code> 样式：</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC style=&quot;unordered&quot; --&gt;
+
+- Heading 1
+  - Heading 2
+    - Heading 3
+    - Heading 4
+  - Heading 5
+- Heading 6
+
+&lt;!-- /MarkdownTOC --&gt;
+</code></pre>
+<p>用 <code>ordered</code> 样式：</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC style=&quot;ordered&quot; --&gt;
+
+1. Heading 1
+  1. Heading 2
+    1. Heading 3
+    1. Heading 4
+  1. Heading 5
+1. Heading 6
+
+&lt;!-- /MarkdownTOC --&gt;
+</code></pre>
+<p>请注意，该<a href="https://github.com/naokazuterada/MarkdownTOC#attributes">属性</a>的默认值为：<code>unordered</code>。<br />
+您可以在<a href="https://github.com/naokazuterada/MarkdownTOC#configuration">配置</a>中使用密钥 <code>defaults.style</code> 设置默认样式。</p>
+<h3 id="toc-3">TOC中可自定义列表项目符号</h3>
+<p>您可以定义用于每个级别的TOC的列表项。第一个项目用于第一级，第二个项目用于第二级，依此类推，直到列表的最后一个项目，然后从头开始。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC bullets=&quot;-,+,*&quot; --&gt;
+
+- foo
+  + bar
+    * baz
+      - foo
+        + bar
+          * baz
+
+&lt;!-- /MarkdownTOC --&gt;
+</code></pre>
+<p>您可以在<a href="https://github.com/naokazuterada/MarkdownTOC#configuration">配置</a>中使用密钥 <code>defaults.bullets</code> 设置默认列表项目符号。<br />
+上面的例子也可以描述为：</p>
+<pre><code class="language-bash">{
+  &quot;defaults&quot;: {
+    &quot;bullets&quot;: [&quot;-&quot;,&quot;+&quot;,&quot;*&quot;]
+  }
+}
+</code></pre>
+<p>也可以在属性中设置。在这种情况下，值类型是**&lsquo;conmma separated string&rsquo;**。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC bullets=&quot;-,+,*&quot; --&gt;
+</code></pre>
+<h3 id="heading-16">指定自定义缩进前缀</h3>
+<p>缩进前缀是用于缩进TOC元素的字符串的规范。<br />
+一个_丑陋_但具有示范性的例子可能是使用<a href="http://www.emoji-cheat-sheet.com/">表情符号</a>。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;true&quot; indent=&quot;:point_right: &quot; --&gt;
+
+- [Heading 1](#heading-1)
+:point_right: - [Heading 2](#heading-2)
+:point_right: :point_right: - [Heading 3](#heading-3)
+:point_right: :point_right: - [Heading 4](#heading-4)
+:point_right: - [Heading 5](#heading-5)
+- [Heading 6](#heading-6)
+
+&lt;!-- /MarkdownTOC --&gt;
+</code></pre>
+<p>请注意，该属性的默认值为：<code>'\t'</code>。<br />
+您可以使用密钥 <code>defaults.indent</code> 在<a href="https://github.com/naokazuterada/MarkdownTOC#configuration">配置</a>中设置默认缩进。</p>
+<h3 id="heading-17">保留标题中的图像</h3>
+<p>如果要保留标题中的图像，请将<code>remove_image</code>设置为<code>false</code>。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC remove_image=&quot;false&quot; --&gt;
+
+- ![check](check.png) Everything is OK
+
+&lt;!-- /MarkdownTOC --&gt;
+
+# ![check](check.png) Everything is OK
+</code></pre>
+<p>请注意，该属性的默认值为：<code>false</code>。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC --&gt;
+
+- Everything is OK
+
+&lt;!-- /MarkdownTOC --&gt;
+
+# ![check](check.png) Everything is OK
+</code></pre>
+<p>您可以使用密钥 <code>remove_image</code> 默认值更改<a href="https://github.com/naokazuterada/MarkdownTOC#configuration">配置</a>中的默认设置。</p>
+<h3 id="heading-18">排除标题</h3>
+<p>您可以通过在包含标题的行上方的行添加特殊注释来排除TOC中的某些标题，如下所示。</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC:excluded --&gt;
+## This heading will be excluded
+</code></pre>
+<h3 id="usage">Usage用途</h3>
+<ol>
+<li>打开 Markdown文件</li>
+<li>将光标设置为要插入TOC的位置</li>
+<li>从菜单中选择：工具&gt;Markdown TOC&gt;插入TOC</li>
+<li>TOC插入文档中</li>
+<li>评估TOC并使用 attributes（属性） 或 configuration（配置）</li>
+<li>更新内容并保存…</li>
+<li>TOC已更新</li>
+</ol>
+<p><strong>如果你想每次保存时都更新，不要删除评论标签（comment tags）。</strong></p>
+<h3 id="tips">Tips</h3>
+<h3 id="heading-19">局限性</h3>
+<h3 id="attributes">Attributes属性</h3>
+<p>以下属性可用于控制TOC的生成。</p>
+<table>
+<thead>
+<tr>
+<th>attribute</th>
+<th>values</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>autoanchor</td>
+<td>trueorfalse</td>
+<td>false</td>
+</tr>
+<tr>
+<td>autolink</td>
+<td>trueorfalse</td>
+<td>false</td>
+</tr>
+<tr>
+<td>bracket</td>
+<td>&ldquo;round&quot;or&quot;square&rdquo;</td>
+<td>&ldquo;round&rdquo;</td>
+</tr>
+<tr>
+<td>indent</td>
+<td>string</td>
+<td>&ldquo;\t&rdquo;</td>
+</tr>
+<tr>
+<td>levels</td>
+<td>string (decimal list separated with ,)</td>
+<td>&ldquo;1,2,3,4,5,6&rdquo;</td>
+</tr>
+<tr>
+<td>link_prefix</td>
+<td>string</td>
+<td>&quot;&rdquo;</td>
+</tr>
+<tr>
+<td>bullets</td>
+<td>string</td>
+<td>&ldquo;-&rdquo;</td>
+</tr>
+<tr>
+<td>lowercase</td>
+<td>&ldquo;all&quot;or&quot;only_ascii&quot;or&quot;false&rdquo;</td>
+<td>&ldquo;only_ascii&rdquo;</td>
+</tr>
+<tr>
+<td>remove_image</td>
+<td>trueorfalse</td>
+<td>true</td>
+</tr>
+<tr>
+<td>style</td>
+<td>&ldquo;ordered&rdquo; or &ldquo;unordered&rdquo;</td>
+<td>&ldquo;unordered&rdquo;</td>
+</tr>
+<tr>
+<td>uri_encoding</td>
+<td>trueorfalse</td>
+<td>true</td>
+</tr>
+<tr>
+<td>markdown_preview</td>
+<td>&ldquo;&ldquo;or&quot;github&quot;or&quot;markdown&rdquo;</td>
+<td>&quot;&rdquo;</td>
+</tr>
+</tbody>
+</table>
+<p>你可以通过软件包首选项来定义自己的默认值，这是<a href="http://www.sublimetext.com/">Sublime Text</a>允许用户自定义软件<a href="https://docs.sublimetext.info/en/latest/customization/settings.html">包设置</a>的方式。有关MarkdownTOC的更多详细信息，请参阅<a href="https://github.com/naokazuterada/MarkdownTOC#Configuration">配置部分</a>。</p>
+<h3 id="installation-">Installation 安装</h3>
+<h3 id="configuration-">Configuration 配置</h3>
+<p>你可以用<a href="https://github.com/naokazuterada/MarkdownTOC#attributes">属性</a>在单个目录中自定义目录 <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> 文档，但如果您希望跨多个目录保持相同的目录配置 <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> 文档，您可以配置自己的默认值。</p>
+<p>选择：Sublime Text &gt; Preferences &gt; Package Settings &gt; MarkdownTOC &gt; Settings - User</p>
+<p>或者，您可以手动创建文件 ~/Library/Application Support/Sublime Text 3/Packages/User/MarkdownTOC.sublime-settings。</p>
+<p>示例：MarkdownTOC.sublime-settings</p>
+<pre><code class="language-bash">{
+ &quot;defaults&quot;: {
+   &quot;autolink&quot;: true,
+   &quot;bracket&quot;: &quot;square&quot;,
+   &quot;levels&quot;: &quot;1,2&quot;,
+   &quot;indent&quot;: &quot;    &quot;,
+   &quot;remove_image&quot;: false,
+   &quot;bullets&quot;: &quot;*&quot;,
+   &quot;style&quot;: &quot;ordered&quot;
+ },
+ &quot;id_replacements&quot;: [
+   {
+     &quot;pattern&quot;: &quot;\\s+&quot;,
+     &quot;replacement&quot;: &quot;-&quot;
+   },
+   {
+     &quot;pattern&quot;: &quot;&amp;lt;|&amp;gt;|&amp;amp;|&amp;apos;|&amp;quot;|&amp;#60;|&amp;#62;|&amp;#38;|&amp;#39;|&amp;#34;|!|#|$|&amp;|'|\\(|\\)|\\*|\\+|,|/|:|;|=|_|\\?|@|\\[|\\]|`|\&quot;|\\.|&lt;|&gt;|{|}|™|®|©&quot;,
+     &quot;replacement&quot;: &quot;&quot;
+   }
+ ]
+}
+</code></pre>
+<p>请参阅<a href="https://github.com/naokazuterada/MarkdownTOC#attributes">属性</a>以获得值和<a href="https://github.com/naokazuterada/MarkdownTOC#customizing-generation-of-toc-using-attributes">自定义部分</a>。<br />
+配置优先级如下：</p>
+<ol>
+<li>MarkdownTOC开始标记中指定的属性（请参见：使用<a href="https://github.com/naokazuterada/MarkdownTOC#customizing-generation-of-toc-using-attributes">属性自定义TOC的生成</a>）</li>
+<li>MarkdownTOC设置-用户（本节）</li>
+<li>MarkdownTOC设置-默认（请参见：<a href="https://kgithub.com/naokazuterada/MarkdownTOC#attributes">属性</a>）</li>
+</ol>
+<p>有关属性背后的特定行为的概述，请参阅以下列表。</p>
+<ul>
+<li>defaults.autolink, (see: Auto linking for clickable TOC)</li>
+<li>defaults.autoanchor, (see: Auto anchoring when heading has anchor defined)</li>
+<li>defaults.bracket, (see: Auto linking for clickable TOC)</li>
+<li>defaults.indent, (see: Specify custom indentation prefix)</li>
+<li>defaults.link_prefix, (see: Link Prefix)</li>
+<li>defaults.levels, (see: Control of levels listed in TOC)</li>
+<li>defaults.bullets, (see: Customizable list bullets in TOC)</li>
+<li>defaults.lowercase, (see: Lowercasing in ids)</li>
+<li>defaults.remove_image, (see: Preserve images in headings)</li>
+<li>defaults.style, (see: Ordered or unordered style for TOC elements)</li>
+<li>defaults.uri_encoding, (see: URI encoding)</li>
+<li>defaults.markdown_preview, (see: Markdown Preview compatible)</li>
+<li>id_replacements, (see: Manipulation of auto link ids)</li>
+</ul>
+<h4 id="github">Github配置</h4>
+<p>一种用于编写Markdown的配置，主要用于 <a href="https://github.com/extdomains/help.github.com/articles/basic-writing-and-formatting-syntax/">GitHub</a> 可以看起来像下面这样：</p>
+<pre><code class="language-bash">{
+  &quot;defaults&quot;: {
+    &quot;autolink&quot;: true,
+    &quot;bracket&quot;: &quot;round&quot;,
+    &quot;lowercase&quot;: &quot;only_ascii&quot;
+  }
+}
+</code></pre>
+<h4 id="heading-20">配置和协作</h4>
+<p>你应该知道，如果你与其他<a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>编写者和MarkdownTOC的用户合作，你可能会因为不同的配置而来回更改。</p>
+<p>如果是这种情况，并且您无法就配置达成一致，请选择使用文档中指定的属性进行配置。</p>
+<p>文件中上述配置设置的属性配置示例：</p>
+<pre><code class="language-bash">&lt;!-- MarkdownTOC autolink=&quot;true&quot; bracket=&quot;round&quot; autoanchor=&quot;true&quot; --&gt;
+</code></pre>
+<h2 id="heading-21">参考</h2>
+<p><a href="https://cloud.tencent.com/developer/article/1747387">使用Sublime Text 3写Markdown</a><br />
+<a href="https://www.jianshu.com/p/7cbd50058ea3">sublime-text3打造markdown编辑器</a><br />
+<a href="https://www.sublimetextcn.com/docs/3/vintage.html">Vintage Mode – Sublime Text 3 Documentation</a><br />
+<a href="https://www.cnblogs.com/exmyth/p/11343830.html">Sublime Text 解决 Unable to download XXX 问题</a><br />
+<a href="https://www.jianshu.com/p/445eb4fba08a">Package Control下载报错</a><br />
+<a href="https://blog.csdn.net/w6611415/article/details/28247119">Sublime - 从指定github仓库安装插件_sumlime4 add repository</a></p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        <span class="pre pagbuttons">
+            <a role="navigation" href="/post/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng/" title="在Windows服务器上安装Oracle数据库教程">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                prev_post: 在Windows服务器上安装Oracle数据库教程
+            </a>
+        </span>
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/sublime-text3-an-zhuang-ji-cha-jian-de-an-zhuang-xie-zai/" title="Sublime Text4安装及插件的安装卸载">
+                next_post: Sublime Text4安装及插件的安装卸载
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/scripts/jquery.appear.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

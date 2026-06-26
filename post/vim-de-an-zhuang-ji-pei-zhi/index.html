@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="Technology">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title> vim 的安装及配置 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content=" vim 的安装及配置">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="vim的下载与安装 下载windows版vim 从github下载windows版的vim：https://github.com/vim/vim-win32-installer/releases 安装vim 无特殊要求默认安装即可。 安装完成后默认打开README文件&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/vim-de-an-zhuang-ji-pei-zhi/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":" vim 的安装及配置","url":"https://xiaxi626.github.io/post/vim-de-an-zhuang-ji-pei-zhi/","description":"vim的下载与安装 下载windows版vim 从github下载windows版的vim：https://github.com/vim/vim-win32-installer/releases 安装vim 无特殊要求默认安装即可。 安装完成后默认打开README文件\u0026hellip;","image":"/post-images/vim-de-an-zhuang-ji-pei-zhi.png","datePublished":"2023-04-19T11:13:17+08:00","dateModified":"2026-05-15T22:34:46+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/vim-de-an-zhuang-ji-pei-zhi/","name":" vim 的安装及配置","position":2}]}</script>
+<meta property="og:title" content=" vim 的安装及配置">
+<meta property="og:description" content="vim的下载与安装 下载windows版vim 从github下载windows版的vim：https://github.com/vim/vim-win32-installer/releases 安装vim 无特殊要求默认安装即可。 安装完成后默认打开README文件&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/vim-de-an-zhuang-ji-pei-zhi/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/post-images/vim-de-an-zhuang-ji-pei-zhi.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/vim-de-an-zhuang-ji-pei-zhi/">
+<meta name="twitter:title" content=" vim 的安装及配置">
+<meta name="twitter:description" content="vim的下载与安装 下载windows版vim 从github下载windows版的vim：https://github.com/vim/vim-win32-installer/releases 安装vim 无特殊要求默认安装即可。 安装完成后默认打开README文件&amp;hellip;">
+<meta name="twitter:image" content="/post-images/vim-de-an-zhuang-ji-pei-zhi.png">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a> vim 的安装及配置</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2023-04-19</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/vim-de-an-zhuang-ji-pei-zhi/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><h2 id="vim">vim的下载与安装</h2>
+<h3 id="windowsvim">下载windows版vim</h3>
+<p>从github下载windows版的vim：<a href="https://github.com/vim/vim-win32-installer/releases">https://github.com/vim/vim-win32-installer/releases</a></p>
+<h3 id="vim-1">安装vim</h3>
+<p>无特殊要求默认安装即可。<br />
+安装完成后默认打开README文件。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682219903942.PNG" alt="" /></p>
+<h3 id="heading">添加环境变量</h3>
+<p>在安装路径中找到vim.exe或者gvim.exe（两者在同一文件夹下），复制路径。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682219998319.PNG" alt="" /><br />
+右键我的电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量，选中Path，并点击编辑，添加路径。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682220293628.PNG" alt="" /><br />
+添加vim的一个用户变量<code>$VIM</code>，右键我的电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量，点击上面的新建。<br />
+然后输入新建的环境变量名VIM以及变量值，并点击确定。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682220555084.PNG" alt="" /></p>
+<h2 id="vim-2">认识vim</h2>
+<p>安装结束后桌面Vim<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682236706561.PNG" alt="" /><br />
+菜单栏Vim<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682240411155.png" alt="" /></p>
+<ol>
+<li>有g和没有g<br />
+gVim 是在windows下的Gui图形用户界面的的 vim (GUI Vim)，支持windows的一些快捷方式，支持鼠标操作<br />
+vim 是在windows下的类似linux vi 编辑的界面，只能用键盘操作<br />
+vim的操作指令同时适用于gVim</li>
+<li>Vim, Vim Diff, Vim Easy, Vim Read-only<br />
+Diff 是用来对比两个文件内容用的，直接打开挺没用的，不过直接拖2个文件到快捷方式上倒是可行；<br />
+Easy启动的时候是insert模式，适合普通windows用户的习惯；<br />
+Read-Only的用途：比如用read-only打开已经用vim打开过的文件，就不会提示让人烦躁的.swp文件存在的问题；</li>
+</ol>
+<p>我们暂时会使用Vim来入门，最后您会使用gVim编程，这是因为gVim在没有配置的时候比Vim还不方便操作。</p>
+<h2 id="vim-3">Vim基本的使用说明</h2>
+<h3 id="vim-4">用Vim打开文件</h3>
+<p>在cmd下输入vim + 路径即可，同时直接将文件拖动到快捷方式图标上也可以。</p>
+<h3 id="vim-5">Vim的四种模式</h3>
+<p>vim 共分为四种模式，分别是普通模式（Normal mode）、底行模式(Last line mode)、输入模式（Insert mode）和可视化模式（Visual mode）。四种模式的切换与作用如下<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682414750036.png" alt="" /></p>
+<h4 id="normal-mode"><strong>Normal Mode</strong></h4>
+<p>这个模式一般用于浏览代码与进入底行模式输入命令，使用快捷键修改文章</p>
+<table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">h 或 向左箭头键(←)</td>
+<td align="center">光标向左移动一个字符</td>
+</tr>
+<tr>
+<td align="center">j 或 向下箭头键(↓)</td>
+<td align="center">光标向下移动一个字符</td>
+</tr>
+<tr>
+<td align="center">k 或 向上箭头键(↑)</td>
+<td align="center">光标向上移动一个字符</td>
+</tr>
+<tr>
+<td align="center">l 或 向右箭头键(→)</td>
+<td align="center">光标向右移动一个字符</td>
+</tr>
+</tbody>
+</table>
+<p>用上面的按键你就可以上下浏览代码了，但是不建议使用方向键<br />
+Vim中还有一些键位是进行光标移动的</p>
+<table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">[Ctrl] + [f]</td>
+<td align="center">屏幕『向下』移动一页，相当于 [Page Down]按键 (常用)</td>
+</tr>
+<tr>
+<td align="center">[Ctrl] + [b]</td>
+<td align="center">屏幕『向上』移动一页，相当于 [Page Up] 按键 (常用)</td>
+</tr>
+<tr>
+<td align="center">[Ctrl] + [d]</td>
+<td align="center">屏幕『向下』移动半页</td>
+</tr>
+<tr>
+<td align="center">[Ctrl] + [u]</td>
+<td align="center">屏幕『向上』移动半页</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td align="center">光标移动到非空格符的下一行</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">光标移动到非空格符的上一行</td>
+</tr>
+<tr>
+<td align="center">n &lt; space &gt;</td>
+<td align="center">那个 n 表示『数字』，例如 20 。按下数字后再按空格键，光标会向右移动这一行的 n 个字符。例如 20&lt; space &gt; 则光标会向后面移动 20 个字符距离。</td>
+</tr>
+<tr>
+<td align="center">M</td>
+<td align="center">光标移动到这个屏幕的中央那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="center">L</td>
+<td align="center">光标移动到这个屏幕的最下方那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="center">G</td>
+<td align="center">移动到这个档案的最后一行(常用)</td>
+</tr>
+<tr>
+<td align="center">nG</td>
+<td align="center">n 为数字。移动到这个档案的第 n 行。例如 20G 则会移动到这个档案的第 20 行(可配合 :set nu)</td>
+</tr>
+<tr>
+<td align="center">gg</td>
+<td align="center">移动到这个档案的第一行，相当于 1G 啊！ (常用)</td>
+</tr>
+<tr>
+<td align="center">n&lt; Enter &gt;</td>
+<td align="center">n 为数字。光标向下移动 n 行(常用)</td>
+</tr>
+</tbody>
+</table>
+<p>以上是光标移动命令，然后是文档查询替换命令</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">/word</td>
+<td align="center">向光标之下寻找一个名称为 word 的字符串。例如要在档案内搜寻 vbird 这个字符串，就输入 / vbird 即可！ (常用)</td>
+</tr>
+<tr>
+<td align="center">?word</td>
+<td align="center">向光标之上寻找一个字符串名称为 word 的字符串。</td>
+</tr>
+<tr>
+<td align="center">n</td>
+<td align="center">这个 n 是英文按键。代表重复前一个搜寻的动作。举例来说， 如果刚刚我们执行 /vbird 去向下搜寻 vbird 这个字符串，则按下 n 后，会向下继续搜寻下一个名称为 vbird 的字符串。如果是执行 ?vbird 的话，那么按下 n 则会向上继续搜寻名称为 vbird 的字符串！</td>
+</tr>
+<tr>
+<td align="center">N</td>
+<td align="center">这个 N 是英文按键。与 n 刚好相反，为『反向』进行前一个搜寻动作。 例如 /vbird 后，按下 N 则表示『向上』搜寻 vbird 。</td>
+</tr>
+<tr>
+<td align="center">使用 /word 配合 n 及 N 是非常有帮助的！可以让你重复的找到一些你搜寻的关键词！</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">:n1,n2s/word1/word2/g</td>
+<td align="center">n1 与 n2 为数字。在第 n1 与 n2 行之间寻找 word1 这个字符串，并将该字符串取代为 word2 ！举例来说，在 100 到 200 行之间搜寻 vbird 并取代为 VBIRD 则： 『:100,200s/vbird/VBIRD/g』。(常用)</td>
+</tr>
+<tr>
+<td align="center">:1,$s/word1/word2/g 或 :%s/word1/word2/g</td>
+<td align="center">从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 ！(常用)</td>
+</tr>
+<tr>
+<td align="center">:1,$s/word1/word2/gc 或 :%s/word1/word2/gc</td>
+<td align="center">从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 ！且在取代前显示提示字符给用户确认 (confirm) 是否需要取代！(常用)</td>
+</tr>
+</tbody>
+</table>
+<p>最后是最常用的<strong>增删改命令</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">x, X</td>
+<td align="center">在一行字当中，x 为向后删除一个字符 (相当于 [del] 按键)， X 为向前删除一个字符( 相当于 [backspace] 亦即是退格键) (常用)</td>
+</tr>
+<tr>
+<td align="center">nx</td>
+<td align="center">n 为数字，连续向后删除 n 个字符。举例来说，我要连续删除 10 个字符， 『10x』。</td>
+</tr>
+<tr>
+<td align="center">dd</td>
+<td align="center">删除游标所在的那一整行(常用)</td>
+</tr>
+<tr>
+<td align="center">ndd</td>
+<td align="center">n 为数字。删除光标所在的向下 n 行，例如 20dd 则是删除 20 行 (常用)</td>
+</tr>
+<tr>
+<td align="center">d1G</td>
+<td align="center">删除光标所在到第一行的所有数据</td>
+</tr>
+<tr>
+<td align="center">dG</td>
+<td align="center">删除光标所在到最后一行的所有数据</td>
+</tr>
+<tr>
+<td align="center">d$</td>
+<td align="center">删除游标所在处，到该行的最后一个字符</td>
+</tr>
+<tr>
+<td align="center">d0</td>
+<td align="center">那个是数字的 0 ，删除游标所在处，到该行的最前面一个字符</td>
+</tr>
+<tr>
+<td align="center">yy</td>
+<td align="center">复制游标所在的那一行(常用)</td>
+</tr>
+<tr>
+<td align="center">nyy</td>
+<td align="center">n 为数字。复制光标所在的向下 n 行，例如 20yy 则是复制 20 行(常用)</td>
+</tr>
+<tr>
+<td align="center">y1G</td>
+<td align="center">复制游标所在行到第一行的所有数据</td>
+</tr>
+<tr>
+<td align="center">yG</td>
+<td align="center">复制游标所在行到最后一行的所有数据</td>
+</tr>
+<tr>
+<td align="center">y0</td>
+<td align="center">复制光标所在的那个字符到该行行首的所有数据</td>
+</tr>
+<tr>
+<td align="center">y$</td>
+<td align="center">复制光标所在的那个字符到该行行尾的所有数据</td>
+</tr>
+<tr>
+<td align="center">p, P</td>
+<td align="center">p 为将已复制的数据在光标下一行贴上，P 则为贴在游标上一行！ 举例来说，我目前光标在第 20 行，且已经复制了 10 行数据。则按下 p 后， 那 10 行数据会贴在原本的 20 行之后，亦即由 21 行开始贴。但如果是按下 P 呢？ 那么原本的第 20 行会被推到变成 30 行。 (常用)</td>
+</tr>
+<tr>
+<td align="center">J</td>
+<td align="center">将光标所在行与下一行的数据结合成同一行</td>
+</tr>
+<tr>
+<td align="center">c</td>
+<td align="center">重复删除多个数据，例如向下删除 10 行，[ 10cj ]</td>
+</tr>
+<tr>
+<td align="center">u</td>
+<td align="center">复原前一个动作。(常用)</td>
+</tr>
+<tr>
+<td align="center">[Ctrl]+r</td>
+<td align="center">重做上一个动作。(常用)</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td align="center">不要怀疑！这就是小数点！意思是重复前一个动作的意思。 如果你想要重复删除、重复贴上等等动作，按下小数点『.』就好了！ (常用)</td>
+</tr>
+</tbody>
+</table>
+<p>以上的增删改查命令有一定的命名规律，比如<code>y</code>是复制，然后复制什么没说，你用<code>yw</code>就是复制一个单词(word)，重复写一个命令就是对这个对行操作，例如<code>yy</code>就是复制一行，还可以<code>y+数字</code>，例如<code>y3</code>就是复制三行，还可以与其他命令组合比如<code>yG</code>就是从当前光标位置复制到文档最后，这样组合才可以让我们高效的使用Vim</p>
+<h4 id="last-line-mode"><strong>Last line mode模式</strong></h4>
+<p>我一直觉得这就是Vim的Normal模式，结果别人都觉得这是一个新模式，那就当他是个新模式吧<br />
+你会发现在没有配置Vim的其他功能的时候，Vim的下面会写有一个Normal等，但是似乎下面还有一行，这一行是让你输入命令的，想要输入命令必须使用\或者:触发，\是用来查找内容的，严格说属于Normal模式，所以其实只有:开头的命令</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">:w</td>
+<td align="center">将编辑的数据写入硬盘档案中(常用)</td>
+</tr>
+<tr>
+<td align="center">:w!</td>
+<td align="center">若文件属性为『只读』时，强制写入该档案。不过，到底能不能写入， 还是跟你对该档案的档案权限有关啊！</td>
+</tr>
+<tr>
+<td align="center">:q</td>
+<td align="center">离开 vi (常用)</td>
+</tr>
+<tr>
+<td align="center">:q!</td>
+<td align="center">若曾修改过档案，又不想储存，使用 ! 为强制离开不储存档案。</td>
+</tr>
+<tr>
+<td align="center">注意一下啊，那个惊叹号 (!) 在 vi 当中，常常具有『强制』的意思～</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">:wq</td>
+<td align="center">储存后离开，若为 :wq! 则为强制储存后离开 (常用)</td>
+</tr>
+<tr>
+<td align="center">:w [filename]</td>
+<td align="center">将编辑的数据储存成另一个档案（类似另存新档）</td>
+</tr>
+<tr>
+<td align="center">:r [filename]</td>
+<td align="center">在编辑的数据中，读入另一个档案的数据。亦即将 『filename』 这个档案内容加到游标所在行后面</td>
+</tr>
+<tr>
+<td align="center">:n1,n2 w [filename]</td>
+<td align="center">将 n1 到 n2 的内容储存成 filename 这个档案。</td>
+</tr>
+<tr>
+<td align="center">:! command</td>
+<td align="center">暂时离开 vi 到指令行模式下执行 command 的显示结果！例如 『:! ls /home』即可在 vi 当中察看 /home 底下以 ls 输出的档案信息！</td>
+</tr>
+</tbody>
+</table>
+<p>还有很多，但是都是特殊的命令，或者某一个插件特有的，这里不做介绍</p>
+<h4 id="insert"><strong>Insert模式</strong></h4>
+<p>插入模式是让你正常写代码的，注意的是，插入模式下hjkl的上下左右切换是失效的，可以用方向键，但是不建议，还是退出编辑模式在normal下改光标方便，进入插入模式的快捷键最常用的是i，还有如下的也可以</p>
+<table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">i, I</td>
+<td align="center">进入输入模式(Insert mode)： i 为『从目前光标所在处输入』， I 为『在目前所在行的第一个非空格符处开始输入』。 (常用)</td>
+</tr>
+<tr>
+<td align="center">a, A</td>
+<td align="center">进入输入模式(Insert mode)： a 为『从目前光标所在的下一个字符处开始输入』， A 为『从光标所在行的最后一个字符处开始输入』。(常用)</td>
+</tr>
+<tr>
+<td align="center">o, O</td>
+<td align="center">进入输入模式(Insert mode)： 这是英文字母 o 的大小写。o 为『在目前光标所在的下一行处输入新的一行』； O 为在目前光标所在处的上一行输入新的一行！(常用)</td>
+</tr>
+<tr>
+<td align="center">r, R</td>
+<td align="center">进入取代模式(Replace mode)： r 只会取代光标所在的那一个字符一次；R会一直取代光标所在的文字，直到按下 ESC 为止；(常用)</td>
+</tr>
+</tbody>
+</table>
+<p>这一部分没什么好说的，因为没有快捷键(否则你打着打着代码就触发了什么快捷键)</p>
+<h4 id="visual"><strong>Visual模式</strong></h4>
+<p>可视化模式在很多文献中都没有介绍，但是是一个非常好用的模式，在这个模式下你可以用鼠标选择内容要选取一段文本，首先将光标移到段首，在普通模式下按 v 进入可视模式，然后把光标移到段末。 需要注意，光标所在字符是包含在选区中的</p>
+<ul>
+<li>v 进入字符可视化模式</li>
+<li>V 进入行可视化模式</li>
+<li>Ctrl+v 进入块可视化模式<br />
+块选择在表格中删除指定列非常有用<br />
+用 v 命令进入的字符可视化模式（Characterwise visual mode)。文本选择是以字符为单位的。<br />
+用 V 命令进入的行可视化模式（Linewise visual mode)。文本选择是以行为单位的。<br />
+用 ctrl-V 进入的块可视化模式（Blockwise visual mode）。可以选择一个矩形内的文本。</li>
+</ul>
+<p>使用鼠标或者hjkl即可选中字符/行/块，然后可以y，x…<br />
+更有用的是对块批量操作，例如批量注释可以这么写<br />
+<strong>批量注释：</strong><br />
+Ctrl + v 进入块选择模式，然后移动光标选中你要注释的行，再按大写的 I 进入行首插入模式输入注释符号如 // 或 #，输入完毕之后，按两下 ESC，Vim 会自动将你选中的所有行首都加上注释，保存退出完成注释。<br />
+<strong>取消注释：</strong><br />
+Ctrl + v 进入块选择模式，选中你要删除的行首的注释符号，注意 // 要选中两个，选好之后按 d 即可删除注释，ESC 保存退出<br />
+还可以在选择文字后输入:然后把你在平时这么用的就怎么写，注意按:会多出一些东西不要管他,例如</p>
+<pre><code class="language-bash">:A //这是一堆注释
+</code></pre>
+<p>然后Vim会根据你所写，先对每一样在Normal模式下使用A把光标移动到该行行尾，然后进入Insert模式输入<code>//这是一堆注释</code>对每一行都操作结束之后就会自动退出到Normal模式<br />
+具体的这个模式如何使用见<a href="https://linux.cn/article-10589-1.html">Vim可视化入门</a></p>
+<h2 id="vim-6">配置vim</h2>
+<p>安装好的vim文件夹下有一个<code>_vimrc</code>文件，相当于Linux下vim的<code>.vimrc</code>文件，在里面配置vim，大多数情况和Linux一样。<br />
+<strong>Windows 7</strong> <code>C:\Program Files\Vim\_vimrc</code>中默认是这样的——</p>
+<pre><code class="language-bash">&quot; Vim with all enhancements
+source $VIMRUNTIME/vimrc_example.vim
+
+&quot; Use the internal diff if available.
+&quot; Otherwise use the special 'diffexpr' for Windows.
+if &amp;diffopt !~# 'internal'
+  set diffexpr=MyDiff()
+endif
+function MyDiff()
+  let opt = '-a --binary '
+  if &amp;diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &amp;diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '&quot;' . arg1 . '&quot;' | endif
+  let arg1 = substitute(arg1, '!', '\!', 'g')
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '&quot;' . arg2 . '&quot;' | endif
+  let arg2 = substitute(arg2, '!', '\!', 'g')
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '&quot;' . arg3 . '&quot;' | endif
+  let arg3 = substitute(arg3, '!', '\!', 'g')
+  if $VIMRUNTIME =~ ' '
+    if &amp;sh =~ '\&lt;cmd'
+      if empty(&amp;shellxquote)
+        let l:shxq_sav = ''
+        set shellxquote&amp;
+      endif
+      let cmd = '&quot;' . $VIMRUNTIME . '\diff&quot;'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '&quot; ', '') . '\diff&quot;'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  let cmd = substitute(cmd, '!', '\!', 'g')
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' &gt; ' . arg3
+  if exists('l:shxq_sav')
+    let &amp;shellxquote=l:shxq_sav
+  endif
+endfunction
+</code></pre>
+<p>你会发现在Vim安装目录和<code>C://User/你的用户名</code>下还有一个，我们使用自己用户名下的,如果没有的话就自己新建一个，这个不是因为你的Vim没安装，他就是没有。</p>
+<h3 id="vim-7">第一个Vim配置，行号</h3>
+<p>找到或者新建这个文件，右键选中用Vim打开，我们就打开了一个空的<code>_vimrc</code>文件，试着往里面写下<code>set number</code>，这个配置的意思是自动为添加行号，这样你写代码就可以在左边看到行号了<br />
+按动ZZ(大写的)保存文件，然而行号并没有出来，这是因为我们没有&quot;刷新配置文件&quot;,在Normal下输入命令<code>:source $MYVIMRC</code>然后你就可以看到行号了，至此你成功配置了第一个Vimrc</p>
+<h3 id="heading-1">设置快捷键映射</h3>
+<p>但是这似乎比较麻烦，每次修改之后还要输入那么长的刷新保存，如果有个快捷键帮助我们就好了,我设置的快捷键是大写的R，也就是Shift+R，那么我们应该如何设置呢？首先要想好自己要设置的快捷键，不能与之前的快捷键相重合，还有快捷键的生效范围，是只有在Normal模式下生效还是在四个模式下都生效。例如我将大写R作为快捷键最好只在Normal下操作，否则在Insert模式下我输入大写的R就没法输入了，但是例如F5这样的快捷键从来不会与其他模式冲突我们就可以设置为全局的<br />
+快捷键映射可以将一个组合键映射到一个命令，一个其他的组合键或者其他语法为</p>
+<pre><code class="language-bash">前缀+map 快捷键 映射结果
+</code></pre>
+<p>这里的前缀限定了map的作用范围是那几个模式，不写前缀默认是前缀n</p>
+<ul>
+<li>nmap：只有在Normal模式下生效</li>
+<li>vmap：只有在Visual模式下生效</li>
+<li>imap：只有在Insert模式下生效</li>
+<li>cmap：只有在行底命令的模式下生效</li>
+<li>Xnoremap：X是前面的n/v/i/c，nore表示非递归的例如a被映射为了b，b被映射为了c，那么如果是递归的的话a就映射为了c</li>
+</ul>
+<p>对于被映射与要映射的动作按键遵循以下写法</p>
+<ul>
+<li>普通按键就直接写</li>
+<li>Alt组合键写成<code>&lt;A-X&gt;</code>,例如Alt+S就是<code>&lt;A-S&gt;</code></li>
+<li>Ctrl组合键写成<code>&lt;C-X&gt;</code>,例如Ctrl+S就是<code>&lt;C-S&gt;</code></li>
+<li>FX写成<code>&lt;FX&gt;</code>，例如<code>&lt;F5&gt;</code>就是F5</li>
+<li>四个方向键写成<code>&lt;方向&gt;</code>，例如<code>&lt;LEFT&gt;</code>就是方向左键</li>
+<li>ESC就写成<code>&lt;ESC&gt;</code></li>
+<li>Leader键就写成</li>
+<li>回车写成<code>&lt;CR&gt;</code></li>
+</ul>
+<p>关于leader键：<br />
+Vim预置有很多快捷键，再加上各类插件的快捷键，大量快捷键出现在单层空间中难免引起冲突。为缓解该问题，而引入了前缀键<code>&lt;leader&gt;</code>。藉由前缀键， 则可以衍生出更多的快捷键命名空间（namespace)。例如将r键配置为<code>&lt;leader&gt;r</code>、<code>&lt;leader&gt;&lt;leader&gt;r</code>等多个快捷键。前缀键默认为<code>\</code><br />
+但是在我的键盘上<code>\</code>太远了，于是我就把leader换成了空格，只需要如下的命令<code>let mapleader = &quot;\&lt;space&gt;&quot;</code>写在开头就完成了替换。</p>
+<p>针对上面的问题我们就可以把刷新配置文件映射成S，配置如下</p>
+<pre><code class="language-bash">map R :source $MYVIMRC&lt;CR&gt;
+</code></pre>
+<h3 id="heading-2">安装插件管理器</h3>
+<p>Vim好用就在于有大量插件供我们使用，这样我们可以自己配置自己喜欢的Vim，这里我们介绍插件管理器Vim-Pluig，同时我们一般的插件都是在GitHub上托管的，所以我们一般也是在GitHub上找插件，Vim的插件非常好识别，他使用的语言大多会写<code>Vim script</code>。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682425896308.png" alt="" /><br />
+打开插件管理器所在仓库。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682426083266.png" alt="" /><br />
+下载如下文件并放入Vim的安装目录下的autoload。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682426488347.png" alt="" /><br />
+这样我们就完成了插件管理器的安装<br />
+之后我们开始尝试安装第一个插件<br />
+首先在vimrc中写下这样三行，他可以帮助插件管理器识别你要装那些插件</p>
+<pre><code class="language-bash">call plug#begin('~/.vim/plugged')
+
+call plug#end()
+</code></pre>
+<p>以后只要是需要安装的插件我们只需要把地址写在里面就可以直接安装了</p>
+<p>另一款插件管理器—— <em>Vundle</em> 的安装教程：<a href="https://blog.csdn.net/weixin_42250302/article/details/108019214">Windows gvim安装插件_gvim插件</a></p>
+<h3 id="heading-3">尝试安装第一个插件</h3>
+<p>我们先来尝试安装一个主题插件。<br />
+首先我们找到<a href="https://github.com/connorholyday/vim-snazzy">这个主题的GitHub库</a>。<br />
+那如何告诉插件管理器我要安装这个插件，这个插件的安装包在哪里呢？<br />
+刚刚那个库的地址是<br />
+<a href="https://github.com/connorholyday/vim-snazzy">https://github.com/connorholyday/vim-snazzy</a><br />
+我们发现<code>https://github.com/</code>是GitHub的前缀，而插件管理器默认库在GitHub所以只要告诉插件<code>connorholyday/vim-snazzy</code>就可以了，于是我们只需要在哪两行代中间写上：</p>
+<pre><code class="language-bash">Plug 'connorholyday/vim-snazzy'
+</code></pre>
+<p>即为——</p>
+<pre><code class="language-bash">call plug#begin('~/.vim/plugged')
+Plug 'connorholyday/vim-snazzy'
+call plug#end()
+</code></pre>
+<p>完事，我们要让插件管理器去安装它，只需保存并刷新配置文件，输入命令:PlugInstall回车，等他跑完进度条即可。<br />
+至此我们完成了第一个插件的安装。</p>
+<h3 id="heading-4">尝试卸载第一个插件</h3>
+<p>如果哪一天插件不想要了，可以卸载，方法很简单，要么删除插件安装的哪一行，要么把他注释掉(vim下的注释是<code>&quot;</code>)，然后保存刷新配置文件，输入命令<code>:PlugClean</code>。</p>
+<h2 id="powershellvim">Powershell中使用Vim</h2>
+<p>执行Set-ExecutionPolicy RemoteSigned命令，在对话框中选择Y<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682223107244.PNG" alt="" /><br />
+重启Shell，输入vim进行测试<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682223163724.PNG" alt="" /></p>
+<h2 id="heading-5">参考</h2>
+<p><a href="https://www.cnblogs.com/qiyuexin/p/6398606.html">1. vim 的安装及配置 - QIYUEXIN - 博客园</a><br />
+<a href="https://blog.csdn.net/qyhaill/article/details/105425057">windows10安装配置vim_win10 vim_八块腹肌怎么练的博客</a><br />
+<a href="https://blog.csdn.net/Liukairui/article/details/107392243">Vim使用全指南 (环境配置，插件推荐，美化) (C++,Python,MarkDown,R&hellip;)_vim 编辑插件_Liukairui的博客</a><br />
+<a href="https://blog.csdn.net/themingyi/article/details/102468347">Powershell中使用Vim_powershell输入vim后蓝屏了_themingyi的博客</a><br />
+<a href="https://www.52pojie.cn/thread-1775620-1-1.html">(Linux学习笔记) - vi/vim编辑器的使用</a><br />
+<a href="https://blog.csdn.net/weixin_42250302/article/details/108019214">Windows gvim安装插件_gvim插件_其铄的博客-CSDN博客</a></p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        <span class="pre pagbuttons">
+            <a role="navigation" href="/post/sublime-text3-an-zhuang-ji-cha-jian-de-an-zhuang-xie-zai/" title="Sublime Text4安装及插件的安装卸载">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                prev_post: Sublime Text4安装及插件的安装卸载
+            </a>
+        </span>
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/hexo-gitee-bo-ke-da-jian-xiang-xi-zhi-nan/" title="Hexo + Gitee 博客搭建详细指南">
+                next_post: Hexo + Gitee 博客搭建详细指南
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/scripts/jquery.appear.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="Technology">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>Bitcron Pro Plus主题修改（自用） · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="Bitcron Pro Plus主题修改（自用）">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="修改的主题为gridea-theme-bitcron-pro-plus post.ejs 修改 找到—— &amp;lt;% if(typeof site.customConfig['valine']!=='undefined' &amp;amp;&amp;amp; site.customCon...">
+<link rel="canonical" href="https://xiaxi626.github.io/post/bitcron-pro-plus-zhu-ti-xiu-gai-zi-yong/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Bitcron Pro Plus主题修改（自用）","url":"https://xiaxi626.github.io/post/bitcron-pro-plus-zhu-ti-xiu-gai-zi-yong/","description":"修改的主题为gridea-theme-bitcron-pro-plus post.ejs 修改 找到—— \u0026lt;% if(typeof site.customConfig['valine']!=='undefined' \u0026amp;\u0026amp; site.customCon...","datePublished":"2023-08-03T19:16:12+08:00","dateModified":"2026-05-15T22:34:46+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/bitcron-pro-plus-zhu-ti-xiu-gai-zi-yong/","name":"Bitcron Pro Plus主题修改（自用）","position":2}]}</script>
+<meta property="og:title" content="Bitcron Pro Plus主题修改（自用）">
+<meta property="og:description" content="修改的主题为gridea-theme-bitcron-pro-plus post.ejs 修改 找到—— &amp;lt;% if(typeof site.customConfig['valine']!=='undefined' &amp;amp;&amp;amp; site.customCon...">
+<meta property="og:url" content="https://xiaxi626.github.io/post/bitcron-pro-plus-zhu-ti-xiu-gai-zi-yong/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/images/avatar.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/bitcron-pro-plus-zhu-ti-xiu-gai-zi-yong/">
+<meta name="twitter:title" content="Bitcron Pro Plus主题修改（自用）">
+<meta name="twitter:description" content="修改的主题为gridea-theme-bitcron-pro-plus post.ejs 修改 找到—— &amp;lt;% if(typeof site.customConfig['valine']!=='undefined' &amp;amp;&amp;amp; site.customCon...">
+<meta name="twitter:image" content="/images/avatar.png">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>Bitcron Pro Plus主题修改（自用）</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2023-08-03</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/bitcron-pro-plus-zhu-ti-xiu-gai-zi-yong/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><p>修改的主题为<a href="https://kgithub.com/Wu-jiyan/gridea-theme-bitcron-pro-plus">gridea-theme-bitcron-pro-plus</a></p>
+<h2 id="postejs-">post.ejs 修改</h2>
+<p>找到——</p>
+<pre><code class="language-ejs">&lt;% if(typeof site.customConfig['valine']!=='undefined' &amp;&amp; site.customConfig['valine']) { %&gt;
+</code></pre>
+<p>在上一行添加<code>&lt;% } else { %&gt;</code>。</p>
+<pre><code class="language-ejs">&lt;div class=&quot;doc_comments&quot;&gt;
+&lt;% if (typeof commentSetting !== 'undefined' &amp;&amp; commentSetting.showComment) { %&gt;
+      &lt;% if (commentSetting.commentPlatform === 'gitalk') { %&gt;
+        &lt;div id=&quot;gitalk-container&quot;&gt;&lt;/div&gt;
+        &lt;%- include('./_blocks/gitalk') %&gt;
+      &lt;% } %&gt;
+
+      &lt;% if (commentSetting.commentPlatform === 'disqus') { %&gt;
+        &lt;%- include('./_blocks/disqus') %&gt;
+      &lt;% } %&gt;
+&lt;% } else { %&gt;
+            &lt;% if(typeof site.customConfig['valine']!=='undefined' &amp;&amp; site.customConfig['valine']) { %&gt;
+                &lt;%- include('./_blocks/valine') %&gt;
+            &lt;% } %&gt;
+
+&lt;% } %&gt;
+</code></pre>
+<h2 id="valineejs-">Valine.ejs 修改</h2>
+<h3 id="1valine">1、替换Valine核心代码库</h3>
+<pre><code class="language-ejs">&lt;!--Valine 的核心代码库--&gt;
+&lt;script src=&quot;//cdn.jsdelivr.net/npm/valine@1.4.4/dist/Valine.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>核心代码库默认网址打不开，换一个，你也可以保留原代码，注释掉即可。</p>
+<pre><code class="language-ejs">&lt;!--Valine 的核心代码库--&gt;
+&lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/valine/1.5.1/Valine.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h3 id="2">2、添加回复评论设置</h3>
+<pre><code class="language-ejs">&lt;script&gt;
+    // 点击回复直接评论,官方版本点击回复时都是跳回到页面上方的评论框进行回复，评论框是固定不动的
+    // 参考https://immmmm.com/valine-diy,用到jQuery
+    $(document).ready(function(){
+        //$('.vemoji-btn').text('😀');
+        $(&quot;#vcomments&quot;).on('click', 'span.vat',function(){
+            $(this).parent('div.vmeta').next(&quot;div.vcontent&quot;).after($(&quot;div.vwrap&quot;));
+            $('textarea#veditor').focus();
+        })
+    })
+&lt;/script&gt;
+</code></pre>
+<h3 id="3qqqq">3、自动获取QQ昵称和QQ头像</h3>
+<p><code>new Valine</code>下添加</p>
+<pre><code class="language-ejs">enableQQ: 'true',
+</code></pre>
+<h3 id="4">4、评论列表分页</h3>
+<pre><code class="language-ejs">pageSize: '10',
+</code></pre>
+<h3 id="5ip">5、记录评论者IP</h3>
+<pre><code class="language-ejs">recordIP: 'true',
+</code></pre>
+<h3 id="6">6、必填字段</h3>
+<p>默认提示“昵称不能少于3个字符”、“请填写正确的邮件地址”</p>
+<pre><code class="language-ejs">requiredFields: ['nick','mail'],
+</code></pre>
+<h3 id="7">7、自定义表情</h3>
+<p>添加CDN和Maps，来源<a href="https://github.com/lrhtony/BiliEmoji/">BiliEmoji</a>。</p>
+<p>记得在<code>avatar:''</code>后加逗号“<code>,</code>”。</p>
+<pre><code class="language-ejs">        emojiCDN: '//i0.hdslb.com/bfs/emote/',
+        emojiMaps: {
+        &quot;tv-doge&quot;: &quot;6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png&quot;,
+        &quot;tv-坏笑&quot;: &quot;1f0b87f731a671079842116e0991c91c2c88645a.png&quot;,
+        &quot;tv-难过&quot;: &quot;87f46748d3f142ebc6586ff58860d0e2fc8263ba.png&quot;,
+        &quot;tv-生气&quot;: &quot;26702dcafdab5e8225b43ffd23c94ac1ff932654.png&quot;,
+        &quot;tv-委屈&quot;: &quot;d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png&quot;,
+        &quot;tv-斜眼笑&quot;: &quot;911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png&quot;,
+        &quot;tv-呆&quot;: &quot;fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png&quot;,
+        &quot;tv-发怒&quot;: &quot;34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png&quot;,
+        &quot;tv-惊吓&quot;: &quot;0d15c7e2ee58e935adc6a7193ee042388adc22af.png&quot;,
+        &quot;tv-呕吐&quot;: &quot;9f996894a39e282ccf5e66856af49483f81870f3.png&quot;,
+        &quot;tv-思考&quot;: &quot;90cf159733e558137ed20aa04d09964436f618a1.png&quot;,
+        &quot;tv-微笑&quot;: &quot;70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png&quot;,
+        &quot;tv-疑问&quot;: &quot;0793d949b18d7be716078349c202c15ff166f314.png&quot;,
+        &quot;tv-大哭&quot;: &quot;23269aeb35f99daee28dda129676f6e9ea87934f.png&quot;,
+        &quot;tv-鼓掌&quot;: &quot;1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png&quot;,
+        &quot;tv-抠鼻&quot;: &quot;c666f55e88d471e51bbd9fab9bb308110824a6eb.png&quot;,
+        &quot;tv-亲亲&quot;: &quot;a8111ad55953ef5e3be3327ef94eb4a39d535d06.png&quot;,
+        &quot;tv-调皮&quot;: &quot;b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png&quot;,
+        &quot;tv-笑哭&quot;: &quot;1abc628f6d4f4caf9d0e7800878f4697abbc8273.png&quot;,
+        &quot;tv-晕&quot;: &quot;5443c22b4d07fb1907ccc610c8e6db254f2461b7.png&quot;,
+        &quot;tv-点赞&quot;: &quot;f85c354995bd99e28fc76c869bfe42ba6438eff4.png&quot;,
+        &quot;tv-害羞&quot;: &quot;a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png&quot;,
+        &quot;tv-睡着&quot;: &quot;8b196675b53af58264f383c50ad0945048290b33.png&quot;,
+        &quot;tv-色&quot;: &quot;61822c7e9aae5da76475e7892534545336b23a6f.png&quot;,
+        &quot;tv-吐血&quot;: &quot;09dd16a7aa59b77baa1155d47484409624470c77.png&quot;,
+        &quot;tv-无奈&quot;: &quot;ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png&quot;,
+        &quot;tv-再见&quot;: &quot;180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png&quot;,
+        &quot;tv-流汗&quot;: &quot;cead1c351ab8d79e9f369605beb90148db0fbed3.png&quot;,
+        &quot;tv-偷笑&quot;: &quot;bb690d4107620f1c15cff29509db529a73aee261.png&quot;,
+        &quot;tv-抓狂&quot;: &quot;fe31c08edad661d63762b04e17b8d5ae3c71a757.png&quot;,
+        &quot;tv-黑人问号&quot;: &quot;45821a01f51bc867da9edbaa2e070410819a95b2.png&quot;,
+        &quot;tv-困&quot;: &quot;241ee304e44c0af029adceb294399391e4737ef2.png&quot;,
+        &quot;tv-打脸&quot;: &quot;56ab10b624063e966bfcb76ea5dc4794d87dfd47.png&quot;,
+        &quot;tv-闭嘴&quot;: &quot;c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png&quot;,
+        &quot;tv-鄙视&quot;: &quot;6e72339f346a692a495b123174b49e4e8e781303.png&quot;,
+        &quot;tv-腼腆&quot;: &quot;89712c0d4af73e67f89e35cbc518420380a7f6f4.png&quot;,
+        &quot;tv-馋&quot;: &quot;fc7e829b845c43c623c8b490ee3602b7f0e76a31.png&quot;,
+        &quot;tv-可爱&quot;: &quot;9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png&quot;,
+        &quot;tv-发财&quot;: &quot;34db290afd2963723c6eb3c4560667db7253a21a.png&quot;,
+        &quot;tv-生病&quot;: &quot;8b0ec90e6b86771092a498c54f09fc94621c1900.png&quot;,
+        &quot;tv-流鼻血&quot;: &quot;c32d39db2737f89b904ca32700d140a9241b0767.png&quot;,
+        &quot;tv-尴尬&quot;: &quot;7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png&quot;,
+        &quot;tv-大佬&quot;: &quot;093c1e2c490161aca397afc45573c877cdead616.png&quot;,
+        &quot;tv-流泪&quot;: &quot;7e71cde7858f0cd50d74b0264aa26db612a8a167.png&quot;,
+        &quot;tv-冷漠&quot;: &quot;b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png&quot;,
+        &quot;tv-皱眉&quot;: &quot;72ccad6679fea0d14cce648b4d818e09b8ffea2d.png&quot;,
+        &quot;tv-鬼脸&quot;: &quot;0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png&quot;,
+        &quot;tv-调侃&quot;: &quot;4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png&quot;,
+        &quot;tv-目瞪口呆&quot;: &quot;0b8cb81a68de5d5365212c99375e7ace3e7891b7.png&quot;,
+        // ... 更多表情
+    }
+</code></pre>
+<p>可选贴吧表情包，复制以下替换。</p>
+<pre><code class="language-ejs">        emojiCDN: '//tb2.bdstatic.com/tb/editor/images/face/',
+        emojiMaps: {
+        &quot;呵呵&quot;: &quot;i_f01.png&quot;,
+        &quot;哈哈&quot;: &quot;i_f02.png&quot;,
+        &quot;吐舌&quot;: &quot;i_f03.png&quot;,
+        &quot;啊&quot;: &quot;i_f04.png&quot;,
+        &quot;酷&quot;: &quot;i_f05.png&quot;,
+        &quot;怒&quot;: &quot;i_f06.png&quot;,
+        &quot;开心&quot;: &quot;i_f07.png&quot;,
+        &quot;汗&quot;: &quot;i_f08.png&quot;,
+        &quot;泪&quot;: &quot;i_f09.png&quot;,
+        &quot;黑线&quot;: &quot;i_f10.png&quot;,
+        &quot;鄙视&quot;: &quot;i_f11.png&quot;,
+        &quot;不高兴&quot;: &quot;i_f12.png&quot;,
+        &quot;真棒&quot;: &quot;i_f13.png&quot;,
+        &quot;钱&quot;: &quot;i_f14.png&quot;,
+        &quot;疑问&quot;: &quot;i_f15.png&quot;,
+        &quot;阴险&quot;: &quot;i_f16.png&quot;,
+        &quot;吐&quot;: &quot;i_f17.png&quot;,
+        &quot;咦&quot;: &quot;i_f18.png&quot;,
+        &quot;委屈&quot;: &quot;i_f19.png&quot;,
+        &quot;花心&quot;: &quot;i_f20.png&quot;,
+        &quot;呼~&quot;: &quot;i_f21.png&quot;,
+        &quot;笑眼&quot;: &quot;i_f22.png&quot;,
+        &quot;冷&quot;: &quot;i_f23.png&quot;,
+        &quot;太开心&quot;: &quot;i_f24.png&quot;,
+        &quot;滑稽&quot;: &quot;i_f25.png&quot;,
+        &quot;勉强&quot;: &quot;i_f26.png&quot;,
+        &quot;狂汗&quot;: &quot;i_f27.png&quot;,
+        &quot;乖&quot;: &quot;i_f28.png&quot;,
+        &quot;睡觉&quot;: &quot;i_f29.png&quot;,
+        &quot;惊哭&quot;: &quot;i_f30.png&quot;,
+        &quot;升起&quot;: &quot;i_f31.png&quot;,
+        &quot;惊讶&quot;: &quot;i_f32.png&quot;,
+        &quot;喷&quot;: &quot;i_f33.png&quot;,
+        &quot;爱心&quot;: &quot;i_f34.png&quot;,
+        &quot;心碎&quot;: &quot;i_f35.png&quot;,
+        &quot;玫瑰&quot;: &quot;i_f36.png&quot;,
+        &quot;礼物&quot;: &quot;i_f37.png&quot;,
+        &quot;彩虹&quot;: &quot;i_f38.png&quot;,
+        &quot;星星月亮&quot;: &quot;i_f39.png&quot;,
+        &quot;太阳&quot;: &quot;i_f40.png&quot;,
+        &quot;钱币&quot;: &quot;i_f41.png&quot;,
+        &quot;灯泡&quot;: &quot;i_f42.png&quot;,
+        &quot;茶杯&quot;: &quot;i_f43.png&quot;,
+        &quot;蛋糕&quot;: &quot;i_f44.png&quot;,
+        &quot;音乐&quot;: &quot;i_f45.png&quot;,
+        &quot;haha&quot;: &quot;i_f46.png&quot;,
+        &quot;胜利&quot;: &quot;i_f47.png&quot;,
+        &quot;大拇指&quot;: &quot;i_f48.png&quot;,
+        &quot;弱&quot;: &quot;i_f49.png&quot;,
+        &quot;OK&quot;: &quot;i_f50.png&quot;,
+        &quot;伤心&quot;: &quot;i_f51.gif&quot;,
+        &quot;加油&quot;: &quot;i_f52.gif&quot;,
+        &quot;必胜&quot;: &quot;i_f53.gif&quot;,
+        &quot;期待&quot;: &quot;i_f54.gif&quot;,
+        &quot;牛逼&quot;: &quot;i_f55.gif&quot;,
+        &quot;胜利&quot;: &quot;i_f56.gif&quot;,
+        &quot;跟丫死磕&quot;: &quot;i_f57.gif&quot;,
+        &quot;踢球&quot;: &quot;i_f58.gif&quot;,
+        &quot;面壁&quot;: &quot;i_f59.gif&quot;,
+        &quot;顶&quot;: &quot;i_f60.gif&quot;,
+        &quot;巴西怒&quot;: &quot;i_f61.gif&quot;,
+        &quot;伴舞&quot;: &quot;i_f62.gif&quot;,
+        &quot;奔跑&quot;: &quot;i_f63.gif&quot;,
+        &quot;点赞手&quot;: &quot;i_f64.gif&quot;,
+        &quot;加油&quot;: &quot;i_f65.gif&quot;,
+        &quot;哭泣&quot;: &quot;i_f66.gif&quot;,
+        &quot;亮红牌&quot;: &quot;i_f67.gif&quot;,
+        &quot;球迷&quot;: &quot;i_f68.gif&quot;,
+        &quot;耶&quot;: &quot;i_f69.gif&quot;,
+        &quot;转屁股&quot;: &quot;i_f70.gif&quot;,
+        // ... 更多表情
+    }
+</code></pre>
+<p>bilibili的emojiCDN<code>emote/</code>可以塞到emojiMaps的文件名前，这样可以容纳<code>//i0.hdslb.com/bfs/emote/</code>链接下更多表情包，像【贴吧 | 哔哩哔哩动画 | Acfun | …】评论系统的多套表情切换功能需要魔改Valine代码，就不介绍了。</p>
+<h3 id="8valine">8、Valine添加一言</h3>
+<p>修改<code>config.json</code>，<code>&quot;type&quot;: &quot;input&quot;,</code>改为<code>&quot;type&quot;: false,</code>。</p>
+<p>或者将<code>&quot;value&quot;: &quot;Just Go Go&quot;,</code>中的 Just Go Go 删去，再删掉Gridea软件主题设置中填写的 Just Go Go，这样看上去加载占位提示符会有点延迟。</p>
+<pre><code class="language-json">    {
+      &quot;name&quot;: &quot;placeholder&quot;,
+      &quot;label&quot;: &quot;占位提示符&quot;,
+      &quot;group&quot;: &quot;Valine评论系统&quot;,
+      &quot;type&quot;: &quot;input&quot;,
+      &quot;value&quot;: &quot;Just Go Go&quot;,
+      &quot;note&quot;: &quot;评论区占位提示符&quot;
+    },
+</code></pre>
+<p>valine.ejs中添加，</p>
+<pre><code class="language-ejs">&lt;script type=&quot;text/javascript&quot;&gt;
+    //添加一言
+   fetch('https://v1.hitokoto.cn/?c=a')
+    .then(response =&gt; response.json())
+    .then(data =&gt; {
+      document.getElementById(&quot;veditor&quot;).setAttribute(&quot;placeholder&quot;,data.hitokoto+&quot;__&quot;+data.from);
+    })
+    .catch(console.error)
+&lt;/script&gt;
+</code></pre>
+<h3 id="9valine">9、Valine添加每日诗句（可选）</h3>
+<p>添加方法同上，加进去就行了。</p>
+<pre><code class="language-ejs">&lt;script src=&quot;https://sdk.jinrishici.com/v2/browser/jinrishici.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+ jinrishici.load(function(result) {
+     var jrsc_plac =  result.data.content + &quot;\n「&quot; + result.data.origin.title + &quot;」&quot; + result.data.origin.dynasty + &quot; · &quot; + result.data.origin.author;
+     document.getElementById(&quot;veditor&quot;).setAttribute(&quot;placeholder&quot;,jrsc_plac);
+ })
+&lt;/script&gt;
+</code></pre>
+<h3 id="valineejs">我的<code>valine.ejs</code>代码</h3>
+<style>
+
+pre {
+
+  overflow-y: auto;
+
+  max-height: 300px;
+
+}
+
+</style>
+<pre><code class="language-css">&lt;!--评论显示区，请插入合适的位置--&gt;
+&lt;div id=&quot;comment&quot;&gt;&lt;/div&gt;
+&lt;!--Leancloud 操作库:--&gt;
+&lt;script src=&quot;//cdn1.lncld.net/static/js/3.6.1/av-min.js&quot;&gt;&lt;/script&gt;
+&lt;!--Valine 的核心代码库--&gt;
+&lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/valine/1.5.1/Valine.min.js&quot;&gt;&lt;/script&gt;
+&lt;!--&lt;script src=&quot;//cdn.jsdelivr.net/npm/valine@1.4.4/dist/Valine.min.js&quot;&gt;&lt;/script&gt;--&gt;
+&lt;script&gt;
+    new Valine({
+        el:'#comment',
+        appId: '&lt;%=site.customConfig['appId']%&gt;',
+        appKey: '&lt;%=site.customConfig['appKey']%&gt;',
+        placeholder: '&lt;%=site.customConfig['placeholder']%&gt;',
+        avatar:'',
+        pageSize: '10',
+        recordIP: 'true',
+        requiredFields: ['nick','mail'],
+        enableQQ: 'true',
+        emojiCDN: '//i0.hdslb.com/bfs/',
+        emojiMaps: {
+        &quot;tv-doge&quot;: &quot;emote/6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png&quot;,
+        &quot;tv-坏笑&quot;: &quot;emote/1f0b87f731a671079842116e0991c91c2c88645a.png&quot;,
+        &quot;tv-难过&quot;: &quot;emote/87f46748d3f142ebc6586ff58860d0e2fc8263ba.png&quot;,
+        &quot;tv-生气&quot;: &quot;emote/26702dcafdab5e8225b43ffd23c94ac1ff932654.png&quot;,
+        &quot;tv-委屈&quot;: &quot;emote/d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png&quot;,
+        &quot;tv-斜眼笑&quot;: &quot;emote/911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png&quot;,
+        &quot;tv-呆&quot;: &quot;emote/fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png&quot;,
+        &quot;tv-发怒&quot;: &quot;emote/34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png&quot;,
+        &quot;tv-惊吓&quot;: &quot;emote/0d15c7e2ee58e935adc6a7193ee042388adc22af.png&quot;,
+        &quot;tv-呕吐&quot;: &quot;emote/9f996894a39e282ccf5e66856af49483f81870f3.png&quot;,
+        &quot;tv-思考&quot;: &quot;emote/90cf159733e558137ed20aa04d09964436f618a1.png&quot;,
+        &quot;tv-微笑&quot;: &quot;emote/70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png&quot;,
+        &quot;tv-疑问&quot;: &quot;emote/0793d949b18d7be716078349c202c15ff166f314.png&quot;,
+        &quot;tv-大哭&quot;: &quot;emote/23269aeb35f99daee28dda129676f6e9ea87934f.png&quot;,
+        &quot;tv-鼓掌&quot;: &quot;emote/1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png&quot;,
+        &quot;tv-抠鼻&quot;: &quot;emote/c666f55e88d471e51bbd9fab9bb308110824a6eb.png&quot;,
+        &quot;tv-亲亲&quot;: &quot;emote/a8111ad55953ef5e3be3327ef94eb4a39d535d06.png&quot;,
+        &quot;tv-调皮&quot;: &quot;emote/b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png&quot;,
+        &quot;tv-笑哭&quot;: &quot;emote/1abc628f6d4f4caf9d0e7800878f4697abbc8273.png&quot;,
+        &quot;tv-晕&quot;: &quot;emote/5443c22b4d07fb1907ccc610c8e6db254f2461b7.png&quot;,
+        &quot;tv-点赞&quot;: &quot;emote/f85c354995bd99e28fc76c869bfe42ba6438eff4.png&quot;,
+        &quot;tv-害羞&quot;: &quot;emote/a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png&quot;,
+        &quot;tv-睡着&quot;: &quot;emote/8b196675b53af58264f383c50ad0945048290b33.png&quot;,
+        &quot;tv-色&quot;: &quot;emote/61822c7e9aae5da76475e7892534545336b23a6f.png&quot;,
+        &quot;tv-吐血&quot;: &quot;emote/09dd16a7aa59b77baa1155d47484409624470c77.png&quot;,
+        &quot;tv-无奈&quot;: &quot;emote/ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png&quot;,
+        &quot;tv-再见&quot;: &quot;emote/180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png&quot;,
+        &quot;tv-流汗&quot;: &quot;emote/cead1c351ab8d79e9f369605beb90148db0fbed3.png&quot;,
+        &quot;tv-偷笑&quot;: &quot;emote/bb690d4107620f1c15cff29509db529a73aee261.png&quot;,
+        &quot;tv-抓狂&quot;: &quot;emote/fe31c08edad661d63762b04e17b8d5ae3c71a757.png&quot;,
+        &quot;tv-黑人问号&quot;: &quot;emote/45821a01f51bc867da9edbaa2e070410819a95b2.png&quot;,
+        &quot;tv-困&quot;: &quot;emote/241ee304e44c0af029adceb294399391e4737ef2.png&quot;,
+        &quot;tv-打脸&quot;: &quot;emote/56ab10b624063e966bfcb76ea5dc4794d87dfd47.png&quot;,
+        &quot;tv-闭嘴&quot;: &quot;emote/c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png&quot;,
+        &quot;tv-鄙视&quot;: &quot;emote/6e72339f346a692a495b123174b49e4e8e781303.png&quot;,
+        &quot;tv-腼腆&quot;: &quot;emote/89712c0d4af73e67f89e35cbc518420380a7f6f4.png&quot;,
+        &quot;tv-馋&quot;: &quot;emote/fc7e829b845c43c623c8b490ee3602b7f0e76a31.png&quot;,
+        &quot;tv-可爱&quot;: &quot;emote/9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png&quot;,
+        &quot;tv-发财&quot;: &quot;emote/34db290afd2963723c6eb3c4560667db7253a21a.png&quot;,
+        &quot;tv-生病&quot;: &quot;emote/8b0ec90e6b86771092a498c54f09fc94621c1900.png&quot;,
+        &quot;tv-流鼻血&quot;: &quot;emote/c32d39db2737f89b904ca32700d140a9241b0767.png&quot;,
+        &quot;tv-尴尬&quot;: &quot;emote/7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png&quot;,
+        &quot;tv-大佬&quot;: &quot;emote/093c1e2c490161aca397afc45573c877cdead616.png&quot;,
+        &quot;tv-流泪&quot;: &quot;emote/7e71cde7858f0cd50d74b0264aa26db612a8a167.png&quot;,
+        &quot;tv-冷漠&quot;: &quot;emote/b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png&quot;,
+        &quot;tv-皱眉&quot;: &quot;emote/72ccad6679fea0d14cce648b4d818e09b8ffea2d.png&quot;,
+        &quot;tv-鬼脸&quot;: &quot;emote/0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png&quot;,
+        &quot;tv-调侃&quot;: &quot;emote/4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png&quot;,
+        &quot;tv-目瞪口呆&quot;: &quot;emote/0b8cb81a68de5d5365212c99375e7ace3e7891b7.png&quot;,
+        &quot;珑歌Taki_问号&quot;: &quot;garb/15856c32cb30a08f361259a59c71b0edee4427dc.png@65w.webp&quot;,
+        &quot;珑歌Taki_打Call&quot;: &quot;garb/67544581bd5f1390e6d95ac34c47867a9e9ebbbb.png@65w.webp&quot;,
+        &quot;珑歌Taki_好耶&quot;: &quot;garb/0176869034a23b2523b552687ec851f4567bb452.png@65w.webp&quot;,
+        &quot;珑歌Taki_点赞&quot;: &quot;garb/243dcd30319137f2715adbea4a4b106835e5c772.png@65w.webp&quot;,
+        &quot;珑歌Taki_啊对对&quot;: &quot;garb/b2576d904e7fa6cada13a35236611f0128fe7a3a.png@65w.webp&quot;,
+        &quot;珑歌Taki_达咩&quot;: &quot;garb/e39b5d13f7276c08caef3ea7b9585ab94de423da.png@65w.webp&quot;,
+        &quot;珑歌Taki_辣眼睛&quot;: &quot;garb/7db3c777e5f618f4458fd379db9b6cfcc5f96a59.png@65w.webp&quot;,
+        &quot;珑歌Taki_晚安&quot;: &quot;garb/cf46da11526aae66fa9b29532a32f262feaf806b.png@65w.webp&quot;,
+        &quot;珑歌Taki_羞羞&quot;: &quot;garb/05ae694d1ef5335673825357ec3bcaee81ca2fd2.png@65w.webp&quot;,
+        &quot;珑歌Taki_叉你&quot;: &quot;garb/7b6c47c462770fd91ca78982cf43a2025564fead.png@65w.webp&quot;,
+        &quot;珑歌Taki_给你一拳&quot;: &quot;garb/1e46191feebe3412e07919dd33f2daef01884c0d.png@65w.webp&quot;,
+        &quot;珑歌Taki_委屈&quot;: &quot;live/e4ce02a977edbd40a6df488f8ce317f1efb77e01.png@65w.webp&quot;,
+        &quot;珑歌Taki_呃呃&quot;: &quot;live/e5c634f3c00b440af5e0269d6cd23a54dcd78a83.png@65w.webp&quot;,
+        &quot;珑歌Taki_爱你&quot;: &quot;live/27e8e2c6679a2e268a2dc0032adec7e0f68abd89.png@65w.webp&quot;,
+        &quot;珑歌Taki_惊&quot;: &quot;live/30fedf447cef730d5acb87c945bf964d4e43b8be.png@65w.webp&quot;,
+        &quot;珑歌Taki_干杯&quot;: &quot;live/68db36d0645df15f4bb8e678d7d9f3a13840eaec.png@65w.webp&quot;,
+        &quot;樱吹雪_Yuki_啵啵&quot;: &quot;garb/a963d838a5f6197defbb6e0591377d4bfd37707a.png@65w.webp&quot;,
+        &quot;樱吹雪_Yuki_打call&quot;: &quot;garb/18f1f1c34738ebb3e2fc6a99bb2afe24192906ab.png@65w.webp&quot;,
+        &quot;樱吹雪_Yuki_晚安&quot;: &quot;garb/c2651d764536e9de174dfc3ab6c0b74ba38d637e.png@65w.webp&quot;,
+        &quot;樱吹雪_Yuki_贴贴&quot;: &quot;garb/dd5d3510ff3169348cfbd0308432cbf4d86f95da.png@65w.webp&quot;,
+        &quot;樱吹雪_Yuki_好耶&quot;: &quot;garb/8a65b68d1c318f5878f610f0e6be5ab55cfad755.png@65w.webp&quot;,
+        &quot;樱吹雪_Yuki_嗷呜&quot;: &quot;garb/fbb35575d9eeb199895056f6f2e678ea1568034f.png@65w.webp&quot;,
+        &quot;樱吹雪_Yuki_问号&quot;: &quot;garb/31b0cd34cdf7d76c9167c319c4a3aa8c084bfd56.png@65w.webp&quot;,
+        &quot;樱吹雪_Yuki_哈哈&quot;: &quot;garb/b64bccc47c050c201dd1a046c03ebff6bc73f94c.png@65w.webp&quot;,
+        &quot;樱吹雪_Yuki_妈&quot;: &quot;garb/be0e78b625d6b76300b917445c65998c052cb3ce.png@65w.webp&quot;,
+        &quot;樱吹雪_Yuki_比心&quot;: &quot;garb/c6acc382cf720529338d9426e1e7a45bd00ac6db.png@65w.webp&quot;,
+        &quot;樱吹雪_Yuki_wink&quot;: &quot;garb/c2500df5817faf7ca63af1cefe62c2526d7693aa.png@65w.webp&quot;,
+        &quot;樱吹雪_Yuki_狐狸&quot;: &quot;garb/26ae388cad7fb59d8797e7e0d77f198cdab46928.png@65w.webp&quot;,
+        &quot;花丸晴琉_mua&quot;: &quot;emote/25be806bfbbb5300afdbeeb64977c90cd1254bf1.png&quot;,
+        &quot;花丸晴琉_wink&quot;: &quot;emote/343d2d4bbf5919f25e37f971cf114d07232c5e73.png&quot;,
+        &quot;花丸晴琉_啊咧&quot;: &quot;emote/b34c5a1827762b981d689bbc51f134469ef06f23.png&quot;,
+        &quot;花丸晴琉_大笑&quot;: &quot;emote/1e28846f5cbd897dd2653142b8be9db42dfbdcb3.png&quot;,
+        &quot;花丸晴琉_呆住&quot;: &quot;emote/2b31495e0c538e095d44ff1a17834abe317a05d2.png&quot;,
+        &quot;花丸晴琉_对不起&quot;: &quot;emote/02d1e8ddfac938b20956f3d83350f442d398286a.png&quot;,
+        &quot;花丸晴琉_好耶&quot;: &quot;emote/29724d41c08ec63962e0974aa653ea8be0cf3947.png&quot;,
+        &quot;花丸晴琉_挥手&quot;: &quot;emote/2c0753c98d4e098a3c5f27ab658b1046b4032572.png&quot;,
+        &quot;花丸晴琉_惊慌&quot;: &quot;emote/e8307d3bd2ad84434e2f6de1eea727aaa138d987.png&quot;,
+        &quot;花丸晴琉_泪目&quot;: &quot;emote/02a805b640a1bd824d21c5e21cf2dbb19f03b6a1.png&quot;,
+        &quot;花丸晴琉_丧&quot;: &quot;emote/e45bd7cf880f36a439ef47c355c73065911992ac.png&quot;,
+        &quot;花丸晴琉_生气&quot;: &quot;emote/dfbfccd43db22e547f62563b73ae7a474b1163a2.png&quot;,
+        &quot;花丸晴琉_晚安&quot;: &quot;emote/40b60d5c04c8e7037089c408e68a73d51fd3dee7.png&quot;,
+        &quot;花丸晴琉_无语&quot;: &quot;emote/ac4cf2356a708eb11199f266160cb76be129ead9.png&quot;,
+        &quot;花丸晴琉_喜欢&quot;: &quot;emote/71a508d3183fb59f1ddf3a42af59fa7495f2c18c.png&quot;,
+        &quot;花丸晴琉_邪恶&quot;: &quot;emote/0a8175363b7c8270836323a627b1fe437938399c.png&quot;,
+        &quot;花丸晴琉_疑惑&quot;: &quot;emote/4aef9a2a5c9800faf2501014e1fba1fbf180b8f0.png&quot;,
+        &quot;花丸晴琉_嘤嘤&quot;: &quot;emote/b5584ef24436d42364e7234a9cd8734e00f872f6.png&quot;,
+        &quot;花丸晴琉_赞&quot;: &quot;emote/adf49b5e19731a8176b774f55b5472b9234ee555.png&quot;,
+        &quot;花丸晴琉_早安&quot;: &quot;emote/c5e20c947c10bb931413b8e4bc80b2bd3b09971e.png&quot;,
+        &quot;-菫時-打Call&quot;: &quot;live/e8073adeb52036d0d563c848c4b55b8449bc4b85.png@65w.webp&quot;,
+        &quot;-菫時-分号分号&quot;: &quot;live/f2a7a0916015a741a192ae85ee593a39c6dd04a7.png@65w.webp&quot;,
+        &quot;-菫時-哎呀&quot;: &quot;live/0a691aec40c738918014b27acfefa3b295b8a458.png@65w.webp&quot;,
+        &quot;-菫時-地蕾&quot;: &quot;live/cdb1f3adeee987c1fe5303ca90443932edb23d30.png@65w.webp&quot;,
+        &quot;-菫時-困困&quot;: &quot;live/c9450e570d7abcf5a920b65e18b9624b75c9d4fb.png@65w.webp&quot;,
+        &quot;-菫時-生气&quot;: &quot;live/021761abdfe8dc417e5267b74877bebd43dcfd58.png@65w.webp&quot;,
+        &quot;-菫時-亲亲&quot;: &quot;live/e0ae55eb80c6b7c01eeb042a26a3bd2938ed679a.png@65w.webp&quot;,
+        &quot;-菫時-急了&quot;: &quot;live/bea985bcf662dc4d85c9f78633c57398b7c3d223.png@65w.webp&quot;,
+        &quot;-菫時-问号&quot;: &quot;live/5b29c4c15e6b97da2df564899f84906fc800590b.png@65w.webp&quot;,
+        &quot;-菫時-拜比&quot;: &quot;live/a9fa62db7b7233dac30d3abd851b992710bc1649.png@65w.webp&quot;,
+        &quot;纱依shayi_打call&quot;: &quot;garb/4d97de8b2d6bb9cb19621af93550b3560e85277f.png@65w.webp&quot;,
+        &quot;纱依shayi_喜欢&quot;: &quot;garb/d345b8ff2f2dcd5a4833aa613fc7849bfb25f5e2.png@65w.webp&quot;,
+        &quot;纱依shayi_晚安&quot;: &quot;garb/f34ec93c5aa7fdb7cc919544df401474bed1a3c1.png@65w.webp&quot;,
+        &quot;纱依shayi_kira&quot;: &quot;garb/f784e4dc7d40f3d3a7ddb6977c241ff6d6a5db26.png@65w.webp&quot;,
+        &quot;纱依shayi_贴贴&quot;: &quot;garb/003679cdb44d37576b700f8ed0f4e85bc6ffc8a7.png@65w.webp&quot;,
+        &quot;纱依shayi_结婚&quot;: &quot;garb/b1a9e35f04b81476d1d93fdc3979fe194e873915.png@65w.webp&quot;,
+        &quot;纱依shayi_甜蜜的&quot;: &quot;garb/415a5fec5062816d6c316a718cf7f739dc12dcef.png@65w.webp&quot;,
+        &quot;纱依shayi_摸鱼&quot;: &quot;garb/b7f7d09fec93dd889b9e12286989dbfa41770689.png@65w.webp&quot;,
+        &quot;纱依shayi_好厉害&quot;: &quot;garb/7dceff9c32cb6a7a617c910cc840eaeaa89f1e60.png@65w.webp&quot;,
+        &quot;纱依shayi_开心&quot;: &quot;garb/360612ea05619a9517f9735e10f6a8e592eb6b35.png@65w.webp&quot;,
+        &quot;纱依shayi_疑问&quot;: &quot;garb/f591282a33cb0eb16e6ac679792ea90ce42e6d67.png@65w.webp&quot;,
+        &quot;纱依shayi_哼&quot;: &quot;garb/538c428f2d5bcaeefa60c81bb96e9a82475a59d2.png@65w.webp&quot;,
+        &quot;纱依shayi_心碎&quot;: &quot;garb/59697798dd454428c773ae989745af62042025ee.png@65w.webp&quot;,
+        &quot;纱依shayi_趴&quot;: &quot;garb/5261ebff0fce07a4bde695f56b1e90e03b2a22b9.png@65w.webp&quot;,
+        &quot;纱依shayi_蹭蹭&quot;: &quot;garb/8feb22fa3a58e7a26c31792be79fab8c015fa7f6.png@65w.webp&quot;,
+        &quot;纱依shayi_喵&quot;: &quot;garb/9a05fc8a87b3f5f05a3c01eec984aaec0f6727e1.png@65w.webp&quot;,
+        &quot;冥冥meichan_太爱钱了&quot;: &quot;garb/item/e3d018abc7dfcaba7a95b512d313591ec015e984.png&quot;,
+        &quot;冥冥meichan_不可以&quot;: &quot;garb/item/5cfc0218594fbe8b2946e67e03fc4ea5c4a19d36.png&quot;,
+        &quot;冥冥meichan_优雅红茶&quot;: &quot;garb/item/8698f417982fd8d5abadf5207407532bb1b5b44f.png&quot;,
+        &quot;冥冥meichan_哭哭&quot;: &quot;garb/item/32817fbdd4226afe71e1aa3d8f0a91c62729567d.png&quot;,
+        &quot;冥冥meichan_不想输&quot;: &quot;garb/item/04fdc12859be022fba9992c76f89b0956d19262d.png&quot;,
+        &quot;冥冥meichan_开车&quot;: &quot;garb/item/3414c37849153f2ebd0fe6c8d7298bbc711c4ed9.png&quot;,
+        &quot;冥冥meichan_大钻戒&quot;: &quot;garb/item/fa42d4a68660e6c3d6447cdf0fe7d95cc4c7cdae.png&quot;,
+        &quot;冥冥meichan_带走&quot;: &quot;garb/item/9862fdd11fb28e2456a5cd3f864f87a46f20604f.png&quot;,
+        &quot;冥冥meichan_我好了&quot;: &quot;garb/item/8855c3fcfc538ee1d96e9ec25f758a0b5602cf66.png&quot;,
+        &quot;冥冥meichan_嗨呀&quot;: &quot;garb/item/caebcb782f3a8742548786cd52cb4d80d8353e03.png&quot;,
+        &quot;冥冥meichan_好喜欢哦&quot;: &quot;garb/item/3cc66caaf1a62e1778b18a458e58b38df99cfa0f.png&quot;,
+        &quot;冥冥meichan_给你一拳&quot;: &quot;garb/item/9b9e4aa83cedd7016bf2f2a83bbe838b648f01ff.png&quot;,
+        &quot;冥冥meichan_理发店&quot;: &quot;garb/item/6026b23be561844d08c5bc4b2d66316c3eeebb15.png&quot;,
+        &quot;冥冥meichan_典&quot;: &quot;garb/item/172ea06085c8d242f3105d0d04826217bbe4fbeb.png&quot;,
+        &quot;冥冥meichan_信积拉奶&quot;: &quot;garb/item/57902ef1f2392e1b8ca4a92ee9c844c18b633009.png&quot;,
+        &quot;冥冥meichan_饭饭&quot;: &quot;garb/item/79a5c3bda7449e06f032c095144d8218b9acb335.png&quot;,
+        &quot;冥冥meichan_盯&quot;: &quot;garb/item/9c9419db0b80a40ab36eed395251e7efe6421b69.png&quot;,
+        &quot;冥冥meichan_流汗&quot;: &quot;garb/item/014bd9e4519567f7f711c0ef8138ffcd022750cd.png&quot;,
+        &quot;冥冥meichan_晚安&quot;: &quot;garb/item/4ed6aba3c606484511e550e9d8070a74c004ba8e.png&quot;,
+        &quot;冥冥meichan_mua&quot;: &quot;garb/item/21b927b32c186a8c4dd12ff48fcb19461d8dcd0e.png&quot;,
+        &quot;冥冥meichan_关注冥冥&quot;: &quot;garb/item/55cfde3719b757aa211e5f1d136cd8c8a1e0dc2f.png&quot;,
+        &quot;冥冥meichan_你是懂的&quot;: &quot;garb/item/724e8fe83e63a0814995dc8fd7a5d874c0568028.png&quot;,
+        &quot;冥冥meichan_你懂个P&quot;: &quot;garb/item/ffa551eaec65b9b3e33eb388fb91f9c02e4ff67a.png&quot;,
+        &quot;冥冥meichan_钱不够啊&quot;: &quot;garb/item/d153516692abb248a2429319ff7eb8cff4b2d463.png&quot;,
+        &quot;冥冥meichan_寄&quot;: &quot;garb/item/4de329afec2e0ebe3c4d0db0da710721bed35ff3.png&quot;,
+        // ... 更多表情
+    }
+    });
+&lt;/script&gt;
+&lt;script&gt;
+    // 点击回复直接评论,官方版本点击回复时都是跳回到页面上方的评论框进行回复，评论框是固定不动的
+    // 参考https://immmmm.com/valine-diy,用到jQuery
+    $(document).ready(function(){
+        //$('.vemoji-btn').text('😀');
+        $(&quot;#vcomments&quot;).on('click', 'span.vat',function(){
+            $(this).parent('div.vmeta').next(&quot;div.vcontent&quot;).after($(&quot;div.vwrap&quot;));
+            $('textarea#veditor').focus();
+        })
+    })
+&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    //添加一言
+   fetch('https://v1.hitokoto.cn/?c=a')
+    .then(response =&gt; response.json())
+    .then(data =&gt; {
+      document.getElementById(&quot;veditor&quot;).setAttribute(&quot;placeholder&quot;,data.hitokoto+&quot;__&quot;+data.from);
+    })
+    .catch(console.error)
+&lt;/script&gt;
+
+</code></pre>
+<h2 id="mainless-">main.less 修改</h2>
+<h3 id="1-veditor-">1、在 veditor 输入界面增加背景图</h3>
+<p>将 CSS 加到你的博客样式文件中，图片改成你喜欢的。</p>
+<pre><code class="language-css">#veditor {
+    background-image: url(https://cdn.jsdelivr.net/gh/drew233/cdn/20200409110727.webp);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: rgba(255, 255, 255, 0);
+    resize: vertical
+}
+</code></pre>
+<p>如果使用主题文件夹中的文件，url改为本地路径即可，如<code>../media/images/veditor-bg.gif</code>。</p>
+<h3 id="2-valine-powered-by">2、隐藏评论系统 Valine Powered By信息</h3>
+<p>main.less 中添加</p>
+<pre><code class="language-css">.vpower.txt-right {
+  display: none;
+}
+</code></pre>
+<h3 id="3">3、评论头像旋转</h3>
+<p>main.less 中添加</p>
+<pre><code class="language-css">img.vimg:hover {
+  transform: rotateZ(360deg);/*图像旋转360度*/
+  transition: all 1.5s ease-in-out;/*给所有规定以慢速开始和结束的过渡效果1.5s*/
+}
+</code></pre>
+<h2 id="friendsejs-">friends.ejs 修改</h2>
+<p>Gridea软件菜单添加“友情链接 Internal /friends”，启用主题内置的友情链接，自定义配置编辑友链。</p>
+<h3 id="logo">友链LOGO</h3>
+<p>LOGO采用<a href="https://api.iowen.cn/">api.iowen.cn</a>，根据URL地址获取网站 Favicon。</p>
+<p>需要获取图标的URL地址，如：<code>www.iowen.cn</code>，确保URL能够正常打开。</p>
+<p><strong>不需要 <code>http(s)://</code> ，且结尾必须填 <code>.png</code>。</strong></p>
+<p><strong>请求示例：</strong></p>
+<pre><code class="language-css">https://api.iowen.cn/favicon/www.iowen.cn.png
+</code></pre>
+<h3 id="1">1、移除友链以外内容（可选）</h3>
+<p>用<code>&lt;!--</code> <code>--&gt;</code>注释掉以下区域。</p>
+<pre><code class="language-html">&lt;div class=&quot;main&quot;&gt;&lt;div class=&quot;main-inner&quot;&gt;&lt;div class=&quot;content&quot;&gt;
+…
+&lt;/div&gt;&lt;/section&gt;
+            &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+</code></pre>
+<h3 id="2-1">2、打开评论系统</h3>
+<p>同上，添加<code>&lt;% } else { %&gt;</code>。</p>
+<h3 id="3friends-desc">3、屏蔽friends-desc</h3>
+<p>注释掉friends-desc。</p>
+<pre><code class="language-ejs">&lt;!-- &lt;div class=&quot;friends-desc&quot;&gt; --&gt;
+&lt;!-- &lt;/div&gt; --&gt;
+</code></pre>
+<h2 id="friendsless-">friends.less 修改</h2>
+<h3 id="heading">友链部分居中</h3>
+<p>找到<code>friend-container</code>区域，添加<code>post-content</code>代码如下，</p>
+<pre><code class="language-css">.friend-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+  flex: auto;
+
+  .friend-detail {
+    flex: auto;
+    padding: 24px 32px;
+    width: 1000px;
+    border-radius: 4px;
+    }
+
+    .post-content {
+      display: flex;flex-wrap: wrap; justify-content: center;
+    }
+}
+</code></pre>
+<p>post-content部分可改为（不建议）：</p>
+<pre><code class="language-css">    .post-content {
+      display: grid;grid-template-columns: repeat(2, 1fr);justify-items: center;
+    }
+</code></pre>
+<h2 id="darkmodeless-">darkmode.less 修改</h2>
+<p>添加暗黑模式背景图片，代码如下：</p>
+<pre><code class="language-less">//设置背景图片
+.darkmode {
+  background: url(../media/images/682df424b899a901fff1b8541c950a7b0308f5ae.jpg) fixed;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  opacity: 70%;
+}
+</code></pre>
+<p>本来想改成这样的，需要改<code>header.ejs</code>。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693490580879.png" alt="" /></p>
+<h2 id="footerejs-">footer.ejs 修改</h2>
+<pre><code class="language-ejs">&lt;span style=&quot;display: inline;margin-right:15px;&quot;&gt;👁&lt;strong&gt;&lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;
+</code></pre>
+<p>前面添加——</p>
+<pre><code class="language-ejs">&lt;div&gt;&lt;div class=&quot;github-badge&quot;&gt;&lt;a href=&quot;https://open.gridea.dev&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;&lt;span class=&quot;badge-subject&quot;&gt;Powered by&lt;/span&gt;&lt;span class=&quot;badge-value bg-blue&quot;&gt;Gridea&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+&lt;div style=&quot;display: inline-block&quot;&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class=&quot;github-badge&quot;&gt;&lt;a href=&quot;https://github.com/Wu-jiyan/gridea-theme-bitcron-pro-plus&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;&lt;span class=&quot;badge-subject&quot;&gt;Theme&lt;/span&gt;&lt;span class=&quot;badge-value bg-green&quot;&gt;Bitcron Pro Plus&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;
+</code></pre>
+<p>Gridea-个性化-自定义CSS添加如下CSS代码——</p>
+<pre><code class="language-css">.github-badge {
+    display: inline-block;
+    border-radius: 4px;
+    text-shadow: none;
+    font-size: 12px;
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: 5px
+}
+
+.github-badge a {
+    color: #fff
+}
+
+.github-badge .badge-subject {
+    display: inline-block;
+    background-color: #555;
+    padding: 4px 4px 4px 6px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px
+}
+
+.github-badge .badge-value {
+    display: inline-block;
+    padding: 4px 6px 4px 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px
+}
+
+.github-badge .bg-blue {
+    background-color: #007ec6 !important
+}
+
+.github-badge .bg-green {
+    background-color: #97ca00 !important
+}
+
+#footer span {
+    font-size: .9em
+}
+</code></pre>
+<h2 id="xiaxi626gridea-theme-bitcron-pro-plushttpsgithubcomxiaxi626gridea-theme-bitcron-pro-plus">根据<a href="https://github.com/xiaxi626/gridea-theme-bitcron-pro-plus">xiaxi626/gridea-theme-bitcron-pro-plus</a>微调</h2>
+<p>想加载本地评论框背景图片，原<code>../media/images/veditor-bg.gif</code>前要加<code>/</code>。</p>
+<h2 id="heading-1">持续更新中</h2>
+<h3 id="heading-2">参考</h3>
+<p><a href="https://blog.csdn.net/wugenqiang/article/details/105744843">Hexo NexT 评论系统 Valine 的使用_valine.min.js_WuGenQiang的博客</a><br />
+<a href="https://blog.wittoy.com/archives/valine-custom/">Valine自定义表情与QQ邮箱头像支持 | Wittoy&rsquo;s Blog @ 篱落闲栈</a><br />
+<a href="https://kveln.cn/post/qE678A4ce/">为你的Gridea博客加上Valine评论系统 | kveln&rsquo;s blog</a><br />
+<a href="https://www.jianshu.com/p/205aaa14dff3">博客Valine评论样式美化 - 简书</a><br />
+<a href="https://blog.csdn.net/wangqingchuan92/article/details/112425391">【个人网站搭建】GitHub pages+hexo 框架下隐藏next主题的评论系统 Valine Powered By信息_隐藏power by valine_wangqingchuan92的博客</a><br />
+<a href="https://geek-docs.com/html/html-ask-answer/669_html_aligning_a_floatleft_div_to_center.html">HTML 如何将 float:left 的 div 居中对齐|极客教程</a><br />
+<a href="https://blog.csdn.net/qq_43701912/article/details/107020996">Hexo博客 | 如何让你的valine更好看_JUST LOVE SMILE的博客</a><br />
+<a href="https://blog.csdn.net/weixin_34040079/article/details/89628011">【博客美化】评论带头像，且支持旋转_weixin_34040079的博客</a><br />
+<a href="https://blog.csdn.net/Candy_10181/article/details/80611009">css 动画中 ease,seae-in,ease-in-out,ease-out,效果区别_css ease_小赞赞No1的博客</a><br />
+<a href="https://blog.csdn.net/Autismpt/article/details/111323024">效果过度transition:all_transition: all_靓仔微笑的博客</a></p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        <span class="pre pagbuttons">
+            <a role="navigation" href="/post/learn-git-branching/" title="学习Git 分支 (learn-git-branching)">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                prev_post: 学习Git 分支 (learn-git-branching)
+            </a>
+        </span>
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/debian-xi-tong-an-zhuang-shi-yong-jiao-cheng/" title="Debian系统安装使用教程">
+                next_post: Debian系统安装使用教程
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/scripts/jquery.appear.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

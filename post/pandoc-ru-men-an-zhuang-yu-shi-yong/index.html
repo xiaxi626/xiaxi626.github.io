@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="Technology">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>Pandoc入门：安装与使用 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="Pandoc入门：安装与使用">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="一、Pandoc 简介 Pandoc是用于从一种标记格式转换为另一种标记格式的Haskell库，也是使用该库的命令行工具。它涵盖格式广泛且转换效果好，常用的 docx、md、tex、html 等格式都可以利用其进行相互转换。 二、Pandoc 安装 Pandoc 官网下载安装 ：https://pandoc.org/ Github rele&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/pandoc-ru-men-an-zhuang-yu-shi-yong/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Pandoc入门：安装与使用","url":"https://xiaxi626.github.io/post/pandoc-ru-men-an-zhuang-yu-shi-yong/","description":"一、Pandoc 简介 Pandoc是用于从一种标记格式转换为另一种标记格式的Haskell库，也是使用该库的命令行工具。它涵盖格式广泛且转换效果好，常用的 docx、md、tex、html 等格式都可以利用其进行相互转换。 二、Pandoc 安装 Pandoc 官网下载安装 ：https://pandoc.org/ Github rele\u0026hellip;","image":"/post-images/pandoc-ru-men-an-zhuang-yu-shi-yong.PNG","datePublished":"2023-02-03T21:25:24+08:00","dateModified":"2026-05-15T22:34:46+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/pandoc-ru-men-an-zhuang-yu-shi-yong/","name":"Pandoc入门：安装与使用","position":2}]}</script>
+<meta property="og:title" content="Pandoc入门：安装与使用">
+<meta property="og:description" content="一、Pandoc 简介 Pandoc是用于从一种标记格式转换为另一种标记格式的Haskell库，也是使用该库的命令行工具。它涵盖格式广泛且转换效果好，常用的 docx、md、tex、html 等格式都可以利用其进行相互转换。 二、Pandoc 安装 Pandoc 官网下载安装 ：https://pandoc.org/ Github rele&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/pandoc-ru-men-an-zhuang-yu-shi-yong/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/post-images/pandoc-ru-men-an-zhuang-yu-shi-yong.PNG">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/pandoc-ru-men-an-zhuang-yu-shi-yong/">
+<meta name="twitter:title" content="Pandoc入门：安装与使用">
+<meta name="twitter:description" content="一、Pandoc 简介 Pandoc是用于从一种标记格式转换为另一种标记格式的Haskell库，也是使用该库的命令行工具。它涵盖格式广泛且转换效果好，常用的 docx、md、tex、html 等格式都可以利用其进行相互转换。 二、Pandoc 安装 Pandoc 官网下载安装 ：https://pandoc.org/ Github rele&amp;hellip;">
+<meta name="twitter:image" content="/post-images/pandoc-ru-men-an-zhuang-yu-shi-yong.PNG">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>Pandoc入门：安装与使用</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2023-02-03</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/pandoc-ru-men-an-zhuang-yu-shi-yong/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><h2 id="pandoc-">一、Pandoc 简介</h2>
+<p>Pandoc是用于从一种标记格式转换为另一种标记格式的Haskell库，也是使用该库的命令行工具。它涵盖格式广泛且转换效果好，常用的 docx、md、tex、html 等格式都可以利用其进行相互转换。</p>
+<h2 id="pandoc--1">二、Pandoc 安装</h2>
+<p>Pandoc 官网下载安装 ：<a href="https://pandoc.org/">https://pandoc.org/</a><br />
+Github release 下载安装：<a href="https://github.com/jgm/pandoc/releases/">jgm/pandoc</a><br />
+Pandoc 为 Windows 系统提供了编译后的 msi 安装包，可以直接运行安装；或者直接下载免安装的 zip 文件解压。<br />
+首先进入安装目录，cmd输入<code>pandoc --version</code>/<code>pandoc.exe --version</code>验证安装：<br />
+（Windows 7）下载msi安装包安装使用，验证可能发生如下错误</p>
+<pre><code>C:\Users\Administrator\Downloads\Compressed\pandoc-3.0.1&gt;pandoc.exe --version
+pandoc: osReserveHeapMemory: VirtualAlloc MEM_RESERV at address 0000000000000000 bytes failed:
+</code></pre>
+<p>（Windows 7）下载zip安装使用，验证也可能发生上面的错误，一般再试一次就正常了（如下）</p>
+<pre><code>C:\Users\Administrator\Downloads\Compressed\pandoc-3.0.1&gt;pandoc.exe --version
+pandoc.exe 3.0.1
+Features: +server +lua
+Scripting engine: Lua 5.4
+User data directory: C:\Users\Administrator\AppData\Roaming\pandoc
+Copyright (C) 2006-2023 John MacFarlane. Web: https://pandoc.org
+This is free software; see the source for copying conditions. There is no
+warranty, not even for merchantability or fitness for a particular purpose.
+</code></pre>
+<p>以上命令返回了 Pandoc 的版本信息。<br />
+为了更好地运行进程，建议添加环境变量。计算机→属性→高级系统设置→环境变量，选中变量Path→编辑，添加到 pandoc.exe 所在目录，两个Path之间要加英文分号『;』。</p>
+<h2 id="pandoc--2">三、Pandoc 使用</h2>
+<h3 id="heading">转换主体命令</h3>
+<pre><code>pandoc -i test.xx -o test.yy
+</code></pre>
+<p>-i 为 input （输入）， -o 为 output （输出）</p>
+<h3 id="markdowndocx">markdown转换docx</h3>
+<h4 id="heading-1">直接转换</h4>
+<pre><code>pandoc test.md -o test.docx
+</code></pre>
+<h4 id="heading-2">自定义样式转换</h4>
+<pre><code>pandoc test.md -o test.docx --reference-docx=reference.docx
+</code></pre>
+<p>转换后的docx将与参考文档 “reference.docx” 文档样式相同。</p>
+<h3 id="docxmarkdown">docx转换markdown</h3>
+<pre><code>pandoc test.docx --extract-media=. -o test.md
+</code></pre>
+<p>直接输入<code>pandoc test.docx -o test.md</code>会丢失word文档中的图片。输入<code>pandoc test.docx --extract-media=. -o test.md</code>则不会丢失图片。这里用到Pandoc一个 选项 <code>extract-media=DIR</code>，用于处理文件转换过程中的图片等媒体文件。<br />
+输出结果包括一个 Markdown 文件 test.md 以及一个文件夹 media，其中包括 Word 文件 test.docx 中的所有图片，<code>--extract-media=.</code>的作用是把图片保存在 media 中，而不是其子文件夹中。</p>
+<p><code>--extract-media=DIR</code>这个选项来<strong>将 Markdown 中的图床链接替换为本地图片链接</strong><br />
+执行下面的命令：</p>
+<pre><code>pandoc --wrap=preserve -f markdown input.md --extract-media=media -t markdown -o output.md
+</code></pre>
+<p>这行命令中，由于开启了 &ndash;extract-media=DIR 选项，Pandoc 会新建一个文件夹 media，将图床中的远程图片下载到本地并保存在该文件夹中，然后再输出为一个新的 Markdown 文件 output.md，并自动把原本的图床链接替换为本地图片链接，而不再需要手动编写复杂的正则表达式来查找替换。</p>
+<h3 id="markdownpdf">markdown转换pdf</h3>
+<p>Pandoc使用Latex生成pdf，所以需要安装Latex引擎<br />
+直接使用命令 pandoc test.md -o test.pdf 会报错，应当输入这样的命令（如下）：</p>
+<pre><code>pandoc test.md -o test.pdf --pdf-engine=xelatex -V CJKmainfont=&quot;字体&quot;
+</code></pre>
+<p>xelatex为排版引擎，字体应该填写相应英文标识，如：KaiTi（楷体）、SimSun（宋体）、FangSong（仿宋）、SimHei（黑体）等。</p>
+<h3 id="markdownhtml">markdown转换HTML</h3>
+<pre><code>pandoc xxx.md -f markdown -t html -s -o xxx.html
+</code></pre>
+<p>s选项表示创建一个&quot;独立的&quot;文件，有 header 和 footer ，而不仅仅是一个片段。<br />
+o xxx.html命令将输出放入xxx.html文件中。<br />
+注意，我们可以省略-f markdown和-t html，因为默认情况下是将markdown转换为HTML，但是包含它们也无妨。</p>
+<h3 id="markdownlatex">markdown转换LaTeX</h3>
+<p><code>pandoc xxx.md -f markdown -t latex -s -o xxx.tex</code> 或<code>pandoc xxx.md -s -o xxx.tex</code><br />
+<a href="https://kgithub.com/Wandmalfarbe/pandoc-latex-template">Wandmalfarbe/pandoc-latex-template</a> ，一个pandoc LaTeX模板，用于将markdown文件转换为PDF或LaTeX，使用前请仔细阅读说明文件。</p>
+<h3 id="latex">LaTeX转换包含数学公式的网站</h3>
+<pre><code>pandoc math.tex -s --mathml  -o mathMathML.html
+</code></pre>
+<p>-mathml 参数强制 Pandoc 将 LaTeX 中的数学公式转换成 MathML，从而可以由现代浏览器进行渲染。</p>
+<h2 id="heading-3">四、参考</h2>
+<p><a href="https://sky-y.github.io/osc-kyoto2017-pandoc/">Pandoc入門：MarkdownからHTML・PDF・Writer/Word文書・スライドを生成する</a><br />
+<a href="https://www.pandoc.org/MANUAL.html">Pandoc官方使用手册</a>（本地安装目录下有）<br />
+<a href="https://sspai.com/post/77206#!">Pandoc 从入门到精通，你也可以学会这一个文本转换利器</a><br />
+<a href="https://juejin.cn/post/6844903713417461768">在命令行使用 Pandoc 进行文件转换</a><br />
+<a href="https://zhuanlan.zhihu.com/p/49752930">在命令行使用 Pandoc 进行文件转换​</a><br />
+<a href="https://zhuanlan.zhihu.com/p/463379520">Windows下Pandoc使用指南</a></p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        <span class="pre pagbuttons">
+            <a role="navigation" href="/post/tong-xin-gong-cheng-zhuan-ye-ke-cheng/" title="通信工程专业课程">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                prev_post: 通信工程专业课程
+            </a>
+        </span>
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/latex-xin-shou-jiao-cheng-cong-ru-men-dao-ru-tu/" title="LaTeX新手教程：安装和配置">
+                next_post: LaTeX新手教程：安装和配置
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/scripts/jquery.appear.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

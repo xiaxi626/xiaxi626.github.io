@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="Technology">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>在Windows服务器上安装Oracle数据库教程 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="在Windows服务器上安装Oracle数据库教程">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="安装Oracle 解压Oracle安装包时两个压缩包都要解压，否则安装时会缺失各种文件。 Oracle服务端11g\win64_11gR2_database_2of2.zip Oracle服务端11g\win64_11gR2_database_1of2.zip 打开../database/stage/cvu/c&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"在Windows服务器上安装Oracle数据库教程","url":"https://xiaxi626.github.io/post/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng/","description":"安装Oracle 解压Oracle安装包时两个压缩包都要解压，否则安装时会缺失各种文件。 Oracle服务端11g\\win64_11gR2_database_2of2.zip Oracle服务端11g\\win64_11gR2_database_1of2.zip 打开../database/stage/cvu/c\u0026hellip;","image":"/post-images/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng.jpg","datePublished":"2023-06-05T22:14:30+08:00","dateModified":"2026-05-15T22:34:46+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng/","name":"在Windows服务器上安装Oracle数据库教程","position":2}]}</script>
+<meta property="og:title" content="在Windows服务器上安装Oracle数据库教程">
+<meta property="og:description" content="安装Oracle 解压Oracle安装包时两个压缩包都要解压，否则安装时会缺失各种文件。 Oracle服务端11g\win64_11gR2_database_2of2.zip Oracle服务端11g\win64_11gR2_database_1of2.zip 打开../database/stage/cvu/c&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/post-images/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng/">
+<meta name="twitter:title" content="在Windows服务器上安装Oracle数据库教程">
+<meta name="twitter:description" content="安装Oracle 解压Oracle安装包时两个压缩包都要解压，否则安装时会缺失各种文件。 Oracle服务端11g\win64_11gR2_database_2of2.zip Oracle服务端11g\win64_11gR2_database_1of2.zip 打开../database/stage/cvu/c&amp;hellip;">
+<meta name="twitter:image" content="/post-images/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng.jpg">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>在Windows服务器上安装Oracle数据库教程</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2023-06-05</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><h2 id="oracle">安装Oracle</h2>
+<p>解压Oracle安装包时两个压缩包都要解压，否则安装时会缺失各种文件。</p>
+<p>Oracle服务端11g\win64_11gR2_database_2of2.zip</p>
+<p>Oracle服务端11g\win64_11gR2_database_1of2.zip</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685974556739.png" alt="" /></p>
+<p>打开../database/stage/cvu/cvu_prereq</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685974702632.png" alt="" /></p>
+<p>在&lt;CERTIFIED_SYSTEMS&gt;之后添加：</p>
+<pre><code class="language-bash">&lt;OPERATING_SYSTEM RELEASE=&quot;6.2&quot;&gt;
+    &lt;VERSION VALUE=&quot;3&quot;/&gt;
+    &lt;ARCHITECTURE VALUE=&quot;64-bit&quot;/&gt;
+    &lt;NAME VALUE=&quot;Windows 8&quot;/&gt;
+    &lt;ENV_VAR_LIST&gt;
+        &lt;ENV_VAR NAME=&quot;PATH&quot; MAX_LENGTH=&quot;1023&quot; /&gt;
+    &lt;/ENV_VAR_LIST&gt;
+&lt;/OPERATING_SYSTEM&gt;
+</code></pre>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685974826548.png" alt="" /></p>
+<p>NAME VALUE填写系统名称，如果在Windows 10上安装就填“Windows 10”；</p>
+<p>ARCHITECTURE VALUE=&ldquo;64-bit&quot;对应的是多少位系统就填多少位；</p>
+<p>如果 cvu_prereq文件配置为OPERATING_SYSTEM RELEASE=“6.1”，可能会遇到：</p>
+<p>[INS-13001]此环境不满足最低配置”</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685974882568.png" alt="" /></p>
+<p>改成OPERATING_SYSTEM RELEASE=“6.2”</p>
+<p>ENV_VAR NAME=&ldquo;PATH&rdquo; MAX_LENGTH=&ldquo;1023&rdquo;</p>
+<p>启动setup.exe，会出现cmd程序：</p>
+<pre><code class="language-bash">正在启动 Oracle Universal Installer...
+
+检查监视器: 监视器配置至少必须显示 256 种颜色 高于 256 。    实际为 4294967296     通过
+ 准备从以下地址启动 Oracle Universal Installer C:\Users\aijia\AppData\Local\Temp\OraInstall2023-05-30_10-21-25PM. 请稍候...
+</code></pre>
+<p>不必管它。</p>
+<p>取消勾选“我希望通过 My Oracle Support 接收安全更新)。”</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685974936885.png" alt="" /></p>
+<p>出现尚未提供电子邮件地址，选择是。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685974979077.png" alt="" /></p>
+<p>继续。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975005386.png" alt="" /></p>
+<p>选桌面。不要急多等一会。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975012378.png" alt="" /></p>
+<p>建议在Windows及Windows虚拟机上安装时不要安装到C盘。</p>
+<p>填写管理口令，注意提示。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975028727.png" alt="" /></p>
+<p>点击保存响应文件，完成。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975087752.png" alt="" /></p>
+<p>接下来会跳出防火墙警告，选择允许访问。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975157128.png" alt="" /></p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975170247.png" alt="" /></p>
+<p>安装.NET Framework 3.5。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975247598.png" alt="" /></p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975259303.png" alt="" /></p>
+<p>等待安装程序完成，这里如果安装压缩包未全部解压，会出现大量缺失文件提示。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975376322.png" alt="" /></p>
+<p>安装进度条100%后会跳出该界面，重点内容如下：</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975427930.png" alt="" /></p>
+<pre><code class="language-bash">Database Control URL 为 https://localhost:1158/em
+
+管理资料档案库已置于安全模式下, 在此模式下将对 Enterprise Manager 数据进行加密。加密密钥已放置在文件 D:/Oracle/Oracle11g/product/11.2.0/dbhome_1/localhost_orcl/sysman/config/emkey.ora 中。请务必备份此文件, 因为如果此文件丢失, 则加密数据将不可用。
+</code></pre>
+<p>点击<code>口令管理…</code>，进行如下设置：</p>
+<p>1.解锁scott并修改口令</p>
+<p>2.选择“口令管理”，查看并修改以下用户</p>
+<p>取消勾选是否锁定账户（这是设置完成后再打开的样子）</p>
+<p>（1）普通用户：SCOTT（密码：tiger）</p>
+<p>（2）普通管理员：SYSTEM（密码：manager）</p>
+<p>（3）超级管理员：SYS（密码：manager）</p>
+<p>（4）普通用户：HR（密码：hr）</p>
+<p>设置完成之后会有警告，点击继续，即可</p>
+<p>修改完成之后单击确定。</p>
+<p>Enterprise Manager Database Control URL - (orcl) :</p>
+<p>https://localhost:1158/em</p>
+<p>口令管理修改后再进入界面就是这个样子。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975590403.png" alt="" /></p>
+<p>最后我们完成了安装。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975627372.png" alt="" /></p>
+<pre><code class="language-bash">数据库配置文件已经安装到 D:\Oracle\Oracle11g,同时其他选定的安装组件也已经安装到 D:\Oracle\Oracle11g\product\11.2.0\dbhome_1。
+</code></pre>
+<p>最后一步打开网址：https://localhost:1158/em</p>
+<p>edge显示：</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975650289.png" alt="" /></p>
+<p>点击帮助出现“完成 此对话框显示 Oracle 数据库的安装已成功。 单击关闭。 版权所有 © 2007, 2009, Oracle 和/或其子公司。保留所有权利。”</p>
+<p>说明安装成功。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975678847.png" alt="" /></p>
+<h2 id="plsql-developer">PL/SQL developer的下载、安装、使用、破解</h2>
+<p>PL/SQL Developer是一个集成开发环境，专门开发面向Oracle数据库的应用。PL/SQL也是一种程序语言，叫做过程化SQL语言（Procedural Language/SQL）。PL/SQL是Oracle数据库对SQL语句的扩展。在普通SQL语句的使用上增加了编程语言的特点，所以PL/SQL把数据操作和查询语句组织在PL/SQL代码的过程性单元中，通过逻辑判断、循环等操作实现复杂的功能或者计算。PL/SQL 只有 Oracle 数据库有。 MySQL 目前不支持 PL/SQL 的，但支持Navicat Premium。</p>
+<h3 id="-plsql-developer">下载 PL/SQL developer</h3>
+<p>直接进入官网下载网址：https://www.allroundautomations.com/registered-plsqldev/</p>
+<p>或者进入官网，自己寻找下载</p>
+<p>进入PL/SQL developer官网https://www.allroundautomations.com/</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685978459282.png" alt="" /></p>
+<p>找到下载完的安装包，双击打开。</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685978556398.png" alt="" /></p>
+<p>选择enter license information，</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685978687936.png" alt="" /></p>
+<p>在<a href="https://www.jb51.net/softs/820654.html#downintro2">本站</a>下载并解压，</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685978706594.png" alt="" /></p>
+<p>运行keygen注册机，将注册机中的注册信息对应复制到软件中，点击next，</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685978735020.png" alt="" /></p>
+<p>安装中，稍等一会儿，安装完成，点击finish退出向导</p>
+<h3 id="plsql-developer-1">运行PL/SQL developer</h3>
+<p>打开软件后，</p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685979521022.png" alt="" /></p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685979528675.png" alt="" /></p>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685979538762.png" alt="" /></p>
+<h2 id="heading">参考</h2>
+<p><a href="https://cloud.tencent.com/developer/article/2091762">Oracle 11g安装及配置详解</a></p>
+<p><a href="https://blog.csdn.net/qq_40036754/article/details/83379042">PL/SQL developer的下载、安装、使用、破解，亲自测试。安全使用。</a></p>
+<p><a href="https://www.jb51.net/softs/820654.html#downintro2">PL/SQL Developer v15.0.3.2059 中文激活版(附补丁+安装教程) 32位/64位</a></p>
+<p><a href="https://blog.csdn.net/xggbest/article/details/104422421">Oracle 11g+PLSQL Developer+SQL Developer+JDK 详细安装教程</a></p>
+<p><a href="https://blog.csdn.net/qq_36173194/article/details/79104171">win10安装Oracle11g常见问题</a></p>
+<p><a href="https://blog.csdn.net/Mrchai521/article/details/108988119">Windows下Oracle安装图解&mdash;-oracle-win-64-11g 详细安装步骤</a></p>
+<p><a href="https://blog.csdn.net/weixin_45740811/article/details/125841798">（保姆级）Oracle的下载及安装详细教程</a></p>
+<p><a href="https://max.book118.com/html/2016/0815/51565194.shtm">oracle-解决httpslocalhost1158em页面无法打开的问题.docx</a></p>
+<p><a href="https://www.dandelioncloud.cn/article/details/1481351682306166786">Win10下安装Oracle11g 不满足配置解决方法</a></p>
+<p><a href="https://blog.csdn.net/qyfx123456/article/details/129767271">win11&amp;win7下安装oracle11g数据库全过程</a></p>
+<p><a href="https://blog.csdn.net/haojian855/article/details/99869451">oracle-安装系统报：Environment variable: &ldquo;PATH&rdquo; 预期值  : 1023 实际值  : 1090，解决方案</a></p>
+<p><a href="https://www.cnblogs.com/jinxiuze/p/7986590.html">安装ORACLE服务出现Oracle Net Configuration Assistant 失败问题</a></p>
+<p><a href="https://blog.csdn.net/u011200959/article/details/125718954">Windows10安装出现Oracle Net Configuration Assistant 失败</a></p>
+<p><a href="https://www.dbs724.com/35835.html">Oracle 11g安装错误提示未找到wfmlrsvcapp.ear的解决方法</a></p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        <span class="pre pagbuttons">
+            <a role="navigation" href="/post/python-chu-li-pdf-wen-jian-zi-dong-hua/" title="Python处理PDF文件自动化">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                prev_post: Python处理PDF文件自动化
+            </a>
+        </span>
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/shi-yong-sublime-text-4-xie-markdown/" title="使用Sublime Text 4写Markdown">
+                next_post: 使用Sublime Text 4写Markdown
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/scripts/jquery.appear.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

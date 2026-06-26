@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="Technology">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>配置Jekyll博客本地开发环境(Windows 7) · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="配置Jekyll博客本地开发环境(Windows 7)">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="本教程主要基于配置Jekyll博客本地开发环境(Windows)和win7下搭建Jekyll写作环境，以我自己的方式尝试搭建，把过程和遇到的困难总结一下。 相信各位读者在阅读本文后，在&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/pei-zhi-jekyll-bo-ke-ben-di-kai-fa-huan-jing-windows-7/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"配置Jekyll博客本地开发环境(Windows 7)","url":"https://xiaxi626.github.io/post/pei-zhi-jekyll-bo-ke-ben-di-kai-fa-huan-jing-windows-7/","description":"本教程主要基于配置Jekyll博客本地开发环境(Windows)和win7下搭建Jekyll写作环境，以我自己的方式尝试搭建，把过程和遇到的困难总结一下。 相信各位读者在阅读本文后，在\u0026hellip;","datePublished":"2023-10-04T10:05:01+08:00","dateModified":"2026-05-15T22:34:45+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/pei-zhi-jekyll-bo-ke-ben-di-kai-fa-huan-jing-windows-7/","name":"配置Jekyll博客本地开发环境(Windows 7)","position":2}]}</script>
+<meta property="og:title" content="配置Jekyll博客本地开发环境(Windows 7)">
+<meta property="og:description" content="本教程主要基于配置Jekyll博客本地开发环境(Windows)和win7下搭建Jekyll写作环境，以我自己的方式尝试搭建，把过程和遇到的困难总结一下。 相信各位读者在阅读本文后，在&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/pei-zhi-jekyll-bo-ke-ben-di-kai-fa-huan-jing-windows-7/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/images/avatar.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/pei-zhi-jekyll-bo-ke-ben-di-kai-fa-huan-jing-windows-7/">
+<meta name="twitter:title" content="配置Jekyll博客本地开发环境(Windows 7)">
+<meta name="twitter:description" content="本教程主要基于配置Jekyll博客本地开发环境(Windows)和win7下搭建Jekyll写作环境，以我自己的方式尝试搭建，把过程和遇到的困难总结一下。 相信各位读者在阅读本文后，在&amp;hellip;">
+<meta name="twitter:image" content="/images/avatar.png">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>配置Jekyll博客本地开发环境(Windows 7)</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2023-10-04</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/pei-zhi-jekyll-bo-ke-ben-di-kai-fa-huan-jing-windows-7/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><p>本教程主要基于<a href="https://zhuanlan.zhihu.com/p/139567128">配置Jekyll博客本地开发环境(Windows)</a>和<a href="https://blog.csdn.net/weixin_34161029/article/details/91498266">win7下搭建Jekyll写作环境</a>，以我自己的方式尝试搭建，把过程和遇到的困难总结一下。<br />
+相信各位读者在阅读本文后，在Windows 7上能更快地配置好Jekyll博客本地开发环境。</p>
+<h2 id="-ruby">一、安装 Ruby</h2>
+<p>在 <strong>Windows</strong> 上运行 <strong>Jekyll</strong> 需要先安装 <strong>Ruby</strong>。在<a href="https:/rubyinstaller.org/downloads/">Ruby 官网</a>中我们可以看到官网推荐的版本。<br />
+使用 Windows 7 的读者 <strong>不要</strong> 安装 <strong>官网推荐的版本</strong>，点击图中的Achieve进入<a href="https://rubyinstaller.org/downloads/archives/">这个页面</a>，选择 rubyinstaller-devkit-2.7.6-1 下载X64或X86版本。<br />
+如果能访问网站但下载不动文件，可以使用 <strong>wget</strong> 下载文件。这里提供我输入的命令——</p>
+<pre><code class="language-bash">wget https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-2.7.6-1/rubyinstaller-devkit-2.7.6-1-x64.exe
+</code></pre>
+<p>如果以上两个链接打不开，可以前往<a href="https://www.ruby-lang.org/zh_cn/downloads/">ruby-lang</a>，点击文中的<a href="https://rubyinstaller.cn/">rubyinstaller.cn</a>。同样，前往下载页面，点击进入文中的<a href="https://mirror.sjtu.edu.cn/github-release/oneclick/rubyinstaller2/releases/download/?mirror_intel_list">上海交通大学镜像服务-rubyinstaller2</a>下载ruby。</p>
+<p>下载后进行安装，在安装过程中不能更改软件安装路径否则会导致后续的 Jekyll 安装失败。（换句话说就是什么选项都不要动。）</p>
+<p>安装完成后，会自动弹出 cmd.exe如下图所示， 提示安装 MSYS2，它是用来编译 Ruby 本地包的。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696386774738.png" alt="" /><br />
+这里带你把坑一一踩完。<br />
+首先不要像图中这样输入，应该先输入1，再输入3，再出现提示就按回车键结束。至于2，输了也白输，就像这样——<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696386989612.jpg" alt="" /><br />
+安装结束后，分别输入 ruby -v 和 gem -v 查看版本，确认安装完成。</p>
+<pre><code class="language-bash">ruby -v
+gem -v
+</code></pre>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696392049479.png" alt="" /></p>
+<h2 id="-jekyll">二、安装 Jekyll</h2>
+<p>虽然目前 Jekyll 的版本已经到了 4 以上，但是还有很多问题(大坑)，会导致很多包的版本不匹配，Windows 7 用户就按照知乎博主的建议安装3.8.5，3.8.5是比较可靠的，如果你已经安装了其他版本，建议卸载，命令如下：</p>
+<pre><code class="language-bash">gem uninstall jekyll -v 你的版本
+</code></pre>
+<p>再安装3.8.5:</p>
+<pre><code class="language-bash">gem install jekyll -v 3.8.5
+</code></pre>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696389455203.png" alt="" /><br />
+注意这里不要使用下面的命令安装——</p>
+<pre><code class="language-bash">gem install jekyll bundler
+</code></pre>
+<p>单独安装bundler这一步是必要的，可以用上面的格式，但安装jekyll千万不要用上面这个命令。<br />
+读者朋友可以试一下现在运行<code>jekyll serve</code>，会报错。<br />
+安装完jekyll后我们可以用<code>jekyll -v</code>检查一下是否出现相似的错误。</p>
+<p>注意这时我们还没安装 <strong>bundler</strong> 。</p>
+<p>接下来输入以下命令安装bundler。</p>
+<pre><code class="language-bash">gem install bundler
+</code></pre>
+<p>接着确认安装完成。</p>
+<pre><code class="language-bash">jekyll -v
+bundle -v
+</code></pre>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696388449457.png" alt="" /></p>
+<h2 id="-bundle-config--ruby-">使用 bundle config 修改 Ruby 镜像源</h2>
+<p>Bundler 的 Gem 源代码镜像命令 (后面使用jekyll时会用到)</p>
+<pre><code class="language-bash">bundle config mirror.https://rubygems.org https://gems.ruby-china.org
+</code></pre>
+<p>这一步是“使用 bundle config 修改 Ruby 镜像源”。如果后面输入<code>bundle install</code>没报错，就不要输入上面的命令，<code>https://gems.ruby-china.org</code>很有可能连不上。</p>
+<p>如果修改了Ruby镜像源后连不上，不要输入以下命令——</p>
+<pre><code class="language-bash">bundle config --delete 'mirror.https://rubygems.org https://gems.ruby-china.org'
+</code></pre>
+<p>应该输入——</p>
+<pre><code class="language-bash">bundle config --delete mirror.https://rubygems.org https://gems.ruby-china.org
+</code></pre>
+<h2 id="jeklly">Jeklly，启动！</h2>
+<p>基本静态页面生成。这一步大部分人都不会出错。</p>
+<pre><code class="language-bash">jekyll new myblog
+cd myblog
+jekyll serve
+</code></pre>
+<p>Server address: http://127.0.0.1:4000<br />
+Server running&hellip; press ctrl-c to stop.<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696390421989.png" alt="" /></p>
+<h3 id="bundlergemnotfound">出现&hellip;(Bundler::GemNotFound)问题解决方法</h3>
+<p>bundle install 一下。下载完以后 <strong>jekyll serve</strong> 就又能运行了。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696388442840.png" alt="" /></p>
+<h3 id="-you-have-already-activated-i18n-1141-but-your-gemfile-requires-i18n-095-gemloaderror-">出现 You have already activated i18n 1.14.1, but your Gemfile requires i18n 0.9.5. …(Gem::LoadError) 问题解决方法</h3>
+<p>Prepending <code>bundle exec</code> to your command may solve this.<br />
+输入<code>bundle exec jekyll serve</code>即可使用，通常第一次使用不会出现该提示。</p>
+<h2 id="jekyllramme">Jekyll主题Ramme</h2>
+<p>我们在测试前应查看 Gemfile 文件内容，这次我们先<code>jekyll -v</code>探探路。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696387432635.png" alt="" /><br />
+打开Gemfile文件。</p>
+<pre><code class="language-gemfile">source 'http://rubygems.org'
+
+gem 'github-pages'
+gem 'rouge'
+gem 'jekyll'
+gem 'jekyll-mentions'
+gem 'jekyll-feed'
+gem 'jekyll-sitemap'
+gem 'jekyll-gist'
+</code></pre>
+<p>输入<code> gem install github-pages</code>会安装github-pages、jekyll-sitemap和jekyll-gist。rouge、jekyll-mentions和jekyll-feed暂时安装不上。<br />
+以上步骤可做可不做，输入<code>bundle install</code>,接着输入<code>bundle exec jekyll serve</code>，浏览器打开<code>http://127.0.0.1:4000</code>，结束！</p>
+<pre><code>http://127.0.0.1:4000
+</code></pre>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696391131415.png" alt="" /><br />
+在主题文件夹我们会发现新增了这几个文件/文件夹——</p>
+<pre><code>...\Ramme\.sass-cache&quot;
+...\Ramme\_site&quot;
+...\Ramme\Gemfile.lock&quot;
+</code></pre>
+<h2 id="heading">总结</h2>
+<p>Jekyll安装和使用过程中，我们会遇到各种各样的问题，有些可以按照网上的教程解决，有些需要我们打开思路另辟蹊径。<br />
+这里举几个例子：</p>
+<h3 id="gem-uninstall---allerror--while-executing-gem--gemdependencyremovalexception-uninstallation-aborted-due-to-dependent-gems">运行gem uninstall &ndash;all提示：ERROR:  While executing gem &hellip; (Gem::DependencyRemovalException) Uninstallation aborted due to dependent gem(s)</h3>
+<p>运行 gem cleanup 后依然出现：ERROR:  While executing gem &hellip; (Gem::DependencyRemovalException) Uninstallation aborted due to dependent gem(s)</p>
+<blockquote>
+<p>你遇到的问题是尝试卸载一个或多个 gem 时，系统发现这些 gem 正在被其他 gem 依赖，因此无法卸载。这种情况通常在尝试卸载一个被其他 gem 直接或间接依赖的 gem 时出现。</p>
+</blockquote>
+<p>这段话划掉……单个gem问题请对症下药，此路不通。</p>
+<p><strong>PS</strong>：<code>gem list --details</code> 这将会列出所有的gem，并且会显示它们的版本、作者、安装路径等详细信息。</p>
+<h3 id="error--could-not-find-a-valid-gem-jekyll--385-in-any-repository">ERROR:  Could not find a valid gem &lsquo;jekyll&rsquo; (= 3.8.5) in any repository</h3>
+<p>出现该错误有可能是你<strong>删除了gem sources内容</strong>导致的，当然也可能不是。视具体情况而定。<br />
+1、<strong>检查 Gem 源</strong>：首先，检查你的 gem 源是否正确。你可以使用以下命令查看当前的 gem 源：</p>
+<pre><code class="language-bash">gem sources
+</code></pre>
+<p>默认情况下，你可能会看到一个名为 &lsquo;<a href="https://rubygems.org/'">https://rubygems.org/'</a> 的源。这是 Ruby Gems 的主要源。如果需要添加其他的源，你可以使用以下命令：</p>
+<pre><code class="language-bash">gem source -a &lt;新的源地址&gt;
+</code></pre>
+<p>2、<strong>更新 Ruby 和 Gem</strong>：如果你的 Ruby 或 Gem 的版本过旧，可能会导致一些兼容性问题。你可以通过以下命令更新 Ruby 和 Gem：</p>
+<pre><code class="language-bash"># 更新 Ruby  
+sudo apt-get install ruby-full  
+  
+# 更新 Gem  
+gem update --system
+</code></pre>
+<p>3、<strong>尝试指定版本号</strong>：如果上述方法都不行，你可以尝试指定 &lsquo;jekyll&rsquo; gem 的版本号进行安装。例如，如果你知道一个特定版本的 &lsquo;jekyll&rsquo; 是可用的，你可以使用以下命令安装：</p>
+<pre><code class="language-bash">gem install jekyll --version &quot;=&lt;版本号&gt;&quot;
+</code></pre>
+<h3 id="gem-source--a-httpsrubygemsorgerror-fetching-httpsrubygemsorg-timed-out-httpsrubygemsorgspecs48gz">gem source -a <a href="https://rubygems.org">https://rubygems.org</a>提示Error fetching <a href="https://rubygems.org">https://rubygems.org</a>: timed out (<a href="https://rubygems.org/specs.4.8.gz">https://rubygems.org/specs.4.8.gz</a>)</h3>
+<p>1、<strong>清除 Gem 缓存</strong>：有时候，Gem 缓存可能会导致问题。你可以试着清除缓存然后再次尝试。在命令行中输入以下命令：</p>
+<pre><code class="language-bash">gem cleanup
+</code></pre>
+<p>2、<strong>更换 Gem 源</strong>：如果以上方法都不行，你还可以尝试更换 Gem 源。有许多其他的 Ruby Gem 源可供选择，比如 Ruby China 的源：</p>
+<pre><code class="language-bash">gem source -r https://rubygems.org  
+gem source -a https://gems.ruby-china.com/
+</code></pre>
+<h3 id="gem-source--r-httpsrubygemsorg-source-httpsrubygemsorg-not-present-in-cache">gem source -r <a href="https://rubygems.org">https://rubygems.org</a> 提示source <a href="https://rubygems.org">https://rubygems.org</a> not present in cache</h3>
+<p>当你尝试使用 <code>gem source -r https://rubygems.org</code> 命令来从缓存中移除一个源时，如果系统提示你 &ldquo;source <a href="https://rubygems.org">https://rubygems.org</a> not present in cache&rdquo;，那就意味着你的缓存中并没有这个源的数据。<br />
+如果你不一定要使用 <a href="https://rubygems.org">https://rubygems.org</a> 这个源，你可以尝试更换其他的源，比如使用 Ruby China 的源。</p>
+<h3 id="jekyllolderbundler">Jekyll提示使用了older的bundler版本</h3>
+<p>不用考虑——</p>
+<pre><code>gem uninstall bundler -v 你的版本
+gem install bundler -v 要求的版本
+</code></pre>
+<p><code>gem update bundler</code> 即可。</p>
+<h3 id="error--while-executing-gem--gemremotefetcherunknownhosterror">提示ERROR:  While executing gem &hellip; (Gem::RemoteFetcher::UnknownHostError)</h3>
+<pre><code>timed out (https://gems.ruby-china.com/quick/Marshal.4.8/bundler-2.4.20.gems pec.rz)
+</code></pre>
+<p>这是上一个问题安装特定版本bundler时出现的。不需要尝试更换源，<strong>update</strong>即可。<br />
+<strong>一个没试过的方法（不用试）——</strong><br />
+手动下载并安装：如果以上方法都无法解决问题，你可以尝试手动下载Marshal gem的压缩包，然后解压并安装。在终端中执行以下命令：</p>
+<pre><code class="language-bash"># 下载Marshal gem的压缩包  
+# 将URL替换为实际的下载地址  
+wget https://gems.ruby-china.com/quick/Marshal.4.8/bundler-2.4.20.gemspec.rz  
+  
+# 解压压缩包  
+unzip bundler-2.4.20.gemspec.rz  
+  
+# 安装Marshal gem  
+gem install bundler-2.4.20/*.gemspec --no-document
+</code></pre>
+<h3 id="bundle-installfetching-source-index-from--retrying-fetcher-due-to-error-24-bundlerhttperror-could-not-fetch-specs-from--due-to-underlying-error-timed-out-">bundle install显示Fetching source index from … Retrying fetcher due to error (2/4): Bundler::HTTPError Could not fetch specs from … due to underlying error &lt;timed out …</h3>
+<p>通常跟网络连接和Rubygems 服务器没多大关系，请检查jekyll serve时是否报告jekyll版本旧了，比如原先该主题Jekyll 3.8.5 即可，这会提示要Jekyll 3.9.3。<br />
+如果一直不行请从Ruby开始重新操作。</p>
+<h2 id="heading-1">三、卸载一切</h2>
+<h3 id="jekyll">卸载Jekyll</h3>
+<p>通常我们输入以下命令卸载Jekyll——</p>
+<pre><code class="language-bash">gem uninstall jekyll -v &lt;jekyll version&gt;
+</code></pre>
+<p>提示我们</p>
+<pre><code class="language-bash">ERROR:  While executing gem ... (Gem::DependencyRemovalException)
+    Uninstallation aborted due to dependent gem(s)
+</code></pre>
+<p>这个错误表明至少有一个或多个 gem 依赖于 Jekyll，因此系统不允许你卸载它。<br />
+为了解决这个问题，你可以采取以下步骤：</p>
+<ol>
+<li><strong>查找依赖 Jekyll 的 gem</strong></li>
+</ol>
+<p>你可以使用以下命令来查找哪些 gem 依赖于 Jekyll：</p>
+<pre><code class="language-bash">gem dependency jekyll
+</code></pre>
+<p>这会列出所有直接依赖于 Jekyll 的 gem。<br />
+2. <strong>考虑卸载依赖的 gem</strong></p>
+<p>如果你确定不再需要那些依赖于 Jekyll 的 gem，你可以尝试先卸载它们，然后再卸载 Jekyll。例如，如果 <code>some_gem</code> 依赖于 Jekyll，你可以这样操作：</p>
+<pre><code class="language-bash">gem uninstall some_gem
+</code></pre>
+<ol start="3">
+<li>使用 &ndash;ignore-dependencies 选项</li>
+</ol>
+<p>如果你确定要卸载 Jekyll，并且不关心其他 gem 是否还能正常工作，你可以使用 <code>--ignore-dependencies</code> 选项来强制卸载它：</p>
+<pre><code class="language-bash">gem uninstall jekyll --ignore-dependencies
+</code></pre>
+<h3 id="gem">卸载所有gem包</h3>
+<p>要卸载所有gem包，你可以使用Ruby的包管理器gem提供的命令来完成。以下是一些步骤来卸载所有gem包：</p>
+<ol>
+<li>使用 <code>gem list</code> 命令来列出所有已安装的gem包。这将显示所有已安装的gem包及其版本号。像这样——</li>
+</ol>
+<pre><code class="language-bash">gem list
+activesupport (7.0.8)
+addressable (2.8.5)
+base64 (0.1.1)
+benchmark (default: 0.1.0)
+bigdecimal (default: 2.0.0)
+bundler (default: 2.1.4)
+cgi (default: 0.1.0.1)
+coffee-script (2.4.1)
+coffee-script-source (1.11.1)
+colorator (1.1.0)
+commonmarker (0.23.10)
+concurrent-ruby (1.2.2)
+csv (default: 3.1.2)
+date (default: 3.0.3)
+dbm (default: 1.1.0)
+delegate (default: 0.1.0)
+did_you_mean (default: 1.4.0)
+dnsruby (1.70.0)
+em-websocket (0.5.3)
+etc (default: 1.1.0)
+ethon (0.16.0)
+eventmachine (1.2.7 x64-mingw32)
+execjs (2.9.1)
+faraday (2.7.11)
+faraday-net_http (3.0.2)
+fcntl (default: 1.0.0)
+ffi (1.16.2 x64-mingw32)
+fiddle (default: 1.0.0)
+fileutils (default: 1.4.1)
+forwardable (default: 1.3.1)
+forwardable-extended (2.6.0)
+gdbm (default: 2.1.0)
+gemoji (3.0.1)
+getoptlong (default: 0.1.0)
+github-pages (228)
+github-pages-health-check (1.17.9)
+google-protobuf (3.24.3 x64-mingw32)
+html-pipeline (2.14.3)
+http_parser.rb (0.8.0)
+i18n (1.14.1)
+io-console (default: 0.5.6)
+ipaddr (default: 1.2.2)
+irb (default: 1.2.6)
+jekyll-avatar (0.7.0)
+jekyll-coffeescript (1.1.1)
+jekyll-commonmark (1.4.0)
+jekyll-commonmark-ghpages (0.4.0)
+jekyll-default-layout (0.1.4)
+jekyll-feed (0.17.0, 0.15.1)
+jekyll-gist (1.5.0)
+jekyll-github-metadata (2.13.0)
+jekyll-include-cache (0.2.1)
+jekyll-mentions (1.6.0)
+jekyll-optional-front-matter (0.3.2)
+jekyll-paginate (1.1.0)
+jekyll-readme-index (0.3.0)
+jekyll-redirect-from (0.16.0)
+jekyll-relative-links (0.6.1)
+jekyll-remote-theme (0.4.3)
+jekyll-sass-converter (1.5.2)
+jekyll-seo-tag (2.8.0)
+jekyll-sitemap (1.4.0)
+jekyll-swiss (1.0.0)
+jekyll-theme-architect (0.2.0)
+jekyll-theme-cayman (0.2.0)
+jekyll-theme-dinky (0.2.0)
+jekyll-theme-hacker (0.2.0)
+jekyll-theme-leap-day (0.2.0)
+jekyll-theme-merlot (0.2.0)
+jekyll-theme-midnight (0.2.0)
+jekyll-theme-minimal (0.2.0)
+jekyll-theme-modernist (0.2.0)
+jekyll-theme-primer (0.6.0)
+jekyll-theme-slate (0.2.0)
+jekyll-theme-tactile (0.2.0)
+jekyll-theme-time-machine (0.2.0)
+jekyll-titles-from-headings (0.5.3)
+jekyll-watch (2.2.1)
+jemoji (0.12.0)
+json (default: 2.3.0)
+kramdown (2.4.0, 2.3.2)
+kramdown-parser-gfm (1.1.0)
+liquid (4.0.4)
+listen (3.8.0)
+logger (default: 1.4.2)
+matrix (default: 0.2.0)
+mercenary (0.3.6)
+minima (2.5.1)
+minitest (5.13.0)
+mutex_m (default: 0.1.0)
+net-pop (default: 0.1.0)
+net-smtp (default: 0.1.0)
+net-telnet (0.2.0)
+nokogiri (1.15.4 x64-mingw32)
+observer (default: 0.1.0)
+octokit (4.25.1)
+open3 (default: 0.1.0)
+openssl (default: 2.1.3)
+ostruct (default: 0.2.0)
+pathutil (0.16.2)
+power_assert (1.1.7)
+prime (default: 0.1.1)
+pstore (default: 0.1.0)
+psych (default: 3.1.0)
+public_suffix (5.0.3, 4.0.7)
+racc (default: 1.4.16)
+rake (13.0.1)
+rb-fsevent (0.11.2)
+rb-inotify (0.10.1)
+rdoc (default: 6.2.1.1)
+readline (default: 0.0.2)
+reline (default: 0.1.5)
+rexml (default: 3.2.3.1)
+rouge (3.30.0, 3.26.0)
+rss (default: 0.2.8)
+ruby2_keywords (0.0.5)
+rubyzip (2.3.2)
+safe_yaml (1.0.5)
+sass (3.7.4)
+sass-listen (4.0.0)
+sawyer (0.9.2)
+sdbm (default: 1.0.0)
+simpleidn (0.2.1)
+singleton (default: 0.1.0)
+stringio (default: 0.1.0)
+strscan (default: 1.0.3)
+terminal-table (3.0.2, 1.8.0)
+test-unit (3.3.4)
+thread_safe (0.3.6)
+timeout (default: 0.1.0)
+tracer (default: 0.1.0)
+typhoeus (1.4.0)
+tzinfo (2.0.6)
+tzinfo-data (1.2023.3)
+unf (0.1.4)
+unf_ext (0.0.8.2 x64-mingw32)
+unicode-display_width (2.5.0, 1.8.0)
+uri (default: 0.10.0)
+wdm (0.1.1)
+webrick (1.8.1, default: 1.6.1)
+xmlrpc (0.3.0)
+yaml (default: 0.1.0)
+zlib (default: 1.1.0)
+</code></pre>
+<ol start="2">
+<li>要卸载所有gem包，你可以使用gem uninstall命令，并跟上每个gem包的名称和版本号。例如，如果你想要卸载名为gem-name的gem包，可以使用以下命令：</li>
+</ol>
+<pre><code class="language-bash">gem uninstall gem-name -v versionNumber
+</code></pre>
+<ol start="3">
+<li>重复上述步骤，为每个gem包执行gem uninstall命令，直到你卸载了所有不需要的gem包。</li>
+<li>在卸载所有gem包后，你还可以使用gem cleanup命令来清理无用的gem文件。这将删除所有不再需要的gem文件，以释放磁盘空间。</li>
+</ol>
+<pre><code class="language-bash">gem cleanup
+</code></pre>
+<p>我们换种思路卸载所有gem包。<strong>有两种方法可以实现这个目标。</strong></p>
+<p><strong>第一种方法：</strong></p>
+<pre><code class="language-bash">ruby -e &quot;gem_list = `gem list --no-versions`.split($/).drop(1); gem_list.each { |gem| `gem uninstall -aIx #{gem}` }&quot;
+</code></pre>
+<p>这段代码首先会获取所有已安装的gem包的列表，然后遍历这个列表，对每个gem包执行卸载操作。</p>
+<p><strong>第二种方法：</strong><br />
+如果你的RubyGems版本大于等于2.1.0，你可以使用以下命令：</p>
+<pre><code class="language-bash">gem uninstall -aIx
+</code></pre>
+<p>这个命令会卸载所有版本的gem包，忽略依赖项，并包含可执行文件。<br />
+示例：</p>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 /e/Ramme (master)
+$ gem uninstall -aIx
+Successfully uninstalled activesupport-7.0.8
+Successfully uninstalled addressable-2.8.5
+Successfully uninstalled base64-0.1.1
+Successfully uninstalled coffee-script-2.4.1
+Successfully uninstalled coffee-script-source-1.11.1
+Successfully uninstalled colorator-1.1.0
+Removing commonmarker
+Successfully uninstalled commonmarker-0.23.10
+Successfully uninstalled concurrent-ruby-1.2.2
+Successfully uninstalled dnsruby-1.70.0
+Successfully uninstalled em-websocket-0.5.3
+Successfully uninstalled ethon-0.16.0
+Successfully uninstalled eventmachine-1.2.7-x64-mingw32
+Successfully uninstalled execjs-2.9.1
+Successfully uninstalled faraday-2.7.11
+Successfully uninstalled faraday-net_http-3.0.2
+Successfully uninstalled ffi-1.16.2-x64-mingw32
+Successfully uninstalled forwardable-extended-2.6.0
+Removing gemoji
+Successfully uninstalled gemoji-3.0.1
+Removing github-pages
+Successfully uninstalled github-pages-228
+Successfully uninstalled github-pages-health-check-1.17.9
+Successfully uninstalled google-protobuf-3.24.3-x64-mingw32
+Successfully uninstalled html-pipeline-2.14.3
+Successfully uninstalled http_parser.rb-0.8.0
+Successfully uninstalled i18n-1.14.1
+Successfully uninstalled jekyll-avatar-0.7.0
+Successfully uninstalled jekyll-coffeescript-1.1.1
+Successfully uninstalled jekyll-commonmark-1.4.0
+Successfully uninstalled jekyll-commonmark-ghpages-0.4.0
+Successfully uninstalled jekyll-default-layout-0.1.4
+Successfully uninstalled jekyll-feed-0.17.0
+Successfully uninstalled jekyll-feed-0.15.1
+Successfully uninstalled jekyll-gist-1.5.0
+Successfully uninstalled jekyll-github-metadata-2.13.0
+Successfully uninstalled jekyll-include-cache-0.2.1
+Successfully uninstalled jekyll-mentions-1.6.0
+Successfully uninstalled jekyll-optional-front-matter-0.3.2
+Successfully uninstalled jekyll-paginate-1.1.0
+Successfully uninstalled jekyll-readme-index-0.3.0
+Successfully uninstalled jekyll-redirect-from-0.16.0
+Successfully uninstalled jekyll-relative-links-0.6.1
+Successfully uninstalled jekyll-remote-theme-0.4.3
+Successfully uninstalled jekyll-sass-converter-1.5.2
+Successfully uninstalled jekyll-seo-tag-2.8.0
+Successfully uninstalled jekyll-sitemap-1.4.0
+Successfully uninstalled jekyll-swiss-1.0.0
+Successfully uninstalled jekyll-theme-architect-0.2.0
+Successfully uninstalled jekyll-theme-cayman-0.2.0
+Successfully uninstalled jekyll-theme-dinky-0.2.0
+Successfully uninstalled jekyll-theme-hacker-0.2.0
+Successfully uninstalled jekyll-theme-leap-day-0.2.0
+Successfully uninstalled jekyll-theme-merlot-0.2.0
+Successfully uninstalled jekyll-theme-midnight-0.2.0
+Successfully uninstalled jekyll-theme-minimal-0.2.0
+Successfully uninstalled jekyll-theme-modernist-0.2.0
+Successfully uninstalled jekyll-theme-primer-0.6.0
+Successfully uninstalled jekyll-theme-slate-0.2.0
+Successfully uninstalled jekyll-theme-tactile-0.2.0
+Successfully uninstalled jekyll-theme-time-machine-0.2.0
+Successfully uninstalled jekyll-titles-from-headings-0.5.3
+Successfully uninstalled jekyll-watch-2.2.1
+Successfully uninstalled jemoji-0.12.0
+Successfully uninstalled kramdown-2.4.0
+Removing kramdown
+Successfully uninstalled kramdown-2.3.2
+Successfully uninstalled kramdown-parser-gfm-1.1.0
+Successfully uninstalled liquid-4.0.4
+Removing listen
+Successfully uninstalled listen-3.8.0
+Successfully uninstalled mercenary-0.3.6
+Successfully uninstalled minima-2.5.1
+Successfully uninstalled minitest-5.13.0
+Successfully uninstalled net-telnet-0.2.0
+Removing nokogiri
+Successfully uninstalled nokogiri-1.15.4-x64-mingw32
+Successfully uninstalled octokit-4.25.1
+Successfully uninstalled pathutil-0.16.2
+Successfully uninstalled power_assert-1.1.7
+Successfully uninstalled public_suffix-5.0.3
+Successfully uninstalled public_suffix-4.0.7
+Removing rake
+Successfully uninstalled rake-13.0.1
+Successfully uninstalled rb-fsevent-0.11.2
+Successfully uninstalled rb-inotify-0.10.1
+Successfully uninstalled rouge-3.30.0
+Removing rougify
+Successfully uninstalled rouge-3.26.0
+Successfully uninstalled ruby2_keywords-0.0.5
+Successfully uninstalled rubyzip-2.3.2
+Removing safe_yaml
+Successfully uninstalled safe_yaml-1.0.5
+Removing sass
+Removing sass-convert
+Removing scss
+Successfully uninstalled sass-3.7.4
+Successfully uninstalled sass-listen-4.0.0
+Successfully uninstalled sawyer-0.9.2
+Successfully uninstalled simpleidn-0.2.1
+Successfully uninstalled terminal-table-3.0.2
+Successfully uninstalled terminal-table-1.8.0
+Successfully uninstalled test-unit-3.3.4
+Successfully uninstalled thread_safe-0.3.6
+Successfully uninstalled typhoeus-1.4.0
+Successfully uninstalled tzinfo-2.0.6
+Successfully uninstalled tzinfo-data-1.2023.3
+Successfully uninstalled unf-0.1.4
+Successfully uninstalled unf_ext-0.0.8.2-x64-mingw32
+Successfully uninstalled unicode-display_width-2.5.0
+Successfully uninstalled unicode-display_width-1.8.0
+Successfully uninstalled wdm-0.1.1
+Successfully uninstalled webrick-1.8.1
+Successfully uninstalled xmlrpc-0.3.0
+INFO:  Uninstalled all gems in C:/Ruby27-x64/lib/ruby/gems/2.7.0
+</code></pre>
+<p>如果你的RubyGems版本小于2.1.0，你需要使用类似下面的脚本：</p>
+<pre><code class="language-bash">for i in `gem list --no-versions`; do gem uninstall -aIx $i; done
+</code></pre>
+<p>这段代码同样会遍历所有已安装的gem包，并对每个gem包执行卸载操作。</p>
+<p>请注意，这些操作会卸载你系统上安装的所有gem包，包括那些可能对你的系统或项目至关重要的包。在执行这些操作之前，请确保你了解卸载这些gem包可能带来的影响，并确保你有恢复这些gem包的方法（例如，通过备份或重新安装它们）。此外，这些命令只会卸载你通过gem安装的gem包，如果你使用其他方式（如RVM、rbenv或其他包管理器）安装的gem包，你可能需要使用相应的方法来卸载它们。</p>
+<p>鉴于gem包如此之多，如果你需要快速卸载多个gem包，请阅读以下内容——</p>
+<h4 id="sublime-text-">Sublime Text 如何删除所有括号内内容</h4>
+<p>Sublime Text 并没有直接提供一键删除所有括号内内容的功能。但你可以使用正则表达式（Regex）配合查找和替换（Find and Replace）功能来实现这个目标。</p>
+<ol>
+<li>使用 Ctrl + H 打开查找和替换面板。</li>
+<li>在 &ldquo;Find&rdquo; 框中，输入以下的正则表达式：<code>\([^)]*\)</code>。这个正则表达式会匹配任何在圆括号 () 中的内容。如果你想要匹配方括号 [] 或大括号 {} 中的内容，你可以相应地修改这个正则表达式。</li>
+</ol>
+<pre><code class="language-bash">\([^)]*\)
+</code></pre>
+<ol start="3">
+<li>点击 &ldquo;Replace All&rdquo; 按钮，Sublime Text 就会删除所有匹配到的括号内的内容。</li>
+</ol>
+<h3 id="gembundler">卸载gem和bundler</h3>
+<p>Ruby自带gem环境，因此当你卸载Ruby时，gem也会被一并卸载。这是因为gem是Ruby的一部分，它们共同构成了Ruby的运行环境。所以，如果你需要重新安装gem，通常需要在重新安装Ruby之后进行。</p>
+<p>当你卸载Ruby时，Bundler通常也会被卸载，因为Bundler是一个Ruby gem，它依赖于Ruby的运行环境。Bundler用于管理Ruby项目的依赖关系，它是Ruby生态系统中的一个关键组件，但它是作为gem安装的，因此与Ruby本身紧密相关。</p>
+<p>卸载Ruby后检查gem和bundler。</p>
+<pre><code class="language-bash">$ gem -v
+bash: gem: command not found
+
+$ bundler -v
+bash: bundler: command not found
+
+</code></pre>
+<h2 id="end"><strong>END!</strong></h2>
+<h2 id="heading-2">参考</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/139567128">配置Jekyll博客本地开发环境(Windows)</a><br />
+<a href="https://blog.csdn.net/weixin_34161029/article/details/91498266">win7下搭建Jekyll写作环境</a><br />
+<a href="https://www.jianshu.com/p/c70dc6d3af14">jekyll s出现&hellip;(Bundler::GemNotFound)问题解决方法-2018-10-05</a><br />
+<a href="https://www.jianshu.com/p/e1fb80102120">刘月林 | 使用 bundle config 修改 Ruby 镜像源</a><br />
+<a href="https://jamstackthemes.dev/theme/jekyll-ramme/">Ramme - Theme Info</a><br />
+<a href="https://blog.csdn.net/u012675539/article/details/43734055">Jekyll 安装、使用方法与卸载</a><br />
+<a href="https://yiyan.baidu.com/">文心一言</a></p>
+<h2 id="heading-3">扩展阅读</h2>
+<p><a href="https://cloud.tencent.com/developer/ask/sof/101984785">如何卸载使用<code> </code>bundle install`安装的所有gem-腾讯云开发者社区</a><br />
+<a href="https://jamstackthemes.dev/ssg/">Static Site Generators - Jamstack Themes</a></p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        <span class="pre pagbuttons">
+            <a role="navigation" href="/post/wen-xian-guan-li-gong-ju-zotero-de-shi-yong-jiao-cheng/" title="文献管理工具：Zotero的使用教程">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                prev_post: 文献管理工具：Zotero的使用教程
+            </a>
+        </span>
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/ru-he-shi-yong-sublime-text-4-da-jian-cc-yu-yan-kai-fa-huan-jing/" title="如何使用Sublime Text 4搭建 C/C++ 语言开发环境">
+                next_post: 如何使用Sublime Text 4搭建 C/C++ 语言开发环境
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/scripts/jquery.appear.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="Technology">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>如何使用Sublime Text 4搭建 C/C++ 语言开发环境 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="如何使用Sublime Text 4搭建 C/C++ 语言开发环境">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="刚刚安装的 Sublime Text 无法自行具备运行 C、C++ 代码的能力，需要我们手动对其进行设置。 配置GCC 编译环境 开始设置前，我们需要初始化好 GCC 编译环境。打开命令行窗口，输入gcc -v，如果输出GCC的具体版本等信息，表明当前系统以成功配置了 GCC 编译环境。（如图所示） 如果未配置GCC&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/ru-he-shi-yong-sublime-text-4-da-jian-cc-yu-yan-kai-fa-huan-jing/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"如何使用Sublime Text 4搭建 C/C++ 语言开发环境","url":"https://xiaxi626.github.io/post/ru-he-shi-yong-sublime-text-4-da-jian-cc-yu-yan-kai-fa-huan-jing/","description":"刚刚安装的 Sublime Text 无法自行具备运行 C、C++ 代码的能力，需要我们手动对其进行设置。 配置GCC 编译环境 开始设置前，我们需要初始化好 GCC 编译环境。打开命令行窗口，输入gcc -v，如果输出GCC的具体版本等信息，表明当前系统以成功配置了 GCC 编译环境。（如图所示） 如果未配置GCC\u0026hellip;","datePublished":"2023-08-29T22:39:16+08:00","dateModified":"2026-05-15T22:34:45+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/ru-he-shi-yong-sublime-text-4-da-jian-cc-yu-yan-kai-fa-huan-jing/","name":"如何使用Sublime Text 4搭建 C/C++ 语言开发环境","position":2}]}</script>
+<meta property="og:title" content="如何使用Sublime Text 4搭建 C/C++ 语言开发环境">
+<meta property="og:description" content="刚刚安装的 Sublime Text 无法自行具备运行 C、C++ 代码的能力，需要我们手动对其进行设置。 配置GCC 编译环境 开始设置前，我们需要初始化好 GCC 编译环境。打开命令行窗口，输入gcc -v，如果输出GCC的具体版本等信息，表明当前系统以成功配置了 GCC 编译环境。（如图所示） 如果未配置GCC&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/ru-he-shi-yong-sublime-text-4-da-jian-cc-yu-yan-kai-fa-huan-jing/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/images/avatar.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/ru-he-shi-yong-sublime-text-4-da-jian-cc-yu-yan-kai-fa-huan-jing/">
+<meta name="twitter:title" content="如何使用Sublime Text 4搭建 C/C++ 语言开发环境">
+<meta name="twitter:description" content="刚刚安装的 Sublime Text 无法自行具备运行 C、C++ 代码的能力，需要我们手动对其进行设置。 配置GCC 编译环境 开始设置前，我们需要初始化好 GCC 编译环境。打开命令行窗口，输入gcc -v，如果输出GCC的具体版本等信息，表明当前系统以成功配置了 GCC 编译环境。（如图所示） 如果未配置GCC&amp;hellip;">
+<meta name="twitter:image" content="/images/avatar.png">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>如何使用Sublime Text 4搭建 C/C++ 语言开发环境</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2023-08-29</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/ru-he-shi-yong-sublime-text-4-da-jian-cc-yu-yan-kai-fa-huan-jing/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><p>刚刚安装的 Sublime Text 无法自行具备运行 C、C++ 代码的能力，需要我们手动对其进行设置。</p>
+<h2 id="gcc-">配置GCC 编译环境</h2>
+<p>开始设置前，我们需要初始化好 GCC 编译环境。打开命令行窗口，输入<code>gcc -v</code>，如果输出GCC的具体版本等信息，表明当前系统以成功配置了 GCC 编译环境。（如图所示）<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693321719332.png" alt="" /><br />
+如果未配置GCC 编译环境，可阅读<a href="https://zhuanlan.zhihu.com/p/76613134">MinGW-w64安装教程——著名C/C++编译器GCC的Windows版本</a>进行安装。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693322931715.png" alt="" /></p>
+<blockquote>
+<p>MinGW-W64 Online Installer:<br />
+<a href="https://sourceforge.net/projects/mingw-w64/">sourceforge.net/project…</a> 下载 mingw-get-setup.exe<br />
+MinGW Installation Manager → Basic Setup → 勾选 &ldquo;mingw32-base&rdquo; &amp; &ldquo;mingw32-gcc-g++&rdquo; → Installation → Apply Changes</p>
+<p>MinGW 离线安装:<br />
+<a href="https://sourceforge.net/projects/mingw-w64/">sourceforge.net/project…</a><br />
+选择 MinGW-W64 GCC-8.1.0 的 x86_64-win32-seh<br />
+下载后文件: &ldquo;x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z&rdquo;<br />
+解压再配置环境变量</p>
+</blockquote>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693322948313.png" alt="" /><br />
+注意选择以下其中一个下载，不要下载MinGW-W64 Online Installer。</p>
+<ul>
+<li>x86_64-posix-sjlj</li>
+<li>x86_64-posix-seh</li>
+<li>x86_64-win32-sjlj</li>
+<li><a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z">x86_64-win32-seh</a></li>
+</ul>
+<blockquote>
+<p>sjlj，seh的区别：</p>
+<ul>
+<li>sjlj 全称是 SetJump / LongJump，前者设还原点，后者跳到还原点。可用于 32 位或者 64 位系统。</li>
+<li>seh（Structured Exception Handling，结构化异常处理）是 Borland 公司的，微软买了其专利使用权，它利用了 FS 段寄存器，将还原点压入栈，收到异常时再弹出。相较而言，sjlj 是 C 标准库就有的东西，seh 在 2014 年前是有专利的，从性能上说 seh 比 sjlj 快。只用于64位系统。</li>
+</ul>
+<p>【x86_64 64位】<br />
+1、seh 是新发明的，而 sjlj 则是古老的。只用于64位系统。<br />
+2、seh 性能比较好，但不支持 32位。 sjlj 稳定性好，支持 32位和64位。</p>
+<p>因此，x86_64 系统架构的推荐使用 seh 的异常处理模型。</p>
+</blockquote>
+<blockquote>
+<p>posix 和 win32 的区别是指编译器使用的线程模型。posix 是一种 UNIX API 标准，而 win32 是 Windows 的 API 标准。这两者之间有一些区别，例如在 mingw-w64 中，使用 posix 线程将启用 C++11/C11 多线程功能，并使 libgcc 依赖于 libwinpthreads。而使用 win32 线程则不会启用 C++11 多线程功能。</p>
+<p>如果在 Windows 下开发 Linux 应用程序，则选择 posix；如果开发 Windows 平台下的应用程序，就需要选择 Win32。<br />
+这个你自己选择吧，你偏向于原生的C标准就选posix，面向Windows编程就选win32，如果你还是选择困难的话，毕竟我们最常用的还是Windows，选win32也没什么问题。</p>
+</blockquote>
+<p>运行MinGW-W64-install.exe会安装失败。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693322904391.png" alt="" /></p>
+<p>下载 x86_64-win32-seh 的7z文件后解压。<br />
+添加环境变量，变量路径替换为解压路径。<br />
+环境变量内容如下：</p>
+<pre><code class="language-cmd">- 变量名 变量值
+- C_INCLUDEDE_PATH C:\MinGW\include
+- LIBRARY_PATH C:\MinGW\lib
+- Path C:\MinGW\bin
+</code></pre>
+<h2 id="-sublime-text-gcc">配置 Sublime Text 编辑器（GCC）</h2>
+<p>在已安装好 GCC 编译器的基础上，接下来开始正式配置 Sublime Text 编辑器。</p>
+<p>在菜单栏中依次点击“Tools -&gt; Build System -&gt; New Build System”，由此即可在 Sublime Text 打开一个临时文件，如下所示：<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693323400390.png" alt="" /><br />
+删除其所有内容，并将如下内容完整地复制到该文件中：</p>
+<pre><code class="language-sublime-build">{
+    &quot;cmd&quot;: [&quot;gcc&quot;,&quot;${file}&quot;,&quot;-o&quot;, &quot;${file_path}/${file_base_name}&quot;],
+    &quot;file_regex&quot;:&quot;^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$&quot;,
+    &quot;working_dir&quot;:&quot;${file_path}&quot;,
+    &quot;selector&quot;: &quot;source.c&quot;,
+    &quot;encoding&quot;:&quot;cp936&quot;,
+    &quot;variants&quot;:
+    [
+        {
+            &quot;name&quot;: &quot;C_Run&quot;,
+            &quot;cmd&quot;: [&quot;cmd&quot;,&quot;/c&quot;, &quot;gcc&quot;, &quot;${file}&quot;, &quot;-o&quot;, &quot;${file_path}/${file_base_name}&quot;,&quot;&amp;&amp;&quot;, &quot;cmd&quot;, &quot;/c&quot;,&quot;${file_path}/${file_base_name}&quot;]
+        },
+        {
+            &quot;name&quot;:&quot;C_RunInCommand&quot;,
+            &quot;cmd&quot;: [&quot;cmd&quot;,&quot;/c&quot;, &quot;gcc&quot;, &quot;${file}&quot;,&quot;-o&quot;,&quot;${file_path}/${file_base_name}&quot;, &quot;&amp;&amp;&quot;,&quot;start&quot;, &quot;cmd&quot;, &quot;/c&quot;,&quot;${file_path}/${file_base_name} &amp; pause&quot;]
+         }
+    ]
+}
+</code></pre>
+<p>按住Ctrl + S保存上述文件，并将文件取名为 <strong>gcc.sublime-build</strong> ，点击保存。</p>
+<p>重新打开 Sublime Text，并依次在菜单栏中选择“Tools -&gt; Build System”， 在该选项中就可以看到上一步创建好的 gcc_sublime-build 的文件名 gcc。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693323580971.png" alt="" /><br />
+通过勾选 gcc 编译选项，我们就可以直接在 Sublime Text 运行写好的 C 语言程序。<br />
+编写一个 Hellow Word 程序， 选择“Tools -&gt; Build With&hellip;”选项（Ctrl+Shift+B ）编译运行。<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693323866566.png" alt="" /><br />
+这里有 gcc、gcc-C_Run 和 gcc-RunInCommand 3 个选项，其中 gcc 用于编译程序（读者可自行查看执行结果），gcc-C_Run 用于在 Sublime Text 内部调用 GCC 编译器并显示程序的执行结果，gcc_RunInCommand 用于在命令行窗口中借助 gcc 指令运行该程序并输出执行结果。</p>
+<p><strong>同样</strong>，如果想搭建 C++ 开发环境，只需再建立一个 <strong>g++.sublime-build</strong> 配置文件，并将如下内容拷贝到该文件中：</p>
+<pre><code class="language-sublime-build">{
+    &quot;cmd&quot;: [&quot;g++&quot;,&quot;-Wall&quot;, &quot;${file}&quot;, &quot;-o&quot;, &quot;${file_path}/${file_base_name}&quot;],
+    &quot;file_regex&quot;: &quot;^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$&quot;,
+    &quot;working_dir&quot;: &quot;${file_path}&quot;,
+    &quot;selector&quot;: &quot;source.c, source.c++&quot;,
+    &quot;encoding&quot;:&quot;cp936&quot;,
+    &quot;variants&quot;:
+    [
+        {
+            &quot;name&quot;: &quot;C++_Run&quot;,
+            &quot;cmd&quot;: [&quot;cmd&quot;, &quot;/c&quot;, &quot;g++&quot;, &quot;-Wall&quot;,&quot;${file}&quot;, &quot;-o&quot;, &quot;${file_path}/${file_base_name}&quot;, &quot;&amp;&amp;&quot;, &quot;cmd&quot;, &quot;/c&quot;, &quot;${file_path}/${file_base_name}&quot;]
+        },  
+        {
+            &quot;name&quot;: &quot;C++_RunInCommand&quot;,
+            &quot;cmd&quot;: [&quot;cmd&quot;, &quot;/c&quot;, &quot;g++&quot;, &quot;-Wall&quot;,&quot;${file}&quot;, &quot;-o&quot;, &quot;${file_path}/${file_base_name}&quot;, &quot;&amp;&amp;&quot;, &quot;start&quot;, &quot;cmd&quot;, &quot;/c&quot;, &quot;${file_path}/${file_base_name} &amp; echo.&amp;pause&quot;]
+        }
+    ]
+}
+</code></pre>
+<h2 id="tcc-">配置TCC 编译环境</h2>
+<p>Tiny C Compiler（简称TCC, 或Tiny CC）是一个超小、超快的标准C语言编译器。<br />
+<a href="https://www.bellard.org/tcc/">TCC Official Website</a> <a href="http://download.savannah.gnu.org/releases/tinycc/">Download Link</a><br />
+Windows 用户请下载 tcc-0.9.27-win64-bin.zip ，将下载好的文件，解压到某一文件夹即可。<br />
+在系统环境变量中双击Path，点击新建，添加tcc文件夹路径。<br />
+命令行窗口输入<code>tcc</code>检查是否配置完成。</p>
+<pre><code class="language-cmd">C:\Users\Administrator&gt;tcc
+Tiny C Compiler 0.9.27 - Copyright (C) 2001-2006 Fabrice Bellard
+Usage: tcc [options...] [-o outfile] [-c] infile(s)...
+       tcc [options...] -run infile [arguments...]
+General options:
+  -c          compile only - generate an object file
+  -o outfile  set output filename
+  -run        run compiled source
+  -fflag      set or reset (with 'no-' prefix) 'flag' (see tcc -hh)
+  -Wwarning   set or reset (with 'no-' prefix) 'warning' (see tcc -hh)
+  -w          disable all warnings
+  -v -vv      show version, show search paths or loaded files
+  -h -hh      show this, show more help
+  -bench      show compilation statistics
+  -           use stdin pipe as infile
+  @listfile   read arguments from listfile
+Preprocessor options:
+  -Idir       add include path 'dir'
+  -Dsym[=val] define 'sym' with value 'val'
+  -Usym       undefine 'sym'
+  -E          preprocess only
+Linker options:
+  -Ldir       add library path 'dir'
+  -llib       link with dynamic or static library 'lib'
+  -r          generate (relocatable) object file
+  -shared     generate a shared library/dll
+  -rdynamic   export all global symbols to dynamic linker
+  -soname     set name for shared library to be used at runtime
+  -Wl,-opt[=val]  set linker option (see tcc -hh)
+Debugger options:
+  -g          generate runtime debug info
+  -b          compile with built-in memory and bounds checker (implies -g)
+  -bt N       show N callers in stack traces
+Misc. options:
+  -x[c|a|n]   specify type of the next infile
+  -nostdinc   do not use standard system include paths
+  -nostdlib   do not link with standard crt and libraries
+  -Bdir       set tcc's private include/library dir
+  -MD         generate dependency file for make
+  -MF file    specify dependency file name
+  -m32/64     defer to i386/x86_64 cross compiler
+Tools:
+  create library  : tcc -ar [rcsv] lib.a files
+  create def file : tcc -impdef lib.dll [-v] [-o lib.def]
+</code></pre>
+<h3 id="heading">使用方法</h3>
+<p>方法1. 打开命令行，转到源代码目录，输入： tcc 源代码文件名 即可。<br />
+此时，会在文件夹内生成.exe文件，双击即可运行。<br />
+方法2. 此方法为常用方法<br />
+打开命令行，转到源代码目录，输入： tcc -run 源代码文件名。</p>
+<h2 id="-sublime-text-tcc">配置 Sublime Text 编辑器（TCC)</h2>
+<p>在已安装好 GCC 编译器的基础上，接下来开始正式配置 Sublime Text 编辑器。</p>
+<p>在菜单栏中依次点击“Tools -&gt; Build System -&gt; New Build System”，由此即可在 Sublime Text 打开一个临时文件。<br />
+删除其所有内容，并将如下内容完整地复制到该文件中：</p>
+<pre><code class="language-sublime-build">{
+    &quot;file_regex&quot;: &quot;^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$&quot;,
+    &quot;working_dir&quot;: &quot;${file_path}&quot;,
+    &quot;selector&quot;: &quot;source.c&quot;,
+    &quot;encoding&quot;: &quot;gbk&quot;,
+
+    &quot;linux&quot;:    {&quot;shell_cmd&quot;: &quot;tcc -o ${file_path}/${file_base_name} ${file}&quot;},
+    &quot;osx&quot;:      {&quot;shell_cmd&quot;: &quot;tcc -o ${file_path}/${file_base_name} ${file}&quot;},
+    &quot;windows&quot;:  {&quot;shell_cmd&quot;: &quot;tcc -o ${file_path}/${file_base_name}.exe ${file}&quot;},
+
+    &quot;variants&quot;: [
+        {
+            &quot;name&quot;: &quot;Run&quot;,
+            &quot;linux&quot;:    {&quot;shell_cmd&quot;: &quot;tcc -run ${file}&quot;},
+            &quot;osx&quot;:      {&quot;shell_cmd&quot;: &quot;tcc -run ${file}&quot;},
+            &quot;windows&quot;:  {&quot;cmd&quot;: [&quot;tcc&quot;, &quot;-run&quot;, &quot;${file}&quot;]},
+        },
+        {
+            &quot;name&quot;: &quot;Run(CMD)&quot;,
+            &quot;linux&quot;: {
+                &quot;shell_cmd&quot;: &quot;gnome-terminal -e 'bash -c \&quot;echo tcc -run ${file};echo;time tcc -run \\\&quot;${file}\\\&quot;;echo ;echo Press any key to exit...;read -n 1;exit;\&quot;'&quot;
+            },
+            &quot;windows&quot;: {
+                // &quot;shell_cmd&quot;: &quot;git-bash -c \&quot;echo tcc -run ${file_name};echo;time winpty tcc -run ${file_name};echo;echo Press any key to exit...;read -n 1;exit;\&quot;&quot;,
+                &quot;cmd&quot;: [
+                    &quot;cmd&quot;, &quot;/c&quot;,
+                    &quot;start&quot;, &quot;cmd&quot;, &quot;/c&quot;, &quot;tcc -run ${file} &amp;echo.&amp;pause&quot;
+                ],
+            },
+            &quot;osx&quot;: {}
+        }
+    ]
+}
+</code></pre>
+<h2 id="heading-1">解决中文乱码</h2>
+<p><code>ConvertToUTF8: Reload With Encoding</code>解决的是 Sublime Text 显示的编码问题，不能解决编译生成打开的cmd窗口文字乱码问题。<br />
+应该在保存程序文件前先<code>File</code>→<code>Set File Encoding To</code>→<code>GBK</code>或<code>BIG5</code>。</p>
+<h2 id="heading-2">参考</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/76613134">MinGW-w64安装教程——著名C/C++编译器GCC的Windows版本</a><br />
+<a href="https://blog.csdn.net/qq_41905795/article/details/113623038">如何使用Sublime Text3搭建C语言开发环境_sublime c语言_LOVE_SCENARIO的博客</a><br />
+<a href="https://www.cnblogs.com/chuqianyu/p/15792207.html">Sublime Text运行C和C++程序 - 楚千羽</a><br />
+<a href="https://www.cnblogs.com/hcs1923049636/p/15098172.html">【cpp 开发工具】MingGW 各版本区别及安装说明 - isanthree</a><br />
+<a href="https://blog.negoces.top/posts/f1d8b9f4">Windows 下 MinGW 的选择与安装 - NEGOCES</a><br />
+<a href="https://blog.csdn.net/BjarneCpp/article/details/131614026">MingW-W64-builds那么多版本，他们的区别是什么呢？_Ha-Ha-Interesting的博客</a><br />
+<a href="https://www.jianshu.com/p/be47dc9d526c">Sublime Text 配置C语言开发环境 - 简书</a><br />
+<a href="https://blog.csdn.net/Cuixinyang19_/article/details/83514424">TCC(Tiny C Compiler)安装及使用方法-CSDN博客</a></p>
+<h2 id="heading-3">推荐</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/586687010">【全网最新、最详细】如何使用 Sublime Text 4 优雅地写C++？ - 知乎</a></p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        <span class="pre pagbuttons">
+            <a role="navigation" href="/post/pei-zhi-jekyll-bo-ke-ben-di-kai-fa-huan-jing-windows-7/" title="配置Jekyll博客本地开发环境(Windows 7)">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                prev_post: 配置Jekyll博客本地开发环境(Windows 7)
+            </a>
+        </span>
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/windows-ping-tai-sublimelatex-pei-zhi-jiao-cheng/" title="Windows平台Sublime+LaTex配置教程">
+                next_post: Windows平台Sublime+LaTex配置教程
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/scripts/jquery.appear.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

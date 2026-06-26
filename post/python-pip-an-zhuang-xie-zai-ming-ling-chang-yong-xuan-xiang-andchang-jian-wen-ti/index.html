@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="Technology">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>python Pip安装卸载，命令，常用选项&amp;常见问题 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="python Pip安装卸载，命令，常用选项&amp;常见问题">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="PIP是通用的Python包管理工具，可以方便安装、列出，卸载python的模块/库/包等。 注意：在Python3.4（一说是3.6）及更新的版本中，PIP已经捆绑安装了，不需要再单独安装（应该需要更新）。 安装卸载 常见使用, 例如: cmd下: 安装pycurl包 pip install pycurl 列出已经安装的python包 pi...">
+<link rel="canonical" href="https://xiaxi626.github.io/post/python-pip-an-zhuang-xie-zai-ming-ling-chang-yong-xuan-xiang-andchang-jian-wen-ti/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"python Pip安装卸载，命令，常用选项\u0026常见问题","url":"https://xiaxi626.github.io/post/python-pip-an-zhuang-xie-zai-ming-ling-chang-yong-xuan-xiang-andchang-jian-wen-ti/","description":"PIP是通用的Python包管理工具，可以方便安装、列出，卸载python的模块/库/包等。 注意：在Python3.4（一说是3.6）及更新的版本中，PIP已经捆绑安装了，不需要再单独安装（应该需要更新）。 安装卸载 常见使用, 例如: cmd下: 安装pycurl包 pip install pycurl 列出已经安装的python包 pi...","image":"/post-images/python-pip-an-zhuang-xie-zai-ming-ling-chang-yong-xuan-xiang-andchang-jian-wen-ti.png","datePublished":"2023-03-12T22:58:48+08:00","dateModified":"2026-05-15T22:34:46+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/python-pip-an-zhuang-xie-zai-ming-ling-chang-yong-xuan-xiang-andchang-jian-wen-ti/","name":"python Pip安装卸载，命令，常用选项\u0026常见问题","position":2}]}</script>
+<meta property="og:title" content="python Pip安装卸载，命令，常用选项&amp;常见问题">
+<meta property="og:description" content="PIP是通用的Python包管理工具，可以方便安装、列出，卸载python的模块/库/包等。 注意：在Python3.4（一说是3.6）及更新的版本中，PIP已经捆绑安装了，不需要再单独安装（应该需要更新）。 安装卸载 常见使用, 例如: cmd下: 安装pycurl包 pip install pycurl 列出已经安装的python包 pi...">
+<meta property="og:url" content="https://xiaxi626.github.io/post/python-pip-an-zhuang-xie-zai-ming-ling-chang-yong-xuan-xiang-andchang-jian-wen-ti/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/post-images/python-pip-an-zhuang-xie-zai-ming-ling-chang-yong-xuan-xiang-andchang-jian-wen-ti.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/python-pip-an-zhuang-xie-zai-ming-ling-chang-yong-xuan-xiang-andchang-jian-wen-ti/">
+<meta name="twitter:title" content="python Pip安装卸载，命令，常用选项&amp;常见问题">
+<meta name="twitter:description" content="PIP是通用的Python包管理工具，可以方便安装、列出，卸载python的模块/库/包等。 注意：在Python3.4（一说是3.6）及更新的版本中，PIP已经捆绑安装了，不需要再单独安装（应该需要更新）。 安装卸载 常见使用, 例如: cmd下: 安装pycurl包 pip install pycurl 列出已经安装的python包 pi...">
+<meta name="twitter:image" content="/post-images/python-pip-an-zhuang-xie-zai-ming-ling-chang-yong-xuan-xiang-andchang-jian-wen-ti.png">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>python Pip安装卸载，命令，常用选项&amp;常见问题</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2023-03-12</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/python-pip-an-zhuang-xie-zai-ming-ling-chang-yong-xuan-xiang-andchang-jian-wen-ti/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><p>PIP是通用的Python包管理工具，可以方便安装、列出，卸载python的模块/库/包等。</p>
+<p>注意：在Python3.4（一说是3.6）及更新的版本中，PIP已经捆绑安装了，不需要再单独安装（应该需要更新）。</p>
+<h2 id="heading">安装卸载</h2>
+<p>常见使用, 例如:<br />
+cmd下:<br />
+安装<code>pycurl</code>包</p>
+<pre><code class="language-bash">pip install pycurl
+</code></pre>
+<p>列出已经安装的<code>python</code>包</p>
+<pre><code class="language-bash">pip list
+</code></pre>
+<p>输出<code>pycurl</code>包的信息</p>
+<pre><code class="language-bash">pip show pycurl
+</code></pre>
+<p>卸载<code>pycurl</code>包</p>
+<pre><code class="language-bash">pip uninstall pycurl
+</code></pre>
+<p>导出包名到</p>
+<pre><code class="language-bash">pip freeze &gt; package20210627.txt
+</code></pre>
+<p>pip国内位置</p>
+<pre><code class="language-bash">-i https://mirrors.aliyun.com/pypi/simple/
+</code></pre>
+<p>批量安装和卸载</p>
+<pre><code class="language-bash">pip install -r package.txt
+pip uninstall -r package.txt
+pip install -r “F:\Program Project\python\packages\packages.txt”
+</code></pre>
+<p>添加环境变量</p>
+<pre><code class="language-bash">path=%path%;C:\Python27
+</code></pre>
+<p>安装<code>pip</code></p>
+<pre><code class="language-bash">python -m pip install pip
+上代码提示：No module named pip
+py2 -m ensurepip
+</code></pre>
+<p>升级<code>pip</code></p>
+<pre><code class="language-bash">python37 -m pip install --upgrade pip
+</code></pre>
+<p>查看可更新包：</p>
+<pre><code class="language-bash">pip list --outdated --format=columns
+</code></pre>
+<p>安装批量更新命令</p>
+<pre><code class="language-bash">pip install pip-review
+</code></pre>
+<p>依次更新所有包</p>
+<pre><code class="language-bash">pip -review --local --interactive
+</code></pre>
+<pre><code class="language-bash">pip list --outdated #列出所有过期的库
+pip install --upgrade 库名
+</code></pre>
+<p><code>python pip</code> 删除所有包</p>
+<pre><code class="language-bash">导出所有包
+pip freeze &gt; requirements.txt
+删除所有包
+pip uninstall -r requirements.txt
+or
+pip uninstall -r requirements.txt -y
+</code></pre>
+<h2 id="heading-1">命令</h2>
+<pre><code class="language-bash">Commands:
+  install                     Install packages.
+  download                    Download packages.
+  uninstall                   Uninstall packages.
+  freeze                      Output installed packages in requirements format.
+  inspect                     Inspect the python environment.
+  list                        List installed packages.
+  show                        Show information about installed packages.
+  check                       Verify installed packages have compatible dependencies.
+  config                      Manage local and global configuration.
+  search                      Search PyPI for packages.
+  cache                       Inspect and manage pip's wheel cache.
+  index                       Inspect information available from package indexes.
+  wheel                       Build wheels from your requirements.
+  hash                        Compute hashes of package archives.
+  completion                  A helper command used for command completion.
+  debug                       Show information useful for debugging.
+  help                        Show help for commands.
+</code></pre>
+<h2 id="heading-2">常用选项</h2>
+<pre><code class="language-bash">General Options:
+  -h, --help                  Show help.
+  --debug                     Let unhandled exceptions propagate outside the
+                              main subroutine, instead of logging them to
+                              stderr.
+  --isolated                  Run pip in an isolated mode, ignoring
+                              environment variables and user configuration.
+  --require-virtualenv        Allow pip to only run in a virtual environment;
+                              exit with an error otherwise.
+  --python &lt;python&gt;           Run pip with the specified Python interpreter.
+  -v, --verbose               Give more output. Option is additive, and can be
+                              used up to 3 times.
+  -V, --version               Show version and exit.
+  -q, --quiet                 Give less output. Option is additive, and can be
+                              used up to 3 times (corresponding to WARNING,
+                              ERROR, and CRITICAL logging levels).
+  --log &lt;path&gt;                Path to a verbose appending log.
+  --no-input                  Disable prompting for input.
+  --proxy &lt;proxy&gt;             Specify a proxy in the form
+                              scheme://[user:passwd@]proxy.server:port.
+  --retries &lt;retries&gt;         Maximum number of retries each connection should
+                              attempt (default 5 times).
+  --timeout &lt;sec&gt;             Set the socket timeout (default 15 seconds).
+  --exists-action &lt;action&gt;    Default action when a path already exists:
+                              (s)witch, (i)gnore, (w)ipe, (b)ackup, (a)bort.
+  --trusted-host &lt;hostname&gt;   Mark this host or host:port pair as trusted,
+                              even though it does not have valid or any HTTPS.
+  --cert &lt;path&gt;               Path to PEM-encoded CA certificate bundle. If
+                              provided, overrides the default. See 'SSL
+                              Certificate Verification' in pip documentation
+                              for more information.
+  --client-cert &lt;path&gt;        Path to SSL client certificate, a single file
+                              containing the private key and the certificate
+                              in PEM format.
+  --cache-dir &lt;dir&gt;           Store the cache data in &lt;dir&gt;.
+  --no-cache-dir              Disable the cache.
+  --disable-pip-version-check
+                              Don't periodically check PyPI to determine
+                              whether a new version of pip is available for
+                              download. Implied with --no-index.
+  --no-color                  Suppress colored output.
+  --no-python-version-warning
+                              Silence deprecation warnings for upcoming
+                              unsupported Pythons.
+  --use-feature &lt;feature&gt;     Enable new functionality, that may be backward
+                              incompatible.
+  --use-deprecated &lt;feature&gt;  Enable deprecated functionality, that will be
+                              removed in the future.
+</code></pre>
+<h2 id="heading-3">常见问题</h2>
+<h3 id="heading-4">问题一</h3>
+<blockquote>
+<p>ERROR: pip&rsquo;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</p>
+</blockquote>
+<p>pip 的依赖项解析器当前未考虑安装的所有包。此行为是以下依赖项冲突的根源。</p>
+<pre><code class="language-bash">Installing collected packages: mpmath, sympy, pillow, numpy, networkx, MarkupSafe, idna, filelock, charset-normalizer, certifi, requests, jinja2, torch, torchvision, torchaudio
+  Attempting uninstall: torchvision
+    Found existing installation: torchvision 0.14.1
+    Uninstalling torchvision-0.14.1:
+      Successfully uninstalled torchvision-0.14.1
+  Attempting uninstall: torchaudio
+    Found existing installation: torchaudio 0.13.1
+    Uninstalling torchaudio-0.13.1:
+      Successfully uninstalled torchaudio-0.13.1
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+transformers 4.26.1 requires huggingface-hub&lt;1.0,&gt;=0.11.0, which is not installed.
+transformers 4.26.1 requires packaging&gt;=20.0, which is not installed.
+transformers 4.26.1 requires pyyaml&gt;=5.1, which is not installed.
+transformers 4.26.1 requires regex!=2019.12.17, which is not installed.
+transformers 4.26.1 requires tokenizers!=0.11.3,&lt;0.14,&gt;=0.11.1, which is not installed.
+Successfully installed MarkupSafe-2.1.2 certifi-2022.12.7 charset-normalizer-2.1.1 filelock-3.9.0 idna-3.4 jinja2-3.1.2 mpmath-1.2.1 networkx-3.0rc1 numpy-1.24.1 pillow-9.3.0 requests-2.28.1 sympy-1.11.1 torch-2.1.0.dev20230312+cpu torchaudio-2.0.0.dev20230312+cpu torchvision-0.15.0.dev20230312+cpu
+</code></pre>
+<center>实例</center>
+<p>重新安装这几个包</p>
+<h3 id="heading-5">问题二</h3>
+<blockquote>
+<p>Read timed out 超时问题<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1678633653016.png" alt="" /><br />
+一般windows系统出现这个问题，可以在命令后面加上&ndash;user参数，类似：</p>
+</blockquote>
+<pre><code class="language-bash">pip install pyinstaller 
+# 上句报超时错误
+pip install pyinstaller --user
+</code></pre>
+<p>使用–help去查看–user的作用<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1678634498524.png" alt="" /><br />
+大意就是：把这个包换个地方安装</p>
+<h3 id="heading-6">问题三</h3>
+<blockquote>
+<p>你想要安装一个第三方包，但是没有权限将它安装到系统Python库中去。 或者，你可能想要安装一个供自己使用的包，而不是系统上面所有用户。</p>
+</blockquote>
+<p>Python有一个用户安装目录，通常类似”~/.local/lib/python3.3/site-packages”。 要强制在这个目录中安装包，可使用安装选项“–user”。例如：</p>
+<pre><code class="language-bash">python3 setup.py install --user
+</code></pre>
+<p>或者</p>
+<pre><code class="language-bash">pip install --user packagename
+</code></pre>
+<p>在sys.path中用户的“site-packages”目录位于系统的“site-packages”目录之前。 因此，你安装在里面的包就比系统已安装的包优先级高 （尽管并不总是这样，要取决于第三方包管理器，比如distribute或pip）。</p>
+<h4 id="heading-7">讨论</h4>
+<p>通常包会被安装到系统的site-packages目录中去，路径类似“/usr/local/lib/python3.3/site-packages”。 不过，这样做需要有管理员权限并且使用sudo命令。 就算你有这样的权限去执行命令，使用sudo去安装一个新的，可能没有被验证过的包有时候也不安全。</p>
+<p>安装包到用户目录中通常是一个有效的方案，它允许你创建一个自定义安装。</p>
+<p>另外，你还可以创建一个虚拟环境。</p>
+<h3 id="heading-8">问题四</h3>
+<blockquote>
+<p>Installing build dependencies error安装构建依赖错误</p>
+</blockquote>
+<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1678634550342.png" alt="" /><br />
+一般这种都是因为缺乏一些依赖包导致的，可以考虑直接使用conda安装，</p>
+<pre><code class="language-bash">conda install -c conda-forge pyinstaller
+</code></pre>
+<h3 id="heading-9">问题五</h3>
+<blockquote>
+<p>pip install 没反应怎么办<br />
+<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1678634749364.png" alt="" /><br />
+用<code>python -m pip install</code>便可</p>
+</blockquote>
+<h2 id="heading-10">参考</h2>
+<p><a href="https://python3-cookbook.readthedocs.io/zh_CN/latest/c10/p13_installing_packages_just_for_yourself.html">10.13 安装私有的包</a><br />
+<a href="https://cloud.tencent.com/developer/article/1743446">python用pip install时安装失败的一系列问题及解决方法</a></p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        <span class="pre pagbuttons">
+            <a role="navigation" href="/post/com-surrogate-yi-ting-zhi-gong-zuo-zen-me-jie-jue/" title="Com Surrogate 已停止工作，怎么解决？">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                prev_post: Com Surrogate 已停止工作，怎么解决？
+            </a>
+        </span>
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/zai-ben-di-windowscong-ling-kai-shi-xun-lian-vits-cai-keng-ji-lu-er/" title="在本地（Windows）从零开始训练VITS踩坑记录（二）">
+                next_post: 在本地（Windows）从零开始训练VITS踩坑记录（二）
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/scripts/jquery.appear.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

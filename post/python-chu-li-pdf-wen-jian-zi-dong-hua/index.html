@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="Technology">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>Python处理PDF文件自动化 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="Python处理PDF文件自动化">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="场景和模块 对应的模块安装： pip install docx2pdf pip install pdf2docx pip install pdfminer3k pip install pyinstaller Word转PDF 全自动化，支持doc、docx。 创建word2pdf.py文件，输入以下代码： from win32com import...">
+<link rel="canonical" href="https://xiaxi626.github.io/post/python-chu-li-pdf-wen-jian-zi-dong-hua/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Python处理PDF文件自动化","url":"https://xiaxi626.github.io/post/python-chu-li-pdf-wen-jian-zi-dong-hua/","description":"场景和模块 对应的模块安装： pip install docx2pdf pip install pdf2docx pip install pdfminer3k pip install pyinstaller Word转PDF 全自动化，支持doc、docx。 创建word2pdf.py文件，输入以下代码： from win32com import...","datePublished":"2023-07-04T11:05:07+08:00","dateModified":"2026-05-15T22:34:46+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/python-chu-li-pdf-wen-jian-zi-dong-hua/","name":"Python处理PDF文件自动化","position":2}]}</script>
+<meta property="og:title" content="Python处理PDF文件自动化">
+<meta property="og:description" content="场景和模块 对应的模块安装： pip install docx2pdf pip install pdf2docx pip install pdfminer3k pip install pyinstaller Word转PDF 全自动化，支持doc、docx。 创建word2pdf.py文件，输入以下代码： from win32com import...">
+<meta property="og:url" content="https://xiaxi626.github.io/post/python-chu-li-pdf-wen-jian-zi-dong-hua/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/images/avatar.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/python-chu-li-pdf-wen-jian-zi-dong-hua/">
+<meta name="twitter:title" content="Python处理PDF文件自动化">
+<meta name="twitter:description" content="场景和模块 对应的模块安装： pip install docx2pdf pip install pdf2docx pip install pdfminer3k pip install pyinstaller Word转PDF 全自动化，支持doc、docx。 创建word2pdf.py文件，输入以下代码： from win32com import...">
+<meta name="twitter:image" content="/images/avatar.png">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>Python处理PDF文件自动化</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2023-07-04</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/python-chu-li-pdf-wen-jian-zi-dong-hua/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><h2 id="heading">场景和模块</h2>
+<p>对应的模块安装：</p>
+<pre><code class="language-bash">pip install docx2pdf
+pip install pdf2docx
+pip install pdfminer3k
+pip install pyinstaller
+</code></pre>
+<h2 id="wordpdf">Word转PDF</h2>
+<p>全自动化，支持doc、docx。<br />
+创建word2pdf.py文件，输入以下代码：</p>
+<pre><code class="language-bash">from win32com import client
+import os
+
+'''
+代码描述：
+用来实现word文档转pdf的一个软件
+
+特色：
+可穿透指定路径下的所有文件，对找到的所有word文档进行操作
+并把结果输出到指定路径中
+
+注意事项：
+请确认没有同名文件，否则文件会覆盖
+'''
+
+
+# 转换doc为pdf
+def doc2pdf(fn):
+    word = client.Dispatch(&quot;Word.Application&quot;)  # 打开word应用程序
+    doc = word.Documents.Open(fn)  # 打开word文件
+
+    a = os.path.split(fn)  # 分离路径和文件
+    b = os.path.splitext(a[-1])[0]  # 拿到文件名
+
+    doc.SaveAs(&quot;{}\\{}.pdf&quot;.format(path1, b), 17)  # 另存为后缀为&quot;.pdf&quot;的文件，其中参数17表示为pdf
+    doc.Close()  # 关闭原来word文件
+    word.Quit()
+
+
+# 转换docx为pdf
+def docx2pdf(fn):
+    word = client.Dispatch(&quot;Word.Application&quot;)  # 打开word应用程序
+    doc = word.Documents.Open(fn)  # 打开word文件
+
+    a = os.path.split(fn)  # 分离路径和文件
+    b = os.path.splitext(a[-1])[0]  # 拿到文件名
+
+    doc.SaveAs(&quot;{}\\{}.pdf&quot;.format(path1, b), 17)  # 另存为后缀为&quot;.pdf&quot;的文件，其中参数17表示为pdf
+    doc.Close()  # 关闭原来word文件
+    word.Quit()
+
+
+# 获取指定路径下的所有word文件
+# 可以穿透指定路径下的所有文件
+def getfile(path):
+    word_list = []  # 用来存储所有的word文件路径
+    for current_folder, list_folders, files in os.walk(path):
+        for f in files:  # 用来遍历所有的文件，只取文件名，不取路径名
+            if f.endswith('doc') or f.endswith('docx'):  # 判断word文档
+                word_list.append(current_folder + '\\' + f)  # 把路径添加到列表中
+    return word_list  # 返回这个word文档的路径
+
+
+if __name__ == '__main__':
+    word_path = input('[+] 请给出word文档所在路径：')
+
+    # 设置一个路径path1，保存输出结果
+    print(&quot;[+] 请输入一个路径，用来存放所有的处理结果&quot;)
+    print(&quot;[+] 或者按回车键，我将自动把处理之后的文件存放在你的桌面&quot;)
+    path1 = input('')  # path1 用来存放所有的处理结果
+    if len(path1):
+        pass
+    else:
+        desktop_path = os.path.join(os.path.expanduser(&quot;~&quot;), 'Desktop')  # 获取桌面路径
+        path1 = os.path.join(desktop_path, '所有的处理结果')
+        os.makedirs(path1)
+
+    print('[+] 转换中，请稍等……')
+    words = getfile(word_path)
+    for word in words:
+        if word.endswith('doc'):
+            doc2pdf(word)
+        else:
+            docx2pdf(word)
+    print('[+] 转换完毕')
+
+</code></pre>
+<p>使用pyinstaller打包，EXE文件在dist文件夹中：</p>
+<pre><code class="language-bash">pyinstaller -F word2pdf.py
+</code></pre>
+<h2 id="docdocx">doc与docx互转</h2>
+<p>请确认没有同名文件，否则文件会覆盖，或者使用Everything过滤出word文档之后，再进行互转。<br />
+创建 doc与docx互转.py文件，输入以下代码：</p>
+<pre><code class="language-bash">from win32com import client
+import os
+'''
+代码描述：
+用来实现doc与docx互转的一个软件
+
+特色：
+可穿透指定路径下的所有文件，对找到的所有word文档进行操作
+并把结果输出到指定路径中
+
+注意事项：
+请确认没有同名文件，否则文件会覆盖
+'''
+
+# 转换doc为docx
+def doc2docx(fn):
+    word = client.Dispatch(&quot;Word.Application&quot;)  # 打开word应用程序
+    doc = word.Documents.Open(fn)  # 打开word文件
+
+    a = os.path.split(fn)  # 分离路径和文件
+    b = os.path.splitext(a[-1])[0]  # 拿到文件名
+
+    doc.SaveAs(&quot;{}\\{}.docx&quot;.format(path1, b), 12)  # 另存为后缀为&quot;.docx&quot;的文件，其中参数12或16指docx文件
+    doc.Close()  # 关闭原来word文件
+    word.Quit()
+
+
+# 转换docx为doc
+def docx2doc(fn):
+    word = client.Dispatch(&quot;Word.Application&quot;)  # 打开word应用程序
+    doc = word.Documents.Open(fn)  # 打开word文件
+
+    a = os.path.split(fn)  # 分离路径和文件
+    b = os.path.splitext(a[-1])[0]  # 拿到文件名
+
+    doc.SaveAs(&quot;{}\\{}.doc&quot;.format(path1, b), 0)  # 另存为后缀为&quot;.docx&quot;的文件，其中参数0指doc
+    doc.Close()  # 关闭原来word文件
+    word.Quit()
+
+
+# 获取指定路径下的所有word文件
+# 可以穿透指定路径下的所有文件
+def getfile(path):
+    word_list = []  # 用来存储所有的word文件路径
+    for current_folder, list_folders, files in os.walk(path):
+        for f in files:  # 用来遍历所有的文件，只取文件名，不取路径名
+            if f.endswith('doc') or f.endswith('docx'):  # 判断word文档
+                word_list.append(current_folder + '\\' + f)  # 把路径添加到列表中
+    return word_list  # 返回这个word文档的路径
+
+
+# 用户选择的转换模式
+def choice():
+    num_list = ['1', '2', '3']
+    a = 1
+    print('请选择转换模式：')
+    while a:
+        print('doc与docx互转请输入：\t1')
+        print('doc转docx请输入：\t2')
+        print('docx转doc请输入：\t3')
+        user_choice = input('我选择：')
+        if user_choice in num_list:
+            a = 0
+            return user_choice
+        else:
+            print('请输入正确的选项')
+
+
+if __name__ == '__main__':
+    word_path = input('请给出word文档所在路径：')
+    words = getfile(word_path)
+
+    # 设置一个路径path1，保存输出结果
+    print(&quot;[+] 请输入一个路径，用来存放所有的处理结果&quot;)
+    print(&quot;[+] 或者按回车键，我将自动把处理之后的文件存放在你的桌面&quot;)
+    path1 = input('')  # path1 用来存放所有的处理结果
+    if len(path1):
+        pass
+    else:
+        desktop_path = os.path.join(os.path.expanduser(&quot;~&quot;), 'Desktop')  # 获取桌面路径
+        path1 = os.path.join(desktop_path, '所有的处理结果')
+        os.makedirs(path1)
+
+    user_choice = choice()
+    print('转换中，请稍等……')
+    if user_choice == '1':
+        for word in words:
+            if word.endswith('doc'):
+                doc2docx(word)
+            else:
+                docx2doc(word)
+    if user_choice == '2':
+        for word in words:
+            if word.endswith('doc'):
+                doc2docx(word)
+    if user_choice == '3':
+        for word in words:
+            if word.endswith('docx'):
+                docx2doc(word)
+    print('转换完毕')
+
+</code></pre>
+<p>使用pyinstaller打包，EXE文件在dist文件夹中：</p>
+<pre><code class="language-bash">pyinstaller -F doc与docx互转.py
+</code></pre>
+<h2 id="heading-1">参考</h2>
+<p><a href="https://blog.csdn.net/weixin_44288604/article/details/117109361">python实现——doc与docx互转（终极版）_doc转docx python</a><br />
+<a href="https://blog.csdn.net/weixin_44288604/article/details/117110298">python实现——WORD转PDF（全自动化，支持doc、docx）_python doc转pdf</a><br />
+推荐书目：让工作化繁为简：用Python实现办公自动化-李杰臣编著</p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        <span class="pre pagbuttons">
+            <a role="navigation" href="/post/8-high-quality-resources-for-japanese-subtitles-and-how-to-learn-japanese-with-them/" title="8个高质量的日语字幕资源(以及如何用它们学习日语)">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                prev_post: 8个高质量的日语字幕资源(以及如何用它们学习日语)
+            </a>
+        </span>
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/zai-windows-fu-wu-qi-shang-an-zhuang-oracle-shu-ju-ku-jiao-cheng/" title="在Windows服务器上安装Oracle数据库教程">
+                next_post: 在Windows服务器上安装Oracle数据库教程
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/scripts/jquery.appear.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

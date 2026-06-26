@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="Gridea Pro">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>Windows  编译、运行与调试 Gridea-Pro 完整指南 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="Windows  编译、运行与调试 Gridea-Pro 完整指南">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="Gridea-Pro 是基于 Wails v2（Go + Vue 3） 开发的跨平台静态博客客户端，核心依赖 Go、Node.js、Wails 工具链，结合官方文档，记录源码拉取、环境配置、开发调试、编译打包全流程步骤，适配代码调试需求。 一、前置环境准备（按顺序安装） 安装 Git（拉取源码） 安装 Go 语言（核心后端依赖） 从 [Go官网](https:/&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/windows-bian-yiyun-xing-yu-diao-shi-gridea-pro-wan-zheng-zhi-nan/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Windows  编译、运行与调试 Gridea-Pro 完整指南","url":"https://xiaxi626.github.io/post/windows-bian-yiyun-xing-yu-diao-shi-gridea-pro-wan-zheng-zhi-nan/","description":"Gridea-Pro 是基于 Wails v2（Go + Vue 3） 开发的跨平台静态博客客户端，核心依赖 Go、Node.js、Wails 工具链，结合官方文档，记录源码拉取、环境配置、开发调试、编译打包全流程步骤，适配代码调试需求。 一、前置环境准备（按顺序安装） 安装 Git（拉取源码） 安装 Go 语言（核心后端依赖） 从 [Go官网](https:/\u0026hellip;","datePublished":"2026-06-20T19:57:26+08:00","dateModified":"2026-06-20T19:57:26+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/windows-bian-yiyun-xing-yu-diao-shi-gridea-pro-wan-zheng-zhi-nan/","name":"Windows  编译、运行与调试 Gridea-Pro 完整指南","position":2}]}</script>
+<meta property="og:title" content="Windows  编译、运行与调试 Gridea-Pro 完整指南">
+<meta property="og:description" content="Gridea-Pro 是基于 Wails v2（Go + Vue 3） 开发的跨平台静态博客客户端，核心依赖 Go、Node.js、Wails 工具链，结合官方文档，记录源码拉取、环境配置、开发调试、编译打包全流程步骤，适配代码调试需求。 一、前置环境准备（按顺序安装） 安装 Git（拉取源码） 安装 Go 语言（核心后端依赖） 从 [Go官网](https:/&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/windows-bian-yiyun-xing-yu-diao-shi-gridea-pro-wan-zheng-zhi-nan/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/images/avatar.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/windows-bian-yiyun-xing-yu-diao-shi-gridea-pro-wan-zheng-zhi-nan/">
+<meta name="twitter:title" content="Windows  编译、运行与调试 Gridea-Pro 完整指南">
+<meta name="twitter:description" content="Gridea-Pro 是基于 Wails v2（Go + Vue 3） 开发的跨平台静态博客客户端，核心依赖 Go、Node.js、Wails 工具链，结合官方文档，记录源码拉取、环境配置、开发调试、编译打包全流程步骤，适配代码调试需求。 一、前置环境准备（按顺序安装） 安装 Git（拉取源码） 安装 Go 语言（核心后端依赖） 从 [Go官网](https:/&amp;hellip;">
+<meta name="twitter:image" content="/images/avatar.png">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>Windows  编译、运行与调试 Gridea-Pro 完整指南</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2026-06-20</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/windows-bian-yiyun-xing-yu-diao-shi-gridea-pro-wan-zheng-zhi-nan/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/gridea-pro/" title="Gridea Pro">Gridea Pro</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><p>Gridea-Pro 是基于 Wails v2（Go + Vue 3） 开发的跨平台静态博客客户端，核心依赖 Go、Node.js、Wails 工具链，结合官方文档，记录源码拉取、环境配置、开发调试、编译打包全流程步骤，适配代码调试需求。</p>
+<h3 id="heading">一、前置环境准备（按顺序安装）</h3>
+<ol>
+<li>安装 Git（拉取源码）</li>
+<li>安装 Go 语言（核心后端依赖）<br />
+从 <a href="https://go.dev/dl/">Go官网</a>下载安装包，选择 Windows (x86_64) MSI 安装器。</li>
+<li>安装 Node.js（前端 Vue3 依赖）</li>
+<li>安装 Wails v2<br />
+(1)执行 Wails 安装命令（PowerShell）：
+<pre><code class="language-powershell">go install github.com/wailsapp/wails/v2/cmd/wails@latest
+</code></pre>
+(2)刷新环境变量（重启终端），验证安装：
+<pre><code class="language-powershell">wails version
+</code></pre>
+</li>
+<li>WebView2 依赖<br />
+Windows 编译 Wails 项目需要 WebView2 运行时，系统一般预装，缺失则手动安装。</li>
+</ol>
+<h3 id="heading-1">二、拉取项目源码</h3>
+<p>（略）</p>
+<h3 id="heading-2">三、安装前端依赖</h3>
+<p>Gridea-Pro 前端代码在 frontend 目录，需要单独安装 Vue3 等依赖。在powershell中运行以下命令：</p>
+<pre><code class="language-powershell"># 进入前端目录
+cd frontend
+# 安装所有前端依赖
+npm install
+# 返回项目根目录（后续命令都在根目录执行）
+cd ..
+</code></pre>
+<h3 id="--">四、开发模式：运行 &amp; 实时调试</h3>
+<h4 id="1-">1. 启动开发调试模式</h4>
+<p>在项目根目录执行：</p>
+<pre><code class="language-git">wails dev
+</code></pre>
+<p>执行成功后会自动编译 Go 后端代码，启动 Vue3 前端开发服务，自动弹出 Gridea-Pro 客户端窗口</p>
+<h4 id="2-">2. 代码调试方法</h4>
+<p>(1)前端 Vue3 代码调试<br />
+客户端窗口打开后，按 F12 调出浏览器开发者工具；<br />
+在 Sources 面板找到前端源码，添加断点、查看日志、排查样式 / 交互问题；<br />
+修改 frontend/src 下的 Vue/JS/CSS 代码，页面会即时刷新。<br />
+(2)Go 后端代码调试<br />
+<strong>安装 VS Code</strong>，并安装官方 Go 插件。用 VS Code 打开整个 gridea-pro 项目。<br />
+在 Go 源码（根目录 .go 文件、internal 目录）左侧行号处点击添加断点。<br />
+终端保持 wails dev 运行，操作客户端功能，代码运行到断点会自动暂停。<br />
+可查看变量、调用栈、单步执行，完成后端逻辑调试。<br />
+<strong>安装 Trae &amp; Trae Solo</strong>，用 VS Code 打开整个 gridea-pro 项目，按照弹出提示安装 Go 和 Vue 插件。使用传统调试方法的同时，亦可使用Agent交互让AI分析、修改、调试和审查代码。由于上下文处理能力，以及修改文件更新覆盖等问题，应更注重版本控制和备份。</p>
+<h3 id="heading-3">五、编译生产版本</h3>
+<p>调试完成后，可编译生成正式 .exe 安装包 / 绿色程序，命令依旧在项目根目录执行；</p>
+<pre><code class="language-powershell">wails build
+</code></pre>
+<p>编译成功后，产物默认生成在项目 build/bin 目录下；Windows 平台会生成 Gridea-Pro.exe。<br />
+<strong>精简压缩包（体积更小）</strong></p>
+<pre><code class="language-powershell">wails build -compress
+</code></pre>
+<p>编译后会额外生成压缩包，方便分发。<br />
+<strong>只打包、不生成安装程序（纯绿色 exe）</strong></p>
+<pre><code class="language-powershell">wails build -nsis=false
+</code></pre>
+<p>只保留免运行的 exe 程序，去掉 Windows 安装包。<br />
+<strong>生产模式（关闭调试、优化性能，正式发布用）</strong></p>
+<pre><code class="language-powershell">wails build -production
+</code></pre>
+<p>代码会做混淆 / 优化，去掉调试信息，适合对外发布。<br />
+<strong>兼顾体积 + 正式版本</strong></p>
+<pre><code class="language-powershell">wails build -production -compress
+</code></pre>
+<p>首次编译较慢会自动拉取依赖、编译前后端，耐心等待即可。</p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/ru-he-zai-github-shang-ti-jiao-pull-request/" title="如何在 GitHub 上提交 Pull Request">
+                next_post: 如何在 GitHub 上提交 Pull Request
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/scripts/jquery.appear.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="Technology">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>FFmpeg音频处理 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="FFmpeg音频处理">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="音频信息 查看音频信息 ffmpeg -i video.mp4 查看网络视频的信息 ffmpeg -i http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4 查看音频的布局情况 ffmpeg -layouts 音频抽取 从视频文件中抽取音频&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/ffmpeg-yin-pin-chu-li/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"FFmpeg音频处理","url":"https://xiaxi626.github.io/post/ffmpeg-yin-pin-chu-li/","description":"音频信息 查看音频信息 ffmpeg -i video.mp4 查看网络视频的信息 ffmpeg -i http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4 查看音频的布局情况 ffmpeg -layouts 音频抽取 从视频文件中抽取音频\u0026hellip;","image":"/post-images/ffmpeg-yin-pin-chu-li.jpg","datePublished":"2021-11-02T19:00:00+08:00","dateModified":"2026-05-15T22:34:46+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/ffmpeg-yin-pin-chu-li/","name":"FFmpeg音频处理","position":2}]}</script>
+<meta property="og:title" content="FFmpeg音频处理">
+<meta property="og:description" content="音频信息 查看音频信息 ffmpeg -i video.mp4 查看网络视频的信息 ffmpeg -i http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4 查看音频的布局情况 ffmpeg -layouts 音频抽取 从视频文件中抽取音频&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/ffmpeg-yin-pin-chu-li/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/post-images/ffmpeg-yin-pin-chu-li.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/ffmpeg-yin-pin-chu-li/">
+<meta name="twitter:title" content="FFmpeg音频处理">
+<meta name="twitter:description" content="音频信息 查看音频信息 ffmpeg -i video.mp4 查看网络视频的信息 ffmpeg -i http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4 查看音频的布局情况 ffmpeg -layouts 音频抽取 从视频文件中抽取音频&amp;hellip;">
+<meta name="twitter:image" content="/post-images/ffmpeg-yin-pin-chu-li.jpg">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>FFmpeg音频处理</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2021-11-02</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/ffmpeg-yin-pin-chu-li/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><h2 id="heading">音频信息</h2>
+<h3 id="heading-1">查看音频信息</h3>
+<pre><code class="language-bash">ffmpeg -i video.mp4
+</code></pre>
+<h3 id="heading-2">查看网络视频的信息</h3>
+<pre><code class="language-bash">ffmpeg -i http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4
+</code></pre>
+<h2 id="heading-3">查看音频的布局情况</h2>
+<pre><code class="language-bash">ffmpeg -layouts
+</code></pre>
+<h2 id="heading-4">音频抽取</h2>
+<h3 id="heading-5">从视频文件中抽取音频</h3>
+<h4 id="heading-6">提取完整音频</h4>
+<pre><code class="language-bash">ffmpeg -i sample.mp4 -q:a 0 -map a sample.mp3
+</code></pre>
+<h4 id="heading-7">提取指定时间段的音频</h4>
+<pre><code class="language-bash">ffmpeg -i sample.mp4 -ss 00:03:05 -t 00:00:45.0 -q:a 0 -map a sample.mp3
+</code></pre>
+<h4 id="heading-8">不重新编码</h4>
+<p>提取格式不能为MP3，可以是aac和m4a，请执行以下操作：</p>
+<pre><code class="language-bash">ffmpeg -i input-video.avi -vn -acodec copy output-audio.aac
+</code></pre>
+<p>-acodec 表示音频解码方式，-vn表示去除视频</p>
+<h4 id="heading-9">重新编码</h4>
+<p>下面是如何使用FFmpeg从视频中提取音频，然后使用libmp3lame将音频编码为不同的质量，并将其存储为mp3文件。</p>
+<pre><code class="language-bash">ffmpeg.exe -i videoWithAudio.mp4 -vn -c:a libmp3lame -q:a 1 onlyAudio.mp3
+</code></pre>
+<p>-q:a表示质量（在LAME文档中定义[1]），质量分布范围为0~6，其中0表示高质量音频，6表示低质量音频。</p>
+<h3 id="heading-10">从网络视频文件中抽取音频</h3>
+<pre><code class="language-bash">ffmpeg -i http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4 -acodec copy -vn out_net.mp4
+</code></pre>
+<p>-acodec 用于音频的编码设置</p>
+<h2 id="heading-11">合并</h2>
+<h3 id="heading-12">一种方法是连接到一起</h3>
+<pre><code class="language-bash">ffmpeg64.exe -i &quot;concat:123.mp3|124.mp3&quot; -acodec copy output.mp3
+</code></pre>
+<p>解释：-i代表输入参数<br />
+contact:123.mp3|124.mp3代表着需要连接到一起的音频文件<br />
+-acodec copy output.mp3 重新编码并复制到新文件中</p>
+<h3 id="heading-13">另一种方法是混合到一起</h3>
+<pre><code class="language-bash">ffmpeg64.exe -i 124.mp3 -i 123.mp3 -filter_complex amix=inputs=2:duration=first:dropout_transition=2 -f mp3 remix.mp3
+</code></pre>
+<p>解释：-i代表输入参数<br />
+-filter_complex ffmpeg滤镜功能，非常强大，详细请查看文档<br />
+amix是混合多个音频到单个音频输出<br />
+inputs=2代表是2个音频文件，如果更多则代表对应数字<br />
+duration 确定最终输出文件的长度<br />
+longest(最长)|shortest（最短）|first（第一个文件）<br />
+dropout_transition<br />
+The transition time, in seconds, for volume renormalization when an input stream ends. The default value is 2 seconds.<br />
+-f mp3  输出文件格式</p>
+<h2 id="heading-14">删除音频</h2>
+<h3 id="heading-15">删除视频中的音频</h3>
+<p>只将视频复制到一个新的文件中，而不复制音频。</p>
+<pre><code class="language-bash">ffmpeg.exe -i videoWithAudio.mp4 -c:v copy -an videoWithoutAudio.mp4
+</code></pre>
+<ul>
+<li>使用-c:v copy命令将视频复制到videoWithoutAudio.mp4</li>
+<li>-an告诉FFmpeg不要复制音频</li>
+</ul>
+<p>上述方法非常适用于电影中只有一个音轨的情况。</p>
+<h3 id="heading-16">删除某个特定音轨</h3>
+<p>你可以使用FFmpeg中的map命令来删除特定音轨。</p>
+<p>map命令的通用语法是：</p>
+<p><code>-map input_file_index:stream_type_specifier:stream_index</code></p>
+<p>然后，你可以通过<code>-map 0:a:1</code>（从0开始计数）从视频中选择第二个音轨。在上文的例子中，如果你的文件中有一个视频和两个音轨，那么你就可以使用<code>-map 0:a:1</code>只选择第二个音轨，并将它复制到你的最终输出文件中。</p>
+<p>同样，-map 0是指选择第一个输入文件中的所有数据（包括音频和视频），所以你需要先选择所有数据，然后取消选择音频。</p>
+<pre><code class="language-bash">ffmpeg.exe -i videoWithAudio.mp4 -map 0 -map 0:a:1 -copy videoOutput.mp4
+</code></pre>
+<p>如果电影中有5个音轨，除了第一个，其他你都想选择。这个时候你可以使用反向的map命令（在map命令的参数前加负号）。使用<code>-map -0:a:0</code> 这一命令，FFmpeg在选择时就会忽略第一个音轨。反向的map非常强大！</p>
+<p>实际上，我们已在前文学习了使用 -an命令从视频中删除音频。你可以通过如下方式，使用反向的map来达到相同的效果。</p>
+<pre><code class="language-bash">ffmpeg -i videoWithAudio.mp4 -map 0 -map -0:a videoWithoutAudio.mp4
+</code></pre>
+<h2 id="heading-17">添加音频</h2>
+<pre><code class="language-bash">ffmpeg -i video.mp4 -i audio.mp3 -c copy -map 0:v:0 -map 1:a:0 
+videoWithAudio.mp4
+</code></pre>
+<p>使用map命令将视频和音频分别从不同的文件中复制到同一个输出文件。</p>
+<ul>
+<li><code>-map 0:v:0</code> 选择了第0个输入文件（视频输入）的第0个轨道。</li>
+<li><code>–map 1:a:0</code> 选择了第一个输入文件（音频输入）的第0个轨道。</li>
+<li>不用重新编码，-c copy同时复制音轨和视轨到输出文件。如果你想要重新编码，可以选择合适的音视频编解码器，配置相应的编码质量。</li>
+</ul>
+<h2 id="heading-18">替换音频</h2>
+<p>请看下列命令行：<br />
+<code>-map input_file_index:stream_type_specifier:stream_index.</code><br />
+所以，你可以使用<code>-map 1:a:2</code>来选择第二个输入文件中的第三个音轨，因为计数从0开始。</p>
+<pre><code class="language-bash">ffmpeg -i video_with_audio.mp4 -i newAudio.wav -map 0:0 -map 1:0 -c:v copy -c:a libmp3lame -q:a 1 -shortest  video_with_newAudio.mp4
+</code></pre>
+<p>在上文的例子中，我们需要从一个文件中获取视频以及另一个文件中获取音频。而map命令非常便捷地完成了上述操作。我们从第一个输入文件（视频）中选择第0个轨道，并从第2个输入文件（音频）中选择第0个轨道。</p>
+<p>然后我们原样复制视频并重新编码音频，再将它们一起放入新的文件中。如果你不想重新编码音频，你只需使用-a:c copy命令，那么音频就只被复制而不会重新编码。</p>
+<p>-shortest命令用于确保当达到较短的输入文件（两个输入文件之一）长度时停止转换。如果这个功能在你的用例中无关紧要，那么你可以不使用这一命令。</p>
+<h2 id="heading-19">绘制音频波形图</h2>
+<h3 id="heading-20">绘制多声道混合的音频波形图</h3>
+<pre><code class="language-bash">ffmpeg -i music.mp3 -filter_complex &quot;showwavespic=s=640*120&quot; -frames:v 1 output.png
+</code></pre>
+<h3 id="heading-21">绘制不同声道的波形图</h3>
+<pre><code class="language-bash">ffmpeg -i 1.mp3 -filter_complex &quot;showwavespic=s=640*240:split_channels=1&quot; -frames:v 1 output.png
+</code></pre>
+<h2 id="-ebur128">使用多媒体滤镜 ebur128分析音频响度变化</h2>
+<p>ebur128扫描滤镜。这个滤镜需要一个音频流，但会原样输出。默认情况下，它以10Hz的频率记录一条消息，其中包括瞬时响度(由M标识)、短期响度(S)、综合响度(I)和响度范围(LRA)。</p>
+<p>滤镜有个实时的输出，展示响度的变化，主要的绘图区域包含短期响度（3秒分析），以及其后的舒适响度（400毫秒）</p>
+<p>具体参数：https://ffmpeg.org/ffmpeg-all.html#ebur128-1</p>
+<pre><code class="language-bash">ffmpeg -nostats -i stars.mp3 -filter_complex ebur128 -f null -
+</code></pre>
+<p>加-report可把结果输出到日志文件</p>
+<p><strong>利用EBU放缩规模计+18d的实时图像</strong></p>
+<p><code>ffplay -f lavfi -i &quot;amovie=input.mp3,ebur128=video=1:meter=18 [out0][out1]&quot;</code></p>
+<h2 id="heading-22">改变格式</h2>
+<pre><code class="language-bash">ffmpeg -i audio.mp3 -f ogg out.ogg
+</code></pre>
+<p>-f ogg表示编码格式是ogg</p>
+<h2 id="heading-23">改变采样率</h2>
+<pre><code class="language-bash">ffmpeg -i audio.mp3 -ar 8000 out.mp3
+</code></pre>
+<p>-ar 用于设置音频采样率</p>
+<h2 id="heading-24">改变比特率</h2>
+<pre><code class="language-bash">ffmpeg -i audio.mp3 -ab 5000 out.mp3
+</code></pre>
+<p>-ab 用于设置音频比特率</p>
+<h2 id="heading-25">片段截取</h2>
+<p>-ss 表示开始时间（时：分：秒），-to 表示结束时间（时：分：秒），-t 表示截取时长（时：分：秒）</p>
+<pre><code class="language-bash">ffmpeg -i audio.mp3 -ss 0:0:10 -to 0:0:20 out.mp3
+ffmpeg -i audio.mp3 -ss 0:0:10 -t 0:0:20 out.mp3
+</code></pre>
+<p>也可以像下面这样，以秒为单位。</p>
+<pre><code class="language-bash">ffmpeg -i audio.mp3 -ss 10 -t 20 out.mp3
+</code></pre>
+<p>-ss用于设置开始时间，-t用于设置持续时间</p>
+<h2 id="heading-26">音频声道</h2>
+<h3 id="heading-27">改变声道</h3>
+<pre><code class="language-bash">ffmpeg -i audio.mp3 -ac 1 out.mp3
+</code></pre>
+<p>-ac 用于设置声道，1表示单声道，2表示立体声</p>
+<h3 id="heading-28">双声道合并单声道</h3>
+<pre><code class="language-bash">ffmpeg -i music.mp3 -ac 1 music.aac
+</code></pre>
+<h3 id="heading-29">单声道转双声道</h3>
+<pre><code class="language-bash">ffmpeg -i left.aac -ac 2 output.m4a
+</code></pre>
+<h3 id="heading-30">双声道的提取</h3>
+<p>-map_channel [input_file_id.stream_specifier.channel_id|-1][?][:output_file_id.stream_specifier]<br />
+<strong>方式一：</strong></p>
+<pre><code class="language-bash">ffmpeg -i music.mp3 -map_channel 0.0.0 letf.aac -map_channel 0.0.1 right.aac
+</code></pre>
+<p><strong>方式二：</strong><br />
+<a href="http://ffmpeg.org/ffmpeg-all.html#pan-1">使用pan滤镜</a></p>
+<pre><code class="language-bash">ffmpeg -i music.mp3 -filter_complex &quot;[0:0]pan=1c|c0=c0[left];[0:0]pan=1c|c0=c1[right]&quot; -map &quot;[left]&quot; left.aac -map &quot;[right]&quot; right.aac -y
+</code></pre>
+<h3 id="heading-31">双声道转双音频流，把双声道音频提取出来转为一个音频文件两个音频流</h3>
+<pre><code class="language-bash">ffmpeg -i music.mp3 -filter_complex channelsplit=channel_layout=stereo output.mka
+</code></pre>
+<p>可以看到生成的视频就包含了两个流，大多默认情况下播放器只会播放第一个流</p>
+<h3 id="heading-32">将两个音频源合并为双声道</h3>
+<pre><code class="language-bash">ffmpeg -i left.aac -i right.aac -filter_complex &quot;[0:a][1:a]amerge=inputs=2[aout]&quot; -map &quot;[aout]&quot; output.mka
+</code></pre>
+<p>//mka为acc编码格式</p>
+<h2 id="heading-33">音频音量</h2>
+<h3 id="heading-34">音频音量探测</h3>
+<pre><code class="language-bash">ffmpeg -i test.mp4 -filter_complex volumedetect -c:v copy -f null /dev/null
+</code></pre>
+<p>mean_volume为获得音频的平均大小</p>
+<h3 id="heading-35">音量设置</h3>
+<h4 id="-vol">使用-vol选项</h4>
+<pre><code class="language-bash">ffmpeg -i music.mp3 -vol 30 sound_low.mp3
+</code></pre>
+<p>-vol选项接受从0到256的整数值，其中256是最大值</p>
+<h4 id="heading-36">使用表中描述的卷过滤器</h4>
+<p><strong>音量降低到三分之二</strong></p>
+<pre><code class="language-bash">ffmpeg -i music.mp3 -af volume=2/3 quiet_music.mp3
+</code></pre>
+<p><strong>增加10分贝的音量</strong></p>
+<pre><code class="language-bash">ffmpeg -i music.mp3 -af volume=10dB louder_sound.mp3
+</code></pre>
+<h2 id="heading-37">加快/减慢音频节奏</h2>
+<h3 id="heading-38">加快</h3>
+<p><code>ffplay music.mp3 -af atempo=1.5</code></p>
+<h3 id="heading-39">减慢</h3>
+<p><code>ffplay music.mp3 -af atempo=0.5</code></p>
+<h2 id="chorus-">chorus 给声音添加合唱效果</h2>
+<p>可以让独唱变得像合唱，但也可以用于仪表。</p>
+<p>合唱与回声效应都有短延迟,但是回波延迟是常数,合唱则采用不同的正弦或三角调制。调制深度范围定义了调制延迟(播放之前或之后的延迟)。因此延迟的声音听起来较慢或更快,这是原来周围的延迟调整声音,像是有一个与合唱整体略微差异。</p>
+<p>它接受下面的参数（每个参数项如果有多个可能值用|分隔）：</p>
+<p>in_gain</p>
+<p>设置输出增益，默认0.4</p>
+<p>out_gain</p>
+<p>设置输出增益，默认0.4</p>
+<p>delays</p>
+<p>设置延迟，延迟通常在40ms-60ms</p>
+<p>decays</p>
+<p>设置衰减</p>
+<p>speeds</p>
+<p>设置速度</p>
+<p>depths</p>
+<p>设置深度</p>
+<p>例子</p>
+<p>一个延迟（二人合唱效果）</p>
+<p><code>chorus=0.7:0.9:55:0.4:0.25:2</code></p>
+<p>两个延迟（三人合唱效果）</p>
+<p><code>ffplay music.mp3 -af &quot;chorus=0.6:0.9:50|60:0.4|0.32:0.25|0.4:2|1.3&quot;</code></p>
+<p>三个延迟（四人及更多合唱效果）</p>
+<p><code>horus=0.5:0.9:50|60|40:0.4|0.32|0.3:0.25|0.4|0.3:2|2.3|1.3</code></p>
+<h1 id="heading-40">参考文章</h1>
+<p><a href="https://blog.csdn.net/PYJTRK/article/details/122837821">FFMPEG常用命令（一）：音视频信息与抽取</a><br />
+<a href="https://blog.csdn.net/PYJTRK/article/details/122843712">FFMPEG常用命令（三）：音频相关命令</a><br />
+<a href="https://blog.csdn.net/sinat_14826983/article/details/82975561">ffmpeg常用音频处理</a><br />
+<a href="https://zhuanlan.zhihu.com/p/493712303">使用FFmpeg添加、删除、替换和提取视频中的音频</a><br />
+<a href="https://www.cnblogs.com/CodeAndMoe/p/13360011.html">🔨 FFmpeg 提取视频的音频 </a><br />
+<a href="https://www.cnblogs.com/simadi/p/10649345.html">ffmpeg 多个音频合并 截取 拆分</a></p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        <span class="pre pagbuttons">
+            <a role="navigation" href="/post/jie-jue-steam-chuang-yi-gong-fang-wu-fa-deng-lu-de-fang-fa/" title="解决Steam创意工坊无法登陆的方法">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                prev_post: 解决Steam创意工坊无法登陆的方法
+            </a>
+        </span>
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/ffmpeg-tu-pian-chu-li/" title="FFmpeg图片处理">
+                next_post: FFmpeg图片处理
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/scripts/jquery.appear.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="Git">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>如何在 GitHub 上提交 Pull Request · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="如何在 GitHub 上提交 Pull Request">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="本文记录 Fork 仓库到创建分支、提交改动、发起 PR、再到删除分支的完整流程，防止自己忘记。 一、Fork远程仓库 1、打开原作者的仓库页面，如https://github.com/Gridea-Pro/gridea-pro-themes； 2、点击右上角Fork按钮，自动跳转到&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/ru-he-zai-github-shang-ti-jiao-pull-request/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"如何在 GitHub 上提交 Pull Request","url":"https://xiaxi626.github.io/post/ru-he-zai-github-shang-ti-jiao-pull-request/","description":"本文记录 Fork 仓库到创建分支、提交改动、发起 PR、再到删除分支的完整流程，防止自己忘记。 一、Fork远程仓库 1、打开原作者的仓库页面，如https://github.com/Gridea-Pro/gridea-pro-themes； 2、点击右上角Fork按钮，自动跳转到\u0026hellip;","datePublished":"2026-06-19T09:47:37+08:00","dateModified":"2026-06-19T23:12:41+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/ru-he-zai-github-shang-ti-jiao-pull-request/","name":"如何在 GitHub 上提交 Pull Request","position":2}]}</script>
+<meta property="og:title" content="如何在 GitHub 上提交 Pull Request">
+<meta property="og:description" content="本文记录 Fork 仓库到创建分支、提交改动、发起 PR、再到删除分支的完整流程，防止自己忘记。 一、Fork远程仓库 1、打开原作者的仓库页面，如https://github.com/Gridea-Pro/gridea-pro-themes； 2、点击右上角Fork按钮，自动跳转到&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/ru-he-zai-github-shang-ti-jiao-pull-request/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/images/avatar.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/ru-he-zai-github-shang-ti-jiao-pull-request/">
+<meta name="twitter:title" content="如何在 GitHub 上提交 Pull Request">
+<meta name="twitter:description" content="本文记录 Fork 仓库到创建分支、提交改动、发起 PR、再到删除分支的完整流程，防止自己忘记。 一、Fork远程仓库 1、打开原作者的仓库页面，如https://github.com/Gridea-Pro/gridea-pro-themes； 2、点击右上角Fork按钮，自动跳转到&amp;hellip;">
+<meta name="twitter:image" content="/images/avatar.png">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>如何在 GitHub 上提交 Pull Request</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2026-06-19</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/ru-he-zai-github-shang-ti-jiao-pull-request/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/git/" title="Git">Git</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><p>本文记录 Fork 仓库到创建分支、提交改动、发起 PR、再到删除分支的完整流程，防止自己忘记。</p>
+<h3 id="fork">一、Fork远程仓库</h3>
+<p>1、打开原作者的仓库页面，如<a href="https://github.com/Gridea-Pro/gridea-pro-themes">https://github.com/Gridea-Pro/gridea-pro-themes</a>；<br />
+2、点击右上角Fork按钮，自动跳转到<code>Create a new fork</code>界面，点击Create fork按钮。</p>
+<h3 id="heading">二、保持主分支干净</h3>
+<p>Fork 完成后，仓库会有一个默认分支（通常为 master 或 main），请勿在主分支上开发。</p>
+<h3 id="heading-1">三、拉取远程仓库代码</h3>
+<p>使用 <code>git clone</code> 将Fork后的远程仓库clone到本地。<br />
+克隆远程远程仓库的方法有很多。<br />
+(1) 使用clone命令下载远程仓库，<code>git clone</code><br />
+远程URL是Git用于指代“代码存储位置”的专业术语。该URL可以是您在GitHub上的仓库、其他用户的分支，甚至位于完全不同的服务器上。<br />
+您只能向两种类型的URL地址发送推送：<br />
+一个类似 <code>https://github.com/user/repo.git</code> 的 HTTPS URL<br />
+一个 SSH URL，例如 <code>git@github.com:user/repo.git</code><br />
+Git会将远程URL与名称关联，默认的远程路径通常称为“origin”。<br />
+有时你会选择使用Github文件加速网站加速下载文件，这时候 <code>git clone</code> 就会使用例如</p>
+<pre><code class="language-git">git clone https://gh.xmly.dev/https://github.com/stilleshan/ServerStatus
+</code></pre>
+<p>提交到远程仓库时会提示</p>
+<pre><code class="language-git">remote: Invalid username or token. Password authentication is not supported for Git operations.
+fatal: Authentication failed for ……
+</code></pre>
+<p>此时需要把远程仓库地址从加速地址改成原始地址，这条命令不会影响你的分支和提交。</p>
+<pre><code class="language-git">git remote set-url origin &lt;远程仓库地址&gt;
+</code></pre>
+<p>(2) 使用初始化仓库下载远程仓库</p>
+<pre><code class="language-git">1. 在当前目录初始化一个空的本地仓库
+git init
+
+2. 将本地仓库与远程仓库关联（origin 是默认的远程名称）
+git remote add origin &lt;远程仓库地址&gt;
+
+3. 在 fetch 之前，先用这个命令查看远程仓库的默认分支叫什么
+git remote show origin
+
+4. 从远程仓库下载所有数据
+git fetch --all
+
+5. 创建并切换到本地 main 分支，并让它跟踪远程的 origin/main
+git checkout -b main --track origin/main
+
+6. 手动创建一个本地分支来跟踪远程分支，并检出文件
+# 创建并切换到本地 main 分支，并让它跟踪远程的 origin/main
+git checkout -b main --track origin/main
+</code></pre>
+<p>如果你想获取远程仓库的所有分支，其实不需要加 &ndash;all，因为 git fetch origin 默认就会下载该远程仓库下的所有分支和提交。</p>
+<p>如果你的远程仓库只有一个（即 <code>origin</code>），直接写 <code>git fetch origin</code> 效果完全一样。</p>
+<p>只想 fetch 到主分支（main 或 master），直接指定分支名即可。</p>
+<pre><code class="language-git"># 如果主分支是 main
+git fetch origin main
+</code></pre>
+<p>创建并切换到本地分支跟踪远程分支完全取决于你 <code>fetch</code> 了哪个远程分支。如果你 fetch 了 main，就写 origin/main：</p>
+<pre><code class="language-git">git checkout -b main --track origin/main
+</code></pre>
+<p>Git 提供了一个更智能的快捷命令，它会自动识别远程分支名，并在本地创建同名的分支。</p>
+<pre><code class="language-git"># 无论远程是 main、master 还是 develop，Git 都会自动取相同的名字
+git checkout --track origin/main   # 本地自动生成 main 分支
+git checkout --track origin/master # 本地自动生成 master 分支
+</code></pre>
+<h3 id="heading-2">四、新建功能/修复分支</h3>
+<p>(1) 创建一个新的分支<br />
+要创建新分支，请使用以下命令：</p>
+<pre><code class="language-git">git branch &lt;branch_name&gt;
+</code></pre>
+<p>(2) 创建新分支并切换至该新分支<br />
+你可以使用以下方式创建新分支并立即切换：</p>
+<pre><code class="language-git">git checkout -b &lt;branch_name&gt;
+</code></pre>
+<h3 id="heading-3">五、在分支上开发并提交</h3>
+<p>本地端需要执行的相关命令如下：</p>
+<pre><code class="language-git">git checkout master
+git pull upstream master        # 同步上游
+git checkout -b feat/typography
+# 添加或修改文件后：
+git add .
+git commit -m &quot;feat(typography): 新增typography 主题（Jinja2移植）&quot;
+git push origin feat/typography
+</code></pre>
+<h4 id="-git-">业界通用的 git 提交规范</h4>
+<p>AngularJS 在 github上 的提交记录被业内许多人认可，逐渐被大家引用。格式：</p>
+<pre><code class="language-less">type(scope) : subject
+</code></pre>
+<p>( 1 ) type（必须） : commit 的类别，只允许使用下面几个标识：<br />
+feat : 新功能<br />
+fix : 修复bug<br />
+docs : 文档改变<br />
+style : 代码格式改变<br />
+refactor : 某个已有功能重构<br />
+perf : 性能优化<br />
+test : 增加测试<br />
+build : 改变了build工具 如 grunt换成了 npm<br />
+revert : 撤销上一次的 commit<br />
+chore : 构建过程或辅助工具的变动<br />
+( 2 ) scope（可选） : 用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同。<br />
+( 3 ) subject（必须） : commit 的简短描述，不超过50个字符。<br />
+commitizen 是一个撰写合格 Commit message 的工具，<br />
+遵循 Angular 的提交规范。<br />
+安装：<br />
+全局安装 commitizen</p>
+<pre><code class="language-mipsasm">npm install -g commitizen
+</code></pre>
+<p>进入项目文件夹，运行如下命令：</p>
+<pre><code class="language-swift">commitizen init cz-conventional-changelog --save --save-exact
+</code></pre>
+<p>使用：<br />
+用 <code>git cz</code> 命令取代 <code>git commit</code>，这时会出现如下选项：<br />
+（ 1 ）选择 type<br />
+（ 2 ）填写 scope（选填）</p>
+<pre><code class="language-sqklc">? What is the scope of this change (e.g. component or file name)? (press enter to skip)
+core
+</code></pre>
+<p>（ 3 ）填写 subject</p>
+<pre><code class="language-sql">? Write a short, imperative tense description of the change:
+set a to b
+</code></pre>
+<p>完成，运行 <code>git log</code> 命令，查看我们刚才提交的 commit message，如下：</p>
+<pre><code class="language-sql">fix(core): set a to b
+</code></pre>
+<h3 id="-pull-request">六、发起 Pull Request</h3>
+<p>在你的 GitHub Fork 页面上，点击黄色横幅 Compare &amp; pull request；或进入 Pull requests &gt; New pull request。<br />
+Base repository 选择原作者仓库，base branch 选择 master（或指定的开发分支）；<br />
+Head repository 选择你的 Fork 分支 feat/typography。<br />
+填写 PR 标题和描述，建议和提交的 message 写的一样，例如：</p>
+<pre><code class="language-scss">feat(typography): 新增typography 主题（Jinja2移植）
+</code></pre>
+<p>点击 Create pull request。</p>
+<h3 id="heading-4">七、合并后删除分支</h3>
+<p>等待维护者审核并合并后，可在 PR 页面点击 Delete branch；<br />
+或者在本地和远程执行：</p>
+<pre><code class="language-git">git checkout master
+git pull upstream master
+git push origin master
+git branch -d feat/typography
+git push origin --delete feat/typography
+</code></pre>
+<h3 id="heading-5">参考</h3>
+<p><a href="https://www.cnblogs.com/smileher/p/18947894">如何在 GitHub 上提交 PR (Pull Request)</a><br />
+<a href="https://zhuanlan.zhihu.com/p/697280920">如何在github上进行PR</a><br />
+<a href="https://www.cnblogs.com/anly95/p/13163384.html">git commit 代码提交规范</a></p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        <span class="pre pagbuttons">
+            <a role="navigation" href="/post/windows-bian-yiyun-xing-yu-diao-shi-gridea-pro-wan-zheng-zhi-nan/" title="Windows  编译、运行与调试 Gridea-Pro 完整指南">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                prev_post: Windows  编译、运行与调试 Gridea-Pro 完整指南
+            </a>
+        </span>
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/ads-w-element-simulate-square-coaxial-rlgc-modeling/" title="ADS中用W-Element模拟方形同轴线的RLGC建模方法">
+                next_post: ADS中用W-Element模拟方形同轴线的RLGC建模方法
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/scripts/jquery.appear.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>
