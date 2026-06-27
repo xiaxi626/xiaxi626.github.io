@@ -20,13 +20,44 @@
 <meta content="telephone=no" name="format-detection">
 <meta name="renderer" content="webkit">
 
-<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@100;300;400;600&display=swap" />
+
+<style>
+.invisible { opacity: 0; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadein-right { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0px); } }
+@keyframes fadein-top { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0px); } }
+.fadeIn { animation: fadein 1s ease-out; }
+.fadeInRight { animation: fadein-right 1s ease-out; }
+.fadeInTop { animation: fadein-top 1s ease-out; }
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+.row { margin-right: -15px; margin-left: -15px; }
+.col-xs-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left; width: 100%; }
+@media (min-width: 768px) { .col-sm-3 { width: 25%; } .col-sm-9 { width: 75%; } }
+.main-container { text-align: left; margin: 0; padding: 80px 40px; overflow: hidden; float: left; }
+.side-container { height: 100vh; position: fixed; right: 0; top: 0; width: 25%; padding: 80px 20px; margin: 0; transform: rotate(0deg); text-align: left; float: none !important; font-style: normal; font-size: 1em; overflow-y: auto; overflow-x: hidden; }
+.side-container.col-xs-12 { width: 25%; float: none; }
+@media (max-width: 767px) { .side-container { width: 100%; position: relative; right: auto; height: auto; padding: 40px 30px 0 30px; } .side-container.col-xs-12 { width: 100%; } }
+@media (max-height: 600px) { .side-container { padding: 40px 30px 0 30px; height: auto; position: relative; right: auto; } }
+</style>
+
+<link rel="stylesheet" href="/styles/bootstrap.min.css" media="print" onload="this.media='all'" />
+<link rel="stylesheet" href="/styles/font-awesome.min.css" media="print" onload="this.media='all'" />
+
+
+<link rel="stylesheet" href="/styles/style.css" media="print" onload="this.media='all'" />
+
+<noscript>
 <link rel="stylesheet" href="/styles/bootstrap.min.css">
 <link rel="stylesheet" href="/styles/font-awesome.min.css">
 
-
 <link rel="stylesheet" href="/styles/style.css">
 
+</noscript>
 
 <link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
 
@@ -197,18 +228,18 @@
     
     <div class="post-content" v-pre><p>此文为记录ADS方形同轴线RLGC建模从报错到功能正常调用的过程，最终解决方案见文末。</p>
 <p>我们知道ADS中只有圆柱同轴线符号，没有其他结构的同轴线，因此我们在ADS仿真时，为了达到同样的阻抗，需要使用LineCalc计算实际阻抗在ADS中的同轴尺寸。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image1.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image1.png" alt="" /></p>
 <p>那有没有办法不用圆柱同轴符号呢？我们可以尝试一下用RLGC电路来模拟符号的方法。</p>
 <p>比如使用W_Element符号，该符号用于通过 RLGC 参数配置多导体输电线路。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image2.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image2.png" alt="" /></p>
 <p>为了使用W_Element，我们需要准备RLGC文件。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image3.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image3.png" alt="" /></p>
 <p>首先记住一定要打开一个workspace后再打开这个窗口，否则界面是这样的。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image4.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image4.png" alt="" /></p>
 <p>打开workspace后command line窗口就变成这样了。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image5.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image5.png" alt="" /></p>
 <p>点击Apply运行文件，点击保存按钮保存ael文件到指定位置。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image6.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image6.png" alt="" /></p>
 <p>由于我们准备的代码是静默生成文件，所以控制台无输出。</p>
 <p>代码如下&mdash;&mdash;</p>
 <pre><code class="language-ael">
@@ -255,11 +286,11 @@ i = i + 1;
 fclose(fid);
 </code></pre>
 <p>可以看到已经生成了RLGC文件。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image7.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image7.png" alt="" /></p>
 <p>但是在如下的电路中运行报错了。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image8.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image8.png" alt="" /></p>
 <p>W_Element1的设置如图所示。截图是错的，输入路径不能带双引号，否则会找不到文件。建议将rlgc文件放在项目文件夹，默认文件夹层级是“.\Megawave_wrk\data”。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image9.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image9.png" alt="" /></p>
 <p>为了验证RLGC文件是否正常，以及确认W_Element1是否设置错误，我们搭建这样一个电路，频率范围设置与RLGC代码中的一致。</p>
 <ol>
 <li>
@@ -285,11 +316,11 @@ PORT1 → W-ELEMENT1 → PORT2<br />
 地线全部默认</p>
 </li>
 </ol>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image10.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image10.png" alt="" /></p>
 <p>确认一下设置有没有问题。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image11.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image11.png" alt="" /></p>
 <p>运行提示如图所示，依然无法读取RLGC文件。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image12.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image12.png" alt="" /></p>
 <p>查阅官方文档寻找原因，得出以下结论。</p>
 <p>我现在用的是 Model_type=0（静态模型），但我的 RLGC文件是按频率分段的格式写的，这完全不匹配！</p>
 <p>一、官方文档明确说明：两种模式的文件格式完全不同</p>
@@ -382,9 +413,9 @@ fclose(fidR);
 fclose(fidG);
 </code></pre>
 <p>运行后，我的工程目录会生成这 4 个文件，然后 W-Element1这样设置（Model_type=1）。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image13.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image13.png" alt="" /></p>
 <p>然后我们发现报了这个奇怪的错误。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image14.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image14.png" alt="" /></p>
 <p>然后人工智能给了我提供奇怪的提示&mdash;&mdash;</p>
 <p>官方文档的隐藏要求：Model_type=1 的文件格式</p>
 <p>我再仔细看了一遍我贴的帮助文档，里面写了关键一句：</p>
@@ -503,8 +534,8 @@ fprintf(fid, \&quot;0.0\\n\&quot;); // Gd11
 fclose(fid);
 </code></pre>
 <p>然后我们试一下，完美。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image15.png" alt="" /></p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image16.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image15.png" alt="" /></p>
+<p><img src="/post-images/rlgc/image16.png" alt="" /></p>
 <p>结果一模一样。</p>
 <style>
   .image-container {
@@ -519,8 +550,8 @@ fclose(fid);
   }
 </style>
 <div class="image-container">
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image17.png" alt="">
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/rlgc/image18.png" alt="">
+<img src="/post-images/rlgc/image17.png" alt="">
+<img src="/post-images/rlgc/image18.png" alt="">
 </div>
 <p>现在我们回过头来说明一下代码的计算过程：</p>
 <ol>
@@ -718,11 +749,9 @@ Gdc → 直流漏电导
         </div>
     </div>
 
-    <script src="/scripts/jquery-3.1.0.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/scripts/jquery.appear.js"></script>
-    <script src="/scripts/typography.js"></script>
+    <script src="/scripts/jquery-3.1.0.min.js" defer></script>
+    <script src="/scripts/bootstrap.min.js" defer></script>
+    <script src="/scripts/typography.js" defer></script>
     
     <script>
     (function(){
@@ -807,6 +836,6 @@ Gdc → 直流漏电导
       document.body.appendChild(s);
     })();
     </script>
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

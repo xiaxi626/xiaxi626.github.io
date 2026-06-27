@@ -20,13 +20,44 @@
 <meta content="telephone=no" name="format-detection">
 <meta name="renderer" content="webkit">
 
-<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@100;300;400;600&display=swap" />
+
+<style>
+.invisible { opacity: 0; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadein-right { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0px); } }
+@keyframes fadein-top { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0px); } }
+.fadeIn { animation: fadein 1s ease-out; }
+.fadeInRight { animation: fadein-right 1s ease-out; }
+.fadeInTop { animation: fadein-top 1s ease-out; }
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+.row { margin-right: -15px; margin-left: -15px; }
+.col-xs-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left; width: 100%; }
+@media (min-width: 768px) { .col-sm-3 { width: 25%; } .col-sm-9 { width: 75%; } }
+.main-container { text-align: left; margin: 0; padding: 80px 40px; overflow: hidden; float: left; }
+.side-container { height: 100vh; position: fixed; right: 0; top: 0; width: 25%; padding: 80px 20px; margin: 0; transform: rotate(0deg); text-align: left; float: none !important; font-style: normal; font-size: 1em; overflow-y: auto; overflow-x: hidden; }
+.side-container.col-xs-12 { width: 25%; float: none; }
+@media (max-width: 767px) { .side-container { width: 100%; position: relative; right: auto; height: auto; padding: 40px 30px 0 30px; } .side-container.col-xs-12 { width: 100%; } }
+@media (max-height: 600px) { .side-container { padding: 40px 30px 0 30px; height: auto; position: relative; right: auto; } }
+</style>
+
+<link rel="stylesheet" href="/styles/bootstrap.min.css" media="print" onload="this.media='all'" />
+<link rel="stylesheet" href="/styles/font-awesome.min.css" media="print" onload="this.media='all'" />
+
+
+<link rel="stylesheet" href="/styles/style.css" media="print" onload="this.media='all'" />
+
+<noscript>
 <link rel="stylesheet" href="/styles/bootstrap.min.css">
 <link rel="stylesheet" href="/styles/font-awesome.min.css">
 
-
 <link rel="stylesheet" href="/styles/style.css">
 
+</noscript>
 
 <link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
 
@@ -254,7 +285,7 @@ cnpm<br />
 </code></pre>
 <p>修改其中默认的port值。<br />
 默认hexo主题如图所示——<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1681659384339.png" alt="" /></p>
+<img src="/post-images/1681659384339.png" alt="" /></p>
 <h2 id="hexo-3">hexo主题修改</h2>
 <h3 id="heading">安装</h3>
 <p>我选择 <code>hexo-theme-shana</code>主题，git拉取到themes文件夹下</p>
@@ -275,7 +306,7 @@ git pull origin master
 <h2 id="gitee">Gitee配置</h2>
 <h3 id="gitee-1">创建gitee公开仓库</h3>
 <p>仓库名必须是用户名<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1681660642645.png" alt="" /></p>
+<img src="/post-images/1681660642645.png" alt="" /></p>
 <h3 id="heading-3">安装部署命令</h3>
 <pre><code class="language-bash">npm install hexo-deployer-git --save
 </code></pre>
@@ -301,7 +332,7 @@ hexo d	  --上传到git
 <h3 id="giteepages">开启GiteePages</h3>
 <p>服务→Gitee Pages→启动<br />
 需要实名认证，等待2个工作日<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1681704529768.png" alt="" /></p>
+<img src="/post-images/1681704529768.png" alt="" /></p>
 <h2 id="heading-4">参考</h2>
 <p><a href="https://cloud.tencent.com/developer/article/2001105">Hexo + Gitee 博客搭建详细指南 - 腾讯云开发者社区-腾讯云</a><br />
 <a href="https://www.cnblogs.com/cnsyear/p/12724713.html">npm install 使用国内镜像 - 趙小傑 - 博客园</a><br />
@@ -392,11 +423,9 @@ hexo d	  --上传到git
         </div>
     </div>
 
-    <script src="/scripts/jquery-3.1.0.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/scripts/jquery.appear.js"></script>
-    <script src="/scripts/typography.js"></script>
+    <script src="/scripts/jquery-3.1.0.min.js" defer></script>
+    <script src="/scripts/bootstrap.min.js" defer></script>
+    <script src="/scripts/typography.js" defer></script>
     
     <script>
     (function(){
@@ -481,6 +510,6 @@ hexo d	  --上传到git
       document.body.appendChild(s);
     })();
     </script>
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

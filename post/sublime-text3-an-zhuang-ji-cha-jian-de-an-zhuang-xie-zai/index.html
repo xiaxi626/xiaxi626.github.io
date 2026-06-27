@@ -20,13 +20,44 @@
 <meta content="telephone=no" name="format-detection">
 <meta name="renderer" content="webkit">
 
-<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@100;300;400;600&display=swap" />
+
+<style>
+.invisible { opacity: 0; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadein-right { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0px); } }
+@keyframes fadein-top { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0px); } }
+.fadeIn { animation: fadein 1s ease-out; }
+.fadeInRight { animation: fadein-right 1s ease-out; }
+.fadeInTop { animation: fadein-top 1s ease-out; }
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+.row { margin-right: -15px; margin-left: -15px; }
+.col-xs-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left; width: 100%; }
+@media (min-width: 768px) { .col-sm-3 { width: 25%; } .col-sm-9 { width: 75%; } }
+.main-container { text-align: left; margin: 0; padding: 80px 40px; overflow: hidden; float: left; }
+.side-container { height: 100vh; position: fixed; right: 0; top: 0; width: 25%; padding: 80px 20px; margin: 0; transform: rotate(0deg); text-align: left; float: none !important; font-style: normal; font-size: 1em; overflow-y: auto; overflow-x: hidden; }
+.side-container.col-xs-12 { width: 25%; float: none; }
+@media (max-width: 767px) { .side-container { width: 100%; position: relative; right: auto; height: auto; padding: 40px 30px 0 30px; } .side-container.col-xs-12 { width: 100%; } }
+@media (max-height: 600px) { .side-container { padding: 40px 30px 0 30px; height: auto; position: relative; right: auto; } }
+</style>
+
+<link rel="stylesheet" href="/styles/bootstrap.min.css" media="print" onload="this.media='all'" />
+<link rel="stylesheet" href="/styles/font-awesome.min.css" media="print" onload="this.media='all'" />
+
+
+<link rel="stylesheet" href="/styles/style.css" media="print" onload="this.media='all'" />
+
+<noscript>
 <link rel="stylesheet" href="/styles/bootstrap.min.css">
 <link rel="stylesheet" href="/styles/font-awesome.min.css">
 
-
 <link rel="stylesheet" href="/styles/style.css">
 
+</noscript>
 
 <link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
 
@@ -197,20 +228,20 @@
     
     <div class="post-content" v-pre><h2 id="1sublime-text4">1、安装Sublime Text4</h2>
 <p>到 <a href="https://www.sublimetext.com/download">https://www.sublimetext.com/download</a> 下载安装包，下载完成后点击安装即可。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682410571841.png" alt="" /></p>
+<img src="/post-images/1682410571841.png" alt="" /></p>
 <h2 id="2">2、安装插件</h2>
 <h3 id="package-control">Package Control</h3>
 <p>要想安装其他的插件，首先就得安装Package Control。<br />
 打开Sublime Text4，按下Ctr+Shift+P快捷键，打开命令窗口，输入Install，选择Package Control: Install Package选项。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682410739417.PNG" alt="" /></p>
+<img src="/post-images/1682410739417.PNG" alt="" /></p>
 <h3 id="heading">汉化</h3>
 <p>重复上一步的操作，会弹出如下搜索框，输入 <code>Chinese</code>，并选择第一项——“ChineseLocalizations”。</p>
 <h3 id="heading-1">安装其他插件</h3>
 <p>重复操作。<br />
 在组件窗口中输入插件名称，选择插件进行安装。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682410882068.PNG" alt="" /><br />
+<img src="/post-images/1682410882068.PNG" alt="" /><br />
 等待安装，安装完成后，查看，Package Settings中是否存在插件。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682410966108.png" alt="" /></p>
+<img src="/post-images/1682410966108.png" alt="" /></p>
 <h3 id="heading-2">从仓库安装插件</h3>
 <ol>
 <li>Crtl + Shift + p 调出 package control，输入 add repository，确定</li>
@@ -219,8 +250,8 @@
 </ol>
 <h2 id="3">3、卸载插件</h2>
 <p>Ctrl+Shift+P 打开Package Control，输入remove package回车，然后找到你要卸载的插件进行卸载。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682411145493.png" alt="" /><br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682411179875.png" alt="" /></p>
+<img src="/post-images/1682411145493.png" alt="" /><br />
+<img src="/post-images/1682411179875.png" alt="" /></p>
 <h2 id="4">4、插件推荐</h2>
 <h3 id="emmet">Emmet</h3>
 <p>代码快速编辑神器 视频演示地址<a href="http://docs.emmet.io/">http://docs.emmet.io/</a><br />
@@ -272,7 +303,7 @@ Ctrl+Shift+P，选择autoprefixer</p>
 <h2 id="heading-3">插件安装问题</h2>
 <h3 id="there-are-no-packages-available-for-installation">解决There are no packages available for installation</h3>
 <p>通过Sublime Text的Package Control来安装一些插件，但是点击Package Control:Install Package之后一段时间，弹出一个窗口，提示信息为：There are no packages available for installation：<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682736145778.png" alt="" /><br />
+<img src="/post-images/1682736145778.png" alt="" /><br />
 <strong>解决方法：</strong><br />
 首选项-Package Settings-Package Control-Settings<br />
 添加如下配置：</p>
@@ -407,11 +438,9 @@ Preferences 》Package Settings 》 Package Control 》 Settings - User<br />
         </div>
     </div>
 
-    <script src="/scripts/jquery-3.1.0.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/scripts/jquery.appear.js"></script>
-    <script src="/scripts/typography.js"></script>
+    <script src="/scripts/jquery-3.1.0.min.js" defer></script>
+    <script src="/scripts/bootstrap.min.js" defer></script>
+    <script src="/scripts/typography.js" defer></script>
     
     <script>
     (function(){
@@ -496,6 +525,6 @@ Preferences 》Package Settings 》 Package Control 》 Settings - User<br />
       document.body.appendChild(s);
     })();
     </script>
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

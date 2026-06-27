@@ -20,13 +20,44 @@
 <meta content="telephone=no" name="format-detection">
 <meta name="renderer" content="webkit">
 
-<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@100;300;400;600&display=swap" />
+
+<style>
+.invisible { opacity: 0; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadein-right { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0px); } }
+@keyframes fadein-top { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0px); } }
+.fadeIn { animation: fadein 1s ease-out; }
+.fadeInRight { animation: fadein-right 1s ease-out; }
+.fadeInTop { animation: fadein-top 1s ease-out; }
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+.row { margin-right: -15px; margin-left: -15px; }
+.col-xs-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left; width: 100%; }
+@media (min-width: 768px) { .col-sm-3 { width: 25%; } .col-sm-9 { width: 75%; } }
+.main-container { text-align: left; margin: 0; padding: 80px 40px; overflow: hidden; float: left; }
+.side-container { height: 100vh; position: fixed; right: 0; top: 0; width: 25%; padding: 80px 20px; margin: 0; transform: rotate(0deg); text-align: left; float: none !important; font-style: normal; font-size: 1em; overflow-y: auto; overflow-x: hidden; }
+.side-container.col-xs-12 { width: 25%; float: none; }
+@media (max-width: 767px) { .side-container { width: 100%; position: relative; right: auto; height: auto; padding: 40px 30px 0 30px; } .side-container.col-xs-12 { width: 100%; } }
+@media (max-height: 600px) { .side-container { padding: 40px 30px 0 30px; height: auto; position: relative; right: auto; } }
+</style>
+
+<link rel="stylesheet" href="/styles/bootstrap.min.css" media="print" onload="this.media='all'" />
+<link rel="stylesheet" href="/styles/font-awesome.min.css" media="print" onload="this.media='all'" />
+
+
+<link rel="stylesheet" href="/styles/style.css" media="print" onload="this.media='all'" />
+
+<noscript>
 <link rel="stylesheet" href="/styles/bootstrap.min.css">
 <link rel="stylesheet" href="/styles/font-awesome.min.css">
 
-
 <link rel="stylesheet" href="/styles/style.css">
 
+</noscript>
 
 <link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
 
@@ -409,33 +440,33 @@
 <p><a href="https://blog.csdn.net/sinat_14826983/article/details/83043906">https://blog.csdn.net/sinat_14826983/article/details/83043906</a></p>
 <h2 id="1">1.安装</h2>
 <p>首先登陆官网</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image1.jpeg" alt="" />{width=&ldquo;4.153543307086614in&rdquo;</p>
+<p><img src="/post-images/media/image1.jpeg" alt="" />{width=&ldquo;4.153543307086614in&rdquo;</p>
 <p>height=&ldquo;2.578740157480315in&rdquo;}</p>
 <p>选择中间的Window版本，然后看到有两个， 先讲讲第一个链接。</p>
 <p>选择Windows builds from gyan.dev\</p>
 <p>跳转到下载页面如下图：</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image2.jpeg" alt="" />{width=&ldquo;2.874015748031496in&rdquo;</p>
+<p><img src="/post-images/media/image2.jpeg" alt="" />{width=&ldquo;2.874015748031496in&rdquo;</p>
 <p>height=&ldquo;2.7559044181977255in&rdquo;}</p>
 <p>在页面中，选择release-full.7z下载。</p>
 <p>再说说第二个链接</p>
 <p>Windows builds by BtbN</p>
 <p>点击后会跳转到github上面。如下图：</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image3.jpeg" alt="" />{width=&ldquo;3.0196850393700787in&rdquo;</p>
+<p><img src="/post-images/media/image3.jpeg" alt="" />{width=&ldquo;3.0196850393700787in&rdquo;</p>
 <p>height=&ldquo;2.7913385826771653in&rdquo;}</p>
 <p>选择win64的gpl版本。然后下载下来。</p>
 <p>添加系统环境变量。C:\ffmpeg-4.4-full_build\ffmpeg-4.4-full_build\bin（解压后文件夹地址），将该bin目录添加到系统环境变量中。在原有基础上添加新的变量前面要输入分号。步骤如图所示&mdash;&mdash;</p>
 <p>Win7</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image4.jpeg" alt="" />{width=&ldquo;2.7125984251968505in&rdquo;</p>
-<p>height=&ldquo;2.854330708661417in&rdquo;}<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image5.jpeg" alt="" />{width=&ldquo;2.7755905511811023in&rdquo;</p>
+<p><img src="/post-images/media/image4.jpeg" alt="" />{width=&ldquo;2.7125984251968505in&rdquo;</p>
+<p>height=&ldquo;2.854330708661417in&rdquo;}<img src="/post-images/media/image5.jpeg" alt="" />{width=&ldquo;2.7755905511811023in&rdquo;</p>
 <p>height=&ldquo;2.8622047244094486in&rdquo;}</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image6.jpeg" alt="" />{width=&ldquo;2.7755905511811023in&rdquo;</p>
-<p>height=&ldquo;2.8622047244094486in&rdquo;}<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image7.jpeg" alt="" />{width=&ldquo;2.5984241032370954in&rdquo;</p>
+<p><img src="/post-images/media/image6.jpeg" alt="" />{width=&ldquo;2.7755905511811023in&rdquo;</p>
+<p>height=&ldquo;2.8622047244094486in&rdquo;}<img src="/post-images/media/image7.jpeg" alt="" />{width=&ldquo;2.5984241032370954in&rdquo;</p>
 <p>height=&ldquo;2.866140638670166in&rdquo;}</p>
 <p>Win10</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image8.jpeg" alt="" />{width=&ldquo;3.2086614173228347in&rdquo;</p>
+<p><img src="/post-images/media/image8.jpeg" alt="" />{width=&ldquo;3.2086614173228347in&rdquo;</p>
 <p>height=&ldquo;3.3779516622922134in&rdquo;}</p>
 <p>在PowerShell中输入：ffmpeg &ndash;version</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image9.jpeg" alt="" />{width=&ldquo;3.877952755905512in&rdquo;</p>
+<p><img src="/post-images/media/image9.jpeg" alt="" />{width=&ldquo;3.877952755905512in&rdquo;</p>
 <p>height=&ldquo;3.12992125984252in&rdquo;}</p>
 <p>出现上面的信息，则配置成功。</p>
 <h2 id="2ffmpeg">2.ffmpeg常用命令</h2>
@@ -700,28 +731,28 @@
 <h3 id="41">4.1.查看多媒体数据包信息</h3>
 <p>ffprobe -show_packets inuput.flv</p>
 <p>通过show_packets查看的多媒体数据包信息使用PACKET标签括起来，其中包含信息主要如下表：</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image10.png" alt="" />{width=&ldquo;6.673228346456693in&rdquo;</p>
+<p><img src="/post-images/media/image10.png" alt="" />{width=&ldquo;6.673228346456693in&rdquo;</p>
 <p>height=&ldquo;2.783464566929134in&rdquo;}</p>
 <p>PACKET字段说明</p>
 <h3 id="42">4.2.分析多媒体的封装格式</h3>
 <p>ffprobe -show_format output.mp4</p>
 <p>上述命令可以查看多媒体的封装格式，其使用FORMAT标签括起来显示：</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image11.png" alt="" />{width=&ldquo;6.452755905511811in&rdquo;</p>
+<p><img src="/post-images/media/image11.png" alt="" />{width=&ldquo;6.452755905511811in&rdquo;</p>
 <p>height=&ldquo;2.181101268591426in&rdquo;}</p>
 <p>format字段说明</p>
 <h3 id="43">4.3.查看视频文件中的帧信息</h3>
 <p>通过-show_frames参数可以查看每一帧的信息</p>
 <p>ffprobe -show_frames inuput.flv\</p>
 <p>查看视频文件中的帧信息，输出的帧信息使用FRAME标签括起来：</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image12.png" alt="" />{width=&ldquo;5.881889763779528in&rdquo;</p>
+<p><img src="/post-images/media/image12.png" alt="" />{width=&ldquo;5.881889763779528in&rdquo;</p>
 <p>height=&ldquo;3.625984251968504in&rdquo;}</p>
 <p>frame字段说明</p>
 <h3 id="44">4.4.查看多媒体文件中的流信息</h3>
 <p>ffprobe -show_streams inuput.flv</p>
 <p>流的信息将使用STREAM标签括起来：</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image13.png" alt="" />{width=&ldquo;6.551181102362205in&rdquo;</p>
+<p><img src="/post-images/media/image13.png" alt="" />{width=&ldquo;6.551181102362205in&rdquo;</p>
 <p>height=&ldquo;3.547244094488189in&rdquo;}</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image14.png" alt="" />{width=&ldquo;6.291338582677166in&rdquo;</p>
+<p><img src="/post-images/media/image14.png" alt="" />{width=&ldquo;6.291338582677166in&rdquo;</p>
 <p>height=&ldquo;1.5433070866141732in&rdquo;}</p>
 <p>stream字段说明</p>
 <h3 id="45">4.5.多种格式输出</h3>
@@ -820,7 +851,7 @@
 <p>Regsvr32 /s audio_sniffer.dll</p>
 <p>注册成功后，可以采用以下命令进行检查是否注册成功</p>
 <p>ffmpeg -list_devices true -f dshow -I dummy</p>
-<p>系统输出大致如下:<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image15.jpeg" alt="" />{width=&ldquo;5.708333333333333in&rdquo;</p>
+<p>系统输出大致如下:<img src="/post-images/media/image15.jpeg" alt="" />{width=&ldquo;5.708333333333333in&rdquo;</p>
 <p>height=&ldquo;1.5520833333333333in&rdquo;}</p>
 <p>&ldquo;screen-capture-recorder&rdquo; 这个就是桌面捕获设备,用于录制屏幕</p>
 <p>&ldquo;virtual-audio-capturer&rdquo; 这个是音频捕获设备，用于录制声音</p>
@@ -831,7 +862,7 @@
 <p>audio=&ldquo;virtual-audio-capturer&rdquo; -c:v libx264rgb -preset:v ultrafast</p>
 <p>-tune:v zerolatency output.mp4</p>
 <p>用vlc打开录制文件，可以看书画面显示正常以及声音正常被播放处理，截图如下：</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/media/image16.jpeg" alt="" />{width=&ldquo;7.59166447944007in&rdquo;</p>
+<p><img src="/post-images/media/image16.jpeg" alt="" />{width=&ldquo;7.59166447944007in&rdquo;</p>
 <p>height=&ldquo;4.324305555555555in&rdquo;}</p>
 <p>以上就是关于ffmpeg录制window桌面的全部过程了，欢迎大家交流~</p>
 <h1 id="heading">参阅</h1>
@@ -965,11 +996,9 @@
         </div>
     </div>
 
-    <script src="/scripts/jquery-3.1.0.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/scripts/jquery.appear.js"></script>
-    <script src="/scripts/typography.js"></script>
+    <script src="/scripts/jquery-3.1.0.min.js" defer></script>
+    <script src="/scripts/bootstrap.min.js" defer></script>
+    <script src="/scripts/typography.js" defer></script>
     
     <script>
     (function(){
@@ -1054,6 +1083,6 @@
       document.body.appendChild(s);
     })();
     </script>
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

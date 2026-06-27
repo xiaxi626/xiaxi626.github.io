@@ -20,13 +20,44 @@
 <meta content="telephone=no" name="format-detection">
 <meta name="renderer" content="webkit">
 
-<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@100;300;400;600&display=swap" />
+
+<style>
+.invisible { opacity: 0; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadein-right { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0px); } }
+@keyframes fadein-top { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0px); } }
+.fadeIn { animation: fadein 1s ease-out; }
+.fadeInRight { animation: fadein-right 1s ease-out; }
+.fadeInTop { animation: fadein-top 1s ease-out; }
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+.row { margin-right: -15px; margin-left: -15px; }
+.col-xs-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left; width: 100%; }
+@media (min-width: 768px) { .col-sm-3 { width: 25%; } .col-sm-9 { width: 75%; } }
+.main-container { text-align: left; margin: 0; padding: 80px 40px; overflow: hidden; float: left; }
+.side-container { height: 100vh; position: fixed; right: 0; top: 0; width: 25%; padding: 80px 20px; margin: 0; transform: rotate(0deg); text-align: left; float: none !important; font-style: normal; font-size: 1em; overflow-y: auto; overflow-x: hidden; }
+.side-container.col-xs-12 { width: 25%; float: none; }
+@media (max-width: 767px) { .side-container { width: 100%; position: relative; right: auto; height: auto; padding: 40px 30px 0 30px; } .side-container.col-xs-12 { width: 100%; } }
+@media (max-height: 600px) { .side-container { padding: 40px 30px 0 30px; height: auto; position: relative; right: auto; } }
+</style>
+
+<link rel="stylesheet" href="/styles/bootstrap.min.css" media="print" onload="this.media='all'" />
+<link rel="stylesheet" href="/styles/font-awesome.min.css" media="print" onload="this.media='all'" />
+
+
+<link rel="stylesheet" href="/styles/style.css" media="print" onload="this.media='all'" />
+
+<noscript>
 <link rel="stylesheet" href="/styles/bootstrap.min.css">
 <link rel="stylesheet" href="/styles/font-awesome.min.css">
 
-
 <link rel="stylesheet" href="/styles/style.css">
 
+</noscript>
 
 <link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
 
@@ -199,9 +230,9 @@
 <p>解压Oracle安装包时两个压缩包都要解压，否则安装时会缺失各种文件。</p>
 <p>Oracle服务端11g\win64_11gR2_database_2of2.zip</p>
 <p>Oracle服务端11g\win64_11gR2_database_1of2.zip</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685974556739.png" alt="" /></p>
+<p><img src="/post-images/1685974556739.png" alt="" /></p>
 <p>打开../database/stage/cvu/cvu_prereq</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685974702632.png" alt="" /></p>
+<p><img src="/post-images/1685974702632.png" alt="" /></p>
 <p>在&lt;CERTIFIED_SYSTEMS&gt;之后添加：</p>
 <pre><code class="language-bash">&lt;OPERATING_SYSTEM RELEASE=&quot;6.2&quot;&gt;
     &lt;VERSION VALUE=&quot;3&quot;/&gt;
@@ -212,12 +243,12 @@
     &lt;/ENV_VAR_LIST&gt;
 &lt;/OPERATING_SYSTEM&gt;
 </code></pre>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685974826548.png" alt="" /></p>
+<p><img src="/post-images/1685974826548.png" alt="" /></p>
 <p>NAME VALUE填写系统名称，如果在Windows 10上安装就填“Windows 10”；</p>
 <p>ARCHITECTURE VALUE=&ldquo;64-bit&quot;对应的是多少位系统就填多少位；</p>
 <p>如果 cvu_prereq文件配置为OPERATING_SYSTEM RELEASE=“6.1”，可能会遇到：</p>
 <p>[INS-13001]此环境不满足最低配置”</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685974882568.png" alt="" /></p>
+<p><img src="/post-images/1685974882568.png" alt="" /></p>
 <p>改成OPERATING_SYSTEM RELEASE=“6.2”</p>
 <p>ENV_VAR NAME=&ldquo;PATH&rdquo; MAX_LENGTH=&ldquo;1023&rdquo;</p>
 <p>启动setup.exe，会出现cmd程序：</p>
@@ -228,28 +259,28 @@
 </code></pre>
 <p>不必管它。</p>
 <p>取消勾选“我希望通过 My Oracle Support 接收安全更新)。”</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685974936885.png" alt="" /></p>
+<p><img src="/post-images/1685974936885.png" alt="" /></p>
 <p>出现尚未提供电子邮件地址，选择是。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685974979077.png" alt="" /></p>
+<p><img src="/post-images/1685974979077.png" alt="" /></p>
 <p>继续。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975005386.png" alt="" /></p>
+<p><img src="/post-images/1685975005386.png" alt="" /></p>
 <p>选桌面。不要急多等一会。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975012378.png" alt="" /></p>
+<p><img src="/post-images/1685975012378.png" alt="" /></p>
 <p>建议在Windows及Windows虚拟机上安装时不要安装到C盘。</p>
 <p>填写管理口令，注意提示。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975028727.png" alt="" /></p>
+<p><img src="/post-images/1685975028727.png" alt="" /></p>
 <p>点击保存响应文件，完成。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975087752.png" alt="" /></p>
+<p><img src="/post-images/1685975087752.png" alt="" /></p>
 <p>接下来会跳出防火墙警告，选择允许访问。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975157128.png" alt="" /></p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975170247.png" alt="" /></p>
+<p><img src="/post-images/1685975157128.png" alt="" /></p>
+<p><img src="/post-images/1685975170247.png" alt="" /></p>
 <p>安装.NET Framework 3.5。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975247598.png" alt="" /></p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975259303.png" alt="" /></p>
+<p><img src="/post-images/1685975247598.png" alt="" /></p>
+<p><img src="/post-images/1685975259303.png" alt="" /></p>
 <p>等待安装程序完成，这里如果安装压缩包未全部解压，会出现大量缺失文件提示。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975376322.png" alt="" /></p>
+<p><img src="/post-images/1685975376322.png" alt="" /></p>
 <p>安装进度条100%后会跳出该界面，重点内容如下：</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975427930.png" alt="" /></p>
+<p><img src="/post-images/1685975427930.png" alt="" /></p>
 <pre><code class="language-bash">Database Control URL 为 https://localhost:1158/em
 
 管理资料档案库已置于安全模式下, 在此模式下将对 Enterprise Manager 数据进行加密。加密密钥已放置在文件 D:/Oracle/Oracle11g/product/11.2.0/dbhome_1/localhost_orcl/sysman/config/emkey.ora 中。请务必备份此文件, 因为如果此文件丢失, 则加密数据将不可用。
@@ -267,38 +298,38 @@
 <p>Enterprise Manager Database Control URL - (orcl) :</p>
 <p>https://localhost:1158/em</p>
 <p>口令管理修改后再进入界面就是这个样子。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975590403.png" alt="" /></p>
+<p><img src="/post-images/1685975590403.png" alt="" /></p>
 <p>最后我们完成了安装。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975627372.png" alt="" /></p>
+<p><img src="/post-images/1685975627372.png" alt="" /></p>
 <pre><code class="language-bash">数据库配置文件已经安装到 D:\Oracle\Oracle11g,同时其他选定的安装组件也已经安装到 D:\Oracle\Oracle11g\product\11.2.0\dbhome_1。
 </code></pre>
 <p>最后一步打开网址：https://localhost:1158/em</p>
 <p>edge显示：</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975650289.png" alt="" /></p>
+<p><img src="/post-images/1685975650289.png" alt="" /></p>
 <p>点击帮助出现“完成 此对话框显示 Oracle 数据库的安装已成功。 单击关闭。 版权所有 © 2007, 2009, Oracle 和/或其子公司。保留所有权利。”</p>
 <p>说明安装成功。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685975678847.png" alt="" /></p>
+<p><img src="/post-images/1685975678847.png" alt="" /></p>
 <h2 id="plsql-developer">PL/SQL developer的下载、安装、使用、破解</h2>
 <p>PL/SQL Developer是一个集成开发环境，专门开发面向Oracle数据库的应用。PL/SQL也是一种程序语言，叫做过程化SQL语言（Procedural Language/SQL）。PL/SQL是Oracle数据库对SQL语句的扩展。在普通SQL语句的使用上增加了编程语言的特点，所以PL/SQL把数据操作和查询语句组织在PL/SQL代码的过程性单元中，通过逻辑判断、循环等操作实现复杂的功能或者计算。PL/SQL 只有 Oracle 数据库有。 MySQL 目前不支持 PL/SQL 的，但支持Navicat Premium。</p>
 <h3 id="-plsql-developer">下载 PL/SQL developer</h3>
 <p>直接进入官网下载网址：https://www.allroundautomations.com/registered-plsqldev/</p>
 <p>或者进入官网，自己寻找下载</p>
 <p>进入PL/SQL developer官网https://www.allroundautomations.com/</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685978459282.png" alt="" /></p>
+<p><img src="/post-images/1685978459282.png" alt="" /></p>
 <p>找到下载完的安装包，双击打开。</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685978556398.png" alt="" /></p>
+<p><img src="/post-images/1685978556398.png" alt="" /></p>
 <p>选择enter license information，</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685978687936.png" alt="" /></p>
+<p><img src="/post-images/1685978687936.png" alt="" /></p>
 <p>在<a href="https://www.jb51.net/softs/820654.html#downintro2">本站</a>下载并解压，</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685978706594.png" alt="" /></p>
+<p><img src="/post-images/1685978706594.png" alt="" /></p>
 <p>运行keygen注册机，将注册机中的注册信息对应复制到软件中，点击next，</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685978735020.png" alt="" /></p>
+<p><img src="/post-images/1685978735020.png" alt="" /></p>
 <p>安装中，稍等一会儿，安装完成，点击finish退出向导</p>
 <h3 id="plsql-developer-1">运行PL/SQL developer</h3>
 <p>打开软件后，</p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685979521022.png" alt="" /></p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685979528675.png" alt="" /></p>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1685979538762.png" alt="" /></p>
+<p><img src="/post-images/1685979521022.png" alt="" /></p>
+<p><img src="/post-images/1685979528675.png" alt="" /></p>
+<p><img src="/post-images/1685979538762.png" alt="" /></p>
 <h2 id="heading">参考</h2>
 <p><a href="https://cloud.tencent.com/developer/article/2091762">Oracle 11g安装及配置详解</a></p>
 <p><a href="https://blog.csdn.net/qq_40036754/article/details/83379042">PL/SQL developer的下载、安装、使用、破解，亲自测试。安全使用。</a></p>
@@ -399,11 +430,9 @@
         </div>
     </div>
 
-    <script src="/scripts/jquery-3.1.0.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/scripts/jquery.appear.js"></script>
-    <script src="/scripts/typography.js"></script>
+    <script src="/scripts/jquery-3.1.0.min.js" defer></script>
+    <script src="/scripts/bootstrap.min.js" defer></script>
+    <script src="/scripts/typography.js" defer></script>
     
     <script>
     (function(){
@@ -488,6 +517,6 @@
       document.body.appendChild(s);
     })();
     </script>
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

@@ -20,13 +20,44 @@
 <meta content="telephone=no" name="format-detection">
 <meta name="renderer" content="webkit">
 
-<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@100;300;400;600&display=swap" />
+
+<style>
+.invisible { opacity: 0; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadein-right { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0px); } }
+@keyframes fadein-top { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0px); } }
+.fadeIn { animation: fadein 1s ease-out; }
+.fadeInRight { animation: fadein-right 1s ease-out; }
+.fadeInTop { animation: fadein-top 1s ease-out; }
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+.row { margin-right: -15px; margin-left: -15px; }
+.col-xs-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left; width: 100%; }
+@media (min-width: 768px) { .col-sm-3 { width: 25%; } .col-sm-9 { width: 75%; } }
+.main-container { text-align: left; margin: 0; padding: 80px 40px; overflow: hidden; float: left; }
+.side-container { height: 100vh; position: fixed; right: 0; top: 0; width: 25%; padding: 80px 20px; margin: 0; transform: rotate(0deg); text-align: left; float: none !important; font-style: normal; font-size: 1em; overflow-y: auto; overflow-x: hidden; }
+.side-container.col-xs-12 { width: 25%; float: none; }
+@media (max-width: 767px) { .side-container { width: 100%; position: relative; right: auto; height: auto; padding: 40px 30px 0 30px; } .side-container.col-xs-12 { width: 100%; } }
+@media (max-height: 600px) { .side-container { padding: 40px 30px 0 30px; height: auto; position: relative; right: auto; } }
+</style>
+
+<link rel="stylesheet" href="/styles/bootstrap.min.css" media="print" onload="this.media='all'" />
+<link rel="stylesheet" href="/styles/font-awesome.min.css" media="print" onload="this.media='all'" />
+
+
+<link rel="stylesheet" href="/styles/style.css" media="print" onload="this.media='all'" />
+
+<noscript>
 <link rel="stylesheet" href="/styles/bootstrap.min.css">
 <link rel="stylesheet" href="/styles/font-awesome.min.css">
 
-
 <link rel="stylesheet" href="/styles/style.css">
 
+</noscript>
 
 <link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
 
@@ -235,7 +266,7 @@ scoop install ffmpeg
 <p>使用pip安装。</p>
 <p>打开pytorch.org,下拉页面。</p>
 <p>按照下图选择要安装的版本。我选择的是稳定版，windows系统，pip安装方式，python语言、cpu版本的软件。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1677392302766.png" alt="" /><br />
+<img src="/post-images/1677392302766.png" alt="" /><br />
 CUDA 11.6和CUDA 11.7都是gpu版本的软件，我一开始下载的也是gpu版本的，但是因为我的电脑显卡的显存比较低，运行whisper模型的时候大模型运行不了。为了能运行更大的模型以保证语音识别较高的准确率，我最终只能选择安装cpu版本。</p>
 <p>cmd安装过程——</p>
 <pre><code class="language-bash">C:\Users\Administrator&gt;pip3 install torch torchvision torchaudio
@@ -598,9 +629,9 @@ g: FP16 is not supported on CPU; using FP32 instead
 不过我目前缺少whisper-vits的条件，想办法把第一步路铺好是我当下能做到的，另外显然我需要校对文本。</p>
 <h3 id="heading">演示</h3>
 <p>用CPU跑 Whisper ，第一次CPU使用率会高达100%，往后偶尔100%，正常使用一般保持在50%-70%；物理内存使用记录一个波形对应一次识别输出（四五段字幕），我的机型比较落后，识别1分钟语音需要等10~15分钟。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1677507625642.PNG" alt="" /><br />
+<img src="/post-images/1677507625642.PNG" alt="" /><br />
 烧CPU跟Torch版本关系不大，如果电脑嗡嗡作响且CPU使用率保持100%，请关掉程序，命令中删除&ndash;language选项用短音频测试几次，确认正常后重启电脑。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1677507631937.PNG" alt="" /><br />
+<img src="/post-images/1677507631937.PNG" alt="" /><br />
 一份<code>24:22</code>的音频，我使用 medium 模型，耗时8小时。选用 large 模型也能跑，跳出下面内容开始识别花的时间较长，加内存条速度会快些。</p>
 <pre><code class="language-bash">c:\program files\python38\lib\site-packages\whisper\transcribe.py:79: UserWarnin
 g: FP16 is not supported on CPU; using FP32 instead
@@ -839,9 +870,9 @@ Successfully installed MarkupSafe-2.1.2 aiohttp-3.8.4 aiosignal-1.3.1 altair-4.2
 <pre><code class="language-bash">python app.py --input_audio_max_duration -1
 </code></pre>
 <p>知乎<a href="https://zhuanlan.zhihu.com/p/611439310">Windows本地配置OpenAI Whisper+WebUI</a>给出的提示是这样的——<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1678684124429.png" alt="" /><br />
+<img src="/post-images/1678684124429.png" alt="" /><br />
 我一直卡在<code> warnings.warn(</code>（如下图）。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1678684297148.png" alt="" /><br />
+<img src="/post-images/1678684297148.png" alt="" /><br />
 不过浏览器打开<code>http://127.0.0.1:7860</code>也能用。</p>
 <p>对于较长的非英语音频文件（〉10分钟），建议您在VAD选项中选择Silero VAD（语音活动检测器）。</p>
 <p>在完整界面中更改某些选项时要小心-这可能会导致模型崩溃。</p>
@@ -865,7 +896,7 @@ Successfully installed MarkupSafe-2.1.2 aiohttp-3.8.4 aiosignal-1.3.1 altair-4.2
       WebUI界面
   	</div>
 </center>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1678684987212.png" alt="" /></p>
+<p><img src="/post-images/1678684987212.png" alt="" /></p>
 <h2 id="-buzz">使用 Buzz</h2>
 <p>Buzz是whisper的GUI版。Buzz可在Mac、Windows和Linux上使用。<br />
 去<a href="https://github.com/chidiwilliams/buzz">Buzz开源地址</a>下载安装包，下载并安装</p>
@@ -985,11 +1016,9 @@ audio.mp3是你准备识别的语音文件，&ndash;model选择语音识别模�
         </div>
     </div>
 
-    <script src="/scripts/jquery-3.1.0.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/scripts/jquery.appear.js"></script>
-    <script src="/scripts/typography.js"></script>
+    <script src="/scripts/jquery-3.1.0.min.js" defer></script>
+    <script src="/scripts/bootstrap.min.js" defer></script>
+    <script src="/scripts/typography.js" defer></script>
     
     <script>
     (function(){
@@ -1074,6 +1103,6 @@ audio.mp3是你准备识别的语音文件，&ndash;model选择语音识别模�
       document.body.appendChild(s);
     })();
     </script>
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

@@ -1,40 +1,30 @@
-var stage;
-var siteNavShown = true;
-
-function triggerSiteNav() {
-    return;
-    if (siteNavShown) {
-        document.getElementById('site-nav').style.display = 'none';
-        siteNavShown = false;
-    } else {
-        document.getElementById('site-nav').style.display = 'block';
-        siteNavShown = true;
-    }
-}
-
 function updateSidebar() {
     var sideBar = document.getElementById('side-bar');
     var mainContainer = document.getElementById('main-container');
-    var stageEl = document.getElementById('stage');
+    
+    if (!sideBar || !mainContainer) return;
     
     if (window.innerWidth <= 768 || window.innerHeight <= 600) {
-        sideBar.style.width = stageEl.offsetWidth + 'px';
+        sideBar.style.width = '100%';
         mainContainer.classList.remove('col-sm-9');
     } else {
-        var sidebarW = stageEl.offsetWidth - mainContainer.offsetWidth + (window.innerWidth - stageEl.offsetWidth) / 2;
-        sideBar.style.width = sidebarW + 'px';
-        mainContainer.classList.add('col-sm-9');
+        if (!mainContainer.classList.contains('col-sm-9')) {
+            mainContainer.classList.add('col-sm-9');
+        }
+        sideBar.style.width = '25%';
     }
 }// Firefox 正常，但 Edge 存在兼容性问题
 
 document.addEventListener('DOMContentLoaded', function() {
-    stage = document.getElementById('stage');
-    
     window.addEventListener('resize', function() {
         updateSidebar();
     });
     
     updateSidebar();
+    
+    window.addEventListener('load', function() {
+        updateSidebar();
+    });
     
     var mainContainer = document.getElementById('main-container');
     var sideBar = document.getElementById('side-bar');

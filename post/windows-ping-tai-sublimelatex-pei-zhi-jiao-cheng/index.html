@@ -20,13 +20,44 @@
 <meta content="telephone=no" name="format-detection">
 <meta name="renderer" content="webkit">
 
-<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@100;300;400;600&display=swap" />
+
+<style>
+.invisible { opacity: 0; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadein-right { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0px); } }
+@keyframes fadein-top { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0px); } }
+.fadeIn { animation: fadein 1s ease-out; }
+.fadeInRight { animation: fadein-right 1s ease-out; }
+.fadeInTop { animation: fadein-top 1s ease-out; }
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+.row { margin-right: -15px; margin-left: -15px; }
+.col-xs-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left; width: 100%; }
+@media (min-width: 768px) { .col-sm-3 { width: 25%; } .col-sm-9 { width: 75%; } }
+.main-container { text-align: left; margin: 0; padding: 80px 40px; overflow: hidden; float: left; }
+.side-container { height: 100vh; position: fixed; right: 0; top: 0; width: 25%; padding: 80px 20px; margin: 0; transform: rotate(0deg); text-align: left; float: none !important; font-style: normal; font-size: 1em; overflow-y: auto; overflow-x: hidden; }
+.side-container.col-xs-12 { width: 25%; float: none; }
+@media (max-width: 767px) { .side-container { width: 100%; position: relative; right: auto; height: auto; padding: 40px 30px 0 30px; } .side-container.col-xs-12 { width: 100%; } }
+@media (max-height: 600px) { .side-container { padding: 40px 30px 0 30px; height: auto; position: relative; right: auto; } }
+</style>
+
+<link rel="stylesheet" href="/styles/bootstrap.min.css" media="print" onload="this.media='all'" />
+<link rel="stylesheet" href="/styles/font-awesome.min.css" media="print" onload="this.media='all'" />
+
+
+<link rel="stylesheet" href="/styles/style.css" media="print" onload="this.media='all'" />
+
+<noscript>
 <link rel="stylesheet" href="/styles/bootstrap.min.css">
 <link rel="stylesheet" href="/styles/font-awesome.min.css">
 
-
 <link rel="stylesheet" href="/styles/style.css">
 
+</noscript>
 
 <link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
 
@@ -198,7 +229,7 @@
     <div class="post-content" v-pre><h1 id="heading">详细教程</h1>
 <h2 id="latex">下载LaTex</h2>
 <p>访问<a href="https://tug.org/texlive/">官网</a>，点击<code>Concise instructions, per platform:</code> 下的 <code>install on Windows</code> 。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1707881029658.png" alt="" /></p>
+<img src="/post-images/1707881029658.png" alt="" /></p>
 <p>找到<code>Easy install</code>。</p>
 <blockquote>
 <p>When installing from the internet, we recommend downloading and running <a href="https://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe">install-tl-windows.exe</a>.</p>
@@ -223,13 +254,13 @@
 <p>Note. For Cygwin installations, see the <a href="https://tug.org/texlive/quickinstall.html">Unix/Linux page</a>.</p>
 </blockquote>
 <p>下载上文的<code>install-tl-windows.exe</code> 到本地，双击运行。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1707881890659.png" alt="" /><br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1707881922360.png" alt="" /><br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1707881942837.png" alt="" /><br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1707882001120.png" alt="" /><br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1707882027398.png" alt="" /><br />
+<img src="/post-images/1707881890659.png" alt="" /><br />
+<img src="/post-images/1707881922360.png" alt="" /><br />
+<img src="/post-images/1707881942837.png" alt="" /><br />
+<img src="/post-images/1707882001120.png" alt="" /><br />
+<img src="/post-images/1707882027398.png" alt="" /><br />
 安装完成，如下图：<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1707882063684.png" alt="" /></p>
+<img src="/post-images/1707882063684.png" alt="" /></p>
 <h2 id="sublime-text-">Sublime Text 配置</h2>
 <p>Ctrl+Shift+P，输入LaTeXTools安装它。不过如今安装不上，只能手动安装。<br />
 把整个仓库克隆到本地，塞到 Sublime Text 的插件文件夹（C:\Users\Administrator\AppData\Roaming\Sublime Text\Packages）</p>
@@ -815,11 +846,9 @@ OpenCountWeek = 0
         </div>
     </div>
 
-    <script src="/scripts/jquery-3.1.0.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/scripts/jquery.appear.js"></script>
-    <script src="/scripts/typography.js"></script>
+    <script src="/scripts/jquery-3.1.0.min.js" defer></script>
+    <script src="/scripts/bootstrap.min.js" defer></script>
+    <script src="/scripts/typography.js" defer></script>
     
     <script>
     (function(){
@@ -904,6 +933,6 @@ OpenCountWeek = 0
       document.body.appendChild(s);
     })();
     </script>
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

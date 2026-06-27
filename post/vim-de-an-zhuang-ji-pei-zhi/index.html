@@ -20,13 +20,44 @@
 <meta content="telephone=no" name="format-detection">
 <meta name="renderer" content="webkit">
 
-<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@100;300;400;600&display=swap" />
+
+<style>
+.invisible { opacity: 0; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadein-right { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0px); } }
+@keyframes fadein-top { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0px); } }
+.fadeIn { animation: fadein 1s ease-out; }
+.fadeInRight { animation: fadein-right 1s ease-out; }
+.fadeInTop { animation: fadein-top 1s ease-out; }
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+.row { margin-right: -15px; margin-left: -15px; }
+.col-xs-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left; width: 100%; }
+@media (min-width: 768px) { .col-sm-3 { width: 25%; } .col-sm-9 { width: 75%; } }
+.main-container { text-align: left; margin: 0; padding: 80px 40px; overflow: hidden; float: left; }
+.side-container { height: 100vh; position: fixed; right: 0; top: 0; width: 25%; padding: 80px 20px; margin: 0; transform: rotate(0deg); text-align: left; float: none !important; font-style: normal; font-size: 1em; overflow-y: auto; overflow-x: hidden; }
+.side-container.col-xs-12 { width: 25%; float: none; }
+@media (max-width: 767px) { .side-container { width: 100%; position: relative; right: auto; height: auto; padding: 40px 30px 0 30px; } .side-container.col-xs-12 { width: 100%; } }
+@media (max-height: 600px) { .side-container { padding: 40px 30px 0 30px; height: auto; position: relative; right: auto; } }
+</style>
+
+<link rel="stylesheet" href="/styles/bootstrap.min.css" media="print" onload="this.media='all'" />
+<link rel="stylesheet" href="/styles/font-awesome.min.css" media="print" onload="this.media='all'" />
+
+
+<link rel="stylesheet" href="/styles/style.css" media="print" onload="this.media='all'" />
+
+<noscript>
 <link rel="stylesheet" href="/styles/bootstrap.min.css">
 <link rel="stylesheet" href="/styles/font-awesome.min.css">
 
-
 <link rel="stylesheet" href="/styles/style.css">
 
+</noscript>
 
 <link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
 
@@ -201,20 +232,20 @@
 <h3 id="vim-1">安装vim</h3>
 <p>无特殊要求默认安装即可。<br />
 安装完成后默认打开README文件。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682219903942.PNG" alt="" /></p>
+<img src="/post-images/1682219903942.PNG" alt="" /></p>
 <h3 id="heading">添加环境变量</h3>
 <p>在安装路径中找到vim.exe或者gvim.exe（两者在同一文件夹下），复制路径。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682219998319.PNG" alt="" /><br />
+<img src="/post-images/1682219998319.PNG" alt="" /><br />
 右键我的电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量，选中Path，并点击编辑，添加路径。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682220293628.PNG" alt="" /><br />
+<img src="/post-images/1682220293628.PNG" alt="" /><br />
 添加vim的一个用户变量<code>$VIM</code>，右键我的电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量，点击上面的新建。<br />
 然后输入新建的环境变量名VIM以及变量值，并点击确定。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682220555084.PNG" alt="" /></p>
+<img src="/post-images/1682220555084.PNG" alt="" /></p>
 <h2 id="vim-2">认识vim</h2>
 <p>安装结束后桌面Vim<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682236706561.PNG" alt="" /><br />
+<img src="/post-images/1682236706561.PNG" alt="" /><br />
 菜单栏Vim<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682240411155.png" alt="" /></p>
+<img src="/post-images/1682240411155.png" alt="" /></p>
 <ol>
 <li>有g和没有g<br />
 gVim 是在windows下的Gui图形用户界面的的 vim (GUI Vim)，支持windows的一些快捷方式，支持鼠标操作<br />
@@ -231,7 +262,7 @@ Read-Only的用途：比如用read-only打开已经用vim打开过的文件，�
 <p>在cmd下输入vim + 路径即可，同时直接将文件拖动到快捷方式图标上也可以。</p>
 <h3 id="vim-5">Vim的四种模式</h3>
 <p>vim 共分为四种模式，分别是普通模式（Normal mode）、底行模式(Last line mode)、输入模式（Insert mode）和可视化模式（Visual mode）。四种模式的切换与作用如下<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682414750036.png" alt="" /></p>
+<img src="/post-images/1682414750036.png" alt="" /></p>
 <h4 id="normal-mode"><strong>Normal Mode</strong></h4>
 <p>这个模式一般用于浏览代码与进入底行模式输入命令，使用快捷键修改文章</p>
 <table>
@@ -644,11 +675,11 @@ Vim预置有很多快捷键，再加上各类插件的快捷键，大量快捷�
 </code></pre>
 <h3 id="heading-2">安装插件管理器</h3>
 <p>Vim好用就在于有大量插件供我们使用，这样我们可以自己配置自己喜欢的Vim，这里我们介绍插件管理器Vim-Pluig，同时我们一般的插件都是在GitHub上托管的，所以我们一般也是在GitHub上找插件，Vim的插件非常好识别，他使用的语言大多会写<code>Vim script</code>。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682425896308.png" alt="" /><br />
+<img src="/post-images/1682425896308.png" alt="" /><br />
 打开插件管理器所在仓库。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682426083266.png" alt="" /><br />
+<img src="/post-images/1682426083266.png" alt="" /><br />
 下载如下文件并放入Vim的安装目录下的autoload。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682426488347.png" alt="" /><br />
+<img src="/post-images/1682426488347.png" alt="" /><br />
 这样我们就完成了插件管理器的安装<br />
 之后我们开始尝试安装第一个插件<br />
 首先在vimrc中写下这样三行，他可以帮助插件管理器识别你要装那些插件</p>
@@ -678,9 +709,9 @@ call plug#end()
 <p>如果哪一天插件不想要了，可以卸载，方法很简单，要么删除插件安装的哪一行，要么把他注释掉(vim下的注释是<code>&quot;</code>)，然后保存刷新配置文件，输入命令<code>:PlugClean</code>。</p>
 <h2 id="powershellvim">Powershell中使用Vim</h2>
 <p>执行Set-ExecutionPolicy RemoteSigned命令，在对话框中选择Y<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682223107244.PNG" alt="" /><br />
+<img src="/post-images/1682223107244.PNG" alt="" /><br />
 重启Shell，输入vim进行测试<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1682223163724.PNG" alt="" /></p>
+<img src="/post-images/1682223163724.PNG" alt="" /></p>
 <h2 id="heading-5">参考</h2>
 <p><a href="https://www.cnblogs.com/qiyuexin/p/6398606.html">1. vim 的安装及配置 - QIYUEXIN - 博客园</a><br />
 <a href="https://blog.csdn.net/qyhaill/article/details/105425057">windows10安装配置vim_win10 vim_八块腹肌怎么练的博客</a><br />
@@ -773,11 +804,9 @@ call plug#end()
         </div>
     </div>
 
-    <script src="/scripts/jquery-3.1.0.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/scripts/jquery.appear.js"></script>
-    <script src="/scripts/typography.js"></script>
+    <script src="/scripts/jquery-3.1.0.min.js" defer></script>
+    <script src="/scripts/bootstrap.min.js" defer></script>
+    <script src="/scripts/typography.js" defer></script>
     
     <script>
     (function(){
@@ -862,6 +891,6 @@ call plug#end()
       document.body.appendChild(s);
     })();
     </script>
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

@@ -20,13 +20,44 @@
 <meta content="telephone=no" name="format-detection">
 <meta name="renderer" content="webkit">
 
-<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@100;300;400;600&display=swap" />
+
+<style>
+.invisible { opacity: 0; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadein-right { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0px); } }
+@keyframes fadein-top { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0px); } }
+.fadeIn { animation: fadein 1s ease-out; }
+.fadeInRight { animation: fadein-right 1s ease-out; }
+.fadeInTop { animation: fadein-top 1s ease-out; }
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+.row { margin-right: -15px; margin-left: -15px; }
+.col-xs-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left; width: 100%; }
+@media (min-width: 768px) { .col-sm-3 { width: 25%; } .col-sm-9 { width: 75%; } }
+.main-container { text-align: left; margin: 0; padding: 80px 40px; overflow: hidden; float: left; }
+.side-container { height: 100vh; position: fixed; right: 0; top: 0; width: 25%; padding: 80px 20px; margin: 0; transform: rotate(0deg); text-align: left; float: none !important; font-style: normal; font-size: 1em; overflow-y: auto; overflow-x: hidden; }
+.side-container.col-xs-12 { width: 25%; float: none; }
+@media (max-width: 767px) { .side-container { width: 100%; position: relative; right: auto; height: auto; padding: 40px 30px 0 30px; } .side-container.col-xs-12 { width: 100%; } }
+@media (max-height: 600px) { .side-container { padding: 40px 30px 0 30px; height: auto; position: relative; right: auto; } }
+</style>
+
+<link rel="stylesheet" href="/styles/bootstrap.min.css" media="print" onload="this.media='all'" />
+<link rel="stylesheet" href="/styles/font-awesome.min.css" media="print" onload="this.media='all'" />
+
+
+<link rel="stylesheet" href="/styles/style.css" media="print" onload="this.media='all'" />
+
+<noscript>
 <link rel="stylesheet" href="/styles/bootstrap.min.css">
 <link rel="stylesheet" href="/styles/font-awesome.min.css">
 
-
 <link rel="stylesheet" href="/styles/style.css">
 
+</noscript>
 
 <link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
 
@@ -206,15 +237,15 @@
 <p>如果以上两个链接打不开，可以前往<a href="https://www.ruby-lang.org/zh_cn/downloads/">ruby-lang</a>，点击文中的<a href="https://rubyinstaller.cn/">rubyinstaller.cn</a>。同样，前往下载页面，点击进入文中的<a href="https://mirror.sjtu.edu.cn/github-release/oneclick/rubyinstaller2/releases/download/?mirror_intel_list">上海交通大学镜像服务-rubyinstaller2</a>下载ruby。</p>
 <p>下载后进行安装，在安装过程中不能更改软件安装路径否则会导致后续的 Jekyll 安装失败。（换句话说就是什么选项都不要动。）</p>
 <p>安装完成后，会自动弹出 cmd.exe如下图所示， 提示安装 MSYS2，它是用来编译 Ruby 本地包的。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696386774738.png" alt="" /><br />
+<img src="/post-images/1696386774738.png" alt="" /><br />
 这里带你把坑一一踩完。<br />
 首先不要像图中这样输入，应该先输入1，再输入3，再出现提示就按回车键结束。至于2，输了也白输，就像这样——<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696386989612.jpg" alt="" /><br />
+<img src="/post-images/1696386989612.jpg" alt="" /><br />
 安装结束后，分别输入 ruby -v 和 gem -v 查看版本，确认安装完成。</p>
 <pre><code class="language-bash">ruby -v
 gem -v
 </code></pre>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696392049479.png" alt="" /></p>
+<p><img src="/post-images/1696392049479.png" alt="" /></p>
 <h2 id="-jekyll">二、安装 Jekyll</h2>
 <p>虽然目前 Jekyll 的版本已经到了 4 以上，但是还有很多问题(大坑)，会导致很多包的版本不匹配，Windows 7 用户就按照知乎博主的建议安装3.8.5，3.8.5是比较可靠的，如果你已经安装了其他版本，建议卸载，命令如下：</p>
 <pre><code class="language-bash">gem uninstall jekyll -v 你的版本
@@ -222,7 +253,7 @@ gem -v
 <p>再安装3.8.5:</p>
 <pre><code class="language-bash">gem install jekyll -v 3.8.5
 </code></pre>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696389455203.png" alt="" /><br />
+<p><img src="/post-images/1696389455203.png" alt="" /><br />
 注意这里不要使用下面的命令安装——</p>
 <pre><code class="language-bash">gem install jekyll bundler
 </code></pre>
@@ -237,7 +268,7 @@ gem -v
 <pre><code class="language-bash">jekyll -v
 bundle -v
 </code></pre>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696388449457.png" alt="" /></p>
+<p><img src="/post-images/1696388449457.png" alt="" /></p>
 <h2 id="-bundle-config--ruby-">使用 bundle config 修改 Ruby 镜像源</h2>
 <p>Bundler 的 Gem 源代码镜像命令 (后面使用jekyll时会用到)</p>
 <pre><code class="language-bash">bundle config mirror.https://rubygems.org https://gems.ruby-china.org
@@ -257,16 +288,16 @@ jekyll serve
 </code></pre>
 <p>Server address: http://127.0.0.1:4000<br />
 Server running&hellip; press ctrl-c to stop.<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696390421989.png" alt="" /></p>
+<img src="/post-images/1696390421989.png" alt="" /></p>
 <h3 id="bundlergemnotfound">出现&hellip;(Bundler::GemNotFound)问题解决方法</h3>
 <p>bundle install 一下。下载完以后 <strong>jekyll serve</strong> 就又能运行了。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696388442840.png" alt="" /></p>
+<img src="/post-images/1696388442840.png" alt="" /></p>
 <h3 id="-you-have-already-activated-i18n-1141-but-your-gemfile-requires-i18n-095-gemloaderror-">出现 You have already activated i18n 1.14.1, but your Gemfile requires i18n 0.9.5. …(Gem::LoadError) 问题解决方法</h3>
 <p>Prepending <code>bundle exec</code> to your command may solve this.<br />
 输入<code>bundle exec jekyll serve</code>即可使用，通常第一次使用不会出现该提示。</p>
 <h2 id="jekyllramme">Jekyll主题Ramme</h2>
 <p>我们在测试前应查看 Gemfile 文件内容，这次我们先<code>jekyll -v</code>探探路。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696387432635.png" alt="" /><br />
+<img src="/post-images/1696387432635.png" alt="" /><br />
 打开Gemfile文件。</p>
 <pre><code class="language-gemfile">source 'http://rubygems.org'
 
@@ -282,7 +313,7 @@ gem 'jekyll-gist'
 以上步骤可做可不做，输入<code>bundle install</code>,接着输入<code>bundle exec jekyll serve</code>，浏览器打开<code>http://127.0.0.1:4000</code>，结束！</p>
 <pre><code>http://127.0.0.1:4000
 </code></pre>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1696391131415.png" alt="" /><br />
+<p><img src="/post-images/1696391131415.png" alt="" /><br />
 在主题文件夹我们会发现新增了这几个文件/文件夹——</p>
 <pre><code>...\Ramme\.sass-cache&quot;
 ...\Ramme\_site&quot;
@@ -795,11 +826,9 @@ bash: bundler: command not found
         </div>
     </div>
 
-    <script src="/scripts/jquery-3.1.0.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/scripts/jquery.appear.js"></script>
-    <script src="/scripts/typography.js"></script>
+    <script src="/scripts/jquery-3.1.0.min.js" defer></script>
+    <script src="/scripts/bootstrap.min.js" defer></script>
+    <script src="/scripts/typography.js" defer></script>
     
     <script>
     (function(){
@@ -884,6 +913,6 @@ bash: bundler: command not found
       document.body.appendChild(s);
     })();
     </script>
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

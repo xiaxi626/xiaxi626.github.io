@@ -20,13 +20,44 @@
 <meta content="telephone=no" name="format-detection">
 <meta name="renderer" content="webkit">
 
-<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@100;300;400;600&display=swap" />
+
+<style>
+.invisible { opacity: 0; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadein-right { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0px); } }
+@keyframes fadein-top { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0px); } }
+.fadeIn { animation: fadein 1s ease-out; }
+.fadeInRight { animation: fadein-right 1s ease-out; }
+.fadeInTop { animation: fadein-top 1s ease-out; }
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+.row { margin-right: -15px; margin-left: -15px; }
+.col-xs-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left; width: 100%; }
+@media (min-width: 768px) { .col-sm-3 { width: 25%; } .col-sm-9 { width: 75%; } }
+.main-container { text-align: left; margin: 0; padding: 80px 40px; overflow: hidden; float: left; }
+.side-container { height: 100vh; position: fixed; right: 0; top: 0; width: 25%; padding: 80px 20px; margin: 0; transform: rotate(0deg); text-align: left; float: none !important; font-style: normal; font-size: 1em; overflow-y: auto; overflow-x: hidden; }
+.side-container.col-xs-12 { width: 25%; float: none; }
+@media (max-width: 767px) { .side-container { width: 100%; position: relative; right: auto; height: auto; padding: 40px 30px 0 30px; } .side-container.col-xs-12 { width: 100%; } }
+@media (max-height: 600px) { .side-container { padding: 40px 30px 0 30px; height: auto; position: relative; right: auto; } }
+</style>
+
+<link rel="stylesheet" href="/styles/bootstrap.min.css" media="print" onload="this.media='all'" />
+<link rel="stylesheet" href="/styles/font-awesome.min.css" media="print" onload="this.media='all'" />
+
+
+<link rel="stylesheet" href="/styles/style.css" media="print" onload="this.media='all'" />
+
+<noscript>
 <link rel="stylesheet" href="/styles/bootstrap.min.css">
 <link rel="stylesheet" href="/styles/font-awesome.min.css">
 
-
 <link rel="stylesheet" href="/styles/style.css">
 
+</noscript>
 
 <link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
 
@@ -214,10 +245,10 @@ Hello, world!
 <a href="https://tug.org/mactex/">在MacOS上安装：MacTeX发行版</a><br />
 您可以阅读<a href="https://tug.org/texlive/doc.html">完整手册</a>了解所有可能性，包括自动安装和使用自定义存储库。<br />
 推荐下载离线安装包，然后安装的方式。可以使用<a href="http://www.tug.org/texlive/">官方</a>的镜像下载，也可以利用国内的镜像下载。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1675346864859.png" alt="" /><br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1675346872512.png" alt="" /><br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1675346881015.png" alt="" /><br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1675346962099.png" alt="" /><br />
+<img src="/post-images/1675346864859.png" alt="" /><br />
+<img src="/post-images/1675346872512.png" alt="" /><br />
+<img src="/post-images/1675346881015.png" alt="" /><br />
+<img src="/post-images/1675346962099.png" alt="" /><br />
 官网下载比较慢，我们可以利用国内的镜像网站来下载。<br />
 清华大学：https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive2022.iso；<br />
 北京交通大学：https://mirror.bjtu.edu.cn/ctan/systems/texlive/Images/<br />
@@ -231,13 +262,13 @@ Hello, world!
 腾讯云：https://mirrors.cloud.tencent.com/CTAN/systems/texlive/Images/<br />
 选择 texlive2022.iso（以此类推）。<br />
 下载Torrent文件使用BT下载也是个不错的选择，试了一下下载速度还行，有公网的可以用BT下载。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1675347109007.png" alt="" /></p>
+<img src="/post-images/1675347109007.png" alt="" /></p>
 <h3 id="2-">2. 安装</h3>
 <p>将texlive2022.iso 文件解压，然后右键“以管理员身份运行”打开其中的install-tl-advanced.bat文件。<br />
 点击Advanced。<br />
 修改Directories TEXDIR: Installation root 为C://texlive/2022，安装。<br />
 安装完成，用时56分钟。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1675523607120.PNG" alt="" /><br />
+<img src="/post-images/1675523607120.PNG" alt="" /><br />
 验证是否安装成功，打开cmd，输入tex -version，如果出现版本号即说明安装成功。</p>
 <pre><code>Microsoft Windows [版本 6.1.7601]
 版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
@@ -289,16 +320,16 @@ Wide character in print at F:install-tl line 2486, &lt;STDIN&gt; line 6.
 <h2 id="texstudio">二、安装TeXstudio</h2>
 <h3 id="1--1">1. 下载及安装</h3>
 <p>直接去<a href="https://www.texstudio.org/">官网</a>下载，有时会上不去，可以到Github搜索<a href="https://github.com/texstudio-org/texstudio/releases">texstudio-org/texstudio</a>下载，也可以去<a href="https://texstudio.sourceforge.net/">这里</a>下载。下载后直接点击安装，一样选择安装路径，然后进行一些简单的设置。这里我选择“texstudio-4.4.1-win-qt6.exe”。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1675350137103.png" alt="" /></p>
+<img src="/post-images/1675350137103.png" alt="" /></p>
 <h3 id="2--1">2. 配置</h3>
 <p>依次找到Options→Configure TeXstudio→Commands，指定Commands命令的执行程序，将BibTeX、BibTeX 8-Bit、Biber的路径设置为TeXlive安装路径下对应EXE文件。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1675350661854.webp" alt="" /><br />
+<img src="/post-images/1675350661854.webp" alt="" /><br />
 设置中文界面：安装结束后，一开始的打开界面是英文的，这里我们可以切换成中文。 依次点击：Options→Configure Texstudio→General→Language→zh_CN<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1675350629453.webp" alt="" /><br />
+<img src="/post-images/1675350629453.webp" alt="" /><br />
 添加行号：添加段落行号，这样可以很方便查看段落的某句话所在的位置，尤其是在运行报错时，有行号就非常方便查看错误的位置了。 依次点击：选项→设置Texstudio→显示高级选项→编辑器→显示行号→所有行号<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1675350555386.webp" alt="" /><br />
+<img src="/post-images/1675350555386.webp" alt="" /><br />
 设置编译器与编码：为了正常的输出中文，我们需要把默认编译器改成xelatex，utf-8编码。如果是为了编写英文论文，要用“pdflatex”。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1675350580871.webp" alt="" /></p>
+<img src="/post-images/1675350580871.webp" alt="" /></p>
 <h3 id="3">3.测试</h3>
 <p>输入下述代码，运行，得到下述结果即代表安装配置成功。</p>
 <pre><code>\documentclass[11pt]{ctexart}  
@@ -357,7 +388,7 @@ Wide character in print at F:install-tl line 2486, &lt;STDIN&gt; line 6.
     \end{algorithm}  
 \end{document}
 </code></pre>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1675350508640.webp" alt="" /><br />
+<p><img src="/post-images/1675350508640.webp" alt="" /><br />
 ————————————————<br />
 版权声明：本文为知乎博主「一个努力吃胖的小瘦子」「Dylaaan」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br />
 原文链接：<br />
@@ -452,11 +483,9 @@ Wide character in print at F:install-tl line 2486, &lt;STDIN&gt; line 6.
         </div>
     </div>
 
-    <script src="/scripts/jquery-3.1.0.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/scripts/jquery.appear.js"></script>
-    <script src="/scripts/typography.js"></script>
+    <script src="/scripts/jquery-3.1.0.min.js" defer></script>
+    <script src="/scripts/bootstrap.min.js" defer></script>
+    <script src="/scripts/typography.js" defer></script>
     
     <script>
     (function(){
@@ -541,6 +570,6 @@ Wide character in print at F:install-tl line 2486, &lt;STDIN&gt; line 6.
       document.body.appendChild(s);
     })();
     </script>
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

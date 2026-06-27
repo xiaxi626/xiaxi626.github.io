@@ -20,13 +20,44 @@
 <meta content="telephone=no" name="format-detection">
 <meta name="renderer" content="webkit">
 
-<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@100;300;400;600&display=swap" />
+
+<style>
+.invisible { opacity: 0; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadein-right { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0px); } }
+@keyframes fadein-top { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0px); } }
+.fadeIn { animation: fadein 1s ease-out; }
+.fadeInRight { animation: fadein-right 1s ease-out; }
+.fadeInTop { animation: fadein-top 1s ease-out; }
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+.row { margin-right: -15px; margin-left: -15px; }
+.col-xs-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left; width: 100%; }
+@media (min-width: 768px) { .col-sm-3 { width: 25%; } .col-sm-9 { width: 75%; } }
+.main-container { text-align: left; margin: 0; padding: 80px 40px; overflow: hidden; float: left; }
+.side-container { height: 100vh; position: fixed; right: 0; top: 0; width: 25%; padding: 80px 20px; margin: 0; transform: rotate(0deg); text-align: left; float: none !important; font-style: normal; font-size: 1em; overflow-y: auto; overflow-x: hidden; }
+.side-container.col-xs-12 { width: 25%; float: none; }
+@media (max-width: 767px) { .side-container { width: 100%; position: relative; right: auto; height: auto; padding: 40px 30px 0 30px; } .side-container.col-xs-12 { width: 100%; } }
+@media (max-height: 600px) { .side-container { padding: 40px 30px 0 30px; height: auto; position: relative; right: auto; } }
+</style>
+
+<link rel="stylesheet" href="/styles/bootstrap.min.css" media="print" onload="this.media='all'" />
+<link rel="stylesheet" href="/styles/font-awesome.min.css" media="print" onload="this.media='all'" />
+
+
+<link rel="stylesheet" href="/styles/style.css" media="print" onload="this.media='all'" />
+
+<noscript>
 <link rel="stylesheet" href="/styles/bootstrap.min.css">
 <link rel="stylesheet" href="/styles/font-awesome.min.css">
 
-
 <link rel="stylesheet" href="/styles/style.css">
 
+</noscript>
 
 <link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
 
@@ -197,34 +228,34 @@
     
     <div class="post-content" v-pre><h2 id="heading">详细问题</h2>
 <p>移动硬盘插入后，任务栏「安全删除硬件并弹出媒体」不可安全弹出，强行拔掉USB提示「是否要将其格式化」；<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676297085885.PNG" alt="" /><br />
+<img src="/post-images/1676297085885.PNG" alt="" /><br />
 「控制面板-设备和打印机-设备属性」硬件显示正常，<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676297380695.PNG" alt="" /><br />
+<img src="/post-images/1676297380695.PNG" alt="" /><br />
 常规——制造商、型号编码、描述『不可用』；<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676297365113.PNG" alt="" /><br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676297374472.PNG" alt="" /><br />
+<img src="/post-images/1676297365113.PNG" alt="" /><br />
+<img src="/post-images/1676297374472.PNG" alt="" /><br />
 「计算机管理-磁盘管理」虚拟磁盘服务长时间加载，<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676297669804.PNG" alt="" /><br />
+<img src="/post-images/1676297669804.PNG" alt="" /><br />
 cmd输入chkdsk检查磁盘<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676297804254.PNG" alt="" /><br />
+<img src="/post-images/1676297804254.PNG" alt="" /><br />
 不久后显示磁盘管理界面，「我的电脑」未显示的移动硬盘不显示『文件系统』<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676297677514.PNG" alt="" /><br />
+<img src="/post-images/1676297677514.PNG" alt="" /><br />
 右击磁盘管理界面「未显示磁盘」- 属性发现「常规」0字节，无法执行磁盘检查<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676300326388.PNG" alt="" /><br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676300331949.PNG" alt="" /></p>
+<img src="/post-images/1676300326388.PNG" alt="" /><br />
+<img src="/post-images/1676300331949.PNG" alt="" /></p>
 <h2 id="heading-1">解决方法：</h2>
 <p>我们把<a href="https://jingyan.baidu.com/article/64d05a02ff8686de55f73b3f.html">移动硬盘插入后提示“格式化”，该怎么办？</a>和<a href="https://blog.csdn.net/loarylong/article/details/105550221">移动硬盘插入无显示，不用格式化-修复方法</a>两者结合一下。</p>
 <p>cmd输入chkdsk检查磁盘，得到以上现象，先不动磁盘管理，等磁盘检查完（容量大磁盘检查时间太长）<br />
 此方法在诸多教程中往往伴随着备份-格式化磁盘-恢复。</p>
 <p>不等了，关掉cmd，尝试指定盘符，更新驱动器符号和路径，回头再检查磁盘。（注：运行输入「diskmgmt.msc」可打开磁盘管理界面）<br />
 我也不知道能不能成，试试看。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676300694286.PNG" alt="" /><br />
+<img src="/post-images/1676300694286.PNG" alt="" /><br />
 很好，问题不大，「某些依赖启动器号的程序可能无法正确运行。您想继续吗？」。以前系统自动把盘符 H 变成 I 的时候也没见磁盘中的程序出乱子，且磁盘中的程序及路径设置不存储在控制面板和系统环境变量，这个错误应该可以无视。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676301061295.PNG" alt="" /><br />
+<img src="/post-images/1676301061295.PNG" alt="" /><br />
 加载完<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676301731210.PNG" alt="" /><br />
+<img src="/post-images/1676301731210.PNG" alt="" /><br />
 大功告成<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676301791812.PNG" alt="" /></p>
+<img src="/post-images/1676301791812.PNG" alt="" /></p>
 </div>
     
 </div>
@@ -310,11 +341,9 @@ cmd输入chkdsk检查磁盘<br />
         </div>
     </div>
 
-    <script src="/scripts/jquery-3.1.0.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/scripts/jquery.appear.js"></script>
-    <script src="/scripts/typography.js"></script>
+    <script src="/scripts/jquery-3.1.0.min.js" defer></script>
+    <script src="/scripts/bootstrap.min.js" defer></script>
+    <script src="/scripts/typography.js" defer></script>
     
     <script>
     (function(){
@@ -399,6 +428,6 @@ cmd输入chkdsk检查磁盘<br />
       document.body.appendChild(s);
     })();
     </script>
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

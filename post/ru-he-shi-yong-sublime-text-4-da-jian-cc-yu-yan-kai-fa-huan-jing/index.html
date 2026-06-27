@@ -20,13 +20,44 @@
 <meta content="telephone=no" name="format-detection">
 <meta name="renderer" content="webkit">
 
-<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@100;300;400;600&display=swap" />
+
+<style>
+.invisible { opacity: 0; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadein-right { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0px); } }
+@keyframes fadein-top { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0px); } }
+.fadeIn { animation: fadein 1s ease-out; }
+.fadeInRight { animation: fadein-right 1s ease-out; }
+.fadeInTop { animation: fadein-top 1s ease-out; }
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+.row { margin-right: -15px; margin-left: -15px; }
+.col-xs-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left; width: 100%; }
+@media (min-width: 768px) { .col-sm-3 { width: 25%; } .col-sm-9 { width: 75%; } }
+.main-container { text-align: left; margin: 0; padding: 80px 40px; overflow: hidden; float: left; }
+.side-container { height: 100vh; position: fixed; right: 0; top: 0; width: 25%; padding: 80px 20px; margin: 0; transform: rotate(0deg); text-align: left; float: none !important; font-style: normal; font-size: 1em; overflow-y: auto; overflow-x: hidden; }
+.side-container.col-xs-12 { width: 25%; float: none; }
+@media (max-width: 767px) { .side-container { width: 100%; position: relative; right: auto; height: auto; padding: 40px 30px 0 30px; } .side-container.col-xs-12 { width: 100%; } }
+@media (max-height: 600px) { .side-container { padding: 40px 30px 0 30px; height: auto; position: relative; right: auto; } }
+</style>
+
+<link rel="stylesheet" href="/styles/bootstrap.min.css" media="print" onload="this.media='all'" />
+<link rel="stylesheet" href="/styles/font-awesome.min.css" media="print" onload="this.media='all'" />
+
+
+<link rel="stylesheet" href="/styles/style.css" media="print" onload="this.media='all'" />
+
+<noscript>
 <link rel="stylesheet" href="/styles/bootstrap.min.css">
 <link rel="stylesheet" href="/styles/font-awesome.min.css">
 
-
 <link rel="stylesheet" href="/styles/style.css">
 
+</noscript>
 
 <link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
 
@@ -198,9 +229,9 @@
     <div class="post-content" v-pre><p>刚刚安装的 Sublime Text 无法自行具备运行 C、C++ 代码的能力，需要我们手动对其进行设置。</p>
 <h2 id="gcc-">配置GCC 编译环境</h2>
 <p>开始设置前，我们需要初始化好 GCC 编译环境。打开命令行窗口，输入<code>gcc -v</code>，如果输出GCC的具体版本等信息，表明当前系统以成功配置了 GCC 编译环境。（如图所示）<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693321719332.png" alt="" /><br />
+<img src="/post-images/1693321719332.png" alt="" /><br />
 如果未配置GCC 编译环境，可阅读<a href="https://zhuanlan.zhihu.com/p/76613134">MinGW-w64安装教程——著名C/C++编译器GCC的Windows版本</a>进行安装。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693322931715.png" alt="" /></p>
+<img src="/post-images/1693322931715.png" alt="" /></p>
 <blockquote>
 <p>MinGW-W64 Online Installer:<br />
 <a href="https://sourceforge.net/projects/mingw-w64/">sourceforge.net/project…</a> 下载 mingw-get-setup.exe<br />
@@ -211,7 +242,7 @@ MinGW Installation Manager → Basic Setup → 勾选 &ldquo;mingw32-base&rdquo;
 下载后文件: &ldquo;x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z&rdquo;<br />
 解压再配置环境变量</p>
 </blockquote>
-<p><img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693322948313.png" alt="" /><br />
+<p><img src="/post-images/1693322948313.png" alt="" /><br />
 注意选择以下其中一个下载，不要下载MinGW-W64 Online Installer。</p>
 <ul>
 <li>x86_64-posix-sjlj</li>
@@ -236,7 +267,7 @@ MinGW Installation Manager → Basic Setup → 勾选 &ldquo;mingw32-base&rdquo;
 这个你自己选择吧，你偏向于原生的C标准就选posix，面向Windows编程就选win32，如果你还是选择困难的话，毕竟我们最常用的还是Windows，选win32也没什么问题。</p>
 </blockquote>
 <p>运行MinGW-W64-install.exe会安装失败。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693322904391.png" alt="" /></p>
+<img src="/post-images/1693322904391.png" alt="" /></p>
 <p>下载 x86_64-win32-seh 的7z文件后解压。<br />
 添加环境变量，变量路径替换为解压路径。<br />
 环境变量内容如下：</p>
@@ -248,7 +279,7 @@ MinGW Installation Manager → Basic Setup → 勾选 &ldquo;mingw32-base&rdquo;
 <h2 id="-sublime-text-gcc">配置 Sublime Text 编辑器（GCC）</h2>
 <p>在已安装好 GCC 编译器的基础上，接下来开始正式配置 Sublime Text 编辑器。</p>
 <p>在菜单栏中依次点击“Tools -&gt; Build System -&gt; New Build System”，由此即可在 Sublime Text 打开一个临时文件，如下所示：<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693323400390.png" alt="" /><br />
+<img src="/post-images/1693323400390.png" alt="" /><br />
 删除其所有内容，并将如下内容完整地复制到该文件中：</p>
 <pre><code class="language-sublime-build">{
     &quot;cmd&quot;: [&quot;gcc&quot;,&quot;${file}&quot;,&quot;-o&quot;, &quot;${file_path}/${file_base_name}&quot;],
@@ -271,10 +302,10 @@ MinGW Installation Manager → Basic Setup → 勾选 &ldquo;mingw32-base&rdquo;
 </code></pre>
 <p>按住Ctrl + S保存上述文件，并将文件取名为 <strong>gcc.sublime-build</strong> ，点击保存。</p>
 <p>重新打开 Sublime Text，并依次在菜单栏中选择“Tools -&gt; Build System”， 在该选项中就可以看到上一步创建好的 gcc_sublime-build 的文件名 gcc。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693323580971.png" alt="" /><br />
+<img src="/post-images/1693323580971.png" alt="" /><br />
 通过勾选 gcc 编译选项，我们就可以直接在 Sublime Text 运行写好的 C 语言程序。<br />
 编写一个 Hellow Word 程序， 选择“Tools -&gt; Build With&hellip;”选项（Ctrl+Shift+B ）编译运行。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1693323866566.png" alt="" /><br />
+<img src="/post-images/1693323866566.png" alt="" /><br />
 这里有 gcc、gcc-C_Run 和 gcc-RunInCommand 3 个选项，其中 gcc 用于编译程序（读者可自行查看执行结果），gcc-C_Run 用于在 Sublime Text 内部调用 GCC 编译器并显示程序的执行结果，gcc_RunInCommand 用于在命令行窗口中借助 gcc 指令运行该程序并输出执行结果。</p>
 <p><strong>同样</strong>，如果想搭建 C++ 开发环境，只需再建立一个 <strong>g++.sublime-build</strong> 配置文件，并将如下内容拷贝到该文件中：</p>
 <pre><code class="language-sublime-build">{
@@ -489,11 +520,9 @@ Tools:
         </div>
     </div>
 
-    <script src="/scripts/jquery-3.1.0.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/scripts/jquery.appear.js"></script>
-    <script src="/scripts/typography.js"></script>
+    <script src="/scripts/jquery-3.1.0.min.js" defer></script>
+    <script src="/scripts/bootstrap.min.js" defer></script>
+    <script src="/scripts/typography.js" defer></script>
     
     <script>
     (function(){
@@ -578,6 +607,6 @@ Tools:
       document.body.appendChild(s);
     })();
     </script>
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

@@ -20,13 +20,44 @@
 <meta content="telephone=no" name="format-detection">
 <meta name="renderer" content="webkit">
 
-<link rel="shortcut icon" href="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/media/images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@100;300;400;600&display=swap" />
+
+<style>
+.invisible { opacity: 0; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadein-right { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0px); } }
+@keyframes fadein-top { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0px); } }
+.fadeIn { animation: fadein 1s ease-out; }
+.fadeInRight { animation: fadein-right 1s ease-out; }
+.fadeInTop { animation: fadein-top 1s ease-out; }
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+.row { margin-right: -15px; margin-left: -15px; }
+.col-xs-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; float: left; width: 100%; }
+@media (min-width: 768px) { .col-sm-3 { width: 25%; } .col-sm-9 { width: 75%; } }
+.main-container { text-align: left; margin: 0; padding: 80px 40px; overflow: hidden; float: left; }
+.side-container { height: 100vh; position: fixed; right: 0; top: 0; width: 25%; padding: 80px 20px; margin: 0; transform: rotate(0deg); text-align: left; float: none !important; font-style: normal; font-size: 1em; overflow-y: auto; overflow-x: hidden; }
+.side-container.col-xs-12 { width: 25%; float: none; }
+@media (max-width: 767px) { .side-container { width: 100%; position: relative; right: auto; height: auto; padding: 40px 30px 0 30px; } .side-container.col-xs-12 { width: 100%; } }
+@media (max-height: 600px) { .side-container { padding: 40px 30px 0 30px; height: auto; position: relative; right: auto; } }
+</style>
+
+<link rel="stylesheet" href="/styles/bootstrap.min.css" media="print" onload="this.media='all'" />
+<link rel="stylesheet" href="/styles/font-awesome.min.css" media="print" onload="this.media='all'" />
+
+
+<link rel="stylesheet" href="/styles/style.css" media="print" onload="this.media='all'" />
+
+<noscript>
 <link rel="stylesheet" href="/styles/bootstrap.min.css">
 <link rel="stylesheet" href="/styles/font-awesome.min.css">
 
-
 <link rel="stylesheet" href="/styles/style.css">
 
+</noscript>
 
 <link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
 
@@ -207,7 +238,7 @@
 待机 (S2)<br />
 系统固件不支持此待机状态。</p>
 <p>如果输入命令后出现三个睡眠状态系统固件均不支持，那很可能是因为你的主板没有开启睡眠功能，这样你就要重新启动电脑，进入你的BIOS进行设置启用？开机后主板自检时，台式机尤其是组装的多是摁下DEL键，很多品牌机有自己的BIOS，会显示摁哪个键进入SET UP，有的是F10 有的是ESC等等，这个你要自己看了，要眼急手快，因为时间非常短。笔记本也是如此会有不同的按键来进入BIOS，进入之后找到POWER（电源）项，在里边查找S1 S2 S3项，并开启，多是开启S3就可以，然后保存，重启。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676461003071.jpg" alt="" /><br />
+<img src="/post-images/1676461003071.jpg" alt="" /><br />
 如果你是惠普电脑，而进入BIOS后又找不到电源项，不用担心，系统一般还是能进的，用别的办法解决问题。</p>
 <p>如果输入命令后显示VGA.EXE 或者DISPLAY.EXE抑或XXXXX.EXE就说明你的硬件影响到了电源而导致无法睡眠，这种情况下多是驱动问题，VGA 、display的就是显卡驱动，所需要做的就是更新相对的驱动，这种情况还有一个表现就是睡眠选项为灰色。</p>
 <p>如果显示下列XXXXXX阻止进入睡眠状态，那就可能是软件问题，你安装的某个软件导致无法睡眠，这样的话你就俩者取其一吧，或者是要睡眠而卸掉软件，或者要软件而不管睡眠。</p>
@@ -216,8 +247,8 @@
 <p>如果上述方法还不能解决的话，将解决的办法集中到了控制面板硬件和声音电源选项里，在你当前的电源计划上，选择更改计划设置，弹出的对话框后，再选择更改高级电源设置，弹出的对话框中找到睡眠，然后点击下拉，再点击允许混合睡眠，默认的设置是开启，你只需要更改成关闭，然后应用 确定，再试试你的系统能否睡眠了。</p>
 <p>电源计划中还有一个“节能”，也进行相同的设置，方法同上。</p>
 <p>如果输入上面的命令后显示此系统固件支持睡眠S3，不支持S1、S2。我们打开设备管理器，双击网卡和鼠标，如果电源管理选项“允许计算机关闭此设备以节约电源”默认勾选而“允许此设备唤醒计算机”是灰的，那我们什么都不要动。如果反过来，取消勾选“允许此设备唤醒计算机”。右击桌面右下角电源打开电源选项，这时候允许混合睡眠选项一般是关闭的，我们打开它。<br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676461118693.jpg" alt="" /><br />
-<img src="hn-bkt-clouddn-com-idvcz9d.www.qiniudns.com/post-images/1676461131209.jpg" alt="" /></p>
+<img src="/post-images/1676461118693.jpg" alt="" /><br />
+<img src="/post-images/1676461131209.jpg" alt="" /></p>
 </div>
     
 </div>
@@ -303,11 +334,9 @@
         </div>
     </div>
 
-    <script src="/scripts/jquery-3.1.0.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-    <script src="/scripts/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/scripts/jquery.appear.js"></script>
-    <script src="/scripts/typography.js"></script>
+    <script src="/scripts/jquery-3.1.0.min.js" defer></script>
+    <script src="/scripts/bootstrap.min.js" defer></script>
+    <script src="/scripts/typography.js" defer></script>
     
     <script>
     (function(){
@@ -392,6 +421,6 @@
       document.body.appendChild(s);
     })();
     </script>
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>
