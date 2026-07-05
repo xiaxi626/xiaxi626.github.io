@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+<meta name="description" content="True">
+
+
+
+<meta name="keywords" content="Technology">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600&display=swap">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>CST中螺旋线圈电感的建模 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="CST中螺旋线圈电感的建模">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="建模方法 在CST中按照参考中的建模方法建好螺旋线线圈以后，沿螺旋的中轴建一根与螺旋线一样长的圆柱，再创建一根“一端在轴上，另一端在螺旋线上”的圆柱，使其长度保持线圈中径的一半。最后两端加上引脚即可 操作讲起来比较简单。螺旋线可通过 CST 的方程式建模，然后在起始处创建一个圆片，再 sweep curve，也可以只创建一个圆片直接旋转它生成螺旋体。 我们可以通过CST内置的Macr&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/cstzhong-luo-xuan-xian-quan-dian-gan-de-jian-mo/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"CST中螺旋线圈电感的建模","url":"https://xiaxi626.github.io/post/cstzhong-luo-xuan-xian-quan-dian-gan-de-jian-mo/","description":"建模方法 在CST中按照参考中的建模方法建好螺旋线线圈以后，沿螺旋的中轴建一根与螺旋线一样长的圆柱，再创建一根“一端在轴上，另一端在螺旋线上”的圆柱，使其长度保持线圈中径的一半。最后两端加上引脚即可 操作讲起来比较简单。螺旋线可通过 CST 的方程式建模，然后在起始处创建一个圆片，再 sweep curve，也可以只创建一个圆片直接旋转它生成螺旋体。 我们可以通过CST内置的Macr\u0026hellip;","datePublished":"2026-07-05T19:14:47+08:00","dateModified":"2026-07-05T18:49:58+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/cstzhong-luo-xuan-xian-quan-dian-gan-de-jian-mo/","name":"CST中螺旋线圈电感的建模","position":2}]}</script>
+<meta property="og:title" content="CST中螺旋线圈电感的建模">
+<meta property="og:description" content="建模方法 在CST中按照参考中的建模方法建好螺旋线线圈以后，沿螺旋的中轴建一根与螺旋线一样长的圆柱，再创建一根“一端在轴上，另一端在螺旋线上”的圆柱，使其长度保持线圈中径的一半。最后两端加上引脚即可 操作讲起来比较简单。螺旋线可通过 CST 的方程式建模，然后在起始处创建一个圆片，再 sweep curve，也可以只创建一个圆片直接旋转它生成螺旋体。 我们可以通过CST内置的Macr&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/cstzhong-luo-xuan-xian-quan-dian-gan-de-jian-mo/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/images/avatar.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/cstzhong-luo-xuan-xian-quan-dian-gan-de-jian-mo/">
+<meta name="twitter:title" content="CST中螺旋线圈电感的建模">
+<meta name="twitter:description" content="建模方法 在CST中按照参考中的建模方法建好螺旋线线圈以后，沿螺旋的中轴建一根与螺旋线一样长的圆柱，再创建一根“一端在轴上，另一端在螺旋线上”的圆柱，使其长度保持线圈中径的一半。最后两端加上引脚即可 操作讲起来比较简单。螺旋线可通过 CST 的方程式建模，然后在起始处创建一个圆片，再 sweep curve，也可以只创建一个圆片直接旋转它生成螺旋体。 我们可以通过CST内置的Macr&amp;hellip;">
+<meta name="twitter:image" content="/images/avatar.png">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            <a href="https://github.com/github.com/xiaxi626" target="_blank" rel="noopener noreferrer" aria-label="Github">
+                <i class="fa fa-github"></i>&nbsp;
+            </a>
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>CST中螺旋线圈电感的建模</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">posted_at&nbsp;2026-07-05</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/cstzhong-luo-xuan-xian-quan-dian-gan-de-jian-mo/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><h3 id="heading">建模方法</h3>
+<p>在CST中按照参考中的建模方法建好螺旋线线圈以后，沿螺旋的中轴建一根与螺旋线一样长的圆柱，再创建一根“一端在轴上，另一端在螺旋线上”的圆柱，使其长度保持线圈中径的一半。最后两端加上引脚即可<br />
+操作讲起来比较简单。螺旋线可通过 CST 的方程式建模，然后在起始处创建一个圆片，再 sweep curve，也可以只创建一个圆片直接旋转它生成螺旋体。<br />
+我们可以通过CST内置的Macro vba editor记录这一过程。因为通常情况下，想在同一个 CST 版本中复制操作历史，需要打开有相关操作的 CST 文件，选择 history list 中的操作点击 copy，在新的文件 paste。但是对于同一个 CST 版本，完全可以将操作用 VB 记录下来，保存为全局脚本，在新的文件中直接运行它。这就是 CST 的 VBA Macro 内置脚本功能的意义。<br />
+当然如果你只是直接点击 history list 中的相关操作然后点击 More 中的 Macro，使其自动生成代码，这个方法是有缺陷的。它跟 CST 的内置脚本一样，会记录为一次操作，但是同样的也完全没有模型操作记录。其实秘密藏在文档里，在 CST 的 VB 脚本预设中有一个叫“AddToHistory”的命令会记录模型操作。<br />
+现在我们拆解一下 history list，以其中一步操作为例讲解一下如何修改代码。<br />
+现在有一步操作叫“Define curve circle: curve1:circle1”，在 history list 中点击打开详情，可以看到如下这段代码。</p>
+<pre><code class="language-vba">With Circle
+     .Reset
+     .Name &quot;circle1&quot;
+     .Curve &quot;curve1&quot;
+     .Radius &quot;wire_d/2&quot;
+     .Xcenter &quot;r&quot;
+     .Ycenter &quot;0&quot;
+     .Segments &quot;0&quot;
+     .Create
+End With
+</code></pre>
+<p>当我们在 history list 中点击copy复制这一个 history 项时，打开系统的剪贴板你会发现，它其实是一个JSON格式文本；但在 CST 软件内部执行时，软件会提取其中的 code 字段，将其当作 VBA 脚本 交由解释器运行，从而在 3D 界面中重绘出模型。这是 CST 进行无界面自动化建模的标准数据交换方式。复制 history list 中的该操作得到的代码如下所示。</p>
+<pre><code class="language-json">CST History Data Exchange Format V2
+
+{
+    &quot;history&quot;: [
+        {
+            &quot;caption&quot;: &quot;Define curve circle: curve1:circle1&quot;,
+            &quot;version&quot;: &quot;2025.1|34.0.1|20241028&quot;,
+            &quot;hidden&quot;: false,
+            &quot;type&quot;: &quot;vba&quot;,
+            &quot;code&quot;: [
+                &quot;With Circle\r&quot;,
+                &quot;     .Reset\r&quot;,
+                &quot;     .Name \&quot;circle1\&quot;\r&quot;,
+                &quot;     .Curve \&quot;curve1\&quot;\r&quot;,
+                &quot;     .Radius \&quot;wire_d/2\&quot;\r&quot;,
+                &quot;     .Xcenter \&quot;r\&quot;\r&quot;,
+                &quot;     .Ycenter \&quot;0\&quot;\r&quot;,
+                &quot;     .Segments \&quot;0\&quot;\r&quot;,
+                &quot;     .Create\r&quot;,
+                &quot;End With&quot;
+            ]
+        }
+    ]
+}
+</code></pre>
+<p>现在我们在 history list 界面点击 Macro 将其转化为 VB 代码，生成的代码如下所示。</p>
+<pre><code class="language-vba">' Macro
+
+Sub Main ()
+
+
+'## Merged Block - Define curve circle: curve1:circle1
+StartVersionStringOverrideMode &quot;2025.1|34.0.1|20241028&quot; 
+With Circle
+
+     .Reset
+
+     .Name &quot;circle1&quot;
+
+     .Curve &quot;curve1&quot;
+
+     .Radius &quot;wire_d/2&quot;
+
+     .Xcenter &quot;r&quot;
+
+     .Ycenter &quot;0&quot;
+
+     .Segments &quot;0&quot;
+
+     .Create
+
+End With
+StopVersionStringOverrideMode 
+End Sub
+</code></pre>
+<p>阅读这段代码你会发现：操作内容包裹在 With 到 End With 之间；主程序内容从 StartVersionStringOverrideMode 开始，到 StopVersionStringOverrideMode 结束，在 StartVersionStringOverrideMode 这行的后面是这段代码兼容的 CST 版本；这段代码的 history 名称在“Merged Block”这一行，而“Merged Block”的意思是“合并块”，因此生成的代码是无法编辑的块命令。<br />
+想让它在 history list 和 history list (fast model update) 中可编辑，必须将“Merged Block””改为“AddToHistory”，然后在后面再加上“, (String)”，设置一个变量名作为 String，然后将上面的操作赋给 String，这样方能处理多个操作历史。<br />
+以下是 CST 中创建螺旋线圈电感的 VBA 代码。</p>
+<pre><code class="language-vba">'#Language &quot;WWB-COM&quot;
+
+Option Explicit
+
+Sub Main ()
+    StartVersionStringOverrideMode &quot;2025.2|34.0.1|20241216&quot;
+
+    Dim cmd As String
+    
+    '===========================================================
+    ' Step 1: 定义材料 Copper (annealed)
+    '===========================================================
+    cmd = &quot;With Material&quot; &amp; vbCrLf &amp; _
+          &quot;     .Reset&quot; &amp; vbCrLf &amp; _
+          &quot;     .Name &quot;&quot;Copper (annealed)&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Folder &quot;&quot;&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .FrqType &quot;&quot;static&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Type &quot;&quot;Normal&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .SetMaterialUnit &quot;&quot;Hz&quot;&quot;, &quot;&quot;mm&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Epsilon &quot;&quot;1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Mu &quot;&quot;1.0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Kappa &quot;&quot;5.8e+007&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .TanD &quot;&quot;0.0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .TanDFreq &quot;&quot;0.0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .TanDGiven &quot;&quot;False&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .TanDModel &quot;&quot;ConstTanD&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .KappaM &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .TanDM &quot;&quot;0.0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .TanDMFreq &quot;&quot;0.0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .TanDMGiven &quot;&quot;False&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .TanDMModel &quot;&quot;ConstTanD&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .DispModelEps &quot;&quot;None&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .DispModelMu &quot;&quot;None&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .DispersiveFittingSchemeEps &quot;&quot;Nth Order&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .DispersiveFittingSchemeMu &quot;&quot;Nth Order&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .UseGeneralDispersionEps &quot;&quot;False&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .UseGeneralDispersionMu &quot;&quot;False&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .FrqType &quot;&quot;all&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Type &quot;&quot;Lossy metal&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .SetMaterialUnit &quot;&quot;GHz&quot;&quot;, &quot;&quot;mm&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Mu &quot;&quot;1.0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Kappa &quot;&quot;5.8e+007&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Rho &quot;&quot;8930.0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .ThermalType &quot;&quot;Normal&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .ThermalConductivity &quot;&quot;401.0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .SpecificHeat &quot;&quot;390&quot;&quot;, &quot;&quot;J/K/kg&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .MetabolicRate &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .BloodFlow &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .VoxelConvection &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .MechanicsType &quot;&quot;Isotropic&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .YoungsModulus &quot;&quot;120&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .PoissonsRatio &quot;&quot;0.33&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .ThermalExpansionRate &quot;&quot;17&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Colour &quot;&quot;1&quot;&quot;, &quot;&quot;1&quot;&quot;, &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Wireframe &quot;&quot;False&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Reflection &quot;&quot;False&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Allowoutline &quot;&quot;True&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Transparentoutline &quot;&quot;False&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Transparency &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Create&quot; &amp; vbCrLf &amp; _
+          &quot;End With&quot;
+    AddToHistory &quot;Define material: Copper (annealed)&quot;, cmd
+    
+    '===========================================================
+    ' Step 2: 定义曲线 circle1
+    '===========================================================
+    cmd = &quot;With Circle&quot; &amp; vbCrLf &amp; _
+          &quot;     .Reset&quot; &amp; vbCrLf &amp; _
+          &quot;     .Name &quot;&quot;circle1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Curve &quot;&quot;curve1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Radius &quot;&quot;wire_d/2&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Xcenter &quot;&quot;r&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Ycenter &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Segments &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Create&quot; &amp; vbCrLf &amp; _
+          &quot;End With&quot;
+    AddToHistory &quot;Define curve circle: curve1:circle1&quot;, cmd
+    
+    '===========================================================
+    ' Step 3: 新建组件 component1
+    '===========================================================
+    cmd = &quot;Component.New &quot;&quot;component1&quot;&quot;&quot;
+    AddToHistory &quot;New component: component1&quot;, cmd
+    
+    '===========================================================
+    ' Step 4: 定义 CoverProfile solid1
+    '===========================================================
+    cmd = &quot;With CoverCurve&quot; &amp; vbCrLf &amp; _
+          &quot;     .Reset&quot; &amp; vbCrLf &amp; _
+          &quot;     .Name &quot;&quot;solid1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Component &quot;&quot;component1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Material &quot;&quot;Copper (annealed)&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Curve &quot;&quot;curve1:circle1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .DeleteCurve &quot;&quot;True&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Create&quot; &amp; vbCrLf &amp; _
+          &quot;End With&quot;
+    AddToHistory &quot;Define coverprofile: component1:solid1&quot;, cmd
+    
+    '===========================================================
+    ' Step 5: 拾取面
+    '===========================================================
+    cmd = &quot;Pick.PickFaceFromId &quot;&quot;component1:solid1&quot;&quot;, &quot;&quot;1&quot;&quot;&quot;
+    AddToHistory &quot;Pick face&quot;, cmd
+    
+    '===========================================================
+    ' Step 6: 设置边
+    '===========================================================
+    cmd = &quot;Pick.AddEdge &quot;&quot;0.0&quot;&quot;, &quot;&quot;0.0&quot;&quot;, &quot;&quot;0.0&quot;&quot;, &quot;&quot;0.0&quot;&quot;, &quot;&quot;10&quot;&quot;, &quot;&quot;0.0&quot;&quot;&quot;
+    AddToHistory &quot;Set edge&quot;, cmd
+    
+    '===========================================================
+    ' Step 7: 定义旋转体 solid2
+    '===========================================================
+    cmd = &quot;With Rotate&quot; &amp; vbCrLf &amp; _
+          &quot;     .Reset&quot; &amp; vbCrLf &amp; _
+          &quot;     .Name &quot;&quot;solid2&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Component &quot;&quot;component1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .NumberOfPickedFaces &quot;&quot;1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Material &quot;&quot;Copper (annealed)&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Mode &quot;&quot;Picks&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Angle &quot;&quot;n*360&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Height &quot;&quot;H&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .RadiusRatio &quot;&quot;1.0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .TaperAngle &quot;&quot;0.0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .NSteps &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .SplitClosedEdges &quot;&quot;True&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .SegmentedProfile &quot;&quot;False&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .DeleteBaseFaceSolid &quot;&quot;False&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .ClearPickedFace &quot;&quot;True&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .SimplifySolid &quot;&quot;True&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .UseAdvancedSegmentedRotation &quot;&quot;True&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .CutEndOff &quot;&quot;False&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Create&quot; &amp; vbCrLf &amp; _
+          &quot;End With&quot;
+    AddToHistory &quot;Define rotate: component1:solid2&quot;, cmd
+    
+    '===========================================================
+    ' Step 8: 定义圆柱体 solid3
+    '===========================================================
+    cmd = &quot;With Cylinder&quot; &amp; vbCrLf &amp; _
+          &quot;     .Reset&quot; &amp; vbCrLf &amp; _
+          &quot;     .Name &quot;&quot;solid3&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Component &quot;&quot;component1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Material &quot;&quot;Copper (annealed)&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .OuterRadius &quot;&quot;10&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .InnerRadius &quot;&quot;0.0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Axis &quot;&quot;y&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Yrange &quot;&quot;0&quot;&quot;, &quot;&quot;H&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Xcenter &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Zcenter &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Segments &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Create&quot; &amp; vbCrLf &amp; _
+          &quot;End With&quot;
+    AddToHistory &quot;Define cylinder: component1:solid3&quot;, cmd
+    
+    '===========================================================
+    ' Step 9: 定义参数 h2 (直接执行，不进历史)
+    '===========================================================
+    ' StoreDoubleParameter &quot;h2&quot;, &quot;0&quot;
+    
+    '===========================================================
+    ' Step 10: 创建沿X轴的圆柱 cylinder_radial
+    '===========================================================
+    cmd = &quot;With Cylinder&quot; &amp; vbCrLf &amp; _
+          &quot;     .Reset&quot; &amp; vbCrLf &amp; _
+          &quot;     .Name &quot;&quot;cylinder_radial&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Component &quot;&quot;component1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Material &quot;&quot;Copper (annealed)&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .OuterRadius &quot;&quot;10&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .InnerRadius &quot;&quot;0.0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Axis &quot;&quot;x&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Xrange &quot;&quot;0&quot;&quot;, &quot;&quot;r&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Ycenter &quot;&quot;h2&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Zcenter &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Segments &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Create&quot; &amp; vbCrLf &amp; _
+          &quot;End With&quot;
+    AddToHistory &quot;Create cylinder along X at h2&quot;, cmd
+    
+    '===========================================================
+    ' Step 11: Transform旋转圆柱对齐螺旋线方向
+    '===========================================================
+    cmd = &quot;With Transform&quot; &amp; vbCrLf &amp; _
+          &quot;     .Reset&quot; &amp; vbCrLf &amp; _
+          &quot;     .Name &quot;&quot;component1:cylinder_radial&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Origin &quot;&quot;Free&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Center &quot;&quot;0&quot;&quot;, &quot;&quot;h2&quot;&quot;, &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Angle &quot;&quot;0&quot;&quot;, &quot;&quot;360*n*h2/H&quot;&quot;, &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .MultipleObjects &quot;&quot;False&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .GroupObjects &quot;&quot;False&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Repetitions &quot;&quot;1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .MultipleSelection &quot;&quot;False&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .AutoDestination &quot;&quot;True&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Transform &quot;&quot;Shape&quot;&quot;, &quot;&quot;Rotate&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;End With&quot;
+    AddToHistory &quot;Rotate cylinder toward helix&quot;, cmd
+    
+    '===========================================================
+    ' Step 12: 定义螺旋线径向线
+    '===========================================================
+    cmd = &quot;With Polygon3D&quot; &amp; vbCrLf &amp; _
+          &quot;     .Reset&quot; &amp; vbCrLf &amp; _
+          &quot;     .Version 10&quot; &amp; vbCrLf &amp; _
+          &quot;     .Name &quot;&quot;3dpolygon_1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Curve &quot;&quot;3D-Analytical&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Point &quot;&quot;0&quot;&quot;, &quot;&quot;h2&quot;&quot;, &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Point &quot;&quot;10*cos(2*pi*3*h2/30)&quot;&quot;, &quot;&quot;h2&quot;&quot;, &quot;&quot;-10*sin(2*pi*3*h2/30)&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Create&quot; &amp; vbCrLf &amp; _
+          &quot;End With&quot;
+    AddToHistory &quot;Radial Line at h2&quot;, cmd
+    
+    '===========================================================
+    ' Step 13: 起始端圆柱 solid4 (向下延伸)
+    '===========================================================
+    cmd = &quot;With Cylinder&quot; &amp; vbCrLf &amp; _
+          &quot;     .Reset&quot; &amp; vbCrLf &amp; _
+          &quot;     .Name &quot;&quot;solid4&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Component &quot;&quot;component1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Material &quot;&quot;Copper (annealed)&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .OuterRadius &quot;&quot;wire_d/2&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .InnerRadius &quot;&quot;0.0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Axis &quot;&quot;y&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Yrange &quot;&quot;-100&quot;&quot;, &quot;&quot;-wire_d/2-0.4&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Xcenter &quot;&quot;r&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Zcenter &quot;&quot;wire_d/2&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Segments &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Create&quot; &amp; vbCrLf &amp; _
+          &quot;End With&quot;
+    AddToHistory &quot;Define cylinder: component1:solid4 (start cap)&quot;, cmd
+    
+    '===========================================================
+    ' Step 14: 拾取 solid2 起始端面 face 4
+    '===========================================================
+    cmd = &quot;Pick.PickFaceFromId &quot;&quot;component1:solid2&quot;&quot;, &quot;&quot;4&quot;&quot;&quot;
+    AddToHistory &quot;Pick face: component1:solid2 face 4&quot;, cmd
+    
+    '===========================================================
+    ' Step 15: 拾取 solid4 端面 face 3
+    '===========================================================
+    cmd = &quot;Pick.PickFaceFromId &quot;&quot;component1:solid4&quot;&quot;, &quot;&quot;3&quot;&quot;&quot;
+    AddToHistory &quot;Pick face: component1:solid4 face 3&quot;, cmd
+    
+    '===========================================================
+    ' Step 16: Loft连接起始端 solid5
+    '===========================================================
+    cmd = &quot;With Loft&quot; &amp; vbCrLf &amp; _
+          &quot;     .Reset&quot; &amp; vbCrLf &amp; _
+          &quot;     .Name &quot;&quot;solid5&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Component &quot;&quot;component1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Material &quot;&quot;Copper (annealed)&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Tangency &quot;&quot;0.2&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Minimizetwist &quot;&quot;true&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .CreateNew&quot; &amp; vbCrLf &amp; _
+          &quot;End With&quot;
+    AddToHistory &quot;Define loft: component1:solid5 (start cap)&quot;, cmd
+    
+    '===========================================================
+    ' Step 17: 末端圆柱 solid6 (向上延伸)
+    ' Xcenter = r*cos(2*pi*n): n整数时为 r，n半圈时为 -r，自动适配
+    ' Zcenter = -wire_d/2*cos(2*pi*n): n整数时为 -wire_d/2，n半圈时为 wire_d/2
+    '===========================================================
+    cmd = &quot;With Cylinder&quot; &amp; vbCrLf &amp; _
+          &quot;     .Reset&quot; &amp; vbCrLf &amp; _
+          &quot;     .Name &quot;&quot;solid6&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Component &quot;&quot;component1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Material &quot;&quot;Copper (annealed)&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .OuterRadius &quot;&quot;wire_d/2&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .InnerRadius &quot;&quot;0.0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Axis &quot;&quot;y&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Yrange &quot;&quot;H+wire_d/2+0.4&quot;&quot;, &quot;&quot;H+100&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Xcenter &quot;&quot;r*cos(2*pi*n)&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Zcenter &quot;&quot;-wire_d/2*cos(2*pi*n)&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Segments &quot;&quot;0&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Create&quot; &amp; vbCrLf &amp; _
+          &quot;End With&quot;
+    AddToHistory &quot;Define cylinder: component1:solid6 (end cap)&quot;, cmd
+    
+    '===========================================================
+    ' Step 18: 拾取 solid2 末端端面 face 3
+    '===========================================================
+    cmd = &quot;Pick.PickFaceFromId &quot;&quot;component1:solid2&quot;&quot;, &quot;&quot;3&quot;&quot;&quot;
+    AddToHistory &quot;Pick face: component1:solid2 face 3&quot;, cmd
+    
+    '===========================================================
+    ' Step 19: 拾取 solid6 端面 face 1
+    '===========================================================
+    cmd = &quot;Pick.PickFaceFromId &quot;&quot;component1:solid6&quot;&quot;, &quot;&quot;1&quot;&quot;&quot;
+    AddToHistory &quot;Pick face: component1:solid6 face 1&quot;, cmd
+    
+    '===========================================================
+    ' Step 20: Loft连接末端 solid7
+    '===========================================================
+    cmd = &quot;With Loft&quot; &amp; vbCrLf &amp; _
+          &quot;     .Reset&quot; &amp; vbCrLf &amp; _
+          &quot;     .Name &quot;&quot;solid7&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Component &quot;&quot;component1&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Material &quot;&quot;Copper (annealed)&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Tangency &quot;&quot;0.2&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .Minimizetwist &quot;&quot;true&quot;&quot;&quot; &amp; vbCrLf &amp; _
+          &quot;     .CreateNew&quot; &amp; vbCrLf &amp; _
+          &quot;End With&quot;
+    AddToHistory &quot;Define loft: component1:solid7 (end cap)&quot;, cmd
+
+    StopVersionStringOverrideMode
+End Sub
+
+</code></pre>
+<p>上面这段代码实现效果如下图所示。<br />
+<img src="/post-images/1783245734565801300_0.png" alt="" /></p>
+<h3 id="heading-1">参考</h3>
+<p><a href="https://blog.csdn.net/DongDong314/article/details/138245512">电磁仿真&ndash;基本操作-CST-(4)-复杂空心电感</a><br />
+<a href="https://blog.csdn.net/DongDong314/article/details/138168645">电磁仿真&ndash;基本操作-CST-(4)-复杂空心电感</a><br />
+<a href="http://diybcq.com/forum.php?mod=viewthread&amp;tid=118554">[待整理] 如何用CST建立螺旋的模型</a><br />
+<a href="https://www.eepw.com.cn/article/261167.htm">如何用CST建立螺旋的模型</a><br />
+<a href="http://www.mweda.com/html/hfss-cst-22305-1.html">CST中如何建立螺旋线</a></p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix">
+        
+        
+        
+        <span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/windows-bian-yiyun-xing-yu-diao-shi-gridea-pro-wan-zheng-zhi-nan/" title="Windows  编译、运行与调试 Gridea-Pro 完整指南">
+                next_post: Windows  编译、运行与调试 Gridea-Pro 完整指南
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span>
+        
+    </p>
+</div>
+
+
+                            
+                            <div id="gridea-comments"></div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;
+        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
+            
+                vigourpine
+            
+        </a>
+    </p>
+    <p>Theme&nbsp;
+        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
+        &nbsp;by&nbsp;
+        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
+    </p>
+    <p>Proudly published with&nbsp;
+        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
+    </p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.3 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

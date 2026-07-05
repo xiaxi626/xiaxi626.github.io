@@ -6,8 +6,20 @@
     <description>Welcome to Gridea Pro</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Sat, 20 Jun 2026 19:57:26 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2026 18:49:58 +0800</lastBuildDate>
     <atom:link href="https://xiaxi626.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <item>
+      <title>CST中螺旋线圈电感的建模</title>
+      <link>https://xiaxi626.github.io/post/cstzhong-luo-xuan-xian-quan-dian-gan-de-jian-mo/</link>
+      <guid isPermaLink="true">https://xiaxi626.github.io/post/cstzhong-luo-xuan-xian-quan-dian-gan-de-jian-mo/</guid>
+      <pubDate>Sun, 05 Jul 2026 19:14:47 +0800</pubDate>
+      <description><![CDATA[<h3 id="heading">建模方法</h3>
+<p>在CST中按照参考中的建模方法建好螺旋线线圈以后，沿螺旋的中轴建一根与螺旋线一样长的圆柱，再创建一根“一端在轴上，另一端在螺旋线上”的圆柱，使其长度保持线圈中径的一半。最后两端加上引脚即可<br />
+操作讲起来比较简单。螺旋线可通过 CST 的方程式建模，然后在起始处创建一个圆片，再 sweep curve，也可以只创建一个圆片直接旋转它生成螺旋体。<br />
+我们可以通过CST内置的Macr&hellip;</p>
+]]></description>
+      <category>Technology</category>
+    </item>
     <item>
       <title>Windows  编译、运行与调试 Gridea-Pro 完整指南</title>
       <link>https://xiaxi626.github.io/post/windows-bian-yiyun-xing-yu-diao-shi-gridea-pro-wan-zheng-zhi-nan/</link>
@@ -117,19 +129,6 @@
       <pubDate>Sat, 26 Aug 2023 20:46:59 +0800</pubDate>
       <description><![CDATA[<p>FLAC代表Free Lossless Audio Codec，是一种与MP3类似的音频格式，但它是无损的，意味着在FLAC中压缩音频时不会损失任何质量。这与Zip的工作原理类似，但使用FLAC时，您将获得更好的压缩效果，因为它是专门为音频设计的。您可以在您喜欢的播放器（或您的汽车或家庭立体声设备，请参阅支持的设备）中播放压缩的FLAC文件，就像播放MP3文件一样。</p>
 <p>FLAC是最快且支持最广泛的&hellip;</p>
-]]></description>
-      <category>Technology</category>
-    </item>
-    <item>
-      <title>GPG入门教程</title>
-      <link>https://xiaxi626.github.io/post/gpg-ru-men-jiao-cheng/</link>
-      <guid isPermaLink="true">https://xiaxi626.github.io/post/gpg-ru-men-jiao-cheng/</guid>
-      <pubDate>Thu, 24 Aug 2023 20:20:45 +0800</pubDate>
-      <description><![CDATA[<h2 id="heading">前言</h2>
-<p>Github设置有一项叫“SSH 与 GPG 公钥”，平常我们看一些教程只需要使用SSH 公钥，好像用不到GPG 公钥，直到我看到这篇有趣的帖子——<a href="https://spencerwoo.com/blog/wait-this-is-not-my-commit">👨‍💻 震惊！竟然有人在 GitHub 上冒充我的身份！</a></p>
-<blockquote>
-<p>Git 的 commit 是可以任意修改的，你可以将某个坏&hellip;</p>
-</blockquote>
 ]]></description>
       <category>Technology</category>
     </item>
