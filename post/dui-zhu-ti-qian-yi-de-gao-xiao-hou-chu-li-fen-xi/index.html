@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="飞爱碧玉">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+
+
+<meta name="description" content="Welcome to Gridea Pro">
+
+
+
+<meta name="keywords" content="Gridea Pro,AI">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600&display=swap">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>对主题迁移的高效后处理分析 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="对主题迁移的高效后处理分析">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="最近几个月就博客主题模板从一个平台迁移到另一个平台做了深入研究，并在以往的经验基础上使用AI大模型辅助分析、创建和修改主题。 一开始，我并不熟悉很多技术栈，只了解过node.js、html、js、css、JavaScript的一点皮毛。得益于之前为了学习epub电子书编写方法，自己制作与他人合作翻译的轻小说的epub书籍，以及搜集资料创建GitHub上的epub-study仓库，我能够看懂别人写&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/dui-zhu-ti-qian-yi-de-gao-xiao-hou-chu-li-fen-xi/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"对主题迁移的高效后处理分析","url":"https://xiaxi626.github.io/post/dui-zhu-ti-qian-yi-de-gao-xiao-hou-chu-li-fen-xi/","description":"最近几个月就博客主题模板从一个平台迁移到另一个平台做了深入研究，并在以往的经验基础上使用AI大模型辅助分析、创建和修改主题。 一开始，我并不熟悉很多技术栈，只了解过node.js、html、js、css、JavaScript的一点皮毛。得益于之前为了学习epub电子书编写方法，自己制作与他人合作翻译的轻小说的epub书籍，以及搜集资料创建GitHub上的epub-study仓库，我能够看懂别人写\u0026hellip;","datePublished":"2026-08-13T04:58:09+08:00","dateModified":"2026-08-13T09:05:51+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/media/images/avatar.jpg"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/dui-zhu-ti-qian-yi-de-gao-xiao-hou-chu-li-fen-xi/","name":"对主题迁移的高效后处理分析","position":2}]}</script>
+<meta property="og:title" content="对主题迁移的高效后处理分析">
+<meta property="og:description" content="最近几个月就博客主题模板从一个平台迁移到另一个平台做了深入研究，并在以往的经验基础上使用AI大模型辅助分析、创建和修改主题。 一开始，我并不熟悉很多技术栈，只了解过node.js、html、js、css、JavaScript的一点皮毛。得益于之前为了学习epub电子书编写方法，自己制作与他人合作翻译的轻小说的epub书籍，以及搜集资料创建GitHub上的epub-study仓库，我能够看懂别人写&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/dui-zhu-ti-qian-yi-de-gao-xiao-hou-chu-li-fen-xi/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/media/images/avatar.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/dui-zhu-ti-qian-yi-de-gao-xiao-hou-chu-li-fen-xi/">
+<meta name="twitter:title" content="对主题迁移的高效后处理分析">
+<meta name="twitter:description" content="最近几个月就博客主题模板从一个平台迁移到另一个平台做了深入研究，并在以往的经验基础上使用AI大模型辅助分析、创建和修改主题。 一开始，我并不熟悉很多技术栈，只了解过node.js、html、js、css、JavaScript的一点皮毛。得益于之前为了学习epub电子书编写方法，自己制作与他人合作翻译的轻小说的epub书籍，以及搜集资料创建GitHub上的epub-study仓库，我能够看懂别人写&amp;hellip;">
+<meta name="twitter:image" content="/media/images/avatar.jpg">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/links">友链</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            <a href="https://github.com/github.com/xiaxi626" target="_blank" rel="noopener noreferrer" aria-label="Github">
+                <i class="fa fa-github"></i>&nbsp;
+            </a>
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">vigourpine</a></p>
+    <p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p>
+    <p>Proudly published with&nbsp;<a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a></p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>对主题迁移的高效后处理分析</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">Posted at&nbsp;2026-08-13</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/dui-zhu-ti-qian-yi-de-gao-xiao-hou-chu-li-fen-xi/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/gridea-pro/" title="Gridea Pro">Gridea Pro</a>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/ai/" title="AI">AI</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><p>最近几个月就博客主题模板从一个平台迁移到另一个平台做了深入研究，并在以往的经验基础上使用AI大模型辅助分析、创建和修改主题。<br />
+一开始，我并不熟悉很多技术栈，只了解过node.js、html、js、css、JavaScript的一点皮毛。得益于之前为了学习epub电子书编写方法，自己制作与他人合作翻译的轻小说的epub书籍，以及搜集资料创建GitHub上的epub-study仓库，我能够看懂别人写的CSS代码所表述的前端特征，能够看懂html的代码结构，并针对别人已经写好的主题模板和网上的案例进行修改和小幅度的创造。<br />
+在几个月前，我有一次在网页端问Kimi一个问题——如果将一个博客主题模板从一个平台移植到另一个平台，我该如何写提示词让AI能够很好的完成任务。在大量的对话中，我最终锁定了这样一段话，在agent中告诉AI，“读取模板文件，列出所有需要迁移的组件和功能，目标迁移系统Gridea Pro 主题系统，描述主题概述”“参考该Gridea pro主题的文件夹命名和层级，将分析得到的Hugo Anubis2的HTML 结构、CSS 样式转换为目标框架语法”。就是这两句简单的prompt，为移植主题模板打开了一扇窗，告诉AI要先找规则。<br />
+自此，我开始尝试将Hexo主题移植到Gridea Pro上。在尝试了两次hugo-theme-anubis2后，很偶然地，AI开始按照现在看来相对正确的路子去理解上面这两句prompt，然后非常惊人地第一次把整个移植的大框架搭建对了，并且直到现在都是我目前方法的基石。<br />
+开始尝试第二个移植项目时，我遇到了问题：好像上面的prompt不对了，但我不知道有什么方法能把路子摆回之前的输出上。当时我只觉得应该复用prompt，因此包括上面这两句开场白在内的一些用词，在新建移植项目对话时我一定会再输入一遍，以保证路线不偏离。<br />
+那个时候流行的只有 prompt 这个概念，skill 还没有火到被我刷到的程度。<br />
+过了几个星期，当我发现 skill 这个概念时，就想着让 AI 帮我总结一下之前移植主题的方法。它提出了“映射表”的概念，于是我基于此开始开发映射表，以及读取映射表的外围代码，再往里面填入具体内容。但很快我发现，使用这种方法时，大模型的思维容易变得僵化。<br />
+后来，我在 Gridea Pro 组织的官方仓库里找到了 theme-builder-skill。这是一个相当棒的项目，它采用三层架构：知识层提供结构化领域知识（参考文档），工具层提供可执行自动化脚本，模板层提供即用型起始主题代码。各层之间通过定义良好的接口实现松耦合。<br />
+具体的分析我让AI写了一篇小论文<a href="https://github.com/xiaxi626/theme-builder-skill/wiki/">Theme‐Builder Skill：面向 AI 辅助编程的多引擎静态博客主题开发框架</a>。<br />
+但很快我又发现了下一个问题：它是一台好的主题生成器，能够快速将某个主题预览以语法正确的状态移植过来，却只管移植得对不对，不管是不是真的100%像原版。测试时，我甚至遇到过两个不同的主题移植过来后预览相似、但都不像原版的情况。<br />
+然后我问开发者，开发者补充了一个相对不错的prompt，我把原文贴在这里——</p>
+<pre><code class="language-markdown">&lt;!--
+  Author: https://github.com/Tespera
+--&gt;
+
+# 角色设定
+你是一位资深的前端开发工程师和 Gridea Pro 主题开发专家，精通 Jinja2 模板语法以及各类前端页面重构。
+
+# 任务目标
+我需要你分析指定的主题源码或目标网站，将其 100% 视觉复刻，并完全转译为符合 Gridea Pro 规范的 Jinja2 语法主题。
+
+# 基础信息（变量）
+- **主题名称**：[Kehua] （主题文件夹为小写）
+- **演示站链接**：[https://time.20002009.xyz]
+- **源码/参考链接**：[ `https://github.com/kehuame/whitespace`]
+- **原主题类型**：[Typecho 主题]
+
+# 核心开发要求
+
+## 1. 语法与组件规范
+- 使用 Jinja2 语法进行完全转译。
+- 必须严格遵循 Gridea Pro 的主题开发规范，使用我们内置的 Gridea Pro theme build skill 进行开发并使用里面的脚本进行数据渲染和语法校准。
+
+## 2. 前端设计优化
+- 在进行前端页面设计时可使用frontend design skill 进行设计优化
+
+## 3. 页面完整性
+转译后的主题必须包含以下所有基础页面及对应的页面组件（如果原主题缺少某页面，请保持原设计风格进行合理补充）
+
+### 页面
+- 首页 (Index)
+- 博客列表页 (Post List)
+- 文章详情页 (Post Detail)
+- 归档页 (Archives)
+- 闪念页 (Memos)
+- 标签列表页 (Tags)
+- 标签详情落地页 (Tag Detail)
+- 分类列表页 (Categories)
+- 分类详情落地页 (Category Detail)
+- 友情链接 (Links)
+- 关于页面 (About)
+
+### 组件
+- 搜索
+- 分页（上一页，下一页）
+- 文章详情页底部的上一篇，下一篇
+- memos 热力图
+- 评论组件
+
+## 3. 样式与布局 (100% 像素级复刻)
+- 样式和页面布局在第一阶段必须 **100% 忠实复刻** 原主题的设计。
+- **响应式适配**：必须全面适配 PC 端和移动端。请主动检查原主题的响应式情况，如果原主题仅有移动端或 PC 端，请基于原设计风格自行补全另一端的自适应布局代码。
+
+## 4. 核心功能支持
+- **深浅模式**：必须支持 Dark / Light Mode 切换及样式适配。
+- **全局搜索**：需完整接入搜索组件及逻辑。
+- **评论系统**：保留原有的评论组件 UI 样式，但底层逻辑必须修改为支持直接接入 Gridea Pro 的标准评论服务。
+
+# 输出交付要求
+1. 请先简要分析原主题的结构和你即将采取的开发步骤。
+2. 给出完整的文件目录树结构。
+3. 按照组件、布局(Layout)、具体页面的顺序，依次输出完整的 Jinja2 代码和关联的 CSS/JS 代码。
+4. 所有代码需放入该主题的文件夹层级中。
+5. 请认真思考每个细节，确保开箱即用。
+</code></pre>
+<p>它解决了一个问题，就是让AI扮演一个角色，并让AI真的按照角色设定去做事。这也是早期大家通用的调教方法“你是一个/一位……”。这段话很有指向性，但我觉得它只是解决了移植的专业性要求。<br />
+于是，我放弃了纯映射表的路子，改用对theme-builder-skill的补充方案——<br />
+将迁移流程分解为七个有序阶段：逆向分析、变量映射推导、模板重写、CSS移植、自动化验证、真机验证和映射积累。该方法论建立在Theme-Builder Skill框架的验证基础设施之上，并在此基础上贡献了四项迁移特有的创新：<br />
+（1）通过&quot;先理解后翻译&quot;的逆向分析策略，确保迁移不丢失源主题的设计意图；<br />
+（2）基于交叉比对的动态变量映射推导机制，不依赖硬编码映射表，通过源主题变量清单与目标平台变量目录的逐项匹配自动推导对应关系；<br />
+（3）Pug Mixin到Pongo2 Include的范式转换策略，解决&quot;函数式组件&quot;到&quot;声明式片段&quot;的语义鸿沟；<br />
+（4）通过映射积累实现迁移知识的复利效应，将每次迁移的变量对应关系持久化为可复用的结构化数据。<br />
+详细的第一版小论文见<a href="https://github.com/xiaxi626/theme-builder-skill/wiki">Hexo‐to‐Gridea‐Migration：面向 AI 辅助编程的跨平台静态博客主题迁移方法论（以Pug为例）</a><br />
+于是，theme-port-skill 诞生了。它天然有一个短板：机制不够完善。作为一个能进化的 skill 配套设施，它做不到 harness 那样的能力。因此它经常犯一类奇怪的错误：对原版主题理解不够深入，遗漏各种功能和设置；对 CSS/JS 等细节的把握，要么死板地直接拿过来，以为改个语法表达就行，要么虽然理解到位，执行上却出问题。这其实和人很像——不能怪大模型太笨，我们自己也不聪明；但我们总希望足够聪明的它，不要重复犯同样的错误。<br />
+harness，又是一个新词。它不负责生成下一个 token，但负责决定模型什么时候调用工具、访问哪些文件、任务拆成几步、出错后怎么回退、执行到哪一步可以结束。<br />
+llm、prompt、skill、harness、agent，再加上应用、会话、传输、网络、数据链路，这些层级都有了。你是不是想到了 OSI 七层模型？大模型训练正在搭建一个操作系统，并朝着 AGI 迈进。<br />
+回到刚才的话题，总结一下。第一，当前的 theme-port-skill 能较好地移植静态资源，但对原版功能的理解可能不到位。此外，theme-port-skill 与 theme-builder-skill 的交互可能存在问题：为了开发需求，我们在后续更新中把 theme-port-skill 变成与 theme-builder-skill 并行的高级别 skill，导致它静态资源的引用问题被交互放大了（未升级前也有同样的问题）。第二，两个 skill 的组合技依然会遗漏原版主题的功能，我到现在都没找到原因。我确实让大模型逆向读取了原版的所有逻辑，但它似乎只挑熟悉的部分处理；其他部分，如果你不专门问，或者不通过前端预览测试发现遗漏，它极有可能直接说“移植得挺好”。<br />
+现在，我附上一个能查出大量问题的方法。当然，核查它最终输出的内容后，我发现有一部分变化其实来自原版主题自身的更新：一些数值和逻辑做了调整。为了匹配原版主题的预览效果，最好还是参照当时移植所依据的版本，一个一个去核对，把输出结果中对应那个版本、但尚未处理好的部分修正补上；确认没问题后，再拿最新版本和当前移植版本做对比，看看剩下的差异有哪些、又该如何处理。<br />
+我想，这也算是对版本管理的一种严谨态度吧。<br />
+prompt如下——</p>
+<pre><code class="language-markdown">加载 gridea-theme-builder skill 和 theme-port-skill。 分析原版主题与当前主题，当前主题未复刻的功能以及逻辑有差异的功能，看看CSS/JS排版样式的差异。
+</code></pre>
+<p>地阶功法分享完毕。</p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix"></p>
+    <p><span class="pre pagbuttons">
+            <a role="navigation" href="/post/ru-he-zai-gridea-prozhu-ti-zhong-shi-xian-giscus-ping-lun/" title="如何在Gridea Pro主题中实现giscus 评论">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                Previous post: 如何在Gridea Pro主题中实现giscus 评论
+            </a>
+        </span><span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/hexo-to-gridea-migrationmian-xiang-ai-fu-zhu-bian-cheng-de-kua-ping-tai-jing-tai-bo-ke-zhu-ti-qian-yi-fang-fa-lunyi-pugwei-li/" title="Hexo‐to‐Gridea‐Migration：面向 AI 辅助编程的跨平台静态博客主题迁移方法论（以Pug为例）">
+                Next post: Hexo‐to‐Gridea‐Migration：面向 AI 辅助编程的跨平台静态博客主题迁移方法论（以Pug为例）
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span></p>
+    <p></p>
+</div>
+
+
+                            
+                            
+                            
+                            
+                            
+                            
+
+
+
+<section id="comments" class="comments">
+    
+        
+            <div id="giscus-container" data-comment-config="giscus" data-repo="xiaxi626/blog-comment" data-repo-id="R_kgDOT3IXhw" data-category="Blog Comments" data-category-id="DIC_kwDOT3IXh84DDRu-" data-page-id="2M53D6" data-theme="light"></div>
+<script>
+(function() {
+    var container = document.getElementById('giscus-container');
+    var theme = container.getAttribute('data-theme');
+    if (theme.charAt(0) === '/') { theme = new URL(theme, window.location.origin).href; }
+    var fail = function(message) { container.textContent = message; container.className = 'comment-message'; };
+    var keys = ['repo', 'repo-id', 'category', 'category-id', 'page-id'];
+    if (keys.some(function(key) { return !container.getAttribute('data-' + key); })) { fail('Giscus 评论配置不完整。'); return; }
+    var script = document.createElement('script');
+    script.src = 'https://giscus.app/client.js';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    script.onerror = function() { fail('Giscus 评论资源加载失败，请稍后重试。'); };
+    script.setAttribute('data-repo', container.getAttribute('data-repo'));
+    script.setAttribute('data-repo-id', container.getAttribute('data-repo-id'));
+    script.setAttribute('data-category', container.getAttribute('data-category'));
+    script.setAttribute('data-category-id', container.getAttribute('data-category-id'));
+    script.setAttribute('data-mapping', 'specific');
+    script.setAttribute('data-term', container.getAttribute('data-page-id'));
+    script.setAttribute('data-strict', '1');
+    script.setAttribute('data-reactions-enabled', '1');
+    script.setAttribute('data-emit-metadata', '0');
+    script.setAttribute('data-input-position', 'top');
+    script.setAttribute('data-theme', theme);
+    script.setAttribute('data-lang', 'zh-CN');
+    script.setAttribute('data-loading', 'lazy');
+    container.appendChild(script);
+})();
+</script>
+
+        
+    
+    
+</section>
+
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">vigourpine</a></p>
+    <p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p>
+    <p>Proudly published with&nbsp;<a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a></p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.3 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

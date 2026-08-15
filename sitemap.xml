@@ -2,9 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://xiaxi626.github.io/</loc>
-    <lastmod>2026-07-05T18:55:15+08:00</lastmod>
+    <lastmod>2026-08-15T10:53:30+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://xiaxi626.github.io/post/gitbiao-zhun-gong-zuo-liu-cheng/</loc>
+    <lastmod>2026-08-15T10:48:17+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://xiaxi626.github.io/post/ru-he-zai-gridea-prozhu-ti-zhong-shi-xian-giscus-ping-lun/</loc>
+    <lastmod>2026-08-13T22:36:19+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://xiaxi626.github.io/post/dui-zhu-ti-qian-yi-de-gao-xiao-hou-chu-li-fen-xi/</loc>
+    <lastmod>2026-08-13T09:05:51+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://xiaxi626.github.io/post/hexo-to-gridea-migrationmian-xiang-ai-fu-zhu-bian-cheng-de-kua-ping-tai-jing-tai-bo-ke-zhu-ti-qian-yi-fang-fa-lunyi-pugwei-li/</loc>
+    <lastmod>2026-08-13T09:19:12+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://xiaxi626.github.io/post/theme-builder-skillmian-xiang-ai-fu-zhu-bian-cheng-de-duo-yin-qing-jing-tai-bo-ke-zhu-ti-kai-fa-kuang-jia/</loc>
+    <lastmod>2026-08-13T09:19:28+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://xiaxi626.github.io/post/cstzhong-luo-xuan-xian-quan-dian-gan-de-jian-mo/</loc>
@@ -26,13 +56,13 @@
   </url>
   <url>
     <loc>https://xiaxi626.github.io/post/ads-w-element-simulate-square-coaxial-rlgc-modeling/</loc>
-    <lastmod>2026-06-21T22:22:15+08:00</lastmod>
+    <lastmod>2026-08-13T09:06:01+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://xiaxi626.github.io/post/dian-zi-si-ji-guan-can-shu-ji-suan-fang-fa-di-yi-bu-fen/</loc>
-    <lastmod>2026-05-15T22:16:15+08:00</lastmod>
+    <lastmod>2026-08-13T09:06:11+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -575,79 +605,79 @@
   </url>
   <url>
     <loc>https://xiaxi626.github.io/post/</loc>
-    <lastmod>2026-07-05T18:55:15+08:00</lastmod>
+    <lastmod>2026-08-15T10:53:30+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://xiaxi626.github.io/memos/</loc>
-    <lastmod>2026-07-05T18:55:15+08:00</lastmod>
+    <lastmod>2026-08-15T10:53:30+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://xiaxi626.github.io/tags/</loc>
-    <lastmod>2026-07-05T18:55:15+08:00</lastmod>
+    <lastmod>2026-08-15T10:53:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://xiaxi626.github.io/archives/</loc>
-    <lastmod>2026-07-05T18:55:15+08:00</lastmod>
+    <lastmod>2026-08-15T10:53:30+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://xiaxi626.github.io/tag/gridea-pro/</loc>
-    <lastmod>2026-07-05T18:55:15+08:00</lastmod>
+    <lastmod>2026-08-15T10:53:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://xiaxi626.github.io/tag/technology/</loc>
-    <lastmod>2026-07-05T18:55:15+08:00</lastmod>
+    <lastmod>2026-08-15T10:53:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://xiaxi626.github.io/tag/git/</loc>
-    <lastmod>2026-07-05T18:55:15+08:00</lastmod>
+    <lastmod>2026-08-15T10:53:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://xiaxi626.github.io/tag/discussion/</loc>
-    <lastmod>2026-07-05T18:55:15+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://xiaxi626.github.io/tag/resource/</loc>
-    <lastmod>2026-07-05T18:55:15+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://xiaxi626.github.io/tag/writing/</loc>
-    <lastmod>2026-07-05T18:55:15+08:00</lastmod>
+    <loc>https://xiaxi626.github.io/tag/ai/</loc>
+    <lastmod>2026-08-15T10:53:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://xiaxi626.github.io/tag/excerpt/</loc>
-    <lastmod>2026-07-05T18:55:15+08:00</lastmod>
+    <lastmod>2026-08-15T10:53:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://xiaxi626.github.io/tag/technology/</loc>
-    <lastmod>2026-07-05T18:55:15+08:00</lastmod>
+    <loc>https://xiaxi626.github.io/tag/writing/</loc>
+    <lastmod>2026-08-15T10:53:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://xiaxi626.github.io/tag/discussion/</loc>
+    <lastmod>2026-08-15T10:53:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://xiaxi626.github.io/tag/resource/</loc>
+    <lastmod>2026-08-15T10:53:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://xiaxi626.github.io/links/</loc>
-    <lastmod>2026-07-05T18:55:15+08:00</lastmod>
+    <lastmod>2026-08-15T10:53:30+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>

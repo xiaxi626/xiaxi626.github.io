@@ -26,6 +26,47 @@ function updateSidebar() {
     }
 }
 
+function processPostSummaryFallbacks() {
+    document.querySelectorAll('.post-summary-fallback').forEach(function(el) {
+        var maxLen = parseInt(el.getAttribute('data-truncate'), 10) || 160;
+        var html = el.innerHTML;
+        var stripped = html.replace(/^\s*(?:<div[^>]*>\s*)*<h[1-6][^>]*>[\s\S]*?<\/h[1-6]>(?:\s*<\/div>)?\s*/gi, '');
+
+        function removeKatexBlocks(s) {
+            var prev = '';
+            while (prev !== s) {
+                prev = s;
+                s = s.replace(/<(span|div)[^>]*class="[^"]*katex[^"]*"[^>]*>[\s\S]*?<\/\1>/gi, '');
+            }
+            return s;
+        }
+
+        stripped = removeKatexBlocks(stripped);
+        stripped = stripped.replace(/<math[^>]*>[\s\S]*?<\/math>/gi, '');
+        stripped = stripped.replace(/\$\$[\s\S]*?\$\$/g, '');
+        stripped = stripped.replace(/\$[^$]+\$/g, '');
+        stripped = stripped.replace(/\\\([\s\S]*?\\\)/g, '');
+        stripped = stripped.replace(/\\\[[\s\S]*?\\\]/g, '');
+        stripped = stripped.replace(/<(sub|sup)[^>]*>([^<]*)<\/\1>/gi, '$2');
+
+        var tempDiv = document.createElement('div');
+        tempDiv.innerHTML = stripped;
+        var text = tempDiv.textContent || tempDiv.innerText || '';
+
+        text = text.replace(/[\u200b\u200c\u200d\ufeff]/g, '');
+        text = text.replace(/_{\s*([^}]+)\s*}/g, '$1');
+        text = text.replace(/\s+/g, ' ').trim();
+
+        if (text.length > maxLen) {
+            text = text.substring(0, maxLen) + '…';
+        }
+
+        el.textContent = text;
+        el.style.visibility = 'visible';
+        el.classList.add('processed');
+    });
+}
+
 //页面加载完成后执行的初始化逻辑
 document.addEventListener('DOMContentLoaded', function() {
     stage = document.getElementById('stage');
@@ -35,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     updateSidebar();
+    processPostSummaryFallbacks();
     
     var mainContainer = document.getElementById('main-container');
     var sideBar = document.getElementById('side-bar');

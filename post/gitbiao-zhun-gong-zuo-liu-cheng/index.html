@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="飞爱碧玉">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+
+
+<meta name="description" content="Welcome to Gridea Pro">
+
+
+
+<meta name="keywords" content="Git">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600&display=swap">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>Git标准工作流程 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="Git标准工作流程">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="梳理一下标准流程： 一、正常的工作流程（避免冲突） 1. 初次获取仓库（只需一次） git clone &amp;lt;仓库地址&amp;gt; cd &amp;lt;仓库目录&amp;gt; 之后就不需要再 clone 了，直接进入已有的本地仓库目录工作。 2. 每次开始工作前，先同步远程最新代码 git pull --rebase origi...">
+<link rel="canonical" href="https://xiaxi626.github.io/post/gitbiao-zhun-gong-zuo-liu-cheng/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Git标准工作流程","url":"https://xiaxi626.github.io/post/gitbiao-zhun-gong-zuo-liu-cheng/","description":"梳理一下标准流程： 一、正常的工作流程（避免冲突） 1. 初次获取仓库（只需一次） git clone \u0026lt;仓库地址\u0026gt; cd \u0026lt;仓库目录\u0026gt; 之后就不需要再 clone 了，直接进入已有的本地仓库目录工作。 2. 每次开始工作前，先同步远程最新代码 git pull --rebase origi...","datePublished":"2026-08-15T18:42:38+08:00","dateModified":"2026-08-15T10:48:17+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/media/images/avatar.jpg"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/gitbiao-zhun-gong-zuo-liu-cheng/","name":"Git标准工作流程","position":2}]}</script>
+<meta property="og:title" content="Git标准工作流程">
+<meta property="og:description" content="梳理一下标准流程： 一、正常的工作流程（避免冲突） 1. 初次获取仓库（只需一次） git clone &amp;lt;仓库地址&amp;gt; cd &amp;lt;仓库目录&amp;gt; 之后就不需要再 clone 了，直接进入已有的本地仓库目录工作。 2. 每次开始工作前，先同步远程最新代码 git pull --rebase origi...">
+<meta property="og:url" content="https://xiaxi626.github.io/post/gitbiao-zhun-gong-zuo-liu-cheng/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/media/images/avatar.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/gitbiao-zhun-gong-zuo-liu-cheng/">
+<meta name="twitter:title" content="Git标准工作流程">
+<meta name="twitter:description" content="梳理一下标准流程： 一、正常的工作流程（避免冲突） 1. 初次获取仓库（只需一次） git clone &amp;lt;仓库地址&amp;gt; cd &amp;lt;仓库目录&amp;gt; 之后就不需要再 clone 了，直接进入已有的本地仓库目录工作。 2. 每次开始工作前，先同步远程最新代码 git pull --rebase origi...">
+<meta name="twitter:image" content="/media/images/avatar.jpg">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/links">友链</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            <a href="https://github.com/github.com/xiaxi626" target="_blank" rel="noopener noreferrer" aria-label="Github">
+                <i class="fa fa-github"></i>&nbsp;
+            </a>
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">vigourpine</a></p>
+    <p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p>
+    <p>Proudly published with&nbsp;<a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a></p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>Git标准工作流程</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">Posted at&nbsp;2026-08-15</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/gitbiao-zhun-gong-zuo-liu-cheng/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/git/" title="Git">Git</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><p>梳理一下标准流程：</p>
+<hr />
+<h2 id="heading">一、正常的工作流程（避免冲突）</h2>
+<h3 id="1-">1. 初次获取仓库（只需一次）</h3>
+<pre><code class="language-bash">git clone &lt;仓库地址&gt;
+cd &lt;仓库目录&gt;
+</code></pre>
+<p>之后就不需要再 clone 了，直接进入已有的本地仓库目录工作。</p>
+<h3 id="2-">2. 每次开始工作前，先同步远程最新代码</h3>
+<pre><code class="language-bash">git pull --rebase origin master
+</code></pre>
+<p>或者普通的合并方式：</p>
+<pre><code class="language-bash">git pull origin master
+</code></pre>
+<p>推荐使用 <code>--rebase</code> 保持线性历史，减少不必要的合并提交。</p>
+<p>如果远程没有更新，<code>git pull</code> 会直接告诉你已经是最新的。</p>
+<h3 id="3-">3. 修改文件，然后提交</h3>
+<pre><code class="language-bash">git add .
+git commit -m &quot;描述你的修改&quot;
+</code></pre>
+<h3 id="4-">4. 推送前（可选）检查状态</h3>
+<pre><code class="language-bash">git log --oneline --graph --decorate --all -20
+</code></pre>
+<p>或者更简单地：</p>
+<pre><code class="language-bash">git status
+</code></pre>
+<p>确认本地和远程是否分叉。如果 <code>git pull</code> 之后没有再出现新的远程提交，通常不会分叉。</p>
+<h3 id="5-">5. 推送到远程</h3>
+<pre><code class="language-bash">git push -u origin master
+</code></pre>
+<ul>
+<li><code>-u</code> 参数只在<strong>第一次</strong>推送时需要，用来设置上游分支，之后可以直接 <code>git push</code>。</li>
+<li>如果远程没有新提交，你的推送一定是快进（fast-forward），不会报错。</li>
+</ul>
+<hr />
+<h2 id="non-fast-forward">二、如果推送时遇到“non-fast-forward”错误</h2>
+<p>这说明<strong>远程有本地没有的提交</strong>，也就是远程在你上次拉取后又有了新提交（别人推的，或者你在 GitHub 网页上操作产生的）。此时需要先整合远程的提交。</p>
+<h3 id="-rebase">解决方法（推荐 rebase）</h3>
+<ol>
+<li>
+<p><strong>拉取远程提交并变基</strong></p>
+<pre><code class="language-bash">git pull --rebase origin master
+</code></pre>
+<ul>
+<li>这个命令会自动把远程的提交拉下来，然后把你的本地提交“嫁接”到远程最新提交之后。</li>
+<li>如果没有冲突，命令会顺利结束，此时你的本地历史已经包含了远程提交，且你的提交在最新位置。</li>
+<li><strong>注意</strong>：如果 <code>git pull --rebase</code> 已经成功完成，就不需要再执行 <code>git rebase --continue</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>如果出现冲突</strong>，Git 会暂停并提示冲突文件。你需要：</p>
+<ul>
+<li>手动编辑冲突文件，删除冲突标记（<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>、<code>=======</code>、<code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>），保留正确内容。</li>
+<li>执行 <code>git add &lt;冲突文件&gt;</code> 或 <code>git add .</code> 标记为已解决。</li>
+<li>继续变基：
+<pre><code class="language-bash">git rebase --continue
+</code></pre>
+</li>
+<li>重复直到变基完成（提示 “Successfully rebased and updated refs/heads/master.”）。</li>
+</ul>
+</li>
+<li>
+<p><strong>推送</strong></p>
+<pre><code class="language-bash">git push origin master
+</code></pre>
+<p>此时因为本地已经包含了远程的所有提交，是快进推送，不会报错。</p>
+</li>
+</ol>
+<hr />
+<h2 id="heading-1">三、澄清你的表述</h2>
+<p>你说：“如果遇到有其他人基于某分支的提交，导致我们拉取的版本在提交时会弹出冲突，即两个提交都基于同一分支提交，就先变基git pull &ndash;rebase origin master，然后git rebase &ndash;continue，最后git push -u origin master？”</p>
+<p>这里有一个小误区：</p>
+<ul>
+<li><code>git pull --rebase origin master</code> 本身就会执行变基操作。如果变基过程中出现冲突，<strong>它不会自动完成</strong>，而是停下来让你解决冲突。解决冲突后你需要执行 <code>git rebase --continue</code> 来继续变基。</li>
+<li>所以顺序是：
+<ol>
+<li><code>git pull --rebase origin master</code> （可能因冲突而暂停）</li>
+<li>解决冲突 → <code>git add .</code></li>
+<li><code>git rebase --continue</code></li>
+<li><code>git push origin master</code> （不需要再加 <code>-u</code>，除非是第一次推送该分支）</li>
+</ol>
+</li>
+</ul>
+<p>如果 <code>git pull --rebase</code> 没有冲突，它就直接完成了，不需要 <code>git rebase --continue</code>。</p>
+<hr />
+<h2 id="heading-2">四、总结推荐的标准工作流</h2>
+<pre><code class="language-bash"># 1. 进入仓库目录（不是每次clone）
+cd your-repo
+
+# 2. 同步远程最新代码
+git pull --rebase origin master
+
+# 3. 修改文件...
+
+# 4. 提交
+git add .
+git commit -m &quot;你的提交信息&quot;
+
+# 5. 推送
+git push origin master   # 第一次可用 git push -u origin master
+</code></pre>
+<p>如果推送时发现被拒绝（因为远程有新提交），回到第2步执行 <code>git pull --rebase</code> 再推送。</p>
+<p>这样就能避免绝大多数“非快进”错误，也能保持提交历史整洁。</p>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix"></p>
+    <p><span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/ru-he-zai-gridea-prozhu-ti-zhong-shi-xian-giscus-ping-lun/" title="如何在Gridea Pro主题中实现giscus 评论">
+                Next post: 如何在Gridea Pro主题中实现giscus 评论
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span></p>
+    <p></p>
+</div>
+
+
+                            
+                            
+                            
+                            
+                            
+                            
+
+
+
+<section id="comments" class="comments">
+    
+        
+            <div id="giscus-container" data-comment-config="giscus" data-repo="xiaxi626/blog-comment" data-repo-id="R_kgDOT3IXhw" data-category="Blog Comments" data-category-id="DIC_kwDOT3IXh84DDRu-" data-page-id="vBaoc3" data-theme="light"></div>
+<script>
+(function() {
+    var container = document.getElementById('giscus-container');
+    var theme = container.getAttribute('data-theme');
+    if (theme.charAt(0) === '/') { theme = new URL(theme, window.location.origin).href; }
+    var fail = function(message) { container.textContent = message; container.className = 'comment-message'; };
+    var keys = ['repo', 'repo-id', 'category', 'category-id', 'page-id'];
+    if (keys.some(function(key) { return !container.getAttribute('data-' + key); })) { fail('Giscus 评论配置不完整。'); return; }
+    var script = document.createElement('script');
+    script.src = 'https://giscus.app/client.js';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    script.onerror = function() { fail('Giscus 评论资源加载失败，请稍后重试。'); };
+    script.setAttribute('data-repo', container.getAttribute('data-repo'));
+    script.setAttribute('data-repo-id', container.getAttribute('data-repo-id'));
+    script.setAttribute('data-category', container.getAttribute('data-category'));
+    script.setAttribute('data-category-id', container.getAttribute('data-category-id'));
+    script.setAttribute('data-mapping', 'specific');
+    script.setAttribute('data-term', container.getAttribute('data-page-id'));
+    script.setAttribute('data-strict', '1');
+    script.setAttribute('data-reactions-enabled', '1');
+    script.setAttribute('data-emit-metadata', '0');
+    script.setAttribute('data-input-position', 'top');
+    script.setAttribute('data-theme', theme);
+    script.setAttribute('data-lang', 'zh-CN');
+    script.setAttribute('data-loading', 'lazy');
+    container.appendChild(script);
+})();
+</script>
+
+        
+    
+    
+</section>
+
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">vigourpine</a></p>
+    <p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p>
+    <p>Proudly published with&nbsp;<a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a></p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.3 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

@@ -3,15 +3,17 @@
 <head>
     <meta charset="utf-8">
 <meta name="X-UA-Compatible" content="IE=edge">
-<meta name="author" content="">
+<meta name="author" content="飞爱碧玉">
 <meta name="generator" content="Gridea Pro 0.0.0-dev">
 <title>vigourpine</title>
 
-<meta name="description" content="True">
+
+
+<meta name="description" content="Welcome to Gridea Pro">
 
 
 
-<meta name="keywords" content="False">
+<meta name="keywords" content="">
 
 
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
@@ -45,12 +47,12 @@
 <meta property="og:url" content="https://xiaxi626.github.io/page/5/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="vigourpine">
-<meta property="og:image" content="/images/avatar.png">
+<meta property="og:image" content="/media/images/avatar.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://xiaxi626.github.io/page/5/">
 <meta name="twitter:title" content="vigourpine">
 <meta name="twitter:description" content="Welcome to Gridea Pro">
-<meta name="twitter:image" content="/images/avatar.png">
+<meta name="twitter:image" content="/media/images/avatar.jpg">
 </head>
 <body>
     <div id="stage" class="container">
@@ -109,6 +111,12 @@
         
         <li>
             
+            <a href="/links">友链</a>
+            
+        </li>
+        
+        <li>
+            
             <a href="/post/about">关于</a>
             
         </li>
@@ -135,21 +143,9 @@
         <br class="site-nav-footer-br">
         <footer>
     
-    <p>&copy;&nbsp;2026&nbsp;
-        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
-            
-                vigourpine
-            
-        </a>
-    </p>
-    <p>Theme&nbsp;
-        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
-        &nbsp;by&nbsp;
-        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
-    </p>
-    <p>Proudly published with&nbsp;
-        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
-    </p>
+    <p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">vigourpine</a></p>
+    <p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p>
+    <p>Proudly published with&nbsp;<a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a></p>
 </footer>
 
     </div>
@@ -163,10 +159,634 @@
                         
                         <div class="post-container">
                             <p class="post-title">
+                                <a href="/post/pandoc-ru-men-an-zhuang-yu-shi-yong/">Pandoc入门：安装与使用</a>
+                            </p>
+                            <p class="post-meta">
+                                <span class="date meta-item">Posted at&nbsp;2023-02-03</span>
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span>&nbsp;</span>
+                                    <a href="/post/pandoc-ru-men-an-zhuang-yu-shi-yong/#comments">Comments</a>
+                                </span>
+                                
+                                
+                                
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-tag"></i>
+                                    <span>&nbsp;</span>
+                                    
+                                    <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+                                    <span>&nbsp;</span>
+                                    
+                                </span>
+                                
+                            </p>
+                            
+                            
+                            <div class="post-feature-image">
+                                <a href="/post/pandoc-ru-men-an-zhuang-yu-shi-yong/">
+                                    <img src="/post-images/pandoc-ru-men-an-zhuang-yu-shi-yong.PNG" alt="Pandoc入门：安装与使用" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
+                                </a>
+                            </div>
+                            
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><h2 id="pandoc-">一、Pandoc 简介</h2>
+<p>Pandoc是用于从一种标记格式转换为另一种标记格式的Haskell库，也是使用该库的命令行工具。它涵盖格式广泛且转换效果好，常用的 docx、md、tex、html 等格式都可以利用其进行相互转换。</p>
+<h2 id="pandoc--1">二、Pandoc 安装</h2>
+<p>Pandoc 官网下载安装 ：<a href="https://pandoc.org/">https://pandoc.org/</a><br />
+Github release 下载安装：<a href="https://github.com/jgm/pandoc/releases/">jgm/pandoc</a><br />
+Pandoc 为 Windows 系统提供了编译后的 msi 安装包，可以直接运行安装；或者直接下载免安装的 zip 文件解压。<br />
+首先进入安装目录，cmd输入<code>pandoc --version</code>/<code>pandoc.exe --version</code>验证安装：<br />
+（Windows 7）下载msi安装包安装使用，验证可能发生如下错误</p>
+<pre><code>C:\Users\Administrator\Downloads\Compressed\pandoc-3.0.1&gt;pandoc.exe --version
+pandoc: osReserveHeapMemory: VirtualAlloc MEM_RESERV at address 0000000000000000 bytes failed:
+</code></pre>
+<p>（Windows 7）下载zip安装使用，验证也可能发生上面的错误，一般再试一次就正常了（如下）</p>
+<pre><code>C:\Users\Administrator\Downloads\Compressed\pandoc-3.0.1&gt;pandoc.exe --version
+pandoc.exe 3.0.1
+Features: +server +lua
+Scripting engine: Lua 5.4
+User data directory: C:\Users\Administrator\AppData\Roaming\pandoc
+Copyright (C) 2006-2023 John MacFarlane. Web: https://pandoc.org
+This is free software; see the source for copying conditions. There is no
+warranty, not even for merchantability or fitness for a particular purpose.
+</code></pre>
+<p>以上命令返回了 Pandoc 的版本信息。<br />
+为了更好地运行进程，建议添加环境变量。计算机→属性→高级系统设置→环境变量，选中变量Path→编辑，添加到 pandoc.exe 所在目录，两个Path之间要加英文分号『;』。</p>
+<h2 id="pandoc--2">三、Pandoc 使用</h2>
+<h3 id="heading">转换主体命令</h3>
+<pre><code>pandoc -i test.xx -o test.yy
+</code></pre>
+<p>-i 为 input （输入）， -o 为 output （输出）</p>
+<h3 id="markdowndocx">markdown转换docx</h3>
+<h4 id="heading-1">直接转换</h4>
+<pre><code>pandoc test.md -o test.docx
+</code></pre>
+<h4 id="heading-2">自定义样式转换</h4>
+<pre><code>pandoc test.md -o test.docx --reference-docx=reference.docx
+</code></pre>
+<p>转换后的docx将与参考文档 “reference.docx” 文档样式相同。</p>
+<h3 id="docxmarkdown">docx转换markdown</h3>
+<pre><code>pandoc test.docx --extract-media=. -o test.md
+</code></pre>
+<p>直接输入<code>pandoc test.docx -o test.md</code>会丢失word文档中的图片。输入<code>pandoc test.docx --extract-media=. -o test.md</code>则不会丢失图片。这里用到Pandoc一个 选项 <code>extract-media=DIR</code>，用于处理文件转换过程中的图片等媒体文件。<br />
+输出结果包括一个 Markdown 文件 test.md 以及一个文件夹 media，其中包括 Word 文件 test.docx 中的所有图片，<code>--extract-media=.</code>的作用是把图片保存在 media 中，而不是其子文件夹中。</p>
+<p><code>--extract-media=DIR</code>这个选项来<strong>将 Markdown 中的图床链接替换为本地图片链接</strong><br />
+执行下面的命令：</p>
+<pre><code>pandoc --wrap=preserve -f markdown input.md --extract-media=media -t markdown -o output.md
+</code></pre>
+<p>这行命令中，由于开启了 &ndash;extract-media=DIR 选项，Pandoc 会新建一个文件夹 media，将图床中的远程图片下载到本地并保存在该文件夹中，然后再输出为一个新的 Markdown 文件 output.md，并自动把原本的图床链接替换为本地图片链接，而不再需要手动编写复杂的正则表达式来查找替换。</p>
+<h3 id="markdownpdf">markdown转换pdf</h3>
+<p>Pandoc使用Latex生成pdf，所以需要安装Latex引擎<br />
+直接使用命令 pandoc test.md -o test.pdf 会报错，应当输入这样的命令（如下）：</p>
+<pre><code>pandoc test.md -o test.pdf --pdf-engine=xelatex -V CJKmainfont=&quot;字体&quot;
+</code></pre>
+<p>xelatex为排版引擎，字体应该填写相应英文标识，如：KaiTi（楷体）、SimSun（宋体）、FangSong（仿宋）、SimHei（黑体）等。</p>
+<h3 id="markdownhtml">markdown转换HTML</h3>
+<pre><code>pandoc xxx.md -f markdown -t html -s -o xxx.html
+</code></pre>
+<p>s选项表示创建一个&quot;独立的&quot;文件，有 header 和 footer ，而不仅仅是一个片段。<br />
+o xxx.html命令将输出放入xxx.html文件中。<br />
+注意，我们可以省略-f markdown和-t html，因为默认情况下是将markdown转换为HTML，但是包含它们也无妨。</p>
+<h3 id="markdownlatex">markdown转换LaTeX</h3>
+<p><code>pandoc xxx.md -f markdown -t latex -s -o xxx.tex</code> 或<code>pandoc xxx.md -s -o xxx.tex</code><br />
+<a href="https://kgithub.com/Wandmalfarbe/pandoc-latex-template">Wandmalfarbe/pandoc-latex-template</a> ，一个pandoc LaTeX模板，用于将markdown文件转换为PDF或LaTeX，使用前请仔细阅读说明文件。</p>
+<h3 id="latex">LaTeX转换包含数学公式的网站</h3>
+<pre><code>pandoc math.tex -s --mathml  -o mathMathML.html
+</code></pre>
+<p>-mathml 参数强制 Pandoc 将 LaTeX 中的数学公式转换成 MathML，从而可以由现代浏览器进行渲染。</p>
+<h2 id="heading-3">四、参考</h2>
+<p><a href="https://sky-y.github.io/osc-kyoto2017-pandoc/">Pandoc入門：MarkdownからHTML・PDF・Writer/Word文書・スライドを生成する</a><br />
+<a href="https://www.pandoc.org/MANUAL.html">Pandoc官方使用手册</a>（本地安装目录下有）<br />
+<a href="https://sspai.com/post/77206#!">Pandoc 从入门到精通，你也可以学会这一个文本转换利器</a><br />
+<a href="https://juejin.cn/post/6844903713417461768">在命令行使用 Pandoc 进行文件转换</a><br />
+<a href="https://zhuanlan.zhihu.com/p/49752930">在命令行使用 Pandoc 进行文件转换​</a><br />
+<a href="https://zhuanlan.zhihu.com/p/463379520">Windows下Pandoc使用指南</a></p>
+</span></div>
+                        </div>
+                        
+                        <div class="post-container">
+                            <p class="post-title">
+                                <a href="/post/latex-xin-shou-jiao-cheng-cong-ru-men-dao-ru-tu/">LaTeX新手教程：安装和配置</a>
+                            </p>
+                            <p class="post-meta">
+                                <span class="date meta-item">Posted at&nbsp;2023-02-02</span>
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span>&nbsp;</span>
+                                    <a href="/post/latex-xin-shou-jiao-cheng-cong-ru-men-dao-ru-tu/#comments">Comments</a>
+                                </span>
+                                
+                                
+                                
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-tag"></i>
+                                    <span>&nbsp;</span>
+                                    
+                                    <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+                                    <span>&nbsp;</span>
+                                    
+                                </span>
+                                
+                            </p>
+                            
+                            
+                            <div class="post-feature-image">
+                                <a href="/post/latex-xin-shou-jiao-cheng-cong-ru-men-dao-ru-tu/">
+                                    <img src="/post-images/latex-xin-shou-jiao-cheng-cong-ru-men-dao-ru-tu.jpg" alt="LaTeX新手教程：安装和配置" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
+                                </a>
+                            </div>
+                            
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><h1 id="latex">LaTeX介绍</h1>
+<p>LaTeX（LATEX，音译“拉泰赫”）是一种基于ΤΕΧ的排版系统，由美国计算机学家莱斯利·兰伯特（Leslie Lamport）在20世纪80年代初期开发，利用这种格式，即使使用者没有排版和程序设计的知识也可以充分发挥由TeX所提供的强大功能，能在几天、甚至几小时内生成很多具有书籍质量的印刷品。对于生成复杂表格和数学公式，这一点表现得尤为突出。因此它非常适用于生成高印刷质量的科技和数学类文档。这个系统同样适用于生成从简单的信件到完整书籍的所有其他种类的文档。</p>
+<p>LaTeX是一种“非所见即所得”的排版系统，用户需要输入特定的代码，保存在后缀为.tex的文件中，通过编译得到所需的pdf文件，例如以下代码：</p>
+<pre><code>\documentclass{article}
+\begin{document}
+Hello, world!
+\end{document}
+</code></pre>
+<p>最后输出的结果是一个pdf文件，内容是”Hello, world!“。</p>
+<h1 id="latex-1">安装LaTeX与配置环境</h1>
+<p>LaTeX的使用主要需要安装两个东西： 1. 根据平台选择一个TeX发行版进行安装，建议选择最全功能最多的版本。TeX发行版的概念相当于Linux及其发行版，Linux内核虽然只有一个，但是有很多基于内核的不同特色的Linux发行版，比如Ubuntu，Fedora等等不胜枚举。这里我们选择TeXlive。 2. 选择一个合适的LaTex编辑器。在安装好LaTeX环境以后，通常都会有一个自带的编辑器，比如CTex的WinEdt，MacTeX的TeXShop，不过功能并不强大，好比 Windows 记事本，只有一些基本的文本编辑功能。这里我们选择比较强大的TeXstudio。</p>
+<h2 id="tex-live">一、安装TeX Live</h2>
+<h3 id="1-">1. 下载</h3>
+<p>每个平台的简明操作指南：<br />
+<a href="https://tug.org/texlive/quickinstall.html">在Unix/GNU/Linux上安装</a><br />
+<a href="https://tug.org/texlive/windows.html">在Windows上安装</a><br />
+<a href="https://tug.org/mactex/">在MacOS上安装：MacTeX发行版</a><br />
+您可以阅读<a href="https://tug.org/texlive/doc.html">完整手册</a>了解所有可能性，包括自动安装和使用自定义存储库。<br />
+推荐下载离线安装包，然后安装的方式。可以使用<a href="http://www.tug.org/texlive/">官方</a>的镜像下载，也可以利用国内的镜像下载。<br />
+<img src="/post-images/1675346864859.png" alt="" /><br />
+<img src="/post-images/1675346872512.png" alt="" /><br />
+<img src="/post-images/1675346881015.png" alt="" /><br />
+<img src="/post-images/1675346962099.png" alt="" /><br />
+官网下载比较慢，我们可以利用国内的镜像网站来下载。<br />
+清华大学：https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive2022.iso；<br />
+北京交通大学：https://mirror.bjtu.edu.cn/ctan/systems/texlive/Images/<br />
+选择 texlive2022.iso（以此类推）；<br />
+上海交通大学：https://mirrors.sjtug.sjtu.edu.cn/ctan/systems/texlive/Images/<br />
+选择 texlive2022.iso（以此类推）；<br />
+中国科技大学：https://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/<br />
+选择 texlive2022.iso（以此类推）；<br />
+重庆大学：https://mirrors.cqu.edu.cn/CTAN/systems/texlive/Images/<br />
+选择 texlive2022.iso（以此类推）；<br />
+腾讯云：https://mirrors.cloud.tencent.com/CTAN/systems/texlive/Images/<br />
+选择 texlive2022.iso（以此类推）。<br />
+下载Torrent文件使用BT下载也是个不错的选择，试了一下下载速度还行，有公网的可以用BT下载。<br />
+<img src="/post-images/1675347109007.png" alt="" /></p>
+<h3 id="2-">2. 安装</h3>
+<p>将texlive2022.iso 文件解压，然后右键“以管理员身份运行”打开其中的install-tl-advanced.bat文件。<br />
+点击Advanced。<br />
+修改Directories TEXDIR: Installation root 为C://texlive/2022，安装。<br />
+安装完成，用时56分钟。<br />
+<img src="/post-images/1675523607120.PNG" alt="" /><br />
+验证是否安装成功，打开cmd，输入tex -version，如果出现版本号即说明安装成功。</p>
+<pre><code>Microsoft Windows [版本 6.1.7601]
+版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+
+C:\Users\Administrator&gt;tex -version
+TeX 3.141592653 (TeX Live 2022)
+kpathsea version 6.3.4
+Copyright 2022 D.E. Knuth.
+There is NO warranty.  Redistribution of this software is
+covered by the terms of both the TeX copyright and
+the Lesser GNU General Public License.
+For more information about these matters, see the file
+named COPYING and the TeX source.
+Primary author of TeX: D.E. Knuth.
+</code></pre>
+<p><strong>latex2021安装失败</strong></p>
+<p>1、运行install-tl-windows.bat批处理程序之后出现了No such file or directory&hellip;.</p>
+<p>是操作系统用户名是中文的原因，使用win + R打开命令行即可看见自己的操作系统的用户名，这个时候可以使用下面的方法解决：<br />
+右键桌面我的电脑（或者是计算机）图标，找到属性&ndash;&gt;高级系统设置&ndash;&gt;环境变量，在最上面一栏可以看到用户变量这个时候找到TEMP，TMP的属性值修改为：%SystemRoot%\TEMP，对于下面一栏中的系统变量也是一样修改为%SystemRoot%\TEMP，修改完成之后运行之后就可以正常安装latex了，可以修改latex安装到任意一个盘<br />
+————————————————<br />
+版权声明：本文为CSDN博主「yuzhang_zy」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br />
+原文链接：https://blog.csdn.net/qq_39445165/article/details/116561117</p>
+<p>2、texlive2021安装不成功（windows10），关于报错“Cannot open c&quot;\Users...”</p>
+<p>系统先前安装了ctex在C盘，根据官网（https://ctan.org/pkg/install-latex-guide-zh-cn ） 的安装介绍，已排查环境变量中【存在mingw，jdk的相关内容】或【缺失C:WIndowssystem32】的问题，但安装texlive2021时会出现如下报错</p>
+<pre><code>（...省略正常安装代码）
+Installing [0092/4151, time/total: 03:01/02:18:44]: alkalami [125k]
+Installing [0093/4151, time/total: 03:03/02:20:03]: allrunes [8078k]
+tar: Cannot open C:UsersSONGSH~1LOCALS~1TempaSp7tkKDBEqgXEYiSL2c/allrunes.r42221.tar: Permission denied
+TLUtils::untar: F:tlpkginstallertar.exe xmf C:UsersSONGSH~1LOCALS~1TempaSp7tkKDBEqgXEYiSL2c/allrunes.r42221.tar failed (in D:/texlive/2021/texmf-dist)
+TLPDB::_install_data: untar failed for F:/archive/allrunes.r42221.tar.xz
+TLUtils::install_packages: Failed to install allrunes
+Installation failed.
+Rerunning the installer will try to restart the installation.
+Or you can restart by running the installer with:
+install-tl-windows.bat --profile installation.profile [YOUR-EXTRA-ARGS]
+or
+install-tl-advanced.bat --profile installation.profile [YOUR-EXTRA-ARGS]
+F:install-tl: Writing log in current directory: C:/WINDOWS/system32/install-tl.log
+Wide character in print at F:install-tl line 2486, &lt;STDIN&gt; line 6.
+Wide character in print at F:install-tl line 2486, &lt;STDIN&gt; line 6.
+Wide character in print at F:install-tl line 2486, &lt;STDIN&gt; line 6.
+Wide character in print at F:install-tl line 2486, &lt;STDIN&gt; line 6.
+</code></pre>
+<p>install-latex 最新版写了<a href="https://ctan.org/pkg/install-latex-guide-zh-cn">『如何在中文用户名下安装』</a><br />
+————————————————<br />
+原文链接：https://ask.latexstudio.net/ask/question/3809.html</p>
+<h3 id="3-">3. 卸载</h3>
+<p>Windows下Tex Live的安装目录，如C:\texlive\2022\tlpkg\installer，然后运行里边的uninst.bat文件。</p>
+<h2 id="texstudio">二、安装TeXstudio</h2>
+<h3 id="1--1">1. 下载及安装</h3>
+<p>直接去<a href="https://www.texstudio.org/">官网</a>下载，有时会上不去，可以到Github搜索<a href="https://github.com/texstudio-org/texstudio/releases">texstudio-org/texstudio</a>下载，也可以去<a href="https://texstudio.sourceforge.net/">这里</a>下载。下载后直接点击安装，一样选择安装路径，然后进行一些简单的设置。这里我选择“texstudio-4.4.1-win-qt6.exe”。<br />
+<img src="/post-images/1675350137103.png" alt="" /></p>
+<h3 id="2--1">2. 配置</h3>
+<p>依次找到Options→Configure TeXstudio→Commands，指定Commands命令的执行程序，将BibTeX、BibTeX 8-Bit、Biber的路径设置为TeXlive安装路径下对应EXE文件。<br />
+<img src="/post-images/1675350661854.webp" alt="" /><br />
+设置中文界面：安装结束后，一开始的打开界面是英文的，这里我们可以切换成中文。 依次点击：Options→Configure Texstudio→General→Language→zh_CN<br />
+<img src="/post-images/1675350629453.webp" alt="" /><br />
+添加行号：添加段落行号，这样可以很方便查看段落的某句话所在的位置，尤其是在运行报错时，有行号就非常方便查看错误的位置了。 依次点击：选项→设置Texstudio→显示高级选项→编辑器→显示行号→所有行号<br />
+<img src="/post-images/1675350555386.webp" alt="" /><br />
+设置编译器与编码：为了正常的输出中文，我们需要把默认编译器改成xelatex，utf-8编码。如果是为了编写英文论文，要用“pdflatex”。<br />
+<img src="/post-images/1675350580871.webp" alt="" /></p>
+<h3 id="3">3.测试</h3>
+<p>输入下述代码，运行，得到下述结果即代表安装配置成功。</p>
+<pre><code>\documentclass[11pt]{ctexart}  
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}  
+\usepackage{algorithm}  
+\usepackage{algorithmicx}  
+\usepackage{algpseudocode}  
+\usepackage{amsmath}  
+
+\floatname{algorithm}{算法}  
+\renewcommand{\algorithmicrequire}{\textbf{输入:}}  
+\renewcommand{\algorithmicensure}{\textbf{输出:}}  
+
+\begin{document}  
+    \begin{algorithm}  
+        \caption{用归并排序求逆序数}  
+        \begin{algorithmic}[1] %每行显示行号  
+            \Require $Array$数组，$n$数组大小  
+            \Ensure 逆序数  
+            \Function {MergerSort}{$Array, left, right$}  
+            \State $result \gets 0$  
+            \If {$left &lt; right$}  
+            \State $middle \gets (left + right) / 2$  
+            \State $result \gets result +$ \Call{MergerSort}{$Array, left, middle$}  
+            \State $result \gets result +$ \Call{MergerSort}{$Array, middle, right$}  
+            \State $result \gets result +$ \Call{Merger}{$Array,left,middle,right$}  
+            \EndIf  
+            \State \Return{$result$}  
+            \EndFunction  
+            \State  
+            \Function{Merger}{$Array, left, middle, right$}  
+            \State $i\gets left$  
+            \State $j\gets middle$  
+            \State $k\gets 0$  
+            \State $result \gets 0$  
+            \While{$i&lt;middle$ \textbf{and} $j&lt;right$}  
+            \If{$Array[i]&lt;Array[j]$}  
+            \State $B[k++]\gets Array[i++]$  
+            \Else  
+            \State $B[k++] \gets Array[j++]$  
+            \State $result \gets result + (middle - i)$  
+            \EndIf  
+            \EndWhile  
+            \While{$i&lt;middle$}  
+            \State $B[k++] \gets Array[i++]$  
+            \EndWhile  
+            \While{$j&lt;right$}  
+            \State $B[k++] \gets Array[j++]$  
+            \EndWhile  
+            \For{$i = 0 \to k-1$}  
+            \State $Array[left + i] \gets B[i]$  
+            \EndFor  
+            \State \Return{$result$}  
+            \EndFunction  
+        \end{algorithmic}  
+    \end{algorithm}  
+\end{document}
+</code></pre>
+<p><img src="/post-images/1675350508640.webp" alt="" /><br />
+————————————————<br />
+版权声明：本文为知乎博主「一个努力吃胖的小瘦子」「Dylaaan」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br />
+原文链接：<br />
+<a href="https://zhuanlan.zhihu.com/p/138586028">https://zhuanlan.zhihu.com/p/138586028</a><br />
+<a href="https://zhuanlan.zhihu.com/p/456055339">https://zhuanlan.zhihu.com/p/456055339</a></p>
+<h3 id="texstudio-1">Texstudio无法运行</h3>
+<p>双击启动提示<br />
+<code>“无法定位程序输入点CreateEventW于动态链接库api-ms-win-core-synch-l1-2-0.dll”</code></p>
+<p>windows 7 不支持Qt6，使用Qt5的平台能解决问题。也就是说，Windows 7 用户要么选择Qt5平台旧版本，要么弃用选择其他编辑器。</p>
+</span></div>
+                        </div>
+                        
+                        <div class="post-container">
+                            <p class="post-title">
+                                <a href="/post/gridea-ruo-gan-wen-ti-de-jie-jue-fang-fa/">Gridea若干问题的解决方法</a>
+                            </p>
+                            <p class="post-meta">
+                                <span class="date meta-item">Posted at&nbsp;2023-01-29</span>
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span>&nbsp;</span>
+                                    <a href="/post/gridea-ruo-gan-wen-ti-de-jie-jue-fang-fa/#comments">Comments</a>
+                                </span>
+                                
+                                
+                                
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-tag"></i>
+                                    <span>&nbsp;</span>
+                                    
+                                    <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+                                    <span>&nbsp;</span>
+                                    
+                                </span>
+                                
+                            </p>
+                            
+                            
+                            <div class="post-feature-image">
+                                <a href="/post/gridea-ruo-gan-wen-ti-de-jie-jue-fang-fa/">
+                                    <img src="/post-images/gridea-ruo-gan-wen-ti-de-jie-jue-fang-fa.png" alt="Gridea若干问题的解决方法" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
+                                </a>
+                            </div>
+                            
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><h3 id="heading">为什么检测远程链接失败？</h3>
+<p>远程连接失败说明你填错了，仔细检查各个配置内容</p>
+<h3 id="heading-1">提示同步成功，但是网站内容没有变化</h3>
+<p>域名配置要输入正确，ｇｉｔｈｈｕｂ博客格式为（用户名）．ｇｉｔｕｂ．ｉｏ</p>
+<h3 id="heading-2">ＣＮＡＭＥ是什么？</h3>
+<p>博客绑定的域名，没有就不填，填（用户名）．ｇｉｔｕｂ．ｉｏ没用</p>
+<h3 id="heading-3">每次同步不了是真难受</h3>
+<p>挂个梯子设置一下代理就可以了,HTTP代理选择Ｐｒｏｘｙ</p>
+<h3 id="heading-4">主题无法渲染</h3>
+<p>表现为ｃｓｓ样式无法加载<br />
+这并不是Ｇｒｉｄｅａ同步的问题，实际上即便选择本地output（C:\Users\Administrator.gridea\output） + Github Desktop（Ｇｉｔ工具）作为工作流依然无法渲染<br />
+实测Ｇｒｉｄｅａ本地打开状态下网页加载正常，但实际上读取的是本地　localhost:4000/　链接，点开任意一篇博文地址栏都会跳到　localhost:4000/……　链接，而关闭软件主题就会渲染失败。<br />
+推测为跳转链接的问题，打开html文件，搜索　localhost:4000/　，果然文件夹读取多为　localhost:4000/　开头，而不是　（用户名）.github.io/　，这应该是为了预览本地修改而设置的，我们只要把这些　localhost:4000/　替换成　（用户名）.github.io/　就能加载云端资源了。</p>
+<h3 id="gitalkissue-error-network-error">关于Gitalk找不到Issue Error: Network Error</h3>
+<pre><code>Gitalk 加载中 ...
+Error: Network Error
+F12 网络
+状态 已拦截
+方法 POST
+域名 https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token
+文件 access_token
+发起者 gitalk.min.js:1(xhr)
+传输 NS_ERROR_DOM_BAD_URL
+</code></pre>
+<p>Gitalk Network Error问题处理 - 腾讯云开发者社区-腾讯云<br />
+<a href="https://cloud.tencent.com/developer/article/2093779">https://cloud.tencent.com/developer/article/2093779</a></p>
+<p>记录一次 Gitalk 问题排查过程 - 知乎<br />
+<a href="https://zhuanlan.zhihu.com/p/350735142">https://zhuanlan.zhihu.com/p/350735142</a><br />
+（Ｈｅｘｏ博客的解决方法）</p>
+<h3 id="valine">Valine评论系统</h3>
+<p>调不好咱还可以换Valine评论系统，教程如下——<br />
+<a href="https://valine.js.org/">Valine官网</a><br />
+<a href="https://kveln.cn/post/qE678A4ce">为你的Gridea博客加上Valine评论系统 | kveln&rsquo;s blog</a><br />
+<a href="https://blog.csdn.net/qq_43040688/article/details/106948388">搭建Gridea+gitee+Valine评论+Valine-Admin评论后台的个人博客</a><br />
+<a href="https://deserts.io/diy-a-comment-system/">Valine: 独立博客评论系统</a><br />
+<a href="https://draveness.me/git-comments-initialize/">自动初始化 Gitalk 和 Gitment 评论</a><br />
+简单粗暴的评论清空（测试的时候可以这么干）：<br />
+1、打开 <a href="https://console.leancloud.cn/apps">LeanCloud</a> ，重新创建应用，生成新的应用凭证<br />
+2、数据存储-结构化数据-删除Comment所有数据</p>
+</span></div>
+                        </div>
+                        
+                        <div class="post-container">
+                            <p class="post-title">
+                                <a href="/post/git-shi-yong-wen-ti-jie-jue/">Git使用问题解决</a>
+                            </p>
+                            <p class="post-meta">
+                                <span class="date meta-item">Posted at&nbsp;2023-01-27</span>
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span>&nbsp;</span>
+                                    <a href="/post/git-shi-yong-wen-ti-jie-jue/#comments">Comments</a>
+                                </span>
+                                
+                                
+                                
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-tag"></i>
+                                    <span>&nbsp;</span>
+                                    
+                                    <a class="a-tag" href="/tag/discussion/" title="Discussion">Discussion</a>
+                                    <span>&nbsp;</span>
+                                    
+                                </span>
+                                
+                            </p>
+                            
+                            
+                            <div class="post-feature-image">
+                                <a href="/post/git-shi-yong-wen-ti-jie-jue/">
+                                    <img src="/post-images/git-shi-yong-wen-ti-jie-jue.jpg" alt="Git使用问题解决" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
+                                </a>
+                            </div>
+                            
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><h2 id="git">Git使用问题</h2>
+<h3 id="heading">比较好的入门教程</h3>
+<p><a href="https://blog.csdn.net/qq_42815188/article/details/128735530">配置 Git 连接 GitHub</a></p>
+<h3 id="could-not-read-from-remote-repository">使用中发现Could not read from remote repository</h3>
+<p>解决方法：<a href="https://blog.csdn.net/baoyin0822/article/details/122584931">Git解决fatal: Could not read from remote repository.的问题</a></p>
+<p>第二种方法pass，尝试重新生成ssh密钥</p>
+<h3 id="-ssh--t-gitgithubcom-connection-reset-by-xxxxxxxxx-port-22">测试连接：$ ssh -T <a href="mailto:git@github.com">git@github.com</a> 出现Connection reset by xxx.xx.xxx.x port 22</h3>
+<p>解决方法：<a href="https://blog.csdn.net/weixin_51594453/article/details/120605700">【Note】git上手-解决连接github时connection reset的问题</a></p>
+<p>尝试新建22端口的入站规则</p>
+<h3 id="hi-xiaxi626-youve-successfully-authenticated-but-github-does-not-provide-shell-access">出现Hi xiaxi626! You’ve successfully authenticated, but GitHub does not provide shell access.</h3>
+<p>这玩意在第一篇文章配置图片中也有，不放心，顺便查一下</p>
+<p>解决方法：<a href="https://blog.csdn.net/weixin_42562387/article/details/114443451">解决git连接问题: You‘ve successfully authenticated, but GitHub does not provide shell access.</a></p>
+<h2 id="heading-1">日常使用</h2>
+<h3 id="-git-">配置 Git 的用户名和邮箱</h3>
+<pre><code class="language-bash">git config --global user.name &quot;你的用户名&quot;
+git config --global user.email &quot;你的邮箱&quot;
+</code></pre>
+<p><strong>查看配置好的 Git 的用户名和邮箱</strong></p>
+<pre><code class="language-bash">git config --list
+</code></pre>
+<h3 id="-ssh--git--github">基于 SSH 协议配置 Git 连接 GitHub</h3>
+<p><strong>为本机生成 SSH 密钥对</strong></p>
+<pre><code class="language-bash">ssh-keygen -t rsa -C &quot;本机标识&quot;
+</code></pre>
+<p>复制 <code>id_rsa.pub</code> 公钥里的内容到剪贴板</p>
+<pre><code class="language-bash">clip &lt; ~/.ssh/id_rsa.pub
+</code></pre>
+<p><strong>将公钥拷贝到 GitHub 上</strong><br />
+<strong>SSH 测试</strong></p>
+<pre><code class="language-bash">ssh -T git@github.com
+</code></pre>
+<p><strong>将本地仓库和远程仓库关联起来</strong><br />
+第一种方法：<br />
+首先在 GitHub 上创建一个远程仓库<br />
+接着执行如下命令初始化一个本地仓库</p>
+<pre><code class="language-bash">git init
+</code></pre>
+<p>将想要上传的文件放到这个本地仓库文件夹下</p>
+<pre><code class="language-bash">git add .
+</code></pre>
+<p>接着将文件提交到本地仓库</p>
+<pre><code class="language-bash">git commit -m &quot;注释&quot;
+</code></pre>
+<p>使用GPG签名提交</p>
+<pre><code class="language-bash">git commit -S -m &quot;注释&quot;
+</code></pre>
+<p>然后复制远程仓库的 SSH 地址，执行如下命令将本地仓库与远程仓库关联起来</p>
+<pre><code class="language-bash">git remote add origin 远程仓库的SSH地址
+</code></pre>
+<p>将文件上传到 GitHub 的远程仓库</p>
+<pre><code class="language-bash">git push -u origin main
+</code></pre>
+<p>第二种方法:<br />
+首先在 GitHub 上创建一个远程仓库<br />
+复制远程仓库的 SSH 地址，克隆仓库</p>
+<pre><code class="language-bash">git clone 远程仓库的SSH地址
+</code></pre>
+<p>依次执行如下命令将文件添加并提交到本地仓库</p>
+<pre><code class="language-bash">git add .
+</code></pre>
+<pre><code class="language-bash">git commit -m &quot;注释&quot;
+</code></pre>
+<p>最后执行如下命令，将文件上传到 GitHub 的远程仓库</p>
+<pre><code class="language-bash">git push -u origin main
+</code></pre>
+<p>往后push时如果失败可以输入 <code>git push</code> 将文件上传。</p>
+<p><strong>如果代码之前已经push到远程仓库里，想要撤消线上的push</strong><br />
+回退到指定版本 放弃工作区的所有修改，还原到指定版本的代码。</p>
+<pre><code class="language-bash">git reset --hard &lt;指定版本提交的Hash值&gt;
+git push 目标分支 本地分支 -f
+</code></pre>
+<blockquote>
+<p>此时如果用“git push”会报错，因为我们本地库HEAD指向的版本比远程库的要旧,要加-f参数强制推送</p>
+</blockquote>
+<h2 id="heading-2">拓展阅读</h2>
+<p><a href="https://codechina_dev.gitcode.host/learn-git-branching/?locale=zh_CN">Learn Git Branching</a><br />
+<a href="https://www.cnblogs.com/haima/p/13365483.html">Git：如何撤销已经提交的代码 - HaimaBlog - 博客园</a><br />
+<a href="https://blog.csdn.net/qq_42815188/article/details/128735530">配置 Git 连接 GitHub_早睡身体好hh的博客-CSDN博客</a><br />
+<a href="https://blog.csdn.net/zemprogram/article/details/93139672">git&mdash;-文件修改的上传_前端小黑的博客-CSDN博客_git push会把所有修改的上传吗</a><br />
+<a href="https://www.cnblogs.com/upstudy/p/15870787.html">Git使用教程（超全，看一篇就够了） - 三叔测试笔记 - 博客园</a><br />
+<a href="https://zhuanlan.zhihu.com/p/393050270">Github 部署个人网页 | 自定义域名 - 知乎</a><br />
+<a href="https://blog.csdn.net/qq_52827181/article/details/120572994">解决git@gitee.com: Permission denied (publickey). Could not read from remote repository._小艾的未解之谜的博客-CSDN博客</a><br />
+<a href="https://blog.csdn.net/Haa__/article/details/119353185">(61条消息) Git同时配置Gitee和GitHub_MsLeesSun的博客-CSDN博客</a><br />
+<a href="https://blog.csdn.net/Smilelfq/article/details/107019207">Github上如何给别人贡献代码、fork别人打代码后如何保持和原作者同步的更新_本地向其他人的github贡献_微笑の天使的博客-CSDN博客</a><br />
+<a href="https://qastack.cn/programming/11868447/how-can-i-remove-an-entry-in-global-configuration-with-git-config">如何使用git config删除全局配置中的条目？</a><br />
+<a href="https://zhuanlan.zhihu.com/p/521340971">坑：ssh: connect to host github.com port 22: Connection refused - 知乎</a><br />
+<a href="https://blog.csdn.net/qq_29493173/article/details/113094143">Github——git本地仓库建立与远程连接（最详细清晰版本！附简化步骤与常见错误）_github仓库_你脸上有BUG的博客-CSDN博客</a><br />
+<a href="https://www.cnblogs.com/maizhelun/p/16044905.html">git clone出现 fatal: unable to access &lsquo;https://github.com/&hellip;&lsquo;的解决办法(亲测有效) - 麦哲伦没有企鹅 - 博客园</a><br />
+<a href="https://blog.csdn.net/teng_liang/article/details/121464977">git仓库迁移后，更新本地代码关联的git地址_git 更换仓库地址后 本地代码怎么关联_teng316的博客-CSDN博客</a><br />
+<a href="https://www.cnblogs.com/stonefeng/p/5703272.html">查看，添加和删除GIT配置的正确姿势 - StoneFeng - 博客园</a><br />
+<a href="https://blog.kelu.org/tech/2022/03/15/git-global-config-reset.html">修改/重置 git 的全局配置 | 血衫非弧の一存</a><br />
+<a href="https://www.cnblogs.com/php-han/p/15398032.html">码云gitee 配置公钥 解决出现git@gitee.com: Permission denied (publickey). - 雨过了天晴 - 博客园</a><br />
+<a href="https://blog.csdn.net/m0_52640673/article/details/120376784">【Git】创建远程仓库并首次提交本地的代码_git远程创建 本地首次提交_DanteIoVeYou的博客-CSDN博客</a><br />
+<a href="https://blog.csdn.net/commshare/article/details/130523009">【github】Connection reset by 20.205.243.160 port 443_等风来不如迎风去的博客-CSDN博客</a><br />
+<a href="https://blog.csdn.net/baoyin0822/article/details/122584931">Git解决fatal: Could not read from remote repository.的问题_BreenCL的博客-CSDN博客</a><br />
+<a href="https://juejin.cn/post/7089249145252216862">git清除本地项目缓存 - 掘金</a><br />
+<a href="https://blog.csdn.net/sichen1900/article/details/121909009">Git：443超时的解决办法_git 443_一条小金毛的博客-CSDN博客</a><br />
+<a href="https://juejin.cn/post/7143067114025254919">手把手教你将github项目部署到vercel上 - 掘金</a><br />
+<a href="https://zhuanlan.zhihu.com/p/291845721">Github 使用经典问题：如何同步 fork 项目原仓库的更新 - 知乎</a><br />
+<a href="https://blog.csdn.net/qq_37925382/article/details/104701928">GIt学习及命令的使用(七 )—— Git tag 和 GitHub releases_git releases_陌上寒山的博客-CSDN博客</a><br />
+<a href="https://blog.csdn.net/xc_zhou/article/details/87984242">[543]GitHub怎样fork别人代码到自己仓库并进行贡献_github fork_周小董的博客-CSDN博客</a></p>
+</span></div>
+                        </div>
+                        
+                        <div class="post-container">
+                            <p class="post-title">
+                                <a href="/post/gosick-dong-hua-zi-yuan-tong-ji/">GOSICK 动画资源统计</a>
+                            </p>
+                            <p class="post-meta">
+                                <span class="date meta-item">Posted at&nbsp;2022-11-23</span>
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span>&nbsp;</span>
+                                    <a href="/post/gosick-dong-hua-zi-yuan-tong-ji/#comments">Comments</a>
+                                </span>
+                                
+                                
+                                
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-tag"></i>
+                                    <span>&nbsp;</span>
+                                    
+                                    <a class="a-tag" href="/tag/resource/" title="Resource">Resource</a>
+                                    <span>&nbsp;</span>
+                                    
+                                </span>
+                                
+                            </p>
+                            
+                            
+                            <div class="post-feature-image">
+                                <a href="/post/gosick-dong-hua-zi-yuan-tong-ji/">
+                                    <img src="/post-images/gosick-dong-hua-zi-yuan-tong-ji.webp" alt="GOSICK 动画资源统计" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
+                                </a>
+                            </div>
+                            
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><p><a href="https://share.acgnx.net/show-e78e24c317a77eb2cde2751b2e40fe7b0ccd9395.html">[Snow-Raws] 哥德萝莉侦探事件簿/GOSICK/GOSICK (BD 1920x1080 HEVC-YUV420P10 FLAC) - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-c843246890e152d0305ed4794c218db390b371c7.html">[Moozzi2] Gosick 哥特萝莉侦探事件簿 (BD 1920x1080 x264 Flac) - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-8e9743572aab04a794c4b79be5a1f0183516bdab.html">【LittleBakas!】[Gosick][BD][1080p][AVC-yuv420p10 FLAC MKV] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-3e00aab5ec71d5b0ea867ec46397fbe93d7cdcfe.html">[Yousei-raws][哥特萝莉侦探事件簿][Gosick]全集[BDrip 1920x1080 x264 FLAC] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-d1f8547316d82f9c7859c5baee77cd83acfc220f.html">[Leopard-Raws] GOSICK哥德偵探 Gosick 01~24END 合集(TX 1280x720 x264 AAC) - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><a href="https://share.acgnx.net/show-55fc17c89424127130474748f66ebe45d04e66a7.html"> [philosophy-raws][哥特萝莉侦探事件簿][GOSICK][BDRIP][10bit压制] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><a href="https://share.acgnx.net/show-b2055f9e80106a3c008080c6cac1abeac89d1aa1.html"> [Kirion] Gosick (BD 720p x264 AAC MP4) - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><a href="https://share.acgnx.net/show-84dd0551bee4218219400d7f36487d457a79f9de.html">GOSICK - 01~24 END [(kix2) 1280x720 x264 AAC mp4] GOSICK - 24 is first priority. - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-abac30e7350d910449046cf3cc7fb939f888b1a4.html">【動漫國字幕組】★01月新番[GOSICK][01-24][合集][1280X720][繁體][MKV] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-31b395762abb05c606d12f576de03cab3cffb497.html">【DA同音字幕組】【Gosick】【01~24話 修正合集】【1280X720】【繁體】【MP4】 - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-a0c0a5a5f5e192786682db441ba4b9ef3626e506.html">[Kuro-Raws] GOSICK - 01-24 (1280x720 H.264 AAC) - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-286ab2aa52cd7a4b764c2921f59756e0c240af95.html">[天の字幕組][1月新番][GOSICK][01-24][BIG5][720][MP4] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-1569989b8f9c0b84db7d9f2de658997e26b5c0b0.html">[ACT-SUB]GOSICK 1-24 END(1280x720)[MP4] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-d88e710452033e25be2dc453fb97ff1a8dddc92f.html">【恶魔岛字幕组】★1月新番【GOSICK】【第01-24话】[GB_BIG5][720P][MKV][完] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-b3f5fb56063c3a361e3ffdaf30b3a78d69e3f900.html">[漫娱MP4压制组][哥特萝莉侦探事件簿.Gosick][SumiSora][全集MP4][PSP播放可] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-b90eca7f795679d5855ef05545ee15d913120d54.html">【SOSG字幕团】★1月新番【GOSICK】【第14-24话(完结)】[GB][MP4][480p] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-48aab9e5c3333da347c229f49f3d2428d314969f.html">【SOSG字幕团】★1月新番【GOSICK】【第13话 愚者指定自己的代言人】[GB][MP4][480p] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-14360c4b5dfd80db0dd7214e47907d12ab22235a.html">【SOSG字幕团】★1月新番【GOSICK】【第11-12话】[GB][MP4][480p] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-4842790069ec30f662c36b34e5fcbdf85dc44c17.html">【SOSG字幕团】★1月新番【GOSICK】【第10话 感冒之人梦见了顽固的朋友】[GB][MP4][480p] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-a3cd16c7ec9f1eb3ebc16a54cbb6d1a0394daecb.html">【SOSG字幕团】★1月新番【GOSICK】【第09话 食人商厦中蓝色蔷薇绽放】[GB][RMVB][480p] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-5d591372220b5f43a525e02cc1bddbf74201b7ad.html">【SOSG字幕团】★1月新番【GOSICK】【第08话 过去王国的远吠回响着】[GB][MP4][480p][V2] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-a44bf523ba175e84d866d0690478f79a9802f751.html">【SOSG字幕团】★1月新番【GOSICK】【第07话 于夏至祭接受神谕】[GB][MP4][480p] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-6b8a2ff9d149919ea6772dead08ea1769950c5f7.html">【SOSG字幕团】★1月新番【GOSICK】【第06话 灰色之狼呼唤同胞】[GB][MP4][480p] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-68cab845792a1a947d8e6b453faa9846c783153b.html">【SOSG字幕团】★1月新番【GOSICK】【第05话 废弃仓库中有迷之幽灵】[GB][MP4][480p] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-fc8debd90b28577ce70f7bc652ec87451f124c5a.html">【SOSG字幕团】★1月新番【GOSICK】【第04话 金色的丝线切断瞬间】[GB][MP4][480p] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-fc1f71d9de693c2305e7340b05d152b0a214e09e.html">【SOSG字幕团】★1月新番【GOSICK】【第03话 野兔们在朝阳之下定下约定】[GB][MP4][480p] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-8c27ff8c2f659a9bc072c18ab577962a5d8b32b4.html">【SOSG字幕团】★1月新番【GOSICK】【第02话 死者之魂推动遇难船】[GB][MP4][480p] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-28e64746374b8f0a81aaf36815706d76efc917f0.html">【SOSG字幕团】★1月新番【GOSICK】【第01话 黑色死神发现了金色妖精】[GB][MP4][480p] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-d9258f867af9635fbb5ea8089a03bbf2d50565b7.html">【動漫花園楓組】《Gosick》第01-24話END 簡繁MKV 720P 完結合集 - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-0a455b229f4107e6c168a081a6cfc119e849b3a6.html">【自壓】GOSICK全24話+10.5話 抱歉上次死檔 補上傳一次 - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-769c6caf3ca58db504f606baf967e8eb55c71461.html">[ANK-Raws] GOSICK―ゴシック― Vol.12 (BDrip 1920x1080 x264 FLAC) - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-99efb50327805bec93085012e68e6a6b47316dae.html">[ReinForce] 哥德偵探 Gosick -ゴシック- (BDRip 1920x1080 x264 FLAC) - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-2bcace27fd938adf0c2952533c1e32e0eea0bf7a.html">[异域-11番小队][GOSICK][BDRIP][1-24+SP][X264_AAC][720P] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-d46619c8e4b19c407a7d97c9f3e81bbf975e769d.html">[澄空学园] GOSICK BDRip 合集 - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-b419e92b7f5e3fc64f343bbbb3b6d994e7b398e0.html">[coalgirls] gosick 1920x1080 blu ray flac 哥特萝莉侦探事件簿 内封英文 - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-db5837e0c55fd7ac5a97eab06b3b523e6594fd62.html">[Ohys-Raws] Gosick (BD 1280x720 x264 AAC) - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-163d7fa736b8b64c199c11a255f418fc69f5bb91.html">[异域-11番小队][哥特萝莉侦探事件簿 GOSICK][1-24][BDRIP][720P][X264-10bit_AAC] - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-8b1f6c262e00517229aac51325db1212b30678b5.html">【Xrip】[哥特蘿莉偵探事件簿][Gosick][BDrip][Vol.01_12][1080P][x264_10bit_flac] (字幕內詳) - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-f82d43b8277529dadcb25a3fde8db0383398debe.html">[LY-RAW][BDRIP][Gosick_哥特萝莉侦探事件簿][内封简中\附OPED\广播剧\小说]【网盘分流】 - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-99efb50327805bec93085012e68e6a6b47316dae.html">[ReinForce] 哥德偵探 Gosick -ゴシック- (BDRip 1920x1080 x264 FLAC) - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-c3648db498ca90e9a46594ac61ef9dea127a318b.html">【雪酷字幕組】★一月新番【GOSICK 哥特蘿莉偵探事件簿】第01-24話 完結合集 简繁外挂字幕 X264_AAC 720P MKV - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-d87cac757bec32f3a74d8f592f57076042f18ca2.html">[傲嬌字幕組][TNDR][GOSICK][01-24][BIG5][1080p] - 徵才內詳 - 末日動漫資源庫 - Project AcgnX Torrent Asia</a><br />
+<a href="https://share.acgnx.net/show-53db5b8b770eec072d75c3b0927939ae1917a775.html">【星尘字幕组】【GOSICK】【01-24完结】【修正版＋声优访谈】【RV】【848x480】 - 末日動漫資源庫 - Project AcgnX Torrent Asia</a></p>
+</span></div>
+                        </div>
+                        
+                        <div class="post-container">
+                            <p class="post-title">
                                 <a href="/post/zheng-he-gosick-zi-yuan-ji-chuan-song-men/">【整合】GOSICK资源及传送门</a>
                             </p>
                             <p class="post-meta">
-                                <span class="date meta-item">2022-11-22</span>
+                                <span class="date meta-item">Posted at&nbsp;2022-11-22</span>
                                 
                                 
                                 <span class="meta-item">
@@ -197,6 +817,87 @@
                                 </a>
                             </div>
                             
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><p>动画资源下载请搜索<a href="https://36dm.com/">简单动漫</a>、<a href="https://acg.rip/">ACG.RIP</a>、<a href="https://share.acgnx.net/">末日动漫资源库</a>、<a href="https://dmhy.b168.net/">动漫花园</a>等网站获取。<br />
+<a href="https://tieba.baidu.com/p/1762908672">谁有广播剧（全的）</a><br />
+<a href="https://tieba.baidu.com/p/5554172609">【一些广播剧资源整理】侦探社篇的舞台剧，TV原班声优喔</a><br />
+<a href="https://tieba.baidu.com/p/5832013960">【整合】GOSICK小说正传及外传传送门</a></p>
+<ul>
+<li>
+<p>GOSICK系列科普及正传、red、blue的整合包：https://tieba.baidu.com/p/5742294201?red_tag=3252874860</p>
+</li>
+<li>
+<p>GOSICK Pink：https://tieba.baidu.com/p/5569043488</p>
+</li>
+<li>
+<p>GOSICK Green：https://tieba.baidu.com/p/5818039811</p>
+</li>
+<li>
+<p>GOSICK小说正传及外传重制版的修改版：https://tieba.baidu.com/p/8096206461</p>
+</li>
+</ul>
+<p><a href="https://tieba.baidu.com/p/8154651851">GOSICK小说正传、外传及插画、素材资源传送门</a></p>
+<p><a href="https://tieba.baidu.com/p/8509124947">【图片】武田日向老师私人收藏欣赏</a><br />
+<a href="https://tieba.baidu.com/p/8154282618?pn=2">【图片】回复：武田日向老师作品完全录入计划</a></p>
+<p><img src="/post-images/1675079390733.jpg" alt="" /></p>
+<p><img src="/post-images/1675079397090.jpg" alt="" /></p>
+<p><img src="/post-images/1675079402428.jpg" alt="" /></p>
+<h2><center>樱庭一树&武田日向作品资源</center></h2>
+<ul>
+<li>(一般コミック) [桜庭一樹×武田日向×天乃咲哉] GOSICK -ゴシック- 全8巻&quot;</li>
+<li>[Snow-Raws] GOSICK&quot;</li>
+<li>GOSICK W漫画&quot;</li>
+<li>GOSICK 漫画&quot;</li>
+<li>GOSICKs小说&quot;</li>
+<li>GOSICK小说&quot;</li>
+<li>GOSICK夜之宙2022重置&quot;</li>
+<li>Music&quot;</li>
+<li>糖果子彈&quot;</li>
+<li>新大陆篇（四色外传）&quot;</li>
+<li>(一般コミック) [桜庭一樹×武田日向×天乃咲哉] GOSICK -ゴシック- 全8巻.torrent&quot;</li>
+<li>(一般小説) [桜庭一樹] GOSICK 全巻 + GOSICKs 全巻.torrent&quot;</li>
+<li>[BT+HTTP][无根之树分享组][糖果子弹][2完][桜庭一树×杉基イクラ][台繁][C.C][重要投票，会员请进].torrent&quot;</li>
+<li>[Comic][異國迷宮的十字路口][武田日向][角川][shangrilae]Vol_01.zip&quot;</li>
+<li>[Comic][異國迷宮的十字路口][武田日向][角川][墮落的猴子]Vol_02.zip&quot;</li>
+<li>[GOSICK]EPUB小说.rar&quot;</li>
+<li>[lab.magiconch.com][One-Last-Image]-1679487847092.jpg&quot;</li>
+<li>[lab.magiconch.com][One-Last-Image]-1679488501212.jpg&quot;</li>
+<li>[lab.magiconch.com][One-Last-Image]-1679490862831.jpg&quot;</li>
+<li>[lab.magiconch.com][One-Last-Image]-1679490882112.jpg&quot;</li>
+<li>[Snow-Raws] 哥德萝莉侦探事件簿_GOSICK_GOSICK (BD 1920x1080 HEVC-YUV420P10 FLAC).torrent&quot;</li>
+<li>[TxxZ][SC&amp;TC] Gosick Subtitles.rar&quot;</li>
+<li>[窓際の私と永遠の彼方]特集[the doll&rsquo;s girl].rar&quot;</li>
+<li>[概念原画] GOSICK -ゴシック- 角色服装设计参考素材 235P.rar&quot;</li>
+<li>[画集][武田日向画集.-.迷宮の小径][Artworks.by.Takeda.Hinata][武田日向][png][36P].rar&quot;</li>
+<li>[樱庭一树]① GOSICK RED(日版扫图).zip&quot;</li>
+<li>[樱庭一树]② GOSICK BIUE(docx＆txt).zip&quot;</li>
+<li>[樱庭一树]③ GOSICK PINK(日版扫图).zip&quot;</li>
+<li>[樱庭一树]④ GOSICK GREEN(日版扫图).zip&quot;</li>
+<li>[中文字幕全版本][GOSICK ゴシック 哥特萝莉侦探事件簿][BD+TV][K2+傲娇+澄空+动漫花园枫组+动漫之家+恶魔岛+极速+漫游+萌月+天香+雪酷+异域].rar&quot;</li>
+<li>《GOSICK》大玩悬疑_LOVO.pdf&quot;</li>
+<li>《异国迷宫的十字路口》_朱旭捷.pdf&quot;</li>
+<li>【77193】GKhikKsh.tar&quot;</li>
+<li>23.zip&quot;</li>
+<li>51.zip&quot;</li>
+<li>beans.rar&quot;</li>
+<li>Gosick [Broken](BD 1080p FLAC).zip&quot;</li>
+<li>Gosick JP 1-24 [Netflix].rar&quot;</li>
+<li>gosick 阅读&amp;出版顺序.jpg&quot;</li>
+<li>Gosick.rar&quot;</li>
+<li>GOSICKs4 -冬之献祭- DOC.zip&quot;</li>
+<li>GOSICK-ゴシック-插画.rar&quot;</li>
+<li>n-GOSICK.rar&quot;</li>
+<li>Subtitlist.com-gosick_arabic_2288487.zip&quot;</li>
+<li>Subtitlist.com-gosick_english_1280408.zip&quot;</li>
+<li>Subtitlist.com-gosick_russian_1280409.zip&quot;</li>
+<li>狐狸与花雀.rar&quot;</li>
+<li>迷宫の小径.rar&quot;</li>
+<li>糖果子弹.mobi&quot;</li>
+<li>维多利加GOSICK.eif&quot;</li>
+<li>武田日向小画集.zip&quot;</li>
+<li>武田日向小说插画.zip&quot;</li>
+</ul>
+</span></div>
                         </div>
                         
                         <div class="post-container">
@@ -204,7 +905,7 @@
                                 <a href="/post/xin-jian-liao-yi-ge-epub-dian-zi-shu-zhi-zuo-xue-xi-xiang-mu-huan-ying-star/">新建了一个epub电子书制作学习项目，欢迎Star</a>
                             </p>
                             <p class="post-meta">
-                                <span class="date meta-item">2022-11-14</span>
+                                <span class="date meta-item">Posted at&nbsp;2022-11-14</span>
                                 
                                 
                                 <span class="meta-item">
@@ -235,6 +936,10 @@
                                 </a>
                             </div>
                             
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><p>epub电子书制作学习项目：<a href="https://github.com/xiaxi626/epub-study">xiaxi626/epub-study: Tutorials and templates (github.com)</a><br />
+<img src="/post-images/1674888642928.png" alt="" /></p>
+</span></div>
                         </div>
                         
                         <div class="post-container">
@@ -242,7 +947,7 @@
                                 <a href="/post/ru-he-zhao-dong-man-zi-yuan-dong-hua-pian-zi-mu-zu-ya-zhi-zu/">【如何找动漫资源】动画篇：字幕组＋压制组</a>
                             </p>
                             <p class="post-meta">
-                                <span class="date meta-item">2022-09-16</span>
+                                <span class="date meta-item">Posted at&nbsp;2022-09-16</span>
                                 
                                 
                                 <span class="meta-item">
@@ -273,6 +978,588 @@
                                 </a>
                             </div>
                             
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><p>以下内容整合自互联网，介绍了部分字幕组。</p>
+<h1 id="heading">第六部分：字幕组&amp;压制组</h1>
+<h2 id="heading-1">字幕组</h2>
+<h3 id="cksumisora">澄空学园字幕组（CK、SumiSora）</h3>
+<p>澄空学园字幕组正式将作品展大家面前是在2005年，通过翻译SHUFFLE！D.C.S.S.等热门大作将自己的品牌推广，在随后一年多的时间里，澄空学园字幕组翻译制作了多部热门动画的RMVB和AVI版本供大家分享，逐渐积累了制作经验。2006年10月新番中，澄空学园字幕组翻译了gift，KANON，心跳回忆 ～Only Love～，Lovely Idol，夜明け前より瑠璃色な，Happiness！等著名美少女和GALGAME改编类动画，不到两年内的时间里已成长为国内非常著名的字幕组。</p>
+<p>澄空学园字幕组的作品于澄空学园论坛发布。</p>
+<p>澄空学园论坛是一群喜爱日本文字冒险类AVG游戏制作公司&mdash;K.I.D的爱好者建立的，该公司的经典名作有纯爱全年龄的《秋之回忆》系列，已出到第七代，最新的龙刻、WE ARE等游戏也在GALGAME业界受到广泛关注与喜爱。</p>
+<p><strong>主要发布的作品有:</strong></p>
+<hr />
+<p>《CLANNAD》</p>
+<p>《Kanon》</p>
+<p>《True Tears 真实之泪》</p>
+<p>《君吻 kimikiss<del>pure rouge</del>》</p>
+<p>《旋风管家》</p>
+<p>《你是主人我是仆》（与月舞字幕组共同制作）</p>
+<p>《灼眼的夏娜第二季》（与极影字幕社共同制作）</p>
+<p>《魔法禁书目录》（与极影字幕社共同制作）</p>
+<p>《魔法禁书目录第二季》（与极影字幕社共同制作）</p>
+<p>《某科学的超电磁炮》</p>
+<p>《守护甜心》</p>
+<p>《AYAKASHI》</p>
+<p>《七色星露》</p>
+<p>《秋蝉鸣泣之时·解》</p>
+<p>《秋蝉鸣泣之时》</p>
+<p>《ef - a tale of memories》</p>
+<p>《Prism Ark》</p>
+<p>《Myself;Yourself》</p>
+<p>《D.C.II 初音岛2》（与雪飘工作室共同制作）</p>
+<p>《SOLA》</p>
+<p>《罗密欧与朱丽叶》</p>
+<p>《青空下的约定》</p>
+<p>《心跳回忆Only Love》</p>
+<p>《SHUFFLE! MEMORIES》</p>
+<p>《少女爱上姐姐》</p>
+<p>《传颂之物》</p>
+<p>《School Rumble》</p>
+<p>《School Days》</p>
+<p>《CLANNAD<del>after story</del>》</p>
+<p>《染红的街道》</p>
+<p>《星空的记忆》</p>
+<p>《tiger×dragon!》</p>
+<p>《11eyes》</p>
+<p>《秒速五厘米》等等。</p>
+<p>从以上发布的作品也可以看出，澄空学园字幕组长年致力于校园、爱情类作品并以自己的风格自成一派。</p>
+<h3 id="caso">华盟字幕社（CASO）</h3>
+<p>华盟(CAMOE)成立于2004.10.2，初期是做数码兽的，二代目zipwinmax接手后迈向普通番组并坚持到今天。华盟在澄空成立后就经常合作，很多新番季里CASO&amp;SumiSora比单标CASO和SumiSora的加起来还多。华盟还长期维护自己的BT页面，在极影关闭后重构为acg.rip，基本是花园之外最大的避难地。质量好，效果也很不错，neta考据很全，萌片、吐槽漫&amp;新房监督的&amp;翻译有一定困难的&amp;考究类看这个。</p>
+<p>华盟字幕社＆元古I.G部落，代表作《幸运星》。</p>
+<p>远古I.G. 这个其实不是字幕组，而是个同人社团，当然相当一部分主要成员还是华盟跟澄空的组员。</p>
+<h3 id="dmg">动漫国字幕组（DMG）</h3>
+<p>昵称毒蘑菇，有自己的论坛，非常稳定产量也颇高的组，每次都发布繁体简体好几版的字幕。</p>
+<h3 id="kamigami">诸神字幕组（Kamigami）</h3>
+<p>制作高质量中日双语字幕的字幕组。字幕大小合适，字体简明，适合用来学日语。</p>
+<p><strong>代表作：</strong></p>
+<p>钻石王牌</p>
+<p>FATE系列</p>
+<p>纯情罗曼史</p>
+<p>K / K Project</p>
+<p>JOJO的奇妙冒险</p>
+<p>妖精的尾巴（Fairy Tail）</p>
+<p>灌篮高手（2013年重制版）</p>
+<p>[宫崎骏导演作品大合集]</p>
+<p>[TBS纪录片][THE 世界遗产]</p>
+<p>[NHK纪录片][历史秘话]/[纪实72小时]/[行家本色]/[美之壶]</p>
+<hr />
+<h3 id="ktxp">极影字幕社（KTXP）</h3>
+<p>极影(KTXP)  曾经是最大的BT页，由于默认置顶极影字幕组的新番，所以当时极影有着很高的下载量。字幕组当时基本属于追热门，“很少能有极影不开的热门番”。不过BT页关闭后这个组似乎进入了无序状态，一方面仍然在招募新人，并且有不错的质量，另一方面甚至连组名都在随便改，有时用KTXP有时是JYSUB等等。</p>
+<h3 id="sosg">SOSG字幕团</h3>
+<p>SOSG，一说是出自日本作者谷川流所著《凉宫春日》系列轻小说中， 主角凉宫春日所创建的“让世界变得更热闹的凉宫春日团”的缩写。</p>
+<p>因《凉宫春日的忧郁》闻名的字幕组，制作效果优秀。</p>
+<h3 id="tsdm">天使动漫字幕组（TSDM）</h3>
+<p>天使动漫(TSDM) 字幕组是由天使动漫论坛成员自发组建，为方便广大动漫爱好者欣赏动漫而成立的字幕组。目前，TSDM字幕组以翻译新番为主，但也制作了少量剧场版作品。</p>
+<h3 id="flsnow">雪飘字幕组（FLsnow）</h3>
+<p>俗称妇联，几乎从来没做过首发组，有些片子直接等几天发软字幕版本。成员很多人混迹于nmm等地，压制精良，字幕特效惊人。有时也会跟澄空合作，比较令人惊讶的是作为十几年的老牌字幕组，第一次与华盟合作是2013年的穿透幻影的太阳。现在每季开坑不多，质量有保证。FLsnow-RAW发的片源不错。</p>
+<h3 id="txxz">天香小筑TXXZ</h3>
+<p>连续剧制作非常出名。影视也很强悍。动漫与兰荫齐名。网球王子和妖精的旋律令人印象深刻。</p>
+<p>2011年经天香小筑动漫字幕社(TxxZ)、HKG字幕组(HKG)、星雪字幕组(X2)三社协商决定，本着合理利用人力资源、提高效率、打造高质量动漫字幕的宗旨，成立T.H.X联合字幕社。TAG: TxxZ&amp;HKG&amp;X2</p>
+<p>T.H.X取自三组TAG开头第一字母，并用「.」隔开，以区分三个独立的工作组。为了读起来方便，故使用T.H.X，与英文thanks，发音近似，也有为广大的支持者表达感谢之意。</p>
+<p>网址：https://www.zhengmianshang.me/</p>
+<p>网址：https://www.zhengmianshang.me/about-2/</p>
+<h3 id="lanyin">兰荫字幕社（LanYin）</h3>
+<p>制作过《羊之歌》、《尸者的帝国》、《火影》。</p>
+<h3 id="mabors-sub">幻之字幕组（Mabors Sub）</h3>
+<p>幻之字幕组是由原漫游十一区ACG11字幕组改建而来。偶尔会与MGRT合作制作一些剧场版的字幕。</p>
+<h3 id="heading-2">魔术师工房字幕组</h3>
+<p>魔术师工房从未自行制作过任何作品，所有都是与澄空学园(绝大多数时候还有华盟)制作的型月系列作品，因此有理由推测这其实是澄空(与华萌)内部的一部分型月厨组建的二级团体，制作型月作品时挂这个牌子出来。</p>
+<h3 id="heading-3">黑白映画字幕组</h3>
+<p>大多采用日语在上汉语在下的双语字幕。翻译质量不错，行书风格字体.制作水分十分高，动漫OP的字幕效果十分华丽。</p>
+<p>2011年春季新番主打《银魂》（简体版、中日双语繁体版），同时进行的还有《世界第一的初恋》《狂热玛利亚》《命运石之门》《青之驱魔师》《我们仍未知道那天所看到的花的名字》《C - The Money of Soul and Possibility Control》《火影剧场7：失落之塔》等多部动画。另与其他优秀字幕组合作《日常》《星座彼氏》等多部精彩动漫。</p>
+<h3 id="-makarihoshiyume"><strong>茉语</strong> (<strong>星梦</strong>)<strong>字幕组（MakariHoshiyume）</strong></h3>
+<p>最早叫恶俗株式会社，后来改叫茉语月夜，现在一般叫茉语(星梦)字幕组。很多作品是与DHR动研字幕组、LoliHouse、动漫国字幕组、风之圣殿字幕组合作制作的。</p>
+<h3 id="speed">极速字幕工作室（SPEED）</h3>
+<p>极速字幕工作室主打长篇老牌动漫（火影忍者）以及每季的少量新番的作品，主打繁体字幕作品。翻了一下他们的主要作品，有龙珠、火影、黑执事、女仆咖啡厅、罪恶王冠、男子高中生的日常、弹丸论破、记录的地平线、Fate/Zero、海贼王、死神、花开伊吕波、丹特丽安的书架、蔷薇少女2013，夏目友人帐等等。</p>
+<h3 id="heading-4">月舞字幕组</h3>
+<p>基本处于躺尸状态，偶尔见到开新番，acg.rip那已经N年没更新了。</p>
+<h3 id="liuyun">流云字幕组（Liuyun）</h3>
+<p>基本处于半躺尸状态，不过还是有开新番。译制作品有《美少女战士》《黑子的篮球》《花牌情缘》《革命机》《夏目友人帐》等。</p>
+<h3 id="opfansmaplesnow">枫雪字幕组（OPFansMaplesnow）</h3>
+<p>国内主做海贼王的，民工动漫都有做，曾做过《银魂》。译制质量超高的动画作品的有《xxxHOLiC》、《翼年代记》、《黑礁》、《NANA》等。译制代表作《ONE PIECE》、《海贼王》。</p>
+<p>微博：https://www.weibo.com/339090694</p>
+<p>网址：http://www.opfans.org/</p>
+<h3 id="heading-5">灵风字幕组</h3>
+<p>曾经压制和字幕都不错的。翻译中规中矩，但是它和华盟一样喜欢简化语句，当然只是很小一部分。</p>
+<p>网友的吐槽：</p>
+<p>灵风字幕组和华盟以及极影这两个字幕比起来在南家三姐妹这部动漫上谁翻译的更好？</p>
+<p><a href="https://zhidao.baidu.com/question/84263773.html">https://zhidao.baidu.com/question/84263773.html</a></p>
+<h3 id="heading-6">异域字幕组</h3>
+<p>异域字幕质量有好有坏，做长篇不烂尾，经常出老东西的合集。看网上说2016 年年末被卷入「日本字幕组成员被逮捕」事件的关联字幕组，受此直接影响，异域 11 番压制组解散，异域字幕组也（可能）在同一时间选择了退场。</p>
+<h3 id="emd">恶魔岛字幕组（EMD）</h3>
+<p>恶魔岛，每季新番的作品很多，但请认准TL旧民的翻译。该字幕组尤其擅长《天元突破》、《双斩少女》、《最终流放》这样的大作。</p>
+<h3 id="popgo">漫游POPGO字幕组</h3>
+<p>漫游字幕组是2001年在中国互联网上成立的首家由日语翻译负责译制日本动漫作品的中国大陆字幕组。其主要成员来自于漫游天下论坛（POPGO） 的初期会员，因此命名为漫游字幕组。</p>
+<p>漫游字幕组主要翻译作品集中于科幻机械类、文学古风类。翻译风格偏于稳重，字幕特效少而精简，更受相对高年龄层观众的欢迎。其翻译的机动战士高达系列，全金属狂潮系列，钢之炼金术师，超时空要塞F，攻壳机动队STAND ALONE COMPLEX，十二国战记，星界战旗系列等。在网上享有较高的口碑，并拥有一群属于自己的忠实拥趸。</p>
+<p>除此之外漫游字幕组技术人员自行研究制作的时间轴工具POPSUB也成为中国网络字幕组中使用率最高的后期制作软件之一。</p>
+<p>漫游字幕组在2001年建立初期的主要作品：星界战旗II，HUNTERXHUNTER OVA，青出于蓝，十二国记，最终流放。后机动战士高达SEED在日本播出，漫游字幕组在与同期动漫花园字幕组的竞争中脱颖而出，仅凭翻译的一己之力听写完成了当时少见的日语中文双语字幕，以令人信服的质量和效率在国内动漫爱好者间赢得了极高口碑，从此名声大振。</p>
+<p>漫游字幕组的第二次辉煌期始于钢之炼金术师和超时空要塞F开播，主力翻译陆续回归参与制作，总算挽回颓势再次回到国内一线日漫字幕组的行列。</p>
+<p>顺带一提，漫游旗下有三组,漫游,Freewind和PSS,三个都是独立字幕组只是共用一个论坛而已,翻译没有较大的差别,Freewind片源较高清些。</p>
+<p><strong>主要作品</strong>（百度百科收录到2009年，因此这里随便列几个）：</p>
+<p>与澄空学园合作惊爆草莓</p>
+<p>凉宫春日的忧郁</p>
+<p>贫穷姐妹花</p>
+<p>娇蛮之吻</p>
+<p>无敌看板娘</p>
+<p>超级机器人大战OG</p>
+<p>银发的阿基特</p>
+<p>与卡通空间合作地狱少女 二笼</p>
+<p>黑礁湖 The Second Barrage</p>
+<p>舞-乙HiME Zwei</p>
+<p>与澄空学园合作旋风管家</p>
+<p>逮捕令之全速出击</p>
+<p>机动战士高达00</p>
+<p>君吻 pure rouge</p>
+<p>遥远时空中3 红之月</p>
+<p>ARIA the Origination</p>
+<p>狼与香辛料</p>
+<p>反逆的鲁路修R2</p>
+<p>超时空要塞_Frontier</p>
+<p>新安琪莉可 Abyss</p>
+<p>与HKG合作Slayers Revolution</p>
+<p>新安琪莉可 Abyss 第二季</p>
+<p>夏目友人帐</p>
+<p>舞-乙HiME 0～S.ifr～</p>
+<p>幸运星OVA</p>
+<p>图书馆战争特别篇</p>
+<p>黑铁之LineBarrel</p>
+<p>机动战士高达00 第二季</p>
+<p>魍魉之匣</p>
+<p>CLANNAD AFTER STORY</p>
+<p>穿越时空的少女剧场版</p>
+<p>秒速5CM</p>
+<p>玛利亚狂热</p>
+<p>我们的存在</p>
+<p>欢迎来到NHK</p>
+<p>源氏物语千年纪</p>
+<p>Slayers Evolution-R</p>
+<p>烤焦面包</p>
+<p>地狱少女 三鼎</p>
+<p>Final Fantasy VII Advent Children Complete</p>
+<p>与HKG合作黑神</p>
+<p>东之伊甸</p>
+<p>东方·梦想夏乡</p>
+<p>Axis Powers Hetalia 黑塔利亚</p>
+<p>xxxHOLiC_春梦记OVA</p>
+<p>Chi&rsquo;s Sweet Home 第二季</p>
+<p>圣机师物语</p>
+<p>Phantom ～Requiem for the Phantom～</p>
+<p>幸运四叶草</p>
+<p>与澄空学园合作旋风管家 第二季</p>
+<p>钢之炼金术师 2009</p>
+<p>战场女武神</p>
+<p>青之花</p>
+<p>CANAAN</p>
+<p>狼与香辛料II</p>
+<p>东京里氏 8.0</p>
+<p>浪漫追星社</p>
+<p>异世界圣机师物</p>
+<hr />
+<h3 id="sc-ol">雪酷字幕组（SC-OL）</h3>
+<p>跟SOSG差不多，也是曾经产量高速度快的大型小组。2014年后停止活动，但是去看论坛似乎还有人，估计也是收缩战线了吧。2015年已公告歇业。跟SGS、KIDFSC合作的Steins Gate是石头门众公认的优秀作品。</p>
+<h3 id="hysub">幻樱字幕组（HYSUB）</h3>
+<p>幻樱(HYSUB) 做过很多漫改，曾经也做柯南，不过现在柯南的负责人暂时有事弃坑了，现在主要做季番、年番等，产量还可以。论坛似乎挂了。幻樱字幕组代表作：《KAIBA海马》《稻草人》《我家的三姐妹》《脑潜调查室》《乃木坂春香的秘密》《零之魔使》。</p>
+<h3 id="heading-7">桜都字幕组</h3>
+<p>速度快，以前是做里番字幕的。</p>
+<h3 id="heading-8">星光字幕组</h3>
+<p>专门翻译柯南的字幕组，不过没有没有翻译过柯南的全集。</p>
+<h3 id="comicat">漫猫字幕组（COMICAT）</h3>
+<p>漫猫论坛旗下同名字幕组，代表作品《Another》、《神的记事本》。</p>
+<h3 id="kissfans">爱恋字幕社（KISSFANS）</h3>
+<p>这个字幕组和别的字幕组合作居多啊，经常看到爱恋&amp;漫猫、爱恋字幕社&amp;届恋字幕组。</p>
+<h3 id="uha-wingc9">悠哈璃羽字幕组（UHA-Wing/悠哈C9等）</h3>
+<p>华南农业大学璃羽漫画协会下属的字幕组，制作的JOJO系列下载量比较可观。</p>
+<h3 id="sgs">曙光社字幕组（SGS）</h3>
+<p>2013年之后基本沉寂。制作过魔法少女奈叶剧场版、全金属狂潮、命运石之门、哆啦A梦等等。哆啦A梦字幕比较出名的字幕组是钉铛、梦蓝和曙光，其中首推钉铛。</p>
+<h3 id="heading-9">喵萌奶茶屋字幕组</h3>
+<p>根据萌娘百科，喵萌奶茶屋是2017年2月成立的一个汉化日本动画的同好组织。不知道与喵萌茶会字幕组有没有关系，b站夏日幻听投稿的Escha Chron OVA1标题是喵萌奶茶,简介里却是喵萌茶会。</p>
+<h3 id="airota">千夏字幕组（Airota）</h3>
+<p>有时候也叫御宅千夏，经常能看到千夏字幕组跟喵萌奶茶屋和LoliHouse合作，汉化过的片子有Clannad after story、这个是僵尸吗、轻松百合、樱花庄的宠物女孩等。</p>
+<h3 id="x2">X2字幕组</h3>
+<p>X2 以前在星雪论坛时也叫“星雪字幕组”，现在成员基本现充，剩下来的人偶尔跟HKG、天香等老牌组合作制作一些番组。</p>
+<h3 id="-white-moon">白月 (WHITE MOON)</h3>
+<p>大概13年前后还是人不少的，去查了一下发现已经两年没有正经的活跃过了。当年LoveLive第一季播出初期人气惨淡(你没看错，如今的邪教当年几乎什么都不是)，在字幕组普遍人手充裕的1月档期甚至没有组计划做，是白月跟LoveLive贴吧的几个人合作(贴吧这个组就是现在的LoveEcho)才避免了这个未来的邪教出门遇鬼的命运(当然第一话搞出来个v3也算是史无前例)。顺便，第一季其实还有一个组做，嗯就是澄空华盟，在开播前的计划里是没有的，播完第一集之后才决定开的。</p>
+<h3 id="dhr">DHR动研字幕组</h3>
+<p>DHR(动研) 以压片为主，产量稳定，质量也不错的，有自己的论坛。旗下二级团体DHR-Raws的成员算是国内比较早系统化研究HEVC的，有一定的技术实力。</p>
+<h3 id="kna">KNA字幕组</h3>
+<p>ANK-Raws相关成员参与组建的制作字幕的组织。看KNA的字幕不用太较真，如果从标准来看华盟的比较符合原文翻译，KNA的倾向于白话。</p>
+<p>天才麻将少女字幕吐槽——https://tieba.baidu.com/p/2927452229?pn=1</p>
+<h3 id="sqsub">神奇字幕组（SQSUB）</h3>
+<p>坚持制作宠物小精灵系列长篇/剧场版的字幕组，几年前也做过一段时间柯南。</p>
+<h3 id="w-zone">W-ZONE字幕组</h3>
+<p>制作效果十分优秀，动漫OP的特效很棒！例如：SA特优生。制作过H2O、苍之瞳的少女等等。</p>
+<h3 id="kpdm">KPDM字幕组</h3>
+<p>KPDM即Keep Dream。黑之契约者翻译较好。</p>
+<h3 id="dymy">DYMY字幕组</h3>
+<p>DYMY即动音漫影，为动画（D）、音乐（Y）、漫画（M）、影视(Y)的缩写，旨在从多个不同的角度提供更好的日语资讯，同时提供日语学习交流的平台。</p>
+<p>DYMY字幕组成立于2005年，主要翻译热血类，运动类，冷门系的动画，以字幕发布速度快，成品质量高闻名，代表作有家庭教师，妖精的尾巴，蓝色驱魔师，棒球大联盟等。</p>
+<p>2008年3月 DYMY汉化组成立，主要以翻译日本流行漫画为主，翻译的作品广受漫画爱好者喜爱。</p>
+<p><strong>代表作品有：</strong></p>
+<hr />
+<p>《超智游戏》</p>
+<p>《大正野球娘》</p>
+<p>《棒球大联盟II》</p>
+<p>《棒球大联盟Ⅲ》</p>
+<p>《棒球大联盟Ⅳ》</p>
+<p>《棒球大联盟Ⅴ》</p>
+<p>《棒球大联盟Ⅵ》</p>
+<p>《王牌投手 振臂高挥》</p>
+<p>《王牌投手 振臂高挥~夏季大赛篇》</p>
+<p>《新网球王子》</p>
+<p>《新网球王子OVA》</p>
+<p>《网球王子全国大赛篇》</p>
+<p>《逆转监督》</p>
+<p>《足球骑士》</p>
+<p>《零秒出手》</p>
+<p>《零秒出手 II》</p>
+<p>《黑子的篮球》</p>
+<p>《光速跑者21号》</p>
+<p>《铁马少年》</p>
+<p>《飞轮少年》</p>
+<p>《银魂》</p>
+<p>《家庭教师》</p>
+<p>《家庭教师OVA 彭格列式修学旅行、来了》</p>
+<p>《恶魔奶爸》</p>
+<p>《滑头鬼之孙》</p>
+<p>《滑头鬼之孙 千年魔京》</p>
+<p>《夏目友人账》</p>
+<p>《夏目友人账续》</p>
+<p>《夏目友人账叁》</p>
+<p>《夏目友人账肆》</p>
+<p>《吸血鬼骑士》</p>
+<p>《吸血鬼骑士Ⅱ》</p>
+<p>《高达AGE》</p>
+<p>《高机动幻想》</p>
+<p>《机动战士高达UC》</p>
+<p>《机动战士高达00》</p>
+<p>《机动战士高达OOⅡ》</p>
+<p>《K》</p>
+<p>《魔笛》</p>
+<p>《全职猎人》</p>
+<p>《宇宙兄弟》</p>
+<p>《刀剑神域》</p>
+<p>《妖精的尾巴》</p>
+<p>《蓝色驱魔师》</p>
+<p>《美食的俘虏》</p>
+<p>《白熊咖啡馆》</p>
+<p>《食梦者Ⅲ》</p>
+<p>《PHYCHO-PASS》</p>
+<p>《绝园的暴风雨》</p>
+<hr />
+<h3 id="yyk">YYK山百合字幕组</h3>
+<p>主攻百合向卡通的字幕翻译。涉及的作品比较多。翻译水平比较高（偶尔犯些小错误）。</p>
+<p>YYK：天使们的戏曲（BLUE DROP）、SIMOUN、极上生徒会、初瓣、神无月的巫女、惊爆草莓、舞-乙HIME、草莓棉花糖</p>
+<p>YYK+Flsnow ：Venus Versus Virus（除魔维纳斯）、</p>
+<p>YYK+动漫花园 ：圣母在上</p>
+<h3 id="lksub">轻之国度字幕组（LKSUB）</h3>
+<p>轻国这种的完全就是业余在翻动漫，人家主攻的是轻小说。轻之国度epub组已经解散，精品全部散佚了，真的要翻很久很久才能找到一部分残缺的。</p>
+<h3 id="dmzj">DMZJ动漫之家字幕组</h3>
+<p>动漫之家平台的字幕组，偏向直译风格，压片质量和产量都很到位。代表作《乱马1/2》《校园迷糊大王》。</p>
+<h3 id="heading-10">动漫花园字幕组</h3>
+<p>动漫花园字幕组原分为星组和枫组，但后来由于有个人和团体在其资源网上发布《死亡笔记》《妖精旋律》等国内严禁恐怖类的资源，被有关部门明令禁止传播。后来动漫花园成立了新的字幕组——动漫花园岚组，后合并了Levelup AC字幕组（具体参加第25个字幕组）。现在还活着的主要是dymy（动音漫影），LAC（知乎有一篇回答说“原名动漫花园-岚组”），dmhy，剩下的还有星组(做过黑色小本子、银魂的前期等)，枫组、花组等等。虽然出片速度不算快，但是却十分注重制作质量。代表作：《银魂》，还有在大陆封了又禁，禁了又封的《死亡笔记》、《妖精旋律》。</p>
+<h3 id="heading-11">魔穗字幕组</h3>
+<p>魔穗字幕组，最早叫“时空旅团”，是国内最早的几个里番字幕组之一，其后一度改名JJ.sub，后来成了现在的魔穗。</p>
+<h3 id="galaxy">GALAXY字幕组</h3>
+<p>为圣斗士星矢诞生的字幕组。</p>
+<p>Galaxy字幕组发布的动画作品名字前的Galaxy－TP,Galaxy-T,Galaxy-X是什么意思？</p>
+<p>TP（纯净版无字幕RAW）；T （高清字幕版MKV）；X （RMVB）</p>
+<h3 id="btpig">BTPIG猪猪乐园</h3>
+<p>《火影忍者》《死神》《妖精的尾巴》等经典动画，都有猪猪字幕组的身影。</p>
+<h3 id="levelup-ac">Levelup AC字幕组</h3>
+<p>Levelup字幕组全称Levelup Animation Comic制作组动画字幕组，简称LAC字幕组，成立于2006年11月，字幕组依托与游戏城寨论坛，成立初期为同好会性质，2007年4月起发展壮大。于2010年4月更名为动漫花园岚组。</p>
+<p>LAC组的银魂出片快，翻译功课到位，是观看银魂首选的字幕组。</p>
+<p>主要作品：银魂，CODE-E（代号E），光明之泪X风等。</p>
+<h3 id="heading-12">风车字幕组</h3>
+<p>风车字幕组成立于2011年2月10日。主要制作作品为《名侦探柯南》，其特点是翻译精准，画面质量高，发布时间快。作品第一时间发布于风车字幕组论坛。风车字幕组是国内制作《名侦探柯南》字幕做的最好的字幕组之一。这个字幕组也出过别的作品，如东京喰种、数码宝贝、山田君与七人魔女、干物妹小埋第一季等等。<strong>注意这个组与“风车动漫”那个扒在线源发BT的垃圾账号没什么关系。</strong></p>
+<h3 id="sbsub">SBSUB银色子弹字幕组</h3>
+<p>银色子弹，简称银弹，英文简称SBSUB，由多数柯南热爱者聚集在一起的非营利性爱好者组织，致力于培养更多柯南迷，创建于2015年6月8日。</p>
+<p>银色子弹字幕组，是银色子弹第一个创立也是主要的组织，主要翻译《名侦探柯南》的动画新番以及早期的剧集，剧场版，特别篇等并制作字幕。</p>
+<p>银色子弹是专门为《名侦探柯南》服务的组织，为了培养更多柯南迷，银色子弹开辟有柯南科普栏目《吃鲸》，推理题栏目《鲸探》，主题曲回忆栏目《鲸曲》，还有柯南周边、新闻、访谈等的翻译与发布。</p>
+<h3 id="aptx4869">APTX4869字幕组</h3>
+<p>APTX4869字幕组，月球最强柯南字幕组，名侦探柯南事务所字幕组。</p>
+<p>最经典的作品就是名侦探柯南了，这个字幕组本身就是因为柯南而产生的，现在也制作其他一些动漫的字幕，其翻译质量好，特效也不错。Evafans(后更名为NES)制作组挂靠在APTX论坛，只做EVA系列，近年已经销声匿迹。</p>
+<p>字幕组官方论坛：bbs.aptx.cn</p>
+<h3 id="hkg">HKG字幕组</h3>
+<p>繁体字幕组，HKG是HONG KONG GOLDEN的缩写，常与X2字幕组联合发布作品。</p>
+<p>与X2合作的作品：寒蝉呜泣之时、蓝兰岛、School Days（日在校园 共6集）</p>
+<p>HKG字幕组翻译过很多知名作品，包括《一骑当千》《赌博默示录》《某科学的超电磁炮》等。而让其一战成名的作品，还要数经典青春恋爱动画《School Days》。这部作品的中文译名“日在校园”，正是出自HKG字幕组之手。“正面上我啊”出自HKG字幕组对于《某科学的超电磁炮》中御坂美琴的一句台词的翻译。</p>
+<h3 id="wolf">WOLF字幕组</h3>
+<p>WOLF字幕组是以翻译制作日本动漫为主的一个网络组织，成立于06年12月24日圣诞之夜，名字的来源是《今天开始做魔王》中格外受大家喜欢的角色保鲁夫拉姆的英文名字wolfram，同时W O L F也代表了四个元素，风（wind）海（ocean）地（land）火（fire），分别意喻着WOLF人风一样的行动速度，海一样宽广的胸襟，大地般踏实的性格以及胸中火一样的热情。</p>
+<p>WOLF字幕组官方论坛</p>
+<p>官方论坛：http://www.wolfsub.com/bbs/</p>
+<p>招募贴：http://www.wolfsub.com/bbs/viewthread.php?tid=2&amp;extra=page%3D1</p>
+<p><strong>WOLF****字幕代表作品</strong>（按时间顺序）</p>
+<p>《圣斗士星矢 冥界篇后章》</p>
+<p>《死亡笔记》</p>
+<p>《四圣兽 光阴叙事诗天使谭》</p>
+<p>《钢铁三国志》</p>
+<p>《濑户之花嫁》</p>
+<p>《僵尸借贷》</p>
+<p>《魔法使借贷/出租魔法使》</p>
+<p>《物怪》</p>
+<p>《狼与香辛料》</p>
+<p>《今天开始做魔王3》</p>
+<p>很著名的动漫字幕制作组，制作水平十分高，动漫OP的字幕效果十分华丽。我是从「K」（b站转载：https://www.bilibili.com/video/BV1Cx411w7Un/）和夏目友人帐开始了解WOLF字幕组的，现在WOLF字幕组的资源不太好找了。</p>
+<p>字幕组贴吧：https://tieba.baidu.com/f?kw=wolf%E5%AD%97%E5%B9%95%E7%BB%84&amp;ie=utf-8</p>
+<h3 id="ppx">PPX（琵琶行）字幕组</h3>
+<p>日剧方面，琵琶行基本只做大河剧，它对日本古代史翻译做得更到位，字体古色古香，不过是繁体字。</p>
+<p>[介绍]PPX字幕组的历史、现状和未来-10版 <a href="https://www.ppxclub.com/27-1-1">https://www.ppxclub.com/27-1-1</a></p>
+<h3 id="heading-13">星空字幕组</h3>
+<p>主要做特摄的字幕组，如奥特曼系列、假面骑士系列，也会制作一些新番。</p>
+<h3 id="fsddaykrl">FSD字幕组&amp;DAY字幕组&amp;KRL(光の影字幕組)</h3>
+<p>主要做假面骑士的字幕组。KRL是中国假面骑士联盟(KRLCN)的字幕组</p>
+<p><strong>字幕组未来的发展计划（摘自琵琶行论坛）</strong></p>
+<p>现在追番的动漫FANS大致分为两种，一类是哪个字幕组出的最快就看哪个的，这类动漫FANS占80%，称做初级动漫FANS，另一类是只盯着某个自己喜欢的字幕组看，这类动漫FANS占20%，称做核心动漫FANS。  速度吸引初级动漫FANS，质量吸引核心动漫FANS。初级动漫FANS和核心动漫FANS都很重要，其数量是字幕组人气的直接反映，所以对字幕组来说，任何一部TVRIP作品都必须做到速度与质量并重，而DVDRIP或HDTVRIP作品则以质量为唯一标准。  字幕组的发展方向也非常重要，现在大致有以下几个类型的字幕组： 1.专业型动画字幕组：只制作某部超人气动画，并以此闻名，比如制作《名侦探柯南》的名侦探事物所和制作《圣斗士星矢》的GALAXY字幕组； 2.专业型综合性动画字幕组：以垄断某部超人气动画为名，但也同时制作其他动画，比如以《海贼王》闻名的枫雪字幕组和以高达系列闻名的漫游字幕组； 3.综合性动画字幕组：这类字幕组就很多了，比如以极影字幕组、卡通空间字幕组和DMZJ字幕组为代表，做的动画很多但却鲜有令动漫FANS印象深刻的超人气作品； 4.综合性字幕组：不光制作动画，也制作日剧，比如猪猪字幕组。</p>
+<p><strong>参考</strong></p>
+<p>百度百科、百度知道、各大论坛、知乎</p>
+<p>部分参考网址：</p>
+<p><a href="https://zhidao.baidu.com/question/66660746.html?sort=9&amp;rn=5&amp;pn=0#wgt-answers">https://zhidao.baidu.com/question/66660746.html?sort=9&amp;rn=5&amp;pn=0#wgt-answers</a></p>
+<p><a href="https://zhidao.baidu.com/question/14086727.html">https://zhidao.baidu.com/question/14086727.html</a></p>
+<p><a href="https://zhidao.baidu.com/question/308779789.html#:~:text=%E4%B8%AD%E5%9B%BD%E2%80%9C%E5%AD%97%E5%B9%95%E7%BB%84%E2%80%9D1%E3%80%81%E6%9E%AB%E9%9B%AA%E5%8A%A8%E6%BC%AB%E5%AD%97%E5%B9%95%E7%BB%84%EF%BC%88%E6%B5%B7%E8%B4%BC%E7%8E%8B%E4%BB%A3%E8%A1%A8%E4%BD%9C%EF%BC%89,2%E3%80%81%E6%82%A0%E6%82%A0%E9%B8%9F%E5%AD%97%E5%B9%95%E7%BB%84%203%E3%80%81CNXP%E5%BD%B1%E8%A7%86%E5%B8%9D%E5%9B%BD%EF%BC%88%E2%80%9C%E6%9A%B4%E9%9B%AA%E5%87%BA%E5%93%81%2C%E5%BF%85%E5%B1%9E%E7%B2%BE%E5%93%81%E2%80%9D%E5%90%8C%E6%A0%B7%2CCNXP%E6%97%A0%E8%AE%BA%E6%98%AF%E5%AD%97%E5%B9%95%E8%BF%98%E6%98%AF%E7%89%87%E5%AD%90%E7%9A%84%E8%B4%A8%E9%87%8F%2C%E9%83%BD%E6%98%AF%E5%87%BA%E7%B1%BB%E6%8B%94%E8%90%83%E7%9A%84%2C%E4%B8%8D%E6%98%AF%E6%B8%85%E6%99%B0%E7%89%88%E7%9A%84%E4%BB%96%E4%BB%AC%E4%B8%8D%E5%81%9A%2C%E5%AE%81%E5%8F%AF%E4%B8%8D%E6%98%AF%E7%AC%AC%E4%B8%80%E6%97%B6%E9%97%B4%E5%8F%91%E5%B8%83%2C%E4%B9%9F%E8%A6%81%E4%BF%9D%E8%AF%81%E8%B4%A8%E9%87%8F%E3%80%82">https://zhidao.baidu.com/question/308779789.html#:~:text=%E4%B8%AD%E5%9B%BD%E2%80%9C%E5%AD%97%E5%B9%95%E7%BB%84%E2%80%9D1%E3%80%81%E6%9E%AB%E9%9B%AA%E5%8A%A8%E6%BC%AB%E5%AD%97%E5%B9%95%E7%BB%84%EF%BC%88%E6%B5%B7%E8%B4%BC%E7%8E%8B%E4%BB%A3%E8%A1%A8%E4%BD%9C%EF%BC%89,2%E3%80%81%E6%82%A0%E6%82%A0%E9%B8%9F%E5%AD%97%E5%B9%95%E7%BB%84%203%E3%80%81CNXP%E5%BD%B1%E8%A7%86%E5%B8%9D%E5%9B%BD%EF%BC%88%E2%80%9C%E6%9A%B4%E9%9B%AA%E5%87%BA%E5%93%81%2C%E5%BF%85%E5%B1%9E%E7%B2%BE%E5%93%81%E2%80%9D%E5%90%8C%E6%A0%B7%2CCNXP%E6%97%A0%E8%AE%BA%E6%98%AF%E5%AD%97%E5%B9%95%E8%BF%98%E6%98%AF%E7%89%87%E5%AD%90%E7%9A%84%E8%B4%A8%E9%87%8F%2C%E9%83%BD%E6%98%AF%E5%87%BA%E7%B1%BB%E6%8B%94%E8%90%83%E7%9A%84%2C%E4%B8%8D%E6%98%AF%E6%B8%85%E6%99%B0%E7%89%88%E7%9A%84%E4%BB%96%E4%BB%AC%E4%B8%8D%E5%81%9A%2C%E5%AE%81%E5%8F%AF%E4%B8%8D%E6%98%AF%E7%AC%AC%E4%B8%80%E6%97%B6%E9%97%B4%E5%8F%91%E5%B8%83%2C%E4%B9%9F%E8%A6%81%E4%BF%9D%E8%AF%81%E8%B4%A8%E9%87%8F%E3%80%82</a></p>
+<p><a href="https://www.zhihu.com/question/22607777">https://www.zhihu.com/question/22607777</a></p>
+<p><a href="https://www.zhihu.com/question/45534881">https://www.zhihu.com/question/45534881</a></p>
+<p><a href="https://www.zhihu.com/question/21382775">https://www.zhihu.com/question/21382775</a></p>
+<h2 id="heading-14">压制组</h2>
+<p>VCB-Studio</p>
+<p>Fussoir</p>
+<p>ANE</p>
+<p>Henshin</p>
+<p>ANK-Raws</p>
+<p>NaN-Raws</p>
+<p>NC-Raws</p>
+<p>Snow-Raws</p>
+<p>YYSUB-RAW</p>
+<p>AI-Raws</p>
+<p>Lilith-Raws</p>
+<p>Skymoon-Raws</p>
+<p>LittleBakas</p>
+<p>mawen1250</p>
+<p>moozzi2</p>
+<p>UCCUSS</p>
+<p>Jibaketa</p>
+<p>Reinforce</p>
+<p>Ohys</p>
+<p>Yousei-raws</p>
+<p>salender-raws</p>
+<h2 id="heading-15">压制组</h2>
+<h3 id="heading-16">有哪些比较出名的压制组？</h3>
+<p>ANE、Henshin、Thora、Yousei、vcb-studio、ANK、QTS、philosophy、Reinforce、salender、FLsnow、zero、Sakura、Leopard、Beatrice、jsum、U2、Fussoir、（km/Kuramori）、Moozzi2、mawen1250、LittleBakas!、AI-Raws……</p>
+<h3 id="heading-17">现在还活着的动漫压制组有那些？</h3>
+<p>近几年活跃的压制组，2022年下半年数据未统计，部分压制组再次出现。</p>
+<h3 id="heading-18">关于动漫压制质量的问题</h3>
+<p>你观察到的结果是哪一个讨好你的眼睛，而不是哪一个更好。</p>
+<p>详细解释版：</p>
+<p>【什么是&quot;压制&quot;】<a href="https://guide.geeking.moe/what-is-encode">https://guide.geeking.moe/what-is-encode</a></p>
+<p>【 [科普] 一些压制组的相关】<a href="http://lovelixiang.com/guide/m92675/1">http://lovelixiang.com/guide/m92675/1</a></p>
+<p>【【压制科普】一些常见的概念和简单区分压制质量的方法】<a href="https://tieba.baidu.com/p/6261456373">https://tieba.baidu.com/p/6261456373</a></p>
+<p>【[VCB-Studio 科普教程 3] 视频格式基础知识】<a href="https://vcb-s.com/archives/2726">https://vcb-s.com/archives/2726</a></p>
+<p>【[VCB-Studio 科普教程 4] 关于如何选 BDRip，和那些最优秀的制作组】<a href="https://vcb-s.com/archives/3822">https://vcb-s.com/archives/3822</a></p>
+<p>【[VCB-Studio 科普教程 7] 如何高效高质量比较 BDMV/BDRip】<a href="https://vcb-s.com/archives/4891">https://vcb-s.com/archives/4891</a></p>
+<p><strong>一般对压制的细致程度可以分为</strong></p>
+<p>快餐，裸压，精压</p>
+<p>快餐：主要就是只测试码率，只修复简单的脏边活着对，甚至只做简单的切割。</p>
+<p>这样压制组HandJob为主，主要目标是追求的实现更多作品压制。</p>
+<p>裸压：对参数进行简单测试，选择比较合理的范围，修复主要脏边等明显问题，大部不会使用复杂的滤镜，一般也不会做zones分区。</p>
+<p>主要是为了快速出片，压制质量可以接受，</p>
+<p>精压：就是完整的测试参数，细致修复主要问题，需要很大精力。</p>
+<h3 id="heading-19">网络上的一些排名（部分）</h3>
+<p>（排名1）</p>
+<p>首选 vcb</p>
+<p>次选 m2</p>
+<p>追求原盘 rf（裸压）</p>
+<p>信仰 原盘</p>
+<p>移动设备 vcb 8bit/m2</p>
+<p>（排名2）</p>
+<p>顶级：</p>
+<p>ANE, Henshin, THORA</p>
+<p>不错：</p>
+<p>10bit: Yousei-Raws, Salender-Raws, Sakura-Raws, Kuroi-raws, Kuro-raws, BSS, QTS, Tormaid, HQR, Afro, gg, Schwarz, gaoshu, dgwxx, MY-RAWS, FLsnow, A.I.R.nesSub, OnDeed, 3xR&hellip;</p>
+<p>8bit: Lv.1, ZilcH, ボン太, 葡萄/纱, ETB, Niizk&hellip;</p>
+<p>还行：</p>
+<p>10bit: Coalgirls, Chihiro, UTW, Doki, Commie, Underwater,&hellip;</p>
+<p>8bit: 魔法少女志摩子EME0gikfrb, ORInthDExF, iLllS3UoTS, J22vl0TKF0, 居留守, 藁エンコTV7AAyLe26, oldsnake, lloup/tct66, Link, slow, CrazyJ, Raws-4U, E-HARO, joseole99, TV-J, B-A, KAA, BG, Exiled-Destiny, BluDragon, U2-Rip, POPGO&hellip;</p>
+<p>By Thanatos</p>
+<p>体积上通常是</p>
+<p>Yousei≥Salender＞ANK＞ReinForce≈QTS＞多数日职</p>
+<p>（排名3）</p>
+<p>神级：ANE（代表作：空之境界） ， Henshin （狼与香辛料），Thora（早期不行，后面超进化），mawen1250（雯姐，现在在littlebakas！）</p>
+<p>国内：ANK-raws（早期不太行，13年后进化），VCB（感觉收16年后的会好点，质量还ok，东西齐全下得快，现在你最常见的组大概就他），snake@雪飘（紫罗兰），philosophy-raws（特色就是N国语言和内容增补器233），AI-raws（油神，仰望天空的少女瞳中的世界和头文字D，naobu有两家——littlebakas和ai，不喜欢M2和naoki那种韩国组，但是又想锐一点，可以试试这个），Kagura，yan04000985</p>
+<p>国外（大多是毛子，毕竟BD压制半壁江山）：Yousei-raws（巨魔，大归大但是质量没的说，有网站，17后好像没怎么动了），Salender-raws，beatrice-raws（我老beatrice粉了，现在还活着，有网站），NanoAlchemist（凉宫），Sergey_krs，Fussoir和Revo（宫崎骏的这俩你杂交吧），SCY（好像是老美？也有网站，看redit评价挺高）</p>
+<p>日职：lv.1，雷击，还有几个日文的（忘记了），用别人的话就是……&ldquo;10年前日职是渣渣，10年后依旧是渣渣”，虽然可能夸张了，不过确实是一般般那种</p>
+<p>韩国（调色组）：Moozzi2（欧巴的问题一直是那个，老三板斧——破坏性降噪，破坏级别的锐化，大力调色。喜欢的人喜欢，不喜欢的不喜欢。很多时候这样做会讨好眼睛，但是同时也抹去很多细节。之前看人说过一段话我感觉还挺有道理，一群厨子在讨论如何做汤，要不要先煎一下材料啥的，突然一个小白拿着一包味精倒了下去。虽然这样的汤可能会更加“鲜美”，但是反观一下，你喝的究竟是汤还是味精呢？对于M2我感觉就是，不调色的还是能收下，好像未闻花名那种就算了，差不多两部番了。而且很多老番也就M2压了，所以还是要看情况和个人，可以下来看看，不喜欢就不要。这点我还是挺喜欢M2的，对比图放那里，喜欢就拿。不过自从20年后，换成hevc 10bit，锐化力度收敛不少，可以收收。【感觉欧巴灵魂没了】），Naoki</p>
+<p>裸压（原盘啥样就是啥样）：jsum，reinforce</p>
+<p>以上就是个人意见，仅供参考。选哪个看自己，可以下来对比下，不要人云亦云，毕竟收番的是你，不是别人</p>
+<p>最近弄emby又逛到，上面其实写得不是很好，顺便补几个国外的，你经常光nyaa的话这几个都可以收：SCY，beatrice-raws，Kawaiika-Raws，raws-maji (DJATOM说这组应该放在T1)，这几个都是高水准的。还有个Sam（大部分都不错），Vodes。</p>
+<p>然后补个关于LB和AI这两家，你可以下来放大看下那线条，感觉无所谓可以收下，不喜欢就别下。</p>
+<p>——————分割线——————</p>
+<p>以前的排名其实没多少参考价值，看看以前的那些TOP组还有几个在压片子的，Henshine和ANE早就不干了，THORA现在也就压压剧场版，Salender压制也换了一批人了，Yousei压片体积也小了很多了，ANK的质量也比以前好很多，而且也是10bit中少有的量产组之一了。还有一些日职在压片。Beatrice和Kuroi这两个毛子组压片比较少了，mawen偶尔压一些，蛇大也基本不压片了，fch自购自压混多语音轨也是比较有特色的了。jsum菊苣裸压8bit，出片快，不坑片，只是体积可能略大。还有一些个人压制，都不是量产组，随性而压，不过一般质量有保证。字幕组的bd坑的更少了，而且基本要等字幕，所以更慢些。</p>
+<p>综上，在BD放流都成问题的时候，还有人压片就知足吧，基本冷番10bit就收ANK，8bit收jsum，其他热门一点的番，找一个喜爱的压制收一下就好。剩下的可能压制都不会有人压制，更不用提比较了。</p>
+<p>——————分割线——————</p>
+<h3 id="heading-20">网友对各压制组的评价</h3>
+<h4 id="anehenshinthora">ANE/Henshin/Thora</h4>
+<p>ANE是个国外压制组（区别于字幕组）的名称，在动画RAW的压制方面是业界顶尖的，其压制的生RAW（无字幕，只有视频）因其高质量、低容量（相对）而被BD（蓝光高清）收藏党所青睐，与Thora和Henshin齐名，该三组虽然压制技术一流，但出片速度极慢，因此出片量极小，资源珍贵。在BD收藏界，在寻找一个高清资源时，如果资源名前标注了ANE、Henshin或Thora，那么基本可以放弃考虑其他压制组，在该三组都未压制一部动画时，才会考虑Yousei等压制组。另外，该压制组已解散，今后应该不会再出新作了。</p>
+<p>只要是由BDMV压制的，无论是哪个压制组或字幕组出品，都是BDrip。生肉是指没有经过翻译，没有字幕的作品，而且ane一般会内封其他字幕组的英文字幕。</p>
+<p>ANE有好几位，最主要的人物是Tp7俄罗斯人，曾经点评过各大压制组，被翻译成中文在网上流传，他的代表作《空之境界》、《俺妹第一季》。《空之境界》的线条修复叹为观止，而且非常傲气的表示线条的描黑没有依赖aWarpSharp（收线滤镜），我反正到现在也没看到比这版《空境》线条修复更优秀的存在了。《俺妹第一季》，由于原盘本身为30i的交错格式，导致最后的END STAFF是一种诡异的30i混搭24t的存在，ANE貌似是第一个将它修复的比较好的，基本没有明显的瑕疵。但很可惜ANE基本已经不发片了。</p>
+<p>这个组在动漫压制组中能排进前三，仅次于henshin、THORA，压制者只有tp7一人，yousei是个大组，有多名压制者，各个压制者的压制水平和压制风格都相差较大。就压制水平来说，ane比yousei好一点，不过产量少很多。</p>
+<p>不在乎硬盘的话上yousei，reinforce……ANK的话出的速度比较快其他一般，而且因为是国内的容易下载……其他的话ANE和thora不错，thora切去了op ed，体积较小……11区压制组压的体积小，用的滤镜多，封成mp4，不过我没去看过。其实因为压制组中压的人不同压出来的也各有所异，比如yousei中devil jin压出来2G左右，tonik压出来1.3G左右……压制中用了滤镜什么的我也不太懂，有些用了滤镜后画质甚至可以超过原盘……这些很难说反正首推yousei，说是裸压不用滤镜尽量保持原盘，然后ane，ank，reinforce随便，以我渣眼看基本无区别，就算细节上也不会有色块什么的。旋风管家2用了华盟的和yousei的对比，华盟的压成700m一集和yousei2G一集对比也较难看出差别。。。总之自己看着好就行了p(<em>＾-＾</em>)q</p>
+<p><strong>Henshin</strong>：《Lucky Star》和《狼与香辛料》两个是他的代表作，后者我没看过，不评论。《Lucky Star》这个原盘的线条就像阶梯一样，周边还粘着鼻涕液的存在。当时滤镜匮乏 + CPU不行的年代看到这个东西就像看到粪坑一样，几乎所有人都绕道走，没想到Henshin居然将他修复的能看，真的非常奇迹。销声匿迹了几年，后来用km/Kuramori发片，但貌似最近又消失了。</p>
+<p>henshine、ane、salender都是毛子组，特点是滤镜用的比较出色，所以口碑比较好，但是前两个已经不压片了。yousei也是毛子组，是肉组，就是基本不处理画面裸压，jsum是个人压制，也是轻降噪裸压，yousei是10bit，jsum是8bit。</p>
+<h4 id="yousei">Yousei</h4>
+<p>Yousei和Salender给人的感觉差不多，经常处理较明显的原盘缺点，体积很大，画质很好&hellip;</p>
+<p>Yousei-raws 是毛子的压制组</p>
+<p>Yousei组里面成员很多，成员与成员之间的压制也有不同，比如Yousei本人就很喜欢裸压&hellip;（连空之音、K-ON那种片子都是裸压）</p>
+<p>这两个组我都很喜欢，所以推荐。</p>
+<p>然后他们很少锐化，很少降噪（不喜欢大噪点的同学可以去Yousei发布站上看截图然后决定收不收&hellip;）</p>
+<p>yousei堆码率真心蛋疼。</p>
+<h4 id="ank">ANK</h4>
+<p>ANK，对线条的处理方式经常会变，然后最近还是在降噪&hellip;deband倒是有，不过效果一般&hellip;</p>
+<p>因为ANK处理方式经常会变，所以原盘的缺点  不多（or不明显）的那类片子，收ANK的rip一定要慎重&hellip;最好是先下一集看看</p>
+<p>有大噪点或者原盘缺点很明显的片子，收ANK的rip倒是不错</p>
+<p>ANK处理了锯齿，还有降噪+锐化+deband</p>
+<p>deband后banding和色块很不明显了，不过暗场会有色块（不动），渐变时色块会蠕动，还有较多的细节损失&hellip;</p>
+<p>ank raws我下过他家的穷神，个人觉得还不错……对比是恶魔岛字幕组压制的，压制组总是比字幕组压的强。</p>
+<p>ANK：以前我记得只有小夜一个人负责，现在不太清楚了。老早以前是个喜欢乱用滤镜和2pass的人，后来逐渐靠谱，代表作《A.I.R》，这个mawen1250看了都吐血三升的玩意被小夜修复的非常优秀。</p>
+<p>ANK-Raws。&ldquo;saya is a lolicon&rdquo;，如果你看VCB作品多的话，你会在相当多作品的路径下看到这句话，指的就是ANK的主刀小夜，他压过的比较著名的作品有AIR的BD。</p>
+<p>ank raws 这个压制组听说后面和vcb合作了。</p>
+<p>现在ANK也复出了挺久，缺点就是发片少，和慢，分类还不太行，是按照一个个VOL来分的，自己要花点时间整理一下。Yousei码率很高，画质很棒，但是现在很少发。</p>
+<h4 id="qts">QTS</h4>
+<p>QTS、roger了解不多，印象里QTS压制的秒速5厘米挺好的&hellip;</p>
+<h4 id="u2">U2</h4>
+<p>U2-rip 是动漫花园PT站的  压制组</p>
+<p>u2.dmhy.org 只能找人邀请进去</p>
+<p>一般都收U2菊苣自压的，主要还是冲着各种特典、CD之类的比较全，画质什么的表示小白不懂，别不堪入目就行。。。</p>
+<p>还有一条F大的评论，似乎U2-RIP和SAYA有点关系？</p>
+<h4 id="jsum">jsum</h4>
+<p>jsum是个人  也在U2</p>
+<p>jsum体积巨大</p>
+<p>据说jsum@U2是裸压</p>
+<p>jsum压片都用的2-pass，而其他大多数个人或者压制组用的crf</p>
+<h4 id="vcb-studio">VCB-Studio</h4>
+<p>VCB-Studio 发布的作品会进行修改，与其和原盘一致，本人十分喜欢这个压制组。</p>
+<p>VCB是因为体积不错，周边收集齐全些，还有种子死种少（我以前下完一个后做种了两个月发现没多少上传，做种的还在做，就没多少人从我这儿分数据了。</p>
+<p>VCB-Studio。LittlePox是首任队长，VCB组的作品量大，组织完善，在其网站看生产线每个月的作品量有十几部，而且VCB的分流组人员很多，各种盒子大水管扎堆，保种和分流速度算是最快的了。</p>
+<p>至于VCB-Studio内部其实分了各个技术总监，也就是负责整个动画压制脚本的人，各个总监有自己的一套压制思路。</p>
+<p>vcb总体来说不错，但有些动画压的一般。我喜欢他们家的fz暗的地方进行了优化。码率倒是平均挺高但体积控制的不错。</p>
+<p>现在标杆是VCB，全是HEVC 10Bit的几乎，某些特殊的片子会采用H264.10bit的压制，可以说具体情况具体分析了，对对原盘画质的处理和最大化性价比的追求非常值得尊敬，分类什么的也不错，所以有VCB一定优先VCB，发片速度算中等，广度慢慢提上来了，毕竟好事多磨嘛。</p>
+<h4 id="snow">Snow</h4>
+<p>snow raws 这个压制组压出来的文件体积比较小总体也是不错的。</p>
+<p>snow raws家体积比较小，平均码率不过2k多也是hevc（265）。我拿50寸4k电视和moozzi2家压的264版本的黑子的篮球对比画面差别几乎没有，考虑到265更省体积，觉得还可以。别的没下过。</p>
+<p>肥羊和snow，这两家特典基本都不落下，另外肥羊有网盘分流，snow很容易死种。UCCUSS老毛子速度最快，OVA/剧场版什么的发行几天就出来了，但是容易落下很多特典，ReinForce和Ohys可以找到很多冷门番BD,但是Ohys的720P居多，还有SFEO/DDD/LowPower啥的挺多组的，如果不需要特典，不需要字幕，可以选择刘景常压制，体积小，mp4格式适合做MMD,同资源优先度我认为，VCB&gt;SNOW&gt;肥猫&gt;ANK&gt;Moozzi2</p>
+<p>snow一般去天雪下，天雪首发且不会死种。</p>
+<p>snow-raws貌似是天雪上的个人压制</p>
+<h4 id="dbd">DBD</h4>
+<p>DBD压制组，这两年新的组，大多数作品都是裸压加超分</p>
+<h4 id="reinforce">ReinForce</h4>
+<p>reinforce也是个毛子的压制组，他们压出来的视频文件特别大一集24分钟平均都是两个g。</p>
+<p>rf是裸压组。</p>
+<p>ReinForce纯裸压，我下了这压制组快二十个rip了，就没见他们加过滤镜&hellip;</p>
+<p>原盘画质好就算了，问题是现在11区的原盘或多或少都有点问题&hellip;</p>
+<p>现在很多组都是10bit压制的，但收了几个reinforce组的，发现都是8bit，但是reinforce组发片确实又快又多。</p>
+<p>早年我都是使用的ANK和yousei组的作品，那质量当然是相当好，不过后来更新变得特别慢，我只好另寻其他，后来发现了reinforce，总的来说质量还是很不错的，如果不是特别在意的话其实相差不大，毕竟BD压制出来之后，有经验的组都有比较好基础。最后，真的那么强迫症还不如直接收BD呢</p>
+<p>我现在一般bt站上看到的rip组一直是reinforce最快，最广，而且裸压8bit的对设备和播放器也比较友好，某些片可能体积比较大一集。</p>
+<p>一直以来以前没有VCB的时候都是下的reinforce，因此也存了好多，分类非常好，我尤其喜欢他的分类风格，其实如果你不仔细下几个组来对比其实是看不出区别的，除非是原盘实在画质太差，然后有些组又比较专业的大幅度修正了那种，比如约战第二季。</p>
+<p>有些人这样说，收reinforce不如收原盘，我觉得是不太对，除非你硬盘够大，起码reinforce下载量在那，可能一些要求高点的收藏家（比如原盘大佬们，但是人家下原盘是想用powerDVD播放menu什么的可能，追求完整，那么BDrip就没有这种功能了）不会去收，但起码很多要求相对不那么高，但是又喜欢收藏BD，对encoder要求没那么高的人喜欢，也不介意裸不裸压，况且本身是蓝光质量已经不错了，没有对比也基本上是看不出来，很多人是不会像专业压制组那样专挑什么色块、暗场色带还有噪点合适不合适，锯齿多不多之类的看的，像我其实基本上也是有啥看啥，有得追求就追求，没有裸压也无所谓。（其实换个角度，裸压也是一定程度保证了码率，因此可能画面瑕疵没有修正，但是起码整体画面和细节得以保留啊！）</p>
+<p>说到reinforce就可以想到是电影的0-days，scene组的Sparks很有代表，其实论发片广度深度，reinforce和sparks真的是非常像，都是又快又多，但是无奈sparks其实质量要差很多，起码电影的压制是看得出区别的有些，不像动漫这种很多时候差别不是很大。毕竟电影是几十G的原盘压成十几甚至10G不到，Sparks很多片就是压不到10G，码率不高，对细节处理也不到位，这些对比某些高质量压制组比如CHD（现在好像沦为二线）,Wiki，HDC，BeAst这些都是能看得出来一点的。</p>
+<p>建议可以这样，reinforce一般发片速度是最快的，可以先收了。然后等过一段时间再收VCB的，因为人家进行处理和压制是需要时间的，裸压速度肯定要快了。</p>
+<h4 id="moozzi2">Moozzi2</h4>
+<p>Moozzi2 韩国人的压制组，喜欢调色，两极分化严重，喜欢的人觉得好，不喜欢的人不下。</p>
+<p>Moozzi2吧，这是一个韩国人，韩国压制组有一个特点：喜欢锐化，调色。这个全凭个人喜好，你觉得他调的好，画面锐度也不错那就下。如果你觉得不舒服就pass。</p>
+<p>Moozzi2是韩国压制组，韩国组对于画面的改动幅度挺大的，有些作品跟重新上一遍色差不多</p>
+<p>号称速度快、而且全</p>
+<p>画质据说是几乎无敌的优化，适合4K显示器或电视的朋友</p>
+<p>moozzi2确实整容，但是一来比较全，二来老番（10年以前那种）做的比较好</p>
+<p>我觉得该组最大的缺点在于不分p</p>
+<p>moozzi2比较两极化，调色比较激进，有些人比较喜欢有些不喜欢，不过老番如果没有vcb一般选moozzi2没错了</p>
+<p>确实，Moozzi2的画面更锐利。我以前看魔法少女伊利亚的时候下重了，两个组的都下了，就干脆对比了一下，反正就静止画面能看出Moozzi2比VCB更锐利，线条更清晰，其他方面都没看出区别。。但是Moozzi2体积比VCB大了不少。</p>
+<p>可能因为编码格式,moozzi2基本都用h.264,vcb用hevc</p>
+<p>除非万不得已，否则别下moozzi2，这是个韩国人，韩国人喜欢整容，同样的，他做的rip喜欢调色，调成自己喜欢的样子，调得跟蓝光原盘天壤地别。</p>
+<p>moozzi2，韩国的压制组。老片我基本就选他们家调色很棒，我喜欢他们家但蜂蜜与四叶草。以前用264压，最近几个转265了？花牌情缘他们家的也OK。个人觉得他们家的谭雅战记（264参数）比vcb家的265更舒服一些。</p>
+<p>Moozzi2的老番可以收，但是新番不要收。他做了很多比较冷门的番，并且做了抗锯齿处理，我贴个对比图</p>
+<p>可以很明显的看出，处理了锯齿，加了锐化，调色。这就是Moozzi2的特点，他的压制作品几乎都是这么处理的，不过在换了×265后，他收敛了很多，只做轻度锐化+调色，但新番我还是不建议收。</p>
+<p>说了这么多其实也只是对Moozzi2压制作品的评价，他本人不错，压制的参数都放在自己的发布页了，别人批评他他也能虚心接受，而且自购很多BD，乐于和大家分享。</p>
+<p>按国内的标准Moozzi2是主观修正（会进行主观调色锐化甚至修掉角色脸上的痣），Snow-raws有精压有裸压，按lp的话说就是高配reinforc</p>
+<p>moozzi2现在发片广度深度也慢慢追上来了，我也慢慢由下reinforce转到moozzi2去了，总得来说也是一个相当不错的备选）。</p>
+<h4 id="ohys-rawslowpower-raws">Ohys-Raws和LowPower-Raws</h4>
+<p>BD压制的，我一般找Ohys-Raws和LowPower-Raws，这两出的快又多</p>
+<h4 id="mawen1250">mawen1250</h4>
+<p>mawen1250，老神了……但不知为何她的片和我电视不和不能直读。猎人2011版她压制的很棒……除了不能让我电视直读电视硬解意外没有缺点。</p>
+<p>mawen1250，压片天才少女，现在还有大部分压制组在用她写的脚本。</p>
+<p>mawen1250：国内大佬级人物外号雯姐（静静），《俺妹第一季》ED的几个解决思路好像也是雯姐第一个分享在中文压制论坛的（英文论坛没调查过），同时也是比较早拥抱VapourSynth并移植出强有力的降噪滤镜BM3D/V-BM3D，炼丹狂魔，喜爱研究Super-resolution算法，他的tag含金量大概和当年的ANE、Henshin差不多。</p>
+<p>mawen这只key厨……只要key还在继续改gal他就会继续压吧……jsum这种可以视为0day的裸压8bit冷门收一收就算了……真爱还是要收毛子组……现在ane已经解散……国内字幕组可以信任的最好的是妇联，sumisora与caso的批量压制建议看encoder，没什么耳闻的就当0day算了,当然有些神隐的菊苣偶尔冒泡发的也都会引起轰动的</p>
+<p>henshin 的不错  收了ab ,lucky star,kon 还有ank的10bit 澄空的也收了些 u2rip也挺喜欢的</p>
+<h4 id="mawenfchfussoir">mawen、fch和Fussoir</h4>
+<p>mawen、fch和一些个人压制压片也是很用心的，滤镜用的比较多，观感会有一些提升。ANK的话，前几年的压的片子被人说很多，其实小夜近些年压的片子产量高而且质量也很好的。大概就这些了，压制我觉得各有自己的特点就可以了，质量都是仁者见仁智者见智的事情。</p>
+<p>mawen1250，天才压片少女。雯姐在压制这一领域算得上是国内顶尖了，造了很多很多轮子，基本学压片的都知道她或者用过她的脚本，看到带雯姐ID的作品几乎可以无脑收，不过最近很少发作品了。</p>
+<p>Fussoir：法国人，最著名的就是《NEON GENESIS EVANGELION》，他的EVA对于降噪滤镜的使用真的很恐怖，而且喜欢开源自己的脚本，对于MDegrain滤镜的使用确实快到了出神入化的地步。但是发片比较少，已经很久不出现了。</p>
+<h4 id="philosophy-raws">philosophy-raws</h4>
+<p>philosophy-raws我是14到16年下的多，当年很厉害的组，这几年貌似独立发布的少些，现在貌似经常和其他组合作发布的多。</p>
+<p>ANK-RAWs 我也是以前下的多些，当年也很不错，对我来说主要是好找改好名了的字幕。  画面也很不错。现在想找上古老番的高画质1080的基本找这两个的没啥问题。</p>
+<h4 id="ai-raws">AI-Raws</h4>
+<p>有些神秘的一个组，喜欢研究陈年老屎，比如《头文字D》和《圣枪修女》（看到都觉得反胃的原盘）。代表作是《仰望天空的少女瞳中的世界》首次引入Naobu.dll和天河二号压片（bushi），和《头文字D》。</p>
+<h4 id="littlebakas">LittleBakas！</h4>
+<p>LittleBakas！：我记得好像是雯姐一开始创立的这个压制组，后来雯姐还压不压片就不得而知了。代表作《君名》4K版，不是UHD的那种渣渣4K，而是1080p -&gt; 4K这种upconv的4K《君名》。由于真Naobu滤镜的引入，这个版本的线条锐利度等各方面都比官方的粪4K要优秀许多。大概是目前新技术使用最激进的一个组。</p>
+<p>LittleBakas!。名字来源于key社的LittleBusters!他们一直在研究naobu这个神器，因为不是圈内人不清楚现在什么情况。</p>
+<h4 id="uccuss">UCCUSS</h4>
+<p>UCCUSS，之前非常喜欢的某部小众动画，在各大平台找了半天资源，结果只有这个压制组压制了，印象深刻。</p>
+<p>还有，第一次见到单独分出音轨的压制组</p>
+<p>UCCUSS的附带音频，6声道（百度一下，是指：把声音分为六个声道输出，分别是左音、中（只是指位置）音、右音、左环绕、右环绕，后中低音炮），可能适合影院播放吧，反正我是用不到的</p>
+<p>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;更新&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</p>
+<p>前面又下了另外一个压制组的资源，虽然都是MKV格式，But我注意到UCCUSS一般压制为AVC格式，占用体积约为另外一个压制组的HEVC格式的两倍，当然8代以上的Intel处理器才支持hevc硬解码，如果不是八代及以上处理器，比较大的hevc文件可能会卡顿。</p>
+<p>还有，UCCUSS之所以附带音频，是因为UCCUSS压制为AVC格式造成体积过大，所以独立音频来减小视频体积。但是另外一个压制组得益于HEVC格式，视频内置音频就是6声道。</p>
+<p>我的电脑是r5-5600，综上所述，我选择后者。</p>
+<h4 id="philosophy">philosophy</h4>
+<p>philosophy也有下，一般匹配的是英文字幕，而且是内封的这点我感觉其实不太好，看个人喜好吧，毕竟最终还是要下外挂字幕，他们专做多音轨，画质上面一般是相对不如VCB好一些但是也属于很不错的水平了，尤其是特典什么的很全，压制可能有各国版的BD源，一般是哪个好会选哪个。（对一些热门知名度高的番剧压得比较多，现在发片也少了）</p>
+<h4 id="lilith-nc">Lilith Nc</h4>
+<p>lilith是字幕组，Nc不是字幕组是放流组，抓的是B global的源，也就是B站的全球站。</p>
+<p>最开始NC的MKV里也放中文字幕，后来不知道为什么就只有外语字幕了。</p>
+<h4 id="nan">Nan</h4>
+<p>（笔者）近两年出现的压制组，网上没查到关于该压制组的讨论。产量大，更新快。</p>
+<h4 id="heading-21">日职</h4>
+<p>日职了解不多，只感觉日职都喜欢降噪后不deband&hellip;（只见过LV1 deband）</p>
+<p>日职里志摩子和已经被抓的negi也有搞deband的</p>
+<p>roger是搞二压高压的没有可比性 </p>
+<h2 id="heading-22">参考资料</h2>
+<p><strong>【<strong><strong>在动漫界 ANE 是什么意思</strong></strong>】</strong></p>
+<p><a href="https://zhidao.baidu.com/question/1637738649143592780.html">https://zhidao.baidu.com/question/1637738649143592780.html</a></p>
+<p><strong>【<strong><strong>动画 那个压制组比较好啊！！</strong></strong>】</strong></p>
+<p><a href="https://zhidao.baidu.com/question/1769144638460734180.html">https://zhidao.baidu.com/question/1769144638460734180.html</a></p>
+<p><strong>【<strong><strong>关于动漫的压制组</strong></strong>】</strong></p>
+<p><a href="https://zhidao.baidu.com/question/209601834.html">https://zhidao.baidu.com/question/209601834.html</a></p>
+<p><strong>【<strong><strong>动漫BDrip收哪个组压制的好？</strong></strong>】</strong></p>
+<p><a href="https://zhidao.baidu.com/question/511331041.html">https://zhidao.baidu.com/question/511331041.html</a></p>
+<p>【现在还活着的动漫压制组有那些？】</p>
+<p><a href="https://zhidao.baidu.com/question/630579916980046324.html">https://zhidao.baidu.com/question/630579916980046324.html</a></p>
+<p>【新人求助关于动漫压制质量的问题】</p>
+<p><a href="https://tieba.baidu.com/p/5915605021">https://tieba.baidu.com/p/5915605021</a></p>
+<p>【谁能给我科普下那些动漫BD压制组】</p>
+<p><a href="https://tieba.baidu.com/p/2635329345">https://tieba.baidu.com/p/2635329345</a></p>
+<p>【ANE 压制组有知道的吗？】</p>
+<p><a href="https://tieba.baidu.com/p/2112880802">https://tieba.baidu.com/p/2112880802</a></p>
+<p>【【压制科普】一些常见的概念和简单区分压制质量的方法】</p>
+<p><a href="https://tieba.baidu.com/p/6261456373">https://tieba.baidu.com/p/6261456373</a></p>
+<p>【[好奇]Lilith-Raws，NC-Raws，这两家有啥区别……】</p>
+<p><a href="https://tieba.baidu.com/p/7464391246">https://tieba.baidu.com/p/7464391246</a></p>
+<p>【看了这么多年动漫分享下，如何下载无字幕动漫/高码率动漫…】</p>
+<p><a href="https://tieba.baidu.com/p/7909957192">https://tieba.baidu.com/p/7909957192</a></p>
+<p>【【动画画质哪家强】Moozzi2、mawen1250、ANK-Raws、Yousei-raws、DMG-Sub】</p>
+<p><a href="https://www.bilibili.com/read/cv9455772">https://www.bilibili.com/read/cv9455772</a></p>
+<p>【目前还有哪些优秀的动画压制组？】</p>
+<p><a href="https://www.zhihu.com/question/414462891">https://www.zhihu.com/question/414462891</a></p>
+<p>【reinforce组产量很高，但好像都是裸压，质量究竟怎么样？？】</p>
+<p><a href="https://www.zhihu.com/question/42170364">https://www.zhihu.com/question/42170364</a></p>
+<p>【あの、谁能介绍一下U2-rip和jsum@u2这两个压制组】</p>
+<p><a href="https://www.tsdm39.net/forum.php?mod=viewthread&amp;tid=688073">https://www.tsdm39.net/forum.php?mod=viewthread&amp;tid=688073</a></p>
+<p>【关于生肉压制组的选择】</p>
+<p><a href="https://www.douban.com/note/273270384/">https://www.douban.com/note/273270384/</a></p>
+<p>【什么是&quot;压制&rdquo;】</p>
+<p><a href="https://guide.geeking.moe/what-is-encode">https://guide.geeking.moe/what-is-encode</a></p>
+<p>【 [科普] 一些压制组的相关】</p>
+<p><a href="http://lovelixiang.com/guide/m92675/1">http://lovelixiang.com/guide/m92675/1</a></p>
+<p>【[VCB-Studio 科普教程 4] 关于如何选 BDRip，和那些最优秀的制作组】</p>
+<p><a href="https://vcb-s.com/archives/3822">https://vcb-s.com/archives/3822</a></p>
+<p>【NAZOrip】</p>
+<p><a href="https://nazorip.site/">https://nazorip.site/</a></p>
+</span></div>
                         </div>
                         
                         <div class="post-container">
@@ -280,7 +1567,7 @@
                                 <a href="/post/ru-he-zhao-dong-man-zi-yuan-dong-hua-pian-zi-yuan-sou-suo-zai-xian-guan-kan-zi-yuan-xia-zai-xin-fan-zi-xun-dong-man-lun-tan/">【如何找动漫资源】动画篇：资源搜索＋在线观看＋资源下载＋新番资讯＋动漫论坛</a>
                             </p>
                             <p class="post-meta">
-                                <span class="date meta-item">2022-09-07</span>
+                                <span class="date meta-item">Posted at&nbsp;2022-09-07</span>
                                 
                                 
                                 <span class="meta-item">
@@ -311,6 +1598,293 @@
                                 </a>
                             </div>
                             
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><p>从今天开始开一个新坑，教大家如何找动漫资源。本期我给大家讲讲如何找动画资源。（本文中提到的大部分网站是可以正常访问的）</p>
+<h3 id="heading">第一部分：资源搜索</h3>
+<p>如果想知道一张动漫图片的出处，我们可以选择在浏览器上以图搜图。</p>
+<p>你可以选择用搜索引擎的图片搜索功能，比如谷歌、必应、Yandex、百度、搜狗图片搜索，也可以到专门的以图搜图网站搜索。国内搜索引擎的图片搜索功能还是相当靠谱的。</p>
+<h4 id="heading-1">以图搜图网站</h4>
+<h5 id="wait-what-anime-is-this">WAIT: What Anime Is This?</h5>
+<p>WAIT 是一个专业的动漫场景截图搜索引擎，找动漫必备！ 我们可以通过点击文件夹图标上传截图、直接将图片拖入页面、粘贴图片链接三种方式进行搜索。</p>
+<p>网址：https://trace.moe</p>
+<h5 id="saucenao-image-search">SauceNAO Image Search</h5>
+<p>SauceNAO  是一个图片逆向搜索引擎，尤其对于动画、漫画、插画作品、二次元图片等有着非常不错的搜索效果。</p>
+<p>上传图片，即可获得该图片的来源以及作者主页链接。</p>
+<p>网址：https://www.saucenao.cn/</p>
+<h3 id="heading-2">第二部分：在线观看</h3>
+<h5 id="age">AGE动漫</h5>
+<p>AGE动漫专注于资源收集整理 海量的有效的高质量的动漫资源</p>
+<p>网址：http://age.tv/</p>
+<h5 id="dilili">Dilili</h5>
+<p>dilili弹幕网是中国国内一个动画、游戏相关的弹幕视频网站，创建于2014年4月1日。以传递正能量为宗旨，致力于打造真正的二次元理想乡。</p>
+<p>站内大多数视频都是来源于日本电视台播出的新番动画，NICONICO动画，Youtube等视频分享网站，也有不少国内的动漫爱好者制作的二次创作内容。视频内容多是储存在土豆，QQVideo，优酷等国内提供的视频分享网站（采用非正式转载方式）。</p>
+<p>dilili弹幕网是中国国内一个弹幕视频网站，被网友称为d站，创建于2014年4月1日，于2015年4月1日正式更名为5moe。</p>
+<p>网址：http:// <a href="http://www.5moe.com/">www.5moe.com/</a></p>
+<p>网址：https://www.5dm.app/</p>
+<h5 id="heading-3">樱花动漫</h5>
+<p>樱花动漫拥有上万新番和老番高清晰画质动漫,有日漫、国漫、欧美动漫、动漫电影等,打造最全最专业更新及时的樱花动漫站，樱花动漫致力为所有动漫迷们提供最好看的动漫。</p>
+<p>网址：https://www.xumin.cc/</p>
+<p>网址：https://www.cncoec.com/</p>
+<p>网址：http://yhdm1.com/</p>
+<h5 id="233">233动漫网</h5>
+<p>网址：https://www.dm233.me/</p>
+<h5 id="heading-4">嘀哩嘀哩</h5>
+<p>嘀哩嘀哩是由福州市嘀哩科技有限公司成立的一家动漫聚合类网站。</p>
+<p>网址：https://dilidili.io/</p>
+<h5 id="heading-5">滴滴动漫</h5>
+<p>可观看来自多个动漫在线观看网站的动漫资源。</p>
+<p>网址：http://dddh.pub/</p>
+<p>继上期内容介绍了 “资源搜索”和“在线观看”后，今天将给大家介绍如何下载动画资源。</p>
+<h3 id="heading-6">第三部分：资源下载</h3>
+<p>我们知道了动画的名字，那到哪里去下载动画资源呢？</p>
+<h4 id="bt">BT资源网站</h4>
+<h5 id="tokyo-toshokan">Tokyo Toshokan</h5>
+<p>别名：東京 図書館，专注日本资源（资源库极大），缺点就是只支持 日语 、英文，暂不支持中文，墙内可用，磁力下载。</p>
+<p>网址：https://www.tokyotosho.info</p>
+<h5 id="acgrip">ACGRIP</h5>
+<p>与动漫花园类似，有合集板块。</p>
+<p>网址：http://acg.rip/</p>
+<h5 id="heading-7">动漫花园</h5>
+<p>国内最为知名的资源下载站，包含动画、漫画、音乐、日剧、游戏、特设等领域，虽然资源传播速度不是最快，但支持中文，并且资源库齐全。</p>
+<p>网址：http://share.dmhy.org</p>
+<p>镜像网址：https://dongmanhuayuan.myheartsite.com/</p>
+<p>网址：http://dmhy.b168.com/</p>
+<p>该网址被DNS劫持到乌克兰的官方网站 <a href="https://war.ukraine.ua/zh/">https://war.ukraine.ua/zh/</a></p>
+<h5 id="heading-8">简单动漫</h5>
+<p>网址：http://36dm.com/</p>
+<p>网址：http://36dm.club/</p>
+<h5 id="heading-9">末日动漫资源库</h5>
+<p>动漫资源下载网站，资源丰富，提供磁力和种子下载。追番列表更新比较及时，非常全面。镜像网站无法注册登录。</p>
+<p>网址：https://share.acgnx.se/</p>
+<p>镜像网址：https://share.acgnx.net/</p>
+<h5 id="acg">ACG狗狗</h5>
+<p>动漫资源下载网站，界面与末日动漫资源库相似。资源丰富，提供磁力和种子下载。墙内可以注册。</p>
+<p>网址：http://bt.acg.gg/</p>
+<h5 id="csze-bt">Csze BT种子共享发布系统</h5>
+<p>有极其丰富的BT种子资源，发布系统与动漫花园相似。</p>
+<p>网址：https://bt.orzx.im/</p>
+<h5 id="bt1027">BT1027</h5>
+<p>BT1207是资源多，更新快的磁力链接搜索引擎，有几千万的影视音乐、软件、电子书等BT种子资源，本站实时通过DHT网络获取最新的BT种子文件信息，并生成磁力链接</p>
+<p>网址：https://bt1207go.xyz/</p>
+<h5 id="magnetdl">MagnetDL</h5>
+<p>国外的一款磁力资源搜索网站。网站资源丰富，更新非常快。可搜索影视、音乐、软件、电子书、游戏等多种资源。不支持中文搜索。</p>
+<p>网址：https://magnetdl.unblockit.bet/</p>
+<h5 id="btmet">BTMET</h5>
+<p>BTMET-可预览的磁力搜索引擎 支持视频、动漫、 音频、 图像、 文档书籍、压缩文件等资源下载，听说部分资源支持预览。</p>
+<p>网址：https://www.btmet20.xyz/</p>
+<h5 id="pirate-bay-">Pirate Bay 海盗湾</h5>
+<p>Download music, movies, games, software and much more. The Pirate Bay is the galaxy&rsquo;s most resilient BitTorrent site.</p>
+<p>网址：https://pirate-proxy.onl/</p>
+<h5 id="limetorrents">Limetorrents</h5>
+<p>limetorrents是另一个不错的替代品，它是一个已经建立了五年多的bt网站。该网站的种子缓存还被其他几个torrent搜索引擎使用着。虽然它有一些缺点。建议可以将其用作备用选项。</p>
+<p>网址：https://limetorrents.unblockit.bet/home</p>
+<h5 id="torlock">TorLock</h5>
+<p>该网站只提供经过验证的种子，用来找国外资源很方便</p>
+<p>网址：https://torlock.unblockit.bet/</p>
+<h5 id="mikan">蜜柑计划——Mikan</h5>
+<p>资源库较为薄弱，极度缺少稍早一些的番剧；网站界面设计美观，新番资源直观性好。</p>
+<p>网址：https://mikanani.me/</p>
+<h5 id="heading-10">萌番组</h5>
+<p>资源库大，支持多种高级搜索，可以将资源上传到多个网站，适合资源发布者使用。</p>
+<p>网址：https://bangumi.moe/</p>
+<h5 id="bt-1">漫猫动漫BT下载</h5>
+<p>与MioBT、爱恋动漫BT类似，都是MioBT开发的。</p>
+<p>网址：http://www.comicat.net/</p>
+<h5 id="bt-2">爱恋动漫BT</h5>
+<p>与MioBT、漫猫动漫BT类似，界面方框是粉色的。</p>
+<p>网址：http://www.kisssub.org/</p>
+<h5 id="miobt">MioBT下载</h5>
+<p>极其丰富的资源网站，支持高级搜索，较旧的资源请搜索合集。</p>
+<p>网址：http://miobt.com/</p>
+<h5 id="heading-11">嘀哩嘀哩</h5>
+<p>嘀哩嘀哩，故被网友称为d站以及dilidili，无论您喜欢那种类型，嘀哩嘀哩都会筛选经典作品并将新作经典轮番推荐，相信嘀哩嘀哩都能为您一网打尽，为您带来一场美妙的动漫盛宴，这里是兴趣使然的嘀哩嘀哩。</p>
+<p>网址：https://www.dilidm.com/</p>
+<h5 id="nyaa-torrents">Nyaa Torrents</h5>
+<p>全球  最大的亚洲动漫站，分表站和里站，是所有（几乎）其他资源站的根源，资源库极为庞大，支持英文、日语 &amp; 少部分中文。大量资源（如同人本和部分番剧资源）墙内无法访问，无法使用搜索、注册登录及上传功能。</p>
+<p>网址：https://naya.si/</p>
+<h5 id="anidb">aniDB</h5>
+<p>免费动漫数据库论坛是一个非营利性的动漫数据库，，有世界各地的人民漫画，包括被遗忘的漫画。（在曼纽尔有漫画书）。每一个视频和不同版本的不同版本（日语、英语、法语、德语、意大利语、阿拉伯语等）都可以登记。aniDB载有关于日本动画的资料。由于aniDB是所有人开放的，每个人都可以增加动画并改变内容，使用户能够自由使用aniDB的动画信息。</p>
+<p>网址：https://anidb.net/</p>
+<h5 id="torrentfunk">TorrentFunk</h5>
+<p>torrentfunk是一个比特流下载服务网站,主要提供软件,游戏,音乐,电视节目,电子书等下载资源。</p>
+<p>网址：https://torrentfunk.unblockit.bet/</p>
+<h5 id="extratorrent">ExtraTorrent</h5>
+<p>ExtraTorrent是一个BT下载网站。ExtraTorrent提供一个易于使用的BT种子文件目录列表和搜索引擎。用户也可以上传种子到ExtraTorrent去。ExtraTorrentBT种子文件目录包括：电影、音乐、电视、软件、游戏、动漫、书籍、图片、手机、其他。</p>
+<p>网址：https://extratorrent.unblockit.bet/</p>
+<h4 id="heading-12">字幕网站</h4>
+<h5 id="heading-13">射手网（伪）</h5>
+<p>射手网(伪)是一个提供电影、电视剧字幕下载的网站。集合众多字幕组的字幕。</p>
+<p>页面干净简洁，输入影片名称搜索即可。</p>
+<p>网址：https://assrt.net</p>
+<h5 id="anime">Anime字幕论坛</h5>
+<p>Anime字幕论坛是VCB-Studio的中文字幕分享论坛</p>
+<p>网址：https://bbs.acgrip.com/</p>
+<h5 id="subhd">SubHD</h5>
+<p>字幕网站是一个提供电影、电视剧、动画字幕下载的网站，集合众多字幕组的字幕，可以打开字幕组列表查看更新。</p>
+<p>目前可用网址：</p>
+<p>subhd.tv</p>
+<p>subhdtw.com</p>
+<p>subhd.la</p>
+<p>subhd.cc</p>
+<p>subhd.me</p>
+<p>网址：https://subhd.tv/</p>
+<p>继上期内容介绍了 “资源下载”后，今天将给大家介绍如何获取“新番资讯”。</p>
+<h3 id="heading-14">第四部分：新番资讯</h3>
+<p>我们可以前往以下网站获取新番资讯&ndash;</p>
+<h5 id="uzurainfo">uzurainfo</h5>
+<p>主要是制作和介绍动漫列表的网站，发布的是季度动漫列表,国内新番资源的根源，以及众多动漫区up主参考网站，界面直观，但网站全日文，每一部动画的官网可墙内访问，视频墙内不支持（目前仅限日本地区观看）。</p>
+<p>网址：http://uzurainfo.han-be.com/<u></u></p>
+<p><u> </u></p>
+<h5 id="----">最新アニメ情報  –  メンテナンスモード</h5>
+<p>包含了你所需的这些情报 | 新作TVアニメ一覧表 | 新作アニメ映画一覧表 | 新作OVA一覧表 | 新作ブロードバンド配信一覧表 | 主题歌情报 | | DVD発売日一覧 | CD発売日一覧 | イベントカレンダー | 「まめてき」（雑记） | 过去ログ | このサイトについて |</p>
+<p>网址：http://www.saiani.net/</p>
+<h5 id="heading-15">アニメイトタイムズ</h5>
+<p>每天更新动漫新闻和配音演员的季度信息。包含你所需的这些情报——排行、动画、配音演员、广播、每个人的声音、商品、电影、漫画轻小说、游戏、音乐、角色扮演。</p>
+<p>网址：https://www.animatetimes.com/</p>
+<h5 id="---">アニメ声優ラボ - 今季のおすすめアニメや声優さんの出演情報、人気のゲーム（ソシャゲ）情報をまとめています。</h5>
+<p>汇总了本季的推荐动漫、声优出场信息、人气游戏（Soshage）信息。</p>
+<p>网址：https://anime-labo.net/</p>
+<p>有关动漫的信息，例如本季（当前很酷）动漫的最新信息以及超凡脱俗的动漫列表。如果您正在寻找推荐的动漫或热门动漫，请参考以下内容，查阅最新动漫信息一览（最新アニメ情報一覧）</p>
+<p>网址：https://anime-labo.net/anime/</p>
+<h5 id="heading-16">アニメ新番組一覧</h5>
+<p>日本新番网站，更新频率快，界面直观，网站全日文，每一部动画的官网可墙内访问。</p>
+<p>网址：https://www.kansou.me/</p>
+<p>相关网站：ドラマ新番組一覧</p>
+<p>网址：https://drama.damebito.com/</p>
+<h5 id="bangumi">Bangumi</h5>
+<p>Bangumi是一家兼具维基和论坛性质的ACG网站。在这里你可以看到目前正在播出的节目信息，查看电视剧、动画、综艺、音乐、体育排名，查阅番組表。</p>
+<hr />
+<p>网址：https://bangumi.org/</p>
+<h5 id="moon-phase">MOON PHASE</h5>
+<p>日本新番网站，更新频率较快，内容全面，但界面以日语为主，动画官网内的视频墙内不支持。</p>
+<p>网址：http://m-p.sakura.ne.jp/Html/anime.html#anime</p>
+<h5 id="c">長門有C个人网站</h5>
+<p>中文新番网站，同步速度极快，可以用来查看每季的新番有哪些，相关动画的官网，pv地址之类的信息也有标注。</p>
+<p>网址：http://yuc.wiki/<u></u></p>
+<h5 id="heading-17">笑えばいいと思うよ</h5>
+<p>中文新番网站，对新番信息概括最为全面，能够标明动画类型（漫改、小说改、原创），但更新速度稍低于前三个网站，强烈推荐，不支持墙内访问。</p>
+<p>网址：http://justlaughtw.blogspot.com/</p>
+<h5 id="heading-18">番组放送</h5>
+<p>中文新番网站，界面清晰明了，显示大陆有无放送，包含了配信站点 + 下载地址，但更新速度较慢，支持墙内访问。</p>
+<p>网址：https://bgmlist.com/</p>
+<h5 id="heading-19">动漫新番表</h5>
+<p>H萌的中文新番网站，与  “番组放送”  较为相似，同样更新速度慢，但支持下载图片、EXCEL文件，便于整理，支持墙内访问。若您需要参考 2016 年及更早的旧番篇目，推荐您访问 uzurainfo.han-be.com，业界权威新番表。</p>
+<p>网址：https://hmacg.cn/bangumi/</p>
+<p>继上期内容介绍了 “新番资讯”后，今天将给大家介绍动漫论坛。</p>
+<h3 id="heading-20">第五部分：动漫论坛</h3>
+<h5 id="heading-21">澄空学园</h5>
+<p>澄空学园创立于2003年的夏末，创建之初只是一个小小的MEMORIES OFF专题论坛，，经过不断的进化和演变已经由一个主题单一的论坛转变为综合性GALGAME论坛。</p>
+<p>下设汉化同好会，字幕组，原创组，分流组，演剧部等多个工作组，为喜欢GALGAME的朋友提供丰富的信息资源和参与的机会。</p>
+<p>网址：https://bbs.sumisora.net/</p>
+<h5 id="kdays">KDays论坛</h5>
+<p>KDays论坛是个二次元综合论坛，提供汉化作品整理、Gal游戏资源、同人游戏、同人音声、天音乡。有GAL综合讨论、ACG资讯、日语学习交流、动漫讨论等多个版块。</p>
+<p>可以打开<a href="https://kdays.net/">https://kdays.net/</a>  点击进入论坛访问页面。新地址为bbs2.kdays.net【记得保存】，如仍然访问困难可使用<a href="https://bbs.acgn.at/">https://bbs.acgn.at/</a>。有问题可至相关讨论群 了解。</p>
+<p>网址：https://bbs2.kdays.net/</p>
+<h5 id="heading-22">离境论坛</h5>
+<p>离境汉化组自2006年汉化《爱丽丝学园》起家，已13年多，一直兢兢业业从事少女漫画的汉化，致力于为少女漫画迷们提供更多更优质的汉化作品。离境汉化组第一手发布平台为离境论坛。</p>
+<p>网址：https://www.alicelj.com/bbs/forum.php</p>
+<h5 id="cc">C.C动漫论坛</h5>
+<p>C.C动漫是宅人的动漫分享交流圣殿</p>
+<p>网址： <a href="http://www.ccwzz8.com/forum.php?mod=forumdisplay&amp;fid=65">http://www.ccwzz8.com/forum.php?mod=forumdisplay&amp;fid=65</a></p>
+<h5 id="heading-23">动漫国论坛</h5>
+<p>论坛包括动画片大全，同时也提供漫画、杂志、原创动漫字幕、最新动漫音乐与广大动漫迷分享，这里也是动漫国字幕组的官方论坛。如果网址打不开就从这里进吧。<a href="https://dmguo.org/">https://dmguo.org/</a></p>
+<p>网址：https://bbs.dmguo.com</p>
+<h5 id="heading-24">动漫东东论坛</h5>
+<p>『相聚再会 愿你走出半生来仍是少年』</p>
+<p>自2007年2月14日建站以来，动漫东东纵横十年，见证了系统个性化领域的辉煌。十年间，200万萌化技术的爱好者在动漫东东找到了资源、组织、教程、师傅、朋友和爱人。动漫东东存在的十年，也是动漫兴趣网站的黄金十年。</p>
+<p>感谢在动漫东东诞生的狼风萌化组、樱茶幻萌组、D.SP萌化组、掌萌组等及所有成员。</p>
+<p>感谢东东的历任超版、版主、幻颜师、美工组、活动组、萌战编辑部、萌推编辑部、顶点字幕组等用户组及所有成员。</p>
+<p>感谢萌精灵、RH字幕组、忆云萌化组的入驻。</p>
+<p>感谢《动画基地》《动画萌王》等知名动漫杂志在萌化资源大礼包全国发行方面的深度支持。</p>
+<p>感谢微软中国、QQ音乐、搜狗输入法、世界之窗、酷鱼桌面、GO主题、天天动听等软件官方在“互联网萌化设计大赛”中的鼎力支持。</p>
+<p>感谢秦时明月、魁拔、梦回三国、小小忍者、敢达online等品牌官方的认可和萌化定制合作。</p>
+<p>感谢秦时明月、剑网3、仙剑奇侠传、古剑奇谭、画江湖系列、天下3、太乙仙魔录等品牌参与动漫东东联合创办的《ACG武林大会》。</p>
+<p>感谢所有ACG与科技行业媒体长期的支持。</p>
+<p>特别感谢默默管理的副站wu51515、尽心运维的吟风、不断鞭策我的剑仙和东东娘的画师C様。</p>
+<p>太多感谢哽咽难言，总之感谢一路有你同行。</p>
+<p>2017年6月18日，动漫东东结束十年征程，化作回忆。不过我们都还在，更加成熟而倔强。</p>
+<p>愿你走出半生，归来仍是少年。</p>
+<p>站长：影火虫</p>
+<p>网址：http://www.comicdd.com/</p>
+<h5 id="heading-25">天使动漫论坛</h5>
+<p>天使动漫论坛-梦开始的地方 一个能轻松聊天结识同好的温馨小论坛</p>
+<p>网址：https://www.tsdm39.net/</p>
+<h5 id="scarletmoon">绯月ScarletMoon</h5>
+<p>绯月是一个以动漫、游戏、音乐、绘画等为主题的论坛。</p>
+<p>网址：https://9shenmi.com</p>
+<h5 id="heading-26">漫游论坛</h5>
+<p>漫游字幕组论坛</p>
+<p>漫游字幕分享站更名为sub.popgo.org</p>
+<p>网址：https://bbs.popgo.org/bbs/</p>
+<h5 id="sos">SOS动漫社团</h5>
+<p>动漫论坛SOSG动漫网，中国资深的综合性大型动漫论坛。提供动漫音乐，动漫壁纸，在线漫画动画下载，在线小说等。资讯全面，下载资源丰富，动漫专题版块论坛众多，是漫迷交流互动的好平台。</p>
+<p>网址： <a href="http://www.sosg.net/">http://www.sosg.net/</a></p>
+<h5 id="-">⭐翼の夢 舞の城⭐聯盟</h5>
+<p>坛子里的分类系统做得很好，把乙女和腐向，全年龄和非全年龄分开，淘资源非常方便明快。游戏资源和drama资源非常齐备，游戏基本上都有，drama这里若是没有，其他地方也很少能搜得到了。讨论都比较有营养，适合通完游戏听完抓上去溜溜其他人的看法打发时间寻找同好。翼梦是个高效可靠的资源平台，并且还有一堆同好在那里进行高质量的讨论，国内的乙女游戏玩家们用这一个论坛就完全足够了，再加上一个微博交易平台，简直是一条龙服务。</p>
+<p>网址：http://www.otomedream.com/</p>
+<h5 id="dm123">Dm123</h5>
+<p>动漫FANS挂了很久了，最鼎盛时期似乎还有过动画字幕组，当初各版区的讨论度和讨论质量还是很高的。</p>
+<p>动漫FANS最萌大赛</p>
+<p>动漫FANS最萌（简称：DM萌），是动漫FANS论坛创办的国内萌战，每年举办一次，拥有专门的投票界面和计票方式，优美的对战图和纪念卡片是其一大特色。2008年，首届动漫FANS最萌大会冠军为夏娜。</p>
+<p>动漫FANS最萌，简称DM萌，是动漫FANS论坛以每年春天举行的动画女性角色选举活动。自中萌停办以来是目前国内规模最大最具代表性的萌战活动之一，自2008开始已经连续举办了八届。</p>
+<p>[摘自百度百科]</p>
+<p>网址：www.dm123.cn</p>
+<h5 id="heading-27">萌动动漫论坛</h5>
+<p><strong>萌动动漫论坛</strong>是一个开放性<strong>动漫</strong>ACG资源分享平台，分享ACG音乐、美图、COS、手绘素描、MAD&amp;MMD视频、动漫资源、动漫展播、资讯前沿，交流小说，欣赏漫画……</p>
+<p>网址：http://www.acggirl.moe/forum.php</p>
+<h5 id="heading-28">飘雪动漫社</h5>
+<p>本社区是粤语动漫的新天地，希望广大动漫爱好者都在这里交流得开心愉快。</p>
+<p>网址：http://www.deainx.net/</p>
+<p>网址：https://www.deainx.me/</p>
+<h5 id="heading-29">百合会论坛</h5>
+<p>百合会是以百合GL相关讨论为主的动漫论坛，同时欢迎非百G动漫话题的讨论。本论坛创立宗旨为探询百合发展方向，把握百合发展时机，并谨祝各位百合同好游玩开心。</p>
+<p>管理版，管理操作问题意见建议版务讨论。</p>
+<p>讨论区，动漫主题讨论。</p>
+<p>灌水区，讨论子区，灌灌水交交友。</p>
+<p>大图书馆，讨论子区，个人译作收藏。</p>
+<p>贴图区，贴图改图和绘图。</p>
+<p>原创文学区，写文看文和评文。</p>
+<p>资源交流区，资源分享与交流（需登陆）。</p>
+<p>声乐区，八卦声优，在线音乐。</p>
+<p>游戏区，玩完游戏聊游戏。</p>
+<p>日语学习区，动漫领进门，修行在个人。</p>
+<p>Cosplay区，你cos来我play。</p>
+<p>网址：https://www.yamibo.com/<u></u></p>
+<h5 id="heading-30"><strong>宅漫星空</strong>****</h5>
+<p><strong>宅漫星空</strong>提供动漫，视频，BT动漫，<strong>漫画</strong>，游戏，小说，acg，电影，单机，网游单机，游戏等学习资源下载 论坛.保持稳定更新</p>
+<p>网址：https://www.zhaimansky.net/</p>
+<h5 id="heading-31">梦次元</h5>
+<p>梦次元是一个以二次元动漫ACG 以及相关资源交流分享为主的动漫平台，为用户提供动画新番，漫画，音乐，游戏等资源下载和分享等功能。</p>
+<p>网址：https://mcyacg.com/</p>
+<h5 id="stage1st">Stage1st</h5>
+<p>“华语第三动漫论坛“。论坛的名字“Stage1st”应该来自于游戏的“第一关”。</p>
+<p>Stage1最早由游戏撰稿人联合社团“太阳黑子工作室”于2001年建立，基本宗旨为“STAGE1是太阳黑子工作室的工作论坛，太阳黑子工作室成员必须毫无保留地为论坛服务”。当时游戏论坛Newtype面临危机，出于抢救的目的，其中的精华帖被搬运至S1。随后 S1 以游戏论坛的身份逐渐发展起来。2005年左右，随着外野的发展和《魔兽世界》的火爆，逐渐脱离了原本游戏论坛的定位；之后在各个动漫论坛因为流量不足遭遇倒闭时，漫区接收了许多难民，成为了中国一大动漫论坛。</p>
+<p>网址：bbs.saraba1st.com</p>
+<h5 id="ae-media">高达AE Media</h5>
+<p>专业主义ACG电子媒体</p>
+<p>网址：https://www.aemedia.org/</p>
+<h5 id="heading-32">神奇宝贝新生代</h5>
+<p>神奇宝贝新生代论坛(又称:PMXSD)，成立于2005年9月10日。是一个国内神奇宝贝动漫同好交流站点。其中收录了神奇宝贝的各种信息，是神奇宝贝粉丝们的聚集地，是众多宠物小精灵爱好者们的共同选择。在国内众多的口袋妖怪题材站点中，神奇宝贝新生代论坛以其独特的模式在业界获得了一定的声誉，新生代是国内著名的口袋妖怪站点之一。</p>
+<p>网址：https://www.pmxsd.com/</p>
+<h5 id="demonition">Demonition</h5>
+<p>日本最有名的型月专门论坛demonition。</p>
+<p>该网站无须****即可访问且速度极快，对于一个境外网站来说真的是颇为难得。</p>
+<p>demonition这个论坛有一些很有意思的特点。比如说，每个贴子最多1000个回复，超过了就要另建新帖，这是与5ch相似的。再比如，回复的字体大小颜色，与你获得的赞数相关，赞的多，颜色会变深，字体会变大，被踩的多，字体变小颜色变浅，被踩到一定程度，字会变透明，必须选中才能看见！所以一定要注意温和理智地表达自己的观点。</p>
+<p>demonition论坛版主是个老月厨，曾经在推特上晒过大量稀有的月球收藏品，他的推特也经常转发优质同人图，同样推荐大家关注。</p>
+<p>大家可以通过这篇文章了解该论坛——[日本的FGO玩家看什么论坛？霓虹知名型月论坛demonition介绍]  <a href="http://www.bigfunapp.cn/post/203095">www.bigfunapp.cn/post/203095</a></p>
+<p>网址：https://bbs.demonition.com/</p>
+<h5 id="bbs">高校动漫论坛|高校BBS|高校动漫联盟社团论坛</h5>
+<p>网址：http://www.gxdmw.com/forum.php</p>
+<h4 id="-galgame-">目前国内有哪些 galgame 论坛或网络社区？</h4>
+<p>终点论坛，花火学园，2DJ，绯月，KDays，月幕Galgame，绯月资源全，门槛高，终点论坛资源还算可以，门槛比较低，花火学园资源较多，门槛较高，至于</p>
+<p>2dfan和琉璃神社..琉璃神社早就没有galgame了，现在已经是里番神社本子神社了，至于2dfan&hellip;. 一个查攻略查介绍下补丁的地方</p>
+<h5 id="2dfans">2DFans</h5>
+<p>2DFan是一个热门免费动漫下载网站，分享动漫资源、攻略等。</p>
+<p>网址：https://galge.fun/</p>
+<h5 id="galgame">月幕Galgame</h5>
+<p>月幕Galgame是一个以Galgame为主题的综合性爱好者社区，集游戏资讯、维基档案、文章、测评、特殊码、画札、手记等功能为一体，目的是建立一个除Galgame游戏资源获取外，从Galgame游玩上游到下游，全链路触及的Galgame爱好者平台。</p>
+<p>网址：https://www.ymgal.games/</p>
+</span></div>
                         </div>
                         
                         <div class="post-container">
@@ -318,7 +1892,7 @@
                                 <a href="/post/ri-yu-ping-jia-ming-pian-jia-ming-yi-lan-biao/">日语平假名、片假名一览表</a>
                             </p>
                             <p class="post-meta">
-                                <span class="date meta-item">2022-04-18</span>
+                                <span class="date meta-item">Posted at&nbsp;2022-04-18</span>
                                 
                                 
                                 <span class="meta-item">
@@ -343,222 +1917,50 @@
                             </p>
                             
                             
-                        </div>
-                        
-                        <div class="post-container">
-                            <p class="post-title">
-                                <a href="/post/jin-tian-jiu-shi-qing-ren-jie-liao-ni-tui-jian-ge-wei-kan-kan-ke-nan/">今天就是情人节了呢，推荐各位看看柯南</a>
-                            </p>
-                            <p class="post-meta">
-                                <span class="date meta-item">2022-02-14</span>
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    <span>&nbsp;</span>
-                                    <a href="/post/jin-tian-jiu-shi-qing-ren-jie-liao-ni-tui-jian-ge-wei-kan-kan-ke-nan/#comments">Comments</a>
-                                </span>
-                                
-                                
-                                
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-tag"></i>
-                                    <span>&nbsp;</span>
-                                    
-                                    <a class="a-tag" href="/tag/discussion/" title="Discussion">Discussion</a>
-                                    <span>&nbsp;</span>
-                                    
-                                </span>
-                                
-                            </p>
-                            
-                            
-                            <div class="post-feature-image">
-                                <a href="/post/jin-tian-jiu-shi-qing-ren-jie-liao-ni-tui-jian-ge-wei-kan-kan-ke-nan/">
-                                    <img src="/post-images/jin-tian-jiu-shi-qing-ren-jie-liao-ni-tui-jian-ge-wei-kan-kan-ke-nan.jpeg" alt="今天就是情人节了呢，推荐各位看看柯南" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
-                                </a>
-                            </div>
-                            
-                        </div>
-                        
-                        <div class="post-container">
-                            <p class="post-title">
-                                <a href="/post/dong-man-chang-jian-ming-ci-jie-shi/">动漫常见名词解释</a>
-                            </p>
-                            <p class="post-meta">
-                                <span class="date meta-item">2022-02-14</span>
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    <span>&nbsp;</span>
-                                    <a href="/post/dong-man-chang-jian-ming-ci-jie-shi/#comments">Comments</a>
-                                </span>
-                                
-                                
-                                
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-tag"></i>
-                                    <span>&nbsp;</span>
-                                    
-                                    <a class="a-tag" href="/tag/discussion/" title="Discussion">Discussion</a>
-                                    <span>&nbsp;</span>
-                                    
-                                </span>
-                                
-                            </p>
-                            
-                            
-                            <div class="post-feature-image">
-                                <a href="/post/dong-man-chang-jian-ming-ci-jie-shi/">
-                                    <img src="/post-images/dong-man-chang-jian-ming-ci-jie-shi.jpg" alt="动漫常见名词解释" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
-                                </a>
-                            </div>
-                            
-                        </div>
-                        
-                        <div class="post-container">
-                            <p class="post-title">
-                                <a href="/post/html-he-wang-ye-she-ji-de-bang-zhu-he-zhi-chi/">HTML和网页设计的帮助和支持</a>
-                            </p>
-                            <p class="post-meta">
-                                <span class="date meta-item">2021-12-20</span>
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    <span>&nbsp;</span>
-                                    <a href="/post/html-he-wang-ye-she-ji-de-bang-zhu-he-zhi-chi/#comments">Comments</a>
-                                </span>
-                                
-                                
-                                
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-tag"></i>
-                                    <span>&nbsp;</span>
-                                    
-                                    <a class="a-tag" href="/tag/discussion/" title="Discussion">Discussion</a>
-                                    <span>&nbsp;</span>
-                                    
-                                </span>
-                                
-                            </p>
-                            
-                            
-                            <div class="post-feature-image">
-                                <a href="/post/html-he-wang-ye-she-ji-de-bang-zhu-he-zhi-chi/">
-                                    <img src="/post-images/html-he-wang-ye-she-ji-de-bang-zhu-he-zhi-chi.jpg" alt="HTML和网页设计的帮助和支持" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
-                                </a>
-                            </div>
-                            
-                        </div>
-                        
-                        <div class="post-container">
-                            <p class="post-title">
-                                <a href="/post/wang-luo-shi-guang-dao-liu-ji-wei-hu-lian-wang-ji-yi-cun-dang/">网络时光倒流机-为互联网记忆存档</a>
-                            </p>
-                            <p class="post-meta">
-                                <span class="date meta-item">2021-12-18</span>
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    <span>&nbsp;</span>
-                                    <a href="/post/wang-luo-shi-guang-dao-liu-ji-wei-hu-lian-wang-ji-yi-cun-dang/#comments">Comments</a>
-                                </span>
-                                
-                                
-                                
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-tag"></i>
-                                    <span>&nbsp;</span>
-                                    
-                                    <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
-                                    <span>&nbsp;</span>
-                                    
-                                </span>
-                                
-                            </p>
-                            
-                            
-                            <div class="post-feature-image">
-                                <a href="/post/wang-luo-shi-guang-dao-liu-ji-wei-hu-lian-wang-ji-yi-cun-dang/">
-                                    <img src="/post-images/wang-luo-shi-guang-dao-liu-ji-wei-hu-lian-wang-ji-yi-cun-dang.jpg" alt="网络时光倒流机-为互联网记忆存档" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
-                                </a>
-                            </div>
-                            
-                        </div>
-                        
-                        <div class="post-container">
-                            <p class="post-title">
-                                <a href="/post/zhe-yi-tie-qing-da-jia-wu-bi-chong-shi-zun-shou-m-zhan-de-xiang-guan-gui-ding/">这一贴请大家务必重视，遵守M站的相关规定</a>
-                            </p>
-                            <p class="post-meta">
-                                <span class="date meta-item">2021-12-15</span>
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    <span>&nbsp;</span>
-                                    <a href="/post/zhe-yi-tie-qing-da-jia-wu-bi-chong-shi-zun-shou-m-zhan-de-xiang-guan-gui-ding/#comments">Comments</a>
-                                </span>
-                                
-                                
-                                
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-tag"></i>
-                                    <span>&nbsp;</span>
-                                    
-                                    <a class="a-tag" href="/tag/discussion/" title="Discussion">Discussion</a>
-                                    <span>&nbsp;</span>
-                                    
-                                </span>
-                                
-                            </p>
-                            
-                            
-                            <div class="post-feature-image">
-                                <a href="/post/zhe-yi-tie-qing-da-jia-wu-bi-chong-shi-zun-shou-m-zhan-de-xiang-guan-gui-ding/">
-                                    <img src="/post-images/zhe-yi-tie-qing-da-jia-wu-bi-chong-shi-zun-shou-m-zhan-de-xiang-guan-gui-ding.jpg" alt="这一贴请大家务必重视，遵守M站的相关规定" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
-                                </a>
-                            </div>
-                            
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><p>日语的字母称为假名(かな)，有平假名(ひらがな)和片假名(カタカナ)两种。平假名和片假名是一一对应的。平假名和片假名是是1种读音的2种写法,“假”即“借”,“名”即“字”。指借用汉字的音和形，而不用它的意义，所以称为“假名” 。<br />
+<img src="/post-images/1676100402043.png" alt="" /><br />
+平假名 あ い う え お<br />
+片假名 ア イ ウ エ オ</p>
+<p>平假名 か き く け こ<br />
+片假名 カ キ ク ケ コ</p>
+<p>平假名 さ し す せ そ<br />
+片假名 サ シ ス セ ソ</p>
+<p>平假名 た ち つ て と<br />
+片假名 タ チ ツ テ ト</p>
+<p>平假名 な に ぬ ね の<br />
+片假名 ナ ニ ヌ ネ ノ</p>
+<p>平假名 は ひ ふ へ ほ<br />
+片假名 ハ ヒ フ ヘ ホ</p>
+<p>平假名 ま み む め も<br />
+片假名 マ ミ ム メ モ</p>
+<p>平假名 や い ゆ え よ<br />
+片假名 ヤ イ ユ エ ヨ</p>
+<p>平假名 ら り る れ ろ<br />
+片假名 ラ リ ル レ ロ</p>
+<p>平假名 わ い う え を<br />
+片假名 ワ イ ウ エ ヲ</p>
+</span></div>
                         </div>
                         
                         
-                        <div class="pagination no-margin-bottom">
-    <p class="clearfix">
-        
-        <p>
-            
-            <span class="pre pagbuttons">
-                <i class="fa fa-angle-double-left"></i>
-                &nbsp;
-                <a role="navigation" href="/page/4/" aria-label="prev">prev</a>
-            </span>
-            
-            
-            
-            <span>&nbsp;</span>
-            <span class="next pagbuttons">
-                <a role="navigation" href="/page/6/" aria-label="next">next</a>
-                &nbsp;
-                <i class="fa fa-angle-double-right"></i>
-            </span>
-            
-        </p>
-    </p>
-</div>
+                        <!-- Pagination -->
+
+<nav class="pagination no-margin-bottom">
+    <p class="clearfix"></p>
+    
+    <p>PageNumber 5 / PageCount 8&nbsp;</p>
+    
+    <p><span class="pre pagbuttons">
+            <i class="fa fa-angle-double-left"></i>&nbsp;
+            <a role="navigation" href="/page/4/" aria-label="Previous">Previous</a>
+        </span><span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/page/6/" aria-label="Next">Next</a>&nbsp;
+            <i class="fa fa-angle-double-right"></i>
+        </span></p>
+    <p></p>
+</nav>
 
                     </div>
                 </div>
@@ -566,21 +1968,9 @@
                 <div class="visible-xs site-bottom-footer">
                     <footer>
     
-    <p>&copy;&nbsp;2026&nbsp;
-        <a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">
-            
-                vigourpine
-            
-        </a>
-    </p>
-    <p>Theme&nbsp;
-        <a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>
-        &nbsp;by&nbsp;
-        <a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a>
-    </p>
-    <p>Proudly published with&nbsp;
-        <a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a>
-    </p>
+    <p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">vigourpine</a></p>
+    <p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p>
+    <p>Proudly published with&nbsp;<a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a></p>
 </footer>
 
                 </div>
@@ -591,6 +1981,6 @@
     <script src="/scripts/jquery-3.1.0.min.js"></script>
     <script src="/scripts/bootstrap.min.js"></script>
     <script src="/scripts/typography.js"></script>
-<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.1.3 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.3 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
 </body>
 </html>

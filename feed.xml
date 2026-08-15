@@ -6,8 +6,77 @@
     <description>Welcome to Gridea Pro</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Sun, 05 Jul 2026 18:49:58 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 15 Aug 2026 10:48:17 +0800</lastBuildDate>
     <atom:link href="https://xiaxi626.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <item>
+      <title>Git标准工作流程</title>
+      <link>https://xiaxi626.github.io/post/gitbiao-zhun-gong-zuo-liu-cheng/</link>
+      <guid isPermaLink="true">https://xiaxi626.github.io/post/gitbiao-zhun-gong-zuo-liu-cheng/</guid>
+      <pubDate>Sat, 15 Aug 2026 18:42:38 +0800</pubDate>
+      <description><![CDATA[<p>梳理一下标准流程：</p>
+<hr />
+<h2 id="heading">一、正常的工作流程（避免冲突）</h2>
+<h3 id="1-">1. 初次获取仓库（只需一次）</h3>
+<pre><code class="language-bash">git clone &lt;仓库地址&gt;
+cd &lt;仓库目录&gt;
+</code></pre>
+<p>之后就不需要再 clone 了，直接进入已有的本地仓库目录工作。</p>
+<h3 id="2-">2. 每次开始工作前，先同步远程最新代码</h3>
+<pre><code class="language-bash">git pull --rebase origi...
+</code></pre>
+]]></description>
+      <category>Git</category>
+    </item>
+    <item>
+      <title>如何在Gridea Pro主题中实现giscus 评论</title>
+      <link>https://xiaxi626.github.io/post/ru-he-zai-gridea-prozhu-ti-zhong-shi-xian-giscus-ping-lun/</link>
+      <guid isPermaLink="true">https://xiaxi626.github.io/post/ru-he-zai-gridea-prozhu-ti-zhong-shi-xian-giscus-ping-lun/</guid>
+      <pubDate>Thu, 13 Aug 2026 22:36:19 +0800</pubDate>
+      <description><![CDATA[<h3 id="1">1、仓库准备</h3>
+<p>随便建一个仓库，或者直接用博客仓库也行，但更建议单开一个仓库，这不仅有利于评论系统测试，也利用数据分开存放。</p>
+<h4 id="-discussions">开启 Discussions</h4>
+<p>进入评论存储仓库，Settings → General → Features 勾选 Discussions。</p>
+<h4 id="-giscus-app">安装 giscus App</h4>
+<p>打开 github.com/apps/giscus → Install&hellip;</p>
+]]></description>
+      <category>Gridea Pro</category>
+      <category>Technology</category>
+    </item>
+    <item>
+      <title>对主题迁移的高效后处理分析</title>
+      <link>https://xiaxi626.github.io/post/dui-zhu-ti-qian-yi-de-gao-xiao-hou-chu-li-fen-xi/</link>
+      <guid isPermaLink="true">https://xiaxi626.github.io/post/dui-zhu-ti-qian-yi-de-gao-xiao-hou-chu-li-fen-xi/</guid>
+      <pubDate>Thu, 13 Aug 2026 04:58:09 +0800</pubDate>
+      <description><![CDATA[<p>最近几个月就博客主题模板从一个平台迁移到另一个平台做了深入研究，并在以往的经验基础上使用AI大模型辅助分析、创建和修改主题。<br />
+一开始，我并不熟悉很多技术栈，只了解过node.js、html、js、css、JavaScript的一点皮毛。得益于之前为了学习epub电子书编写方法，自己制作与他人合作翻译的轻小说的epub书籍，以及搜集资料创建GitHub上的epub-study仓库，我能够看懂别人写&hellip;</p>
+]]></description>
+      <category>Gridea Pro</category>
+      <category>AI</category>
+    </item>
+    <item>
+      <title>Hexo‐to‐Gridea‐Migration：面向 AI 辅助编程的跨平台静态博客主题迁移方法论（以Pug为例）</title>
+      <link>https://xiaxi626.github.io/post/hexo-to-gridea-migrationmian-xiang-ai-fu-zhu-bian-cheng-de-kua-ping-tai-jing-tai-bo-ke-zhu-ti-qian-yi-fang-fa-lunyi-pugwei-li/</link>
+      <guid isPermaLink="true">https://xiaxi626.github.io/post/hexo-to-gridea-migrationmian-xiang-ai-fu-zhu-bian-cheng-de-kua-ping-tai-jing-tai-bo-ke-zhu-ti-qian-yi-fang-fa-lunyi-pugwei-li/</guid>
+      <pubDate>Tue, 14 Jul 2026 18:17:54 +0800</pubDate>
+      <description><![CDATA[<h2 id="heading">摘要</h2>
+<blockquote>
+<p>静态网站生成器（SSG）主题迁移是一项需要同时掌握源平台模板语法、目标平台模板引擎差异、数据模型映射和CSS设计规范的复杂任务。其中，Hexo的Pug模板引擎与Gridea Pro的Pongo2（Jinja2的Go实现）之间存在根本性的语法范式差异，使得跨平台迁移成为一项手动语法翻译的繁重工作。本文提出Hexo-to-Gridea-Migration，一个面向AI编程助手的结&hellip;</p>
+</blockquote>
+]]></description>
+      <category>Gridea Pro</category>
+      <category>AI</category>
+    </item>
+    <item>
+      <title>Theme‐Builder Skill：面向 AI 辅助编程的多引擎静态博客主题开发框架</title>
+      <link>https://xiaxi626.github.io/post/theme-builder-skillmian-xiang-ai-fu-zhu-bian-cheng-de-duo-yin-qing-jing-tai-bo-ke-zhu-ti-kai-fa-kuang-jia/</link>
+      <guid isPermaLink="true">https://xiaxi626.github.io/post/theme-builder-skillmian-xiang-ai-fu-zhu-bian-cheng-de-duo-yin-qing-jing-tai-bo-ke-zhu-ti-kai-fa-kuang-jia/</guid>
+      <pubDate>Mon, 13 Jul 2026 19:16:09 +0800</pubDate>
+      <description><![CDATA[<h2 id="heading">摘要</h2>
+<p>静态网站生成器（SSG）主题开发是一项需要同时掌握模板引擎语法、数据模型、CSS布局和SEO规范的复杂任务。不同SSG平台之间模板引擎的异构性进一步加剧了这一困难。本文提出Theme-Builder Skill，一个面向AI编程助手的结构化技能包，为Gridea Pro主题开发提供端到端支持。该框架采用三层架构——知识层、工具层和模板层——并显式管理三种模板引擎（Jinja2/P&hellip;</p>
+]]></description>
+      <category>Gridea Pro</category>
+      <category>AI</category>
+    </item>
     <item>
       <title>CST中螺旋线圈电感的建模</title>
       <link>https://xiaxi626.github.io/post/cstzhong-luo-xuan-xian-quan-dian-gan-de-jian-mo/</link>
@@ -57,7 +126,7 @@
 <p><img src="https://xiaxi626.github.io/post-images/rlgc/image1.png" alt="" /></p>
 <p>那有没有办法不用圆柱同轴符号呢？我们可以尝试一下用RLGC电路来&hellip;</p>
 ]]></description>
-      <category>technology</category>
+      <category>Technology</category>
     </item>
     <item>
       <title>电子四极管参数计算方法——第一部分</title>
@@ -69,66 +138,6 @@
 <p>查询TH781技术规格书，已知工作频率100MHz，帘栅压1500V时输出功率为280kW。</p>
 <p>即<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mrow><mi>g</mi><mn>2</mn></mrow></msub></mrow><annotation encoding="application/x-tex">E_{g2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>=1500V，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mo lspace="0em" rspace="0em">∼</mo></msub></mrow><annotation encoding="application/x-tex">P_{\sim}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1068em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">∼</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>=280kW。</p>
 <p>![](/post-images/tetr&hellip;</p>
-]]></description>
-      <category>technology</category>
-    </item>
-    <item>
-      <title>文献管理工具：Zotero的使用教程</title>
-      <link>https://xiaxi626.github.io/post/wen-xian-guan-li-gong-ju-zotero-de-shi-yong-jiao-cheng/</link>
-      <guid isPermaLink="true">https://xiaxi626.github.io/post/wen-xian-guan-li-gong-ju-zotero-de-shi-yong-jiao-cheng/</guid>
-      <pubDate>Tue, 14 Nov 2023 10:42:24 +0800</pubDate>
-      <description><![CDATA[<p><strong>省流</strong><br />
-<a href="https://lib.scu.edu.cn/sites/default/files/2022-04/20220331.pdf">Zotero文献管理软件使用指南 - 四川大学图书馆</a><br />
-[五分钟学会文献管理神器—— Zotero_zotero文献管理-CSDN博客](<a href="https://blog.csdn.net/m0_53790443/article/details/11747475">https://blog.csdn.net/m0_53790443/article/details/11747475</a>&hellip;</p>
-]]></description>
-      <category>Technology</category>
-    </item>
-    <item>
-      <title>配置Jekyll博客本地开发环境(Windows 7)</title>
-      <link>https://xiaxi626.github.io/post/pei-zhi-jekyll-bo-ke-ben-di-kai-fa-huan-jing-windows-7/</link>
-      <guid isPermaLink="true">https://xiaxi626.github.io/post/pei-zhi-jekyll-bo-ke-ben-di-kai-fa-huan-jing-windows-7/</guid>
-      <pubDate>Wed, 04 Oct 2023 10:05:01 +0800</pubDate>
-      <description><![CDATA[<p>本教程主要基于<a href="https://zhuanlan.zhihu.com/p/139567128">配置Jekyll博客本地开发环境(Windows)</a>和<a href="https://blog.csdn.net/weixin_34161029/article/details/91498266">win7下搭建Jekyll写作环境</a>，以我自己的方式尝试搭建，把过程和遇到的困难总结一下。<br />
-相信各位读者在阅读本文后，在&hellip;</p>
-]]></description>
-      <category>Technology</category>
-    </item>
-    <item>
-      <title>如何使用Sublime Text 4搭建 C/C++ 语言开发环境</title>
-      <link>https://xiaxi626.github.io/post/ru-he-shi-yong-sublime-text-4-da-jian-cc-yu-yan-kai-fa-huan-jing/</link>
-      <guid isPermaLink="true">https://xiaxi626.github.io/post/ru-he-shi-yong-sublime-text-4-da-jian-cc-yu-yan-kai-fa-huan-jing/</guid>
-      <pubDate>Tue, 29 Aug 2023 22:39:16 +0800</pubDate>
-      <description><![CDATA[<p>刚刚安装的 Sublime Text 无法自行具备运行 C、C++ 代码的能力，需要我们手动对其进行设置。</p>
-<h2 id="gcc-">配置GCC 编译环境</h2>
-<p>开始设置前，我们需要初始化好 GCC 编译环境。打开命令行窗口，输入<code>gcc -v</code>，如果输出GCC的具体版本等信息，表明当前系统以成功配置了 GCC 编译环境。（如图所示）<br />
-<img src="https://xiaxi626.github.io/post-images/1693321719332.png" alt="" /><br />
-如果未配置GCC&hellip;</p>
-]]></description>
-      <category>Technology</category>
-    </item>
-    <item>
-      <title>Windows平台Sublime+LaTex配置教程</title>
-      <link>https://xiaxi626.github.io/post/windows-ping-tai-sublimelatex-pei-zhi-jiao-cheng/</link>
-      <guid isPermaLink="true">https://xiaxi626.github.io/post/windows-ping-tai-sublimelatex-pei-zhi-jiao-cheng/</guid>
-      <pubDate>Sun, 27 Aug 2023 11:08:25 +0800</pubDate>
-      <description><![CDATA[<h1 id="heading">详细教程</h1>
-<h2 id="latex">下载LaTex</h2>
-<p>访问<a href="https://tug.org/texlive/">官网</a>，点击<code>Concise instructions, per platform:</code> 下的 <code>install on Windows</code> 。<br />
-<img src="https://xiaxi626.github.io/post-images/1707881029658.png" alt="" /></p>
-<p>找到<code>Easy install</code>。</p>
-<blockquote>
-<p>When installing from the &hellip;</p>
-</blockquote>
-]]></description>
-      <category>Technology</category>
-    </item>
-    <item>
-      <title>在Windows中使用FLAC无损音频编解码器</title>
-      <link>https://xiaxi626.github.io/post/zai-windows-zhong-an-zhuang-flac/</link>
-      <guid isPermaLink="true">https://xiaxi626.github.io/post/zai-windows-zhong-an-zhuang-flac/</guid>
-      <pubDate>Sat, 26 Aug 2023 20:46:59 +0800</pubDate>
-      <description><![CDATA[<p>FLAC代表Free Lossless Audio Codec，是一种与MP3类似的音频格式，但它是无损的，意味着在FLAC中压缩音频时不会损失任何质量。这与Zip的工作原理类似，但使用FLAC时，您将获得更好的压缩效果，因为它是专门为音频设计的。您可以在您喜欢的播放器（或您的汽车或家庭立体声设备，请参阅支持的设备）中播放压缩的FLAC文件，就像播放MP3文件一样。</p>
-<p>FLAC是最快且支持最广泛的&hellip;</p>
 ]]></description>
       <category>Technology</category>
     </item>
