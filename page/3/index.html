@@ -159,6 +159,100 @@
                         
                         <div class="post-container">
                             <p class="post-title">
+                                <a href="/post/debian-xi-tong-an-zhuang-shi-yong-jiao-cheng/">Debian系统安装使用教程</a>
+                            </p>
+                            <p class="post-meta">
+                                <span class="date meta-item">Posted at&nbsp;2023-07-26</span>
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span>&nbsp;</span>
+                                    <a href="/post/debian-xi-tong-an-zhuang-shi-yong-jiao-cheng/#comments">Comments</a>
+                                </span>
+                                
+                                
+                                
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-tag"></i>
+                                    <span>&nbsp;</span>
+                                    
+                                    <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+                                    <span>&nbsp;</span>
+                                    
+                                </span>
+                                
+                            </p>
+                            
+                            
+                            <div class="post-feature-image">
+                                <a href="/post/debian-xi-tong-an-zhuang-shi-yong-jiao-cheng/">
+                                    <img src="/post-images/debian-xi-tong-an-zhuang-shi-yong-jiao-cheng.png" alt="Debian系统安装使用教程" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
+                                </a>
+                            </div>
+                            
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><h2 id="debian">Debian设置教程</h2>
+<p><a href="https://cn.bing.com/search?q=debian+%E5%88%87%E6%8D%A2%E6%A1%8C%E9%9D%A2%E7%B1%BB%E5%9E%8B">debian 切换桌面类型 - 搜索</a></p>
+<p><a href="https://blog.csdn.net/ieeso/article/details/110873384">Debian 安装并切换配置使用 Xfce 4 桌面环境_debian切换桌面环境_ieeso的博客</a></p>
+<p><a href="https://codeantenna.com/a/KC6IJNJCot">linux中flac安装 - CodeAntenna</a></p>
+<p><a href="https://www.linuxfromscratch.org/blfs/view/8.4-systemd/multimedia/flac.html">FLAC-1.3.2</a></p>
+<p><a href="https://packages.debian.org/buster/amd64/flac/download">Debian &ndash; 套件下載地址選擇 &ndash; flac_1.3.2-3+deb10u2_amd64.deb</a></p>
+<p><a href="https://blog.csdn.net/wojiuguowei/article/details/104752126">Debian更换软件源_debian换源_金士顿的博客</a></p>
+<p><a href="https://blog.csdn.net/weixin_48646819/article/details/120139802">Debian11 更换软件源_debian11换源_<del>天下亦有不散之筵席</del>的博客</a></p>
+<h2 id="ffmpeg">FFmpeg设置教程</h2>
+<p><a href="https://blog.csdn.net/quantum7/article/details/104460115">LINUX FFMPEG编译详细过程记录（最全）_ffmpeg 编译_柳鲲鹏的博客</a></p>
+<p><a href="https://blog.csdn.net/hebbely/article/details/72831843">在Ubuntu, Debian, 或Mint系统中编译FFmpeg_hebbely的博客</a></p>
+<p><a href="https://blog.csdn.net/t__zxt/article/details/123424359">完美解决Linux环境编译ffmpeg库_linux ffmpeg 开发环境_Zhou_Xintong的博客</a></p>
+<p><a href="https://www.linuxfromscratch.org/blfs/view/svn/multimedia/libogg.html">libogg-1.3.5</a></p>
+<p><a href="https://blog.csdn.net/rooki_men/article/details/82834864">FLAC在Linux中安装-Please install ‘flac’ on ALL worker nodes_please install &lsquo;flac&rsquo; on all worker nodes!_谁谁的博客的博客</a></p>
+<p><a href="https://linux265.com/news/3609.html">如何在Debian 9上安装FFmpeg | linux资讯</a></p>
+<h2 id="debianffmpeg">Debian设置及FFmpeg安装流程</h2>
+<p>修复sudo apt-get update：</p>
+<p>修改/etc/apt source.list</p>
+<p>cdrom前添加#</p>
+<p>安装需要的组件</p>
+<p><a href="https://blog.csdn.net/qq_40344790/article/details/118143502">【Linux】无法获得dpkg前端锁的解决方法_无法获取dpkg前端锁怎么解决_Frank学习路上的博客</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/273263594">如何清除 APT 缓存来回收宝贵的磁盘空间 | Linux 中国 - 知乎</a></p>
+<p><a href="https://blog.csdn.net/Haa__/article/details/119353185">Git同时配置Gitee和GitHub_MsLeesSun的博客</a></p>
+<p>完美解决Linux环境编译ffmpeg库</p>
+<p>在Ubuntu, Debian, 或Mint系统中编译FFmpeg</p>
+<p>编译包下载完成</p>
+<pre><code class="language-bash">./configure --prefix=&quot;$HOME/ffmpeg_build&quot; --disable-static --docdir=&quot;$HOME/ffmpeg_build/share/doc/libogg-1.3.5&quot;
+
+./configure --prefix=&quot;$HOME/ffmpeg_build&quot;
+</code></pre>
+<p>Linux:设备上没有空间的问题解决 - 挑战者V - 博客园</p>
+<p><a href="https://www.cnblogs.com/youcong/p/14196813.html">https://www.cnblogs.com/youcong/p/14196813.html</a></p>
+<pre><code class="language-bash">PATH=&quot;$HOME/bin:$PATH&quot; PKG_CONFIG_PATH=&quot;$HOME/ffmpeg_build/lib/pkgconfig&quot; ./configure \
+  --prefix=&quot;$HOME/ffmpeg_build&quot; \
+  --pkg-config-flags=&quot;--static&quot; \
+  --extra-cflags=&quot;-I$HOME/ffmpeg_build/include&quot; \
+  --extra-ldflags=&quot;-L$HOME/ffmpeg_build/lib&quot; \
+  --bindir=&quot;$HOME/bin&quot; \
+  --enable-gpl \
+  --enable-libass \
+  --enable-libfdk-aac \
+  --enable-libfreetype \
+  --enable-libmp3lame \
+  --enable-libopus \
+  --enable-libtheora \
+  --enable-libvorbis \
+  --enable-libvpx \
+  --enable-libx264 \
+  --enable-libx265 \
+  --enable-nonfree
+</code></pre>
+<h2 id="ffmpeg-1">在FFmpeg里添加自研编码器方法</h2>
+<p><a href="https://blog.csdn.net/m0_52257114/article/details/113993783">【FFmpeg】在FFmpeg里添加自研编码器方法_ffmpeg 添加自定义编码器_bearhang的博客</a></p>
+<p><a href="https://blog.csdn.net/u012814360/article/details/40085721">ffmpeg安装第三方编码器_ffmpeg vc-1_Mr_weng_的博客</a></p>
+</span></div>
+                        </div>
+                        
+                        <div class="post-container">
+                            <p class="post-title">
                                 <a href="/post/8-high-quality-resources-for-japanese-subtitles-and-how-to-learn-japanese-with-them/">8个高质量的日语字幕资源(以及如何用它们学习日语)</a>
                             </p>
                             <p class="post-meta">
@@ -2794,141 +2888,6 @@ hexo d	  --上传到git
 <p><img src="/post-images/1680493840089.bmp" alt="" /></p>
 <p><img src="/post-images/1680493849450.bmp" alt="" /></p>
 <p><img src="/post-images/1680493854963.bmp" alt="" /></p>
-</span></div>
-                        </div>
-                        
-                        <div class="post-container">
-                            <p class="post-title">
-                                <a href="/post/yong-kai-yuan-shen-qi-spleeter-fen-chi-ren-sheng-ban-zou/">用开源神器 Spleeter 分离人声伴奏</a>
-                            </p>
-                            <p class="post-meta">
-                                <span class="date meta-item">Posted at&nbsp;2023-03-25</span>
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    <span>&nbsp;</span>
-                                    <a href="/post/yong-kai-yuan-shen-qi-spleeter-fen-chi-ren-sheng-ban-zou/#comments">Comments</a>
-                                </span>
-                                
-                                
-                                
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-tag"></i>
-                                    <span>&nbsp;</span>
-                                    
-                                    <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
-                                    <span>&nbsp;</span>
-                                    
-                                </span>
-                                
-                            </p>
-                            
-                            
-                            <div class="post-feature-image">
-                                <a href="/post/yong-kai-yuan-shen-qi-spleeter-fen-chi-ren-sheng-ban-zou/">
-                                    <img src="/post-images/yong-kai-yuan-shen-qi-spleeter-fen-chi-ren-sheng-ban-zou.jpg" alt="用开源神器 Spleeter 分离人声伴奏" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
-                                </a>
-                            </div>
-                            
-
-                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><h2 id="spleeter-">Spleeter 是什么</h2>
-<p><img src="/post-images/1679736401203.png" alt="" /><br />
-Spleeter是Deezer的音源分离库，用Python编写的预训练模型，使用Tensorflow。它使训练音源分离模型变得容易（假设你有一个孤立的音源数据集），并提供已经训练好的最先进的模型来执行各种类型的分离：</p>
-<ul>
-<li>声乐（唱腔）/伴奏分离（2个音轨）</li>
-<li>声乐/鼓/贝司/其他分离(4个音轨)</li>
-<li>声乐/鼓/贝斯/钢琴/其他分离 (5个音轨)</li>
-</ul>
-<p>2音轨和4音轨模型在 musdb 数据集上有很高的性能。Spleeter也非常快，因为它在GPU上运行时，可以将音频文件分离成4个音轨，比实时速度快100倍。</p>
-<p><a href="https://research.deezer.com/projects/spleeter.html">我们</a>设计了<a href="https://github.com/deezer/spleeter"><strong>Spleeter</strong></a>，所以你可以直接从命令行中使用它，也可以直接在你自己的 development pipeline 中作为一个Python库。它可以用pip安装或与Docker一起使用。</p>
-<h3 id="spleeter">使用Spleeter的项目和软件</h3>
-<p>自从它被发布以来，有多个 fork 通过指导用户界面（GUI）或独立的免费或付费的网站展示Spleeter。</p>
-<p>Spleeter 的预训练模型也已经被专业的音频软件所使用。这里有一个非详尽的列表：</p>
-<ul>
-<li>iZotope RX 8 中的音乐平衡功能</li>
-<li>SpectralLayers 7 中 Unmix 功能里的 SpectralLayers</li>
-<li>Acoustica 7 中的 Acon Digital</li>
-<li>在 VirtualDJ 音源隔离功能中</li>
-<li>在 NeuralMix 和 djayPRO 应用程序套件中的 Algoriddim</li>
-</ul>
-<h2 id="heading">快速入门</h2>
-<p>想尝试一下，但不想安装任何东西？我们已经建了一个 <a href="https://colab.research.google.com/github/deezer/spleeter/blob/master/spleeter.ipynb">Google Colab</a>。</p>
-<p>准备好进入它了吗？只需几行字，你就可以安装Spleeter，并从一个示例音频文件中分离出人声和伴奏部分。你首先需要安装 <code>ffmpeg</code> 和 <code>libsndfile</code>。它可以在大多数平台上使用<a href="https://github.com/deezer/spleeter/wiki/1.-Installation#using-conda">Conda</a>完成：</p>
-<pre><code class="language-bash"># install dependencies using conda
-conda install -c conda-forge ffmpeg libsndfile
-# install spleeter with pip
-pip install spleeter
-# download an example audio file (if you don't have wget, use another tool for downloading)
-wget https://github.com/deezer/spleeter/raw/master/audio_example.mp3
-# separate the example audio into two components
-spleeter separate -p spleeter:2stems -o output audio_example.mp3
-</code></pre>
-<blockquote>
-<p>:warning: 注意，我们不再推荐使用conda来安装spleeter。</p>
-</blockquote>
-<blockquote>
-<p>:warning: 苹果M1芯片有已知的问题，主要是由于TensorFlow的兼容性问题。在这些问题被修复之前，你可以使用<a href="https://github.com/deezer/spleeter/issues/607#issuecomment-1021669444">这个变通办法</a>。</p>
-</blockquote>
-<p>你应该会在<code>output/audio_example</code>文件夹中得到两个分离的音频文件（<code>vocals.wav</code>和<code>accompatiment.wav</code>）。</p>
-<p>关于详细的文档，请查看<a href="https://github.com/deezer/spleeter/wiki/1.-Installation">仓库的wiki</a></p>
-<h2 id="heading-1">开发和测试</h2>
-<p>这个项目是用Poetry管理的，要运行测试套件，你可以执行以下一组命令：</p>
-<pre><code class="language-bash"># Clone spleeter repository
-git clone https://github.com/Deezer/spleeter &amp;&amp; cd spleeter
-# Install poetry
-pip install poetry
-# Install spleeter dependencies
-poetry install
-# Run unit test suite
-poetry run pytest tests/
-</code></pre>
-<h2 id="heading-2">疑难解答</h2>
-<p>Spleeter是一个复杂的软件，尽管我们不断努力改善和测试它，但你可能会遇到意想不到的问题。如果是这种情况，请先查看<a href="https://github.com/deezer/spleeter/wiki/5.-FAQ">常见问题页面</a>以及<a href="https://github.com/deezer/spleeter/issues">当前开放的问题</a>列表。</p>
-<h3 id="windows">Windows用户</h3>
-<p>似乎有时快捷键命令 <code>spleeter</code> 在Windows上不能正常工作。这是一个已知的问题，我们希望能很快解决。在此期间，在命令行中用 <code>python -m spleeter separate</code> 代替 <code>spleeter separate</code> ，它应该可以工作。</p>
-<h2 id="-google-colab">在线使用 Google Colab</h2>
-<p>打开 <a href="https://colab.research.google.com/github/deezer/spleeter/blob/master/spleeter.ipynb">Colab</a> ，保存副本，开始使用。</p>
-<p>这里预先写好了项目的整个代码，点击“代码执行程序”-“全部运行”，将所有的代码都运行一下。<br />
-<img src="/post-images/1679738350641.png" alt="" /><br />
-程序会自动运行，安装各种依赖、库文件，并将一个预设的audio_example.mp3 音频文件进行人声、伴奏分离。</p>
-<p>我们试一下分离自己上传的音频文件，这里准备了一个叫 <a href="https://github.com/xiaxi626/spleeter">op-audio.mp3</a> 的文件，点击左边的上传按钮即可将文件上传到云端。</p>
-<pre><code class="language-bash">/*装载 Google 云端硬盘*/
-from google.colab import drive
-drive.mount('/content/drive')
-/*在右边新建一个代码块，照着上面的分离代码修改一下，再运行一遍。*/
-spleeter separate -o output/ op-audio.mp3
-</code></pre>
-<p>注意这里不要改上面代码，不然——</p>
-<pre><code class="language-bash">!wget /content/op-audio.mp3
-/content/op-audio.mp3: Scheme missing.
-</code></pre>
-<p>当然你也可以像示例一样分离存储在 github 仓库中的音频文件，像这样<br />
-<img src="/post-images/1679737905948.png" alt="" /><br />
-最后分离出来两个文件，accompaniment.wav为伴奏，vocals.wav为人声。</p>
-<h2 id="-spleetergui-">安装 spleeterGUI 图形界面软件</h2>
-<p>spleeterGUI 是基于 spleeter 进行深入开发的适用于 windows 平台的图形化界面软件。</p>
-<p>下载地址：<a href="https://github.com/boy1dr/SpleeterGui">https://github.com/boy1dr/SpleeterGui</a></p>
-<p>最新的安装程序可以从这里下载 <a href="https://makenweb.com/#spleetergui">https://makenweb.com/#spleetergui</a><br />
-不需要安装python或spleeter，这个应用程序包含一个预装了spleeter的便携式python版本。<br />
-<img src="/post-images/1679739851463.png" alt="" /><br />
-这个项目的目的是使Windows用户能够轻松地下载和运行Spleeter，而不需要使用命令行工具来完成。</p>
-<p>支持的语言： 阿拉伯语、中文、英语、法语、印地语、意大利语、日语、俄语、西班牙语。</p>
-<p>Intel Pentium &amp; Celeron CPU不能运行spleeter</p>
-<p>如果你运行的不是intel i5/7/9或Ryzen 5/7，或者不确定你的CPU是否支持AVX，请在尝试安装spleeter之前使用AVX检查工具（<a href="https://makenweb.com/#avxcheck">上文</a>）。</p>
-<p>打开软件后选择 parts to separate（分离声部，一般就是2），设置好文件保存路径（save to），选择需要分离的音频文件（支持多个音频文件），即可快速导出！</p>
-<p>加载多个音频文件时，输出路径下会输出多个原文件名的文件夹，内含 <code>accompaniment.wav</code> 和 <code>vocals.wav</code>。</p>
-<p>运行过程中遇到问题请前往  <a href="https://github.com/boy1dr/SpleeterGui/issues">Github Issue</a> 和 <a href="https://makenweb.com/spleeter_help">spleeter_help</a> 搜索。<br />
-<strong>问题</strong></p>
-<blockquote>
-<p>httpx.ReadTimeout: The read operation timed out<br />
-Can&rsquo;t load save_path when it is None</p>
-</blockquote>
-<p><strong>解决方法</strong><br />
-删除“…/SpleeterGUI/pretrained_models“文件夹中的模型文件夹（如“2stems”）。<br />
-下载“https://github.com/deezer/spleeter/releases“中“Spleeter public release“的文件，把它们解压到“pretrained_models“文件夹。</p>
 </span></div>
                         </div>
                         

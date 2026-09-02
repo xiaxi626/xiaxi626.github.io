@@ -53,7 +53,6 @@
 <meta name="twitter:title" content="vigourpine">
 <meta name="twitter:description" content="Welcome to Gridea Pro">
 <meta name="twitter:image" content="/media/images/avatar.jpg">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css" crossorigin="anonymous">
 </head>
 <body>
     <div id="stage" class="container">
@@ -157,6 +156,219 @@
             <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
                 <div class="autopagerize_page_element">
                     <div class="content">
+                        
+                        <div class="post-container">
+                            <p class="post-title">
+                                <a href="/post/rang-nei-rong-xing-skill-de-fa-bu-he-an-zhuang-bian-de-xiang-xie-markdown-yi-yang-jian-dan/">让内容型 Skill 的发布和安装变得像写 Markdown 一样简单</a>
+                            </p>
+                            <p class="post-meta">
+                                <span class="date meta-item">Posted at&nbsp;2026-09-03</span>
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span>&nbsp;</span>
+                                    <a href="/post/rang-nei-rong-xing-skill-de-fa-bu-he-an-zhuang-bian-de-xiang-xie-markdown-yi-yang-jian-dan/#comments">Comments</a>
+                                </span>
+                                
+                                
+                                
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-tag"></i>
+                                    <span>&nbsp;</span>
+                                    
+                                    <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+                                    <span>&nbsp;</span>
+                                    
+                                    <a class="a-tag" href="/tag/ai/" title="AI">AI</a>
+                                    <span>&nbsp;</span>
+                                    
+                                </span>
+                                
+                            </p>
+                            
+                            
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><h1 id="dsh-skills-nexus-dsh--skill-">dsh-skills-nexus：让 DSH 生态「零门槛」接入任意 Skill 仓库</h1>
+<blockquote>
+<p>如果你厌倦了为每一个 DSH Skill 写 Cordis 插件包装层，这个工具可能是你一直在等的「万能适配器」。</p>
+</blockquote>
+<hr />
+<h2 id="heading">一、项目定位：它解决了一个什么痛点？</h2>
+<p>DSH（DeepSeek Harness）的 Skill 生态正在快速扩张，但官方 <code>dsh plugin add</code> 命令有一个隐形门槛：<strong>只有包含 <code>dsh.bundle.patch</code> 的 Cordis 插件包才能被注册为 profile 层</strong>。这意味着，一个纯内容仓库——里面只有 <code>SKILL.md</code> 和一些参考文件——根本无法通过官方渠道接入 DSH。</p>
+<p><code>dsh-skills-nexus</code> 正是为了填平这个鸿沟而生。它的设计哲学非常简洁：</p>
+<blockquote>
+<p><strong>Skill 仓库保持纯粹，适配工作由 Nexus 一次搞定。</strong></p>
+</blockquote>
+<p>思路是：与其让每个 Skill 作者都去学习 Cordis 插件开发、维护 <code>package.json</code> 和 <code>cordis.patch.yml</code>，不如做一个「通用适配层」——安装一次 Nexus，之后任何含 <code>SKILL.md</code> 的 GitHub 仓库都能一键注册为 DSH Skill。</p>
+<hr />
+<h2 id="symlink-">二、核心机制：Symlink 桥接，而非重新发明轮子</h2>
+<p>Nexus 的实现方式相当优雅，没有搞复杂的运行时注入或自定义 Provider：</p>
+<pre><code>GitHub 仓库 ──clone──► ~/.dsh/skills-nexus/repos/&lt;name&gt;/
+                              │
+                              │ symlink
+                              ▼
+                    ~/.dsh/skills/&lt;name&gt;  ←── DSH 官方文件系统 Provider 自动发现
+</code></pre>
+<p>也就是说，Nexus 本身只负责<strong>克隆</strong>和<strong>创建符号链接</strong>，真正的 Skill 发现、热重载、文件监控全部交给 DSH 原生的文件系统 Provider。这种设计有几个显著好处：</p>
+<ul>
+<li><strong>零运行时开销</strong>：Nexus 不参与 Skill 的加载和解析，DSH 直接通过 symlink 读取原始文件。</li>
+<li><strong>与官方机制完全兼容</strong>：不需要自定义 Provider，也不会破坏 DSH 的更新链路。</li>
+<li><strong>卸载干净</strong>：<code>remove</code> 命令同时删除克隆目录和 symlink，不留残余。</li>
+</ul>
+<hr />
+<h2 id="heading-1">三、功能逐项评测</h2>
+<h3 id="31-">3.1 安装与注册：一条命令，极简体验</h3>
+<pre><code class="language-bash"># 安装 Nexus（只需一次）
+dsh plugin --profile web add &quot;github:xiaxi626/dsh-skills-nexus&quot;
+
+# 注册任意 Skill 仓库
+dsh-skills-nexus add github:owner/repo
+dsh-skills-nexus add github:owner/repo#dev      # 指定分支
+dsh-skills-nexus add owner/repo --subdir skills/foo  # 子目录安装
+</code></pre>
+<p>支持的 URL 格式非常全面，从 <code>github:owner/repo</code> 到完整 HTTPS URL、SSH、甚至 bare <code>owner/repo</code> 简写都兼容。对「集合仓库」（如 <code>trae-community/trae-skills</code> 这种多个 Skill 嵌套在子目录下的结构）也有 <code>--subdir</code> 参数支持，每个子目录独立克隆、独立管理，互不影响。</p>
+<h3 id="32-">3.2 智能仓库检测：不会误操作</h3>
+<p>Nexus 在 <code>add</code> 时会自动检测仓库类型，并给出明确反馈：</p>
+<table>
+<thead>
+<tr>
+<th>仓库类型</th>
+<th>Nexus 行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>纯 SKILL.md 内容仓库</td>
+<td>直接注册</td>
+</tr>
+<tr>
+<td>SKILL.md + DSH 插件包装层</td>
+<td>询问是否忽略包装层，或建议用 <code>dsh plugin add</code></td>
+</tr>
+<tr>
+<td>纯 DSH 插件（无 SKILL.md）</td>
+<td>拒绝注册，提示使用官方安装方式</td>
+</tr>
+<tr>
+<td>无 SKILL.md 也无插件标记</td>
+<td>报错退出</td>
+</tr>
+<tr>
+<td>集合仓库（未指定 <code>--subdir</code>）</td>
+<td>拒绝并提示使用 <code>--subdir</code></td>
+</tr>
+</tbody>
+</table>
+<p>检测逻辑很贴心，尤其是「混合仓库」的交互设计——既给了用户选择权，又防止了误用。超过 20 个 Skill 的集合仓库还会触发确认提示，避免误装整个巨型仓库。</p>
+<h3 id="33-">3.3 版本锁定：轻量级但可靠</h3>
+<p>Nexus 在注册时会记录解析后的精确 commit SHA，作为轻量锁：</p>
+<pre><code class="language-bash">dsh-skills-nexus list
+# 输出包含 commit、subdir、启用状态
+</code></pre>
+<ul>
+<li><strong>分支锁定</strong>：<code>update</code> 会执行 <code>git pull</code> fast-forward</li>
+<li><strong>标签/提交锁定</strong>：<code>update</code> 只验证 checkout 是否匹配，不自动漂移</li>
+</ul>
+<p>没有引入复杂的 lockfile 格式，仅靠 manifest 里的 <code>commit</code> 字段就能实现「可复现安装」。对于追求稳定的用户，可以用 <code>#tag</code> 或 <code>#commit-sha</code> 固定版本；想要跟随上游更新的，用 <code>#branch</code> 即可。</p>
+<h3 id="34-enable--disable--remove">3.4 生命周期管理：enable / disable / remove</h3>
+<pre><code class="language-bash">dsh-skills-nexus enable &lt;name&gt;    # 创建 symlink（默认已启用）
+dsh-skills-nexus disable &lt;name&gt;   # 移除 symlink，保留克隆
+dsh-skills-nexus remove &lt;name&gt;    # 彻底删除
+</code></pre>
+<p><code>disable</code> 的存在很实用——临时下线某个 Skill 测试效果，不需要重新克隆。<code>remove</code> 会清理克隆目录 + symlink + 注册记录，卸载路径很干净。</p>
+<h3 id="35-">3.5 名称规范化：防御性设计</h3>
+<p>DSH 要求 Skill 名称为小写 kebab-case（<code>[a-z0-9]+</code> 段，单横线分隔）。Nexus 在 <code>add</code> 时会自动将不规范的 frontmatter 名称转换为 kebab-case，并给出 <code>⚠</code> 警告。</p>
+<p>这种「自动修正 + 警告」的策略比直接报错更友好，减少了用户因命名规范问题而卡住的概率。</p>
+<hr />
+<h2 id="-nexus-dsh-plugin-add">四、与官方方案的对比：什么时候用 Nexus，什么时候用 <code>dsh plugin add</code>？</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th><code>dsh-skills-nexus</code></th>
+<th><code>dsh plugin add</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>适用仓库</strong></td>
+<td>纯内容仓库（SKILL.md + 参考文件）</td>
+<td>纯 Cordis 插件（含 <code>dsh.bundle.patch</code>）</td>
+</tr>
+<tr>
+<td><strong>仓库要求</strong></td>
+<td>无需 package.json、无需 Cordis 代码</td>
+<td>需要完整的 Cordis 插件结构</td>
+</tr>
+<tr>
+<td><strong>安装命令</strong></td>
+<td><code>dsh-skills-nexus add github:owner/repo</code></td>
+<td><code>dsh plugin add github:owner/repo</code></td>
+</tr>
+<tr>
+<td><strong>版本管理</strong></td>
+<td>内置 commit 锁定 + update</td>
+<td>依赖 pnpm 版本解析</td>
+</tr>
+<tr>
+<td><strong>构建脚本</strong></td>
+<td>绕过 pnpm <code>allowBuilds</code> 拦截</td>
+<td>受 pnpm 构建策略约束</td>
+</tr>
+<tr>
+<td><strong>运行时</strong></td>
+<td>无额外开销（纯 symlink）</td>
+<td>Cordis 插件层加载</td>
+</tr>
+</tbody>
+</table>
+<p>两者是互补关系，不是替代关系。如果仓库有 <code>SKILL.md</code> → 用 Nexus；如果仓库是纯插件代码 → 用 <code>dsh plugin add</code>；两者兼具 → 任选。</p>
+<hr />
+<h2 id="heading-2">五、适用场景与推荐人群</h2>
+<h3 id="-nexus-">强烈推荐使用 Nexus 的场景：</h3>
+<ol>
+<li><strong>Skill 作者</strong>：你写了一个 Prompt 技巧或工作流指南，只想用 <code>SKILL.md</code> 描述它，不想为了发布而学习 Cordis 插件开发。</li>
+<li><strong>企业内部 Skill 库</strong>：公司内网 Git 仓库里有一堆业务相关的 Skill 文档，用 Nexus 可以统一管理，无需逐个包装。</li>
+<li><strong>社区 Skill 聚合</strong>：维护一个「awesome-dsh-skills」集合仓库，社区成员用 <code>--subdir</code> 按需安装其中单个 Skill。</li>
+<li><strong>快速试用</strong>：看到 GitHub 上某个 Skill 仓库想立刻体验，Nexus 是最快的路径。</li>
+</ol>
+<h3 id="heading-3">不太适合的场景：</h3>
+<ul>
+<li>仓库本身已经是 Cordis 插件（Nexus 会建议你走官方渠道）。</li>
+<li>需要复杂的运行时注入或自定义 Provider（Nexus 的定位是内容适配，不是插件框架）。</li>
+</ul>
+<hr />
+<h2 id="heading-4">六、优缺点总结</h2>
+<h3 id="-">✅ 优点</h3>
+<ul>
+<li><strong>零门槛接入</strong>：Skill 作者完全不需要懂 Cordis 或 Node.js，一个 Markdown 文件就能发布。</li>
+<li><strong>设计优雅</strong>：利用 symlink + 官方文件系统 Provider，不重复造轮子。</li>
+<li><strong>版本可控</strong>：轻量 commit 锁定，分支可更新、标签可固定。</li>
+<li><strong>跨平台友好</strong>：Windows 自动用 junction（无需管理员权限），其他平台用标准 symlink。</li>
+<li><strong>防御性强</strong>：仓库类型自动检测、名称规范化、集合仓库安全提示。</li>
+<li><strong>卸载干净</strong>：remove 不留残余，不会污染 DSH 环境。</li>
+</ul>
+<h3 id="--1">⚠️ 需要注意的点</h3>
+<ul>
+<li><strong>需要重启 DSH 才能识别新 Skill</strong>：添加后必须重启 profile（或等待文件系统 Provider 重扫），不能热插拔。这是 DSH 文件系统 Provider 的固有限制，不是 Nexus 本身的问题。</li>
+<li><strong>集合仓库每个子目录独立克隆</strong>：P1 设计选择（独立克隆）意味着如果集合仓库有 10 个 Skill，会克隆 10 份完整仓库。虽然保证了隔离性，但对磁盘空间敏感的用户需要注意。</li>
+<li><strong>无 <code>SKILL.md</code> 的仓库无法注册</strong>：这是设计上的边界，不是缺陷，但需要用户理解 Nexus 的定位。</li>
+</ul>
+<hr />
+<p><code>dsh-skills-nexus</code> 是 DSH 生态中一个「小而美」的基础设施工具。它没有试图做太多事，而是精准地解决了一个真实痛点：<strong>让内容型 Skill 的发布和安装变得像写 Markdown 一样简单</strong>。对于 Skill 作者来说，这意味着发布成本从「学习 Cordis 插件开发」降到了「写一份 README」；对于用户来说，这意味着可以一键接入社区中大量纯文档型的 Skill 仓库。</p>
+<p>如果你正在使用 DSH，并且希望探索社区中那些只有 <code>SKILL.md</code> 的宝藏仓库，安装 Nexus 几乎是必选项。它不会替代官方的插件系统，但它极大地扩展了 DSH 的可用 Skill 边界——而这正是生态繁荣所需要的。</p>
+<hr />
+<blockquote>
+<p><strong>安装命令</strong></p>
+<pre><code class="language-bash">dsh plugin --profile web add &quot;github:xiaxi626/dsh-skills-nexus&quot;
+</code></pre>
+<p>重启 profile 后，即可用 <code>dsh-skills-nexus add</code> 探索任意 Skill 仓库。</p>
+</blockquote>
+</span></div>
+                        </div>
                         
                         <div class="post-container">
                             <p class="post-title">
@@ -292,6 +504,42 @@ git push origin master   # 第一次可用 git push -u origin master
 </code></pre>
 <p>如果推送时发现被拒绝（因为远程有新提交），回到第2步执行 <code>git pull --rebase</code> 再推送。</p>
 <p>这样就能避免绝大多数“非快进”错误，也能保持提交历史整洁。</p>
+<h2 id="heading-3">五、强制推送回退</h2>
+<p>git commit &ndash;amend：只适用于 “刚写完代码，还没 push” 的情况。作用是 “替换” 上一次提交。<br />
+它不是用来提交的。如果你add一次新的改动，然后输入这个命令，会看到的上一次commit信息，如果你修修改改提交了，会出现阻止信息。<br />
+如果应对这次阻止你直接输入了——</p>
+<pre><code class="language-git">git push --force-with-lease origin master
+</code></pre>
+<p>强制推送以恢复远程，会覆盖掉上一次提交信息。<br />
+遇到这个情况你需要在本地输入命令以查看操作日志，找到被 amend 之前的那个提交哈希值（比如叫 a1b2c3d）</p>
+<pre><code class="language-git"># 1. 查看操作日志，找到被 amend 之前的那个提交哈希值（比如叫 a1b2c3d）
+git reflog
+
+## 这条命令对比旧提交(708cd3f)和新提交(0f50a4c)，把差异存成补丁
+git diff 708cd3f 0f50a4c &gt; my_changes.patch
+
+# 2. 把本地分支强行指回那个哈希值（恢复第4次）
+git reset --hard a1b2c3d
+
+# 3. 把被覆盖掉的提交重新推回远程，恢复远程的历史
+git push --force-with-lease origin master
+
+# 4.把你刚才备份的补丁，应用到当前代码上
+git apply my_changes.patch
+</code></pre>
+<p>（如果这一步提示冲突，别怕，那是因为补丁里的内容和你现在的代码略有偏差，手动把补丁里的修改重新加进去就行，通常不会）<br />
+我的建议是最好清除当前本地文件夹除了.git外的其他所有文件，把本地的备份拿过来放进去。</p>
+<pre><code class="language-git"># 5. 正常提交成为第5次
+git add .
+git commit -m &quot;这是新增的第5次提交&quot;
+git push origin master
+</code></pre>
+<h2 id="heading-4">六、提交</h2>
+<p>通常我们见到的<code>git commit -m</code>是跳过编辑器，直接把这句引号里的内容作为提交信息。<br />
+如果我们想编辑提交内容应该<code>git commit</code>，它会弹出一个文本编辑器（黑框里的 Vim 或 Nano），让你在里面写长篇大论的提交说明。<br />
+此时编辑器会出现一堆以#号开头的文字，这些都是注释说明不会出现在提交信息里。我们输入命令后会默认进入INSERT插入模式，光标来到第一行这个空行。你将提交信息粘贴进编辑器即可。<br />
+若想清空编辑器信息，Windows系统可以按Esc键，输入vim快速删除全部内容的命令<code>ggdG</code>然后回车，在输入i回到插入模式。<br />
+输入完成后按Esc键，输入<code>!wq</code>回车，提交就完成了。</p>
 </span></div>
                         </div>
                         
@@ -2335,720 +2583,6 @@ Gdc → 直流漏电导
 
 0 → 介质损耗电导（静态模型不用）
 </code></pre>
-</span></div>
-                        </div>
-                        
-                        <div class="post-container">
-                            <p class="post-title">
-                                <a href="/post/dian-zi-si-ji-guan-can-shu-ji-suan-fang-fa-di-yi-bu-fen/">电子四极管参数计算方法——第一部分</a>
-                            </p>
-                            <p class="post-meta">
-                                <span class="date meta-item">Posted at&nbsp;2026-05-12</span>
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    <span>&nbsp;</span>
-                                    <a href="/post/dian-zi-si-ji-guan-can-shu-ji-suan-fang-fa-di-yi-bu-fen/#comments">Comments</a>
-                                </span>
-                                
-                                
-                                
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-tag"></i>
-                                    <span>&nbsp;</span>
-                                    
-                                    <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
-                                    <span>&nbsp;</span>
-                                    
-                                </span>
-                                
-                            </p>
-                            
-                            
-
-                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><p>已知电子管阳极电压<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mi>a</mi></msub><mo>=</mo><mn>16</mn><mi>k</mi><mi>V</mi></mrow><annotation encoding="application/x-tex">V_{a} = 16kV</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.2222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">16</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mord mathnormal" style="margin-right:0.2222em;">V</span></span></span></span>，帘栅极电压<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><msub><mi>g</mi><mn>2</mn></msub></msub><mo>=</mo><mn>1200</mn><mi>V</mi></mrow><annotation encoding="application/x-tex">V_{g_{2}} = 1200V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.2222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">1200</span><span class="mord mathnormal" style="margin-right:0.2222em;">V</span></span></span></span>，导通角70°。</p>
-<p><img src="/post-images/tetrode/image1.png" alt="" /></p>
-<p>查询TH781技术规格书，已知工作频率100MHz，帘栅压1500V时输出功率为280kW。</p>
-<p>即<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mrow><mi>g</mi><mn>2</mn></mrow></msub></mrow><annotation encoding="application/x-tex">E_{g2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>=1500V，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mo lspace="0em" rspace="0em">∼</mo></msub></mrow><annotation encoding="application/x-tex">P_{\sim}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1068em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">∼</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>=280kW。</p>
-<p><img src="/post-images/tetrode/image2.png" alt="" /></p>
-<p>由发射管的板流恒流特性曲线可知，每顺势都有一对栅压<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mi>g</mi></msub></mrow><annotation encoding="application/x-tex">e_{g}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>和板压<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mi>a</mi></msub></mrow><annotation encoding="application/x-tex">e_{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>互相对应，</p>
-<p>当wt=0°瞬时，有<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mi>g</mi></msub><mo>=</mo><msub><mi>e</mi><mrow><mi>g</mi><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub></mrow><annotation encoding="application/x-tex">e_{g} = e_{gmax}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="mord mathnormal mtight">ma</span><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>与<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mi>a</mi></msub><mo>=</mo><msub><mi>e</mi><mrow><mi>a</mi><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">e_{a} = e_{amin}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">amin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>对应；</p>
-<p>我们取此时<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>U</mi><mi>a</mi></mrow><mrow><mi>E</mi><mi>a</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{Ua}{Ea}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0576em;">E</span><span class="mord mathnormal mtight">a</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">U</span><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>的经验值，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>U</mi><mi>a</mi></mrow><mrow><mi>E</mi><mi>a</mi></mrow></mfrac><mo>=</mo><mn>0.9</mn></mrow><annotation encoding="application/x-tex">\frac{Ua}{Ea} = 0.9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0576em;">E</span><span class="mord mathnormal mtight">a</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">U</span><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.9</span></span></span></span>得，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mrow><mi>a</mi><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub><mo>=</mo><msub><mi>E</mi><mi>a</mi></msub><mo>−</mo><msub><mi>U</mi><mi>a</mi></msub><mo>=</mo><mn>0.1</mn><msub><mi>E</mi><mi>a</mi></msub></mrow><annotation encoding="application/x-tex">e_{amin} = E_{a} - U_{a} = 0.1E_{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">amin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord">0.1</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mi>a</mi></msub><mo>=</mo><mn>0.9</mn><msub><mi>E</mi><mi>a</mi></msub></mrow><annotation encoding="application/x-tex">U_{a} = 0.9E_{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord">0.9</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>=14.4kV;</p>
-<p>当wt=90°瞬时，有<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mi>g</mi></msub><mo>=</mo><msub><mi>E</mi><mi>g</mi></msub></mrow><annotation encoding="application/x-tex">e_{g} = E_{g}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>与<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mi>a</mi></msub><mo>=</mo><msub><mi>E</mi><mi>a</mi></msub></mrow><annotation encoding="application/x-tex">e_{a} = E_{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>对应；</p>
-<p>确定静态工作点为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mi>a</mi></msub></mrow><annotation encoding="application/x-tex">e_{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>=16kV，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>a</mi></msub></mrow><annotation encoding="application/x-tex">I_{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>=0A。由此可得<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mrow><mi>a</mi><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">e_{amin}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">amin</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>=1.6kV。</p>
-<p>根据发射管的输出功率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mo lspace="0em" rspace="0em">∼</mo></msub><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>I</mi><msub><mi>a</mi><mn>1</mn></msub></msub><msub><mi>U</mi><mi>a</mi></msub></mrow><annotation encoding="application/x-tex">P_{\sim} = \frac{1}{2}I_{a_{1}}U_{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1068em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">∼</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，</p>
-<p>得<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>U</mi><mi>a</mi></mrow><mrow><mi>E</mi><mi>a</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{Ua}{Ea}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0576em;">E</span><span class="mord mathnormal mtight">a</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">U</span><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>取经验值时的基波分量<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mrow><mi>a</mi><mn>1</mn></mrow></msub><mo>=</mo><mfrac><mrow><mn>2</mn><msub><mi>P</mi><mo lspace="0em" rspace="0em">∼</mo></msub></mrow><mrow><mn>0.9</mn><msub><mi>E</mi><mi>a</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">I_{a1} = \frac{2P_{\sim}}{0.9E_{a}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3335em;vertical-align:-0.4451em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8884em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0.9</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.0576em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1191em;"><span style="top:-2.357em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mrel mtight">∼</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4451em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>=2*280/(0.9*16)=<br />
-38.8889 A</p>
-<p>当wt=0瞬时，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mrow><mi>g</mi><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub></mrow><annotation encoding="application/x-tex">e_{gmax}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="mord mathnormal mtight">ma</span><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>时对应的Im，根据丙类放大器基波电流与分解系数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\alpha_{1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的关系：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mrow><mi>a</mi><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>I</mi><mi>m</mi></msub><mo>∗</mo><msub><mi>α</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">I_{a1} = I_{m}*\alpha_{1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，解的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>m</mi></msub><mo>=</mo><mfrac><msub><mi>I</mi><mrow><mi>a</mi><mn>1</mn></mrow></msub><msub><mi>α</mi><mn>1</mn></msub></mfrac></mrow><annotation encoding="application/x-tex">I_{m} = \frac{I_{a1}}{\alpha_{1}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3335em;vertical-align:-0.4451em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8884em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0037em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0785em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4451em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>；</p>
-<p><img src="/post-images/tetrode/image3.png" alt="" /></p>
-<p>根据<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi><mn>1</mn></msub><mo>=</mo><mfrac><mrow><mi>θ</mi><mo>−</mo><mi>sin</mi><mo>⁡</mo><mi>θ</mi><mi>cos</mi><mo>⁡</mo><mi>θ</mi></mrow><mrow><mi>π</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>cos</mi><mo>⁡</mo><mrow><mi>θ</mi><mo stretchy="false">)</mo></mrow></mrow></mfrac></mrow><annotation encoding="application/x-tex">\alpha_{1} = \frac{\theta - \sin\theta\cos\theta}{\pi(1 - \cos{\theta)}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.4001em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">π</span><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mop mtight"><span class="mtight">c</span><span class="mtight">o</span><span class="mtight">s</span></span><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0278em;">θ</span><span class="mclose mtight">)</span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0278em;">θ</span><span class="mbin mtight">−</span><span class="mop mtight"><span class="mtight">s</span><span class="mtight">i</span><span class="mtight">n</span></span><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mord mathnormal mtight" style="margin-right:0.0278em;">θ</span><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mop mtight"><span class="mtight">c</span><span class="mtight">o</span><span class="mtight">s</span></span><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mord mathnormal mtight" style="margin-right:0.0278em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>，求得<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\alpha_{1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>=0.43555446。</p>
-<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">I_{m}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>=38.8889/0.43555446=89.2859A；</p>
-<p>当wt=0瞬时，取P点为(0.1$E_{a}<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3em;vertical-align:-0.1944em;"></span><span class="mpunct">,</span></span></span></span>e_{amin}$)=(1.6kV,188V)</p>
-<p>当wt=90°瞬时,取Q点为(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mi>a</mi></msub></mrow><annotation encoding="application/x-tex">E_{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mi>g</mi></msub></mrow><annotation encoding="application/x-tex">E_{g}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>)=(16kV,-380V)</p>
-<p>从坐标点获取参数：</p>
-<p>栅偏压 Eg = Q.y = -380.00 V</p>
-<p>栅极激励电压最大值 eg_max = A.y = 188.00 V</p>
-<p>栅极激励电压振幅 Ug = eg_max + |Eg| = 188.00 + 380.00 = 568.00 V</p>
-<p><img src="/post-images/tetrode/image4.png" alt="" /></p>
-<p>十三点法计算原理如下&mdash;&mdash;</p>
-<p><img src="/post-images/tetrode/image5.png" alt="" /><img src="/post-images/tetrode/image6.png" alt="" /></p>
-<p>原理：沿斜边AQ从A点(0°)到Q点(90°)按<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mn>1</mn><mo>−</mo><mi>c</mi><mi>o</mi><mi>s</mi><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t = 1 - cos(\theta)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">cos</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0278em;">θ</span><span class="mclose">)</span></span></span></span>比例取点</p>
-<p>请输入三个顶点坐标（格式：横坐标kV 纵坐标V）：</p>
-<p>直角顶点 O(x y): 1.6 -380</p>
-<p>水平端点 Q(x y): 16 -380</p>
-<p>垂直端点 A(x y): 1.6 188</p>
-<p>三角形信息:</p>
-<p>斜边端点：A(1.600 kV, 188.0 V) → Q(16.000 kV, -380.0 V)</p>
-<p>斜边投影：Δx = 14.400 kV, Δy = -568.0 V</p>
-<p>直角验证（OA·OQ）: 0.000000 (应≈0)</p>
-<p>经过十三点法计算可得，ABCDEF点的坐标分别为：</p>
-<table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; text-align: center; font-family: 'Times New Roman', serif; font-size: 14px;">
-  <tr style="background-color: #f5f5f5;">
-    <th style="border: 1px solid black;">角度</th>
-    <th style="border: 1px solid black;">比例 <i>t</i></th>
-    <th style="border: 1px solid black;">距A长度</th>
-    <th style="border: 1px solid black;">横坐标(kV)</th>
-    <th style="border: 1px solid black;">纵坐标(V)</th>
-    <th style="border: 1px solid black;">点</th>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;">0.0°</td>
-    <td style="border: 1px solid black;">0</td>
-    <td style="border: 1px solid black;">0</td>
-    <td style="border: 1px solid black;">1.6</td>
-    <td style="border: 1px solid black;">188</td>
-    <td style="border: 1px solid black;">A</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;">15.0°</td>
-    <td style="border: 1px solid black;">0.034074</td>
-    <td style="border: 1px solid black;">19.36</td>
-    <td style="border: 1px solid black;">2.0907</td>
-    <td style="border: 1px solid black;">168.65</td>
-    <td style="border: 1px solid black;">B</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;">30.0°</td>
-    <td style="border: 1px solid black;">0.133975</td>
-    <td style="border: 1px solid black;">76.122</td>
-    <td style="border: 1px solid black;">3.5292</td>
-    <td style="border: 1px solid black;">111.9</td>
-    <td style="border: 1px solid black;">C</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;">45.0°</td>
-    <td style="border: 1px solid black;">0.292893</td>
-    <td style="border: 1px solid black;">166.417</td>
-    <td style="border: 1px solid black;">5.8177</td>
-    <td style="border: 1px solid black;">21.64</td>
-    <td style="border: 1px solid black;">D</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;">60.0°</td>
-    <td style="border: 1px solid black;">0.5</td>
-    <td style="border: 1px solid black;">284.091</td>
-    <td style="border: 1px solid black;">8.8</td>
-    <td style="border: 1px solid black;">-96</td>
-    <td style="border: 1px solid black;">E</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;">75.0°</td>
-    <td style="border: 1px solid black;">0.741181</td>
-    <td style="border: 1px solid black;">421.126</td>
-    <td style="border: 1px solid black;">12.273</td>
-    <td style="border: 1px solid black;">-232.99</td>
-    <td style="border: 1px solid black;">F</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;">90.0°</td>
-    <td style="border: 1px solid black;">1</td>
-    <td style="border: 1px solid black;">568.183</td>
-    <td style="border: 1px solid black;">16</td>
-    <td style="border: 1px solid black;">-380</td>
-    <td style="border: 1px solid black;">Q</td>
-  </tr>
-</table>
-<p>通过观察恒流特性曲线得到，</p>
-<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>a</mi></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{a}(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span></span></span></span>=<br />
-89.2859A,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>a</mi></msub><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{a}(B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">)</span></span></span></span>=85.8A,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>a</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{a}(C)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mclose">)</span></span></span></span>=72.02A,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>a</mi></msub><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{a}(D)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mclose">)</span></span></span></span>=48.94A,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>a</mi></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{a}(E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mclose">)</span></span></span></span>=21.81A,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>a</mi></msub><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{a}(F)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mclose">)</span></span></span></span>=3.18A</p>
-<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>g</mi></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{g}(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span></span></span></span>=7.81A,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>g</mi></msub><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{g}(B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">)</span></span></span></span>=6.49A, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>g</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{g}(C)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mclose">)</span></span></span></span>=3.10A, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>g</mi></msub><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{g}(D)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mclose">)</span></span></span></span>=0.63A,<br />
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>g</mi></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{g}(E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mclose">)</span></span></span></span>=0A, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>g</mi></msub><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{g}(F)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mclose">)</span></span></span></span>=0A</p>
-<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><msub><mi>g</mi><mn>2</mn></msub></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{g_{2}}(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span></span></span></span>=5.43A,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><msub><mi>g</mi><mn>2</mn></msub></msub><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{g_{2}}(B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">)</span></span></span></span>=3.38A,<br />
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><msub><mi>g</mi><mn>2</mn></msub></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{g_{2}}(C)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mclose">)</span></span></span></span>=1.06A,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><msub><mi>g</mi><mn>2</mn></msub></msub><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{g_{2}}(D)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mclose">)</span></span></span></span>=0A,<br />
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><msub><mi>g</mi><mn>2</mn></msub></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{g_{2}}(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span></span></span></span>=0A,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><msub><mi>g</mi><mn>2</mn></msub></msub><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_{g_{2}}(B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">)</span></span></span></span>=0A</p>
-<table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; text-align: center; font-family: 'Times New Roman', serif; font-size: 14px;">
-  <tr style="background-color: #f5f5f5;">
-    <th style="border: 1px solid black;">电流</th>
-    <th style="border: 1px solid black;">A</th>
-    <th style="border: 1px solid black;">B</th>
-    <th style="border: 1px solid black;">C</th>
-    <th style="border: 1px solid black;">D</th>
-    <th style="border: 1px solid black;">E</th>
-    <th style="border: 1px solid black;">F</th>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;"><i>i</i><sub>a</sub></td>
-    <td style="border: 1px solid black;">89.2859 A</td>
-    <td style="border: 1px solid black;">85.8 A</td>
-    <td style="border: 1px solid black;">72.02 A</td>
-    <td style="border: 1px solid black;">48.94 A</td>
-    <td style="border: 1px solid black;">21.81 A</td>
-    <td style="border: 1px solid black;">3.18 A</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;"><i>i</i><sub>g</sub></td>
-    <td style="border: 1px solid black;">7.81 A</td>
-    <td style="border: 1px solid black;">6.49 A</td>
-    <td style="border: 1px solid black;">3.10 A</td>
-    <td style="border: 1px solid black;">0.63 A</td>
-    <td style="border: 1px solid black;">0</td>
-    <td style="border: 1px solid black;">0</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;"><i>i</i><sub>(g2)</sub></td>
-    <td style="border: 1px solid black;">5.43 A</td>
-    <td style="border: 1px solid black;">3.38 A</td>
-    <td style="border: 1px solid black;">1.06 A</td>
-    <td style="border: 1px solid black;">0</td>
-    <td style="border: 1px solid black;">0</td>
-    <td style="border: 1px solid black;">0</td>
-  </tr>
-</table>                                                                                                                                                       
-<p><img src="/post-images/tetrode/image7.png" alt="" /></p>
-<p>根据上面得到的值计算<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><msub><mi>a</mi><mn>0</mn></msub></msub></mrow><annotation encoding="application/x-tex">I_{a_{0}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9334em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><msub><mi>a</mi><mn>1</mn></msub></msub></mrow><annotation encoding="application/x-tex">I_{a_{1}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9334em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span></span></span></span>，得到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><msub><mi>a</mi><mn>0</mn></msub></msub></mrow><annotation encoding="application/x-tex">I_{a_{0}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9334em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span></span></span></span>=23.032746A，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><msub><mi>a</mi><mn>1</mn></msub></msub></mrow><annotation encoding="application/x-tex">I_{a_{1}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9334em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span></span></span></span>=39.328625A；</p>
-<p><img src="/post-images/tetrode/image8.png" alt="" /></p>
-<p>根据上面得到的值计算<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><msub><mi>g</mi><mn>0</mn></msub></msub></mrow><annotation encoding="application/x-tex">I_{g_{0}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><msub><mi>g</mi><mn>1</mn></msub></msub></mrow><annotation encoding="application/x-tex">I_{g_{1}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>，得到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><msub><mi>g</mi><mn>0</mn></msub></msub></mrow><annotation encoding="application/x-tex">I_{g_{0}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>=1.177083A，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><msub><mi>g</mi><mn>1</mn></msub></msub></mrow><annotation encoding="application/x-tex">I_{g_{1}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>=2.215583A；</p>
-<p><img src="/post-images/tetrode/image9.png" alt="" /></p>
-<p>根据上面得到的值计算<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><msup><msub><mi>g</mi><mn>2</mn></msub><mn>0</mn></msup></msub></mrow><annotation encoding="application/x-tex">I_{{g_{2}}^{0}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9971em;vertical-align:-0.3137em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5224em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3137em;"><span></span></span></span></span></span></span></span></span></span>，得到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><msup><msub><mi>g</mi><mn>2</mn></msub><mn>0</mn></msup></msub></mrow><annotation encoding="application/x-tex">I_{{g_{2}}^{0}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9971em;vertical-align:-0.3137em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5224em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3137em;"><span></span></span></span></span></span></span></span></span></span>=0.596250A；</p>
-<p><img src="/post-images/tetrode/image10.png" alt="" /></p>
-<p>板级负载电阻<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mrow><mi>o</mi><mi>e</mi></mrow></msub><mo>=</mo><mfrac><msub><mi>U</mi><mi>a</mi></msub><msub><mi>I</mi><msub><mi>a</mi><mn>1</mn></msub></msub></mfrac><mo>=</mo></mrow><annotation encoding="application/x-tex">R_{oe} = \frac{U_{a}}{I_{a_{1}}} =</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">oe</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.4834em;vertical-align:-0.5949em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8884em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.0785em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3448em;margin-left:0em;margin-right:0.1em;"><span class="pstrut" style="height:2.6444em;"></span><span class="mord mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2996em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.357em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.109em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5949em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span></span></span></span> 14400.00<br />
-V / 39.3286 A = 366.1455 Ω；</p>
-<p>输入功率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mo lspace="0em" rspace="0em">∼</mo></msub><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mrow><msub><mi>U</mi><mi>a</mi></msub><mi>I</mi></mrow><mrow><mi>a</mi><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">P_{\sim} = \frac{1}{2}{U_{a}I}_{a1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1068em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">∼</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2514em;"><span style="top:-2.5003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1997em;"><span></span></span></span></span></span></span></span></span></span>=0.5 * 14400.00 V *<br />
-39.3286 A = 283.1661 kW；</p>
-<p>输出功率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>o</mi></msub><mo>=</mo><msub><mi>E</mi><mi>a</mi></msub><msub><mi>I</mi><msub><mi>a</mi><mn>0</mn></msub></msub></mrow><annotation encoding="application/x-tex">P_{o} = E_{a}I_{a_{0}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9334em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span></span></span></span>=16.00 kV * 23.0327 A = 368.5239 kW；</p>
-<p>板级损耗<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>a</mi></msub><mo>=</mo><msub><mi>P</mi><mi>o</mi></msub><mo>−</mo><msub><mi>P</mi><mo lspace="0em" rspace="0em">∼</mo></msub></mrow><annotation encoding="application/x-tex">P_{a} = P_{o} - P_{\sim}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1068em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">∼</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>=368.5239 kW - 283.1661 kW = 85.3578<br />
-kW；</p>
-<p>帘栅极损耗<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><msub><mi>g</mi><mn>2</mn></msub></msub><mo>=</mo><msub><mi>E</mi><msub><mi>g</mi><mn>2</mn></msub></msub><msub><mi>I</mi><msup><msub><mi>g</mi><mn>2</mn></msub><mn>0</mn></msup></msub></mrow><annotation encoding="application/x-tex">P_{g_{2}} = E_{g_{2}}I_{{g_{2}}^{0}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9971em;vertical-align:-0.3137em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5224em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3137em;"><span></span></span></span></span></span></span></span></span></span>=1200.00 V * 0.596250 A<br />
-= 715.5000 W;</p>
-<p>栅极损耗<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>g</mi></msub><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>U</mi><mi>g</mi></msub><msub><mi>I</mi><msub><mi>g</mi><mn>1</mn></msub></msub><mo>−</mo><msub><mi>E</mi><mi>g</mi></msub><msub><mi>I</mi><msub><mi>g</mi><mn>0</mn></msub></msub></mrow><annotation encoding="application/x-tex">P_{g} = \frac{1}{2}U_{g}I_{g_{1}} - E_{g}I_{g_{0}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>=0.5*568.00*2.215583 -<br />
-(-380.00)*1.177083 = 1076.5173 W；</p>
-<p>板级效率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mo>=</mo><mfrac><msub><mi>P</mi><mo lspace="0em" rspace="0em">∼</mo></msub><msub><mi>P</mi><mi>o</mi></msub></mfrac></mrow><annotation encoding="application/x-tex">\eta = \frac{P_{\sim}}{P_{o}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">η</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3335em;vertical-align:-0.4451em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8884em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1191em;"><span style="top:-2.357em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mrel mtight">∼</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4451em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>=283.1661 kW / 368.5239 kW =<br />
-0.768379 (76.84%)；</p>
-<p>激励功率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><msub><mi>g</mi><mo lspace="0em" rspace="0em">∼</mo></msub></msub><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>U</mi><mi>g</mi></msub><msub><mi>I</mi><msub><mi>g</mi><mn>1</mn></msub></msub></mrow><annotation encoding="application/x-tex">P_{g_{\sim}} = \frac{1}{2}U_{g}I_{g_{1}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1191em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mrel mtight">∼</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>=0.5 * 568.00 V *<br />
-2.215583 A = 629.2257 W；</p>
-<p>放大器的输入阻抗<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>g</mi></msub><mo>=</mo><mfrac><msub><mi>U</mi><mi>g</mi></msub><mrow><msub><mi>I</mi><msub><mi>g</mi><mn>1</mn></msub></msub><mo>+</mo><msub><mi>I</mi><msub><mi>a</mi><mn>1</mn></msub></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">R_{g} = \frac{U_{g}}{I_{g_{1}} + I_{a_{1}}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.5806em;vertical-align:-0.5949em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9857em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.0785em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3448em;margin-left:-0.0359em;margin-right:0.1em;"><span class="pstrut" style="height:2.6444em;"></span><span class="mord mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2996em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.357em;"><span></span></span></span></span></span></span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.0785em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3448em;margin-left:0em;margin-right:0.1em;"><span class="pstrut" style="height:2.6444em;"></span><span class="mord mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2996em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.357em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5073em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.109em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2819em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5949em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>=568.00 V /<br />
-(2.215583 A + 39.328625 A) = 13.6722 Ω。</p>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; text-align: center; font-family: 'Times New Roman', serif;">
-  <tr style="background-color: #f5f5f5;">
-    <th style="border: 1px solid black;">符号</th>
-    <th style="border: 1px solid black;">名称</th>
-    <th style="border: 1px solid black;">数值</th>
-    <th style="border: 1px solid black;">单位</th>
-    <th style="border: 1px solid black;">符号</th>
-    <th style="border: 1px solid black;">名称</th>
-    <th style="border: 1px solid black;">数值</th>
-    <th style="border: 1px solid black;">单位</th>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;"><i>I</i><sub>a0</sub></td>
-    <td style="border: 1px solid black;">板极直流分量</td>
-    <td style="border: 1px solid black;">23.0327</td>
-    <td style="border: 1px solid black;">A</td>
-    <td style="border: 1px solid black;"><i>I</i><sub>a1</sub></td>
-    <td style="border: 1px solid black;">板极基波分量</td>
-    <td style="border: 1px solid black;">39.3286</td>
-    <td style="border: 1px solid black;">A</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;"><i>I</i><sub>g0</sub></td>
-    <td style="border: 1px solid black;">栅极直流分量</td>
-    <td style="border: 1px solid black;">1.1771</td>
-    <td style="border: 1px solid black;">A</td>
-    <td style="border: 1px solid black;"><i>I</i><sub>g1</sub></td>
-    <td style="border: 1px solid black;">栅极基波分量</td>
-    <td style="border: 1px solid black;">2.2156</td>
-    <td style="border: 1px solid black;">A</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;"><i>I</i><sub>g20</sub></td>
-    <td style="border: 1px solid black;">帘栅极直流分量</td>
-    <td style="border: 1px solid black;">0.5963</td>
-    <td style="border: 1px solid black;">A</td>
-    <td style="border: 1px solid black;"></td>
-    <td style="border: 1px solid black;"></td>
-    <td style="border: 1px solid black;"></td>
-    <td style="border: 1px solid black;"></td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;"><i>R</i><sub>oe</sub></td>
-    <td style="border: 1px solid black;">板极负载电阻<br><i>U</i><sub>a1</sub>/<i>I</i><sub>a1</sub></td>
-    <td style="border: 1px solid black;">366.15</td>
-    <td style="border: 1px solid black;">Ω</td>
-    <td style="border: 1px solid black;"><i>P</i><sub>~</sub></td>
-    <td style="border: 1px solid black;">输出功率<br>½<i>U</i><sub>a1</sub><i>I</i><sub>a1</sub></td>
-    <td style="border: 1px solid black;">283.17</td>
-    <td style="border: 1px solid black;">kW</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;"><i>P</i><sub>0</sub></td>
-    <td style="border: 1px solid black;">直流输入功率<br><i>E</i><sub>a</sub><i>I</i><sub>a0</sub></td>
-    <td style="border: 1px solid black;">368.52</td>
-    <td style="border: 1px solid black;">kW</td>
-    <td style="border: 1px solid black;"><i>R</i><sub>ge</sub></td>
-    <td style="border: 1px solid black;">栅地输入阻抗<br><i>U</i><sub>g</sub>/(<i>I</i><sub>g1</sub>+<i>I</i><sub>a1</sub>)</td>
-    <td style="border: 1px solid black;">13.67</td>
-    <td style="border: 1px solid black;">Ω</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;"><i>P</i><sub>a</sub></td>
-    <td style="border: 1px solid black;">板极损耗<br><i>P</i><sub>0</sub>-<i>P</i><sub>~</sub></td>
-    <td style="border: 1px solid black;">85.36</td>
-    <td style="border: 1px solid black;">kW</td>
-    <td style="border: 1px solid black;"><i>P</i><sub>g2</sub></td>
-    <td style="border: 1px solid black;">帘栅极损耗<br><i>E</i><sub>g2</sub><i>I</i><sub>g20</sub></td>
-    <td style="border: 1px solid black;">715.50</td>
-    <td style="border: 1px solid black;">W</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;"><i>P</i><sub>g</sub></td>
-    <td style="border: 1px solid black;">栅极损耗<br>½<i>U</i><sub>g</sub><i>I</i><sub>g1</sub>-<i>E</i><sub>g</sub><i>I</i><sub>g0</sub></td>
-    <td style="border: 1px solid black;">1076.52</td>
-    <td style="border: 1px solid black;">W</td>
-    <td style="border: 1px solid black;"><i>P</i><sub>g1</sub></td>
-    <td style="border: 1px solid black;">激励功率<br>½<i>U</i><sub>g</sub><i>I</i><sub>g1</sub></td>
-    <td style="border: 1px solid black;">629.23</td>
-    <td style="border: 1px solid black;">W</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black;"><i>η</i></td>
-    <td style="border: 1px solid black;">板级效率</td>
-    <td colspan="2" style="border: 1px solid black;"><i>P</i><sub>~</sub>/<i>P</i><sub>0</sub></td>
-    <td colspan="2" style="border: 1px solid black;">76.84</td>
-    <td colspan="2" style="border: 1px solid black;">%</td>
-  </tr>
-</table>
-<h3 id="c">C语言代码</h3>
-<pre><code class="language-C">#include &lt;stdio.h&gt;
-#include &lt;math.h&gt;
-
-#define PI 3.14159265358979323846
-#define DEG_TO_RAD(x) ((x) * PI / 180.0)
-
-// 全局变量，用于各阶段传递数据
-double Ea, Eg, E_g2;           // 电压参数
-double theta_deg, theta_rad;   // 导通角
-int n;                         // 分解系数序号
-double alpha_n;                // 分解系数
-double Im;                     // 脉冲电流峰值
-double Ia1_calculated;         // 阶段1计算的Ia1
-double Ua;                     // 阳极电压振幅
-double Ua_over_Ea;             // 板压利用系数
-double P_tilde;                // 射频输出功率 P~ (kW)
-
-// 13点法坐标点
-typedef struct {
-	double x;      // 横坐标 (kV)
-	double y;      // 纵坐标 (V)
-	char name;     // 点名称
-} Point;
-
-Point points[7];   // A, B, C, D, E, F, Q
-
-// 电流采样值
-double ia[6];      // Ia(A) ~ Ia(F)
-double ig[6];      // Ig(A) ~ Ig(F)  
-double ig2[6];     // Ig2(A) ~ Ig2(F)
-
-// 计算结果
-double Ia0, Ia1;   // 阳极电流直流分量和基波分量
-double Ig0, Ig1;   // 栅极电流直流分量和基波分量
-double Ig2_0;      // 帘栅极电流直流分量
-
-// 最终计算结果
-double R_oe;       // 板级负载电阻
-double P_out_rf;   // 输出功率 (射频功率)
-double P_in_dc;    // 输入功率 (直流功率)
-double P_a;        // 板级损耗
-double P_g2;       // 帘栅极损耗
-double P_g;        // 栅极损耗
-double eta;        // 板级效率
-double P_g_drive;  // 激励功率
-double R_g;        // 放大器输入阻抗
-double U_g;        // 栅极激励电压振幅
-
-// 函数声明
-double calculate_alpha(double theta, int n);
-void stage1_calculate_Im();
-void stage2_thirteen_points();
-void stage3_calculate_Ia();
-void stage4_calculate_Ig();
-void stage5_calculate_Ig2();
-void stage6_final_calculations();
-
-int main() {
-	printf(&quot;=================================================\n&quot;);
-	printf(&quot;    电子四极管技术参数计算系统\n&quot;);
-	printf(&quot;=================================================\n\n&quot;);
-	
-	// 阶段1：计算Im
-	stage1_calculate_Im();
-	
-	// 阶段2：13点法坐标计算
-	stage2_thirteen_points();
-	
-	// 阶段3：计算Ia0, Ia1
-	stage3_calculate_Ia();
-	
-	// 阶段4：计算Ig0, Ig1
-	stage4_calculate_Ig();
-	
-	// 阶段5：计算Ig2_0
-	stage5_calculate_Ig2();
-	
-	// 阶段6：最终计算
-	stage6_final_calculations();
-	
-	printf(&quot;\n=================================================\n&quot;);
-	printf(&quot;    所有计算完成！\n&quot;);
-	printf(&quot;=================================================\n&quot;);
-	
-	return 0;
-}
-
-// 计算分解系数 α_n
-double calculate_alpha(double theta, int n) {
-	if (n == 0) {
-		// α0 = (sinθ - θcosθ) / (π(1-cosθ))
-		return (sin(theta) - theta * cos(theta)) / (PI * (1 - cos(theta)));
-	} else if (n == 1) {
-		// α1 = (θ - sinθcosθ) / (π(1-cosθ))
-		return (theta - sin(theta) * cos(theta)) / (PI * (1 - cos(theta)));
-	} else {
-		// αn = 2[sin(nθ)cosθ - ncos(nθ)sinθ] / [π(1-cosθ)n(n²-1)]
-		double numerator = 2 * (sin(n * theta) * cos(theta) - n * cos(n * theta) * sin(theta));
-		double denominator = PI * (1 - cos(theta)) * n * (n * n - 1);
-		return numerator / denominator;
-	}
-}
-
-// 阶段1：输入基本参数，计算Im
-void stage1_calculate_Im() {
-	printf(&quot;【阶段1】计算脉冲电流峰值 Im\n&quot;);
-	printf(&quot;-------------------------------------------------\n&quot;);
-	
-	// 输入Ea和Eg2
-	printf(&quot;请输入阳极电压 Ea (kV): &quot;);
-	scanf(&quot;%lf&quot;, &amp;Ea);
-	
-	printf(&quot;请输入帘栅极电压 Eg2 (V) [默认1500V]: &quot;);
-	scanf(&quot;%lf&quot;, &amp;E_g2);
-	if (E_g2 == 0) E_g2 = 1500.0;  // 默认值
-	
-	// 直接输入射频输出功率 P~
-	printf(&quot;请输入射频输出功率 P~ (kW) [默认280.0kW]: &quot;);
-	scanf(&quot;%lf&quot;, &amp;P_tilde);
-	if (P_tilde == 0) P_tilde = 280.0;  // 默认值，与原计算后P~=252/0.9≈280一致
-	
-	double P_rf = P_tilde * 1000.0;  // 转换为W
-	
-	// 输入导通角
-	printf(&quot;请输入导通角 θ (度): &quot;);
-	scanf(&quot;%lf&quot;, &amp;theta_deg);
-	theta_rad = DEG_TO_RAD(theta_deg);
-	
-	// 输入分解系数序号
-	printf(&quot;请输入分解系数序号 n (0, 1, 2...): &quot;);
-	scanf(&quot;%d&quot;, &amp;n);
-	
-	// 计算分解系数
-	alpha_n = calculate_alpha(theta_rad, n);
-	
-	printf(&quot;\n计算结果:\n&quot;);
-	printf(&quot;  角度 θ = %.2f° (%.6f 弧度)\n&quot;, theta_deg, theta_rad);
-	printf(&quot;  分解系数 α_%d = %.8f\n&quot;, n, alpha_n);
-	
-	// 输入板压利用系数
-	printf(&quot;请输入板压利用系数 Ua/Ea (范围0.85~0.95): &quot;);
-	scanf(&quot;%lf&quot;, &amp;Ua_over_Ea);
-	if (Ua_over_Ea &lt; 0.85 || Ua_over_Ea &gt; 0.95) {
-		printf(&quot;警告：板压利用系数超出常规范围！\n&quot;);
-	}
-	
-	// 计算Ua
-	Ua = Ua_over_Ea * Ea * 1000;  // 转换为V
-	
-	printf(&quot;  板压利用系数 Ua/Ea = %.4f\n&quot;, Ua_over_Ea);
-	printf(&quot;  阳极电压振幅 Ua = %.2f kV\n&quot;, Ua / 1000.0);
-	
-	// 计算基波分量 Ia1 = 2*P~ / Ua
-	Ia1_calculated = (2.0 * P_rf) / Ua;
-	printf(&quot;  基波电流分量 Ia1 = 2*P~/Ua = %.4f A\n&quot;, Ia1_calculated);
-	
-	// 计算Im = Ia1 / α1 (当n=1时)
-	if (n == 1) {
-		Im = Ia1_calculated / alpha_n;
-	} else {
-		// 如果n≠1，需要重新计算α1
-		double alpha1 = calculate_alpha(theta_rad, 1);
-		printf(&quot;  计算α1 = %.8f 用于求Im\n&quot;, alpha1);
-		Im = Ia1_calculated / alpha1;
-	}
-	
-	printf(&quot;\n&gt;&gt;&gt; 脉冲电流峰值 Im = %.4f A\n&quot;, Im);
-	printf(&quot;-------------------------------------------------\n\n&quot;);
-}
-
-// 阶段2：13点法坐标计算
-void stage2_thirteen_points() {
-	Point O, Q, A;  // 直角顶点、水平端点、垂直端点
-	
-	printf(&quot;【阶段2】13点法交点坐标计算\n&quot;);
-	printf(&quot;-------------------------------------------------\n&quot;);
-	printf(&quot;原理：沿斜边AQ从A点(0°)到Q点(90°)按 t = 1-cos(θ) 比例取点\n\n&quot;);
-	
-	// 输入三个顶点
-	printf(&quot;请输入三个顶点坐标（格式：横坐标kV 纵坐标V）：\n&quot;);
-	printf(&quot;直角顶点 O(x y): &quot;);
-	scanf(&quot;%lf %lf&quot;, &amp;O.x, &amp;O.y);
-	printf(&quot;水平端点 Q(x y): &quot;);
-	scanf(&quot;%lf %lf&quot;, &amp;Q.x, &amp;Q.y);
-	printf(&quot;垂直端点 A(x y): &quot;);
-	scanf(&quot;%lf %lf&quot;, &amp;A.x, &amp;A.y);
-	
-	// 计算斜边向量
-	double dx = Q.x - A.x;
-	double dy = Q.y - A.y;
-	double slope_length = sqrt(dx*dx + dy*dy);
-	
-	printf(&quot;\n三角形信息:\n&quot;);
-	printf(&quot;  斜边端点：A(%.3f kV, %.1f V) → Q(%.3f kV, %.1f V)\n&quot;, A.x, A.y, Q.x, Q.y);
-	printf(&quot;  斜边投影：Δx = %.3f kV, Δy = %.1f V\n&quot;, dx, dy);
-	
-	// 验证直角
-	double oa_dx = A.x - O.x, oa_dy = A.y - O.y;
-	double oq_dx = Q.x - O.x, oq_dy = Q.y - O.y;
-	double dot = oa_dx*oq_dx + oa_dy*oq_dy;
-	printf(&quot;  直角验证（OA·OQ）: %.6f (应≈0)\n&quot;, dot);
-	
-	// 13点法角度定义
-	double angles[] = {0, 15, 30, 45, 60, 75, 90};
-	char point_names[] = {'A', 'B', 'C', 'D', 'E', 'F', 'Q'};
-	
-	printf(&quot;\n13点法交点坐标:\n&quot;);
-	printf(&quot;角度  | 比例t   | 距A长度 | 横坐标(kV) | 纵坐标(V)   | 点\n&quot;);
-	printf(&quot;------|---------|---------|------------|-------------|----\n&quot;);
-	
-	for (int i = 0; i &lt; 7; i++) {
-		double angle_rad = DEG_TO_RAD(angles[i]);
-		double t = 1.0 - cos(angle_rad);  // 核心公式
-		
-		points[i].x = A.x + t * dx;
-		points[i].y = A.y + t * dy;
-		points[i].name = point_names[i];
-		
-		double dist_from_A = t * slope_length;
-		
-		printf(&quot;%5.1f°| %.6f| %8.3f| %11.4f| %12.2f| %c\n&quot;,
-			   angles[i], t, dist_from_A, points[i].x, points[i].y, points[i].name);
-	}
-	
-	// 将水平端点Q的y值赋给Eg，将垂直端点A的y值作为eg_max
-	Eg = Q.y;
-	double eg_max = A.y;  // 垂直端点A的y坐标就是eg_max
-	
-	// 计算Ug = eg_max + |Eg|
-	U_g = eg_max + fabs(Eg);
-	printf(&quot;\n&gt;&gt;&gt; 从坐标点获取参数：\n&quot;);
-	printf(&quot;  栅偏压 Eg = Q.y = %.2f V\n&quot;, Eg);
-	printf(&quot;  栅极激励电压最大值 eg_max = A.y = %.2f V\n&quot;, eg_max);
-	printf(&quot;  栅极激励电压振幅 Ug = eg_max + |Eg| = %.2f + %.2f = %.2f V\n&quot;, 
-		   eg_max, fabs(Eg), U_g);
-	
-	printf(&quot;\n&gt;&gt;&gt; 坐标计算完成，请根据恒流特性曲线读取各点电流值\n&quot;);
-	printf(&quot;-------------------------------------------------\n\n&quot;);
-}
-
-// 阶段3：输入Ia(A)~Ia(F)，计算Ia0, Ia1
-void stage3_calculate_Ia() {
-	printf(&quot;【阶段3】计算阳极电流分量 Ia0, Ia1\n&quot;);
-	printf(&quot;-------------------------------------------------\n&quot;);
-	printf(&quot;请输入从恒流特性曲线读取的阳极电流值 (A):\n&quot;);
-	
-	const char* labels[] = {&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;};
-	for (int i = 0; i &lt; 6; i++) {
-		printf(&quot;  i_a(%s) = &quot;, labels[i]);
-		scanf(&quot;%lf&quot;, &amp;ia[i]);
-	}
-	
-	// 使用13点法公式计算
-	Ia0 = (1.0/12.0) * (0.5*ia[0] + ia[1] + ia[2] + ia[3] + ia[4] + ia[5]);
-	Ia1 = (1.0/12.0) * (ia[0] + 1.93*ia[1] + 1.73*ia[2] + 1.41*ia[3] + ia[4] + 0.52*ia[5]);
-	
-	printf(&quot;\n输入值:\n&quot;);
-	for (int i = 0; i &lt; 6; i++) {
-		printf(&quot;  i_a(%s) = %.4f A\n&quot;, labels[i], ia[i]);
-	}
-	
-	printf(&quot;\n&gt;&gt;&gt; 计算结果:\n&quot;);
-	printf(&quot;  阳极电流直流分量 Ia0 = %.6f A\n&quot;, Ia0);
-	printf(&quot;  阳极电流基波分量 Ia1 = %.6f A\n&quot;, Ia1);
-	printf(&quot;-------------------------------------------------\n\n&quot;);
-}
-
-// 阶段4：输入Ig(A)~Ig(F)，计算Ig0, Ig1
-void stage4_calculate_Ig() {
-	printf(&quot;【阶段4】计算栅极电流分量 Ig0, Ig1\n&quot;);
-	printf(&quot;-------------------------------------------------\n&quot;);
-	printf(&quot;请输入从恒流特性曲线读取的栅极电流值 (A):\n&quot;);
-	
-	const char* labels[] = {&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;};
-	for (int i = 0; i &lt; 6; i++) {
-		printf(&quot;  i_g(%s) = &quot;, labels[i]);
-		scanf(&quot;%lf&quot;, &amp;ig[i]);
-	}
-	
-	Ig0 = (1.0/12.0) * (0.5*ig[0] + ig[1] + ig[2] + ig[3] + ig[4] + ig[5]);
-	Ig1 = (1.0/12.0) * (ig[0] + 1.93*ig[1] + 1.73*ig[2] + 1.41*ig[3] + ig[4] + 0.52*ig[5]);
-	
-	printf(&quot;\n输入值:\n&quot;);
-	for (int i = 0; i &lt; 6; i++) {
-		printf(&quot;  i_g(%s) = %.4f A\n&quot;, labels[i], ig[i]);
-	}
-	
-	printf(&quot;\n&gt;&gt;&gt; 计算结果:\n&quot;);
-	printf(&quot;  栅极电流直流分量 Ig0 = %.6f A\n&quot;, Ig0);
-	printf(&quot;  栅极电流基波分量 Ig1 = %.6f A\n&quot;, Ig1);
-	printf(&quot;-------------------------------------------------\n\n&quot;);
-}
-
-// 阶段5：输入Ig2(A)~Ig2(F)，计算Ig2_0
-void stage5_calculate_Ig2() {
-	printf(&quot;【阶段5】计算帘栅极电流直流分量 Ig2_0\n&quot;);
-	printf(&quot;-------------------------------------------------\n&quot;);
-	printf(&quot;请输入从恒流特性曲线读取的帘栅极电流值 (A):\n&quot;);
-	
-	const char* labels[] = {&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;};
-	for (int i = 0; i &lt; 6; i++) {
-		printf(&quot;  i_g2(%s) = &quot;, labels[i]);
-		scanf(&quot;%lf&quot;, &amp;ig2[i]);
-	}
-	
-	Ig2_0 = (1.0/12.0) * (0.5*ig2[0] + ig2[1] + ig2[2] + ig2[3] + ig2[4] + ig2[5]);
-	
-	printf(&quot;\n输入值:\n&quot;);
-	for (int i = 0; i &lt; 6; i++) {
-		printf(&quot;  i_g2(%s) = %.4f A\n&quot;, labels[i], ig2[i]);
-	}
-	
-	printf(&quot;\n&gt;&gt;&gt; 计算结果:\n&quot;);
-	printf(&quot;  帘栅极电流直流分量 Ig2_0 = %.6f A\n&quot;, Ig2_0);
-	printf(&quot;-------------------------------------------------\n\n&quot;);
-}
-
-// 阶段6：最终计算所有剩余参数
-void stage6_final_calculations() {
-	printf(&quot;【阶段6】最终参数计算\n&quot;);
-	printf(&quot;-------------------------------------------------\n&quot;);
-	
-	// 重新计算eg_max和Ug，因为stage2中计算的是局部变量
-	double eg_max = points[0].y;  // A点的y坐标
-	double Eg_value = points[6].y; // Q点的y坐标
-	double Ug_value = eg_max + fabs(Eg_value);
-	
-	// 1. 板级负载电阻 Roe = Ua / Ia1
-	R_oe = Ua / Ia1;
-	printf(&quot;1. 板级负载电阻:\n&quot;);
-	printf(&quot;   Roe = Ua / Ia1 = %.2f V / %.4f A = %.4f Ω\n&quot;, Ua, Ia1, R_oe);
-	
-	// 2. 输入功率 (射频输出功率) P~ = 0.5 * Ua * Ia1
-	P_out_rf = 0.5 * Ua * Ia1;
-	printf(&quot;\n2. 射频输出功率:\n&quot;);
-	printf(&quot;   P~ = 0.5 * Ua * Ia1 = 0.5 * %.2f V * %.4f A = %.4f kW\n&quot;, 
-		   Ua, Ia1, P_out_rf/1000.0);
-	
-	// 3. 输出功率 (直流输入功率) Po = Ea * Ia0
-	P_in_dc = (Ea * 1000) * Ia0;
-	printf(&quot;\n3. 直流输入功率:\n&quot;);
-	printf(&quot;   Po = Ea * Ia0 = %.2f kV * %.4f A = %.4f kW\n&quot;, 
-		   Ea, Ia0, P_in_dc/1000.0);
-	
-	// 4. 板级损耗 Pa = Po - P~
-	P_a = P_in_dc - P_out_rf;
-	printf(&quot;\n4. 板级损耗:\n&quot;);
-	printf(&quot;   Pa = Po - P~ = %.4f kW - %.4f kW = %.4f kW\n&quot;, 
-		   P_in_dc/1000.0, P_out_rf/1000.0, P_a/1000.0);
-	
-	// 5. 帘栅极损耗 Pg2 = Eg2 * Ig2_0
-	P_g2 = E_g2 * Ig2_0;
-	printf(&quot;\n5. 帘栅极损耗:\n&quot;);
-	printf(&quot;   Pg2 = Eg2 * Ig2_0 = %.2f V * %.6f A = %.4f W\n&quot;, 
-		   E_g2, Ig2_0, P_g2);
-	
-	// 6. 栅极损耗 Pg = 0.5*Ug*Ig1 - Eg*Ig0
-	P_g = 0.5 * Ug_value * Ig1 - Eg_value * Ig0;
-	printf(&quot;\n6. 栅极损耗:\n&quot;);
-	printf(&quot;   栅极激励电压最大值 eg_max = A.y = %.2f V\n&quot;, eg_max);
-	printf(&quot;   栅偏压 Eg = Q.y = %.2f V\n&quot;, Eg_value);
-	printf(&quot;   栅极激励电压振幅 Ug = eg_max + |Eg| = %.2f V\n&quot;, Ug_value);
-	printf(&quot;   Pg = 0.5*Ug*Ig1 - Eg*Ig0 = 0.5*%.2f*%.6f - (%.2f)*%.6f = %.4f W\n&quot;, 
-		   Ug_value, Ig1, Eg_value, Ig0, P_g);
-	
-	// 7. 板级效率 η = P~ / Po
-	eta = P_out_rf / P_in_dc;
-	printf(&quot;\n7. 板级效率:\n&quot;);
-	printf(&quot;   η = P~ / Po = %.4f kW / %.4f kW = %.6f (%.2f%%)\n&quot;, 
-		   P_out_rf/1000.0, P_in_dc/1000.0, eta, eta*100.0);
-	
-	// 8. 激励功率 Pg~ = 0.5 * Ug * Ig1
-	P_g_drive = 0.5 * Ug_value * Ig1;
-	printf(&quot;\n8. 激励功率:\n&quot;);
-	printf(&quot;   Pg~ = 0.5 * Ug * Ig1 = 0.5 * %.2f V * %.6f A = %.4f W\n&quot;, 
-		   Ug_value, Ig1, P_g_drive);
-	
-	// 9. 放大器输入阻抗 Rg = Ug / (Ig1 + Ia1)   // 修改为包含Ia1
-	R_g = Ug_value / (Ig1 + Ia1);
-	printf(&quot;\n9. 放大器输入阻抗:\n&quot;);
-	printf(&quot;   Rg = Ug / (Ig1 + Ia1) = %.2f V / (%.6f A + %.6f A) = %.4f Ω\n&quot;, 
-		   Ug_value, Ig1, Ia1, R_g);
-	
-	printf(&quot;\n-------------------------------------------------\n&quot;);
-	printf(&quot;【计算结果汇总】\n&quot;);
-	printf(&quot;-------------------------------------------------\n&quot;);
-	printf(&quot;基本参数:\n&quot;);
-	printf(&quot;  Ea = %.2f kV, Eg = %.2f V, Eg2 = %.2f V\n&quot;, Ea, Eg_value, E_g2);
-	printf(&quot;  板压利用系数 Ua/Ea = %.4f\n&quot;, Ua_over_Ea);
-	printf(&quot;  阳极电压振幅 Ua = %.2f kV\n&quot;, Ua/1000.0);
-	printf(&quot;  θ = %.2f°, Im = %.4f A\n&quot;, theta_deg, Im);
-	printf(&quot;  栅极激励电压最大值 eg_max = %.2f V\n&quot;, eg_max);
-	printf(&quot;  栅极激励电压振幅 Ug = %.2f V\n&quot;, Ug_value);
-	printf(&quot;  射频输出功率 P~ = %.2f kW\n&quot;, P_tilde);
-	printf(&quot;\n电流分量:\n&quot;);
-	printf(&quot;  Ia0 = %.6f A, Ia1 = %.6f A\n&quot;, Ia0, Ia1);
-	printf(&quot;  Ig0 = %.6f A, Ig1 = %.6f A\n&quot;, Ig0, Ig1);
-	printf(&quot;  Ig2_0 = %.6f A\n&quot;, Ig2_0);
-	printf(&quot;\n功率与效率:\n&quot;);
-	printf(&quot;  射频输出功率 P~ = %.4f kW\n&quot;, P_out_rf/1000.0);
-	printf(&quot;  直流输入功率 Po = %.4f kW\n&quot;, P_in_dc/1000.0);
-	printf(&quot;  板级损耗 Pa = %.4f kW\n&quot;, P_a/1000.0);
-	printf(&quot;  帘栅极损耗 Pg2 = %.4f W\n&quot;, P_g2);
-	printf(&quot;  栅极损耗 Pg = %.4f W\n&quot;, P_g);
-	printf(&quot;  板级效率 η = %.2f%%\n&quot;, eta*100.0);
-	printf(&quot;\n阻抗与激励:\n&quot;);
-	printf(&quot;  板级负载电阻 Roe = %.4f Ω\n&quot;, R_oe);
-	printf(&quot;  输入阻抗 Rg = %.4f Ω (基于Ig1+Ia1)\n&quot;, R_g);
-	printf(&quot;  激励功率 Pg~ = %.4f W\n&quot;, P_g_drive);
-	printf(&quot;-------------------------------------------------\n&quot;);
-}
-</code></pre>
-<h3 id="heading">参考</h3>
-<p></p>
-<p>[1]岑伟德．调频立体声广播发射机[M]．北京：国防工业出版社，1990．</p>
-<p>[2]罗勇杰．兆瓦级电子四极管电气参数设计与数值模拟[D]．湛江：广东海洋大学，2016．</p>
-<p>[3]张军．艾玛克电子管特性计算器计算法在维护工作中的应用[J]．广播电视网络，2021(S01)：29-34．</p>
-<p>[4]曹丰岭．栅地电路与阴地电路[J]．广播电视信息(下半月刊)，2007(12)：2．</p>
 </span></div>
                         </div>
                         

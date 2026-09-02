@@ -160,6 +160,141 @@
                         
                         <div class="post-container">
                             <p class="post-title">
+                                <a href="/post/yong-kai-yuan-shen-qi-spleeter-fen-chi-ren-sheng-ban-zou/">用开源神器 Spleeter 分离人声伴奏</a>
+                            </p>
+                            <p class="post-meta">
+                                <span class="date meta-item">Posted at&nbsp;2023-03-25</span>
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span>&nbsp;</span>
+                                    <a href="/post/yong-kai-yuan-shen-qi-spleeter-fen-chi-ren-sheng-ban-zou/#comments">Comments</a>
+                                </span>
+                                
+                                
+                                
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-tag"></i>
+                                    <span>&nbsp;</span>
+                                    
+                                    <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+                                    <span>&nbsp;</span>
+                                    
+                                </span>
+                                
+                            </p>
+                            
+                            
+                            <div class="post-feature-image">
+                                <a href="/post/yong-kai-yuan-shen-qi-spleeter-fen-chi-ren-sheng-ban-zou/">
+                                    <img src="/post-images/yong-kai-yuan-shen-qi-spleeter-fen-chi-ren-sheng-ban-zou.jpg" alt="用开源神器 Spleeter 分离人声伴奏" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
+                                </a>
+                            </div>
+                            
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><h2 id="spleeter-">Spleeter 是什么</h2>
+<p><img src="/post-images/1679736401203.png" alt="" /><br />
+Spleeter是Deezer的音源分离库，用Python编写的预训练模型，使用Tensorflow。它使训练音源分离模型变得容易（假设你有一个孤立的音源数据集），并提供已经训练好的最先进的模型来执行各种类型的分离：</p>
+<ul>
+<li>声乐（唱腔）/伴奏分离（2个音轨）</li>
+<li>声乐/鼓/贝司/其他分离(4个音轨)</li>
+<li>声乐/鼓/贝斯/钢琴/其他分离 (5个音轨)</li>
+</ul>
+<p>2音轨和4音轨模型在 musdb 数据集上有很高的性能。Spleeter也非常快，因为它在GPU上运行时，可以将音频文件分离成4个音轨，比实时速度快100倍。</p>
+<p><a href="https://research.deezer.com/projects/spleeter.html">我们</a>设计了<a href="https://github.com/deezer/spleeter"><strong>Spleeter</strong></a>，所以你可以直接从命令行中使用它，也可以直接在你自己的 development pipeline 中作为一个Python库。它可以用pip安装或与Docker一起使用。</p>
+<h3 id="spleeter">使用Spleeter的项目和软件</h3>
+<p>自从它被发布以来，有多个 fork 通过指导用户界面（GUI）或独立的免费或付费的网站展示Spleeter。</p>
+<p>Spleeter 的预训练模型也已经被专业的音频软件所使用。这里有一个非详尽的列表：</p>
+<ul>
+<li>iZotope RX 8 中的音乐平衡功能</li>
+<li>SpectralLayers 7 中 Unmix 功能里的 SpectralLayers</li>
+<li>Acoustica 7 中的 Acon Digital</li>
+<li>在 VirtualDJ 音源隔离功能中</li>
+<li>在 NeuralMix 和 djayPRO 应用程序套件中的 Algoriddim</li>
+</ul>
+<h2 id="heading">快速入门</h2>
+<p>想尝试一下，但不想安装任何东西？我们已经建了一个 <a href="https://colab.research.google.com/github/deezer/spleeter/blob/master/spleeter.ipynb">Google Colab</a>。</p>
+<p>准备好进入它了吗？只需几行字，你就可以安装Spleeter，并从一个示例音频文件中分离出人声和伴奏部分。你首先需要安装 <code>ffmpeg</code> 和 <code>libsndfile</code>。它可以在大多数平台上使用<a href="https://github.com/deezer/spleeter/wiki/1.-Installation#using-conda">Conda</a>完成：</p>
+<pre><code class="language-bash"># install dependencies using conda
+conda install -c conda-forge ffmpeg libsndfile
+# install spleeter with pip
+pip install spleeter
+# download an example audio file (if you don't have wget, use another tool for downloading)
+wget https://github.com/deezer/spleeter/raw/master/audio_example.mp3
+# separate the example audio into two components
+spleeter separate -p spleeter:2stems -o output audio_example.mp3
+</code></pre>
+<blockquote>
+<p>:warning: 注意，我们不再推荐使用conda来安装spleeter。</p>
+</blockquote>
+<blockquote>
+<p>:warning: 苹果M1芯片有已知的问题，主要是由于TensorFlow的兼容性问题。在这些问题被修复之前，你可以使用<a href="https://github.com/deezer/spleeter/issues/607#issuecomment-1021669444">这个变通办法</a>。</p>
+</blockquote>
+<p>你应该会在<code>output/audio_example</code>文件夹中得到两个分离的音频文件（<code>vocals.wav</code>和<code>accompatiment.wav</code>）。</p>
+<p>关于详细的文档，请查看<a href="https://github.com/deezer/spleeter/wiki/1.-Installation">仓库的wiki</a></p>
+<h2 id="heading-1">开发和测试</h2>
+<p>这个项目是用Poetry管理的，要运行测试套件，你可以执行以下一组命令：</p>
+<pre><code class="language-bash"># Clone spleeter repository
+git clone https://github.com/Deezer/spleeter &amp;&amp; cd spleeter
+# Install poetry
+pip install poetry
+# Install spleeter dependencies
+poetry install
+# Run unit test suite
+poetry run pytest tests/
+</code></pre>
+<h2 id="heading-2">疑难解答</h2>
+<p>Spleeter是一个复杂的软件，尽管我们不断努力改善和测试它，但你可能会遇到意想不到的问题。如果是这种情况，请先查看<a href="https://github.com/deezer/spleeter/wiki/5.-FAQ">常见问题页面</a>以及<a href="https://github.com/deezer/spleeter/issues">当前开放的问题</a>列表。</p>
+<h3 id="windows">Windows用户</h3>
+<p>似乎有时快捷键命令 <code>spleeter</code> 在Windows上不能正常工作。这是一个已知的问题，我们希望能很快解决。在此期间，在命令行中用 <code>python -m spleeter separate</code> 代替 <code>spleeter separate</code> ，它应该可以工作。</p>
+<h2 id="-google-colab">在线使用 Google Colab</h2>
+<p>打开 <a href="https://colab.research.google.com/github/deezer/spleeter/blob/master/spleeter.ipynb">Colab</a> ，保存副本，开始使用。</p>
+<p>这里预先写好了项目的整个代码，点击“代码执行程序”-“全部运行”，将所有的代码都运行一下。<br />
+<img src="/post-images/1679738350641.png" alt="" /><br />
+程序会自动运行，安装各种依赖、库文件，并将一个预设的audio_example.mp3 音频文件进行人声、伴奏分离。</p>
+<p>我们试一下分离自己上传的音频文件，这里准备了一个叫 <a href="https://github.com/xiaxi626/spleeter">op-audio.mp3</a> 的文件，点击左边的上传按钮即可将文件上传到云端。</p>
+<pre><code class="language-bash">/*装载 Google 云端硬盘*/
+from google.colab import drive
+drive.mount('/content/drive')
+/*在右边新建一个代码块，照着上面的分离代码修改一下，再运行一遍。*/
+spleeter separate -o output/ op-audio.mp3
+</code></pre>
+<p>注意这里不要改上面代码，不然——</p>
+<pre><code class="language-bash">!wget /content/op-audio.mp3
+/content/op-audio.mp3: Scheme missing.
+</code></pre>
+<p>当然你也可以像示例一样分离存储在 github 仓库中的音频文件，像这样<br />
+<img src="/post-images/1679737905948.png" alt="" /><br />
+最后分离出来两个文件，accompaniment.wav为伴奏，vocals.wav为人声。</p>
+<h2 id="-spleetergui-">安装 spleeterGUI 图形界面软件</h2>
+<p>spleeterGUI 是基于 spleeter 进行深入开发的适用于 windows 平台的图形化界面软件。</p>
+<p>下载地址：<a href="https://github.com/boy1dr/SpleeterGui">https://github.com/boy1dr/SpleeterGui</a></p>
+<p>最新的安装程序可以从这里下载 <a href="https://makenweb.com/#spleetergui">https://makenweb.com/#spleetergui</a><br />
+不需要安装python或spleeter，这个应用程序包含一个预装了spleeter的便携式python版本。<br />
+<img src="/post-images/1679739851463.png" alt="" /><br />
+这个项目的目的是使Windows用户能够轻松地下载和运行Spleeter，而不需要使用命令行工具来完成。</p>
+<p>支持的语言： 阿拉伯语、中文、英语、法语、印地语、意大利语、日语、俄语、西班牙语。</p>
+<p>Intel Pentium &amp; Celeron CPU不能运行spleeter</p>
+<p>如果你运行的不是intel i5/7/9或Ryzen 5/7，或者不确定你的CPU是否支持AVX，请在尝试安装spleeter之前使用AVX检查工具（<a href="https://makenweb.com/#avxcheck">上文</a>）。</p>
+<p>打开软件后选择 parts to separate（分离声部，一般就是2），设置好文件保存路径（save to），选择需要分离的音频文件（支持多个音频文件），即可快速导出！</p>
+<p>加载多个音频文件时，输出路径下会输出多个原文件名的文件夹，内含 <code>accompaniment.wav</code> 和 <code>vocals.wav</code>。</p>
+<p>运行过程中遇到问题请前往  <a href="https://github.com/boy1dr/SpleeterGui/issues">Github Issue</a> 和 <a href="https://makenweb.com/spleeter_help">spleeter_help</a> 搜索。<br />
+<strong>问题</strong></p>
+<blockquote>
+<p>httpx.ReadTimeout: The read operation timed out<br />
+Can&rsquo;t load save_path when it is None</p>
+</blockquote>
+<p><strong>解决方法</strong><br />
+删除“…/SpleeterGUI/pretrained_models“文件夹中的模型文件夹（如“2stems”）。<br />
+下载“https://github.com/deezer/spleeter/releases“中“Spleeter public release“的文件，把它们解压到“pretrained_models“文件夹。</p>
+</span></div>
+                        </div>
+                        
+                        <div class="post-container">
+                            <p class="post-title">
                                 <a href="/post/com-surrogate-yi-ting-zhi-gong-zuo-zen-me-jie-jue/">Com Surrogate 已停止工作，怎么解决？</a>
                             </p>
                             <p class="post-meta">
@@ -2754,137 +2889,6 @@ cmd输入chkdsk检查磁盘<br />
 Routing and Remote Access服务简称 RRA服务，Routing and Remote Access 是全功能的软件路由器，也是用于路由和互连网络工作的开放平台。它为局域网 (LAN) 和广域网 (WAN) 环境中的商务活动，或使用安全虚拟专用网 (VPN) 连接的 Internet 上的商务活动提供路由选择服务。</p>
 <p>由上面我们可以看到，这个服务主要是为了VPN而服务的。VPN是专用虚拟拨号，在办公环境、游戏加速领域有所使用。</p>
 <p>默认情况下Routing and Remote Access是禁用的。</p>
-</span></div>
-                        </div>
-                        
-                        <div class="post-container">
-                            <p class="post-title">
-                                <a href="/post/tong-xin-gong-cheng-zhuan-ye-ke-cheng/">通信工程专业课程</a>
-                            </p>
-                            <p class="post-meta">
-                                <span class="date meta-item">Posted at&nbsp;2023-02-07</span>
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    <span>&nbsp;</span>
-                                    <a href="/post/tong-xin-gong-cheng-zhuan-ye-ke-cheng/#comments">Comments</a>
-                                </span>
-                                
-                                
-                                
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-tag"></i>
-                                    <span>&nbsp;</span>
-                                    
-                                    <a class="a-tag" href="/tag/discussion/" title="Discussion">Discussion</a>
-                                    <span>&nbsp;</span>
-                                    
-                                </span>
-                                
-                            </p>
-                            
-                            
-                            <div class="post-feature-image">
-                                <a href="/post/tong-xin-gong-cheng-zhuan-ye-ke-cheng/">
-                                    <img src="/post-images/tong-xin-gong-cheng-zhuan-ye-ke-cheng.jpg" alt="通信工程专业课程" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
-                                </a>
-                            </div>
-                            
-
-                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><h3 id="2017-20181">2017-2018学年第1学期</h3>
-<p>中国近现代史纲要</p>
-<p>形势与政策（一）</p>
-<p>大学英语（一）</p>
-<p>大学生心理健康教育</p>
-<p>计算机文化基础</p>
-<p>思想道德修养与法律基础</p>
-<p>羽毛球</p>
-<p>现代工程制图</p>
-<h3 id="2017-20182">2017-2018学年第2学期</h3>
-<p>C语言程序设计</p>
-<p>大学物理实验Ⅰ（上）</p>
-<p>大学物理Ⅰ（上）</p>
-<p>形势与政策（二）</p>
-<p>高等数学Ⅰ（下）</p>
-<p>中国文化导论</p>
-<p>职业发展（生涯规划）指导</p>
-<p>排球</p>
-<p>大学英语（二）</p>
-<p>军事理论</p>
-<p>马克思主义基本原理</p>
-<h3 id="2018-20191">2018-2019学年第1学期</h3>
-<p>复变函数与积分变换</p>
-<p>线性代数</p>
-<p>大学物理Ⅰ（下）</p>
-<p>大学物理实验Ⅰ（下）</p>
-<p>毛泽东思想与中国特色社会主义理论体系概论（上）</p>
-<p>电路理论实验</p>
-<p>概率论与数理统计</p>
-<p>电路理论（上）</p>
-<p>大学英语（三）</p>
-<p>电路理论（下）</p>
-<p>个人理财规划（尔雅）</p>
-<p>形势与政策（三）</p>
-<p>中国现代文学名家名作（尔雅）</p>
-<h3 id="2018-20192">2018-2019学年第2学期</h3>
-<p>模拟电子技术</p>
-<p>数字电子技术</p>
-<p>大学英语（四）</p>
-<p>模拟电子技术实验</p>
-<p>采煤概论</p>
-<p>机械设计基础</p>
-<p>毛泽东思想与中国特色社会主义理论体系概论（下）</p>
-<p>形势与政策（四）</p>
-<p>创新创业（尔雅）</p>
-<p>信号与系统</p>
-<p>数字电子技术实验</p>
-<p>恋爱心理学（尔雅）</p>
-<p>古典诗词鉴赏（尔雅）</p>
-<h3 id="2019-20201">2019-2020学年第1学期</h3>
-<p>电子电路创新实践</p>
-<p>信息理论与编码</p>
-<p>西方文化名著导读（尔雅）</p>
-<p>隋唐史（尔雅）</p>
-<p>通信原理</p>
-<p>高频电路</p>
-<p>电磁场与电磁波</p>
-<p>乒乓球</p>
-<p>电子电路实训</p>
-<p>数字信号处理</p>
-<p>形势与政策（五）</p>
-<p>微机原理及应用</p>
-<p>认识实习</p>
-<h3 id="2019-20202">2019-2020学年第2学期</h3>
-<p>EDA技术</p>
-<p>通信软件仿真实训</p>
-<p>交换技术</p>
-<p>光纤通信</p>
-<p>《单片机及接口技术》课程设计</p>
-<p>嵌入式系统技术与设计</p>
-<p>现代通信网</p>
-<p>移动通信</p>
-<p>网球</p>
-<p>单片机及接口技术</p>
-<p>就业指导</p>
-<p>形势与政策（六）</p>
-<p>美的历程：美学导论（尔雅）</p>
-<p>逻辑学导论（尔雅）</p>
-<h3 id="2020-20211">2020-2021学年第1学期</h3>
-<p>DSP应用技术</p>
-<p>《DSP技术》课程设计</p>
-<p>计算机网络</p>
-<p>生产实习</p>
-<p>物联网技术</p>
-<p>物联网实训</p>
-<p>专业英语</p>
-<p>通信专业前沿技术讲座</p>
-<p>光纤通信系统实训</p>
-<h3 id="2020-20212">2020-2021学年第2学期</h3>
-<p>毕业论文（设计）</p>
-<p>毕业实习</p>
 </span></div>
                         </div>
                         

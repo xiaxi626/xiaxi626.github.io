@@ -48,7 +48,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <meta name="description" content="梳理一下标准流程： 一、正常的工作流程（避免冲突） 1. 初次获取仓库（只需一次） git clone &amp;lt;仓库地址&amp;gt; cd &amp;lt;仓库目录&amp;gt; 之后就不需要再 clone 了，直接进入已有的本地仓库目录工作。 2. 每次开始工作前，先同步远程最新代码 git pull --rebase origi...">
 <link rel="canonical" href="https://xiaxi626.github.io/post/gitbiao-zhun-gong-zuo-liu-cheng/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Git标准工作流程","url":"https://xiaxi626.github.io/post/gitbiao-zhun-gong-zuo-liu-cheng/","description":"梳理一下标准流程： 一、正常的工作流程（避免冲突） 1. 初次获取仓库（只需一次） git clone \u0026lt;仓库地址\u0026gt; cd \u0026lt;仓库目录\u0026gt; 之后就不需要再 clone 了，直接进入已有的本地仓库目录工作。 2. 每次开始工作前，先同步远程最新代码 git pull --rebase origi...","datePublished":"2026-08-15T18:42:38+08:00","dateModified":"2026-08-15T10:48:17+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/media/images/avatar.jpg"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Git标准工作流程","url":"https://xiaxi626.github.io/post/gitbiao-zhun-gong-zuo-liu-cheng/","description":"梳理一下标准流程： 一、正常的工作流程（避免冲突） 1. 初次获取仓库（只需一次） git clone \u0026lt;仓库地址\u0026gt; cd \u0026lt;仓库目录\u0026gt; 之后就不需要再 clone 了，直接进入已有的本地仓库目录工作。 2. 每次开始工作前，先同步远程最新代码 git pull --rebase origi...","datePublished":"2026-08-15T18:42:38+08:00","dateModified":"2026-08-16T23:46:39+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/media/images/avatar.jpg"},"name":"vigourpine"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/gitbiao-zhun-gong-zuo-liu-cheng/","name":"Git标准工作流程","position":2}]}</script>
 <meta property="og:title" content="Git标准工作流程">
 <meta property="og:description" content="梳理一下标准流程： 一、正常的工作流程（避免冲突） 1. 初次获取仓库（只需一次） git clone &amp;lt;仓库地址&amp;gt; cd &amp;lt;仓库目录&amp;gt; 之后就不需要再 clone 了，直接进入已有的本地仓库目录工作。 2. 每次开始工作前，先同步远程最新代码 git pull --rebase origi...">
@@ -301,6 +301,42 @@ git push origin master   # 第一次可用 git push -u origin master
 </code></pre>
 <p>如果推送时发现被拒绝（因为远程有新提交），回到第2步执行 <code>git pull --rebase</code> 再推送。</p>
 <p>这样就能避免绝大多数“非快进”错误，也能保持提交历史整洁。</p>
+<h2 id="heading-3">五、强制推送回退</h2>
+<p>git commit &ndash;amend：只适用于 “刚写完代码，还没 push” 的情况。作用是 “替换” 上一次提交。<br />
+它不是用来提交的。如果你add一次新的改动，然后输入这个命令，会看到的上一次commit信息，如果你修修改改提交了，会出现阻止信息。<br />
+如果应对这次阻止你直接输入了——</p>
+<pre><code class="language-git">git push --force-with-lease origin master
+</code></pre>
+<p>强制推送以恢复远程，会覆盖掉上一次提交信息。<br />
+遇到这个情况你需要在本地输入命令以查看操作日志，找到被 amend 之前的那个提交哈希值（比如叫 a1b2c3d）</p>
+<pre><code class="language-git"># 1. 查看操作日志，找到被 amend 之前的那个提交哈希值（比如叫 a1b2c3d）
+git reflog
+
+## 这条命令对比旧提交(708cd3f)和新提交(0f50a4c)，把差异存成补丁
+git diff 708cd3f 0f50a4c &gt; my_changes.patch
+
+# 2. 把本地分支强行指回那个哈希值（恢复第4次）
+git reset --hard a1b2c3d
+
+# 3. 把被覆盖掉的提交重新推回远程，恢复远程的历史
+git push --force-with-lease origin master
+
+# 4.把你刚才备份的补丁，应用到当前代码上
+git apply my_changes.patch
+</code></pre>
+<p>（如果这一步提示冲突，别怕，那是因为补丁里的内容和你现在的代码略有偏差，手动把补丁里的修改重新加进去就行，通常不会）<br />
+我的建议是最好清除当前本地文件夹除了.git外的其他所有文件，把本地的备份拿过来放进去。</p>
+<pre><code class="language-git"># 5. 正常提交成为第5次
+git add .
+git commit -m &quot;这是新增的第5次提交&quot;
+git push origin master
+</code></pre>
+<h2 id="heading-4">六、提交</h2>
+<p>通常我们见到的<code>git commit -m</code>是跳过编辑器，直接把这句引号里的内容作为提交信息。<br />
+如果我们想编辑提交内容应该<code>git commit</code>，它会弹出一个文本编辑器（黑框里的 Vim 或 Nano），让你在里面写长篇大论的提交说明。<br />
+此时编辑器会出现一堆以#号开头的文字，这些都是注释说明不会出现在提交信息里。我们输入命令后会默认进入INSERT插入模式，光标来到第一行这个空行。你将提交信息粘贴进编辑器即可。<br />
+若想清空编辑器信息，Windows系统可以按Esc键，输入vim快速删除全部内容的命令<code>ggdG</code>然后回车，在输入i回到插入模式。<br />
+输入完成后按Esc键，输入<code>!wq</code>回车，提交就完成了。</p>
 </div>
     
 </div>
@@ -330,7 +366,13 @@ git push origin master   # 第一次可用 git push -u origin master
                             
 <div class="pagination">
     <p class="clearfix"></p>
-    <p><span>&nbsp;</span>
+    <p><span class="pre pagbuttons">
+            <a role="navigation" href="/post/rang-nei-rong-xing-skill-de-fa-bu-he-an-zhuang-bian-de-xiang-xie-markdown-yi-yang-jian-dan/" title="让内容型 Skill 的发布和安装变得像写 Markdown 一样简单">
+                <i class="fa fa-angle-double-left"></i>
+                &nbsp;
+                Previous post: 让内容型 Skill 的发布和安装变得像写 Markdown 一样简单
+            </a>
+        </span><span>&nbsp;</span>
         <span class="next pagbuttons">
             <a role="navigation" href="/post/ru-he-zai-gridea-prozhu-ti-zhong-shi-xian-giscus-ping-lun/" title="如何在Gridea Pro主题中实现giscus 评论">
                 Next post: 如何在Gridea Pro主题中实现giscus 评论

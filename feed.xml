@@ -6,8 +6,24 @@
     <description>Welcome to Gridea Pro</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Sat, 15 Aug 2026 10:48:17 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 02 Sep 2026 23:02:43 +0800</lastBuildDate>
     <atom:link href="https://xiaxi626.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <item>
+      <title>让内容型 Skill 的发布和安装变得像写 Markdown 一样简单</title>
+      <link>https://xiaxi626.github.io/post/rang-nei-rong-xing-skill-de-fa-bu-he-an-zhuang-bian-de-xiang-xie-markdown-yi-yang-jian-dan/</link>
+      <guid isPermaLink="true">https://xiaxi626.github.io/post/rang-nei-rong-xing-skill-de-fa-bu-he-an-zhuang-bian-de-xiang-xie-markdown-yi-yang-jian-dan/</guid>
+      <pubDate>Thu, 03 Sep 2026 06:58:17 +0800</pubDate>
+      <description><![CDATA[<h1 id="dsh-skills-nexus-dsh--skill-">dsh-skills-nexus：让 DSH 生态「零门槛」接入任意 Skill 仓库</h1>
+<blockquote>
+<p>如果你厌倦了为每一个 DSH Skill 写 Cordis 插件包装层，这个工具可能是你一直在等的「万能适配器」。</p>
+</blockquote>
+<hr />
+<h2 id="heading">一、项目定位：它解决了一个什么痛点？</h2>
+<p>DSH（DeepSeek Harness）的 Skill 生态正在快速扩张，但官方 `dsh plugin ad&hellip;</p>
+]]></description>
+      <category>Technology</category>
+      <category>AI</category>
+    </item>
     <item>
       <title>Git标准工作流程</title>
       <link>https://xiaxi626.github.io/post/gitbiao-zhun-gong-zuo-liu-cheng/</link>
@@ -125,19 +141,6 @@ cd &lt;仓库目录&gt;
 <p>我们知道ADS中只有圆柱同轴线符号，没有其他结构的同轴线，因此我们在ADS仿真时，为了达到同样的阻抗，需要使用LineCalc计算实际阻抗在ADS中的同轴尺寸。</p>
 <p><img src="https://xiaxi626.github.io/post-images/rlgc/image1.png" alt="" /></p>
 <p>那有没有办法不用圆柱同轴符号呢？我们可以尝试一下用RLGC电路来&hellip;</p>
-]]></description>
-      <category>Technology</category>
-    </item>
-    <item>
-      <title>电子四极管参数计算方法——第一部分</title>
-      <link>https://xiaxi626.github.io/post/dian-zi-si-ji-guan-can-shu-ji-suan-fang-fa-di-yi-bu-fen/</link>
-      <guid isPermaLink="true">https://xiaxi626.github.io/post/dian-zi-si-ji-guan-can-shu-ji-suan-fang-fa-di-yi-bu-fen/</guid>
-      <pubDate>Tue, 12 May 2026 14:45:30 +0800</pubDate>
-      <description><![CDATA[<p>已知电子管阳极电压<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mi>a</mi></msub><mo>=</mo><mn>16</mn><mi>k</mi><mi>V</mi></mrow><annotation encoding="application/x-tex">V_{a} = 16kV</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.2222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">16</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mord mathnormal" style="margin-right:0.2222em;">V</span></span></span></span>，帘栅极电压<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><msub><mi>g</mi><mn>2</mn></msub></msub><mo>=</mo><mn>1200</mn><mi>V</mi></mrow><annotation encoding="application/x-tex">V_{g_{2}} = 1200V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.2222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">1200</span><span class="mord mathnormal" style="margin-right:0.2222em;">V</span></span></span></span>，导通角70°。</p>
-<p><img src="https://xiaxi626.github.io/post-images/tetrode/image1.png" alt="" /></p>
-<p>查询TH781技术规格书，已知工作频率100MHz，帘栅压1500V时输出功率为280kW。</p>
-<p>即<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mrow><mi>g</mi><mn>2</mn></mrow></msub></mrow><annotation encoding="application/x-tex">E_{g2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">g</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>=1500V，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mo lspace="0em" rspace="0em">∼</mo></msub></mrow><annotation encoding="application/x-tex">P_{\sim}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1068em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">∼</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>=280kW。</p>
-<p>![](/post-images/tetr&hellip;</p>
 ]]></description>
       <category>Technology</category>
     </item>

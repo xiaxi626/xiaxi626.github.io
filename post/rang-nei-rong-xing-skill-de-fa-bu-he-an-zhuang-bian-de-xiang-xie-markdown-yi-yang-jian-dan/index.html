@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="飞爱碧玉">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+
+
+<meta name="description" content="Welcome to Gridea Pro">
+
+
+
+<meta name="keywords" content="Technology,AI">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600&display=swap">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>让内容型 Skill 的发布和安装变得像写 Markdown 一样简单 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="让内容型 Skill 的发布和安装变得像写 Markdown 一样简单">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="dsh-skills-nexus：让 DSH 生态「零门槛」接入任意 Skill 仓库 如果你厌倦了为每一个 DSH Skill 写 Cordis 插件包装层，这个工具可能是你一直在等的「万能适配器」。 一、项目定位：它解决了一个什么痛点？ DSH（DeepSeek Harness）的 Skill 生态正在快速扩张，但官方 `dsh plugin ad&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/rang-nei-rong-xing-skill-de-fa-bu-he-an-zhuang-bian-de-xiang-xie-markdown-yi-yang-jian-dan/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"让内容型 Skill 的发布和安装变得像写 Markdown 一样简单","url":"https://xiaxi626.github.io/post/rang-nei-rong-xing-skill-de-fa-bu-he-an-zhuang-bian-de-xiang-xie-markdown-yi-yang-jian-dan/","description":"dsh-skills-nexus：让 DSH 生态「零门槛」接入任意 Skill 仓库 如果你厌倦了为每一个 DSH Skill 写 Cordis 插件包装层，这个工具可能是你一直在等的「万能适配器」。 一、项目定位：它解决了一个什么痛点？ DSH（DeepSeek Harness）的 Skill 生态正在快速扩张，但官方 `dsh plugin ad\u0026hellip;","datePublished":"2026-09-03T06:58:17+08:00","dateModified":"2026-09-02T23:02:43+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/media/images/avatar.jpg"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/rang-nei-rong-xing-skill-de-fa-bu-he-an-zhuang-bian-de-xiang-xie-markdown-yi-yang-jian-dan/","name":"让内容型 Skill 的发布和安装变得像写 Markdown 一样简单","position":2}]}</script>
+<meta property="og:title" content="让内容型 Skill 的发布和安装变得像写 Markdown 一样简单">
+<meta property="og:description" content="dsh-skills-nexus：让 DSH 生态「零门槛」接入任意 Skill 仓库 如果你厌倦了为每一个 DSH Skill 写 Cordis 插件包装层，这个工具可能是你一直在等的「万能适配器」。 一、项目定位：它解决了一个什么痛点？ DSH（DeepSeek Harness）的 Skill 生态正在快速扩张，但官方 `dsh plugin ad&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/rang-nei-rong-xing-skill-de-fa-bu-he-an-zhuang-bian-de-xiang-xie-markdown-yi-yang-jian-dan/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/media/images/avatar.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/rang-nei-rong-xing-skill-de-fa-bu-he-an-zhuang-bian-de-xiang-xie-markdown-yi-yang-jian-dan/">
+<meta name="twitter:title" content="让内容型 Skill 的发布和安装变得像写 Markdown 一样简单">
+<meta name="twitter:description" content="dsh-skills-nexus：让 DSH 生态「零门槛」接入任意 Skill 仓库 如果你厌倦了为每一个 DSH Skill 写 Cordis 插件包装层，这个工具可能是你一直在等的「万能适配器」。 一、项目定位：它解决了一个什么痛点？ DSH（DeepSeek Harness）的 Skill 生态正在快速扩张，但官方 `dsh plugin ad&amp;hellip;">
+<meta name="twitter:image" content="/media/images/avatar.jpg">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/links">友链</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            <a href="https://github.com/github.com/xiaxi626" target="_blank" rel="noopener noreferrer" aria-label="Github">
+                <i class="fa fa-github"></i>&nbsp;
+            </a>
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">vigourpine</a></p>
+    <p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p>
+    <p>Proudly published with&nbsp;<a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a></p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>让内容型 Skill 的发布和安装变得像写 Markdown 一样简单</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">Posted at&nbsp;2026-09-03</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/rang-nei-rong-xing-skill-de-fa-bu-he-an-zhuang-bian-de-xiang-xie-markdown-yi-yang-jian-dan/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/ai/" title="AI">AI</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><h1 id="dsh-skills-nexus-dsh--skill-">dsh-skills-nexus：让 DSH 生态「零门槛」接入任意 Skill 仓库</h1>
+<blockquote>
+<p>如果你厌倦了为每一个 DSH Skill 写 Cordis 插件包装层，这个工具可能是你一直在等的「万能适配器」。</p>
+</blockquote>
+<hr />
+<h2 id="heading">一、项目定位：它解决了一个什么痛点？</h2>
+<p>DSH（DeepSeek Harness）的 Skill 生态正在快速扩张，但官方 <code>dsh plugin add</code> 命令有一个隐形门槛：<strong>只有包含 <code>dsh.bundle.patch</code> 的 Cordis 插件包才能被注册为 profile 层</strong>。这意味着，一个纯内容仓库——里面只有 <code>SKILL.md</code> 和一些参考文件——根本无法通过官方渠道接入 DSH。</p>
+<p><code>dsh-skills-nexus</code> 正是为了填平这个鸿沟而生。它的设计哲学非常简洁：</p>
+<blockquote>
+<p><strong>Skill 仓库保持纯粹，适配工作由 Nexus 一次搞定。</strong></p>
+</blockquote>
+<p>思路是：与其让每个 Skill 作者都去学习 Cordis 插件开发、维护 <code>package.json</code> 和 <code>cordis.patch.yml</code>，不如做一个「通用适配层」——安装一次 Nexus，之后任何含 <code>SKILL.md</code> 的 GitHub 仓库都能一键注册为 DSH Skill。</p>
+<hr />
+<h2 id="symlink-">二、核心机制：Symlink 桥接，而非重新发明轮子</h2>
+<p>Nexus 的实现方式相当优雅，没有搞复杂的运行时注入或自定义 Provider：</p>
+<pre><code>GitHub 仓库 ──clone──► ~/.dsh/skills-nexus/repos/&lt;name&gt;/
+                              │
+                              │ symlink
+                              ▼
+                    ~/.dsh/skills/&lt;name&gt;  ←── DSH 官方文件系统 Provider 自动发现
+</code></pre>
+<p>也就是说，Nexus 本身只负责<strong>克隆</strong>和<strong>创建符号链接</strong>，真正的 Skill 发现、热重载、文件监控全部交给 DSH 原生的文件系统 Provider。这种设计有几个显著好处：</p>
+<ul>
+<li><strong>零运行时开销</strong>：Nexus 不参与 Skill 的加载和解析，DSH 直接通过 symlink 读取原始文件。</li>
+<li><strong>与官方机制完全兼容</strong>：不需要自定义 Provider，也不会破坏 DSH 的更新链路。</li>
+<li><strong>卸载干净</strong>：<code>remove</code> 命令同时删除克隆目录和 symlink，不留残余。</li>
+</ul>
+<hr />
+<h2 id="heading-1">三、功能逐项评测</h2>
+<h3 id="31-">3.1 安装与注册：一条命令，极简体验</h3>
+<pre><code class="language-bash"># 安装 Nexus（只需一次）
+dsh plugin --profile web add &quot;github:xiaxi626/dsh-skills-nexus&quot;
+
+# 注册任意 Skill 仓库
+dsh-skills-nexus add github:owner/repo
+dsh-skills-nexus add github:owner/repo#dev      # 指定分支
+dsh-skills-nexus add owner/repo --subdir skills/foo  # 子目录安装
+</code></pre>
+<p>支持的 URL 格式非常全面，从 <code>github:owner/repo</code> 到完整 HTTPS URL、SSH、甚至 bare <code>owner/repo</code> 简写都兼容。对「集合仓库」（如 <code>trae-community/trae-skills</code> 这种多个 Skill 嵌套在子目录下的结构）也有 <code>--subdir</code> 参数支持，每个子目录独立克隆、独立管理，互不影响。</p>
+<h3 id="32-">3.2 智能仓库检测：不会误操作</h3>
+<p>Nexus 在 <code>add</code> 时会自动检测仓库类型，并给出明确反馈：</p>
+<table>
+<thead>
+<tr>
+<th>仓库类型</th>
+<th>Nexus 行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>纯 SKILL.md 内容仓库</td>
+<td>直接注册</td>
+</tr>
+<tr>
+<td>SKILL.md + DSH 插件包装层</td>
+<td>询问是否忽略包装层，或建议用 <code>dsh plugin add</code></td>
+</tr>
+<tr>
+<td>纯 DSH 插件（无 SKILL.md）</td>
+<td>拒绝注册，提示使用官方安装方式</td>
+</tr>
+<tr>
+<td>无 SKILL.md 也无插件标记</td>
+<td>报错退出</td>
+</tr>
+<tr>
+<td>集合仓库（未指定 <code>--subdir</code>）</td>
+<td>拒绝并提示使用 <code>--subdir</code></td>
+</tr>
+</tbody>
+</table>
+<p>检测逻辑很贴心，尤其是「混合仓库」的交互设计——既给了用户选择权，又防止了误用。超过 20 个 Skill 的集合仓库还会触发确认提示，避免误装整个巨型仓库。</p>
+<h3 id="33-">3.3 版本锁定：轻量级但可靠</h3>
+<p>Nexus 在注册时会记录解析后的精确 commit SHA，作为轻量锁：</p>
+<pre><code class="language-bash">dsh-skills-nexus list
+# 输出包含 commit、subdir、启用状态
+</code></pre>
+<ul>
+<li><strong>分支锁定</strong>：<code>update</code> 会执行 <code>git pull</code> fast-forward</li>
+<li><strong>标签/提交锁定</strong>：<code>update</code> 只验证 checkout 是否匹配，不自动漂移</li>
+</ul>
+<p>没有引入复杂的 lockfile 格式，仅靠 manifest 里的 <code>commit</code> 字段就能实现「可复现安装」。对于追求稳定的用户，可以用 <code>#tag</code> 或 <code>#commit-sha</code> 固定版本；想要跟随上游更新的，用 <code>#branch</code> 即可。</p>
+<h3 id="34-enable--disable--remove">3.4 生命周期管理：enable / disable / remove</h3>
+<pre><code class="language-bash">dsh-skills-nexus enable &lt;name&gt;    # 创建 symlink（默认已启用）
+dsh-skills-nexus disable &lt;name&gt;   # 移除 symlink，保留克隆
+dsh-skills-nexus remove &lt;name&gt;    # 彻底删除
+</code></pre>
+<p><code>disable</code> 的存在很实用——临时下线某个 Skill 测试效果，不需要重新克隆。<code>remove</code> 会清理克隆目录 + symlink + 注册记录，卸载路径很干净。</p>
+<h3 id="35-">3.5 名称规范化：防御性设计</h3>
+<p>DSH 要求 Skill 名称为小写 kebab-case（<code>[a-z0-9]+</code> 段，单横线分隔）。Nexus 在 <code>add</code> 时会自动将不规范的 frontmatter 名称转换为 kebab-case，并给出 <code>⚠</code> 警告。</p>
+<p>这种「自动修正 + 警告」的策略比直接报错更友好，减少了用户因命名规范问题而卡住的概率。</p>
+<hr />
+<h2 id="-nexus-dsh-plugin-add">四、与官方方案的对比：什么时候用 Nexus，什么时候用 <code>dsh plugin add</code>？</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th><code>dsh-skills-nexus</code></th>
+<th><code>dsh plugin add</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>适用仓库</strong></td>
+<td>纯内容仓库（SKILL.md + 参考文件）</td>
+<td>纯 Cordis 插件（含 <code>dsh.bundle.patch</code>）</td>
+</tr>
+<tr>
+<td><strong>仓库要求</strong></td>
+<td>无需 package.json、无需 Cordis 代码</td>
+<td>需要完整的 Cordis 插件结构</td>
+</tr>
+<tr>
+<td><strong>安装命令</strong></td>
+<td><code>dsh-skills-nexus add github:owner/repo</code></td>
+<td><code>dsh plugin add github:owner/repo</code></td>
+</tr>
+<tr>
+<td><strong>版本管理</strong></td>
+<td>内置 commit 锁定 + update</td>
+<td>依赖 pnpm 版本解析</td>
+</tr>
+<tr>
+<td><strong>构建脚本</strong></td>
+<td>绕过 pnpm <code>allowBuilds</code> 拦截</td>
+<td>受 pnpm 构建策略约束</td>
+</tr>
+<tr>
+<td><strong>运行时</strong></td>
+<td>无额外开销（纯 symlink）</td>
+<td>Cordis 插件层加载</td>
+</tr>
+</tbody>
+</table>
+<p>两者是互补关系，不是替代关系。如果仓库有 <code>SKILL.md</code> → 用 Nexus；如果仓库是纯插件代码 → 用 <code>dsh plugin add</code>；两者兼具 → 任选。</p>
+<hr />
+<h2 id="heading-2">五、适用场景与推荐人群</h2>
+<h3 id="-nexus-">强烈推荐使用 Nexus 的场景：</h3>
+<ol>
+<li><strong>Skill 作者</strong>：你写了一个 Prompt 技巧或工作流指南，只想用 <code>SKILL.md</code> 描述它，不想为了发布而学习 Cordis 插件开发。</li>
+<li><strong>企业内部 Skill 库</strong>：公司内网 Git 仓库里有一堆业务相关的 Skill 文档，用 Nexus 可以统一管理，无需逐个包装。</li>
+<li><strong>社区 Skill 聚合</strong>：维护一个「awesome-dsh-skills」集合仓库，社区成员用 <code>--subdir</code> 按需安装其中单个 Skill。</li>
+<li><strong>快速试用</strong>：看到 GitHub 上某个 Skill 仓库想立刻体验，Nexus 是最快的路径。</li>
+</ol>
+<h3 id="heading-3">不太适合的场景：</h3>
+<ul>
+<li>仓库本身已经是 Cordis 插件（Nexus 会建议你走官方渠道）。</li>
+<li>需要复杂的运行时注入或自定义 Provider（Nexus 的定位是内容适配，不是插件框架）。</li>
+</ul>
+<hr />
+<h2 id="heading-4">六、优缺点总结</h2>
+<h3 id="-">✅ 优点</h3>
+<ul>
+<li><strong>零门槛接入</strong>：Skill 作者完全不需要懂 Cordis 或 Node.js，一个 Markdown 文件就能发布。</li>
+<li><strong>设计优雅</strong>：利用 symlink + 官方文件系统 Provider，不重复造轮子。</li>
+<li><strong>版本可控</strong>：轻量 commit 锁定，分支可更新、标签可固定。</li>
+<li><strong>跨平台友好</strong>：Windows 自动用 junction（无需管理员权限），其他平台用标准 symlink。</li>
+<li><strong>防御性强</strong>：仓库类型自动检测、名称规范化、集合仓库安全提示。</li>
+<li><strong>卸载干净</strong>：remove 不留残余，不会污染 DSH 环境。</li>
+</ul>
+<h3 id="--1">⚠️ 需要注意的点</h3>
+<ul>
+<li><strong>需要重启 DSH 才能识别新 Skill</strong>：添加后必须重启 profile（或等待文件系统 Provider 重扫），不能热插拔。这是 DSH 文件系统 Provider 的固有限制，不是 Nexus 本身的问题。</li>
+<li><strong>集合仓库每个子目录独立克隆</strong>：P1 设计选择（独立克隆）意味着如果集合仓库有 10 个 Skill，会克隆 10 份完整仓库。虽然保证了隔离性，但对磁盘空间敏感的用户需要注意。</li>
+<li><strong>无 <code>SKILL.md</code> 的仓库无法注册</strong>：这是设计上的边界，不是缺陷，但需要用户理解 Nexus 的定位。</li>
+</ul>
+<hr />
+<p><code>dsh-skills-nexus</code> 是 DSH 生态中一个「小而美」的基础设施工具。它没有试图做太多事，而是精准地解决了一个真实痛点：<strong>让内容型 Skill 的发布和安装变得像写 Markdown 一样简单</strong>。对于 Skill 作者来说，这意味着发布成本从「学习 Cordis 插件开发」降到了「写一份 README」；对于用户来说，这意味着可以一键接入社区中大量纯文档型的 Skill 仓库。</p>
+<p>如果你正在使用 DSH，并且希望探索社区中那些只有 <code>SKILL.md</code> 的宝藏仓库，安装 Nexus 几乎是必选项。它不会替代官方的插件系统，但它极大地扩展了 DSH 的可用 Skill 边界——而这正是生态繁荣所需要的。</p>
+<hr />
+<blockquote>
+<p><strong>安装命令</strong></p>
+<pre><code class="language-bash">dsh plugin --profile web add &quot;github:xiaxi626/dsh-skills-nexus&quot;
+</code></pre>
+<p>重启 profile 后，即可用 <code>dsh-skills-nexus add</code> 探索任意 Skill 仓库。</p>
+</blockquote>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix"></p>
+    <p><span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/gitbiao-zhun-gong-zuo-liu-cheng/" title="Git标准工作流程">
+                Next post: Git标准工作流程
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span></p>
+    <p></p>
+</div>
+
+
+                            
+                            
+                            
+                            
+                            
+                            
+
+
+
+<section id="comments" class="comments">
+    
+        
+            <div id="giscus-container" data-comment-config="giscus" data-repo="xiaxi626/blog-comment" data-repo-id="R_kgDOT3IXhw" data-category="Blog Comments" data-category-id="DIC_kwDOT3IXh84DDRu-" data-page-id="lAvWgg" data-theme="light"></div>
+<script>
+(function() {
+    var container = document.getElementById('giscus-container');
+    var theme = container.getAttribute('data-theme');
+    if (theme.charAt(0) === '/') { theme = new URL(theme, window.location.origin).href; }
+    var fail = function(message) { container.textContent = message; container.className = 'comment-message'; };
+    var keys = ['repo', 'repo-id', 'category', 'category-id', 'page-id'];
+    if (keys.some(function(key) { return !container.getAttribute('data-' + key); })) { fail('Giscus 评论配置不完整。'); return; }
+    var script = document.createElement('script');
+    script.src = 'https://giscus.app/client.js';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    script.onerror = function() { fail('Giscus 评论资源加载失败，请稍后重试。'); };
+    script.setAttribute('data-repo', container.getAttribute('data-repo'));
+    script.setAttribute('data-repo-id', container.getAttribute('data-repo-id'));
+    script.setAttribute('data-category', container.getAttribute('data-category'));
+    script.setAttribute('data-category-id', container.getAttribute('data-category-id'));
+    script.setAttribute('data-mapping', 'specific');
+    script.setAttribute('data-term', container.getAttribute('data-page-id'));
+    script.setAttribute('data-strict', '1');
+    script.setAttribute('data-reactions-enabled', '1');
+    script.setAttribute('data-emit-metadata', '0');
+    script.setAttribute('data-input-position', 'top');
+    script.setAttribute('data-theme', theme);
+    script.setAttribute('data-lang', 'zh-CN');
+    script.setAttribute('data-loading', 'lazy');
+    container.appendChild(script);
+})();
+</script>
+
+        
+    
+    
+</section>
+
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">vigourpine</a></p>
+    <p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p>
+    <p>Proudly published with&nbsp;<a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a></p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.3 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>
