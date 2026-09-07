@@ -6,8 +6,18 @@
     <description>Welcome to Gridea Pro</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Wed, 02 Sep 2026 23:02:43 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 07 Sep 2026 23:39:50 +0800</lastBuildDate>
     <atom:link href="https://xiaxi626.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <item>
+      <title>让基于证据的工程成为项目的标准</title>
+      <link>https://xiaxi626.github.io/post/rang-ji-yu-zheng-ju-de-gong-cheng-cheng-wei-xiang-mu-de-biao-zhun/</link>
+      <guid isPermaLink="true">https://xiaxi626.github.io/post/rang-ji-yu-zheng-ju-de-gong-cheng-cheng-wei-xiang-mu-de-biao-zhun/</guid>
+      <pubDate>Tue, 08 Sep 2026 07:14:41 +0800</pubDate>
+      <description><![CDATA[<p><strong>Make evidence-based engineering the standard for projects.</strong></p>
+<p>本文讨论的不是如何写代码，而是如何下判断。它来自一次完整工程实践，剥离了具体项目的提交号、文件名和数字，只留下原则、决策逻辑、验证步骤和真实踩过的坑。请先记住它的定位：这是默认工作法，不是审批关卡。它的唯一目的，是让“我认为”尽快变成“实测显示”，而不是增加流程负担。&hellip;</p>
+]]></description>
+      <category>Technology</category>
+    </item>
     <item>
       <title>让内容型 Skill 的发布和安装变得像写 Markdown 一样简单</title>
       <link>https://xiaxi626.github.io/post/rang-nei-rong-xing-skill-de-fa-bu-he-an-zhuang-bian-de-xiang-xie-markdown-yi-yang-jian-dan/</link>
@@ -131,18 +141,6 @@ cd &lt;仓库目录&gt;
 2、点击右上角Fork按钮，自动跳转到&hellip;</p>
 ]]></description>
       <category>Git</category>
-    </item>
-    <item>
-      <title>ADS中用W-Element模拟方形同轴线的RLGC建模方法</title>
-      <link>https://xiaxi626.github.io/post/ads-w-element-simulate-square-coaxial-rlgc-modeling/</link>
-      <guid isPermaLink="true">https://xiaxi626.github.io/post/ads-w-element-simulate-square-coaxial-rlgc-modeling/</guid>
-      <pubDate>Fri, 15 May 2026 19:40:37 +0800</pubDate>
-      <description><![CDATA[<p>此文为记录ADS方形同轴线RLGC建模从报错到功能正常调用的过程，最终解决方案见文末。</p>
-<p>我们知道ADS中只有圆柱同轴线符号，没有其他结构的同轴线，因此我们在ADS仿真时，为了达到同样的阻抗，需要使用LineCalc计算实际阻抗在ADS中的同轴尺寸。</p>
-<p><img src="https://xiaxi626.github.io/post-images/rlgc/image1.png" alt="" /></p>
-<p>那有没有办法不用圆柱同轴符号呢？我们可以尝试一下用RLGC电路来&hellip;</p>
-]]></description>
-      <category>Technology</category>
     </item>
   </channel>
 </rss>

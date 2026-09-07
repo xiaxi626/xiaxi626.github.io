@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="飞爱碧玉">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+
+
+<meta name="description" content="Welcome to Gridea Pro">
+
+
+
+<meta name="keywords" content="Technology">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600&display=swap">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>让基于证据的工程成为项目的标准 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="让基于证据的工程成为项目的标准">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="Make evidence-based engineering the standard for projects. 本文讨论的不是如何写代码，而是如何下判断。它来自一次完整工程实践，剥离了具体项目的提交号、文件名和数字，只留下原则、决策逻辑、验证步骤和真实踩过的坑。请先记住它的定位：这是默认工作法，不是审批关卡。它的唯一目的，是让“我认为”尽快变成“实测显示”，而不是增加流程负担。&amp;hellip;">
+<link rel="canonical" href="https://xiaxi626.github.io/post/rang-ji-yu-zheng-ju-de-gong-cheng-cheng-wei-xiang-mu-de-biao-zhun/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"让基于证据的工程成为项目的标准","url":"https://xiaxi626.github.io/post/rang-ji-yu-zheng-ju-de-gong-cheng-cheng-wei-xiang-mu-de-biao-zhun/","description":"Make evidence-based engineering the standard for projects. 本文讨论的不是如何写代码，而是如何下判断。它来自一次完整工程实践，剥离了具体项目的提交号、文件名和数字，只留下原则、决策逻辑、验证步骤和真实踩过的坑。请先记住它的定位：这是默认工作法，不是审批关卡。它的唯一目的，是让“我认为”尽快变成“实测显示”，而不是增加流程负担。\u0026hellip;","datePublished":"2026-09-08T07:14:41+08:00","dateModified":"2026-09-07T23:39:50+08:00","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/media/images/avatar.jpg"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/rang-ji-yu-zheng-ju-de-gong-cheng-cheng-wei-xiang-mu-de-biao-zhun/","name":"让基于证据的工程成为项目的标准","position":2}]}</script>
+<meta property="og:title" content="让基于证据的工程成为项目的标准">
+<meta property="og:description" content="Make evidence-based engineering the standard for projects. 本文讨论的不是如何写代码，而是如何下判断。它来自一次完整工程实践，剥离了具体项目的提交号、文件名和数字，只留下原则、决策逻辑、验证步骤和真实踩过的坑。请先记住它的定位：这是默认工作法，不是审批关卡。它的唯一目的，是让“我认为”尽快变成“实测显示”，而不是增加流程负担。&amp;hellip;">
+<meta property="og:url" content="https://xiaxi626.github.io/post/rang-ji-yu-zheng-ju-de-gong-cheng-cheng-wei-xiang-mu-de-biao-zhun/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/media/images/avatar.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/rang-ji-yu-zheng-ju-de-gong-cheng-cheng-wei-xiang-mu-de-biao-zhun/">
+<meta name="twitter:title" content="让基于证据的工程成为项目的标准">
+<meta name="twitter:description" content="Make evidence-based engineering the standard for projects. 本文讨论的不是如何写代码，而是如何下判断。它来自一次完整工程实践，剥离了具体项目的提交号、文件名和数字，只留下原则、决策逻辑、验证步骤和真实踩过的坑。请先记住它的定位：这是默认工作法，不是审批关卡。它的唯一目的，是让“我认为”尽快变成“实测显示”，而不是增加流程负担。&amp;hellip;">
+<meta name="twitter:image" content="/media/images/avatar.jpg">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/links">友链</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            <a href="https://github.com/github.com/xiaxi626" target="_blank" rel="noopener noreferrer" aria-label="Github">
+                <i class="fa fa-github"></i>&nbsp;
+            </a>
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">vigourpine</a></p>
+    <p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p>
+    <p>Proudly published with&nbsp;<a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a></p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>让基于证据的工程成为项目的标准</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">Posted at&nbsp;2026-09-08</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/rang-ji-yu-zheng-ju-de-gong-cheng-cheng-wei-xiang-mu-de-biao-zhun/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><p><strong>Make evidence-based engineering the standard for projects.</strong></p>
+<p>本文讨论的不是如何写代码，而是如何下判断。它来自一次完整工程实践，剥离了具体项目的提交号、文件名和数字，只留下原则、决策逻辑、验证步骤和真实踩过的坑。请先记住它的定位：这是默认工作法，不是审批关卡。它的唯一目的，是让“我认为”尽快变成“实测显示”，而不是增加流程负担。</p>
+<h2 id="heading">最贵的错误，是自信地错了</h2>
+<p>在 AI 帮你写代码已成常态的今天，真正让人付出代价的失败，往往不是「不会写」，而是下面这些：</p>
+<ul>
+<li>用「我逐条核对过了」来代替真正跑一遍；</li>
+<li>用「只要改几行」去论证一个本就不该做的改动；</li>
+<li>悄悄改掉自己说错的结论，不留任何痕迹；</li>
+<li>把软偏好当成硬约束，为了一件没有用户可见收益的事反复纠结——也就是<strong>钻牛角尖</strong>；</li>
+<li>决定「不做」，却没人把理由记下来，几周后又被另一个人重新提起。</li>
+</ul>
+<p>它们有一个共同点：<strong>代价高昂，却本可避免</strong>。更要命的是，这类错误往往集中在你<strong>最自信</strong>的地方——因为你从不会去复查那些你觉得「理所当然没问题」的结论。</p>
+<p>这套方法论想做的，就是把「下判断」这件事本身约束住。它把一次次教训固化成<strong>可执行的清单 + 判断的尺子 + 反模式对照表</strong>，并且用「规则分档」来防止它自己退化成新的教条。</p>
+<h2 id="heading-1">这套方法从哪来：起点不是生成，是核查</h2>
+<h3 id="heading-2">一份可靠的方案，开头就该交代它的来历</h3>
+<p>一份真正靠谱的优化方案，通常在开头就声明自己是怎么来的，形如这样一句话：</p>
+<blockquote>
+<p>基于对某外部评估文档的核查，过滤掉不准确的假设（例如断言「缺少某份本应存在的文档」，而它其实已存在）和过早扩张的建议（例如超出当前阶段范围的平台/功能扩展），聚焦于真实存在的健壮性问题、体验改进和覆盖缺口。</p>
+</blockquote>
+<p>换句话说，方案不是从「一个项目通常应该有什么」倒推出来的，而是老老实实走了四步：</p>
+<ol>
+<li><strong>拿到一份外部评估</strong>——它可能来自他人、来自某个 AI 工具，或来自一次代码审计；</li>
+<li><strong>逐条到仓库、到代码里去核实</strong>；</li>
+<li><strong>过滤掉两类内容</strong>：事实性错误，以及价值判断上的过早扩张；</li>
+<li><strong>剩下的，才成为任务</strong>。</li>
+</ol>
+<p>这里有个容易被忽略的要求：这条推导链应当是<strong>物理可核对</strong>的。源文档、核查产物（也就是方案）、以及由方案沉淀出的方法论，最好同处一地。方案里的每个任务，都应该能回溯到源文档的某条建议，以及核实那条建议时你究竟读了哪些材料。</p>
+<p>方案的自我约束也应该来自核实，而不是凭空设定。举个例子：当方案在开头写明了技术栈，并立下「不新增运行时依赖、不破坏既有安装/集成流程」这类硬约束之后，<strong>这些约束会贯穿全部任务</strong>，并在评审中成为否决某些建议的直接依据——比如据此否决「把某个自研解析器替换为第三方库」。</p>
+<h3 id="heading-3">三步过滤：把不该做的挡在门外</h3>
+<p>核实阶段被过滤掉的内容，通常落入三类。下面用通用示例说明：</p>
+<table>
+<thead>
+<tr>
+<th>过滤类型</th>
+<th>示例条目</th>
+<th>核实依据（示例）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>事实性错误</td>
+<td>「项目缺少某份贡献/说明文档」</td>
+<td>仓库里其实已存在该文档，甚至有多语言版本</td>
+</tr>
+<tr>
+<td>过早扩张</td>
+<td>支持更多第三方平台、增加 shell 补全等非核心能力</td>
+<td>项目仍处早期；现有简写/手动方式已可覆盖，社区可后续按需补</td>
+</tr>
+<tr>
+<td>隐含约束</td>
+<td>不引入新依赖</td>
+<td>现有唯一运行时依赖已足够，方案全程未新增</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键点在于：被过滤掉的条目并没有被删除</strong>，而是进了「不做的事项」表，并附上理由（这张表后面会专门讲）。</p>
+<p>那么，核实到底读了些什么？这也是「方案来自阅读项目本身」的具体含义。通常包括：各类说明文档（README、贡献指南、变更日志）、架构与设计说明、既有的验证/测试记录、CI 配置、议题模板、构建与依赖清单、代码规范配置，以及源码与测试的全部。</p>
+<p>核实过程中有两个常见收获，会直接影响后续任务：</p>
+<ul>
+<li><strong>既有验证文档是否存在</strong>，会决定新任务的<strong>验收形式</strong>（例如「实施后配套产出一份验证记录」）；</li>
+<li><strong>构建/测试脚本的组织方式</strong>，会成为<strong>改动面评估的关键约束</strong>。比如「测试脚本是一份硬编码的全量列表，新增测试文件必须登记，而往已登记文件里加用例则不必」——这一条会显著改变两个看似等价方案的代价。</li>
+</ul>
+<h3 id="heading-4">同一把尺子，也要拿来量方案自己</h3>
+<p>这是整套流程里最关键的一步。方案定稿之后，评审并没有停止，而是把前面那套核查纪律<strong>反过来用在方案本身</strong>。一份初看合理的任务清单，逐任务核查之后，条目的最终去向往往分布在以下几种：</p>
+<table>
+<thead>
+<tr>
+<th>去向</th>
+<th>含义</th>
+<th>典型依据（示例）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ 保留 → 实施</td>
+<td>问题真实、方案正确</td>
+<td>通过实测确认收益与正确性</td>
+</tr>
+<tr>
+<td>❌ 移除</td>
+<td>问题不存在，或方案比问题更危险</td>
+<td>误判会自纠正、结局恒正确；或属 YAGNI；或核查发现原实现反而引入数据丢失陷阱</td>
+</tr>
+<tr>
+<td>⚠️ 收敛</td>
+<td>问题真实但方案过大</td>
+<td>收敛为「最小外科版」，只改一个叶子函数；用差分实测证明回归为零</td>
+</tr>
+<tr>
+<td>🔧 打补丁</td>
+<td>方案基本成立但有漏项</td>
+<td>差分实测发现原方案遗漏了某类输入的处理，需补护栏</td>
+</tr>
+<tr>
+<td>➕ 新增</td>
+<td>评审中才暴露的项</td>
+<td>核查发现某处逻辑<strong>零测试覆盖</strong>，且带着一个已确认可达的缺陷在跑</td>
+</tr>
+</tbody>
+</table>
+<p>这笔账本身就说明了很多问题：一份看起来合理的计划，逐任务核查后往往有<strong>相当比例</strong>需要修正——被移除、被收敛、被打补丁，甚至会新增评审中才发现的任务；而「原样未被触动」的条目，可能只占一半左右。</p>
+<p>这个数字（无论具体是多少）正是整套方法论的核心论据：<strong>核查不是对方案作者的不信任，而是方案应有的最后一道工序。</strong></p>
+<h3 id="heading-5">扩大观测面，问题自己会冒出来</h3>
+<p>「扩大观测面」这件事本身，会立刻暴露此前不可见的问题。一个典型的链条是这样的：某个任务把 CI 从单一平台扩展到多平台矩阵，并补上了跨平台集成测试；<strong>紧接着的下一个提交</strong>，往往就是修复一个<strong>只在新平台 + 特定运行时版本上</strong>才会出现的断言失败。</p>
+<p>这样的失败，在旧的观测面下<strong>完全不可见</strong>。这不是谁写错了，而是<strong>观测面不够</strong>。所以，扩大观测面本身就是一项有回报的投资——它把「潜伏的平台差异」提前变成「可见的红灯」。</p>
+<h2 id="heading-6">先给规则分档：别让方法论自己变成教条</h2>
+<p>在展开具体原则之前，必须先说清楚一件事：本文里所有规则都分三档，执行强度并不相同。</p>
+<ul>
+<li><code>[护栏]</code>：不做就会导致数据损坏、错误结论或不可逆后果——<strong>默认强制</strong>。</li>
+<li><code>[默认]</code>：有理由的默认选择，但<strong>可以被用户意图或项目既有约定覆盖</strong>。</li>
+<li><code>[审美]</code>：收益只是纯粹的一致性/洁癖、用户通常根本观测不到差异——<strong>只在成本近零时顺手做</strong>。</li>
+</ul>
+<p>当它们发生冲突时，按这条<strong>优先级链</strong>从上往下裁决：</p>
+<blockquote>
+<p><code>用户明确意图 &gt; 项目既有约定 &gt; 本方法论默认 &gt; 个人偏好</code></p>
+</blockquote>
+<p><strong>为什么非要分档？</strong> 因为把经验固化成清单时，天然带着两个失败模式：一是把软偏好当成硬约束，二是脱离产生规则的语境——规则一旦离开它被总结出来的那个项目，就容易被当成放之四海而皆准的律法。<strong>分档 + 优先级链 + 反向清单（何时不必遵循）</strong>，正是防止方法论自身退化成教条的三道护栏。</p>
+<p><strong>那么，如何判断某条规则此刻到底该不该遵守？</strong> 回到内核那句话——它能不能产生用户可见的收益，值不值这个成本。如果遵守它已经不再服务于「让结论可信、让改动可控、让协作可回溯」这个目的，那就让规则让路。特别地：</p>
+<ul>
+<li>一条 <code>[审美]</code> 规则（比如统一的换行符 / 编码风格），若与所处环境的默认行为相冲突、又没有用户可见收益，就应该顺其自然，而不是反复手动纠正——环境往往会自动把它改回去，你纠正的成本被反复支付，却买不到任何持久收益。</li>
+<li>一条 <code>[默认]</code> 规则遇到项目已有约定时，从项目约定。</li>
+<li>只有 <code>[护栏]</code> 规则（会造成不可逆损害的那些），才值得在任何环境下坚持。</li>
+</ul>
+<p>最后，附上一张<strong>反向清单——什么时候你可以理直气壮地不遵循</strong>：</p>
+<ol>
+<li>满足某规则<strong>不产生任何用户可见收益、且成本非零</strong> → 放弃它，或降级为「顺带做」，按需记一句理由即可。</li>
+<li>某规则与<strong>用户明确意图或项目既有约定冲突</strong> → 遵从用户 / 项目，不要强行套用。</li>
+<li>某操作在同一环境<strong>已连续失败两次</strong> → 换方法或降级，别第三次硬磕；先分清是「我用错了」还是「这环境不可靠」。</li>
+<li>你正在为<strong>没观测到的问题</strong>做预防性大动作 → 回到 YAGNI，先问这个问题是否真实存在。</li>
+<li>规则的<strong>满足本身变成了目标</strong>、而你已说不清它服务于什么 → 停下来，回到目的。</li>
+</ol>
+<h2 id="heading-7">第一层·事实：怎么知道一件事是真的</h2>
+<h3 id="heading-8">能跑的，就必须跑</h3>
+<p><strong>这条是护栏。</strong> 任何关于代码行为的断言，只要能跑，就必须跑一遍。「零回归」「经核验」「应该不会有问题」这类表述，在写进文档之前，必须升级成<strong>带计数的实测结论</strong>。</p>
+<p>为什么这么较真？因为推断的错误率从来不为零，而且<strong>错误往往集中在自信的地方</strong>；因为实测的成本，通常远低于推断出错之后的返工成本；更因为——实测结果可以写进文档成为<strong>证据</strong>，而推断只能写进文档成为<strong>主张</strong>。</p>
+<p>「推断会说」和「实测显示」之间的落差，往往大得惊人：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推断会说</th>
+<th>实测显示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>声称「零回归」</td>
+<td>「现有用例逐条核验通过」</td>
+<td>fixture 差分后发现约一半行为改变；既存测试的输入全部落在「未变」一侧，但<strong>改变项里藏着原方案没想到的输入</strong></td>
+</tr>
+<tr>
+<td>声称「已覆盖」</td>
+<td>原方案未提及某类输入</td>
+<td>形如 <code>--flag=false</code> 的布尔标志被误解析为真值，绕过了本应触发的确认</td>
+</tr>
+<tr>
+<td>声称「预期失败」</td>
+<td>「新用例应该会红」</td>
+<td>旧实现大部分用例失败、新实现全绿；而那唯一「常绿」的旧用例其实是回归护栏，不是新功能</td>
+</tr>
+<tr>
+<td>声称「更彻底」</td>
+<td>「完整重写比最小改动更干净」</td>
+<td>逐字节差分证明最小版回归为零，完整版反而触及共享链路、风险更大</td>
+</tr>
+<tr>
+<td>声称「不可达」</td>
+<td>「当前不会触发」</td>
+<td>实跑探针证明<strong>可达</strong>：某入口标志会被置位、正文被改写</td>
+</tr>
+</tbody>
+</table>
+<p>怎么读这张表？每一行左边的说法，听起来都无比合理、无比自信；而右边是跑一遍之后才知道的真相。落到操作上，你可以这么做：</p>
+<ol>
+<li>准备一组 fixture，<strong>必须包含现有测试用到的全部输入</strong>——这是证明「零回归」的唯一办法；</li>
+<li>把新旧实现并排 import，逐个 fixture 比较输出（<strong>异常也要捕获后一并比较</strong>，因为抛错与返回值是两种不同的结果）；</li>
+<li>报告两个计数：行为相同多少、行为改变多少；</li>
+<li><strong>把改变项逐条归类</strong>为「本次意图内的修复」或「意外变更」。意外变更必须处理，或者显式记录为残留并说明不做的理由；</li>
+<li>把计数写回文档，替换掉那些形容词。</li>
+</ol>
+<h3 id="heading-9">用真代码验证，别拿你的抄本比你的推断</h3>
+<p>验证一个函数的行为时，要<strong>import 真实实现</strong>，不要在探针脚本里把它的逻辑复制一遍。验证一份文档里的代码时，要<strong>从文档里逐字抽取</strong>，不要照着手抄。</p>
+<p>道理很简单：复制出来的那个「等价实现」，会在你最需要它的时候变得不等价——而你根本察觉不到，因为你比较的，是你自己的抄本和你自己的推断。</p>
+<p>几个具体的做法：</p>
+<ul>
+<li>探针直接 <code>import</code> 被测的真实源码来跑，而不是把那段逻辑抄进脚本。很多「可达性」结论，依赖的其实是<strong>调用方</strong>的行为，而不是被抄的那段代码本身——只有跑真实链路才能发现（比如「某入口标志是否会被置位」，取决于上游解析器，而不是目标正则）。</li>
+<li>验证「文档里给出的实现」时，用脚本按标题定位、按代码围栏切片，从方案文档里<strong>逐字抽出</strong>实现和配套测试，改个名字再编译运行——而不是照着文档手敲一遍。</li>
+<li>定稿之后，<strong>再从已更新的文档里重新抽取、重跑一次</strong>。这一步证明的是「文档本身可执行且正确」，而不只是「我脑子里那个版本正确」。</li>
+</ul>
+<p>归纳成可复用的四条：</p>
+<ol>
+<li>探针脚本一律 import 被测源码，<strong>禁止复制实现</strong>；</li>
+<li>抽取文档代码块之后，先断言关键标识存在（如函数签名）、条数符合预期，再运行；</li>
+<li>文档改完之后重跑一次抽取——文档和代码会各自漂移，只有重跑能证明它们仍然一致；</li>
+<li>需要理解跨模块行为时，把<strong>调用链上的每一个环节</strong>都读一遍（某个标志「有多严重」，往往只有读到它在下游被怎样消费，才能确定）。</li>
+</ol>
+<h3 id="heading-10">先问「问题真的存在吗」，再问「该怎么修」</h3>
+<p>评审一个任务时，先问「这个问题真的存在吗、有人观测到过吗」，再问「该怎么修」。<strong>这个顺序不能颠倒。</strong></p>
+<p>因为一旦开始讨论实现方案，你的注意力就会转移到「怎么做」上，从而不知不觉默认了「该做」。把「存在性」这个问题单独拎出来，是唯一能阻止这个滑坡的办法。</p>
+<p>实践中有一句<strong>固定的三问</strong>，专门用来把事实、价值判断、实施方案强行分开：</p>
+<blockquote>
+<p>分析某任务的<strong>问题存在性</strong>以及<strong>是否应当处理</strong>？如果确实需要，再分析<strong>方案是否需要调整</strong>。最后敲定该任务方案。</p>
+</blockquote>
+<p>这三问会带来几类典型结论：</p>
+<ul>
+<li><strong>重复代码类</strong>：重复<strong>属实</strong>，但如果它是纯展示逻辑、没有任何观测到的缺陷，那收益就是<strong>审美性</strong>的；当代价是一次提交要触达大量文件时 → <strong>移除</strong>。</li>
+<li><strong>YAGNI 类</strong>：某校验针对的字段只有一个版本、也没有变更计划 → YAGNI。更关键的是，核查发现原方案的实现（「先备份、再返回空表」）会在版本降级时<strong>静默清空并覆盖数据</strong> → 这不是修复，而是引入了一个数据丢失陷阱 → <strong>移除</strong>，并在「不做」表里写明「若将来引入新版本，应改为 fail-safe（拒绝 + 提示升级、绝不自动覆盖）」。</li>
+<li><strong>自纠正类</strong>：某处误判会自纠正、结局恒正确，而真正要紧的不变量已经被别的测试覆盖 → <strong>移除</strong>。</li>
+</ul>
+<p>可复用的四步：</p>
+<ol>
+<li>对每个候选任务强制回答：「有没有人<strong>观测到</strong>这个缺陷？还是只是看起来不优雅？」</li>
+<li>如果答案是后者，检查收益是<strong>功能性</strong>的还是<strong>审美性</strong>的；</li>
+<li>审美性收益不是不能做，但必须与改动面成比例——用「一次提交触达多少文件」来量化代价；</li>
+<li><strong>核查可能反转结论</strong>：有的原实现，比它要修的那个问题还危险。这种情况必须记录下来，否则下一个人会重新提出同一个方案。</li>
+</ol>
+<h2 id="heading-11">第二层·判断：怎么决定做不做</h2>
+<h3 id="heading-12">「只要几行」是最危险的论证</h3>
+<p>一个缺陷该不该修，取决于<strong>修好它是否改变用户可见的结果</strong>，而不是取决于修它有多便宜。</p>
+<p>「只要几行」之所以危险，是因为它把成本当成了理由。便宜的事情如果不产生收益，做了也只是白白增加改动面和验证负担。</p>
+<p>看一个<strong>便宜但决定不修</strong>的例子：某处正文污染缺陷，修法已知、只需几行，但<strong>决定不修</strong>，决定性理由是严重性——</p>
+<ul>
+<li>在它的触发场景里，即使修好了污染，<strong>用户可见结果也不变</strong>：触发前提本身就使后续处理失败，产物照样被跳过；</li>
+<li>被改写的那一行，位于<strong>每轮都会被丢弃重来的一次性托管产物</strong>里，下次运行即自愈；</li>
+<li>所以修它，只买到了「不再对一个可丢弃的文件做外观损伤」。</li>
+</ul>
+<p>但决定不做，要附带<strong>重新立项条件</strong>：若将来那个「根因缺陷」被立项修复，本项应与它<strong>同一批</strong>处理——因为只有到那时，改动才带来用户可见的收益。</p>
+<p>再看一个<strong>便宜且严重、必须做</strong>的对照例子：为 CLI 增加 <code>--flag=value</code> 语法时，差分实测发现原方案漏了布尔标志的处理——<code>--flag=false</code> 会被读成真值，从而<strong>同时绕过两道本应触发的确认护栏</strong>，而它的终点，恰好与本任务要修的「静默批量操作」相同。这类补丁又便宜又严重，必须随任务一起做。</p>
+<p>可复用的四步：</p>
+<ol>
+<li>先<strong>独立</strong>回答两个问题：「修好它，用户能观测到什么变化？」/「修它要动多少东西？」</li>
+<li>如果第一个答案是「没有变化」，那么第二个答案再便宜，也不构成理由；</li>
+<li>判断「用户可见」时，要追到<strong>数据的生命周期</strong>：被改的文件，是用户资产，还是一次性托管产物？后者会自愈；</li>
+<li>决定不做时，<strong>必须写下重新立项条件</strong>。</li>
+</ol>
+<h3 id="heading-13">大改之前，先写个探针止损</h3>
+<p>实施一个较大改动之前，先写一个最省事的版本跑一遍。它的作用不是交付，而是<strong>暴露你没想到的失败模式</strong>。</p>
+<p>举个真实的收敛过程：某次要收敛一处文本改写逻辑。</p>
+<ul>
+<li>先写一个「更省事的版本」：只做最小修正，不加范围限定；</li>
+<li><strong>实测发现它引入了一个当前代码里并不存在的新 bug</strong>：在整篇文件上匹配某个模式，会改坏正文代码块里的示例内容；</li>
+<li>于是「范围限定」就从一个看起来多余的复杂度，变成了<strong>必需品</strong>；</li>
+<li>最终方案收敛为只改<strong>一个叶子函数</strong>，共享的解析器/正则一律不动——因为它们被用在<strong>整条发现/处理链路</strong>上（覆盖多个命令），为一个只在局部运行的重写，去改动全链路解析器的结构，风险面与收益完全不成比例。</li>
+</ul>
+<p>由此得到一条清晰的<strong>判据</strong>：改动能否被限制在<strong>叶子函数</strong>内。能，就做；不能，就要重新论证收益是否配得上这个风险面。</p>
+<p>可复用的四步：</p>
+<ol>
+<li>大改动前先写一个简化版，并明确写着「这是探针，不是交付物」；</li>
+<li>探针跑出<strong>新</strong>缺陷时，别把它当成「简化版的固有问题」忽略掉——它往往指出了完整版的必要组成；</li>
+<li>用「这次改动触达几个文件 / 几条调用链」来量化风险面；</li>
+<li>共享的基础设施（被多条链路使用的解析器、工具函数），<strong>默认不动</strong>。</li>
+</ol>
+<h3 id="heading-14">别给走不到的路径写测试</h3>
+<p>可达性判定的依据，必须是<strong>可追踪的代码不变量</strong>，而不是「至今没触发过」。</p>
+<p>给不可达的路径写测试，等于把投机行为固化成规格。将来有人读到这条测试，会以为这个输入是个合法场景。</p>
+<p>一个<strong>确实不可达</strong>的例子：判断某注入路径是否可达时，结论是<strong>不可达</strong>，但理由必须精确——目标函数只在某个分支被调用，传入的值恒为上游某个「净化函数」的输出，而该净化函数会把非白名单字符整体替换掉，<strong>输出的字符集不可能含目标字符</strong>。因此<strong>不为它写测试</strong>，并写明「若将来净化函数被放宽，应在其<strong>所在模块</strong>补不变量测试」。同时还砍掉了另外两类没有信息量的用例：与其他用例重复覆盖的情形，以及任何「修正验收」式的断言（那是<strong>修复</strong>的验收标准，写进特征测试会立刻变红）。</p>
+<p>再看一个<strong>可达性误判</strong>的反面教材：曾经判定某路径「当前不可达」，理由是「某入口标志需要顶层键存在才会被设置」。<strong>这个判定是错的</strong>——上游解析取自结构化解析结果，所以当输入写成另一种形态时，该标志<strong>会</strong>被置位；而目标正则的锚点匹配不到那种形态，扫描于是越过边界、改写了正文。</p>
+<p>教训是：<strong>可达性必须按两条独立链路分别判断——解析视图决定是否被调用，文本视图决定改到哪一行。</strong> 只核实其中一条，就会误判。</p>
+<p>可复用的四步：</p>
+<ol>
+<li>主张「不可达」时，必须指出是<strong>哪个不变量</strong>保证了它，并给出该不变量在代码里的位置；</li>
+<li>如果理由只是「没见到过」，那就不是不可达，只是低频；</li>
+<li>一个入口标志可能由多种输入形态产生（解析后的值 vs 原始文本），<strong>逐一核实每一种</strong>；</li>
+<li>不变量被放宽时，测试应该加在<strong>不变量所在的模块</strong>，而不是加在下游消费者那里。</li>
+</ol>
+<h2 id="heading-15">第三层·自我校正：错了怎么办</h2>
+<h3 id="heading-16">自己提的方案，要更狠地怀疑</h3>
+<p>当一项工作是你自己提议的，你的论证义务更重，而不是更轻。</p>
+<p>比如，在完成一处收敛后，你主动提出一个开放项（例如「给某个此前零覆盖的函数补一组特征测试」）。合理的回应不是马上动手写测试，而是要求先论证：</p>
+<blockquote>
+<p>把它单独立项、写进方案。<strong>一定要捋一下，确认你想增加的任务是合理的</strong>——我们不想把任务搞得过于复杂，但该做的还是得做。</p>
+</blockquote>
+<p>于是先做论证，而不是先动手：</p>
+<ul>
+<li><strong>为什么值得做</strong>（注意，每一条都不是审美性的）：① 它带着一个<strong>已实测确认可达</strong>的缺陷在跑，而相邻的姊妹逻辑刚刚为<strong>同一触发条件</strong>修掉了同类问题，这个不对称不写成测试，后来者根本看不见；② 方案已经明确推迟了某些修正，而<strong>推迟的正当前提必须被记录在案</strong>——计划文档会被归档，测试不会；③ 它是任何未来修正的<strong>前置条件</strong>。</li>
+<li><strong>为什么它能保持简单</strong>：不引入红/绿两阶段 → 无实现改动 → 无回归面 → 验收退化为两条（全部用例首跑即绿；除测试与变更日志外，不得出现任何其他文件改动）。</li>
+<li><strong>砍掉了什么</strong>：主动列出从一批探针 fixture 收敛到少数几条测试的裁剪过程。</li>
+</ul>
+<p>可复用的三步：</p>
+<ol>
+<li>自己提议的任务，先写「为什么值得做」和「为什么它能保持简单」两段，<strong>再</strong>写实施步骤；</li>
+<li>主动列出<strong>砍掉了什么</strong>——裁剪记录比范围声明更能证明你想清楚了；</li>
+<li>纯增量任务（只加测试、只加文档）的验收标准，要与修复任务<strong>不同</strong>，不要机械套用红/绿两阶段。</li>
+</ol>
+<h3 id="heading-17">被实测推翻时，先告诉依赖你的人</h3>
+<p>当证据推翻了你先前给出的判断，你的<strong>第一动作是告知那些依赖该判断做决定的人</strong>，第二动作才是修正。</p>
+<p>以一处「不可达」判定被实测推翻为例，正确的动作顺序是：</p>
+<ol>
+<li><strong>主动披露</strong>：明确告知「我之前给你的一个判断是错的，而你在做范围决定时依赖了它」——因为对方先前的决定部分建立在那个错误判断上，他有权重新决定；</li>
+<li><strong>把决定权交还</strong>：给出几个选项（修 / 不修 / 扩大范围），而不是自行替他选择；</li>
+<li><strong>更正留痕</strong>：把旧判定<strong>原文引用后再驳斥</strong>，而不是悄悄改掉。于是文档里会同时存在「原判定」（作为被引用的错误）和「这条判定是错的」（作为结论）；</li>
+<li><strong>连带更正那些理由错误的正确结论</strong>：若某个结论（如「不可达」）是对的、但<strong>理由</strong>是错的（如「同上」），也要一并更正为真正的不变量依据；</li>
+<li><strong>更正记忆</strong>：若同一句错误判定已经写进了长期记忆/文档/注释，检索并更新它，必要时新增一个「已更正的错误判定」专段。</li>
+</ol>
+<p>可复用的四条：</p>
+<ol>
+<li>判断被证据推翻时，先检查<strong>有谁依赖了这个判断做决定</strong>，主动告知；</li>
+<li>更正要<strong>留痕</strong>：引用原文再驳斥，而不是替换。悄悄修改会让后来者失去「这里曾经错过」的信息，从而可能重犯；</li>
+<li>一个<strong>由错误理由支撑的正确结论</strong>也是问题——理由错了，下次场景一变，结论就会跟着错；</li>
+<li>错误如果已经写进长期记忆 / 文档 / 注释，<strong>必须一并检索并更正</strong>，否则它会继续误导。</li>
+</ol>
+<h3 id="heading-18">让文档编辑「可以失败」：计数式自校验</h3>
+<p>批量编辑文档时，写脚本来执行，并在<strong>写盘之前</strong>跑一组计数断言。一旦失败就退出，原文件毫发无损。</p>
+<p>比如对方案文档做多轮批量替换，每一轮的脚本里都含着数十项断言：</p>
+<ul>
+<li>每处替换的目标串<strong>必须恰好出现 1 次</strong>（否则说明锚点不唯一，或已经被改过了）；</li>
+<li>旧表述的归零计数、新表述的出现次数；</li>
+<li>行数护栏（期望值 = 原行数 + 各编辑预测的增量 ± 容差）；</li>
+<li>代码围栏总数为偶数、无 CR、无 BOM、标题数量不变。</li>
+</ul>
+<p>而在这么做的时候，踩过一批很有代表性的坑——它们几乎人人都会遇到：</p>
+<table>
+<thead>
+<tr>
+<th>坑</th>
+<th>症状</th>
+<th>根因</th>
+<th>修法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符串替换 API 的反向引用</td>
+<td><strong>所有</strong>计数断言同时以整数倍（如 2×）超标，文档头部被复制多遍</td>
+<td>新文本里含 <code>$`</code>（美元符号紧跟反引号）之类的特殊序列，被当成「插入匹配位置之前的全部内容」</td>
+<td>替换串<strong>一律用回调</strong> <code>() =&gt; newStr</code></td>
+</tr>
+<tr>
+<td>断言作用域过宽</td>
+<td>「旧表述已归零」却报出剩余</td>
+<td>新内容为了<strong>驳斥</strong>而原文引用了旧表述</td>
+<td>给待查串加上下文限定，并<strong>新增正向断言</strong>，要求「驳斥引用」各存在 1 次</td>
+</tr>
+<tr>
+<td>golden 串跨章节误报</td>
+<td>期望 1 次、实际多次</td>
+<td>同一字符串在别的章节里，作为<strong>输入字面量</strong>合法出现</td>
+<td>按章节切片后再计数</td>
+</tr>
+<tr>
+<td>自写行对齐算法</td>
+<td>报出假的增删行数，还说「某段被改动」</td>
+<td>简易双指针在改写区附近丢失了对齐</td>
+<td>以版本控制工具的 <code>diff --numstat</code> 与 hunk 头为<strong>权威</strong>，核对 hunk 数与替换次数一一对应（相邻编辑会被合并成一个 hunk）</td>
+</tr>
+</tbody>
+</table>
+<p>这里有个耐人寻味的地方：<code>$`</code> 这个坑，恰恰可能就是同一份方案里刚刚描述过的某个缺陷。<strong>知道它、写过它、然后踩了它。</strong> 这说明「知道一个陷阱」和「手上有防住它的机制」是两件完全不同的事——而真正防住它的机制，是那条<strong>行数护栏断言</strong>，它让损害停在了写盘之前。</p>
+<p>可复用的六步：</p>
+<ol>
+<li>编辑工作区外的文件时（编辑工具可能会拒绝），改用工作区内的临时脚本 + 提权执行；</li>
+<li><strong>校验必须置于写盘语句之前</strong>——这一条能让所有失败都变成无损失败；</li>
+<li>替换串一律用回调，无论当前文本里有没有 <code>$</code>；</li>
+<li>断言要限定作用域；写「某表述已归零」之前，先想想新内容会不会为了驳斥而引用它；</li>
+<li>行级差分用版本控制工具，别用自己写的算法；</li>
+<li>临时脚本用完即删，结束时确认版本控制状态干净。</li>
+</ol>
+<h2 id="heading-19">第四层·闭环：让每个决定都有下落</h2>
+<h3 id="heading-20">「可选延伸」不是终态</h3>
+<p>讨论产生的每一个选项，最终都必须变成「做」或「不做」并写进文档。<strong>「可选延伸（需另行决定）」不是一个终态。</strong></p>
+<p>当某缺陷的处理方式经决策者拍板之后，方案里应该做这样几处编辑：</p>
+<ul>
+<li>新增一条<strong>排在首位</strong>的理由——把<strong>严重性论证放在成本论证之前</strong>，防止将来有人只看到「便宜、几行」就重新立项；</li>
+<li>把「可选延伸（需另行决定）」改写为「<strong>已决定：不做</strong>——本任务不包含，也不另立任务」；</li>
+<li>附上<strong>重新立项条件</strong>：「若将来某根因缺陷被立项修复，本项应与它同一批处理——只有那时改动才带来用户可见收益，且两者共享同一触发条件、宜一并验收」；</li>
+<li>在所有提及该结论的地方<strong>同步</strong>，避免只在一处留痕。</li>
+</ul>
+<p>一个任务的闭环陈述，应该包含三要素：<strong>发现了什么 / 已经处理 / 现在的可实施判断</strong>。比如：</p>
+<blockquote>
+<p>该任务现在的结论是：方案原本会带着一个自己新造的静默错误路径上线，现已补齐；补完之后，它可以实施了。</p>
+</blockquote>
+<p>可复用的五条：</p>
+<ol>
+<li>「不做」的决定要写明<strong>判据</strong>（如「修正能否限制在叶子函数内」+「修好是否改变用户可见结果」）；</li>
+<li>要写明<strong>失效条件 / 重新立项条件</strong>——决定是在特定认知下做的，认知变了，决定就该重开；</li>
+<li>理由的<strong>排列顺序有意义</strong>：把决定性的理由放在第一位，因为它最可能被后来者只读到；</li>
+<li>多处提及同一结论时<strong>全部同步</strong>，否则文档内部自相矛盾；</li>
+<li>每轮结束给出一句明确的<strong>可实施判断</strong>，不要让状态停在「讨论过了」。</li>
+</ol>
+<h3 id="heading-21">「不做」也要登记在案</h3>
+<p>被否决的方案不要删除，而是放进「不做的事项」表，并附上理由。</p>
+<p>道理很实在：一个被否决的方案，如果没有留下理由，那么下一个人（或者下一次会话里的你自己）会重新提出它，然后重新走一遍否决流程。</p>
+<p>一张「不做的事项」表，通常汇集了来自几个源头的条目：</p>
+<ul>
+<li>来自最初过滤的：过早扩张的平台/功能支持、非核心的补全能力、第三方库替换；</li>
+<li>来自评审移除的：若干个被判定为 YAGNI / 自纠正 / 比问题更危险的任务（各附完整理由）；</li>
+<li>来自方案收敛的：几条被否决的替代实现——<strong>每一条都注明「经实测」</strong>（例如某结构化改写方案会丢失注释、重排结构、其错误处理形同虚设；某「更省事版本」会改坏正文；某字符收窄会产出非法格式）；</li>
+<li>来自纯测试任务的：明确「只记录、不修」的已知缺陷；</li>
+<li>来自最小改动原则的：明确「不顺带修」的相邻既有问题。</li>
+</ul>
+<p>可复用的四条：</p>
+<ol>
+<li>表格两列就够了：建议项 / 不做理由；</li>
+<li>理由里要包含<strong>实测证据</strong>（「经实测，X 会导致 Y」），而不只是价值判断；</li>
+<li>如果否决是基于当前认知，注明失效条件；</li>
+<li>这张表的长度，是评审质量的一个指标——<strong>一份只增不减的方案，说明没人真的在质疑它</strong>。</li>
+</ol>
+<h3 id="heading-22">钉住缺陷的测试，必须自己说清楚</h3>
+<p>特征测试里，凡是锁定<strong>已知缺陷行为</strong>的用例，测试名必须以 <code>KNOWN DEFECT (编号):</code> 开头，并在测试体内注明「本条钉住的是当前缺陷行为、不是期望行为，将来修复时应<strong>反转</strong>断言，而非删除」。</p>
+<p>因为一条常绿的测试，会被后来者读成对该行为的设计背书。不标注，就等于把「我们决定暂时不修」悄悄变成了「这是正确行为」。</p>
+<p>具体来说，一组特征测试里若有钉住已知缺陷的用例，它的命名与注释应做到：</p>
+<ul>
+<li>名称带缺陷编号，如 <code>... KNOWN DEFECT (编号): &lt;描述当前被钉住的缺陷行为&gt;</code>；</li>
+<li>注释写明<strong>同源关系与修法方向</strong>，如「与某缺陷同源；将来按某种方式修复本缺陷时，应<strong>反转</strong>本条断言」。</li>
+</ul>
+<p>可复用的三条：</p>
+<ol>
+<li>编号要与缺陷清单对得上，让测试和文档可以互相索引；</li>
+<li>注释里要写清<strong>修复时该怎么做</strong>（反转断言），而不只是「这是 bug」；</li>
+<li>纯测试任务的验收标准是：所有用例首跑即全绿；<strong>若首跑出现红，说明期望值抄错了，应回到实测输出核对，而不是改源码让它变绿</strong>。</li>
+</ol>
+<h2 id="heading-23">第五层·工程纪律：把约束变成可执行的检查</h2>
+<h3 id="heading-24">说好的边界，每一轮都要验</h3>
+<p>当你和别人约定「先别动当前项目」时，全程就只改约定范围内的文件；而且<strong>每一轮操作结束，都要验证边界没有被突破</strong>。</p>
+<p>比如，整个评审阶段（可能跨多轮会话）要做到项目源码<strong>零修改</strong>：</p>
+<ul>
+<li>每轮结束执行 <code>git status --short</code>，必须为空；</li>
+<li>临时文件计数必须为 0（用统一前缀，如 <code>.tmp-*</code>，便于一键统计与清理）；</li>
+<li>所有验证都通过 import 真实源码 + 临时文件完成，<strong>不把任何改动落到源码、测试、构建产物、依赖清单、变更日志上</strong>；</li>
+<li>构建产物零漂移，是一条独立的验收项。</li>
+</ul>
+<p>可复用的三条：</p>
+<ol>
+<li>约束要写成<strong>可执行的检查</strong>（一条命令 + 期望输出），不要写成「注意不要改」；</li>
+<li>每轮结束跑一次，而不是最后才跑一次；</li>
+<li>临时文件用统一前缀，便于一键计数与清理。</li>
+</ol>
+<h3 id="heading-25">提交按逻辑拆，不按行数拆</h3>
+<p>提交要按<strong>逻辑原子性</strong>来拆分，而不是按文件数或代码行数。判据是：把这个提交单独 checkout 出来时，代码库是否处于一个<strong>说得通的状态</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>决定</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>同一处解析循环的等号支持 + 相关 bug 修复 + 护栏</td>
+<td><strong>合为一个</strong> <code>feat</code> 提交</td>
+<td>三者是同一次重写；拆开需要构造一个「已支持新语法、但某分支仍丢值」的人为中间态，<strong>而那个状态本身是坏的</strong></td>
+</tr>
+<tr>
+<td>功能改动 + 配套纯文档</td>
+<td><strong>拆成两个</strong>（<code>feat</code>/<code>ci</code> 与 <code>docs</code>）</td>
+<td>功能改动与纯文档分开</td>
+</tr>
+<tr>
+<td>实现 + 验证记录文档</td>
+<td><strong>拆成两个</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>纯测试任务</td>
+<td>一个 <code>test</code> 提交</td>
+<td>只触达测试与变更日志，源码与构建产物零漂移</td>
+</tr>
+<tr>
+<td>扩容后暴露的平台修复</td>
+<td>独立 <code>fix(test)</code></td>
+<td>它是扩容<strong>暴露</strong>出来的问题，不是扩容本身的一部分</td>
+</tr>
+</tbody>
+</table>
+<p>配套的 commit message 规范（通用约定）：</p>
+<ul>
+<li>采用带 scope 的 Conventional Commits：<code>feat(scope):</code> / <code>fix(scope):</code> / <code>ci:</code> / <code>docs:</code> / <code>test(scope):</code>；</li>
+<li>详细描述里写：<strong>变更内容 + 影响范围 + 验证结果</strong>（实测数字、门禁退出码、构建产物是否零漂移）；</li>
+<li>提交前先更新变更日志，相关改动<strong>合并为一条记录</strong>（不按提交拆分）；</li>
+<li>变更日志条目的结构：<code>**日期 · 类型 · 标题**</code> + 背景 / 变更 / 测试（必要时加「顺带修复」「不做」）；</li>
+<li><strong>默认仅提交、不推送</strong>；禁止自动提交，等待明确指示。</li>
+</ul>
+<p>至于「最小原子改动」到底意味着什么：</p>
+<ul>
+<li>最小版只改<strong>一个叶子函数</strong>，不碰被全链路使用的共享解析器；</li>
+<li>在纯测试任务里，版本状态中只要出现任何源码或构建产物改动，都意味着越界；</li>
+<li>明确<strong>不</strong>顺带修某个相邻的既有行为——那是既有语义，扩大它就会突破最小原子改动的边界；</li>
+<li>明确<strong>不</strong>顺带收紧某处判据——记进「不做」表，另行评估。</li>
+</ul>
+<p>可复用的四条：</p>
+<ol>
+<li>拆分前先问：「这个中间态是不是一个坏状态？」如果是，就别拆；</li>
+<li>commit body 里写<strong>实测数字</strong>，不写「应该没问题」；</li>
+<li>类型选择看主要意图：主体是新功能就选 <code>feat</code>，顺带修的 bug 在 body 里说明；</li>
+<li>「顺带能做」不等于「应该顺带做」；每一个顺带项，都要单独过一遍前面的「问题存在性」和「严重性 &gt; 成本」。</li>
+</ol>
+<h3 id="heading-26">工具报错，先分清是「我用错了」还是「它不靠谱」</h3>
+<p>工具报错时，先判断是「我的用法错了」，还是「这个工具在这个环境里不可靠」，然后<strong>切换工具</strong>，而不是反复重试。</p>
+<p>下面这些坑，以 Windows + PowerShell 5.1 为例，但很有普遍性：</p>
+<table>
+<thead>
+<tr>
+<th>工具坑</th>
+<th>症状</th>
+<th>切换方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>读取原始内容的字符/行计数不可靠</td>
+<td>对 UTF-8-no-BOM 文件报出的计数与实际不符</td>
+<td>改用运行时精确核验（字符数 / CRLF / 孤立 LF / 行数 / BOM）</td>
+</tr>
+<tr>
+<td>内联 <code>node -e &quot;...&quot;</code></td>
+<td>引号 / 反引号被 shell 转义吃掉 → 语法错误</td>
+<td>改写成临时脚本文件来执行</td>
+</tr>
+<tr>
+<td>脚本文件被 shell 以错误编码读取</td>
+<td>脚本里的非 ASCII 字面量（如中文路径）变乱码 → 「路径含非法字符」</td>
+<td><strong>不要在脚本里硬写非 ASCII 字面量</strong>；改用文件系统枚举（如按扩展名 <code>Get-ChildItem</code>）定位目标，或以当前工作目录 + 相对路径规避</td>
+</tr>
+<tr>
+<td>编辑工具无法写工作区外的文件</td>
+<td>报权限/范围错误</td>
+<td>工作区内临时脚本 + 提权执行</td>
+</tr>
+<tr>
+<td>管道过滤丢内容</td>
+<td>过滤工具输出时漏掉部分行（编码破坏）</td>
+<td>让工具用 <code>--output=</code> 写文件，再用运行时解析</td>
+</tr>
+<tr>
+<td>版本控制命令被沙箱拒绝</td>
+<td>「拒绝访问」</td>
+<td>单独提权重试</td>
+</tr>
+<tr>
+<td>控制台输出非 ASCII 乱码</td>
+<td>计数结果被乱码淹没</td>
+<td>只依赖退出码，以及写文件的结构化输出</td>
+</tr>
+</tbody>
+</table>
+<p>可复用的四条：</p>
+<ol>
+<li>同一个命令<strong>失败两次</strong>就换方法，不要试第三次；</li>
+<li>在编码敏感的环境里，涉及非 ASCII / 精确字节计数的验证，一律走可靠的运行时，而非 shell 内建；</li>
+<li>需要解析工具输出时，让工具<strong>写文件</strong>，而不是走管道；</li>
+<li>把踩到的坑记进长期记忆——这类条目会在后续会话里，多次替你省下重复排查。</li>
+</ol>
+<h2 id="heading-27">落到手上：四张操作清单</h2>
+<p>前面讲的都是「为什么」。这一节把它们压成「怎么做」，可以直接照着走。</p>
+<p><strong>① 评审一个候选任务时，按顺序回答这六问：</strong></p>
+<ol>
+<li><strong>问题真的存在吗？</strong> 有没有人观测到？还是只是看起来不优雅？</li>
+<li><strong>如果存在，严重吗？</strong> 修好它，用户能观测到什么变化？（追到数据生命周期：是用户资产，还是一次性产物？）</li>
+<li><strong>改动面多大？</strong> 能否限制在叶子函数内？触达几个文件、几条调用链？</li>
+<li><strong>收益与代价成比例吗？</strong> 审美性收益，配得上这个改动面吗？</li>
+<li><strong>原方案的实现正确吗？</strong> 有没有比它要修的问题更危险的地方？</li>
+<li><strong>决定不做的话，理由和重新立项条件写在哪？</strong></li>
+</ol>
+<p><strong>② 采纳一份「重写某函数」的方案前：</strong></p>
+<ol>
+<li>从文档<strong>逐字抽取</strong>新旧实现（不手抄），抽取后断言关键标识与条数；</li>
+<li>构造 fixture 集，<strong>必须包含现有测试的全部输入</strong>；</li>
+<li>跑差分，报告「相同 / 改变」两个计数；</li>
+<li>改变项逐条归类：意图内修复 / 意外变更 / <strong>既有缺陷被顺带修好</strong>（这类要补护栏测试，否则是一次未登记的静默行为变更）；</li>
+<li>新测试分别对旧实现和新实现各跑一次，取得<strong>精确的红绿条数</strong>写回文档；</li>
+<li>文档改完后<strong>重新抽取再跑一次</strong>，证明文档本身可执行且正确；</li>
+<li>用版本控制工具的 <code>diff</code> 核对 hunk 数与替换次数一一对应。</li>
+</ol>
+<p><strong>③ 批量编辑文档时：</strong></p>
+<ol>
+<li>先备份；</li>
+<li>每处替换的目标串，断言「恰好出现 1 次」；</li>
+<li>替换串<strong>一律用回调</strong> <code>() =&gt; newStr</code>；</li>
+<li>计数断言 + 行数护栏 + 结构完整性（围栏偶数、无 CR/BOM、标题数不变）；</li>
+<li><strong>校验置于写盘之前</strong>；</li>
+<li>写盘后做行级差分，确认没有意外改动；</li>
+<li>回读关键区段，确认渲染后的形态与意图一致；</li>
+<li>删除临时文件，确认版本控制状态干净。</li>
+</ol>
+<p><strong>④ 提交前：</strong></p>
+<ol>
+<li>变更日志先更新（相关改动合并为一条）；</li>
+<li>四步门禁：类型检查 / 静态检查（lint）/ 测试 / 构建，退出码均为 0；</li>
+<li><code>git status --short</code> 检查改动面是否符合任务声明（构建产物零漂移）；</li>
+<li>Conventional Commits + scope；body 写变更 / 影响范围 / <strong>实测验证结果</strong>；</li>
+<li>等待明确指示再提交；默认不推送。</li>
+</ol>
+<h2 id="heading-28">这些坑，我们真的踩过：反模式对照表</h2>
+<p>下面每一条，都是实际发生过、或被明确避开的。左看反模式，中看它长什么样，右看它会带来什么后果：</p>
+<table>
+<thead>
+<tr>
+<th>反模式</th>
+<th>说明性实例</th>
+<th>后果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用「逐条核验过了」代替实跑</td>
+<td>声称「现有用例全部继续通过（逐条已核验）」</td>
+<td>声称本身可能是对的，但<strong>没有发现遗漏的输入类别</strong>——核验只覆盖了它想到的地方</td>
+</tr>
+<tr>
+<td>只核实一条链路就断言不可达</td>
+<td>只看文本视图、没看解析视图，就判「当前不可达」</td>
+<td>判断错误，且可能被用来支撑范围决定</td>
+</tr>
+<tr>
+<td>用成本论证该不该做</td>
+<td>「这个缺陷只要几行就能修」</td>
+<td>差点做了不产生用户可见收益的改动</td>
+</tr>
+<tr>
+<td>悄悄修改错误表述</td>
+<td>——（<strong>没做</strong>，选择引用后驳斥）</td>
+<td>若做了，后来者会失去「这里曾经错过」的信息</td>
+</tr>
+<tr>
+<td>机械套用红/绿两阶段</td>
+<td>——（纯测试任务明确不套用）</td>
+<td>纯测试任务会凭空造出一个「失败」阶段</td>
+</tr>
+<tr>
+<td>替换串直接传入字符串替换 API</td>
+<td>编辑文档时 <code>$`</code> 被展开</td>
+<td>文档头部被复制多遍，多项断言以整数倍超标</td>
+</tr>
+<tr>
+<td>自己写行对齐算法做差分</td>
+<td>报出假的增删行数</td>
+<td>差点误判某段内容被改动</td>
+</tr>
+<tr>
+<td>内联脚本里放引号/反引号</td>
+<td>shell 吃掉转义</td>
+<td>语法错误，反复踩</td>
+</tr>
+<tr>
+<td>脚本里硬写非 ASCII 字面量</td>
+<td>被 shell 以错误编码读取</td>
+<td>中文路径变乱码 →「路径含非法字符」</td>
+</tr>
+<tr>
+<td>给不可达路径写测试</td>
+<td>——（确认不可达后砍掉）</td>
+<td>若写了，会把投机行为固化成规格</td>
+</tr>
+<tr>
+<td>缺陷测试不自我标注</td>
+<td>——（改用 <code>KNOWN DEFECT</code> 前缀）</td>
+<td>若不做，常绿测试会被读成设计背书</td>
+</tr>
+<tr>
+<td>顺带修无关问题</td>
+<td>——（不顺带修相邻既有行为、不顺带收紧判据）</td>
+<td>若做了，会突破最小原子改动边界、模糊验收标准</td>
+</tr>
+<tr>
+<td>让决定停在「可选延伸」</td>
+<td>——（改写为「已决定：不做」+ 重新立项条件）</td>
+<td>若不做，悬而未决会被下一个人重新打开</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-a">附录 A：一个项目该留下哪些账目</h2>
+<p>方法论落地之后，建议为每个项目维护一份「最终账目」，用可核对的事实替代形容词。它通常包含三张表：</p>
+<p><strong>① 方案文档演进</strong>：记录每轮编辑后的规模与编辑处数，以及一致性保证。</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>规模（行数/字节）</th>
+<th>本轮编辑处数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>（示例）某轮收敛 + 某任务移除后</td>
+<td>——</td>
+<td>——</td>
+</tr>
+<tr>
+<td>（示例）写入某新增任务</td>
+<td>——</td>
+<td>若干处</td>
+</tr>
+<tr>
+<td>（示例）记录某决定</td>
+<td>——</td>
+<td>若干处</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>全程保持统一的换行/编码约定（如纯 LF、无 BOM）；每轮都以版本控制工具的 <code>diff</code> 核对 hunk 数与替换次数一一对应；每轮结束时，项目仓库的 <code>git status --short</code> 为空。</p>
+</blockquote>
+<p><strong>② 任务实施状态</strong>：逐任务记录「保留/移除/收敛/新增」的去向、是否已实施，以及对应的提交标识（在内部版本中保留，通用文档中以占位符表示）。</p>
+<p><strong>③ 剩余工时与依赖约束</strong>：记录尚未实施任务的预估工时，以及任务之间的<strong>顺序依赖</strong>（例如「某纯测试任务复用了另一任务引入的 helper，顺序不可颠倒」；而与它无依赖的任务，则可独立实施）。</p>
+<blockquote>
+<p>说明：本附录在通用版中<strong>不填具体数字与提交号</strong>——它们属于单个项目的一次性事实，应记录在该项目自己的方案文档里，并可回溯核对。</p>
+</blockquote>
+<h2 id="-b">附录 B：如果只记得一句话</h2>
+<blockquote>
+<p><strong>能跑的就必须跑，跑出来的就照实说，说错了就当场改、并且告诉依赖它的人，决定不做就写下理由和重开条件，改完就验证边界没被突破。</strong></p>
+</blockquote>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix"></p>
+    <p><span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/rang-nei-rong-xing-skill-de-fa-bu-he-an-zhuang-bian-de-xiang-xie-markdown-yi-yang-jian-dan/" title="让内容型 Skill 的发布和安装变得像写 Markdown 一样简单">
+                Next post: 让内容型 Skill 的发布和安装变得像写 Markdown 一样简单
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span></p>
+    <p></p>
+</div>
+
+
+                            
+                            
+                            
+                            
+                            
+                            
+
+
+
+<section id="comments" class="comments">
+    
+        
+            <div id="giscus-container" data-comment-config="giscus" data-repo="xiaxi626/blog-comment" data-repo-id="R_kgDOT3IXhw" data-category="Blog Comments" data-category-id="DIC_kwDOT3IXh84DDRu-" data-page-id="gi5tCQ" data-theme="light"></div>
+<script>
+(function() {
+    var container = document.getElementById('giscus-container');
+    var theme = container.getAttribute('data-theme');
+    if (theme.charAt(0) === '/') { theme = new URL(theme, window.location.origin).href; }
+    var fail = function(message) { container.textContent = message; container.className = 'comment-message'; };
+    var keys = ['repo', 'repo-id', 'category', 'category-id', 'page-id'];
+    if (keys.some(function(key) { return !container.getAttribute('data-' + key); })) { fail('Giscus 评论配置不完整。'); return; }
+    var script = document.createElement('script');
+    script.src = 'https://giscus.app/client.js';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    script.onerror = function() { fail('Giscus 评论资源加载失败，请稍后重试。'); };
+    script.setAttribute('data-repo', container.getAttribute('data-repo'));
+    script.setAttribute('data-repo-id', container.getAttribute('data-repo-id'));
+    script.setAttribute('data-category', container.getAttribute('data-category'));
+    script.setAttribute('data-category-id', container.getAttribute('data-category-id'));
+    script.setAttribute('data-mapping', 'specific');
+    script.setAttribute('data-term', container.getAttribute('data-page-id'));
+    script.setAttribute('data-strict', '1');
+    script.setAttribute('data-reactions-enabled', '1');
+    script.setAttribute('data-emit-metadata', '0');
+    script.setAttribute('data-input-position', 'top');
+    script.setAttribute('data-theme', theme);
+    script.setAttribute('data-lang', 'zh-CN');
+    script.setAttribute('data-loading', 'lazy');
+    container.appendChild(script);
+})();
+</script>
+
+        
+    
+    
+</section>
+
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">vigourpine</a></p>
+    <p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p>
+    <p>Proudly published with&nbsp;<a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a></p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.3 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>
