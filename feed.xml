@@ -6,8 +6,19 @@
     <description>Welcome to Gridea Pro</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Mon, 07 Sep 2026 23:39:50 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 08 Sep 2026 23:05:13 +0800</lastBuildDate>
     <atom:link href="https://xiaxi626.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <item>
+      <title>从联想到高稳定性语义锚定法</title>
+      <link>https://xiaxi626.github.io/post/cong-shi-wu-lian-xiang-dao-gao-wen-ding-xing-yu-yi-mao-ding-fa/</link>
+      <guid isPermaLink="true">https://xiaxi626.github.io/post/cong-shi-wu-lian-xiang-dao-gao-wen-ding-xing-yu-yi-mao-ding-fa/</guid>
+      <pubDate>Wed, 09 Sep 2026 05:02:57 +0800</pubDate>
+      <description><![CDATA[<p>你是否经历过这样的时刻：明明知道某个东西是什么，能描述它的所有功能，甚至记得第一次见到它时的页面颜色，可那个具体的名字就是卡在喉咙里，死活说不出来。认知科学把这种状态叫“舌尖现象”，意思是记忆痕迹并没有消失，只是提取通道临时堵住了。过去我遇到这种情况，要么拍着脑门使劲想，要么干脆放弃，等它哪天自己浮出来。但最近一次经历让我意识到，这背后可能藏着一套可以被系统化的认知策略。</p>
+<p>当时我想找回一个全&hellip;</p>
+]]></description>
+      <category>Technology</category>
+      <category>Study</category>
+    </item>
     <item>
       <title>让基于证据的工程成为项目的标准</title>
       <link>https://xiaxi626.github.io/post/rang-ji-yu-zheng-ju-de-gong-cheng-cheng-wei-xiang-mu-de-biao-zhun/</link>
@@ -129,18 +140,6 @@ cd &lt;仓库目录&gt;
 </ol>
 ]]></description>
       <category>Gridea Pro</category>
-    </item>
-    <item>
-      <title>如何在 GitHub 上提交 Pull Request</title>
-      <link>https://xiaxi626.github.io/post/ru-he-zai-github-shang-ti-jiao-pull-request/</link>
-      <guid isPermaLink="true">https://xiaxi626.github.io/post/ru-he-zai-github-shang-ti-jiao-pull-request/</guid>
-      <pubDate>Fri, 19 Jun 2026 09:47:37 +0800</pubDate>
-      <description><![CDATA[<p>本文记录 Fork 仓库到创建分支、提交改动、发起 PR、再到删除分支的完整流程，防止自己忘记。</p>
-<h3 id="fork">一、Fork远程仓库</h3>
-<p>1、打开原作者的仓库页面，如<a href="https://github.com/Gridea-Pro/gridea-pro-themes">https://github.com/Gridea-Pro/gridea-pro-themes</a>；<br />
-2、点击右上角Fork按钮，自动跳转到&hellip;</p>
-]]></description>
-      <category>Git</category>
     </item>
   </channel>
 </rss>
