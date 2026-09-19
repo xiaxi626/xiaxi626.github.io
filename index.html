@@ -159,6 +159,127 @@
                         
                         <div class="post-container">
                             <p class="post-title">
+                                <a href="/post/windows-7-shou-dong-an-zhuang-hp-hd-webcam-fixed-she-xiang-tou-qu-dong/">Windows 7 手动安装 HP HD Webcam [fixed] 摄像头驱动</a>
+                            </p>
+                            <p class="post-meta">
+                                <span class="date meta-item">Posted at&nbsp;2026-09-19</span>
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span>&nbsp;</span>
+                                    <a href="/post/windows-7-shou-dong-an-zhuang-hp-hd-webcam-fixed-she-xiang-tou-qu-dong/#comments">Comments</a>
+                                </span>
+                                
+                                
+                                
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-tag"></i>
+                                    <span>&nbsp;</span>
+                                    
+                                    <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+                                    <span>&nbsp;</span>
+                                    
+                                </span>
+                                
+                            </p>
+                            
+                            
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><p>好的，把这次成功的操作整理成一份 <strong>Windows 7 手动安装 HP HD Webcam [fixed] 摄像头驱动</strong> 的步骤清单。</p>
+<hr />
+<h2 id="heading">一、准备工作</h2>
+<ol>
+<li>
+<p>确认驱动文件夹位置：<br />
+<code>C:\Program Files (x86)\Common Files\SNP2UVC</code><br />
+里面应该有 <code>snp2uvc.inf</code> 文件。</p>
+</li>
+<li>
+<p>建议先关闭 Windows 自动搜索驱动：<br />
+打开“设备和打印机” → 右键本机图标 → “设备安装设置” → 选择<br />
+<strong>“否，让我选择要执行的操作”</strong> → <strong>“从不安装来自 Windows Update 的驱动程序软件”</strong> → 保存。</p>
+</li>
+<li>
+<p>确认系统位数：<br />
+右键“计算机” → “属性”，看清是 32 位还是 64 位，确保驱动匹配。</p>
+</li>
+</ol>
+<hr />
+<h2 id="heading-1">二、核心安装步骤</h2>
+<ol>
+<li>
+<p>右键“计算机” → “管理” → <strong>设备管理器</strong>。</p>
+</li>
+<li>
+<p>找到带黄色感叹号或叉号的设备：<br />
+<strong>HP HD Webcam [fixed]</strong><br />
+或者硬件 ID 为 <code>USB\VID_04F2&amp;PID_B370</code> 的设备。</p>
+</li>
+<li>
+<p>右键该设备 → <strong>“更新驱动程序软件”</strong>。</p>
+</li>
+<li>
+<p>选择 <strong>“浏览计算机以查找驱动程序软件”</strong>。</p>
+</li>
+<li>
+<p><strong>不要直接浏览文件夹</strong>，而是点击下方的<br />
+<strong>“从计算机的设备驱动程序列表中选择”</strong>。</p>
+</li>
+<li>
+<p>在设备类型列表中，选择 <strong>“图像设备”</strong>，然后点击“下一步”。</p>
+</li>
+<li>
+<p>在下一个界面，点击右下角的 <strong>“从磁盘安装”</strong>。</p>
+</li>
+<li>
+<p>在弹出的窗口中点击 <strong>“浏览”</strong>，定位到：<br />
+<code>C:\Program Files (x86)\Common Files\SNP2UVC</code><br />
+选中里面的 <strong><code>snp2uvc.inf</code></strong> 文件，点击“打开” → “确定”。</p>
+</li>
+<li>
+<p>按提示完成安装。<br />
+操作系统不会直接弹出数字签名或兼容性警告，需要你双击窗口中的数字签名图标触发。选择 <strong>“仍然安装此驱动程序软件”</strong> ，直接点 <strong>“确定 / OK”</strong>。</p>
+</li>
+<li>
+<p>安装完成后，设备管理器中该设备可能还会显示一个<br />
+<strong>像证书 / 盾牌 / 感叹号一样的图标</strong>。<br />
+双击它，如果弹出“可能硬件无法使用”或类似提示，直接点 <strong>OK</strong> 关闭。</p>
+</li>
+</ol>
+<hr />
+<h2 id="heading-2">三、验证是否成功</h2>
+<ol>
+<li>打开你的摄像头程序 <strong>Ecap</strong>。</li>
+<li>如果能正常出画面，说明驱动已正确加载。</li>
+<li>回到设备管理器，右键摄像头 → “属性” → “驱动程序”，<br />
+可以看到驱动程序提供商和版本号，确认不再是黄色感叹号状态。</li>
+</ol>
+<hr />
+<h2 id="heading-3">四、建议备份</h2>
+<ol>
+<li>把整个文件夹复制到 U 盘或 D 盘：<br />
+<code>C:\Program Files (x86)\Common Files\SNP2UVC</code></li>
+<li>记录关键步骤：<br />
+<strong>设备管理器 → 更新驱动 → 浏览 → 从列表选择 → 图像设备 → 从磁盘安装 → 选 snp2uvc.inf → 忽略签名警告 → 点 OK</strong></li>
+<li>以后重装系统或驱动再出问题，可直接照此操作。</li>
+</ol>
+<hr />
+<h2 id="heading-4">关键点总结</h2>
+<ul>
+<li><strong>不要用自动搜索</strong>，自动搜索会去 Windows Update 找，注定失败。</li>
+<li><strong>必须先选“图像设备”</strong>，再点“从磁盘安装”。</li>
+<li><strong>强制指定 <code>snp2uvc.inf</code></strong>，不要只选文件夹。</li>
+<li><strong>数字签名警告直接忽略</strong>，选择仍然安装或点 OK。</li>
+<li>安装后那个“证书/警告”图标提示，点 OK 即可，摄像头程序就能正常运行。</li>
+</ul>
+</span></div>
+                        </div>
+                        
+                        <div class="post-container">
+                            <p class="post-title">
                                 <a href="/post/cong-shi-wu-lian-xiang-dao-gao-wen-ding-xing-yu-yi-mao-ding-fa/">从联想到高稳定性语义锚定法</a>
                             </p>
                             <p class="post-meta">
@@ -2622,107 +2743,6 @@ End Sub
 <a href="http://diybcq.com/forum.php?mod=viewthread&amp;tid=118554">[待整理] 如何用CST建立螺旋的模型</a><br />
 <a href="https://www.eepw.com.cn/article/261167.htm">如何用CST建立螺旋的模型</a><br />
 <a href="http://www.mweda.com/html/hfss-cst-22305-1.html">CST中如何建立螺旋线</a></p>
-</span></div>
-                        </div>
-                        
-                        <div class="post-container">
-                            <p class="post-title">
-                                <a href="/post/windows-bian-yiyun-xing-yu-diao-shi-gridea-pro-wan-zheng-zhi-nan/">Windows  编译、运行与调试 Gridea-Pro 完整指南</a>
-                            </p>
-                            <p class="post-meta">
-                                <span class="date meta-item">Posted at&nbsp;2026-06-20</span>
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    <span>&nbsp;</span>
-                                    <a href="/post/windows-bian-yiyun-xing-yu-diao-shi-gridea-pro-wan-zheng-zhi-nan/#comments">Comments</a>
-                                </span>
-                                
-                                
-                                
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-tag"></i>
-                                    <span>&nbsp;</span>
-                                    
-                                    <a class="a-tag" href="/tag/gridea-pro/" title="Gridea Pro">Gridea Pro</a>
-                                    <span>&nbsp;</span>
-                                    
-                                </span>
-                                
-                            </p>
-                            
-                            
-
-                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><p>Gridea-Pro 是基于 Wails v2（Go + Vue 3） 开发的跨平台静态博客客户端，核心依赖 Go、Node.js、Wails 工具链，结合官方文档，记录源码拉取、环境配置、开发调试、编译打包全流程步骤，适配代码调试需求。</p>
-<h3 id="heading">一、前置环境准备（按顺序安装）</h3>
-<ol>
-<li>安装 Git（拉取源码）</li>
-<li>安装 Go 语言（核心后端依赖）<br />
-从 <a href="https://go.dev/dl/">Go官网</a>下载安装包，选择 Windows (x86_64) MSI 安装器。</li>
-<li>安装 Node.js（前端 Vue3 依赖）</li>
-<li>安装 Wails v2<br />
-(1)执行 Wails 安装命令（PowerShell）：
-<pre><code class="language-powershell">go install github.com/wailsapp/wails/v2/cmd/wails@latest
-</code></pre>
-(2)刷新环境变量（重启终端），验证安装：
-<pre><code class="language-powershell">wails version
-</code></pre>
-</li>
-<li>WebView2 依赖<br />
-Windows 编译 Wails 项目需要 WebView2 运行时，系统一般预装，缺失则手动安装。</li>
-</ol>
-<h3 id="heading-1">二、拉取项目源码</h3>
-<p>（略）</p>
-<h3 id="heading-2">三、安装前端依赖</h3>
-<p>Gridea-Pro 前端代码在 frontend 目录，需要单独安装 Vue3 等依赖。在powershell中运行以下命令：</p>
-<pre><code class="language-powershell"># 进入前端目录
-cd frontend
-# 安装所有前端依赖
-npm install
-# 返回项目根目录（后续命令都在根目录执行）
-cd ..
-</code></pre>
-<h3 id="--">四、开发模式：运行 &amp; 实时调试</h3>
-<h4 id="1-">1. 启动开发调试模式</h4>
-<p>在项目根目录执行：</p>
-<pre><code class="language-git">wails dev
-</code></pre>
-<p>执行成功后会自动编译 Go 后端代码，启动 Vue3 前端开发服务，自动弹出 Gridea-Pro 客户端窗口</p>
-<h4 id="2-">2. 代码调试方法</h4>
-<p>(1)前端 Vue3 代码调试<br />
-客户端窗口打开后，按 F12 调出浏览器开发者工具；<br />
-在 Sources 面板找到前端源码，添加断点、查看日志、排查样式 / 交互问题；<br />
-修改 frontend/src 下的 Vue/JS/CSS 代码，页面会即时刷新。<br />
-(2)Go 后端代码调试<br />
-<strong>安装 VS Code</strong>，并安装官方 Go 插件。用 VS Code 打开整个 gridea-pro 项目。<br />
-在 Go 源码（根目录 .go 文件、internal 目录）左侧行号处点击添加断点。<br />
-终端保持 wails dev 运行，操作客户端功能，代码运行到断点会自动暂停。<br />
-可查看变量、调用栈、单步执行，完成后端逻辑调试。<br />
-<strong>安装 Trae &amp; Trae Solo</strong>，用 VS Code 打开整个 gridea-pro 项目，按照弹出提示安装 Go 和 Vue 插件。使用传统调试方法的同时，亦可使用Agent交互让AI分析、修改、调试和审查代码。由于上下文处理能力，以及修改文件更新覆盖等问题，应更注重版本控制和备份。</p>
-<h3 id="heading-3">五、编译生产版本</h3>
-<p>调试完成后，可编译生成正式 .exe 安装包 / 绿色程序，命令依旧在项目根目录执行；</p>
-<pre><code class="language-powershell">wails build
-</code></pre>
-<p>编译成功后，产物默认生成在项目 build/bin 目录下；Windows 平台会生成 Gridea-Pro.exe。<br />
-<strong>精简压缩包（体积更小）</strong></p>
-<pre><code class="language-powershell">wails build -compress
-</code></pre>
-<p>编译后会额外生成压缩包，方便分发。<br />
-<strong>只打包、不生成安装程序（纯绿色 exe）</strong></p>
-<pre><code class="language-powershell">wails build -nsis=false
-</code></pre>
-<p>只保留免运行的 exe 程序，去掉 Windows 安装包。<br />
-<strong>生产模式（关闭调试、优化性能，正式发布用）</strong></p>
-<pre><code class="language-powershell">wails build -production
-</code></pre>
-<p>代码会做混淆 / 优化，去掉调试信息，适合对外发布。<br />
-<strong>兼顾体积 + 正式版本</strong></p>
-<pre><code class="language-powershell">wails build -production -compress
-</code></pre>
-<p>首次编译较慢会自动拉取依赖、编译前后端，耐心等待即可。</p>
 </span></div>
                         </div>
                         

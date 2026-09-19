@@ -6,8 +6,29 @@
     <description>Welcome to Gridea Pro</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Tue, 08 Sep 2026 23:05:13 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 22:03:48 +0000</lastBuildDate>
     <atom:link href="https://xiaxi626.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <item>
+      <title>Windows 7 手动安装 HP HD Webcam [fixed] 摄像头驱动</title>
+      <link>https://xiaxi626.github.io/post/windows-7-shou-dong-an-zhuang-hp-hd-webcam-fixed-she-xiang-tou-qu-dong/</link>
+      <guid isPermaLink="true">https://xiaxi626.github.io/post/windows-7-shou-dong-an-zhuang-hp-hd-webcam-fixed-she-xiang-tou-qu-dong/</guid>
+      <pubDate>Sat, 19 Sep 2026 22:03:48 +0000</pubDate>
+      <description><![CDATA[<p>好的，把这次成功的操作整理成一份 <strong>Windows 7 手动安装 HP HD Webcam [fixed] 摄像头驱动</strong> 的步骤清单。</p>
+<hr />
+<h2 id="heading">一、准备工作</h2>
+<ol>
+<li>
+<p>确认驱动文件夹位置：<br />
+<code>C:\Program Files (x86)\Common Files\SNP2UVC</code><br />
+里面应该有 <code>snp2uvc.inf</code> 文件。</p>
+</li>
+<li>
+<p>建议先关闭&hellip;</p>
+</li>
+</ol>
+]]></description>
+      <category>Technology</category>
+    </item>
     <item>
       <title>从联想到高稳定性语义锚定法</title>
       <link>https://xiaxi626.github.io/post/cong-shi-wu-lian-xiang-dao-gao-wen-ding-xing-yu-yi-mao-ding-fa/</link>
@@ -125,21 +146,6 @@ cd &lt;仓库目录&gt;
 我们可以通过CST内置的Macr&hellip;</p>
 ]]></description>
       <category>Technology</category>
-    </item>
-    <item>
-      <title>Windows  编译、运行与调试 Gridea-Pro 完整指南</title>
-      <link>https://xiaxi626.github.io/post/windows-bian-yiyun-xing-yu-diao-shi-gridea-pro-wan-zheng-zhi-nan/</link>
-      <guid isPermaLink="true">https://xiaxi626.github.io/post/windows-bian-yiyun-xing-yu-diao-shi-gridea-pro-wan-zheng-zhi-nan/</guid>
-      <pubDate>Sat, 20 Jun 2026 19:57:26 +0800</pubDate>
-      <description><![CDATA[<p>Gridea-Pro 是基于 Wails v2（Go + Vue 3） 开发的跨平台静态博客客户端，核心依赖 Go、Node.js、Wails 工具链，结合官方文档，记录源码拉取、环境配置、开发调试、编译打包全流程步骤，适配代码调试需求。</p>
-<h3 id="heading">一、前置环境准备（按顺序安装）</h3>
-<ol>
-<li>安装 Git（拉取源码）</li>
-<li>安装 Go 语言（核心后端依赖）<br />
-从 [Go官网](https:/&hellip;</li>
-</ol>
-]]></description>
-      <category>Gridea Pro</category>
     </item>
   </channel>
 </rss>
