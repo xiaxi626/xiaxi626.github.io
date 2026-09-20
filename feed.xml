@@ -6,13 +6,23 @@
     <description>Welcome to Gridea Pro</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Sat, 19 Sep 2026 22:03:48 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 20 Sep 2026 21:20:34 +0000</lastBuildDate>
     <atom:link href="https://xiaxi626.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <item>
+      <title>论“没料到体”</title>
+      <link>https://xiaxi626.github.io/post/lunmei-liao-dao-ti/</link>
+      <guid isPermaLink="true">https://xiaxi626.github.io/post/lunmei-liao-dao-ti/</guid>
+      <pubDate>Sun, 20 Sep 2026 21:20:34 +0000</pubDate>
+      <description><![CDATA[<p>无论是谁，只要在中国上过网，便总得常看见“没料到”或其相类的标题。我想：这话的分布，大概就跟着自媒体的足迹之所至罢；使用的遍数，怕也未必比客气的“您好呀”会更少。假使依或人所说，牡丹是中国的“国花”，那么，这就可以算是中国的“国标题”了。</p>
+<p>我生长于报刊尚有人读的年代。那地方的标题却也颇简单：主谓宾，直说事，决不牵涉“打脸”。后来稍游网络，才始惊异于“没料到体”之博大而精微：上溯“万万没想到”&hellip;</p>
+]]></description>
+      <category>commentary</category>
+    </item>
     <item>
       <title>Windows 7 手动安装 HP HD Webcam [fixed] 摄像头驱动</title>
       <link>https://xiaxi626.github.io/post/windows-7-shou-dong-an-zhuang-hp-hd-webcam-fixed-she-xiang-tou-qu-dong/</link>
       <guid isPermaLink="true">https://xiaxi626.github.io/post/windows-7-shou-dong-an-zhuang-hp-hd-webcam-fixed-she-xiang-tou-qu-dong/</guid>
-      <pubDate>Sat, 19 Sep 2026 22:03:48 +0000</pubDate>
+      <pubDate>Sat, 19 Sep 2026 22:03:48 +0800</pubDate>
       <description><![CDATA[<p>好的，把这次成功的操作整理成一份 <strong>Windows 7 手动安装 HP HD Webcam [fixed] 摄像头驱动</strong> 的步骤清单。</p>
 <hr />
 <h2 id="heading">一、准备工作</h2>
@@ -134,18 +144,6 @@ cd &lt;仓库目录&gt;
 ]]></description>
       <category>Gridea Pro</category>
       <category>AI</category>
-    </item>
-    <item>
-      <title>CST中螺旋线圈电感的建模</title>
-      <link>https://xiaxi626.github.io/post/cstzhong-luo-xuan-xian-quan-dian-gan-de-jian-mo/</link>
-      <guid isPermaLink="true">https://xiaxi626.github.io/post/cstzhong-luo-xuan-xian-quan-dian-gan-de-jian-mo/</guid>
-      <pubDate>Sun, 05 Jul 2026 19:14:47 +0800</pubDate>
-      <description><![CDATA[<h3 id="heading">建模方法</h3>
-<p>在CST中按照参考中的建模方法建好螺旋线线圈以后，沿螺旋的中轴建一根与螺旋线一样长的圆柱，再创建一根“一端在轴上，另一端在螺旋线上”的圆柱，使其长度保持线圈中径的一半。最后两端加上引脚即可<br />
-操作讲起来比较简单。螺旋线可通过 CST 的方程式建模，然后在起始处创建一个圆片，再 sweep curve，也可以只创建一个圆片直接旋转它生成螺旋体。<br />
-我们可以通过CST内置的Macr&hellip;</p>
-]]></description>
-      <category>Technology</category>
     </item>
   </channel>
 </rss>

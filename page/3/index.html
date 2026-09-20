@@ -159,6 +159,498 @@
                         
                         <div class="post-container">
                             <p class="post-title">
+                                <a href="/post/gpg-ru-men-jiao-cheng/">GPG入门教程</a>
+                            </p>
+                            <p class="post-meta">
+                                <span class="date meta-item">Posted at&nbsp;2023-08-24</span>
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span>&nbsp;</span>
+                                    <a href="/post/gpg-ru-men-jiao-cheng/#comments">Comments</a>
+                                </span>
+                                
+                                
+                                
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-tag"></i>
+                                    <span>&nbsp;</span>
+                                    
+                                    <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+                                    <span>&nbsp;</span>
+                                    
+                                </span>
+                                
+                            </p>
+                            
+                            
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><h2 id="heading">前言</h2>
+<p>Github设置有一项叫“SSH 与 GPG 公钥”，平常我们看一些教程只需要使用SSH 公钥，好像用不到GPG 公钥，直到我看到这篇有趣的帖子——<a href="https://spencerwoo.com/blog/wait-this-is-not-my-commit">👨‍💻 震惊！竟然有人在 GitHub 上冒充我的身份！</a></p>
+<blockquote>
+<p>Git 的 commit 是可以任意修改的，你可以将某个坏 commit 嫁祸给别人，甚至将某个坏仓库的 commit 批量嫁祸给毫不知情的人。<br />
+使用一个只有我们自己手中拥有的 GPG 私钥对我们的 commit 进行签名，可以让 GitHub 确认我们本次 commit 是真实且是本人操作的。这样，别有用心的他人就无法以我们的身份创建「被签名」的 commit。在 GitHub 上使用的 GPG 密钥和我们的 SSH 密钥并不一样，后者 SSH key 唯一存在的原因是为了向 GitHub 证明身份，用于向我们拥有权限的仓库中进行 commit，而前者 GPG key 则是为了「证明我拥有本次 commit 的著作权」，也只有用 GPG 私钥签名的 commit 在 GitHub 上才会显示如下图的 Verified 绿色钦定小标标。</p>
+</blockquote>
+<p>今天我们就来了解一下GPG是什么，以及怎么用。</p>
+<h2 id="gpg">什么是GPG</h2>
+<p>1991年，菲利普·齐墨尔曼(Philip R. Zimmermann)发明了PGP加密算法，第一个版本的 PGP 程式与其中使用的加密算法 BassOmatic 都是由齐默尔曼发展出来。但 PGP 是商业软件，不能自由使用。所以，自由软件基金会决定开发一款自由软件以替代 PGP。这就是GPG的由来。</p>
+<h3 id="pgp--gpg-">PGP 与 GPG 的关系</h3>
+<p><strong>PGP</strong></p>
+<ul>
+<li>Pretty Good Privacy，是一个被设计用来加密信息，保护隐私的软件。</li>
+<li>OpenPGP 是与最初 PGP 工具兼容的 IETF 标准</li>
+<li>现在提到“PGP”， 基本上是说 OpenPGP 标准。</li>
+</ul>
+<p><strong>GPG</strong></p>
+<ul>
+<li>即GnuPG。</li>
+<li>GnuPG （“Gnu Privacy Guard”）是实现了 OpenPGP 标准的自由软件。</li>
+<li>GnuPG 的命令行工具称为 “gpg”</li>
+</ul>
+<h3 id="gpg-key-">GPG KEY 使用场景</h3>
+<ul>
+<li>使用 GPG 密钥来签名你的 git commits</li>
+<li>使用公钥验证第三方软件的签名</li>
+<li>使用 gpg 公钥来加密你的邮件</li>
+<li>使用公钥认证来实现授权登陆 (Public Key Authentication)</li>
+</ul>
+<h2 id="linuxgpg">Linux下使用GPG签名/加密</h2>
+<h3 id="-gpg">安装 GPG</h3>
+<p>Linux下GPG有两种安装方式。可以下载源码，自己编译安装。</p>
+<pre><code class="language-bash">./configure
+make
+make install
+</code></pre>
+<p>也可以安装编译好的二进制包</p>
+<pre><code class="language-bash"># Debian / Ubuntu 环境
+sudo apt-get install gnupg
+
+# Fedora 环境
+yum install gnupg
+
+# Arch 环境
+sudo pacman -S gnupg
+</code></pre>
+<p>完成后键入以下命令</p>
+<pre><code class="language-bash">gpg --help
+</code></pre>
+<p>如果屏幕显示GPG的帮助，就表示安装成功。</p>
+<h3 id="heading-1">生成密钥</h3>
+<pre><code class="language-bash">gpg –-gen-key
+</code></pre>
+<p>回车以后会跳出</p>
+<pre><code class="language-bash">gpg (GnuPG) 2.2.41-unknown; Copyright (C) 2022 g10 Code GmbH
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+gpg: directory '/c/Users/Administrator/.gnupg' created
+gpg: keybox '/c/Users/Administrator/.gnupg/pubring.kbx' created
+Note: Use &quot;gpg --full-generate-key&quot; for a full featured key generation dialog.
+
+GnuPG needs to construct a user ID to identify your key.
+
+Real name:
+
+</code></pre>
+<p>使用“gpg &ndash;full-generate-key”生成GPG密钥，有详细的配置参数。</p>
+<pre><code class="language-bash">gpg (GnuPG) 2.2.41-unknown; Copyright (C) 2022 g10 Code GmbH
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Please select what kind of key you want:
+   (1) RSA and RSA (default)
+   (2) DSA and Elgamal
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+  (14) Existing key from card
+Your selection?
+
+</code></pre>
+<p>默认选择第一个选项，表示加密和签名都使用RSA算法。<br />
+然后，系统就会问你密钥的长度。</p>
+<pre><code class="language-bash">RSA keys may be between 1024 and 4096 bits long.
+What keysize do you want? (3072)
+
+</code></pre>
+<p>接着，设定密钥的有效期。</p>
+<pre><code class="language-bash">Please specify how long the key should be valid.
+         0 = key does not expire
+      &lt;n&gt;  = key expires in n days
+      &lt;n&gt;w = key expires in n weeks
+      &lt;n&gt;m = key expires in n months
+      &lt;n&gt;y = key expires in n years
+Key is valid for? (0)
+
+</code></pre>
+<p>个人使用建议选择第一个选项，即永不过期，回车即可。接下来，系统让你确认。</p>
+<pre><code class="language-bash">Key does not expire at all
+Is this correct? (y/N)
+
+</code></pre>
+<p>输入y，系统要求提供个人信息。</p>
+<pre><code class="language-bash">GnuPG needs to construct a user ID to identify your key.
+
+Real name:
+Email address:
+Comment:
+
+</code></pre>
+<p>&ldquo;Comment&quot;这一栏可以空着。<br />
+然后你的用户ID就生成了。</p>
+<pre><code class="language-bash">You selected this USER-ID:
+    &quot;xiaxi626 &lt;aijiang1220966821@hotmail.com&gt;&quot;
+
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit?
+
+</code></pre>
+<p>系统会让你最后确认一次。<br />
+输入O表示&quot;确定&rdquo;。<br />
+接着，系统会让你设定一个私钥的密码。</p>
+<pre><code class="language-bash">您需要一个密码来保护您的私钥：
+</code></pre>
+<p>二次输入确认密码后，系统就开始生成密钥了。</p>
+<pre><code class="language-bash">We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+</code></pre>
+<p>几分钟以后，系统提示密钥已经生成了。</p>
+<pre><code class="language-bash">gpg: /c/Users/Administrator/.gnupg/trustdb.gpg: trustdb created
+gpg: directory '/c/Users/Administrator/.gnupg/openpgp-revocs.d' created
+gpg: revocation certificate stored as '/c/Users/Administrator/.gnupg/openpgp-revocs.d/2DF491A4DB677422C13A5398102ED6A053101F78.rev'
+public and secret key created and signed.
+</code></pre>
+<p>请注意上面的字符串&quot;2DF491A4DB677422C13A5398102ED6A053101F78&quot;，这是&quot;用户ID&quot;的Hash字符串，可以用来替代&quot;用户ID&quot;。<br />
+这时，最好再生成一张&quot;撤销证书&quot;，以备以后密钥作废时，可以请求外部的公钥服务器撤销你的公钥。</p>
+<pre><code class="language-bash">gpg --gen-revoke [用户ID]
+</code></pre>
+<p>上面的&quot;用户ID&quot;部分，可以填入你的邮件地址或者Hash字符串（以下同）。<br />
+系统提示。</p>
+<pre><code class="language-bash">Create a revocation certificate for this key? (y/N)
+</code></pre>
+<h3 id="heading-2">密钥管理</h3>
+<h4 id="heading-3">查看公钥</h4>
+<p>list-keys参数列出系统中已有的密钥。</p>
+<pre><code class="language-bash">gpg --list-key
+</code></pre>
+<p>网上教程的显示结果：</p>
+<pre><code class="language-bash">　　/home/ruanyf/.gnupg/pubring.gpg
+　　-------------------------------
+　　pub 4096R/EDDD6D76 2013-07-11
+　　uid Ruan YiFeng &lt;yifeng.ruan@gmail.com&gt;
+　　sub 4096R/3FA69BE4 2013-07-11
+</code></pre>
+<p>第一行显示公钥文件名（pubring.gpg），第二行显示公钥特征（4096位，Hash字符串和生成时间），第三行显示&quot;用户ID&quot;，第四行显示私钥特征。<br />
+本机输入<code>gpg --list-key</code> 显示：</p>
+<pre><code class="language-bash">gpg: checking the trustdb
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+/c/Users/Administrator/.gnupg/pubring.kbx
+-----------------------------------------
+pub   rsa3072 2023-08-25 [SC]
+      2DF491A4DB677422C13A5398102ED6A053101F78
+uid           [ultimate] xiaxi626 &lt;aijiang1220966821@hotmail.com&gt;
+sub   rsa3072 2023-08-25 [E]
+
+</code></pre>
+<p><code>pubring.kbx</code>是密钥块资源。<br />
+如果你要从密钥列表中删除某个密钥，可以使用delete-key参数。</p>
+<pre><code class="language-bash">gpg --delete-key [用户ID]
+</code></pre>
+<p>删除公钥前会提示</p>
+<pre><code class="language-bash">gpg: there is a secret key for public key &quot;[公钥]&quot;!
+gpg: use option &quot;--delete-secret-keys&quot; to delete it first.
+
+</code></pre>
+<h4 id="heading-4">查看私钥</h4>
+<p>list-secret-keys参数列出系统中已有的私钥。</p>
+<pre><code class="language-bash">gpg --list-secret-keys
+</code></pre>
+<p>显示结果如下：</p>
+<pre><code class="language-bash">/c/Users/Administrator/.gnupg/pubring.kbx
+-----------------------------------------
+sec#  rsa3072 2023-08-25 [SC]
+      2DF491A4DB677422C13A5398102ED6A053101F78
+uid           [ultimate] xiaxi626 &lt;aijiang1220966821@hotmail.com&gt;
+ssb   rsa3072 2023-08-25 [E]
+
+</code></pre>
+<h4 id="heading-5">输出密钥</h4>
+<p>公钥文件（.gnupg/pubring.gpg）以二进制形式储存，armor参数可以将其转换为ASCII码显示。</p>
+<pre><code class="language-bash">gpg --armor --output public-key.txt --export [用户ID]
+
+or
+
+gpg -a --export [用户ID] &gt; public-key.asc
+</code></pre>
+<p>&ldquo;用户ID&quot;指定哪个用户的公钥，output参数指定输出文件名（public-key.txt）。</p>
+<p>类似地，export-secret-keys参数可以转换私钥。</p>
+<pre><code class="language-bash">gpg --armor --output private-key.txt --export-secret-keys
+
+or
+
+gpg -a --export-secret-keys [用户ID] &gt; private-key.asc
+</code></pre>
+<h4 id="heading-6">上传公钥</h4>
+<p>公钥服务器是网络上专门储存用户公钥的服务器。send-keys参数可以将公钥上传到服务器。</p>
+<pre><code class="language-bash">gpg --send-keys [用户ID] --keyserver hkp://subkeys.pgp.net
+</code></pre>
+<p>使用上面的命令，你的公钥就被传到了服务器subkeys.pgp.net，然后通过交换机制，所有的公钥服务器最终都会包含你的公钥。<br />
+由于公钥服务器没有检查机制，任何人都可以用你的名义上传公钥，所以没有办法保证服务器上的公钥的可靠性。通常，你可以在网站上公布一个公钥指纹，让其他人核对下载到的公钥是否为真。fingerprint参数生成公钥指纹。</p>
+<pre><code class="language-bash">gpg --fingerprint [用户ID]
+</code></pre>
+<h4 id="heading-7">输入密钥</h4>
+<p>除了生成自己的密钥，还需要将他人的公钥或者你的其他密钥输入系统。这时可以使用import参数。</p>
+<pre><code class="language-bash">gpg --import [密钥文件]
+</code></pre>
+<p>为了获得他人的公钥，可以让对方直接发给你，或者到公钥服务器上寻找。</p>
+<pre><code class="language-bash">gpg --keyserver hkp://subkeys.pgp.net --search-keys [用户ID]
+</code></pre>
+<p>正如前面提到的，我们无法保证服务器上的公钥是否可靠，下载后还需要用其他机制验证．</p>
+<h3 id="heading-8">加密和解密</h3>
+<h4 id="heading-9">加密</h4>
+<p>假定有一个文本文件demo.txt，怎样对它加密呢？<br />
+encrypt参数用于加密。</p>
+<pre><code class="language-bash">gpg --recipient [用户ID] --output demo.en.txt --encrypt demo.txt
+</code></pre>
+<p>recipient参数指定接收者的公钥，output参数指定加密后的文件名，encrypt参数指定源文件。运行上面的命令后，demo.en.txt就是已加密的文件，可以把它发给对方。</p>
+<pre><code class="language-bash">gpg -ea -r [用户ID] filename
+</code></pre>
+<p>即会生成filename.asc的加密文件。</p>
+<h4 id="heading-10">解密</h4>
+<p>对方收到加密文件以后，就用自己的私钥解密。</p>
+<pre><code class="language-bash">gpg --decrypt demo.en.txt --output demo.de.txt
+</code></pre>
+<p>decrypt参数指定需要解密的文件，output参数指定解密后生成的文件。运行上面的命令，demo.de.txt就是解密后的文件。</p>
+<p>GPG允许省略decrypt参数。</p>
+<pre><code class="language-bash">gpg demo.en.txt
+</code></pre>
+<p>运行上面的命令以后，解密后的文件内容直接显示在标准输出。</p>
+<pre><code class="language-bash">gpg -o filename -d filename.asc
+</code></pre>
+<p>运行上面的命令以后，输入私钥密码。<br />
+即可把filename.asc的加密文件解密成filename文件。</p>
+<h3 id="heading-11">签名</h3>
+<h4 id="heading-12">对文件签名</h4>
+<p>有时，我们不需要加密文件，只需要对文件签名，表示这个文件确实是我本人发出的。sign参数用来签名。</p>
+<pre><code class="language-bash">gpg --sign demo.txt
+</code></pre>
+<p>运行上面的命令后，当前目录下生成demo.txt.gpg文件，这就是签名后的文件。这个文件默认采用二进制储存，如果想生成ASCII码的签名文件，可以使用clearsign参数。</p>
+<pre><code class="language-bash">gpg --clearsign demo.txt
+</code></pre>
+<p>运行上面的命令后 ，当前目录下生成demo.txt.asc文件，后缀名asc表示该文件是ASCII码形式的。</p>
+<p>如果想生成单独的签名文件，与文件内容分开存放，可以使用detach-sign参数。</p>
+<pre><code class="language-bash">gpg --detach-sign demo.txt
+</code></pre>
+<p>运行上面的命令后，当前目录下生成一个单独的签名文件demo.txt.sig。该文件是二进制形式的，如果想采用ASCII码形式，要加上armor参数。</p>
+<pre><code class="language-bash">gpg --armor --detach-sign demo.txt
+</code></pre>
+<h4 id="heading-13">签名+加密</h4>
+<p>上一节的参数，都是只签名不加密。如果想同时签名和加密，可以使用下面的命令。</p>
+<pre><code class="language-bash">gpg --local-user [发信者ID] --recipient [接收者ID] --armor --sign --encrypt demo.txt
+</code></pre>
+<p>local-user参数指定用发信者的私钥签名，recipient参数指定用接收者的公钥加密，armor参数表示采用ASCII码形式显示，sign参数表示需要签名，encrypt参数表示指定源文件。</p>
+<h4 id="heading-14">验证签名</h4>
+<p>我们收到别人签名后的文件，需要用对方的公钥验证签名是否为真。verify参数用来验证。</p>
+<pre><code class="language-bash">gpg --verify demo.txt.asc demo.txt
+</code></pre>
+<p>举例来说，openvpn网站就提供每一个下载包的gpg签名文件。你可以根据它的说明，验证这些下载包是否为真。</p>
+<h2 id="-gitee--gpg-key--commit">在 Gitee 上使用 GPG key 来签名 commit</h2>
+<ol>
+<li>Kleopatra创建OpenPGP密钥对，输入用户名和邮箱，注意邮箱必须与 Gitee 提交邮箱一致；</li>
+<li>导出公钥和私钥文件；</li>
+<li>打开公钥文件，复制内容到<a href="https://gitee.com/profile/gpg_keys">Gitee gpg_keys</a>，复制页面GPG密钥的指纹字符串；</li>
+<li>输入【查看公钥、私钥命令 | 输入密钥命令】，输入密钥到.gnupg文件夹；</li>
+<li>输入查看公钥或查看私钥命令，得到&quot;用户ID&quot;的Hash字符串，和<a href="https://gitee.com/profile/gpg_keys">Gitee gpg_keys</a>页面GPG公钥指纹字符串是一样的；</li>
+<li>配置 Git</li>
+</ol>
+<pre><code class="language-bash">git config --global user.signingkey [Gitee网页GPG公钥指纹/本地&quot;用户ID&quot;的Hash字符串]
+</code></pre>
+<ol start="7">
+<li>
+<p>输入<code>git config --global --list</code>检查git config是否配置成功，输入<code>git config --global --edit</code>可修改配置；</p>
+</li>
+<li>
+<p>添加到 Gitee 账户,查看<a href="https://gitee.com/profile/gpg_keys">GPG 公钥验证状态</a>，GPG 邮箱为当前用户已激活邮箱验证才能通过;</p>
+<ul>
+<li>删除 仅移除 GPG 公钥，验证通过的 Commit 签名状态保持不变</li>
+<li>注销 移除 GPG 公钥并且将已验证的 Commit 签名状态修改为未验证</li>
+</ul>
+</li>
+<li>
+<p>使用 GPG 签名进行提交</p>
+</li>
+</ol>
+<pre><code class="language-bash">git commit -S -m &quot;YOUR COMMIT MESSAGE&quot;
+git log --show-signature # 查看签名状态
+</code></pre>
+<ol start="10">
+<li>提交的显示结果</li>
+</ol>
+<pre><code class="language-bash">git push origin master
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 564 bytes | 564.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Powered by GITEE.COM [GNK-6.4]
+To gitee.com:xiaxi626/gpg-test.git
+   8013057..53ca0f6  master -&gt; master
+
+</code></pre>
+<ol start="11">
+<li>
+<p>签名状态，Commit出现<code>Verified</code> | <code>This commit was signed with the committer's verified signature</code>，成功。</p>
+<ul>
+<li>Commit 验证通过的条件为：commit 提交邮箱与 commit GPG 签名所使用的公钥邮箱一致且 GPG 公钥验证通过。</li>
+</ul>
+</li>
+<li>
+<p>查看 GPG 公钥</p>
+<ul>
+<li>输入 <code>https://gitee.com/\&lt;username&gt;.gpg</code></li>
+<li>选择用户个人资料右上角的设置页面进入安全设置 - GPG 公钥</li>
+<li>Gitee 平台 GPG 公钥：https://gitee.com/gitee.gpg</li>
+</ul>
+</li>
+</ol>
+<h2 id="-github--gpg-key--commit">在 Github 上使用 GPG key 来签名 commit</h2>
+<h3 id="github--gpg">Github 配置 GPG</h3>
+<h4 id="-gpg-">配置 GPG 公钥到仓库</h4>
+<p>Github <code>Setting</code> -&gt; <code>SSH and GPG keys</code> -&gt; <code>New GPG Key</code> 导入即可</p>
+<h4 id="gpg-sign">本地代码仓库启用GPG Sign</h4>
+<p>通过<code>gpg --list-keys</code>查看<code>pub GPG key ID</code>，后设置<code>git</code>签名时用的<code>key</code></p>
+<h4 id="heading-15">全局设置</h4>
+<pre><code class="language-bash"># 配置已经生成的GPG Key ID
+git config --global user.signingkey &lt;pub GPG key ID&gt;
+# 配置启用GPG签名
+git config --global commit.gpgsign true
+</code></pre>
+<p>指定仓库设置，需要进入代码目录：</p>
+<pre><code class="language-bash"># 配置已经生成的GPG Key ID
+git config --local user.signingkey &lt;pub GPG key ID&gt;
+# 配置启用GPG签名
+git config --local commit.gpgsign true
+</code></pre>
+<h4 id="-gpg-agent">重启 gpg-agent</h4>
+<p>第一次配置，必须重启，否则签名会失败，命令如下：</p>
+<pre><code class="language-bash">gpgconf –kill gpg-agent
+</code></pre>
+<h4 id="heading-16">上述步骤示例</h4>
+<pre><code class="language-bash">Administrator@AUTOBVT-Q90417J MINGW64 ~/Desktop
+$ git config --global user.signingkey 69A20512441F53BA4F13F93F74EA6A7E693AEF20
+
+Administrator@AUTOBVT-Q90417J MINGW64 ~/Desktop
+$ git config --global commit.gpgsign true
+
+Administrator@AUTOBVT-Q90417J MINGW64 ~/Desktop
+$ gpgconf –kill gpg-agent
+gpg:OpenPGP:/usr/bin/gpg
+gpgsm:S/MIME:/usr/bin/gpgsm
+gpg-agent:Private Keys:/usr/bin/gpg-agent
+scdaemon:Smartcards:/usr/lib/gnupg/scdaemon
+dirmngr:Network:/usr/bin/dirmngr
+pinentry:Passphrase Entry:/usr/bin/pinentry
+</code></pre>
+<p>Windows 上的 git-bash 上默认的 /usr/bin 目录在：C:\Program Files\Git\usr\bin\。</p>
+<h3 id="gpg-1">关闭GPG签名</h3>
+<p>所有仓库：</p>
+<pre><code class="language-bash">git config --global commit.gpgsign false
+git config --global --unset commit.gpgsign
+</code></pre>
+<p>本地仓库：</p>
+<pre><code class="language-bash">git config --local commit.gpgsign false
+git config --local --unset commit.gpgsign
+</code></pre>
+<h3 id="git-">git 使用</h3>
+<h4 id="heading-17">提交</h4>
+<pre><code class="language-bash">git commit -am &quot;feature: something&quot;
+git push origin develop
+</code></pre>
+<p>然后我们可以在 git 中看到 <code>Verified</code> 的标识。</p>
+<p>如果不设置<code>git config --global commit.gpgsign true</code>，提交的时候加上一个 <code>-S</code> 参数就可以为提交签名：</p>
+<pre><code class="language-bash">git commit -S -m `your commit message`
+</code></pre>
+<h4 id="tag">提交tag时签名</h4>
+<pre><code class="language-bash">git tag -s ...
+</code></pre>
+<h4 id="heading-18">查看日志</h4>
+<pre><code class="language-bash">git log --show-signature -1
+</code></pre>
+<h2 id="-kleopatra-">使用 Kleopatra 来签名/加密文件</h2>
+<p>Gpg4win（GNU Privacy Guard for Windows）是一个<strong>加密</strong>软件，用于对文件和电子邮件进行签名和加密。</p>
+<p>它能够生成OpenPGP密钥对、签名／验证、加密／解密，还可以建立S/MIME认证请求。</p>
+<p><strong>OpenPGP 证书高级设置</strong></p>
+<p>1、密钥类型</p>
+<ul>
+<li>RSA</li>
+<li>DSA</li>
+<li>ECDSA/EdDSA（默认）</li>
+</ul>
+<p>2、证书用途</p>
+<ul>
+<li>签名</li>
+<li>证书 仅加密（默认）</li>
+<li>验证</li>
+<li>有效期结束于</li>
+</ul>
+<p>新建密钥对后，界面会显示一条证书信息，包含名称、电子邮件、用户编号（认证的/已吊销）、有效期、密钥ID。<br />
+你可以双击证书来添加用户ID、认证用户IDs、吊销证书、吊销用户ID等。</p>
+<h3 id="heading-19">签名/加密文件</h3>
+<ol>
+<li>新建OpenPGP秘钥对</li>
+<li>输入名称和电子邮件</li>
+<li>需要进行高级设置可以点击高级设置进行设置，默认密钥类型为ECDSA，可以根据需要设置过期时间</li>
+<li>勾选“需要密码句保护生成的密钥”，输入密码句</li>
+<li>密码复杂度低时会提示你重新输入密码，如果密码要求不是太高，直接点击Take this one anyway，如果需要返回重新设置，点击Enter new passphrase</li>
+<li>秘钥对创建成功，右键“备份私钥”，生成密钥对的副本，输入密码，导出成功</li>
+<li>导出公钥，右键该加密证书，导出公钥，选择公钥的导出目录，导出</li>
+<li>将需要的加密的文件拖入到kleopatra中，点击签名/加密</li>
+<li>选择加密证书以及加密文件存储位置，输入密码，加密完成</li>
+</ol>
+<h3 id="heading-20">解密/验证文件</h3>
+<ol>
+<li>首先需要得到对方的加密公钥和私钥文件</li>
+<li>先导入公钥文件（.asc），为本地创建一个证书</li>
+<li>创建完成后，认证证书公钥，只认证自己，输入刚刚创建的本地证书密码</li>
+<li>继续导入，选择私钥文件（.gpg）导入,查看证书详情，证书颜色已经变深，可以进行解密操作了</li>
+<li>将对方发送的加密文件（.gpg）拖入到kleopatra中进行解密，点击 Save All 保存，得到解密后的文件</li>
+</ol>
+<p>想要对方加密文件给你，你需要提供公钥给对方，对方用你的公钥进行加密，发送给你加密文件后，你需用你的私钥进行解密。</p>
+<p>可以进行解密操作后，双击<strong>签名/加密</strong>输出的文件和点击<strong>解密/校验</strong>效果是一样的。</p>
+<h2 id="heading-21">关于提交签名验证</h2>
+<p>使用 GPG、SSH、 或 S/MIME，可以在本地对标记和提交进行签名。 这些标记或提交在 GitHub 上标示为已验证，便于其他人信任更改来自可信的来源。</p>
+<p>您可以在本地签署提交和标签，让其他人对您所做更改的源充满信心。 如果提交或标记具有可加密验证的 GPG、SSH、 或 S/MIME 签名，GitHub 会将提交或标记标示为“已验证”或“部分验证”。</p>
+<p>存储库提交列表中提交的屏幕截图。 “已验证”以橙色轮廓突出显示。</p>
+<p>对于大多数个人用户，GPG 或 SSH 会是对提交进行签名的最佳选择。 在较大型组织的环境中通常需要 S/MIME 签名。 SSH 签名是最容易生成的。 甚至可以将现有身份验证密钥上传到 GitHub 以用作签名密钥。 生成 GPG 签名密钥比生成 SSH 密钥更复杂，但 GPG 具有 SSH 所没有的功能。 GPG 密钥可以在不再使用时过期或撤销。 GitHub 将已使用此类密钥进行签名的提交显示为“已验证”，除非密钥标记为已泄露。 SSH 密钥没有此功能。</p>
+<h3 id="gpg-">GPG 提交签名验证</h3>
+<p>GitHub 使用 OpenPGP 库来确认本地签名的提交和标记，是否根据你在 GitHub.com 上添加到帐户的公钥进行加密验证。</p>
+<h3 id="ssh-">SSH 提交签名验证</h3>
+<p>可以使用 SSH 通过自己生成的 SSH 密钥对提交进行签名。 有关详细信息，请查看 <code>user.Signingkey</code> 的 <a href="https://git-scm.com/docs/git-config#Documentation/git-config.txt-usersigningKey">Git 参考文档</a>。 如果已使用 SSH 密钥向 GitHub 进行了身份验证，还可以再次上传该相同密钥以用作签名密钥。 可以添加到帐户的签名密钥数没有限制。</p>
+<p>GitHub 使用 ssh_data（一种开放源代码 Ruby 库）来确认本地签名的提交和标记是否根据在 GitHub.com 上添加到帐户的公钥进行加密验证。</p>
+<h2 id="heading-22">参考</h2>
+<p><a href="https://spencerwoo.com/blog/wait-this-is-not-my-commit">👨‍💻 震惊！竟然有人在 GitHub 上冒充我的身份！</a><br />
+<a href="https://docs.github.com/zh/authentication/managing-commit-signature-verification/about-commit-signature-verification">关于提交签名验证 - GitHub 文档</a><br />
+<a href="http://ruanyifeng.com/blog/2013/07/gpg.html">GPG入门教程 - 阮一峰的网络日志</a><br />
+<a href="https://pythonjishu.com/bbddvfjaylxx/">Linux下GPG的使用</a><br />
+<a href="https://wobushixiaohai.blog.csdn.net/article/details/122238040">推荐一款好用的文件加密传输软件——Kleopatra（含详细使用文档）</a><br />
+<a href="https://blog.csdn.net/qq_44686646/article/details/115305433">Kleopatra文件的加密解密遇到部分问题_kleopatra解密_少猿的博客</a><br />
+<a href="https://zhuanlan.zhihu.com/p/481900853">使用 GPG Key 来构建签名、加密及认证体系 - 知乎</a><br />
+<a href="https://zhuanlan.zhihu.com/p/137801979">简明 GPG 概念 - 知乎</a><br />
+<a href="https://zhuanlan.zhihu.com/p/344198727">2021年，用更现代的方法使用PGP（上） - 知乎</a><br />
+<a href="https://www.jianshu.com/p/91c98a27fd16">PGP——密码技术的完美组合 - 简书</a><br />
+<a href="https://help.gitee.com/repository/ssh-key/how-to-use-gpg-with-gitee">如何在 Gitee 上使用 GPG | Gitee 产品文档</a><br />
+<a href="https://www.xiexianbin.cn/git/command/git-gpg/index.html">使用 GPG 签名 Git Commit-谢先斌的博客</a><br />
+<a href="https://blog.kelu.org/tech/2022/03/15/git-global-config-reset.html">修改/重置 git 的全局配置 | 血衫非弧の一存</a></p>
+</span></div>
+                        </div>
+                        
+                        <div class="post-container">
+                            <p class="post-title">
                                 <a href="/post/zhen-bai-meng-lun-tan-tui-jian-yue-du/">真白萌论坛推荐阅读</a>
                             </p>
                             <p class="post-meta">
@@ -3428,546 +3920,13 @@ Preferences 》Package Settings 》 Package Control 》 Settings - User<br />
 </span></div>
                         </div>
                         
-                        <div class="post-container">
-                            <p class="post-title">
-                                <a href="/post/vim-de-an-zhuang-ji-pei-zhi/"> vim 的安装及配置</a>
-                            </p>
-                            <p class="post-meta">
-                                <span class="date meta-item">Posted at&nbsp;2023-04-19</span>
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    <span>&nbsp;</span>
-                                    <a href="/post/vim-de-an-zhuang-ji-pei-zhi/#comments">Comments</a>
-                                </span>
-                                
-                                
-                                
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-tag"></i>
-                                    <span>&nbsp;</span>
-                                    
-                                    <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
-                                    <span>&nbsp;</span>
-                                    
-                                </span>
-                                
-                            </p>
-                            
-                            
-                            <div class="post-feature-image">
-                                <a href="/post/vim-de-an-zhuang-ji-pei-zhi/">
-                                    <img src="/post-images/vim-de-an-zhuang-ji-pei-zhi.png" alt=" vim 的安装及配置" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
-                                </a>
-                            </div>
-                            
-
-                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><h2 id="vim">vim的下载与安装</h2>
-<h3 id="windowsvim">下载windows版vim</h3>
-<p>从github下载windows版的vim：<a href="https://github.com/vim/vim-win32-installer/releases">https://github.com/vim/vim-win32-installer/releases</a></p>
-<h3 id="vim-1">安装vim</h3>
-<p>无特殊要求默认安装即可。<br />
-安装完成后默认打开README文件。<br />
-<img src="/post-images/1682219903942.PNG" alt="" /></p>
-<h3 id="heading">添加环境变量</h3>
-<p>在安装路径中找到vim.exe或者gvim.exe（两者在同一文件夹下），复制路径。<br />
-<img src="/post-images/1682219998319.PNG" alt="" /><br />
-右键我的电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量，选中Path，并点击编辑，添加路径。<br />
-<img src="/post-images/1682220293628.PNG" alt="" /><br />
-添加vim的一个用户变量<code>$VIM</code>，右键我的电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量，点击上面的新建。<br />
-然后输入新建的环境变量名VIM以及变量值，并点击确定。<br />
-<img src="/post-images/1682220555084.PNG" alt="" /></p>
-<h2 id="vim-2">认识vim</h2>
-<p>安装结束后桌面Vim<br />
-<img src="/post-images/1682236706561.PNG" alt="" /><br />
-菜单栏Vim<br />
-<img src="/post-images/1682240411155.png" alt="" /></p>
-<ol>
-<li>有g和没有g<br />
-gVim 是在windows下的Gui图形用户界面的的 vim (GUI Vim)，支持windows的一些快捷方式，支持鼠标操作<br />
-vim 是在windows下的类似linux vi 编辑的界面，只能用键盘操作<br />
-vim的操作指令同时适用于gVim</li>
-<li>Vim, Vim Diff, Vim Easy, Vim Read-only<br />
-Diff 是用来对比两个文件内容用的，直接打开挺没用的，不过直接拖2个文件到快捷方式上倒是可行；<br />
-Easy启动的时候是insert模式，适合普通windows用户的习惯；<br />
-Read-Only的用途：比如用read-only打开已经用vim打开过的文件，就不会提示让人烦躁的.swp文件存在的问题；</li>
-</ol>
-<p>我们暂时会使用Vim来入门，最后您会使用gVim编程，这是因为gVim在没有配置的时候比Vim还不方便操作。</p>
-<h2 id="vim-3">Vim基本的使用说明</h2>
-<h3 id="vim-4">用Vim打开文件</h3>
-<p>在cmd下输入vim + 路径即可，同时直接将文件拖动到快捷方式图标上也可以。</p>
-<h3 id="vim-5">Vim的四种模式</h3>
-<p>vim 共分为四种模式，分别是普通模式（Normal mode）、底行模式(Last line mode)、输入模式（Insert mode）和可视化模式（Visual mode）。四种模式的切换与作用如下<br />
-<img src="/post-images/1682414750036.png" alt="" /></p>
-<h4 id="normal-mode"><strong>Normal Mode</strong></h4>
-<p>这个模式一般用于浏览代码与进入底行模式输入命令，使用快捷键修改文章</p>
-<table>
-<thead>
-<tr>
-<th align="center">快捷键</th>
-<th align="center">效果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">h 或 向左箭头键(←)</td>
-<td align="center">光标向左移动一个字符</td>
-</tr>
-<tr>
-<td align="center">j 或 向下箭头键(↓)</td>
-<td align="center">光标向下移动一个字符</td>
-</tr>
-<tr>
-<td align="center">k 或 向上箭头键(↑)</td>
-<td align="center">光标向上移动一个字符</td>
-</tr>
-<tr>
-<td align="center">l 或 向右箭头键(→)</td>
-<td align="center">光标向右移动一个字符</td>
-</tr>
-</tbody>
-</table>
-<p>用上面的按键你就可以上下浏览代码了，但是不建议使用方向键<br />
-Vim中还有一些键位是进行光标移动的</p>
-<table>
-<thead>
-<tr>
-<th align="center">快捷键</th>
-<th align="center">效果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">[Ctrl] + [f]</td>
-<td align="center">屏幕『向下』移动一页，相当于 [Page Down]按键 (常用)</td>
-</tr>
-<tr>
-<td align="center">[Ctrl] + [b]</td>
-<td align="center">屏幕『向上』移动一页，相当于 [Page Up] 按键 (常用)</td>
-</tr>
-<tr>
-<td align="center">[Ctrl] + [d]</td>
-<td align="center">屏幕『向下』移动半页</td>
-</tr>
-<tr>
-<td align="center">[Ctrl] + [u]</td>
-<td align="center">屏幕『向上』移动半页</td>
-</tr>
-<tr>
-<td align="center">+</td>
-<td align="center">光标移动到非空格符的下一行</td>
-</tr>
-<tr>
-<td align="center">-</td>
-<td align="center">光标移动到非空格符的上一行</td>
-</tr>
-<tr>
-<td align="center">n &lt; space &gt;</td>
-<td align="center">那个 n 表示『数字』，例如 20 。按下数字后再按空格键，光标会向右移动这一行的 n 个字符。例如 20&lt; space &gt; 则光标会向后面移动 20 个字符距离。</td>
-</tr>
-<tr>
-<td align="center">M</td>
-<td align="center">光标移动到这个屏幕的中央那一行的第一个字符</td>
-</tr>
-<tr>
-<td align="center">L</td>
-<td align="center">光标移动到这个屏幕的最下方那一行的第一个字符</td>
-</tr>
-<tr>
-<td align="center">G</td>
-<td align="center">移动到这个档案的最后一行(常用)</td>
-</tr>
-<tr>
-<td align="center">nG</td>
-<td align="center">n 为数字。移动到这个档案的第 n 行。例如 20G 则会移动到这个档案的第 20 行(可配合 :set nu)</td>
-</tr>
-<tr>
-<td align="center">gg</td>
-<td align="center">移动到这个档案的第一行，相当于 1G 啊！ (常用)</td>
-</tr>
-<tr>
-<td align="center">n&lt; Enter &gt;</td>
-<td align="center">n 为数字。光标向下移动 n 行(常用)</td>
-</tr>
-</tbody>
-</table>
-<p>以上是光标移动命令，然后是文档查询替换命令</p>
-<table>
-<thead>
-<tr>
-<th align="center">命令</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">/word</td>
-<td align="center">向光标之下寻找一个名称为 word 的字符串。例如要在档案内搜寻 vbird 这个字符串，就输入 / vbird 即可！ (常用)</td>
-</tr>
-<tr>
-<td align="center">?word</td>
-<td align="center">向光标之上寻找一个字符串名称为 word 的字符串。</td>
-</tr>
-<tr>
-<td align="center">n</td>
-<td align="center">这个 n 是英文按键。代表重复前一个搜寻的动作。举例来说， 如果刚刚我们执行 /vbird 去向下搜寻 vbird 这个字符串，则按下 n 后，会向下继续搜寻下一个名称为 vbird 的字符串。如果是执行 ?vbird 的话，那么按下 n 则会向上继续搜寻名称为 vbird 的字符串！</td>
-</tr>
-<tr>
-<td align="center">N</td>
-<td align="center">这个 N 是英文按键。与 n 刚好相反，为『反向』进行前一个搜寻动作。 例如 /vbird 后，按下 N 则表示『向上』搜寻 vbird 。</td>
-</tr>
-<tr>
-<td align="center">使用 /word 配合 n 及 N 是非常有帮助的！可以让你重复的找到一些你搜寻的关键词！</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">:n1,n2s/word1/word2/g</td>
-<td align="center">n1 与 n2 为数字。在第 n1 与 n2 行之间寻找 word1 这个字符串，并将该字符串取代为 word2 ！举例来说，在 100 到 200 行之间搜寻 vbird 并取代为 VBIRD 则： 『:100,200s/vbird/VBIRD/g』。(常用)</td>
-</tr>
-<tr>
-<td align="center">:1,$s/word1/word2/g 或 :%s/word1/word2/g</td>
-<td align="center">从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 ！(常用)</td>
-</tr>
-<tr>
-<td align="center">:1,$s/word1/word2/gc 或 :%s/word1/word2/gc</td>
-<td align="center">从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 ！且在取代前显示提示字符给用户确认 (confirm) 是否需要取代！(常用)</td>
-</tr>
-</tbody>
-</table>
-<p>最后是最常用的<strong>增删改命令</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">快捷键</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">x, X</td>
-<td align="center">在一行字当中，x 为向后删除一个字符 (相当于 [del] 按键)， X 为向前删除一个字符( 相当于 [backspace] 亦即是退格键) (常用)</td>
-</tr>
-<tr>
-<td align="center">nx</td>
-<td align="center">n 为数字，连续向后删除 n 个字符。举例来说，我要连续删除 10 个字符， 『10x』。</td>
-</tr>
-<tr>
-<td align="center">dd</td>
-<td align="center">删除游标所在的那一整行(常用)</td>
-</tr>
-<tr>
-<td align="center">ndd</td>
-<td align="center">n 为数字。删除光标所在的向下 n 行，例如 20dd 则是删除 20 行 (常用)</td>
-</tr>
-<tr>
-<td align="center">d1G</td>
-<td align="center">删除光标所在到第一行的所有数据</td>
-</tr>
-<tr>
-<td align="center">dG</td>
-<td align="center">删除光标所在到最后一行的所有数据</td>
-</tr>
-<tr>
-<td align="center">d$</td>
-<td align="center">删除游标所在处，到该行的最后一个字符</td>
-</tr>
-<tr>
-<td align="center">d0</td>
-<td align="center">那个是数字的 0 ，删除游标所在处，到该行的最前面一个字符</td>
-</tr>
-<tr>
-<td align="center">yy</td>
-<td align="center">复制游标所在的那一行(常用)</td>
-</tr>
-<tr>
-<td align="center">nyy</td>
-<td align="center">n 为数字。复制光标所在的向下 n 行，例如 20yy 则是复制 20 行(常用)</td>
-</tr>
-<tr>
-<td align="center">y1G</td>
-<td align="center">复制游标所在行到第一行的所有数据</td>
-</tr>
-<tr>
-<td align="center">yG</td>
-<td align="center">复制游标所在行到最后一行的所有数据</td>
-</tr>
-<tr>
-<td align="center">y0</td>
-<td align="center">复制光标所在的那个字符到该行行首的所有数据</td>
-</tr>
-<tr>
-<td align="center">y$</td>
-<td align="center">复制光标所在的那个字符到该行行尾的所有数据</td>
-</tr>
-<tr>
-<td align="center">p, P</td>
-<td align="center">p 为将已复制的数据在光标下一行贴上，P 则为贴在游标上一行！ 举例来说，我目前光标在第 20 行，且已经复制了 10 行数据。则按下 p 后， 那 10 行数据会贴在原本的 20 行之后，亦即由 21 行开始贴。但如果是按下 P 呢？ 那么原本的第 20 行会被推到变成 30 行。 (常用)</td>
-</tr>
-<tr>
-<td align="center">J</td>
-<td align="center">将光标所在行与下一行的数据结合成同一行</td>
-</tr>
-<tr>
-<td align="center">c</td>
-<td align="center">重复删除多个数据，例如向下删除 10 行，[ 10cj ]</td>
-</tr>
-<tr>
-<td align="center">u</td>
-<td align="center">复原前一个动作。(常用)</td>
-</tr>
-<tr>
-<td align="center">[Ctrl]+r</td>
-<td align="center">重做上一个动作。(常用)</td>
-</tr>
-<tr>
-<td align="center">.</td>
-<td align="center">不要怀疑！这就是小数点！意思是重复前一个动作的意思。 如果你想要重复删除、重复贴上等等动作，按下小数点『.』就好了！ (常用)</td>
-</tr>
-</tbody>
-</table>
-<p>以上的增删改查命令有一定的命名规律，比如<code>y</code>是复制，然后复制什么没说，你用<code>yw</code>就是复制一个单词(word)，重复写一个命令就是对这个对行操作，例如<code>yy</code>就是复制一行，还可以<code>y+数字</code>，例如<code>y3</code>就是复制三行，还可以与其他命令组合比如<code>yG</code>就是从当前光标位置复制到文档最后，这样组合才可以让我们高效的使用Vim</p>
-<h4 id="last-line-mode"><strong>Last line mode模式</strong></h4>
-<p>我一直觉得这就是Vim的Normal模式，结果别人都觉得这是一个新模式，那就当他是个新模式吧<br />
-你会发现在没有配置Vim的其他功能的时候，Vim的下面会写有一个Normal等，但是似乎下面还有一行，这一行是让你输入命令的，想要输入命令必须使用\或者:触发，\是用来查找内容的，严格说属于Normal模式，所以其实只有:开头的命令</p>
-<table>
-<thead>
-<tr>
-<th align="center">命令</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">:w</td>
-<td align="center">将编辑的数据写入硬盘档案中(常用)</td>
-</tr>
-<tr>
-<td align="center">:w!</td>
-<td align="center">若文件属性为『只读』时，强制写入该档案。不过，到底能不能写入， 还是跟你对该档案的档案权限有关啊！</td>
-</tr>
-<tr>
-<td align="center">:q</td>
-<td align="center">离开 vi (常用)</td>
-</tr>
-<tr>
-<td align="center">:q!</td>
-<td align="center">若曾修改过档案，又不想储存，使用 ! 为强制离开不储存档案。</td>
-</tr>
-<tr>
-<td align="center">注意一下啊，那个惊叹号 (!) 在 vi 当中，常常具有『强制』的意思～</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">:wq</td>
-<td align="center">储存后离开，若为 :wq! 则为强制储存后离开 (常用)</td>
-</tr>
-<tr>
-<td align="center">:w [filename]</td>
-<td align="center">将编辑的数据储存成另一个档案（类似另存新档）</td>
-</tr>
-<tr>
-<td align="center">:r [filename]</td>
-<td align="center">在编辑的数据中，读入另一个档案的数据。亦即将 『filename』 这个档案内容加到游标所在行后面</td>
-</tr>
-<tr>
-<td align="center">:n1,n2 w [filename]</td>
-<td align="center">将 n1 到 n2 的内容储存成 filename 这个档案。</td>
-</tr>
-<tr>
-<td align="center">:! command</td>
-<td align="center">暂时离开 vi 到指令行模式下执行 command 的显示结果！例如 『:! ls /home』即可在 vi 当中察看 /home 底下以 ls 输出的档案信息！</td>
-</tr>
-</tbody>
-</table>
-<p>还有很多，但是都是特殊的命令，或者某一个插件特有的，这里不做介绍</p>
-<h4 id="insert"><strong>Insert模式</strong></h4>
-<p>插入模式是让你正常写代码的，注意的是，插入模式下hjkl的上下左右切换是失效的，可以用方向键，但是不建议，还是退出编辑模式在normal下改光标方便，进入插入模式的快捷键最常用的是i，还有如下的也可以</p>
-<table>
-<thead>
-<tr>
-<th align="center">快捷键</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">i, I</td>
-<td align="center">进入输入模式(Insert mode)： i 为『从目前光标所在处输入』， I 为『在目前所在行的第一个非空格符处开始输入』。 (常用)</td>
-</tr>
-<tr>
-<td align="center">a, A</td>
-<td align="center">进入输入模式(Insert mode)： a 为『从目前光标所在的下一个字符处开始输入』， A 为『从光标所在行的最后一个字符处开始输入』。(常用)</td>
-</tr>
-<tr>
-<td align="center">o, O</td>
-<td align="center">进入输入模式(Insert mode)： 这是英文字母 o 的大小写。o 为『在目前光标所在的下一行处输入新的一行』； O 为在目前光标所在处的上一行输入新的一行！(常用)</td>
-</tr>
-<tr>
-<td align="center">r, R</td>
-<td align="center">进入取代模式(Replace mode)： r 只会取代光标所在的那一个字符一次；R会一直取代光标所在的文字，直到按下 ESC 为止；(常用)</td>
-</tr>
-</tbody>
-</table>
-<p>这一部分没什么好说的，因为没有快捷键(否则你打着打着代码就触发了什么快捷键)</p>
-<h4 id="visual"><strong>Visual模式</strong></h4>
-<p>可视化模式在很多文献中都没有介绍，但是是一个非常好用的模式，在这个模式下你可以用鼠标选择内容要选取一段文本，首先将光标移到段首，在普通模式下按 v 进入可视模式，然后把光标移到段末。 需要注意，光标所在字符是包含在选区中的</p>
-<ul>
-<li>v 进入字符可视化模式</li>
-<li>V 进入行可视化模式</li>
-<li>Ctrl+v 进入块可视化模式<br />
-块选择在表格中删除指定列非常有用<br />
-用 v 命令进入的字符可视化模式（Characterwise visual mode)。文本选择是以字符为单位的。<br />
-用 V 命令进入的行可视化模式（Linewise visual mode)。文本选择是以行为单位的。<br />
-用 ctrl-V 进入的块可视化模式（Blockwise visual mode）。可以选择一个矩形内的文本。</li>
-</ul>
-<p>使用鼠标或者hjkl即可选中字符/行/块，然后可以y，x…<br />
-更有用的是对块批量操作，例如批量注释可以这么写<br />
-<strong>批量注释：</strong><br />
-Ctrl + v 进入块选择模式，然后移动光标选中你要注释的行，再按大写的 I 进入行首插入模式输入注释符号如 // 或 #，输入完毕之后，按两下 ESC，Vim 会自动将你选中的所有行首都加上注释，保存退出完成注释。<br />
-<strong>取消注释：</strong><br />
-Ctrl + v 进入块选择模式，选中你要删除的行首的注释符号，注意 // 要选中两个，选好之后按 d 即可删除注释，ESC 保存退出<br />
-还可以在选择文字后输入:然后把你在平时这么用的就怎么写，注意按:会多出一些东西不要管他,例如</p>
-<pre><code class="language-bash">:A //这是一堆注释
-</code></pre>
-<p>然后Vim会根据你所写，先对每一样在Normal模式下使用A把光标移动到该行行尾，然后进入Insert模式输入<code>//这是一堆注释</code>对每一行都操作结束之后就会自动退出到Normal模式<br />
-具体的这个模式如何使用见<a href="https://linux.cn/article-10589-1.html">Vim可视化入门</a></p>
-<h2 id="vim-6">配置vim</h2>
-<p>安装好的vim文件夹下有一个<code>_vimrc</code>文件，相当于Linux下vim的<code>.vimrc</code>文件，在里面配置vim，大多数情况和Linux一样。<br />
-<strong>Windows 7</strong> <code>C:\Program Files\Vim\_vimrc</code>中默认是这样的——</p>
-<pre><code class="language-bash">&quot; Vim with all enhancements
-source $VIMRUNTIME/vimrc_example.vim
-
-&quot; Use the internal diff if available.
-&quot; Otherwise use the special 'diffexpr' for Windows.
-if &amp;diffopt !~# 'internal'
-  set diffexpr=MyDiff()
-endif
-function MyDiff()
-  let opt = '-a --binary '
-  if &amp;diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &amp;diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '&quot;' . arg1 . '&quot;' | endif
-  let arg1 = substitute(arg1, '!', '\!', 'g')
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '&quot;' . arg2 . '&quot;' | endif
-  let arg2 = substitute(arg2, '!', '\!', 'g')
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '&quot;' . arg3 . '&quot;' | endif
-  let arg3 = substitute(arg3, '!', '\!', 'g')
-  if $VIMRUNTIME =~ ' '
-    if &amp;sh =~ '\&lt;cmd'
-      if empty(&amp;shellxquote)
-        let l:shxq_sav = ''
-        set shellxquote&amp;
-      endif
-      let cmd = '&quot;' . $VIMRUNTIME . '\diff&quot;'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '&quot; ', '') . '\diff&quot;'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  let cmd = substitute(cmd, '!', '\!', 'g')
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' &gt; ' . arg3
-  if exists('l:shxq_sav')
-    let &amp;shellxquote=l:shxq_sav
-  endif
-endfunction
-</code></pre>
-<p>你会发现在Vim安装目录和<code>C://User/你的用户名</code>下还有一个，我们使用自己用户名下的,如果没有的话就自己新建一个，这个不是因为你的Vim没安装，他就是没有。</p>
-<h3 id="vim-7">第一个Vim配置，行号</h3>
-<p>找到或者新建这个文件，右键选中用Vim打开，我们就打开了一个空的<code>_vimrc</code>文件，试着往里面写下<code>set number</code>，这个配置的意思是自动为添加行号，这样你写代码就可以在左边看到行号了<br />
-按动ZZ(大写的)保存文件，然而行号并没有出来，这是因为我们没有&quot;刷新配置文件&quot;,在Normal下输入命令<code>:source $MYVIMRC</code>然后你就可以看到行号了，至此你成功配置了第一个Vimrc</p>
-<h3 id="heading-1">设置快捷键映射</h3>
-<p>但是这似乎比较麻烦，每次修改之后还要输入那么长的刷新保存，如果有个快捷键帮助我们就好了,我设置的快捷键是大写的R，也就是Shift+R，那么我们应该如何设置呢？首先要想好自己要设置的快捷键，不能与之前的快捷键相重合，还有快捷键的生效范围，是只有在Normal模式下生效还是在四个模式下都生效。例如我将大写R作为快捷键最好只在Normal下操作，否则在Insert模式下我输入大写的R就没法输入了，但是例如F5这样的快捷键从来不会与其他模式冲突我们就可以设置为全局的<br />
-快捷键映射可以将一个组合键映射到一个命令，一个其他的组合键或者其他语法为</p>
-<pre><code class="language-bash">前缀+map 快捷键 映射结果
-</code></pre>
-<p>这里的前缀限定了map的作用范围是那几个模式，不写前缀默认是前缀n</p>
-<ul>
-<li>nmap：只有在Normal模式下生效</li>
-<li>vmap：只有在Visual模式下生效</li>
-<li>imap：只有在Insert模式下生效</li>
-<li>cmap：只有在行底命令的模式下生效</li>
-<li>Xnoremap：X是前面的n/v/i/c，nore表示非递归的例如a被映射为了b，b被映射为了c，那么如果是递归的的话a就映射为了c</li>
-</ul>
-<p>对于被映射与要映射的动作按键遵循以下写法</p>
-<ul>
-<li>普通按键就直接写</li>
-<li>Alt组合键写成<code>&lt;A-X&gt;</code>,例如Alt+S就是<code>&lt;A-S&gt;</code></li>
-<li>Ctrl组合键写成<code>&lt;C-X&gt;</code>,例如Ctrl+S就是<code>&lt;C-S&gt;</code></li>
-<li>FX写成<code>&lt;FX&gt;</code>，例如<code>&lt;F5&gt;</code>就是F5</li>
-<li>四个方向键写成<code>&lt;方向&gt;</code>，例如<code>&lt;LEFT&gt;</code>就是方向左键</li>
-<li>ESC就写成<code>&lt;ESC&gt;</code></li>
-<li>Leader键就写成</li>
-<li>回车写成<code>&lt;CR&gt;</code></li>
-</ul>
-<p>关于leader键：<br />
-Vim预置有很多快捷键，再加上各类插件的快捷键，大量快捷键出现在单层空间中难免引起冲突。为缓解该问题，而引入了前缀键<code>&lt;leader&gt;</code>。藉由前缀键， 则可以衍生出更多的快捷键命名空间（namespace)。例如将r键配置为<code>&lt;leader&gt;r</code>、<code>&lt;leader&gt;&lt;leader&gt;r</code>等多个快捷键。前缀键默认为<code>\</code><br />
-但是在我的键盘上<code>\</code>太远了，于是我就把leader换成了空格，只需要如下的命令<code>let mapleader = &quot;\&lt;space&gt;&quot;</code>写在开头就完成了替换。</p>
-<p>针对上面的问题我们就可以把刷新配置文件映射成S，配置如下</p>
-<pre><code class="language-bash">map R :source $MYVIMRC&lt;CR&gt;
-</code></pre>
-<h3 id="heading-2">安装插件管理器</h3>
-<p>Vim好用就在于有大量插件供我们使用，这样我们可以自己配置自己喜欢的Vim，这里我们介绍插件管理器Vim-Pluig，同时我们一般的插件都是在GitHub上托管的，所以我们一般也是在GitHub上找插件，Vim的插件非常好识别，他使用的语言大多会写<code>Vim script</code>。<br />
-<img src="/post-images/1682425896308.png" alt="" /><br />
-打开插件管理器所在仓库。<br />
-<img src="/post-images/1682426083266.png" alt="" /><br />
-下载如下文件并放入Vim的安装目录下的autoload。<br />
-<img src="/post-images/1682426488347.png" alt="" /><br />
-这样我们就完成了插件管理器的安装<br />
-之后我们开始尝试安装第一个插件<br />
-首先在vimrc中写下这样三行，他可以帮助插件管理器识别你要装那些插件</p>
-<pre><code class="language-bash">call plug#begin('~/.vim/plugged')
-
-call plug#end()
-</code></pre>
-<p>以后只要是需要安装的插件我们只需要把地址写在里面就可以直接安装了</p>
-<p>另一款插件管理器—— <em>Vundle</em> 的安装教程：<a href="https://blog.csdn.net/weixin_42250302/article/details/108019214">Windows gvim安装插件_gvim插件</a></p>
-<h3 id="heading-3">尝试安装第一个插件</h3>
-<p>我们先来尝试安装一个主题插件。<br />
-首先我们找到<a href="https://github.com/connorholyday/vim-snazzy">这个主题的GitHub库</a>。<br />
-那如何告诉插件管理器我要安装这个插件，这个插件的安装包在哪里呢？<br />
-刚刚那个库的地址是<br />
-<a href="https://github.com/connorholyday/vim-snazzy">https://github.com/connorholyday/vim-snazzy</a><br />
-我们发现<code>https://github.com/</code>是GitHub的前缀，而插件管理器默认库在GitHub所以只要告诉插件<code>connorholyday/vim-snazzy</code>就可以了，于是我们只需要在哪两行代中间写上：</p>
-<pre><code class="language-bash">Plug 'connorholyday/vim-snazzy'
-</code></pre>
-<p>即为——</p>
-<pre><code class="language-bash">call plug#begin('~/.vim/plugged')
-Plug 'connorholyday/vim-snazzy'
-call plug#end()
-</code></pre>
-<p>完事，我们要让插件管理器去安装它，只需保存并刷新配置文件，输入命令:PlugInstall回车，等他跑完进度条即可。<br />
-至此我们完成了第一个插件的安装。</p>
-<h3 id="heading-4">尝试卸载第一个插件</h3>
-<p>如果哪一天插件不想要了，可以卸载，方法很简单，要么删除插件安装的哪一行，要么把他注释掉(vim下的注释是<code>&quot;</code>)，然后保存刷新配置文件，输入命令<code>:PlugClean</code>。</p>
-<h2 id="powershellvim">Powershell中使用Vim</h2>
-<p>执行Set-ExecutionPolicy RemoteSigned命令，在对话框中选择Y<br />
-<img src="/post-images/1682223107244.PNG" alt="" /><br />
-重启Shell，输入vim进行测试<br />
-<img src="/post-images/1682223163724.PNG" alt="" /></p>
-<h2 id="heading-5">参考</h2>
-<p><a href="https://www.cnblogs.com/qiyuexin/p/6398606.html">1. vim 的安装及配置 - QIYUEXIN - 博客园</a><br />
-<a href="https://blog.csdn.net/qyhaill/article/details/105425057">windows10安装配置vim_win10 vim_八块腹肌怎么练的博客</a><br />
-<a href="https://blog.csdn.net/Liukairui/article/details/107392243">Vim使用全指南 (环境配置，插件推荐，美化) (C++,Python,MarkDown,R&hellip;)_vim 编辑插件_Liukairui的博客</a><br />
-<a href="https://blog.csdn.net/themingyi/article/details/102468347">Powershell中使用Vim_powershell输入vim后蓝屏了_themingyi的博客</a><br />
-<a href="https://www.52pojie.cn/thread-1775620-1-1.html">(Linux学习笔记) - vi/vim编辑器的使用</a><br />
-<a href="https://blog.csdn.net/weixin_42250302/article/details/108019214">Windows gvim安装插件_gvim插件_其铄的博客-CSDN博客</a></p>
-</span></div>
-                        </div>
-                        
                         
                         <!-- Pagination -->
 
 <nav class="pagination no-margin-bottom">
     <p class="clearfix"></p>
     
-    <p>PageNumber 3 / PageCount 8&nbsp;</p>
+    <p>PageNumber 3 / PageCount 9&nbsp;</p>
     
     <p><span class="pre pagbuttons">
             <i class="fa fa-angle-double-left"></i>&nbsp;
