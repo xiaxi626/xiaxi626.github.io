@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="飞爱碧玉">
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>vigourpine</title>
+
+
+
+<meta name="description" content="Welcome to Gridea Pro">
+
+
+
+<meta name="keywords" content="Technology,AI">
+
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+
+<link rel="shortcut icon" href="/media/images/favicon.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600&display=swap">
+<link rel="stylesheet" href="/styles/bootstrap.min.css">
+<link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/styles/style.css">
+
+
+<link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/feed.xml">
+
+
+
+
+
+    <title>从零到一：dsh-skills-nexus 首次发布 npm 包完整实录 · vigourpine</title>
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+    <meta name="twitter:site" content="vigourpine">
+    <meta name="twitter:title" content="从零到一：dsh-skills-nexus 首次发布 npm 包完整实录">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<meta name="description" content="故事的起点是一条简单的命令： dsh plugin --profile web add dsh-skills-nexus 期望的结果是安装 dsh-skills-nexus 插件，但实际返回的是： [ERR_PNPM_FETCH_404] GET https://registry.npmmirror.com/dsh-skills-nexu...">
+<link rel="canonical" href="https://xiaxi626.github.io/post/cong-ling-dao-yidsh-skills-nexus-shou-ci-fa-bu-npm-bao-wan-zheng-shi-lu/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零到一：dsh-skills-nexus 首次发布 npm 包完整实录","url":"https://xiaxi626.github.io/post/cong-ling-dao-yidsh-skills-nexus-shou-ci-fa-bu-npm-bao-wan-zheng-shi-lu/","description":"故事的起点是一条简单的命令： dsh plugin --profile web add dsh-skills-nexus 期望的结果是安装 dsh-skills-nexus 插件，但实际返回的是： [ERR_PNPM_FETCH_404] GET https://registry.npmmirror.com/dsh-skills-nexu...","datePublished":"2026-09-23T21:00:21Z","dateModified":"2026-09-23T21:00:21Z","author":{"@type":"Person","name":"vigourpine"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/media/images/avatar.jpg"},"name":"vigourpine"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://xiaxi626.github.io","name":"vigourpine","position":1},{"@type":"ListItem","item":"https://xiaxi626.github.io/post/cong-ling-dao-yidsh-skills-nexus-shou-ci-fa-bu-npm-bao-wan-zheng-shi-lu/","name":"从零到一：dsh-skills-nexus 首次发布 npm 包完整实录","position":2}]}</script>
+<meta property="og:title" content="从零到一：dsh-skills-nexus 首次发布 npm 包完整实录">
+<meta property="og:description" content="故事的起点是一条简单的命令： dsh plugin --profile web add dsh-skills-nexus 期望的结果是安装 dsh-skills-nexus 插件，但实际返回的是： [ERR_PNPM_FETCH_404] GET https://registry.npmmirror.com/dsh-skills-nexu...">
+<meta property="og:url" content="https://xiaxi626.github.io/post/cong-ling-dao-yidsh-skills-nexus-shou-ci-fa-bu-npm-bao-wan-zheng-shi-lu/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="vigourpine">
+<meta property="og:image" content="/media/images/avatar.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://xiaxi626.github.io/post/cong-ling-dao-yidsh-skills-nexus-shou-ci-fa-bu-npm-bao-wan-zheng-shi-lu/">
+<meta name="twitter:title" content="从零到一：dsh-skills-nexus 首次发布 npm 包完整实录">
+<meta name="twitter:description" content="故事的起点是一条简单的命令： dsh plugin --profile web add dsh-skills-nexus 期望的结果是安装 dsh-skills-nexus 插件，但实际返回的是： [ERR_PNPM_FETCH_404] GET https://registry.npmmirror.com/dsh-skills-nexu...">
+<meta name="twitter:image" content="/media/images/avatar.jpg">
+</head>
+<body>
+    <div id="stage" class="container">
+        <div class="row">
+            <div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible">
+    <div class="vertical-text site-title">
+        <h3 class="site-title-small" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    Typography
+                
+            </a>
+        </h3>
+        <h1 class="site-title-large" tabindex="-1">
+            <a class="a-title" href="/">
+                
+                    活版印字
+                
+            </a>
+        </h1>
+    </div>
+    <br class="visible-lg visible-md visible-sm">
+    <div id="site-nav" class="site-title-links">
+    <ul>
+        
+        
+        <li>
+            
+            <a href="/">首页</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post">博客</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/memos">闪念</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/archives">归档</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/tags">标签</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/links">友链</a>
+            
+        </li>
+        
+        <li>
+            
+            <a href="/post/about">关于</a>
+            
+        </li>
+        
+        
+
+        <li class="soc">
+            
+            <a href="https://github.com/github.com/xiaxi626" target="_blank" rel="noopener noreferrer" aria-label="Github">
+                <i class="fa fa-github"></i>&nbsp;
+            </a>
+            
+            
+            
+            
+            
+            <a href="/feed.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+                <i class="fa fa-rss"></i>&nbsp;
+            </a>
+            
+        </li>
+    </ul>
+    <div class="visible-lg visible-md visible-sm site-nav-footer">
+        <br class="site-nav-footer-br">
+        <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">vigourpine</a></p>
+    <p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p>
+    <p>Proudly published with&nbsp;<a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a></p>
+</footer>
+
+    </div>
+</div>
+
+</div>
+
+            <div id="main-container" class="col-sm-9 col-xs-12 main-container invisible">
+                <div class="autopagerize_page_element">
+                    <div class="content">
+                        <div class="post-page">
+                            
+                            <div class="post-container">
+    <p class="post-title">
+        
+        <a>从零到一：dsh-skills-nexus 首次发布 npm 包完整实录</a>
+        
+    </p>
+    <p class="post-meta">
+        <span class="date meta-item">Posted at&nbsp;2026-09-23</span>
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-comment-o"></i>
+            <span>&nbsp;</span>
+            <a href="/post/cong-ling-dao-yidsh-skills-nexus-shou-ci-fa-bu-npm-bao-wan-zheng-shi-lu/#comments">Comments</a>
+        </span>
+        
+        
+        
+        
+        
+        <span class="meta-item">
+            <i class="fa fa-tag"></i>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+            <span>&nbsp;</span>
+            
+            <a class="a-tag" href="/tag/ai/" title="AI">AI</a>
+            <span>&nbsp;</span>
+            
+        </span>
+        
+    </p>
+    
+    
+    <div class="post-content" v-pre><p>故事的起点是一条简单的命令：</p>
+<pre><code class="language-bash">dsh plugin --profile web add dsh-skills-nexus
+</code></pre>
+<p>期望的结果是安装 <code>dsh-skills-nexus</code> 插件，但实际返回的是：</p>
+<pre><code>[ERR_PNPM_FETCH_404] GET https://registry.npmmirror.com/dsh-skills-nexus: Not Found - 404
+This error happened while installing a direct dependency of C:\Users\asswsw\.dsh\profiles\web
+dsh-skills-nexus is not in the npm registry, or you have no permission to fetch it.
+</code></pre>
+<p>错误信息很明确：<code>dsh-skills-nexus</code> 不在 npm registry 中。这意味着我们需要将它发布到 npm。</p>
+<p>但发布一个 npm 包远不止 <code>npm publish</code> 那么简单。本文将完整记录从问题诊断到成功发布的全过程，包括踩过的坑、做出的决策、以及最终验证的闭环。</p>
+<hr />
+<h2 id="-npmjs--github-packages">第一章：发布渠道决策——为什么选择 npmjs 而非 GitHub Packages</h2>
+<h3 id="11-">1.1 初步调研</h3>
+<p>首先确认生态现状：</p>
+<pre><code class="language-bash">npm view dsh-skills-nexus version
+# npm error code E404
+# npm error 404 Not Found - GET https://registry.npmjs.org/dsh-skills-nexus - Not found
+
+npm view dsh-research version
+# 0.4.3
+
+npm view @deepseek-ai/dsh-host-webserver version
+# 0.0.1-rc.1
+</code></pre>
+<p><strong>结论</strong>：<code>dsh-skills-nexus</code> 名字在 npmjs 公共 registry 上可用（未被占用），而同类包 <code>dsh-research</code> 和 <code>@deepseek-ai/dsh-host-webserver</code> 都在公共 npm registry 上。</p>
+<h3 id="12-github-packages-">1.2 GitHub Packages 可行性分析</h3>
+<p>用户提出：「如果发布 GitHub package 也做到安装的话也行」。我们评估了三个硬伤：</p>
+<p><strong>硬伤一：强制 scoped 包名</strong></p>
+<ul>
+<li>GitHub Packages 的 npm registry 强制 <code>@owner/name</code> 形态</li>
+<li><code>dsh plugin add dsh-skills-nexus</code> 需要 unscoped 裸名</li>
+<li>装 <code>dsh-skills-nexus</code> 这个裸名在 GitHub Packages 根本不存在</li>
+</ul>
+<p><strong>硬伤二：公开包也要鉴权</strong></p>
+<ul>
+<li>GitHub Packages 即使是 public 包，安装也需要 <code>read:packages</code> 的 PAT</li>
+<li>错误日志中 <code>No authorization header was set for the request</code> 恰好证明 dsh profile 的 pnpm 环境没有任何 auth 配置</li>
+<li>npmmirror 不代理 GitHub Packages</li>
+</ul>
+<p><strong>硬伤三：破坏一条命令安装的承诺</strong></p>
+<ul>
+<li>每个消费者都得改 <code>.npmrc</code>（scope + token）</li>
+<li>与 README 主打的 <code>dsh plugin add</code> 单命令体验冲突</li>
+</ul>
+<p><strong>最终决策</strong>：发布到 npmjs.com 公共 registry 是唯一正解。</p>
+<hr />
+<h2 id="heading">第二章：发布就绪度检查</h2>
+<h3 id="21-packagejson-">2.1 package.json 审查</h3>
+<p>检查当前 <code>package.json</code> 是否具备发布形态：</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;dsh-skills-nexus&quot;,
+  &quot;version&quot;: &quot;0.3.0&quot;,
+  &quot;bin&quot;: {
+    &quot;dsh-skills-nexus&quot;: &quot;lib/cli/index.js&quot;
+  },
+  &quot;exports&quot;: {
+    &quot;.&quot;: &quot;./lib/index.js&quot;,
+    &quot;./resolve&quot;: &quot;./lib/resolve.js&quot;,
+    &quot;./package.json&quot;: &quot;./package.json&quot;
+  },
+  &quot;files&quot;: [
+    &quot;lib&quot;,
+    &quot;cordis.patch.yml&quot;,
+    &quot;README.md&quot;
+  ],
+  &quot;engines&quot;: {
+    &quot;node&quot;: &quot;&gt;=20.0.0&quot;
+  },
+  &quot;license&quot;: &quot;MIT&quot;,
+  &quot;repository&quot;: {
+    &quot;type&quot;: &quot;git&quot;,
+    &quot;url&quot;: &quot;https://github.com/xiaxi626/dsh-skills-nexus.git&quot;
+  }
+}
+</code></pre>
+<p><strong>检查清单</strong>：</p>
+<ul>
+<li>✅ <code>name</code>/<code>version</code>/<code>description</code>/<code>license</code>/<code>repository</code> 齐全</li>
+<li>✅ <code>bin</code> 指向 <code>lib/cli/index.js</code></li>
+<li>✅ <code>exports</code> 定义清晰</li>
+<li>✅ <code>files</code> 包含 <code>lib</code> + <code>cordis.patch.yml</code>（<code>dsh.bundle.patch</code> 激活所需）+ <code>README.md</code></li>
+<li>✅ <code>engines</code> 声明 Node 版本要求</li>
+<li>✅ <code>lib/</code> 是已提交的构建产物，CI 有新鲜度门禁</li>
+</ul>
+<p><strong>结论</strong>：package.json 已是完整发布形态，无需修改。</p>
+<h3 id="22-">2.2 版本策略决策</h3>
+<p>检查 git 状态：</p>
+<pre><code class="language-bash">git log --oneline -3
+# 35a7d22 (HEAD -&gt; master, origin/master) docs(cli): add SSH/git+https forms to --help
+# 7585005 docs: add build-on-nexus guide for tool authors
+# adc9e7f fix(completions): repair the fish names rule and the zsh expectation
+
+git tag --list
+# v0.3.0
+
+git rev-parse v0.3.0
+# 0f280b96690493052970f8b5f4a014ca4aba4d6e
+
+git rev-parse HEAD
+# 35a7d22795c7fa09d4c96b33932c76647389ad50
+</code></pre>
+<p><strong>发现</strong>：<code>v0.3.0</code> tag（<code>0f280b9</code>）≠ HEAD（<code>35a7d22</code>）。tag 之后又积了 completions P2、双语文档、<code>--help</code> SSH 补充等 <code>[Unreleased]</code> 条目。</p>
+<p><strong>两个选择</strong>：</p>
+<ul>
+<li><strong>A</strong>：发布 v0.3.0 tag 内容（checkout 到 tag 时刻状态）</li>
+<li><strong>B</strong>：发布 HEAD 内容（但版本号仍是 0.3.0，会导致 tag ≠ tarball）</li>
+</ul>
+<p><strong>决策</strong>：选择 A——发布 v0.3.0 tag 内容，保证 npm 包与 GitHub tag 严格对应、可追溯。master 上的 <code>[Unreleased]</code> 属于未来版本（0.4.0），不随 0.3.0 发布。</p>
+<hr />
+<h2 id="heading-1">第三章：发布准备</h2>
+<h3 id="31--prepublishonly-">3.1 添加 prepublishOnly 门禁</h3>
+<p>为了防止未来发布时手滑发坏包，在 HEAD 的 <code>package.json</code> 添加：</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;prepublishOnly&quot;: &quot;npm run typecheck &amp;&amp; npm run lint &amp;&amp; npm test&quot;
+  }
+}
+</code></pre>
+<p><strong>说明</strong>：</p>
+<ul>
+<li><code>prepublishOnly</code> 会在 <code>npm publish</code> 时自动运行</li>
+<li>守护未来从 HEAD 发布的版本</li>
+<li>v0.3.0 发布不受影响（worktree 用 tag 的旧 package.json，没有这个脚本）</li>
+</ul>
+<p>提交并推送：</p>
+<pre><code class="language-bash">git add package.json
+git commit -m &quot;build: run typecheck/lint/test automatically before npm publish&quot;
+git push
+</code></pre>
+<h3 id="32-">3.2 创建发布工作树</h3>
+<p>使用 <code>git worktree</code> 隔离 v0.3.0 tag 内容，避免污染当前开发分支：</p>
+<pre><code class="language-bash">git worktree add .release-v030 v0.3.0
+# Preparing worktree (detached HEAD 35ee9ea)
+# HEAD is now at 35ee9ea chore(release): v0.3.0
+</code></pre>
+<p><strong>优势</strong>：</p>
+<ul>
+<li>在独立目录 checkout v0.3.0 tag 内容</li>
+<li>不影响主工作区的 master 分支</li>
+<li>发布完成后一键清理</li>
+</ul>
+<h3 id="33-">3.3 在工作树跑门禁</h3>
+<p>进入工作树，安装依赖并运行三道门禁：</p>
+<pre><code class="language-bash">cd .release-v030
+npm ci
+npm run typecheck  # ✅ 通过
+npm run lint       # ✅ 通过
+npm test           # ✅ 135/135 通过，0 失败
+</code></pre>
+<p><strong>注意</strong>：v0.3.0 的 package.json 没有 <code>prepublishOnly</code>，所以这里手动等价执行。</p>
+<h3 id="34--tarball">3.4 预览 tarball</h3>
+<p>确认将要发布的内容：</p>
+<pre><code class="language-bash">npm pack --dry-run
+</code></pre>
+<p>输出：</p>
+<pre><code>📦  dsh-skills-nexus@0.3.0
+Tarball Contents
+  1.1kB LICENSE
+  14.8kB README.md
+  247B cordis.patch.yml
+  574B lib/cli/args.d.ts
+  ... (共 72 个文件)
+Tarball Details
+  name: dsh-skills-nexus
+  version: 0.3.0
+  package size: 42.8 kB
+  unpacked size: 153.8 kB
+  shasum: 8e9cfedc03bb0b0e0516e4832833848951daf04d
+  total files: 72
+</code></pre>
+<p><strong>检查</strong>：</p>
+<ul>
+<li>✅ 包含 <code>lib/</code>、<code>cordis.patch.yml</code>、<code>README.md</code>、<code>LICENSE</code>、<code>package.json</code></li>
+<li>✅ 不包含 <code>src/</code>、<code>test/</code>、<code>node_modules</code>、<code>.github</code></li>
+<li>✅ shasum 记录：<code>8e9cfedc03bb0b0e0516e4832833848951daf04d</code></li>
+</ul>
+<hr />
+<h2 id="registry-">第四章：Registry 配置陷阱</h2>
+<h3 id="41-">4.1 发现问题</h3>
+<p>检查本机 npm 配置：</p>
+<pre><code class="language-bash">npm config get registry
+# https://registry.npmmirror.com
+</code></pre>
+<p><strong>问题</strong>：用户全局 registry 指向 <code>npmmirror.com</code>（国内镜像），不是 npmjs.org。</p>
+<p>进一步追查来源：</p>
+<pre><code class="language-bash">npm config get userconfig
+# C:\Users\asswsw\.npmrc
+
+Select-String -Path C:\Users\asswsw\.npmrc -Pattern &quot;registry&quot;
+# registry=https://registry.npmmirror.com
+</code></pre>
+<p><strong>根因</strong>：<code>.npmrc</code> 中配置了 <code>registry=https://registry.npmmirror.com</code>。这会让 <code>npm login</code> / <code>npm publish</code> 都打到镜像上——镜像不支持发布和登录。</p>
+<h3 id="42-">4.2 解决方案</h3>
+<p><strong>方案 A（推荐）</strong>：保留镜像加速日常安装，登录/发布时显式指向官方源</p>
+<pre><code class="language-bash">npm login --registry=https://registry.npmjs.org
+npm publish --registry=https://registry.npmjs.org
+</code></pre>
+<p><strong>方案 B</strong>：干脆把默认源恢复成 npmjs 官方</p>
+<pre><code class="language-bash">npm config delete registry
+</code></pre>
+<p>选择方案 A——日常 <code>npm install</code> 继续享受镜像加速，只在发布时显式指定。</p>
+<hr />
+<h2 id="heading-2">第五章：登录与发布</h2>
+<h3 id="51--npmjs">5.1 登录 npmjs</h3>
+<pre><code class="language-bash">npm login --registry=https://registry.npmjs.org
+# 浏览器打开 https://www.npmjs.com/auth/cli/...
+# 授权 xiaxi626 账号
+
+npm whoami --registry=https://registry.npmjs.org
+# xiaxi626
+</code></pre>
+<h3 id="52-">5.2 发布</h3>
+<p>从工作树发布（注意：在 bash 中用 <code>cd</code>，不是 PowerShell 的 <code>Push-Location</code>）：</p>
+<pre><code class="language-bash">cd .release-v030
+npm publish --registry=https://registry.npmjs.org
+</code></pre>
+<p><strong>踩坑记录</strong>：</p>
+<ul>
+<li>第一次尝试时，用户在 bash 中执行了 PowerShell 命令 <code>Push-Location</code>，导致 <code>command not found</code></li>
+<li>结果 <code>npm publish</code> 从主工作区（HEAD）执行，触发了 <code>prepublishOnly</code></li>
+<li>ESLint 扫到了 <code>.release-v030/lib/*.d.ts</code> 产物（因为工作树在主仓库内），报错 <code>Unexpected any</code></li>
+<li><strong>教训</strong>：跨 shell 命令要注意语法差异，bash 用 <code>cd</code>，PowerShell 用 <code>Push-Location</code></li>
+</ul>
+<p>正确执行后，收到 npm 确认邮件：</p>
+<pre><code>Hi xiaxi626!
+
+A new version of the package dsh-skills-nexus (0.3.0) was published at 2026-09-23T12:46:53.537Z
+The shasum of this package is 8e9cfedc03bb0b0e0516e4832833848951daf04d.
+</code></pre>
+<p><strong>验证</strong>：shasum <code>8e9cfedc03bb0b0e0516e4832833848951daf04d</code> 与发布前 <code>npm pack --dry-run</code> 预览完全一致——确认发布的包严格对应 v0.3.0 tag（commit <code>35ee9ea</code>）。</p>
+<hr />
+<h2 id="heading-3">第六章：验证与清理</h2>
+<h3 id="61-">6.1 验证发布</h3>
+<pre><code class="language-bash"># 在 npmjs 官方 registry 查询
+npm view dsh-skills-nexus version --registry=https://registry.npmjs.org
+# 0.3.0
+
+# 在 npmmirror 镜像查询（验证同步）
+npm view dsh-skills-nexus version --registry=https://registry.npmmirror.com
+# 0.3.0（已自动同步，无需手动触发）
+</code></pre>
+<h3 id="62-">6.2 验证安装</h3>
+<p>回到最初的命令：</p>
+<pre><code class="language-bash">dsh plugin --profile web add dsh-skills-nexus
+# ✓ Lockfile passes supply-chain policies
+# dependencies:
+# + dsh-skills-nexus 0.3.0
+# Done in 4.8s
+</code></pre>
+<p><strong>成功</strong>！最初报错 404 的命令现在正常工作。</p>
+<h3 id="63-">6.3 清理工作树</h3>
+<pre><code class="language-bash">git worktree remove --force .release-v030
+git status --short
+# （空，工作区干净）
+</code></pre>
+<hr />
+<h2 id="heading-4">第七章：经验总结</h2>
+<h3 id="71-registry-">7.1 Registry 配置陷阱</h3>
+<p><strong>问题</strong>：用户全局 registry 设为镜像时，<code>npm login</code> / <code>npm publish</code> 会打到镜像上失败。</p>
+<p><strong>解决</strong>：登录/发布时显式 <code>--registry=https://registry.npmjs.org</code>。</p>
+<p><strong>最佳实践</strong>：</p>
+<ul>
+<li>日常安装用镜像加速（<code>.npmrc</code> 配置 <code>registry=https://registry.npmmirror.com</code>）</li>
+<li>发布时显式指定官方源</li>
+<li>或者干脆不设全局 registry，用 <code>--registry</code> flag 按需指定</li>
+</ul>
+<h3 id="72--shell-">7.2 跨 Shell 命令陷阱</h3>
+<p><strong>问题</strong>：<code>Push-Location</code> / <code>Pop-Location</code> 是 PowerShell 命令，bash 中需用 <code>cd</code> / <code>cd ..</code>。</p>
+<p><strong>教训</strong>：</p>
+<ul>
+<li>写文档/教程时明确标注 shell 类型</li>
+<li>跨 shell 操作时注意语法差异</li>
+<li>误用会导致命令从错误目录执行</li>
+</ul>
+<h3 id="73-worktree-">7.3 Worktree 方案优势</h3>
+<p><strong>场景</strong>：从历史 tag 发布包，保证 npm 包与 GitHub tag 严格对应。</p>
+<p><strong>方案</strong>：</p>
+<pre><code class="language-bash">git worktree add .release-vX.Y.Z vX.Y.Z
+cd .release-vX.Y.Z
+npm publish --registry=https://registry.npmjs.org
+cd ..
+git worktree remove --force .release-vX.Y.Z
+</code></pre>
+<p><strong>优势</strong>：</p>
+<ul>
+<li>隔离 tag 内容，不污染当前开发分支</li>
+<li>master 上的 <code>[Unreleased]</code> 条目属于未来版本，不随当前 tag 发布</li>
+<li>发布完成后一键清理</li>
+</ul>
+<h3 id="74-npmmirror-">7.4 npmmirror 同步</h3>
+<p><strong>现象</strong>：发布后 ~10 分钟内自动同步，通常无需手动触发。</p>
+<p><strong>手动触发</strong>：访问 <a href="https://npmmirror.com/sync/dsh-skills-nexus">https://npmmirror.com/sync/dsh-skills-nexus</a></p>
+<p><strong>验证</strong>：<code>npm view &lt;package&gt; version --registry=https://registry.npmmirror.com</code></p>
+<h3 id="75-">7.5 发布后撤回窗口</h3>
+<p><strong>规则</strong>：npm 允许发布后 72 小时内 <code>npm unpublish</code>，之后只能 deprecate。</p>
+<p><strong>建议</strong>：</p>
+<ul>
+<li>发布前充分验证（门禁 + tarball 预览）</li>
+<li>发布后立即验证（<code>npm view</code> + 实际安装测试）</li>
+<li>发现问题 72 小时内可撤回</li>
+</ul>
+<hr />
+<h2 id="heading-5">第八章：后续发布流程</h2>
+<p>以后要发新版本（如把 <code>[Unreleased]</code> 切成 0.4.0）：</p>
+<h3 id="81-">8.1 切版本</h3>
+<p>按既有流程：</p>
+<pre><code class="language-bash"># 1. 版本 bump（同步改 package.json 与 package-lock.json）
+npm version 0.4.0 --no-git-tag-version
+
+# 2. CHANGELOG：在最新条目上方加 `## [0.4.0] - &lt;日期&gt;` 段头
+
+# 3. 跑全门禁
+npm run typecheck
+npm run lint
+npm test
+npm run build
+
+# 4. 提交
+git add package.json package-lock.json CHANGELOG.md lib/
+git commit -m &quot;chore(release): v0.4.0&quot;
+
+# 5. 打 tag
+git tag -a v0.4.0 -m &quot;v0.4.0&quot;
+
+# 6. 推送
+git push origin master --follow-tags
+</code></pre>
+<h3 id="82-">8.2 发布</h3>
+<p>从新 tag 的 worktree 发布：</p>
+<pre><code class="language-bash"># 1. 创建工作树
+git worktree add .release-v0.4.0 v0.4.0
+
+# 2. 进入工作树，安装依赖，跑门禁
+cd .release-v0.4.0
+npm ci
+npm run typecheck
+npm run lint
+npm test
+
+# 3. 发布（prepublishOnly 会自动跑门禁）
+npm publish --registry=https://registry.npmjs.org
+
+# 4. 清理
+cd ..
+git worktree remove --force .release-v0.4.0
+</code></pre>
+<p><strong>说明</strong>：</p>
+<ul>
+<li><code>prepublishOnly</code> 门禁会自动跑 typecheck/lint/test</li>
+<li>发布后 npmmirror 自动同步</li>
+<li>用户 <code>dsh plugin add dsh-skills-nexus</code> 会装 latest（0.4.0）</li>
+</ul>
+<hr />
+<h2 id="heading-6">结语</h2>
+<p>从一条 404 错误到成功发布 npm 包，整个过程涉及：</p>
+<ol>
+<li><strong>渠道决策</strong>：排除 GitHub Packages，选择 npmjs 公共 registry</li>
+<li><strong>就绪度检查</strong>：确认 package.json 发布形态、版本策略</li>
+<li><strong>发布准备</strong>：添加 prepublishOnly 门禁、创建 worktree、跑门禁、预览 tarball</li>
+<li><strong>配置诊断</strong>：发现 registry 指向镜像，显式指定官方源</li>
+<li><strong>登录发布</strong>：浏览器授权、从 worktree 发布、验证 shasum</li>
+<li><strong>验证清理</strong>：确认 npmjs/npmmirror 可查、实际安装成功、清理工作树</li>
+</ol>
+<p>关键教训：</p>
+<ul>
+<li>Registry 配置陷阱：镜像不支持发布，需显式指定官方源</li>
+<li>跨 Shell 命令：bash 用 <code>cd</code>，PowerShell 用 <code>Push-Location</code></li>
+<li>Worktree 方案：保证 npm 包与 GitHub tag 严格对应</li>
+<li>npmmirror 同步：自动同步，通常无需手动触发</li>
+</ul>
+<p>最终结果：</p>
+<ul>
+<li>✅ <code>dsh-skills-nexus@0.3.0</code> 成功发布至 registry.npmjs.org</li>
+<li>✅ 发布内容与 v0.3.0 tag（commit <code>35ee9ea</code>）严格对应</li>
+<li>✅ <code>dsh plugin --profile web add dsh-skills-nexus</code> 安装成功</li>
+<li>✅ 工作区干净，临时工作树已清理</li>
+</ul>
+<p>这次发布不仅解决了一个 404 错误，更建立了一套可重复的发布流程，为未来的版本迭代打下基础。</p>
+<hr />
+<p><strong>参考资料</strong>：</p>
+<ul>
+<li><a href="https://docs.npmjs.com/cli/v10/commands/npm-publish">npm 发布指南</a></li>
+<li><a href="https://npmmirror.com/sync/dsh-skills-nexus">npmmirror 同步页面</a></li>
+<li><a href="https://git-scm.com/docs/git-worktree">git worktree 文档</a></li>
+<li><a href="https://keepachangelog.com/zh-CN/1.1.0/">Keep a Changelog</a></li>
+</ul>
+</div>
+    
+</div>
+
+                            
+                            <div class="share">
+    <span>share</span>
+    &nbsp;
+    <span class="soc">
+        <a class="fa fa-bookmark" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Evernote" onclick="window.open('https://www.evernote.com/clip.action?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=900,height=700'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" aria-label="分享到微博"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-twitter" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 Twitter" onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=600,height=450'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-star" href="#" rel="nofollow noopener noreferrer" aria-label="分享到 QQ 空间" title="分享到 QQ 空间" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+    <span class="soc">
+        <a class="fa fa-qq" href="#" rel="nofollow noopener noreferrer" aria-label="分享给 QQ 好友" title="分享给 QQ 好友" onclick="var d=document.querySelector('meta[name=&quot;description&quot;]'); var summary=d ? d.getAttribute('content') : document.title; window.open('https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(window.location.href) + '&sharesource=qzone&title=' + encodeURIComponent(document.title) + '&summary=' + encodeURIComponent(summary) + '&desc=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer,width=700,height=600'); return false;"></a>
+    </span>
+</div>
+
+                            
+                            
+<div class="pagination">
+    <p class="clearfix"></p>
+    <p><span>&nbsp;</span>
+        <span class="next pagbuttons">
+            <a role="navigation" href="/post/lunmei-liao-dao-ti/" title="论“没料到体”">
+                Next post: 论“没料到体”
+                &nbsp;
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </span></p>
+    <p></p>
+</div>
+
+
+                            
+                            
+                            
+                            
+                            
+                            
+
+
+
+<section id="comments" class="comments">
+    
+        
+            <div id="giscus-container" data-comment-config="giscus" data-repo="xiaxi626/blog-comment" data-repo-id="R_kgDOT3IXhw" data-category="Blog Comments" data-category-id="DIC_kwDOT3IXh84DDRu-" data-page-id="5kLXvT" data-theme="light"></div>
+<script>
+(function() {
+    var container = document.getElementById('giscus-container');
+    var theme = container.getAttribute('data-theme');
+    if (theme.charAt(0) === '/') { theme = new URL(theme, window.location.origin).href; }
+    var fail = function(message) { container.textContent = message; container.className = 'comment-message'; };
+    var keys = ['repo', 'repo-id', 'category', 'category-id', 'page-id'];
+    if (keys.some(function(key) { return !container.getAttribute('data-' + key); })) { fail('Giscus 评论配置不完整。'); return; }
+    var script = document.createElement('script');
+    script.src = 'https://giscus.app/client.js';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    script.onerror = function() { fail('Giscus 评论资源加载失败，请稍后重试。'); };
+    script.setAttribute('data-repo', container.getAttribute('data-repo'));
+    script.setAttribute('data-repo-id', container.getAttribute('data-repo-id'));
+    script.setAttribute('data-category', container.getAttribute('data-category'));
+    script.setAttribute('data-category-id', container.getAttribute('data-category-id'));
+    script.setAttribute('data-mapping', 'specific');
+    script.setAttribute('data-term', container.getAttribute('data-page-id'));
+    script.setAttribute('data-strict', '1');
+    script.setAttribute('data-reactions-enabled', '1');
+    script.setAttribute('data-emit-metadata', '0');
+    script.setAttribute('data-input-position', 'top');
+    script.setAttribute('data-theme', theme);
+    script.setAttribute('data-lang', 'zh-CN');
+    script.setAttribute('data-loading', 'lazy');
+    container.appendChild(script);
+})();
+</script>
+
+        
+    
+    
+</section>
+
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visible-xs site-bottom-footer">
+                    <footer>
+    
+    <p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://xiaxi626.github.io" rel="noopener noreferrer">vigourpine</a></p>
+    <p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p>
+    <p>Proudly published with&nbsp;<a target="_blank" href="https://gridea.pro" rel="noopener noreferrer">Gridea Pro</a></p>
+</footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/jquery-3.1.0.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/typography.js"></script>
+    
+    <script>
+    (function(){
+      var mermaidCodes = document.querySelectorAll('code.language-mermaid');
+      if (mermaidCodes.length === 0) return;
+
+      var MERMAID_CODE_CLASS = 'language-mermaid';
+
+      function findMermaidBlocks() {
+        var codeBlocks = document.querySelectorAll('code.' + MERMAID_CODE_CLASS);
+        var blocks = [];
+        codeBlocks.forEach(function(code) {
+          var pre = code.parentElement;
+          if (pre && pre.tagName === 'PRE') {
+            blocks.push({ pre: pre, code: code });
+          }
+        });
+        return blocks;
+      }
+
+      function prepareBlocks() {
+        var blocks = findMermaidBlocks();
+        blocks.forEach(function(block) {
+          var source = block.code.textContent || block.code.innerText || '';
+          if (!source.trim()) return;
+
+          var container = document.createElement('div');
+          container.className = 'mermaid';
+          container.textContent = source;
+          container.setAttribute('data-original-code', source);
+
+          block.pre.parentNode.replaceChild(container, block.pre);
+        });
+      }
+
+      function detectCurrentTheme() {
+        var saved = localStorage.getItem('user-color-scheme');
+        if (saved && saved !== 'auto') return saved;
+        var def = document.documentElement.getAttribute('data-theme');
+        if (def && def !== 'auto') return def;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      prepareBlocks();
+
+      var currentTheme = detectCurrentTheme();
+
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.textContent = [
+        'import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";',
+        '',
+        'var mermaidTheme = "' + currentTheme + '";',
+        '',
+        'async function renderMermaid(theme) {',
+        '  var t = (theme === "dark") ? "dark" : "default";',
+        '  mermaid.initialize({ startOnLoad: false, theme: t, securityLevel: "loose" });',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  if (nodes.length > 0) {',
+        '    await mermaid.run({ nodes: nodes });',
+        '  }',
+        '}',
+        '',
+        'async function resetAndRender(theme) {',
+        '  var nodes = document.querySelectorAll(".mermaid");',
+        '  nodes.forEach(function(node) {',
+        '    var original = node.getAttribute("data-original-code");',
+        '    if (original !== null) {',
+        '      node.removeAttribute("data-processed");',
+        '      node.innerHTML = "";',
+        '      node.textContent = original;',
+        '    }',
+        '  });',
+        '  await renderMermaid(theme);',
+        '}',
+        '',
+        'await renderMermaid(mermaidTheme);',
+        '',
+        'document.body.addEventListener("dark-theme-set", function() { resetAndRender("dark"); });',
+        'document.body.addEventListener("light-theme-set", function() { resetAndRender("default"); });',
+      ].join('\n');
+      document.body.appendChild(s);
+    })();
+    </script>
+<script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: gridea-pro-theme-typography v1.2.3 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>

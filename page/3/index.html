@@ -159,6 +159,121 @@
                         
                         <div class="post-container">
                             <p class="post-title">
+                                <a href="/post/zai-windows-zhong-an-zhuang-flac/">在Windows中使用FLAC无损音频编解码器</a>
+                            </p>
+                            <p class="post-meta">
+                                <span class="date meta-item">Posted at&nbsp;2023-08-26</span>
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span>&nbsp;</span>
+                                    <a href="/post/zai-windows-zhong-an-zhuang-flac/#comments">Comments</a>
+                                </span>
+                                
+                                
+                                
+                                
+                                
+                                <span class="meta-item">
+                                    <i class="fa fa-tag"></i>
+                                    <span>&nbsp;</span>
+                                    
+                                    <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
+                                    <span>&nbsp;</span>
+                                    
+                                </span>
+                                
+                            </p>
+                            
+                            
+
+                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><p>FLAC代表Free Lossless Audio Codec，是一种与MP3类似的音频格式，但它是无损的，意味着在FLAC中压缩音频时不会损失任何质量。这与Zip的工作原理类似，但使用FLAC时，您将获得更好的压缩效果，因为它是专门为音频设计的。您可以在您喜欢的播放器（或您的汽车或家庭立体声设备，请参阅支持的设备）中播放压缩的FLAC文件，就像播放MP3文件一样。</p>
+<p>FLAC是最快且支持最广泛的无损音频编解码器，而且是唯一一个同时满足非专有、不受专利束缚、具有开源参考实现、格式和API文档齐全，以及其他多种独立实现条件的编解码器。</p>
+<p><strong>如果您不确定要下载什么，请参阅“<a href="https://xiph.org/flac/documentation_tasks.html">使用FLAC</a>”部分</strong>，了解有关播放FLAC文件、将CD翻录为FLAC等的说明和指南。本部分适用于<a href="https://xiph.org/flac/documentation_tools.html">官方FLAC工具</a>。请参见下面的“<a href="https://xiph.org/flac/download.html#extras">额外内容</a>”部分，了解支持或使用FLAC的第三方工具。</p>
+<p>所有源代码和二进制文件均可在<a href="http://opensource.org/docs/definition.php">开源</a>许可证下自由使用和分发。编解码器库在Xiph.org的BSD许可下分发，而插件和命令行工具 <strong>（flac</strong>和<strong>metaflac）</strong> 则在<a href="http://opensource.org/licenses/gpl-license.html">GPL</a>下分发。（更多信息，请参阅<a href="https://xiph.org/flac/license.html">许可页面</a>。）</p>
+<p>源代码：<a href="http://downloads.xiph.org/releases/flac/">适用于稳定版和测试版的tarballs</a>；还包括Windows（MSVC++）和*nix、*BSD、OS/2、OS X（autotools）的文档和构建系统。您也可以查看<a href="https://github.com/xiph/flac">开发<strong>git存储库</strong></a>。<br />
+Linux：大多数发行版都包含FLAC软件包，请使用包管理器获取FLAC。如果没有，请尝试<a href="http://rpmfind.net/linux/rpm2html/search.php?query=flac">rpmfind.net</a>或<a href="http://packages.debian.org/cgi-bin/search_packages.pl?keywords=flac&amp;searchon=names&amp;subword=1&amp;version=all&amp;release=all">Debian的软件包</a>。<br />
+Windows：<a href="http://downloads.xiph.org/releases/flac/">适用于Windows的FLAC</a>（文件flac-X.Y.Z-win.zip包含32位和64位的命令行工具和库）。<br />
+Mac OS X：从Homebrew获取<a href="https://formulae.brew.sh/formula/flac">适用于OS X的FLAC工具</a>。<br />
+旧版本：<a href="http://downloads.xiph.org/releases/flac/">旧版本</a>。</p>
+<h2 id="windowsflac">下载适用于Windows平台的FLAC</h2>
+<p>打开上文 Windows 平台的链接，或者打开 <a href="https://github.com/xiph/flac/releases">github 存储库 release 页面</a>选择合适的版本下载。<br />
+<img src="/post-images/1708004150693.png" alt="" /><br />
+如果仅作为命令行工具使用，仅需关注这两个文件。<br />
+<img src="/post-images/1708004203134.png" alt="" /></p>
+<h2 id="flac">使用FLAC</h2>
+<p>使用FLAC时应该多看看<a href="https://xiph.org/flac/documentation.html">官方文档</a>，入门只需关注<a href="https://xiph.org/flac/documentation_tasks.html">FLAC - Using FLAC</a>和<a href="https://xiph.org/flac/faq.html">FLAC - FAQ</a>部分。<br />
+想了解用于转换FLAC文件和编辑元数据的命令行程序，在 Using FLAC 页面找到</p>
+<blockquote>
+<p><strong>Mac OS</strong><br />
+…<br />
+If you want to convert audio files to/from FLAC:</p>
+</blockquote>
+<blockquote>
+<p>Free Audio Converter, a free GUI audio file converter<br />
+XLD a nice GUI ripper/converter/burner<br />
+MacFLAC. Also includes our <a href="https://xiph.org/flac/documentation_tools.html">command-line programs</a> for converting FLAC files and editing metadata.<br />
+MediaRage can edit FLAC tags.</p>
+</blockquote>
+<p>跳转到这个界面——<br />
+<img src="/post-images/1708004737177.png" alt="" /><br />
+入门我们仅需关注这部分内容，改一改能用就行。</p>
+<pre><code class="language-bash">## EXAMPLES
+
+Some common encoding tasks using flac:
+
+flac abc.wav
+    Encode abc.wav to abc.flac using the default compression setting. abc.wav is not deleted.
+flac --delete-input-file abc.wav
+    Like above, except abc.wav is deleted if there were no errors.
+flac --delete-input-file -w abc.wav
+    Like above, except abc.wav is deleted if there were no errors or warnings.
+flac --best abc.wav
+    Encode abc.wav to abc.flac using the highest compression setting.
+flac --verify abc.wav
+    Encode abc.wav to abc.flac and internally decode abc.flac to make sure it matches abc.wav.
+flac -o my.flac abc.wav
+    Encode abc.wav to my.flac.
+flac -T &quot;TITLE=Bohemian Rhapsody&quot; -T &quot;ARTIST=Queen&quot; abc.wav
+    Encode abc.wav and add some tags at the same time to abc.flac.
+flac *.wav
+    Encode all .wav files in the current directory.
+flac abc.aiff
+    Encode abc.aiff to abc.flac.
+flac abc.rf64
+    Encode abc.rf64 to abc.flac.
+flac abc.w64
+    Encode abc.w64 to abc.flac.
+flac abc.flac --force
+    This one’s a little tricky: notice that flac is in encode mode by default (you have to specify -d to decode) so this command actually recompresses abc.flac back to abc.flac. –force is needed to make sure you really want to overwrite abc.flac with a new version. Why would you want to do this? It allows you to recompress an existing FLAC file with (usually) higher compression options or a newer version of FLAC and preserve all the metadata like tags too.
+
+Some common decoding tasks using flac:
+
+flac -d abc.flac
+    Decode abc.flac to abc.wav. abc.flac is not deleted. NOTE: Without -d it means re-encode abc.flac to abc.flac (see above).
+flac -d --force-aiff-format abc.flac
+flac -d -o abc.aiff abc.flac
+    Two different ways of decoding abc.flac to abc.aiff (AIFF format). abc.flac is not deleted.
+flac -d --force-rf64-format abc.flac
+flac -d -o abc.rf64 abc.flac
+    Two different ways of decoding abc.flac to abc.rf64 (RF64 format). abc.flac is not deleted.
+flac -d --force-wave64-format abc.flac
+flac -d -o abc.w64 abc.flac
+    Two different ways of decoding abc.flac to abc.w64 (Wave64 format). abc.flac is not deleted.
+flac -d -F abc.flac
+    Decode abc.flac to abc.wav and don’t abort if errors are found (useful for recovering as much as possible from corrupted files). 
+</code></pre>
+<p>将&quot;flac-1.3.2-win\win64\flac.exe&quot;的路径</p>
+<pre><code class="language-bash">C:\Users\Administrator\Downloads\Compressed\flac-1.3.2-win\win64
+</code></pre>
+<p>添加到系统环境变量即可作为命令行工具使用。<br />
+如果你安装了Foobar2000等支持FLAC的软件，也可以将对应的文件替换，体验新版本。</p>
+</span></div>
+                        </div>
+                        
+                        <div class="post-container">
+                            <p class="post-title">
                                 <a href="/post/gpg-ru-men-jiao-cheng/">GPG入门教程</a>
                             </p>
                             <p class="post-meta">
@@ -3750,173 +3865,6 @@ Lorem ipsum...
 <a href="https://www.cnblogs.com/exmyth/p/11343830.html">Sublime Text 解决 Unable to download XXX 问题</a><br />
 <a href="https://www.jianshu.com/p/445eb4fba08a">Package Control下载报错</a><br />
 <a href="https://blog.csdn.net/w6611415/article/details/28247119">Sublime - 从指定github仓库安装插件_sumlime4 add repository</a></p>
-</span></div>
-                        </div>
-                        
-                        <div class="post-container">
-                            <p class="post-title">
-                                <a href="/post/sublime-text3-an-zhuang-ji-cha-jian-de-an-zhuang-xie-zai/">Sublime Text4安装及插件的安装卸载</a>
-                            </p>
-                            <p class="post-meta">
-                                <span class="date meta-item">Posted at&nbsp;2023-04-25</span>
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    <span>&nbsp;</span>
-                                    <a href="/post/sublime-text3-an-zhuang-ji-cha-jian-de-an-zhuang-xie-zai/#comments">Comments</a>
-                                </span>
-                                
-                                
-                                
-                                
-                                
-                                <span class="meta-item">
-                                    <i class="fa fa-tag"></i>
-                                    <span>&nbsp;</span>
-                                    
-                                    <a class="a-tag" href="/tag/technology/" title="Technology">Technology</a>
-                                    <span>&nbsp;</span>
-                                    
-                                </span>
-                                
-                            </p>
-                            
-                            
-                            <div class="post-feature-image">
-                                <a href="/post/sublime-text3-an-zhuang-ji-cha-jian-de-an-zhuang-xie-zai/">
-                                    <img src="/post-images/sublime-text3-an-zhuang-ji-cha-jian-de-an-zhuang-xie-zai.jpg" alt="Sublime Text4安装及插件的安装卸载" loading="lazy" style="max-width: 100%; height: auto; margin: 15px 0;">
-                                </a>
-                            </div>
-                            
-
-                            <div class="post-abstract" v-pre><span class="post-summary-fallback" data-truncate="160" style="visibility: hidden;" v-pre><h2 id="1sublime-text4">1、安装Sublime Text4</h2>
-<p>到 <a href="https://www.sublimetext.com/download">https://www.sublimetext.com/download</a> 下载安装包，下载完成后点击安装即可。<br />
-<img src="/post-images/1682410571841.png" alt="" /></p>
-<h2 id="2">2、安装插件</h2>
-<h3 id="package-control">Package Control</h3>
-<p>要想安装其他的插件，首先就得安装Package Control。<br />
-打开Sublime Text4，按下Ctr+Shift+P快捷键，打开命令窗口，输入Install，选择Package Control: Install Package选项。<br />
-<img src="/post-images/1682410739417.PNG" alt="" /></p>
-<h3 id="heading">汉化</h3>
-<p>重复上一步的操作，会弹出如下搜索框，输入 <code>Chinese</code>，并选择第一项——“ChineseLocalizations”。</p>
-<h3 id="heading-1">安装其他插件</h3>
-<p>重复操作。<br />
-在组件窗口中输入插件名称，选择插件进行安装。<br />
-<img src="/post-images/1682410882068.PNG" alt="" /><br />
-等待安装，安装完成后，查看，Package Settings中是否存在插件。<br />
-<img src="/post-images/1682410966108.png" alt="" /></p>
-<h3 id="heading-2">从仓库安装插件</h3>
-<ol>
-<li>Crtl + Shift + p 调出 package control，输入 add repository，确定</li>
-<li>输入 github 仓库地址，例如 <a href="https://github.com/bani/SublimeFormatSQL">https://github.com/bani/SublimeFormatSQL</a> （Notice：结尾的.git要去掉）</li>
-<li>Crtl + Shift + p 调出 package control，输入 install package，确定，然后再输入 github 仓库的名称，比如 SublimeFormatSQL，确定安装。</li>
-</ol>
-<h2 id="3">3、卸载插件</h2>
-<p>Ctrl+Shift+P 打开Package Control，输入remove package回车，然后找到你要卸载的插件进行卸载。<br />
-<img src="/post-images/1682411145493.png" alt="" /><br />
-<img src="/post-images/1682411179875.png" alt="" /></p>
-<h2 id="4">4、插件推荐</h2>
-<h3 id="emmet">Emmet</h3>
-<p>代码快速编辑神器 视频演示地址<a href="http://docs.emmet.io/">http://docs.emmet.io/</a><br />
-只需要简单的输入一行代码，就可以快速生成代码结构</p>
-<h3 id="jsformat">JSFormat</h3>
-<p>JavaScript的代码格式化插件<br />
-在已压缩的JS文件中，右键选择jsFormat或者使用默认快捷键（Ctrl+Alt+F）</p>
-<h3 id="sublimecodeintel">SublimeCodeIntel</h3>
-<p>SublimeCodeIntel 作为一个代码提示和补全插件，支持 JavaScript、Mason、XBL、XUL、RHTML、SCSS、Python、HTML、Ruby、Python3、XML、Sass、XSLT、Django、HTML5、Perl、CSS、Twig、Less、Smarty、Node.js、Tcl、TemplateToolkit 和 PHP 等所有语言，是 Sublime Text 自带代码提示功能基础上一个更好的扩展，自带代码提示功能只可提示系统代码，而SublimeCodeIntel则可以提示用户自定义代码。SublimeCodeIntel支持跳转到变量、函数定义的功能，另外还有自动补全的功能，十分方便。</p>
-<h3 id="sublimelinter">SublimeLinter</h3>
-<p>SublimeLinter是少数几个能在sublime text 3工作的代码检查插件，SublimeLinter支持JavaScript、CSS、HTML、Java、PHP、Python、Ruby等十多种开发语言，但前提是需要配置相应语言的环境，要检查JavaScript代码需要安装node.js，检查PHP代码需要安装PHP并配置环境等。SublimeLinter可以及时提示编写代码中存在的不规范和错误的写法，并培养我们良好的编码习惯和风格。</p>
-<h3 id="sublime-autoprefixer">sublime-autoprefixer</h3>
-<p>快速给CSS添加私有前缀插件（解决各大浏览器兼容性问题）<br />
-Ctrl+Shift+P，选择autoprefixer</p>
-<h3 id="bracket-highlighter">Bracket Highlighter</h3>
-<p>符号匹配插件<br />
-可匹配<code>[], (), {}, “”, ”, &lt;tag&gt;&lt;/tag&gt;</code>，高亮标记，便于查看起始和结束标记</p>
-<h3 id="docblockr">Doc​Blockr</h3>
-<p>快速生成注释<br />
-输入<code>/*、/**</code>然后回车，还有很多用法<a href="https://packagecontrol.io/packages/DocBlockr">https://packagecontrol.io/packages/DocBlockr</a></p>
-<h3 id="alignment">Alignment</h3>
-<p>Aligment插件让开发者自动对齐代码，包括PHP、CSS、JavaScript语言。使得代码看起来更整齐美观，更具可读性。</p>
-<h3 id="filediffs">FileDiffs</h3>
-<p>FileDiffs插件可以让开发者比较两个不同文件的差异，比较的对象包括当前文件、另一文件、剪切板中的代码甚至未保存文件等。</p>
-<h3 id="colorpicker">ColorPicker</h3>
-<p>功能：调色板<br />
-简介：需要输入颜色时，可直接选取颜色<br />
-使用：快捷键Windows: ctrl+shift+c</p>
-<h3 id="imesupport">IMESupport</h3>
-<p>sublime中文输入法支持光标跟随</p>
-<h3 id="converttoutf8">ConvertToUTF8</h3>
-<p>功能：文件转码成utf-8<br />
-简介：通过本插件，您可以编辑并保存目前编码不被 Sublime Text 支持的文件，特别是中日韩用户使用的 GB2312，GBK，BIG5，EUC-KR，EUC-JP ，ANSI等。ConvertToUTF8 同时支持 Sublime Text 2 和 3。<br />
-使用：安装插件后自动转换为utf-8格式<br />
-使用：快捷操作为： Ctrl + Shift + h</p>
-<h3 id="autofilename">AutoFileName</h3>
-<p>快捷输入文件名<br />
-输入<code>&quot;/&quot;</code>即可看到相对于本项目文件夹的其他文件</p>
-<h3 id="git">Git</h3>
-<p>功能：git管理<br />
-简介：插件基本上实现了git的所有功能<br />
-使用：https://github.com/kemayo/sublime-text-git/wiki</p>
-<h3 id="html-css-js-prettify">html-css-js prettify</h3>
-<p>功能：快速整理我们的代码结构，让代码缩进合适，删除多余的空格/空行<br />
-简介：一键美化HTML/CSS/JS代码</p>
-<h3 id="livereload">livereload</h3>
-<p>功能：插件实时预览html文件<br />
-使用：<a href="https://blog.csdn.net/fujie0206/article/details/123592674">Sublime中使用livereload插件实时预览html文件</a></p>
-<h2 id="heading-3">插件安装问题</h2>
-<h3 id="there-are-no-packages-available-for-installation">解决There are no packages available for installation</h3>
-<p>通过Sublime Text的Package Control来安装一些插件，但是点击Package Control:Install Package之后一段时间，弹出一个窗口，提示信息为：There are no packages available for installation：<br />
-<img src="/post-images/1682736145778.png" alt="" /><br />
-<strong>解决方法：</strong><br />
-首选项-Package Settings-Package Control-Settings<br />
-添加如下配置：</p>
-<pre><code class="language-bash">&quot;channels&quot;:[
-		&quot;http://cst.stu.126.net/u/json/cms/channel_v3.json&quot;
-	],
-</code></pre>
-<p>重启可用。</p>
-<h3 id="unable-to-download-xxx-please-view-the-console-for-more-details">解决Unable to download XXX. Please view the console for more details.</h3>
-<p><strong>解决方法：</strong><br />
-Preferences 》Package Settings 》 Package Control 》 Settings - User<br />
-增加如下内容：</p>
-<pre><code class="language-bash">&quot;debug&quot;: true,
-&quot;downloader_precedence&quot;:
-{
-    &quot;linux&quot;: [ &quot;curl&quot;, &quot;urllib&quot;, &quot;wget&quot; ],
-    &quot;osx&quot;: [ &quot;curl&quot;, &quot;urllib&quot; ],
-    &quot;windows&quot;: [ &quot;wininet&quot; ]
-},
-</code></pre>
-<p>最终内容如下：</p>
-<pre><code class="language-bash">{
-    &quot;bootstrapped&quot;: true,
-    &quot;debug&quot;: true,
-    &quot;installed_packages&quot;:
-    [
-        &quot;Package Control&quot;
-    ],
-    &quot;downloader_precedence&quot;:
-    {
-        &quot;linux&quot;: [ &quot;curl&quot;, &quot;urllib&quot;,    &quot;wget&quot; ],
-        &quot;osx&quot;: [ &quot;curl&quot;, &quot;urllib&quot; ],
-        &quot;windows&quot;: [ &quot;wininet&quot; ]
-    },
-}
-</code></pre>
-<p>再次安装插件就没问题了。</p>
-<h2 id="heading-4">参考</h2>
-<p><a href="https://www.jianshu.com/p/dfd2fbc9e674">sublime实用插件推荐（最全）</a><br />
-<a href="https://www.jianshu.com/p/c265892a89da">推荐几款炫酷的Sublime Text插件</a><br />
-<a href="https://blog.csdn.net/m0_37617778/article/details/83111550">Git学习第（三）篇：Sublime Text3 Git插件安装与使用_sublime text git</a><br />
-<a href="https://blog.csdn.net/weixin_42160117/article/details/114800988">VScode前端开发必备插件——Emmet配置及常用语法_vscode emmet插件</a><br />
-<a href="https://blog.csdn.net/c2366994582/article/details/79109765">Sublime Text3安装及插件的安装卸载</a><br />
-<a href="https://blog.csdn.net/weixin_44895385/article/details/119866007">Sublime Text 4 设置中文、汉化_sublime text4 中文</a><br />
-<a href="https://blog.csdn.net/jinxin740202/article/details/109899283">Sublime Text3解决There are no packages available for installation</a><br />
-<a href="https://www.cnblogs.com/exmyth/p/11343830.html">Sublime Text 解决 Unable to download XXX 问题</a><br />
-<a href="https://blog.csdn.net/w6611415/article/details/28247119">Sublime - 从指定github仓库安装插件_sumlime4 add repository</a><br />
-<a href="https://blog.csdn.net/qq_41140138/article/details/99435409">sublime插件 —— 一键美化HTML/CSS/JS代码_sublime美化代码_我有两颗糖的博客</a><br />
-<a href="https://blog.csdn.net/fujie0206/article/details/123592674">Sublime中使用livereload插件实时预览html文件_sublime预览html_fujuhao的博客</a></p>
 </span></div>
                         </div>
                         

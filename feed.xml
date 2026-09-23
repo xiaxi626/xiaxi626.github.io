@@ -6,13 +6,28 @@
     <description>Welcome to Gridea Pro</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Sun, 20 Sep 2026 21:20:34 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2026 21:00:21 +0000</lastBuildDate>
     <atom:link href="https://xiaxi626.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <item>
+      <title>从零到一：dsh-skills-nexus 首次发布 npm 包完整实录</title>
+      <link>https://xiaxi626.github.io/post/cong-ling-dao-yidsh-skills-nexus-shou-ci-fa-bu-npm-bao-wan-zheng-shi-lu/</link>
+      <guid isPermaLink="true">https://xiaxi626.github.io/post/cong-ling-dao-yidsh-skills-nexus-shou-ci-fa-bu-npm-bao-wan-zheng-shi-lu/</guid>
+      <pubDate>Wed, 23 Sep 2026 21:00:21 +0000</pubDate>
+      <description><![CDATA[<p>故事的起点是一条简单的命令：</p>
+<pre><code class="language-bash">dsh plugin --profile web add dsh-skills-nexus
+</code></pre>
+<p>期望的结果是安装 <code>dsh-skills-nexus</code> 插件，但实际返回的是：</p>
+<pre><code>[ERR_PNPM_FETCH_404] GET https://registry.npmmirror.com/dsh-skills-nexu...
+</code></pre>
+]]></description>
+      <category>Technology</category>
+      <category>AI</category>
+    </item>
     <item>
       <title>论“没料到体”</title>
       <link>https://xiaxi626.github.io/post/lunmei-liao-dao-ti/</link>
       <guid isPermaLink="true">https://xiaxi626.github.io/post/lunmei-liao-dao-ti/</guid>
-      <pubDate>Sun, 20 Sep 2026 21:20:34 +0000</pubDate>
+      <pubDate>Sun, 20 Sep 2026 21:20:34 +0800</pubDate>
       <description><![CDATA[<p>无论是谁，只要在中国上过网，便总得常看见“没料到”或其相类的标题。我想：这话的分布，大概就跟着自媒体的足迹之所至罢；使用的遍数，怕也未必比客气的“您好呀”会更少。假使依或人所说，牡丹是中国的“国花”，那么，这就可以算是中国的“国标题”了。</p>
 <p>我生长于报刊尚有人读的年代。那地方的标题却也颇简单：主谓宾，直说事，决不牵涉“打脸”。后来稍游网络，才始惊异于“没料到体”之博大而精微：上溯“万万没想到”&hellip;</p>
 ]]></description>
@@ -130,17 +145,6 @@ cd &lt;仓库目录&gt;
 <blockquote>
 <p>静态网站生成器（SSG）主题迁移是一项需要同时掌握源平台模板语法、目标平台模板引擎差异、数据模型映射和CSS设计规范的复杂任务。其中，Hexo的Pug模板引擎与Gridea Pro的Pongo2（Jinja2的Go实现）之间存在根本性的语法范式差异，使得跨平台迁移成为一项手动语法翻译的繁重工作。本文提出Hexo-to-Gridea-Migration，一个面向AI编程助手的结&hellip;</p>
 </blockquote>
-]]></description>
-      <category>Gridea Pro</category>
-      <category>AI</category>
-    </item>
-    <item>
-      <title>Theme‐Builder Skill：面向 AI 辅助编程的多引擎静态博客主题开发框架</title>
-      <link>https://xiaxi626.github.io/post/theme-builder-skillmian-xiang-ai-fu-zhu-bian-cheng-de-duo-yin-qing-jing-tai-bo-ke-zhu-ti-kai-fa-kuang-jia/</link>
-      <guid isPermaLink="true">https://xiaxi626.github.io/post/theme-builder-skillmian-xiang-ai-fu-zhu-bian-cheng-de-duo-yin-qing-jing-tai-bo-ke-zhu-ti-kai-fa-kuang-jia/</guid>
-      <pubDate>Mon, 13 Jul 2026 19:16:09 +0800</pubDate>
-      <description><![CDATA[<h2 id="heading">摘要</h2>
-<p>静态网站生成器（SSG）主题开发是一项需要同时掌握模板引擎语法、数据模型、CSS布局和SEO规范的复杂任务。不同SSG平台之间模板引擎的异构性进一步加剧了这一困难。本文提出Theme-Builder Skill，一个面向AI编程助手的结构化技能包，为Gridea Pro主题开发提供端到端支持。该框架采用三层架构——知识层、工具层和模板层——并显式管理三种模板引擎（Jinja2/P&hellip;</p>
 ]]></description>
       <category>Gridea Pro</category>
       <category>AI</category>
